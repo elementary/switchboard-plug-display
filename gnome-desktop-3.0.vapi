@@ -175,7 +175,7 @@ namespace Gnome {
 		public bool can_clone (Gnome.RROutput clone);
 		public int get_backlight ();
 		public Gnome.RRCrtc get_crtc ();
-		public Gnome.RRMode get_current_mode ();
+		public unowned Gnome.RRMode get_current_mode ();
 		public unowned string get_display_name ();
 		public uint8 get_edid_data (size_t size);
 		public uint32 get_id ();
