@@ -1,5 +1,6 @@
 SOURCES=src/OutputList.vala \
         src/DisplayPlug.vala \
+	src/DisplayPopover.vala \
         src/Utils.vala
 
 displays: $(SOURCES)
