@@ -6,7 +6,7 @@ public class DisplayPlug : Object
 	Gnome.RRScreen screen;
 	Gnome.RRConfig current_config;
 	Gnome.RROutputInfo? selected_info = null;
-	Gnome.RROutput? selected_output = null;
+	unowned Gnome.RROutput? selected_output = null;
 
 	Gtk.Switch use_display;
 	Gtk.CheckButton primary_display;
@@ -255,14 +255,13 @@ public class DisplayPlug : Object
 
 	void update_modes ()
 	{
-		// FIXME crashes here when selecting a monitor
 		resolution.remove_all ();
 
-		Gnome.RRMode** modes = null;
+		Gnome.RRMode[] modes;
 		if (current_config.get_clone ())
-			modes = (Gnome.RRMode **) screen.list_clone_modes ();
+			modes = screen.list_clone_modes ();
 		else if (selected_output != null)
-			modes = (Gnome.RRMode **) selected_output.list_modes ();
+			modes = selected_output.list_modes ();
 		else {
 			resolution.sensitive = false;
 			return;
@@ -270,16 +269,13 @@ public class DisplayPlug : Object
 
 		var i = 0;
 
-		while (modes[i] != null) {
-			Gnome.RRMode* mode = modes[i];
-			// TODO cleanup with freqs
-			resolution.append (mode->get_id ().to_string (),
-				"%ux%u @ %iHz".printf (mode->get_width (), mode->get_height (), mode->get_freq ()));
+		foreach (unowned Gnome.RRMode mode in modes) {
+			resolution.append (mode.get_id ().to_string (),
+				"%ux%u @ %iHz".printf (mode.get_width (), mode.get_height (), mode.get_freq ()));
 			i++;
 		}
 
 		resolution.active_id = selected_output.get_current_mode ().get_id ().to_string ();
-
 	}
 
 	// TODO show an infobar
