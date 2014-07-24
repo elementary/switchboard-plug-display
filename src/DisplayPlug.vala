@@ -9,11 +9,8 @@ public class DisplayPlug : Object
 	Gnome.RROutput? selected_output = null;
 
 	Gtk.Switch use_display;
-	Gtk.Scale brightness;
 	Gtk.Switch mirror_display;
-	Gtk.ComboBoxText turn_off_when;
 	Gtk.ComboBoxText resolution;
-	Gtk.ComboBoxText color_profile;
 	Gtk.ComboBoxText rotation;
 	Gtk.Button apply_button;
 
@@ -53,29 +50,10 @@ public class DisplayPlug : Object
 		main_grid.attach (new RLabel.right (_("Use display:")), 0, 2, 1, 1);
 		main_grid.attach (use_display, 1, 2, 1, 1);
 
-		brightness = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 100, 1);
-		brightness.draw_value = false;
-		brightness.value_changed.connect (() => {
-			if (ui_update)
-				return;
-
-			try {
-				selected_output.set_backlight ((int) brightness.get_value ());
-			} catch (Error e) {
-				report_error (e.message);
-			}
-		});
-		main_grid.attach (new RLabel.right (_("Brightness:")), 0, 3, 1, 1);
-		main_grid.attach (brightness, 1, 3, 1, 1);
-
 		mirror_display = new Gtk.Switch ();
 		mirror_display.halign = Gtk.Align.START;
 		main_grid.attach (new RLabel.right (_("Mirror display:")), 0, 4, 1, 1);
 		main_grid.attach (mirror_display, 1, 4, 1, 1);
-
-		turn_off_when = new Gtk.ComboBoxText ();
-		main_grid.attach (new RLabel.right (_("Turn off when:")), 0, 5, 1, 1);
-		main_grid.attach (turn_off_when, 1, 5, 1, 1);
 
 		main_grid.attach (new RLabel.markup ("<b>" + _("Appearance:") + "</b>"), 2, 1, 2, 1);
 
@@ -104,11 +82,6 @@ public class DisplayPlug : Object
 		});
 		main_grid.attach (new RLabel.right (_("Resolution:")), 2, 2, 1, 1);
 		main_grid.attach (resolution, 3, 2, 1, 1);
-
-		color_profile = new Gtk.ComboBoxText ();
-		color_profile.valign = Gtk.Align.CENTER;
-		main_grid.attach (new RLabel.right (_("Color Profile:")), 2, 3, 1, 1);
-		main_grid.attach (color_profile, 3, 3, 1, 1);
 
 		rotation = new Gtk.ComboBoxText ();
 		rotation.valign = Gtk.Align.CENTER;
@@ -146,13 +119,10 @@ public class DisplayPlug : Object
 	{
 		var output_selected = info != null;
 
-		brightness.sensitive = output_selected;
 		resolution.sensitive = output_selected;
 		rotation.sensitive = output_selected;
 		use_display.sensitive = output_selected;
 		mirror_display.sensitive = output_selected;
-		turn_off_when.sensitive = output_selected;
-		color_profile.sensitive = output_selected;
 
 		if (!output_selected)
 			return;
@@ -166,11 +136,7 @@ public class DisplayPlug : Object
 
 		use_display.active = info.is_active ();
 
-		var brightness_step = output.get_min_backlight_step ();
-		brightness.set_increments (brightness_step, brightness_step);
-		brightness.set_value (output.get_backlight ());
 		// TODO Gtk.Switch mirror_display;
-		//Gtk.ComboBoxText turn_off_when;
 
 		resolution.remove_all ();
 		foreach (var mode in output.list_modes ()) {
@@ -180,7 +146,6 @@ public class DisplayPlug : Object
 		}
 		resolution.active_id = output.get_current_mode ().get_id ().to_string ();
 
-		// TODO? Gtk.ComboBoxText color_profile;
 		var n_rotations = 0;
 		Gnome.RRRotation[] rotations = {
 			Gnome.RRRotation.ROTATION_0,
@@ -251,7 +216,7 @@ public class DisplayPlug : Object
 		foreach (var output in current_config.get_outputs ())
 			output_list.add_output (output);
 
-		output_list.select_path (new Gtk.TreePath.from_string ("0"));
+		output_list.select_path (new Gtk.TreePath.first ());
 	}
 
 	void report_error (string message)
