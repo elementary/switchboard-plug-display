@@ -27,7 +27,7 @@ public class OutputList : GtkClutter.Embed
 				float x, y;
 				settings.get_transformed_position (out x, out y);
 
-				show_settings (output, { (int) x, (int) y, (int) width, (int) height });
+				show_settings (output, { (int) x, (int) y, (int) settings.width, (int) settings.height });
 
 				return false;
 			});
@@ -92,9 +92,6 @@ public class OutputList : GtkClutter.Embed
 		monitor.show_settings.connect ((output, rect) => {
 			Gtk.Allocation alloc;
 			get_allocation (out alloc);
-
-			rect.x += alloc.x;
-			rect.y += alloc.y;
 
 			show_settings (output, rect);
 		});
