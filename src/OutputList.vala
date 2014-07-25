@@ -1,94 +1,156 @@
 
-public class OutputList : Gtk.IconView
+public class OutputList : GtkClutter.Embed
 {
-	const int MONITOR_MAX_HEIGHT = 150;
+	class Monitor : Clutter.Actor
+	{
+		const int MARGIN = 6;
 
-	public signal void select_output (Gnome.RROutputInfo? output);
+		public signal void show_settings (Gnome.RROutputInfo output, Gdk.Rectangle position);
 
-	Gtk.ListStore list;
-	double highest;
+		public unowned Gnome.RROutputInfo output { get; construct; }
+
+		public Monitor (Gnome.RROutputInfo output)
+		{
+			Object (output: output);
+
+			var align = new Clutter.BinLayout ();
+			layout_manager = align;
+
+			var primary = new GtkClutter.Texture ();
+			primary.margin_left = primary.margin_top = MARGIN;
+			primary.set_from_pixbuf (Gtk.IconTheme.get_default ()
+				.lookup_icon ("gtk-about-symbolic", 16, 0).load_symbolic ({ 0, 0, 0, 1 }));
+
+			var settings = new GtkClutter.Texture ();
+			settings.reactive = true;
+			settings.button_release_event.connect (() => {
+				float x, y;
+				settings.get_transformed_position (out x, out y);
+
+				show_settings (output, { (int) x, (int) y, (int) width, (int) height });
+
+				return false;
+			});
+			settings.margin_right = settings.margin_top = MARGIN;
+			settings.set_from_pixbuf (Gtk.IconTheme.get_default ()
+				.lookup_icon ("document-properties-symbolic", 16, 0).load_symbolic ({ 1, 1, 1, 1 }));
+
+			var label = new Clutter.Text.with_text (null, output.get_display_name ());
+			label.color = { 255, 255, 255, 255 };
+
+			var canvas = new Clutter.Canvas ();
+			canvas.draw.connect (draw_background);
+			notify["allocation"].connect (() => {
+				canvas.set_size ((int) width, (int) height);
+			});
+
+			content = canvas;
+
+			add_child (primary);
+			add_child (settings);
+			add_child (label);
+
+			align.set_alignment (settings, Clutter.BinAlignment.END, Clutter.BinAlignment.START);
+			align.set_alignment (label, Clutter.BinAlignment.CENTER, Clutter.BinAlignment.CENTER);
+		}
+
+		public void update_position (float scale_factor, float offset_x, float offset_y)
+		{
+			int monitor_x, monitor_y, monitor_width, monitor_height;
+			output.get_geometry (out monitor_x, out monitor_y, out monitor_width, out monitor_height);
+
+			set_position (Math.floorf (offset_x + monitor_x * scale_factor),
+			              Math.floorf (offset_y + monitor_y * scale_factor));
+
+			set_size (Math.floorf (monitor_width * scale_factor),
+			          Math.floorf (monitor_height * scale_factor));
+		}
+
+		bool draw_background (Cairo.Context cr)
+		{
+			// TODO draw shadow, inner highlight and use correct color
+			cr.rectangle (0, 0, (int) width, (int) height);
+			cr.set_source_rgb (0.2, 0.2, 0.2);
+			cr.fill ();
+
+			return false;
+		}
+	}
+
+	const int PADDING = 48;
+
+	public signal void show_settings (Gnome.RROutputInfo output, Gdk.Rectangle position);
 
 	public OutputList ()
 	{
-		activate_on_single_click = true;
-		model = list = new Gtk.ListStore (2, typeof (Gnome.RROutputInfo), typeof (Gdk.Pixbuf));
-		set_reorderable (true);
-		set_pixbuf_column (1);
-
-		cell_area.get_cells ().data.xalign = 0.5f;
-		cell_area.get_cells ().data.yalign = 0.5f;
-
-		selection_changed.connect_after (() => {
-			Gtk.TreeIter iter;
-			unowned Gnome.RROutputInfo info;
-
-			var selected = get_selected_items ();
-			if (selected.length () < 1) {
-				select_output (null);
-				return;
-			}
-			var path = selected.data;
-
-			list.get_iter (out iter, path);
-			list.@get (iter, 0, out info);
-
-			select_output (info);
-		});
+		size_allocate.connect (reposition);
 	}
 
 	public void add_output (Gnome.RROutputInfo output)
 	{
-		Gtk.TreeIter iter, new_iter;
-		int x1, x2, height;
-		Gnome.RROutputInfo other_output;
+		var monitor = new Monitor (output);
+		monitor.show_settings.connect ((output, rect) => {
+			Gtk.Allocation alloc;
+			get_allocation (out alloc);
 
-		output.get_geometry (out x1, null, null, out height);
+			rect.x += alloc.x;
+			rect.y += alloc.y;
 
-		highest = double.max (highest, height);
+			show_settings (output, rect);
+		});
+		get_stage ().add_child (monitor);
 
-		if (list.iter_n_children (null) > 0) {
-			list.get_iter_first (out iter);
+		reposition ();
+	}
 
-			do {
-				list.@get (iter, 0, out other_output);
-				other_output.get_geometry (out x2, null, null, null);
+	public void reposition ()
+	{
+		var left = int.MAX;
+		var right = 0;
+		var top = int.MAX;
+		var bottom = 0;
 
-				if (x1 < x2)
-					break;
-			} while (list.iter_next (ref iter));
+		// TODO respect rotation
 
-			list.insert_before (out new_iter, iter);
-		} else
-			list.append (out new_iter);
+		int x, y, width, height;
 
-		list.@set (new_iter, 0, output, 1, get_monitor_pixbuf (output));
+		foreach (var child in get_stage ().get_children ()) {
+			unowned Monitor monitor = (Monitor) child;
+
+			monitor.output.get_geometry (out x, out y, out width, out height);
+
+			if (x < left)
+				left = x;
+			if (y < top)
+				top = y;
+			if (x + width > right)
+				right = x + width;
+			if (y + height > bottom)
+				bottom = y + height;
+		}
+
+		var layout_width = right - left;
+		var layout_height = bottom - top;
+		var container_width = get_allocated_width ();
+		var container_height = get_allocated_height ();
+		var inner_width = container_width - PADDING * 2;
+		var inner_height = container_height - PADDING * 2;
+
+		var scale_factor = (float) inner_height / layout_height;
+
+		if (layout_width * scale_factor > inner_width)
+			scale_factor = (float) inner_width / layout_width;
+
+		var offset_x = (container_width - layout_width * scale_factor) / 2.0f;
+		var offset_y = (container_height - layout_height * scale_factor) / 2.0f;
+
+		foreach (var child in get_stage ().get_children ()) {
+			((Monitor) child).update_position (scale_factor, offset_x, offset_y);
+		}
 	}
 
 	public void remove_all ()
 	{
-		bool valid;
-		Gtk.TreeIter iter;
-
-		for (valid = list.get_iter_first (out iter); valid; valid = list.remove (iter));
-	}
-
-	Gdk.Pixbuf get_monitor_pixbuf (Gnome.RROutputInfo output)
-	{
-		int monitor_width, monitor_height;
-		output.get_geometry (null, null, out monitor_width, out monitor_height);
-
-		var scale_factor = MONITOR_MAX_HEIGHT / highest;
-		var width = (int) Math.floor (monitor_width * scale_factor);
-		var height = (int) Math.floor (monitor_height * scale_factor);
-
-		var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
-		var cr = new Cairo.Context (surface);
-
-		cr.rectangle (0, 0, width, height);
-		cr.set_source_rgb (1, 0, 0);
-		cr.fill ();
-
-		return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
 	}
 }
 

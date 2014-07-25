@@ -6,8 +6,6 @@ public class DisplayPlug : Object
 
 	Gnome.RRScreen screen;
 	Gnome.RRConfig current_config;
-	unowned Gnome.RROutputInfo? selected_info = null;
-	unowned Gnome.RROutput? selected_output = null;
 
 	Gtk.Button apply_button;
 
@@ -26,6 +24,14 @@ public class DisplayPlug : Object
 		}
 
 		output_list = new OutputList ();
+		output_list.show_settings.connect ((output, position) => {
+			var settings = new DisplayPopover (output_list, position,
+				screen, output, current_config, enabled_monitors > 1);
+
+			settings.show_all ();
+		});
+		output_list.set_size_request (700, 350);
+
 		main_box.pack_start (output_list);
 
 		var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
@@ -38,6 +44,8 @@ public class DisplayPlug : Object
 		buttons.add (apply_button);
 
 		main_box.pack_start (buttons, false);
+
+		screen_changed ();
 	}
 
 	void update_config ()
@@ -87,8 +95,6 @@ public class DisplayPlug : Object
 
 			output_list.add_output (output);
 		}
-
-		output_list.select_path (new Gtk.TreePath.first ());
 	}
 
 	// TODO show an infobar
@@ -118,7 +124,7 @@ public class DisplayPlug : Object
 
 void main (string[] args)
 {
-	Gtk.init (ref args);
+	GtkClutter.init (ref args);
 
 	var p = new DisplayPlug ();
 	var w = new Gtk.Window ();

@@ -11,37 +11,48 @@ public class DisplayPopover : Gtk.Popover
 	Gtk.ComboBoxText resolution;
 	Gtk.ComboBoxText rotation;
 
-	public DisplayPopover (Gtk.Widget relative_to, Gnome.RRScreen screen,
+	public DisplayPopover (Gtk.Widget relative_to, Gdk.Rectangle pointing_to, Gnome.RRScreen screen,
 		Gnome.RROutputInfo output_info, Gnome.RRConfig config, bool is_multi_monitor)
 	{
 		Object (relative_to: relative_to);
 
+		position = Gtk.PositionType.BOTTOM;
+		set_pointing_to (pointing_to);
+		width_request = 370;
+
 		info = output_info;
 		output = screen.get_output_by_name (info.get_name ());
 
+		var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
+
 		var grid = new Gtk.Grid ();
-		//grid.margin = 12;
+		grid.margin = 12;
+		grid.margin_top = 0;
 		grid.row_spacing = 6;
 		grid.column_spacing = 12;
 
 		use_display = new Gtk.Switch ();
 		use_display.active = info.is_active ();
 		use_display.sensitive = is_multi_monitor;
-		use_display.halign = Gtk.Align.START;
+		use_display.halign = Gtk.Align.END;
 		use_display.notify["active"].connect (() => {
 			info.set_active (use_display.active);
 
 			update_config ();
 		});
 
-		grid.attach (new RLabel.right (_("Use This Display")), 0, 0, 1, 1);
-		grid.attach (use_display, 1, 0, 1, 1);
+		var use_display_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+		use_display_box.margin = 12;
+		use_display_box.margin_bottom = 0;
+		use_display_box.pack_start (new RLabel.right (_("Use This Display")), false);
+		use_display_box.pack_start (use_display);
 
-		grid.attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 1, 2, 1);
+		box.pack_start (use_display_box, false);
+		box.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false);
+		box.pack_start (grid);
 
 		resolution = new Gtk.ComboBoxText ();
-
-		resolution.remove_all ();
+		resolution.expand = true;
 
 		unowned Gnome.RRMode[] modes;
 		if (config.get_clone ())
@@ -78,8 +89,8 @@ public class DisplayPopover : Gtk.Popover
 
 			update_config ();
 		});
-		grid.attach (new RLabel.right (_("Resolution:")), 0, 3, 1, 1);
-		grid.attach (resolution, 1, 3, 1, 1);
+		grid.attach (new RLabel.right (_("Resolution:")), 0, 2, 1, 1);
+		grid.attach (resolution, 1, 2, 1, 1);
 
 		mirror_display = new Gtk.Switch ();
 		mirror_display.active = config.get_clone ();
@@ -90,8 +101,8 @@ public class DisplayPopover : Gtk.Popover
 
 			update_config ();
 		});
-		grid.attach (new RLabel.right (_("Mirror display:")), 0, 2, 1, 1);
-		grid.attach (mirror_display, 1, 2, 1, 1);
+		grid.attach (new RLabel.right (_("Mirror Display:")), 0, 3, 1, 1);
+		grid.attach (mirror_display, 1, 3, 1, 1);
 
 		rotation = new Gtk.ComboBoxText ();
 		rotation.valign = Gtk.Align.CENTER;
@@ -109,7 +120,6 @@ public class DisplayPopover : Gtk.Popover
 			_("Clockwise"),
 			_("180 Degrees")
 		};
-		rotation.remove_all ();
 		for (i = 0; i < rotations.length; i++) {
 			if (info.supports_rotation (rotations[i])) {
 				rotation.append (((int) rotations[i]).to_string (), desc[i]);
@@ -126,8 +136,10 @@ public class DisplayPopover : Gtk.Popover
 
 			update_config ();
 		});
-		grid.attach (new RLabel.right (_("Rotation:")), 2, 4, 1, 1);
-		grid.attach (rotation, 3, 4, 1, 1);
+		grid.attach (new RLabel.right (_("Rotation:")), 0, 4, 1, 1);
+		grid.attach (rotation, 1, 4, 1, 1);
+
+		add (box);
 	}
 }
 
