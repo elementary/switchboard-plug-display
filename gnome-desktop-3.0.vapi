@@ -134,7 +134,11 @@ namespace Gnome {
 		protected RRConfig ();
 		public bool applicable (Gnome.RRScreen screen) throws GLib.Error;
 		public bool apply (Gnome.RRScreen screen) throws GLib.Error;
+#if HAS_GNOME312
 		public bool apply_persistent (Gnome.RRScreen screen) throws GLib.Error;
+#else
+		public bool save () throws GLib.Error;
+#endif
 		[CCode (has_construct_function = false)]
 		public RRConfig.current (Gnome.RRScreen screen) throws GLib.Error;
 		public bool ensure_primary ();

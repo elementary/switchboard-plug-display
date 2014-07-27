@@ -59,6 +59,14 @@ public class OutputList : GtkClutter.Embed
 			int monitor_x, monitor_y, monitor_width, monitor_height;
 			output.get_geometry (out monitor_x, out monitor_y, out monitor_width, out monitor_height);
 
+			var rotation = output.get_rotation ();
+			if (rotation == Gnome.RRRotation.ROTATION_90
+				|| rotation == Gnome.RRRotation.ROTATION_270) {
+				var tmp = monitor_width;
+				monitor_width = monitor_height;
+				monitor_height = tmp;
+			}
+
 			set_position (Math.floorf (offset_x + monitor_x * scale_factor),
 			              Math.floorf (offset_y + monitor_y * scale_factor));
 
@@ -148,6 +156,7 @@ public class OutputList : GtkClutter.Embed
 
 	public void remove_all ()
 	{
+		get_stage ().destroy_all_children ();
 	}
 }
 

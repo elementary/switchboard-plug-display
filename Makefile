@@ -5,7 +5,7 @@ SOURCES=src/OutputList.vala \
 
 displays: $(SOURCES)
 	pkg-config --exists "gnome-desktop-3.0 >= 3.12.0";			\
-	[ $$? -eq 0 ] && VALAFLAGS="-D HAS_NEW_GNOME";				\
+	[ $$? -eq 0 ] && VALAFLAGS="-D HAS_GNOME312";				\
 	valac -X -DGETTEXT_PACKAGE="\"abc\""					\
 	      -X -DGNOME_DESKTOP_USE_UNSTABLE_API 				\
 	      --pkg granite 							\

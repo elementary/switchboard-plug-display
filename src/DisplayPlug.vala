@@ -26,7 +26,9 @@ public class DisplayPlug : Object
 		output_list = new OutputList ();
 		output_list.show_settings.connect ((output, position) => {
 			var settings = new DisplayPopover (output_list, position,
-				screen, output, current_config, enabled_monitors > 1);
+				screen, output, current_config);
+
+			settings.update_config.connect (update_config);
 
 			settings.show_all ();
 		});
@@ -59,6 +61,8 @@ public class DisplayPlug : Object
 		} catch (Error e) {
 			report_error (e.message);
 		}
+
+		update_outputs ();
 	}
 
 	void apply ()
@@ -68,8 +72,21 @@ public class DisplayPlug : Object
 		current_config.sanitize ();
 		current_config.ensure_primary ();
 
+#if !HAS_GNOME312
 		try {
+			var other_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
+			var other_config = new Gnome.RRConfig.current (other_screen);
+			other_config.ensure_primary ();
+			other_config.save ();
+		} catch (Error e) {}
+#endif
+
+		try {
+#if HAS_GNOME312
 			current_config.apply_persistent (screen);
+#else
+			current_config.save ();
+#endif
 		} catch (Error e) {
 			report_error (e.message);
 		}
@@ -87,13 +104,20 @@ public class DisplayPlug : Object
 			report_error (e.message);
 		}
 
+		update_outputs ();
+	}
+
+	void update_outputs ()
+	{
 		enabled_monitors = 0;
 		output_list.remove_all ();
 		foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
-			if (output.is_active ())
-				enabled_monitors++;
+			if (output.is_connected ()) {
+				if (output.is_active ())
+					enabled_monitors++;
 
-			output_list.add_output (output);
+				output_list.add_output (output);
+			}
 		}
 	}
 
