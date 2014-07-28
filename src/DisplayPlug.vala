@@ -7,6 +7,8 @@ public class DisplayPlug : Object
 	Gnome.RRScreen screen;
 	Gnome.RRConfig current_config;
 
+	SettingsDaemon? settings_daemon = null;
+
 	Gtk.Button apply_button;
 
 	int enabled_monitors = 0;
@@ -47,6 +49,12 @@ public class DisplayPlug : Object
 
 		main_box.pack_start (buttons, false);
 
+		try {
+			settings_daemon = get_settings_daemon ();
+		} catch (Error e) {
+			report_error (_("Settings cannot be applied: %s").printf (e.message));
+		}
+
 		screen_changed ();
 	}
 
@@ -67,6 +75,8 @@ public class DisplayPlug : Object
 
 	void apply ()
 	{
+		var timestamp = Gtk.get_current_event_time ();
+
 		apply_button.sensitive = false;
 
 		current_config.sanitize ();
@@ -89,7 +99,12 @@ public class DisplayPlug : Object
 #endif
 		} catch (Error e) {
 			report_error (e.message);
+			return;
 		}
+
+		var xid = Gdk.X11Window.get_xid (main_box.get_toplevel ().get_window ());
+
+		settings_daemon.apply_configuration (xid, timestamp);
 
 		screen_changed ();
 	}

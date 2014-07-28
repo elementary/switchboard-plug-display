@@ -1,6 +1,7 @@
 SOURCES=src/OutputList.vala \
 	src/DisplayPopover.vala \
         src/DisplayPlug.vala \
+        src/SettingsDaemon.vala \
         src/Utils.vala
 
 displays: $(SOURCES)
@@ -11,6 +12,7 @@ displays: $(SOURCES)
 	      --pkg granite 							\
 	      --pkg gnome-desktop-3.0						\
 	      --pkg clutter-gtk-1.0						\
+	      --pkg gdk-x11-3.0							\
 	      --vapidir=.							\
 	      $(SOURCES)							\
 	      -o displays							\
