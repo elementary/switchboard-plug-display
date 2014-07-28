@@ -3,6 +3,7 @@ class Monitor : Clutter.Actor {
     const int MARGIN = 6;
 
     public signal void show_settings (Gnome.RROutputInfo output, Gdk.Rectangle position);
+    public signal void is_primary ();
 
     public unowned Gnome.RROutputInfo output { get; construct; }
     Gdk.RGBA rgba;
@@ -16,18 +17,28 @@ class Monitor : Clutter.Actor {
         layout_manager = new Clutter.BinLayout ();
         primary_image = new Gtk.Image.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
         primary_image.margin = MARGIN;
+        if (output.get_primary () == true) {
+            primary_image.icon_name = "starred-symbolic";
+        }
+
         var primary = new GtkClutter.Actor.with_contents (primary_image);
+        primary.button_release_event.connect (() => {
+            if (primary_image.icon_name == "non-starred-symbolic") {
+                primary_image.icon_name = "starred-symbolic";
+                output.set_primary (true);
+                is_primary ();
+            }
+            return false;
+        });
 
         settings_image = new Gtk.Image.from_icon_name ("document-properties-symbolic", Gtk.IconSize.MENU);
         settings_image.margin = MARGIN;
         var settings = new GtkClutter.Actor.with_contents (settings_image);
         settings.reactive = true;
         settings.button_release_event.connect (() => {
-            float x, y;
-            settings.get_transformed_position (out x, out y);
-
-            show_settings (output, { (int) x, (int) y, (int) settings.width, (int) settings.height });
-
+            var display_popover = Configuration.get_default ().get_popover (output);
+            display_popover.relative_to = settings_image;
+            display_popover.show_all ();
             return false;
         });
 
@@ -53,6 +64,13 @@ class Monitor : Clutter.Actor {
         label_actor.x_expand = true;
         label_actor.y_align = Clutter.ActorAlign.CENTER;
         label_actor.y_expand = true;
+    }
+
+    public void unset_primary () {
+        if (primary_image.icon_name == "starred-symbolic") {
+            primary_image.icon_name = "non-starred-symbolic";
+            output.set_primary (false);
+        }
     }
 
     public void update_position (float scale_factor, float offset_x, float offset_y) {

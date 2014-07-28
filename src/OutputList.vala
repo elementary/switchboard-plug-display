@@ -8,8 +8,6 @@ public class OutputList : GtkClutter.Embed {
     public const string RED = "#ba393e";
     public const string GREY = "#d5d3d1";
 
-    public signal void show_settings (Gnome.RROutputInfo output, Gdk.Rectangle position);
-
     public OutputList () {
         size_allocate.connect (reposition);
     }
@@ -40,11 +38,13 @@ public class OutputList : GtkClutter.Embed {
         }
 
         monitor.set_rgba (rgba);
-        monitor.show_settings.connect ((output, rect) => {
-            Gtk.Allocation alloc;
-            get_allocation (out alloc);
-
-            show_settings (output, rect);
+        monitor.is_primary.connect (() => {
+            foreach (var child in get_stage ().get_children ()) {
+                unowned Monitor mon = (Monitor)child;
+                if (mon != monitor) {
+                    monitor.unset_primary ();
+                }
+            }
         });
         get_stage ().add_child (monitor);
 

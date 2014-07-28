@@ -1,4 +1,5 @@
-SOURCES=src/OutputList.vala \
+SOURCES=src/Configuration.vala \
+        src/OutputList.vala \
         src/DisplayPopover.vala \
         src/DisplayPlug.vala \
         src/Monitor.vala \

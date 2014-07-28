@@ -14,12 +14,8 @@ public class DisplayPopover : Gtk.Popover {
 
     bool ui_update = false;
 
-    public DisplayPopover (Gtk.Widget relative_to, Gdk.Rectangle pointing_to, Gnome.RRScreen screen,
-                            Gnome.RROutputInfo output_info, Gnome.RRConfig config) {
-        Object (relative_to: relative_to);
-
+    public DisplayPopover (Gnome.RRScreen screen, Gnome.RROutputInfo output_info, Gnome.RRConfig config) {
         position = Gtk.PositionType.BOTTOM;
-        set_pointing_to (pointing_to);
         width_request = 370;
 
         current_screen = screen;
