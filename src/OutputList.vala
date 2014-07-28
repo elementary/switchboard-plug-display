@@ -39,7 +39,7 @@ public class OutputList : GtkClutter.Embed {
                 break;
         }
 
-        monitor.rgba = rgba;
+        monitor.set_rgba (rgba);
         monitor.show_settings.connect ((output, rect) => {
             Gtk.Allocation alloc;
             get_allocation (out alloc);

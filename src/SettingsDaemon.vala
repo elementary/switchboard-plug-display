@@ -11,7 +11,6 @@ public static SettingsDaemon? get_settings_daemon () throws Error {
         daemon = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon.XRANDR", "/org/gnome/SettingsDaemon/XRANDR");
     } catch (Error e) {
         throw e;
-        return null;
     }
 
     return daemon;

@@ -98,9 +98,17 @@ public class DisplayPlug : Object {
             return;
         }
 
-        var xid = Gdk.X11Window.get_xid (main_box.get_toplevel ().get_window ());
-
-        settings_daemon.apply_configuration (xid, timestamp);
+        var window = main_box.get_toplevel ().get_window ();
+        if (window is Gdk.X11.Window) {
+            var xid = ((Gdk.X11.Window)window).get_xid ();
+            try {
+                settings_daemon.apply_configuration (xid, timestamp);
+            } catch (Error e) {
+                critical (e.message);
+            }
+        } else {
+            critical ("Only X11 is supported.");
+        }
 
         screen_changed ();
     }
@@ -165,4 +173,3 @@ void main (string[] args) {
 
     Gtk.main ();
 }
-
