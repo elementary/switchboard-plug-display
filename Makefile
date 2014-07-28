@@ -1,6 +1,7 @@
 SOURCES=src/OutputList.vala \
-	src/DisplayPopover.vala \
+        src/DisplayPopover.vala \
         src/DisplayPlug.vala \
+        src/Monitor.vala \
         src/SettingsDaemon.vala \
         src/Utils.vala
 
@@ -19,4 +20,3 @@ displays: $(SOURCES)
 	      -X -lm								\
 	      -g								\
 	      $$VALAFLAGS
-
