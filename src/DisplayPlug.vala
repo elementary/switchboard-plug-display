@@ -27,6 +27,7 @@ public class DisplayPlug : Gtk.Application {
 
         main_box.pack_start (buttons, false);
         var config = Configuration.get_default ();
+        config.report_error.connect (report_error);
         config.update_outputs.connect (update_outputs);
         config.apply_state_changed.connect ((can_apply) => {
             apply_button.sensitive = can_apply;

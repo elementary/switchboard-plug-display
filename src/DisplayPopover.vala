@@ -9,9 +9,11 @@ public class DisplayPopover : Gtk.Popover {
 
     Gtk.Switch use_display;
     Gtk.Switch mirror_display;
-    Gtk.ComboBoxText resolution;
+    Gtk.ComboBox resolution;
     Gtk.ComboBoxText rotation;
     Gtk.Grid grid;
+
+    Gtk.ListStore resolution_list;
 
     bool ui_update = false;
 
@@ -46,39 +48,44 @@ public class DisplayPopover : Gtk.Popover {
         var use_display_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         use_display_box.margin = 12;
         use_display_box.margin_bottom = 0;
-        use_display_box.pack_start (new RLabel.right (_("Use This Display")), false);
+        use_display_box.pack_start (new Utils.RLabel.right (_("Use This Display")), false);
         use_display_box.pack_start (use_display);
 
         box.pack_start (use_display_box, false);
         box.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false);
         box.pack_start (grid);
 
+        var text_renderer = new Gtk.CellRendererText ();
         resolution = new Gtk.ComboBoxText ();
+        resolution_list = new Gtk.ListStore (2, typeof (string), typeof (Gnome.RRMode));
+        resolution = new Gtk.ComboBox.with_model (resolution_list);
+        resolution.pack_start (text_renderer, true);
+        resolution.add_attribute (text_renderer, "text", 0);
         resolution.expand = true;
         resolution.valign = Gtk.Align.CENTER;
         resolution.notify["active"].connect (() => {
             if (ui_update)
                 return;
 
-            var selected_mode_id = int.parse (resolution.active_id);
-            unowned Gnome.RRMode? new_mode = null;
-            foreach (unowned Gnome.RRMode mode in output.list_modes ()) {
-                if (mode.get_id () == selected_mode_id) {
-                    new_mode = mode;
-                    break;
-                }
-            }
-
-            assert (new_mode != null);
-
+            Gtk.TreeIter iter;
+            unowned Gnome.RRMode mode;
             int x, y;
+
+            if (!resolution.get_active_iter (out iter))
+                return;
+
+            resolution_list.@get (iter, 1, out mode);
+
+            var width = (int) mode.get_width ();
+            var height = (int) mode.get_height ();
             info.get_geometry (out x, out y, null, null);
-            info.set_geometry (x, y, (int) new_mode.get_width (), (int) new_mode.get_height ());
+
+            info.set_geometry (x, y, width, height);
 
             update_config ();
         });
 
-        grid.attach (new RLabel.right (_("Resolution:")), 0, 2, 1, 1);
+        grid.attach (new Utils.RLabel.right (_("Resolution:")), 0, 2, 1, 1);
         grid.attach (resolution, 1, 2, 1, 1);
 
         mirror_display = new Gtk.Switch ();
@@ -92,7 +99,7 @@ public class DisplayPopover : Gtk.Popover {
             update_config ();
         });
 
-        grid.attach (new RLabel.right (_("Mirror Display:")), 0, 3, 1, 1);
+        grid.attach (new Utils.RLabel.right (_("Mirror Display:")), 0, 3, 1, 1);
         grid.attach (mirror_display, 1, 3, 1, 1);
 
         rotation = new Gtk.ComboBoxText ();
@@ -106,7 +113,7 @@ public class DisplayPopover : Gtk.Popover {
 
             update_config ();
         });
-        grid.attach (new RLabel.right (_("Rotation:")), 0, 4, 1, 1);
+        grid.attach (new Utils.RLabel.right (_("Rotation:")), 0, 4, 1, 1);
         grid.attach (rotation, 1, 4, 1, 1);
 
         add (box);
@@ -137,24 +144,54 @@ public class DisplayPopover : Gtk.Popover {
     }
 
     void update_modes () {
+        resolution.active_id = output.get_current_mode ().get_id ().to_string ();
         unowned Gnome.RRMode[] modes;
+
         if (current_config.get_clone ())
             modes = current_screen.list_clone_modes ();
         else
             modes = output.list_modes ();
 
-        var i = 0;
+        unowned Gnome.RRMode current_mode = output.get_current_mode ();
+        var current_width = current_mode.get_width ();
+        var current_height = current_mode.get_height ();
+
         foreach (unowned Gnome.RRMode mode in modes) {
-            resolution.append (mode.get_id ().to_string (),
-                "%ux%u @ %iHz".printf (mode.get_width (), mode.get_height (), mode.get_freq ()));
-            i++;
+            var mode_width = mode.get_width ();
+            var mode_height = mode.get_height ();
+            var aspect = Utils.make_aspect_string (mode_width, mode_height);
+
+            string label;
+            if (aspect != null)
+                label = "%u × %u (%s)".printf (mode_width, mode_height, aspect);
+            else
+                label = "%u × %u".printf (mode_width, mode_height);
+
+            Gtk.TreeIter iter;
+            bool present = false;
+            for (var valid = resolution_list.get_iter_first (out iter); valid;
+                valid = resolution_list.iter_next (ref iter)) {
+
+                string output_label;
+                resolution_list.@get (iter, 0, out output_label);
+
+                if (output_label == label) {
+                    present = true;
+                    break;
+                }
+            }
+
+            if (present)
+                continue;
+
+            resolution_list.insert_with_values (out iter, -1, 0, label, 1, mode);
+
+            if (mode_width == current_width && mode_height == current_height)
+                resolution.set_active_iter (iter);
         }
 
-        if (output.get_current_mode () == null) {
+        if (output.get_current_mode () == null)
             resolution.active = 0;
-        } else {
-            resolution.active_id = output.get_current_mode ().get_id ().to_string ();
-        }
     }
 
     void update_rotation () {
