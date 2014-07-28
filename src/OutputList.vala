@@ -37,7 +37,12 @@ public class OutputList : GtkClutter.Embed {
                 break;
         }
 
-        monitor.set_rgba (rgba);
+        if (output.is_active () == false) {
+            monitor.disable ();
+        } else {
+            monitor.set_rgba (rgba);
+        }
+
         monitor.is_primary.connect (() => {
             foreach (var child in get_stage ().get_children ()) {
                 unowned Monitor mon = (Monitor)child;
@@ -70,6 +75,13 @@ public class OutputList : GtkClutter.Embed {
             unowned Monitor monitor = (Monitor) child;
 
             monitor.output.get_geometry (out x, out y, out width, out height);
+            if (width == 0) {
+                width = monitor.output.get_preferred_width ();
+            }
+
+            if (height == 0) {
+                height = monitor.output.get_preferred_height ();
+            }
 
             var rotation = monitor.output.get_rotation ();
             switch (rotation) {

@@ -92,6 +92,14 @@ class Monitor : Clutter.Actor {
     public void update_position (float scale_factor, float offset_x, float offset_y) {
         int monitor_x, monitor_y, monitor_width, monitor_height;
         output.get_geometry (out monitor_x, out monitor_y, out monitor_width, out monitor_height);
+        if (monitor_width == 0) {
+            monitor_width = output.get_preferred_width ();
+        }
+
+        if (monitor_height == 0) {
+            monitor_height = output.get_preferred_height ();
+        }
+
         var rotation = output.get_rotation ();
         switch (rotation) {
             case Gnome.RRRotation.ROTATION_90:
@@ -138,6 +146,19 @@ class Monitor : Clutter.Actor {
             settings_image.override_color (Gtk.StateFlags.NORMAL, black);
             label.override_color (Gtk.StateFlags.NORMAL, black);
         }
+    }
+
+    public void disable () {
+        rgba = Gdk.RGBA ();
+        rgba.parse ("#000000");
+        rgba.alpha = 1;
+        var white = Gdk.RGBA ();
+        white.parse ("#FFFFFF");
+        white.alpha = 1;
+        primary_image.override_color (Gtk.StateFlags.NORMAL, white);
+        settings_image.override_color (Gtk.StateFlags.NORMAL, white);
+        label.sensitive = false;
+        primary_image.hide ();
     }
 
     private bool draw_background (Cairo.Context cr) {

@@ -67,8 +67,7 @@ public class DisplayPlug : Gtk.Application {
     }
 
     public static int main (string[] args) {
-    GtkClutter.init (ref args);
-
+        GtkClutter.init (ref args);
         DisplayPlug app = new DisplayPlug ();
         return app.run (args);
     }

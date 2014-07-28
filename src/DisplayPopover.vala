@@ -11,6 +11,7 @@ public class DisplayPopover : Gtk.Popover {
     Gtk.Switch mirror_display;
     Gtk.ComboBoxText resolution;
     Gtk.ComboBoxText rotation;
+    Gtk.Grid grid;
 
     bool ui_update = false;
 
@@ -24,7 +25,7 @@ public class DisplayPopover : Gtk.Popover {
 
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
 
-        var grid = new Gtk.Grid ();
+        grid = new Gtk.Grid ();
         grid.margin = 12;
         grid.margin_top = 0;
         grid.row_spacing = 6;
@@ -39,6 +40,7 @@ public class DisplayPopover : Gtk.Popover {
             info.set_active (use_display.active);
 
             update_config ();
+            update_settings ();
         });
 
         var use_display_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -115,7 +117,7 @@ public class DisplayPopover : Gtk.Popover {
 
         var enabled_monitors = 0;
         foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
-            if (output.is_active ())
+            if (output.is_connected ())
                 enabled_monitors++;
         }
 
@@ -126,6 +128,7 @@ public class DisplayPopover : Gtk.Popover {
 
         use_display.active = info.is_active ();
         use_display.sensitive = is_multi_monitor;
+        grid.sensitive = info.is_active ();
 
         update_modes ();
         update_rotation ();
@@ -147,7 +150,11 @@ public class DisplayPopover : Gtk.Popover {
             i++;
         }
 
-        resolution.active_id = output.get_current_mode ().get_id ().to_string ();
+        if (output.get_current_mode () == null) {
+            resolution.active = 0;
+        } else {
+            resolution.active_id = output.get_current_mode ().get_id ().to_string ();
+        }
     }
 
     void update_rotation () {
