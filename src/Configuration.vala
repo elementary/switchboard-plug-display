@@ -11,8 +11,9 @@ public class Configuration : GLib.Object {
     public signal void report_error (string error);
     public signal void apply_state_changed (bool can_apply);
     public signal void update_outputs (Gnome.RRConfig current_config);
-    Gnome.RRScreen screen;
-    Gnome.RRConfig current_config;
+
+    public Gnome.RRScreen screen { get; private set; }
+    public Gnome.RRConfig current_config { get; private set; }
 
     SettingsDaemon? settings_daemon = null;
     private Configuration () {
@@ -39,6 +40,10 @@ public class Configuration : GLib.Object {
             bool changed = !existing_config.equal (current_config);
             bool clone_changed = existing_config.get_clone () != current_config.get_clone ();
             apply_state_changed (applicable && (changed || clone_changed));
+
+            if (clone_changed && !current_config.get_clone ())
+                lay_out_outputs_horizontally ();
+
         } catch (Error e) {
             report_error (e.message);
         }
@@ -97,6 +102,33 @@ public class Configuration : GLib.Object {
             current_config = new Gnome.RRConfig.current (screen);
         } catch (Error e) {
             report_error (e.message);
+        }
+
+        update_outputs (current_config);
+    }
+
+    // ported from GCC panel
+    public void lay_out_outputs_horizontally () {
+        int width, height, x = 0;
+
+        unowned Gnome.RROutputInfo[] outputs = current_config.get_outputs ();
+
+        foreach (unowned Gnome.RROutputInfo output in outputs) {
+            if (output.is_connected () && output.is_active ()) {
+                output.get_geometry (null, null, out width, out height);
+                output.set_geometry (x, 0, width, height);
+
+                x += width;
+            }
+        }
+
+        foreach (unowned Gnome.RROutputInfo output in outputs) {
+            if (!(output.is_connected () && output.is_active ())) {
+                output.get_geometry (null, null, out width, out height);
+                output.set_geometry (x, 0, width, height);
+
+                x += width;
+            }
         }
 
         update_outputs (current_config);

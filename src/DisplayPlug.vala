@@ -3,10 +3,13 @@ public class DisplayPlug : Gtk.Application {
     Gtk.Box main_box;
     Gtk.Button apply_button;
     OutputList output_list;
-    int enabled_monitors = 0;
+
+    Gtk.Switch mirror_display;
 
     Gtk.InfoBar error_bar;
     Gtk.Label error_label;
+
+    bool ui_update = false;
 
     public DisplayPlug () {
         main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
@@ -27,18 +30,37 @@ public class DisplayPlug : Gtk.Application {
         output_frame.add (output_list);
         main_box.pack_start (output_frame);
 
-        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        var bottom_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+        bottom_box.margin = 12;
+        bottom_box.margin_top = 0;
+
+        mirror_display = new Gtk.Switch ();
+        mirror_display.halign = Gtk.Align.START;
+        mirror_display.notify["active"].connect (() => {
+            if (ui_update)
+                return;
+
+            var configuration = Configuration.get_default ();
+            configuration.current_config.get_outputs ()[0].set_primary (true);
+            configuration.current_config.set_clone (mirror_display.active);
+
+            configuration.update_config ();
+        });
+        bottom_box.pack_start (new Utils.RLabel.right (_("Mirror Display:")), false);
+        bottom_box.pack_start (mirror_display, false);
+
+        bottom_box.pack_start (new Gtk.Label (""));
+
         var detect_displays = new Gtk.Button.with_label (_("Detect Displays"));
         apply_button = new Gtk.Button.with_label (_("Apply"));
         apply_button.sensitive = false;
         apply_button.clicked.connect (() => {Configuration.get_default ().apply ();});
-        buttons.layout_style = Gtk.ButtonBoxStyle.END;
-        buttons.margin = 12;
-        buttons.margin_top = 0;
-        buttons.add (detect_displays);
-        buttons.add (apply_button);
 
-        main_box.pack_start (buttons, false);
+        bottom_box.pack_start (detect_displays, false);
+        bottom_box.pack_start (apply_button, false);
+
+        main_box.pack_start (bottom_box, false);
+
         var config = Configuration.get_default ();
         config.report_error.connect (report_error);
         config.update_outputs.connect (update_outputs);
@@ -50,7 +72,10 @@ public class DisplayPlug : Gtk.Application {
     }
 
     void update_outputs (Gnome.RRConfig current_config) {
-        enabled_monitors = 0;
+        ui_update = true;
+
+        var enabled_monitors = 0;
+
         output_list.remove_all ();
         foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
             if (output.is_connected ()) {
@@ -60,6 +85,11 @@ public class DisplayPlug : Gtk.Application {
                 output_list.add_output (output);
             }
         }
+
+        mirror_display.active = current_config.get_clone ();
+        mirror_display.sensitive = enabled_monitors > 1;
+
+        ui_update = false;
     }
 
     void report_error (string message) {

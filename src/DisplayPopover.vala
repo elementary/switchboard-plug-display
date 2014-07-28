@@ -8,7 +8,6 @@ public class DisplayPopover : Gtk.Popover {
     Gnome.RRScreen current_screen;
 
     Gtk.Switch use_display;
-    Gtk.Switch mirror_display;
     Gtk.ComboBox resolution;
     Gtk.ComboBoxText rotation;
     Gtk.Grid grid;
@@ -88,20 +87,6 @@ public class DisplayPopover : Gtk.Popover {
         grid.attach (new Utils.RLabel.right (_("Resolution:")), 0, 2, 1, 1);
         grid.attach (resolution, 1, 2, 1, 1);
 
-        mirror_display = new Gtk.Switch ();
-        mirror_display.halign = Gtk.Align.START;
-        mirror_display.notify["active"].connect (() => {
-            if (ui_update)
-                return;
-
-            config.set_clone (mirror_display.active);
-
-            update_config ();
-        });
-
-        grid.attach (new Utils.RLabel.right (_("Mirror Display:")), 0, 3, 1, 1);
-        grid.attach (mirror_display, 1, 3, 1, 1);
-
         rotation = new Gtk.ComboBoxText ();
         rotation.valign = Gtk.Align.CENTER;
         rotation.changed.connect (() => {
@@ -129,9 +114,6 @@ public class DisplayPopover : Gtk.Popover {
         }
 
         var is_multi_monitor = enabled_monitors > 1;
-
-        mirror_display.active = current_config.get_clone ();
-        mirror_display.sensitive = is_multi_monitor;
 
         use_display.active = info.is_active ();
         use_display.sensitive = is_multi_monitor;
