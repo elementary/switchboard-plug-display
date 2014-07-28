@@ -16,7 +16,6 @@ public class DisplayPopover : Gtk.Popover {
 
     public DisplayPopover (Gnome.RRScreen screen, Gnome.RROutputInfo output_info, Gnome.RRConfig config) {
         position = Gtk.PositionType.BOTTOM;
-        width_request = 370;
 
         current_screen = screen;
         current_config = config;
@@ -55,7 +54,7 @@ public class DisplayPopover : Gtk.Popover {
         resolution = new Gtk.ComboBoxText ();
         resolution.expand = true;
         resolution.valign = Gtk.Align.CENTER;
-        resolution.changed.connect (() => {
+        resolution.notify["active"].connect (() => {
             if (ui_update)
                 return;
 
@@ -109,11 +108,9 @@ public class DisplayPopover : Gtk.Popover {
         grid.attach (rotation, 1, 4, 1, 1);
 
         add (box);
-
-        update_settings ();
     }
 
-    void update_settings () {
+    public void update_settings () {
         ui_update = true;
 
         var enabled_monitors = 0;

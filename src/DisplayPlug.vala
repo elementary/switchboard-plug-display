@@ -1,10 +1,8 @@
 
-public class DisplayPlug : Object {
+public class DisplayPlug : Gtk.Application {
     Gtk.Box main_box;
-    OutputList output_list;
-
     Gtk.Button apply_button;
-
+    OutputList output_list;
     int enabled_monitors = 0;
 
     public DisplayPlug () {
@@ -58,30 +56,20 @@ public class DisplayPlug : Object {
     public Gtk.Widget get_widget () {
         return main_box;
     }
-}
 
-/*
-        primary_display = new Gtk.CheckButton ();
-        primary_display.notify["active"].connect (() => {
-            if (ui_update)
-                return;
+    protected override void activate () {
+        // Create the window of this application and show it
+        Gtk.ApplicationWindow window = new Gtk.ApplicationWindow (this);
+        window.set_default_size (800, 400);
 
-            // TODO do we need to take care that there's always a primary one selected?
-            selected_info.set_primary (primary_display.active);
+        window.add (get_widget ());
+        window.show_all ();
+    }
 
-            update_config ();
-        });
-*/
-
-void main (string[] args) {
+    public static int main (string[] args) {
     GtkClutter.init (ref args);
 
-    var p = new DisplayPlug ();
-    var w = new Gtk.Window ();
-    w.set_default_size (800, 400);
-    w.add (p.get_widget ());
-    w.show_all ();
-    w.destroy.connect (Gtk.main_quit);
-
-    Gtk.main ();
+        DisplayPlug app = new DisplayPlug ();
+        return app.run (args);
+    }
 }

@@ -34,14 +34,14 @@ public class Configuration : GLib.Object {
         try {
             var existing_config = new Gnome.RRConfig.current (screen);
 
-        // TODO check if clone or primary state changed too
-            apply_state_changed (current_config.applicable (screen)
-                && !existing_config.equal (current_config));
+            // TODO check if clone or primary state changed too
+            bool applicable = current_config.applicable (screen);
+            bool changed = !existing_config.equal (current_config);
+            bool clone_changed = existing_config.get_clone () != current_config.get_clone ();
+            apply_state_changed (applicable && (changed || clone_changed));
         } catch (Error e) {
             report_error (e.message);
         }
-
-        update_outputs (current_config);
     }
 
     public DisplayPopover get_popover (Gnome.RROutputInfo output) {
@@ -51,10 +51,7 @@ public class Configuration : GLib.Object {
     }
 
     public void apply () {
-        var timestamp = Gtk.get_current_event_time ();
-
         apply_state_changed (false);
-
         current_config.sanitize ();
         current_config.ensure_primary ();
 
@@ -81,6 +78,7 @@ public class Configuration : GLib.Object {
         var window = ((Gtk.Application)Application.get_default ()).active_window.get_window ();
         if (window is Gdk.X11.Window) {
             var xid = ((Gdk.X11.Window)window).get_xid ();
+            var timestamp = Gtk.get_current_event_time ();
             try {
                 settings_daemon.apply_configuration (xid, timestamp);
             } catch (Error e) {

@@ -2,14 +2,15 @@
 class Monitor : Clutter.Actor {
     const int MARGIN = 6;
 
-    public signal void show_settings (Gnome.RROutputInfo output, Gdk.Rectangle position);
     public signal void is_primary ();
+    public signal void reposition ();
 
     public unowned Gnome.RROutputInfo output { get; construct; }
     Gdk.RGBA rgba;
     Gtk.Image primary_image;
     Gtk.Image settings_image;
     Gtk.Label label;
+    DisplayPopover display_popover;
 
     public Monitor (Gnome.RROutputInfo output) {
         Object (output: output);
@@ -36,10 +37,25 @@ class Monitor : Clutter.Actor {
         var settings = new GtkClutter.Actor.with_contents (settings_image);
         settings.reactive = true;
         settings.button_release_event.connect (() => {
-            var display_popover = Configuration.get_default ().get_popover (output);
-            display_popover.relative_to = settings_image;
             display_popover.show_all ();
             return false;
+        });
+
+        // Reposition the Popover if the window is resized.
+        settings.allocation_changed.connect (() => {
+            settings_image.queue_resize ();
+        });
+
+        // Reposition the Popover if the screen resolution has changed.
+        allocation_changed.connect (() => {
+            settings_image.queue_resize ();
+        });
+
+        display_popover = Configuration.get_default ().get_popover (output);
+        display_popover.relative_to = settings_image;
+        display_popover.update_settings ();
+        display_popover.update_config.connect (() => {
+            reposition ();
         });
 
         label = new Gtk.Label (output.get_display_name ());
@@ -76,7 +92,6 @@ class Monitor : Clutter.Actor {
     public void update_position (float scale_factor, float offset_x, float offset_y) {
         int monitor_x, monitor_y, monitor_width, monitor_height;
         output.get_geometry (out monitor_x, out monitor_y, out monitor_width, out monitor_height);
-
         var rotation = output.get_rotation ();
         switch (rotation) {
             case Gnome.RRRotation.ROTATION_90:
@@ -100,7 +115,6 @@ class Monitor : Clutter.Actor {
 
         set_position (Math.floorf (offset_x + monitor_x * scale_factor),
                       Math.floorf (offset_y + monitor_y * scale_factor));
-
         set_size (Math.floorf (monitor_width * scale_factor),
                   Math.floorf (monitor_height * scale_factor));
     }
@@ -135,7 +149,6 @@ class Monitor : Clutter.Actor {
         cr.set_source_rgba (1, 1, 1, 0.5);
         cr.set_line_width (1);
         cr.stroke ();
-
         return false;
     }
 
@@ -147,18 +160,21 @@ class Monitor : Clutter.Actor {
         } else {
             R = Math.pow((rgba.red+0.055)/1.055, 2.4);
         }
+
         double G;
         if (rgba.green <= 0.03928) {
             G = rgba.green/12.92;
         } else {
             G = Math.pow((rgba.green+0.055)/1.055, 2.4);
         }
+
         double B;
         if (rgba.blue <= 0.03928) {
             B = rgba.blue/12.92;
         } else {
             B = Math.pow((rgba.blue+0.055)/1.055, 2.4);
         }
+
         var L = 0.2126 * R + 0.7152 * G + 0.0722 * B;
         if (L > 0.5) {
             return false;

@@ -48,6 +48,11 @@ public class OutputList : GtkClutter.Embed {
 
             Configuration.get_default ().update_config ();
         });
+
+        monitor.reposition.connect (() => {
+            reposition ();
+        });
+
         get_stage ().add_child (monitor);
 
         reposition ();
