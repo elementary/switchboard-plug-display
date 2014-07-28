@@ -1,6 +1,12 @@
 
 public class OutputList : GtkClutter.Embed {
     const int PADDING = 48;
+    public const string BLUE = "#4b91dd";
+    public const string ORANGE = "#eb713f";
+    public const string GREEN = "#408549";
+    public const string PURPLE = "#a64067";
+    public const string RED = "#ba393e";
+    public const string GREY = "#d5d3d1";
 
     public signal void show_settings (Gnome.RROutputInfo output, Gdk.Rectangle position);
 
@@ -10,6 +16,30 @@ public class OutputList : GtkClutter.Embed {
 
     public void add_output (Gnome.RROutputInfo output) {
         var monitor = new Monitor (output);
+        var rgba = Gdk.RGBA ();
+        rgba.alpha = 1;
+        switch ((get_stage ().get_n_children () + 1)%6) {
+            case 1:
+                rgba.parse (BLUE);
+                break;
+            case 2:
+                rgba.parse (ORANGE);
+                break;
+            case 3:
+                rgba.parse (GREEN);
+                break;
+            case 4:
+                rgba.parse (PURPLE);
+                break;
+            case 5:
+                rgba.parse (RED);
+                break;
+            default:
+                rgba.parse (GREY);
+                break;
+        }
+
+        monitor.rgba = rgba;
         monitor.show_settings.connect ((output, rect) => {
             Gtk.Allocation alloc;
             get_allocation (out alloc);

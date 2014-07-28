@@ -5,6 +5,7 @@ class Monitor : Clutter.Actor {
     public signal void show_settings (Gnome.RROutputInfo output, Gdk.Rectangle position);
 
     public unowned Gnome.RROutputInfo output { get; construct; }
+    public Gdk.RGBA rgba;
 
     public Monitor (Gnome.RROutputInfo output) {
         Object (output: output);
@@ -72,7 +73,7 @@ class Monitor : Clutter.Actor {
     bool draw_background (Cairo.Context cr) {
         // TODO draw shadow, inner highlight and use correct color
         cr.rectangle (0, 0, (int) width, (int) height);
-        cr.set_source_rgb (0.2, 0.2, 0.2);
+        cr.set_source_rgb (rgba.red, rgba.green, rgba.blue);
         cr.fill ();
 
         return false;
