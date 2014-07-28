@@ -42,9 +42,11 @@ public class OutputList : GtkClutter.Embed {
             foreach (var child in get_stage ().get_children ()) {
                 unowned Monitor mon = (Monitor)child;
                 if (mon != monitor) {
-                    monitor.unset_primary ();
+                    mon.unset_primary ();
                 }
             }
+
+            Configuration.get_default ().update_config ();
         });
         get_stage ().add_child (monitor);
 
@@ -57,8 +59,6 @@ public class OutputList : GtkClutter.Embed {
         var top = int.MAX;
         var bottom = 0;
 
-        // TODO respect rotation
-
         int x, y, width, height;
 
         foreach (var child in get_stage ().get_children ()) {
@@ -66,6 +66,17 @@ public class OutputList : GtkClutter.Embed {
 
             monitor.output.get_geometry (out x, out y, out width, out height);
 
+            var rotation = monitor.output.get_rotation ();
+            switch (rotation) {
+                case Gnome.RRRotation.ROTATION_90:
+                case Gnome.RRRotation.ROTATION_270:
+                    var tmp = width;
+                    width = height;
+                    height = tmp;
+                    break;
+                default:
+                    break;
+            }
             if (x < left)
                 left = x;
             if (y < top)
