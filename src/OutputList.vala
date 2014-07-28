@@ -8,6 +8,8 @@ public class OutputList : GtkClutter.Embed {
     public const string RED = "#ba393e";
     public const string GREY = "#d5d3d1";
 
+    public bool clone_mode { get; set; default = false; }
+
     public OutputList () {
         size_allocate.connect (reposition);
     }
@@ -42,6 +44,9 @@ public class OutputList : GtkClutter.Embed {
         } else {
             monitor.set_rgba (rgba);
         }
+
+        if (clone_mode)
+            monitor.set_as_clone_group ();
 
         monitor.is_primary.connect (() => {
             foreach (var child in get_stage ().get_children ()) {

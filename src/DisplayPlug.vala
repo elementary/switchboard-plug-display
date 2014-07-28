@@ -76,18 +76,26 @@ public class DisplayPlug : Gtk.Application {
 
         var enabled_monitors = 0;
 
+        output_list.clone_mode = current_config.get_clone ();
         output_list.remove_all ();
         foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
             if (output.is_connected ()) {
+                if (output_list.clone_mode && !output.is_active ())
+                    continue;
+
+                output_list.add_output (output);
+
                 if (output.is_active ())
                     enabled_monitors++;
 
-                output_list.add_output (output);
+                // a single active monitor is already enough while in clone mode
+                if (output_list.clone_mode)
+                    break;
             }
         }
 
         mirror_display.active = current_config.get_clone ();
-        mirror_display.sensitive = enabled_monitors > 1;
+        mirror_display.sensitive = mirror_display.active || enabled_monitors > 1;
 
         ui_update = false;
     }

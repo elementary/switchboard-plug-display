@@ -82,6 +82,10 @@ class Monitor : Clutter.Actor {
         label_actor.y_expand = true;
     }
 
+    public void set_as_clone_group () {
+        label.label = _("Mirrored Displays");
+    }
+
     public void unset_primary () {
         if (primary_image.icon_name == "starred-symbolic") {
             primary_image.icon_name = "non-starred-symbolic";
