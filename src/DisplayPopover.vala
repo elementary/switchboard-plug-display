@@ -77,9 +77,16 @@ public class DisplayPopover : Gtk.Popover {
 
             var width = (int) mode.get_width ();
             var height = (int) mode.get_height ();
-            info.get_geometry (out x, out y, null, null);
 
-            info.set_geometry (x, y, width, height);
+            if (config.get_clone ()) {
+                foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
+                    if (output.is_active ())
+                        output.set_geometry (0, 0, width, height);
+                }
+            } else {
+                info.get_geometry (out x, out y, null, null);
+                info.set_geometry (x, y, width, height);
+            }
 
             update_config ();
         });
