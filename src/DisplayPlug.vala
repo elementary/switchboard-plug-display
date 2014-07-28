@@ -5,14 +5,25 @@ public class DisplayPlug : Gtk.Application {
     OutputList output_list;
     int enabled_monitors = 0;
 
+    Gtk.InfoBar error_bar;
+    Gtk.Label error_label;
+
     public DisplayPlug () {
         main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
-        main_box.margin = 12;
+
+        error_bar = new Gtk.InfoBar ();
+        error_bar.message_type = Gtk.MessageType.ERROR;
+        error_bar.no_show_all = true;
+        error_label = new Gtk.Label ("");
+        error_bar.get_content_area ().add (error_label);
+        main_box.pack_start (error_bar);
 
         output_list = new OutputList ();
         output_list.set_size_request (700, 350);
 
         var output_frame = new Gtk.Frame (null);
+        output_frame.margin = 12;
+        output_frame.margin_bottom = 0;
         output_frame.add (output_list);
         main_box.pack_start (output_frame);
 
@@ -22,6 +33,8 @@ public class DisplayPlug : Gtk.Application {
         apply_button.sensitive = false;
         apply_button.clicked.connect (() => {Configuration.get_default ().apply ();});
         buttons.layout_style = Gtk.ButtonBoxStyle.END;
+        buttons.margin = 12;
+        buttons.margin_top = 0;
         buttons.add (detect_displays);
         buttons.add (apply_button);
 
@@ -49,9 +62,10 @@ public class DisplayPlug : Gtk.Application {
         }
     }
 
-    // TODO show an infobar
     void report_error (string message) {
-        warning (message);
+        error_label.label = message;
+        error_label.show ();
+        error_bar.show ();
     }
 
     public Gtk.Widget get_widget () {
