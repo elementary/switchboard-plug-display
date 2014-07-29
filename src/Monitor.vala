@@ -13,10 +13,15 @@ class Monitor : Clutter.Actor {
     DisplayPopover display_popover;
     Gtk.Dialog monitor_revealer;
     Gtk.Label monitor_revealer_label;
+    public Clutter.DragAction drag_action { get; private set; }
     public bool is_main_clone { get; private set; default=false; }
 
     public Monitor (Gnome.RROutputInfo output) {
         Object (output: output);
+        reactive = true;
+
+        drag_action = new Clutter.DragAction ();
+        add_action (drag_action);
 
         layout_manager = new Clutter.BinLayout ();
         primary_image = new Gtk.Image.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
@@ -26,12 +31,15 @@ class Monitor : Clutter.Actor {
         }
 
         var primary = new GtkClutter.Actor.with_contents (primary_image);
+        primary.reactive = true;
         primary.button_release_event.connect ((event) => {
-            if (primary_image.icon_name == "non-starred-symbolic") {
+            if (primary_image.icon_name == "non-starred-symbolic" && event.button == 1) {
                 primary_image.icon_name = "starred-symbolic";
                 output.set_primary (true);
                 is_primary ();
+                return true;
             }
+
             return false;
         });
 
@@ -39,8 +47,12 @@ class Monitor : Clutter.Actor {
         settings_image.margin = MARGIN;
         var settings = new GtkClutter.Actor.with_contents (settings_image);
         settings.reactive = true;
-        settings.button_release_event.connect (() => {
-            display_popover.show_all ();
+        settings.button_release_event.connect ((event) => {
+            if (event.button == 1) {
+                display_popover.show_all ();
+                return true;
+            }
+    
             return false;
         });
 
