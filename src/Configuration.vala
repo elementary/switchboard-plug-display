@@ -53,9 +53,6 @@ public class Configuration : GLib.Object {
 
             apply_state_changed (applicable && (changed || clone_changed));
 
-            if (clone_changed && !current_config.get_clone ())
-                lay_out_outputs_horizontally ();
-
         } catch (Error e) {
             critical (e.message);
         }
@@ -122,7 +119,7 @@ public class Configuration : GLib.Object {
             return false;
 
         foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
-            if (output.is_connected () && output.is_active ()) {
+            if (output.is_connected ()) {
                 int x, y;
                 output.get_geometry (out x, out y, null, null);
                 output.set_geometry (x, y, (int)highest_mode.get_width (), (int)highest_mode.get_height ());
@@ -139,14 +136,14 @@ public class Configuration : GLib.Object {
     public void disable_clone_mode () {
         current_config.set_clone (false);
         foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
-            if (output.is_connected () && output.is_active ()) {
+            if (output.is_connected ()) {
                 int x, y;
                 output.get_geometry (out x, out y, null, null);
                 output.set_geometry (x, y, output.get_preferred_width (), output.get_preferred_height ());
             }
         }
 
-        update_outputs (current_config);
+        lay_out_outputs_horizontally ();
         update_config ();
     }
 

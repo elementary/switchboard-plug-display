@@ -139,17 +139,24 @@ public class DisplayPopover : Gtk.Popover {
     }
 
     void update_modes () {
-        resolution.active_id = output.get_current_mode ().get_id ().to_string ();
+        unowned Gnome.RRMode current_mode = output.get_current_mode ();
+        int current_width = 0;
+        int current_height = 0;
+        
+        if (current_mode != null) {
+            resolution.active_id = current_mode.get_id ().to_string ();
+            current_width = (int)current_mode.get_width ();
+            current_height = (int)current_mode.get_height ();
+        } else {
+            resolution.active = 0;
+        }
+
         unowned Gnome.RRMode[] modes;
 
         if (current_config.get_clone ())
             modes = current_screen.list_clone_modes ();
         else
             modes = output.list_modes ();
-
-        unowned Gnome.RRMode current_mode = output.get_current_mode ();
-        var current_width = current_mode.get_width ();
-        var current_height = current_mode.get_height ();
 
         foreach (unowned Gnome.RRMode mode in modes) {
             var mode_width = mode.get_width ();
@@ -184,9 +191,6 @@ public class DisplayPopover : Gtk.Popover {
             if (mode_width == current_width && mode_height == current_height)
                 resolution.set_active_iter (iter);
         }
-
-        if (output.get_current_mode () == null)
-            resolution.active = 0;
     }
 
     void update_rotation () {

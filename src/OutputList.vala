@@ -79,17 +79,19 @@ public class OutputList : GtkClutter.Embed {
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor monitor = (Monitor) child;
-            if (clone_mode == true && monitor.output.get_primary () == false) {
-                monitor.hide ();
-                continue;
-            }
 
-            if (clone_mode == false) {
-                monitor.output.get_geometry (out x, out y, null, null);
-            } else {
+            if (clone_mode == true) {
+                if (monitor.output.get_primary () == false) {
+                    monitor.hide ();
+                    continue;
+                }
+
                 x = 0;
                 y = 0;
+            } else {
+                monitor.output.get_geometry (out x, out y, null, null);
             }
+
             width = monitor.get_real_width ();
             height = monitor.get_real_height ();
             if (x < left)
