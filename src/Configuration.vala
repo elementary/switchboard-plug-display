@@ -108,7 +108,7 @@ public class Configuration : GLib.Object {
         screen_changed ();
     }
 
-    public bool active_clone_mode () {
+    public bool enable_clone_mode () {
         unowned Gnome.RRMode highest_mode = null;
         foreach (unowned Gnome.RRMode mode in screen.list_clone_modes ()) {
             if (highest_mode == null) {
@@ -122,14 +122,32 @@ public class Configuration : GLib.Object {
             return false;
 
         foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
-            if (output.is_active ())
-                output.set_geometry (0, 0, (int)highest_mode.get_width (), (int)highest_mode.get_height ());
+            if (output.is_connected () && output.is_active ()) {
+                int x, y;
+                output.get_geometry (out x, out y, null, null);
+                output.set_geometry (x, y, (int)highest_mode.get_width (), (int)highest_mode.get_height ());
+            }
         }
 
         current_config.set_clone (true);
 
         update_outputs (current_config);
+        update_config ();
         return true;
+    }
+
+    public void disable_clone_mode () {
+        current_config.set_clone (false);
+        foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
+            if (output.is_connected () && output.is_active ()) {
+                int x, y;
+                output.get_geometry (out x, out y, null, null);
+                output.set_geometry (x, y, output.get_preferred_width (), output.get_preferred_height ());
+            }
+        }
+
+        update_outputs (current_config);
+        update_config ();
     }
 
     public void screen_changed () {

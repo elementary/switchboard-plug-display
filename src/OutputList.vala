@@ -75,7 +75,7 @@ public class OutputList : GtkClutter.Embed {
         var top = int.MAX;
         var bottom = 0;
 
-        int x, y, width, height;
+        int x = 0, y, width, height;
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor monitor = (Monitor) child;
@@ -84,7 +84,12 @@ public class OutputList : GtkClutter.Embed {
                 continue;
             }
 
-            monitor.output.get_geometry (out x, out y, null, null);
+            if (clone_mode == false) {
+                monitor.output.get_geometry (out x, out y, null, null);
+            } else {
+                x = 0;
+                y = 0;
+            }
             width = monitor.get_real_width ();
             height = monitor.get_real_height ();
             if (x < left)

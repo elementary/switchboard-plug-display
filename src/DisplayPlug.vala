@@ -74,14 +74,13 @@ public class DisplayPlug : Gtk.Application {
         var configuration = Configuration.get_default ();
 
         if (mirror_display.active == true) {
-            if (configuration.active_clone_mode () == false) {
+            if (configuration.enable_clone_mode () == false) {
                 ui_update = true;
                 mirror_display.active = false;
                 ui_update = false;
             }
         } else {
-            configuration.current_config.set_clone (false);
-            configuration.update_config ();
+            configuration.disable_clone_mode ();
         }
     }
 
