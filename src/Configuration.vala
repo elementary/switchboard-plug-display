@@ -39,13 +39,25 @@ public class Configuration : GLib.Object {
             bool applicable = current_config.applicable (screen);
             bool changed = !existing_config.equal (current_config);
             bool clone_changed = existing_config.get_clone () != current_config.get_clone ();
+            foreach (var existing_output in existing_config.get_outputs ()) {
+                unowned string name = existing_output.get_name ();
+                foreach (var current_output in current_config.get_outputs ()) {
+                    if (name == current_output.get_name ()) {
+                        if (existing_output.get_primary () != current_output.get_primary ()) {
+                            changed = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
             apply_state_changed (applicable && (changed || clone_changed));
 
             if (clone_changed && !current_config.get_clone ())
                 lay_out_outputs_horizontally ();
 
         } catch (Error e) {
-            report_error (e.message);
+            critical (e.message);
         }
     }
 
@@ -96,6 +108,30 @@ public class Configuration : GLib.Object {
         screen_changed ();
     }
 
+    public bool active_clone_mode () {
+        unowned Gnome.RRMode highest_mode = null;
+        foreach (unowned Gnome.RRMode mode in screen.list_clone_modes ()) {
+            if (highest_mode == null) {
+                highest_mode = mode;
+            } else if (mode.get_width () > highest_mode.get_width ()) {
+                highest_mode = mode;
+            }
+        }
+
+        if (highest_mode == null)
+            return false;
+
+        foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
+            if (output.is_active ())
+                output.set_geometry (0, 0, (int)highest_mode.get_width (), (int)highest_mode.get_height ());
+        }
+
+        current_config.set_clone (true);
+
+        update_outputs (current_config);
+        return true;
+    }
+
     public void screen_changed () {
         try {
             screen.refresh ();
@@ -110,7 +146,6 @@ public class Configuration : GLib.Object {
     // ported from GCC panel
     public void lay_out_outputs_horizontally () {
         int width, height, x = 0;
-
         unowned Gnome.RROutputInfo[] outputs = current_config.get_outputs ();
 
         foreach (unowned Gnome.RROutputInfo output in outputs) {

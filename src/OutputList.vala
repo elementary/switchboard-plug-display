@@ -45,8 +45,9 @@ public class OutputList : GtkClutter.Embed {
             monitor.set_rgba (rgba);
         }
 
-        if (clone_mode)
-            monitor.set_as_clone_group ();
+        if (clone_mode == true && monitor.output.get_primary () == true) {
+            monitor.set_main_clone ();
+        }
 
         monitor.is_primary.connect (() => {
             foreach (var child in get_stage ().get_children ()) {
@@ -78,27 +79,14 @@ public class OutputList : GtkClutter.Embed {
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor monitor = (Monitor) child;
-
-            monitor.output.get_geometry (out x, out y, out width, out height);
-            if (width == 0) {
-                width = monitor.output.get_preferred_width ();
+            if (clone_mode == true && monitor.output.get_primary () == false) {
+                monitor.hide ();
+                continue;
             }
 
-            if (height == 0) {
-                height = monitor.output.get_preferred_height ();
-            }
-
-            var rotation = monitor.output.get_rotation ();
-            switch (rotation) {
-                case Gnome.RRRotation.ROTATION_90:
-                case Gnome.RRRotation.ROTATION_270:
-                    var tmp = width;
-                    width = height;
-                    height = tmp;
-                    break;
-                default:
-                    break;
-            }
+            monitor.output.get_geometry (out x, out y, null, null);
+            width = monitor.get_real_width ();
+            height = monitor.get_real_height ();
             if (x < left)
                 left = x;
             if (y < top)
@@ -125,7 +113,11 @@ public class OutputList : GtkClutter.Embed {
         var offset_y = (container_height - layout_height * scale_factor) / 2.0f;
 
         foreach (var child in get_stage ().get_children ()) {
-            ((Monitor) child).update_position (scale_factor, offset_x, offset_y);
+            unowned Monitor monitor = (Monitor) child;
+            if (clone_mode == true && monitor.output.get_primary () == false) {
+                continue;
+            }
+            monitor.update_position (scale_factor, offset_x, offset_y);
         }
     }
 

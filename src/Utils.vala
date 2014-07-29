@@ -64,4 +64,3 @@ namespace Utils
         return aspect;
     }
 }
-

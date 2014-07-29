@@ -11,6 +11,7 @@ class Monitor : Clutter.Actor {
     Gtk.Image settings_image;
     Gtk.Label label;
     DisplayPopover display_popover;
+    public bool is_main_clone { get; private set; default=false; }
 
     public Monitor (Gnome.RROutputInfo output) {
         Object (output: output);
@@ -23,7 +24,7 @@ class Monitor : Clutter.Actor {
         }
 
         var primary = new GtkClutter.Actor.with_contents (primary_image);
-        primary.button_release_event.connect (() => {
+        primary.button_release_event.connect ((event) => {
             if (primary_image.icon_name == "non-starred-symbolic") {
                 primary_image.icon_name = "starred-symbolic";
                 output.set_primary (true);
@@ -82,7 +83,8 @@ class Monitor : Clutter.Actor {
         label_actor.y_expand = true;
     }
 
-    public void set_as_clone_group () {
+    public void set_main_clone () {
+        is_main_clone = true;
         label.label = _("Mirrored Displays");
     }
 
@@ -94,8 +96,36 @@ class Monitor : Clutter.Actor {
     }
 
     public void update_position (float scale_factor, float offset_x, float offset_y) {
-        int monitor_x, monitor_y, monitor_width, monitor_height;
-        output.get_geometry (out monitor_x, out monitor_y, out monitor_width, out monitor_height);
+        int monitor_x, monitor_y;
+        output.get_geometry (out monitor_x, out monitor_y, null, null);
+        int monitor_width = get_real_width ();
+        int monitor_height = get_real_height ();
+
+        var rotation = output.get_rotation ();
+        switch (rotation) {
+            case Gnome.RRRotation.ROTATION_90:
+                label.angle = 270;
+                break;
+            case Gnome.RRRotation.ROTATION_180:
+                label.angle = 180;
+                break;
+            case Gnome.RRRotation.ROTATION_270:
+                label.angle = 90;
+                break;
+            default:
+                label.angle = 0;
+                break;
+        }
+
+        set_position (Math.floorf (offset_x + monitor_x * scale_factor),
+                      Math.floorf (offset_y + monitor_y * scale_factor));
+        set_size (Math.floorf (monitor_width * scale_factor),
+                  Math.floorf (monitor_height * scale_factor));
+    }
+
+    public int get_real_width () {
+        int monitor_width, monitor_height;
+        output.get_geometry (null, null, out monitor_width, out monitor_height);
         if (monitor_width == 0) {
             monitor_width = output.get_preferred_width ();
         }
@@ -107,28 +137,32 @@ class Monitor : Clutter.Actor {
         var rotation = output.get_rotation ();
         switch (rotation) {
             case Gnome.RRRotation.ROTATION_90:
-                var tmp = monitor_width;
-                monitor_width = monitor_height;
-                monitor_height = tmp;
-                label.angle = 270;
-                break;
-            case Gnome.RRRotation.ROTATION_180:
-                label.angle = 180;
-                break;
             case Gnome.RRRotation.ROTATION_270:
-                var tmp = monitor_width;
-                monitor_width = monitor_height;
-                monitor_height = tmp;
-                label.angle = 90;
-                break;
+                return monitor_height;
             default:
-                break;
+                return monitor_width;
+        }
+    }
+
+    public int get_real_height () {
+        int monitor_width, monitor_height;
+        output.get_geometry (null, null, out monitor_width, out monitor_height);
+        if (monitor_width == 0) {
+            monitor_width = output.get_preferred_width ();
         }
 
-        set_position (Math.floorf (offset_x + monitor_x * scale_factor),
-                      Math.floorf (offset_y + monitor_y * scale_factor));
-        set_size (Math.floorf (monitor_width * scale_factor),
-                  Math.floorf (monitor_height * scale_factor));
+        if (monitor_height == 0) {
+            monitor_height = output.get_preferred_height ();
+        }
+
+        var rotation = output.get_rotation ();
+        switch (rotation) {
+            case Gnome.RRRotation.ROTATION_90:
+            case Gnome.RRRotation.ROTATION_270:
+                return monitor_width;
+            default:
+                return monitor_height;
+        }
     }
 
     public void set_rgba (Gdk.RGBA new_rgba) {

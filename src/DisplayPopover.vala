@@ -11,6 +11,7 @@ public class DisplayPopover : Gtk.Popover {
     Gtk.ComboBox resolution;
     Gtk.ComboBoxText rotation;
     Gtk.Grid grid;
+    Gtk.Grid use_display_grid;
 
     Gtk.ListStore resolution_list;
 
@@ -24,15 +25,15 @@ public class DisplayPopover : Gtk.Popover {
         info = output_info;
         output = screen.get_output_by_name (info.get_name ());
 
-        var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
+        var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
         grid = new Gtk.Grid ();
-        grid.margin = 12;
-        grid.margin_top = 0;
+        grid.margin = 6;
         grid.row_spacing = 6;
         grid.column_spacing = 12;
 
         use_display = new Gtk.Switch ();
+        use_display.margin_right = 12;
         use_display.halign = Gtk.Align.END;
         use_display.notify["active"].connect (() => {
             if (ui_update)
@@ -44,14 +45,18 @@ public class DisplayPopover : Gtk.Popover {
             update_settings ();
         });
 
-        var use_display_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        use_display_box.margin = 12;
-        use_display_box.margin_bottom = 0;
-        use_display_box.pack_start (new Utils.RLabel.right (_("Use This Display")), false);
-        use_display_box.pack_start (use_display);
+        var use_display_label = new Utils.RLabel.right (_("Use This Display"));
+        use_display_label.hexpand = true;
+        use_display.margin_left = 12;
 
-        box.pack_start (use_display_box, false);
-        box.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false);
+        use_display_grid = new Gtk.Grid ();
+        use_display_grid.margin_top = 6;
+        use_display_grid.row_spacing = 6;
+        use_display_grid.attach (use_display_label, 0, 0, 1, 1);
+        use_display_grid.attach (use_display, 1, 0, 1, 1);
+        use_display_grid.attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 1, 2, 1);
+
+        box.pack_start (use_display_grid, false);
         box.pack_start (grid);
 
         var text_renderer = new Gtk.CellRendererText ();
@@ -105,9 +110,9 @@ public class DisplayPopover : Gtk.Popover {
 
             update_config ();
         });
+
         grid.attach (new Utils.RLabel.right (_("Rotation:")), 0, 4, 1, 1);
         grid.attach (rotation, 1, 4, 1, 1);
-
         add (box);
     }
 
@@ -123,7 +128,8 @@ public class DisplayPopover : Gtk.Popover {
         var is_multi_monitor = enabled_monitors > 1;
 
         use_display.active = info.is_active ();
-        use_display.sensitive = is_multi_monitor;
+        use_display_grid.no_show_all = !is_multi_monitor;
+        use_display_grid.visible = is_multi_monitor;
         grid.sensitive = info.is_active ();
 
         update_modes ();

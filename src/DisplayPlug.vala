@@ -5,6 +5,7 @@ public class DisplayPlug : Gtk.Application {
     OutputList output_list;
 
     Gtk.Switch mirror_display;
+    Gtk.Grid mirror_display_grid;
 
     Gtk.InfoBar error_bar;
     Gtk.Label error_label;
@@ -19,7 +20,6 @@ public class DisplayPlug : Gtk.Application {
         error_bar.no_show_all = true;
         error_label = new Gtk.Label ("");
         error_bar.get_content_area ().add (error_label);
-        main_box.pack_start (error_bar);
 
         output_list = new OutputList ();
         output_list.set_size_request (700, 350);
@@ -28,7 +28,6 @@ public class DisplayPlug : Gtk.Application {
         output_frame.margin = 12;
         output_frame.margin_bottom = 0;
         output_frame.add (output_list);
-        main_box.pack_start (output_frame);
 
         var bottom_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
         bottom_box.margin = 12;
@@ -36,29 +35,26 @@ public class DisplayPlug : Gtk.Application {
 
         mirror_display = new Gtk.Switch ();
         mirror_display.halign = Gtk.Align.START;
-        mirror_display.notify["active"].connect (() => {
-            if (ui_update)
-                return;
+        mirror_display.notify["active"].connect (() => {update_clone ();});
 
-            var configuration = Configuration.get_default ();
-            configuration.current_config.get_outputs ()[0].set_primary (true);
-            configuration.current_config.set_clone (mirror_display.active);
-
-            configuration.update_config ();
-        });
-        bottom_box.pack_start (new Utils.RLabel.right (_("Mirror Display:")), false);
-        bottom_box.pack_start (mirror_display, false);
-
-        bottom_box.pack_start (new Gtk.Label (""));
+        mirror_display_grid = new Gtk.Grid ();
+        mirror_display_grid.orientation = Gtk.Orientation.HORIZONTAL;
+        mirror_display_grid.column_spacing = 12;
+        mirror_display_grid.add (new Utils.RLabel.right (_("Mirror Display:")));
+        mirror_display_grid.add (mirror_display);
 
         var detect_displays = new Gtk.Button.with_label (_("Detect Displays"));
         apply_button = new Gtk.Button.with_label (_("Apply"));
         apply_button.sensitive = false;
+        apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
         apply_button.clicked.connect (() => {Configuration.get_default ().apply ();});
 
-        bottom_box.pack_start (detect_displays, false);
-        bottom_box.pack_start (apply_button, false);
+        bottom_box.pack_start (mirror_display_grid, false);
+        bottom_box.pack_end (apply_button, false);
+        bottom_box.pack_end (detect_displays, false);
 
+        main_box.pack_start (error_bar);
+        main_box.pack_start (output_frame);
         main_box.pack_start (bottom_box, false);
 
         var config = Configuration.get_default ();
@@ -69,6 +65,24 @@ public class DisplayPlug : Gtk.Application {
         });
 
         config.screen_changed ();
+    }
+
+    void update_clone () {
+        if (ui_update)
+            return;
+
+        var configuration = Configuration.get_default ();
+
+        if (mirror_display.active == true) {
+            if (configuration.active_clone_mode () == false) {
+                ui_update = true;
+                mirror_display.active = false;
+                ui_update = false;
+            }
+        } else {
+            configuration.current_config.set_clone (false);
+            configuration.update_config ();
+        }
     }
 
     void update_outputs (Gnome.RRConfig current_config) {
@@ -95,7 +109,13 @@ public class DisplayPlug : Gtk.Application {
         }
 
         mirror_display.active = current_config.get_clone ();
-        mirror_display.sensitive = mirror_display.active || enabled_monitors > 1;
+        if (mirror_display.active || enabled_monitors > 1) {
+            mirror_display_grid.no_show_all = false;
+            mirror_display_grid.show_all ();
+        } else {
+            mirror_display_grid.no_show_all = true;
+            mirror_display_grid.hide ();
+        }
 
         ui_update = false;
     }
