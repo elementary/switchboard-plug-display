@@ -11,6 +11,8 @@ class Monitor : Clutter.Actor {
     Gtk.Image settings_image;
     Gtk.Label label;
     DisplayPopover display_popover;
+    Gtk.Dialog monitor_revealer;
+    Gtk.Label monitor_revealer_label;
     public bool is_main_clone { get; private set; default=false; }
 
     public Monitor (Gnome.RROutputInfo output) {
@@ -81,11 +83,42 @@ class Monitor : Clutter.Actor {
         label_actor.x_expand = true;
         label_actor.y_align = Clutter.ActorAlign.CENTER;
         label_actor.y_expand = true;
+
+        monitor_revealer = new Gtk.Dialog ();
+        monitor_revealer_label = new Gtk.Label (output.get_display_name ());
+        if (output.is_active ()) {
+            monitor_revealer.accept_focus = false;
+            monitor_revealer.decorated = false;
+            monitor_revealer.resizable = false;
+            monitor_revealer.type_hint = Gdk.WindowTypeHint.TOOLTIP;
+            monitor_revealer.set_keep_above (true);
+            monitor_revealer.opacity = 0.75;
+            monitor_revealer.get_content_area ().add (monitor_revealer_label);
+            monitor_revealer.get_action_area ().destroy ();
+            monitor_revealer_label.margin = 12;
+
+            int monitor_x, monitor_y;
+            output.get_geometry (out monitor_x, out monitor_y, null, null);
+            monitor_revealer.move (monitor_x, monitor_y);
+
+            show.connect (() => {
+                monitor_revealer.show_all ();
+            });
+
+            hide.connect (() => {
+                monitor_revealer.hide ();
+            });
+            
+            destroy.connect (() => {
+                monitor_revealer.destroy ();
+            });
+        }
     }
 
     public void set_main_clone () {
         is_main_clone = true;
         label.label = _("Mirrored Displays");
+        monitor_revealer.no_show_all = true;
     }
 
     public void unset_primary () {
@@ -169,6 +202,7 @@ class Monitor : Clutter.Actor {
         rgba = new_rgba;
         primary_image.override_background_color (Gtk.StateFlags.NORMAL, rgba);
         settings_image.override_background_color (Gtk.StateFlags.NORMAL, rgba);
+        monitor_revealer.override_background_color (Gtk.StateFlags.NORMAL, rgba);
         if (use_white_text (rgba) == true) {
             var white = Gdk.RGBA ();
             white.parse ("#FFFFFF");
@@ -176,6 +210,7 @@ class Monitor : Clutter.Actor {
             primary_image.override_color (Gtk.StateFlags.NORMAL, white);
             settings_image.override_color (Gtk.StateFlags.NORMAL, white);
             label.override_color (Gtk.StateFlags.NORMAL, white);
+            monitor_revealer_label.override_color (Gtk.StateFlags.NORMAL, white);
         } else {
             var black = Gdk.RGBA ();
             black.parse ("#000000");
@@ -183,6 +218,7 @@ class Monitor : Clutter.Actor {
             primary_image.override_color (Gtk.StateFlags.NORMAL, black);
             settings_image.override_color (Gtk.StateFlags.NORMAL, black);
             label.override_color (Gtk.StateFlags.NORMAL, black);
+            monitor_revealer_label.override_color (Gtk.StateFlags.NORMAL, black);
         }
     }
 

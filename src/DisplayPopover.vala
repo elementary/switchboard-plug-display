@@ -120,12 +120,17 @@ public class DisplayPopover : Gtk.Popover {
         ui_update = true;
 
         var enabled_monitors = 0;
+        bool is_multi_monitor = false;
         foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
-            if (output.is_connected ())
+            if (output.is_connected ()) {
                 enabled_monitors++;
-        }
+            }
 
-        var is_multi_monitor = enabled_monitors > 1;
+            if (enabled_monitors > 1) {
+                is_multi_monitor = true;
+                break;
+            }
+        }
 
         use_display.active = info.is_active ();
         use_display_grid.no_show_all = !is_multi_monitor;
@@ -212,26 +217,25 @@ public class DisplayPopover : Gtk.Popover {
             _("180 Degrees")
         };
 
-#if !HAS_GNOME312
-        var current_rotation = info.get_rotation ();
-#endif
-
-        for (var i = 0; i < rotations.length; i++) {
 #if HAS_GNOME312
+        for (var i = 0; i < rotations.length; i++) {
             if (info.supports_rotation (rotations[i])) {
-#else
-            info.set_rotation (rotations[i]);
-            try {
-                if (current_config.applicable (current_screen)) {
-#endif
                 rotation.append (((int) rotations[i]).to_string (), desc[i]);
                 n_rotations++;
-#if HAS_GNOME312
             }
         }
 #else
+        var current_rotation = info.get_rotation ();
+        for (var i = 0; i < rotations.length; i++) {
+            info.set_rotation (rotations[i]);
+            try {
+                if (current_config.applicable (current_screen)) {
+                    rotation.append (((int) rotations[i]).to_string (), desc[i]);
+                    n_rotations++;
                 }
-            } catch (Error e) {}
+            } catch (Error e) {
+                critical (e.message);
+            }
         }
 
         info.set_rotation (current_rotation);

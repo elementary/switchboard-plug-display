@@ -220,7 +220,9 @@ namespace Gnome {
 		public void set_primary (bool primary);
 		public void set_refresh_rate (int rate);
 		public void set_rotation (Gnome.RRRotation rotation);
+#if HAS_GNOME312
 		public bool supports_rotation (Gnome.RRRotation rotation);
+#endif
 	}
 	[CCode (cheader_filename = "libgnome-desktop/gnome-rr.h", type_id = "gnome_rr_screen_get_type ()")]
 	public class RRScreen : GLib.Object, GLib.AsyncInitable, GLib.Initable {
