@@ -2,8 +2,7 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: <url://example.com>
 
 Files: *
-Copyright: Copyright (C) 2011-2013 Sergey "Shnatsel" Davidoff <shnatsel@gmail.com>
-           Copyright (C) 2013 <put author's name and email here>
+Copyright: Copyright (C) 2011-2014 Sergey "Shnatsel" Davidoff <shnatsel@gmail.com>
 License: GPL-3
  This library is free software; you can redistribute it and/or modify it
  under the terms of the GNU General Public License as published by the

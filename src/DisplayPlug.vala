@@ -71,9 +71,15 @@ namespace Display {
             apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             apply_button.clicked.connect (() => {Configuration.get_default ().apply ();});
 
+            var button_grid = new Gtk.Grid ();
+            button_grid.orientation = Gtk.Orientation.HORIZONTAL;
+            button_grid.column_homogeneous = true;
+            button_grid.column_spacing = 12;
+            button_grid.add (detect_displays);
+            button_grid.add (apply_button);
+
             bottom_box.pack_start (mirror_display_grid, false);
-            bottom_box.pack_end (apply_button, false);
-            bottom_box.pack_end (detect_displays, false);
+            bottom_box.pack_end (button_grid, false);
 
             main_box.pack_start (error_bar);
             main_box.pack_start (output_frame);

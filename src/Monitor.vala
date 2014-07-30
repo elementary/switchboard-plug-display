@@ -26,9 +26,11 @@ class Monitor : Clutter.Actor {
 
         layout_manager = new Clutter.BinLayout ();
         primary_image = new Gtk.Image.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
+        primary_image.tooltip_text = _("Set as primary display");
         primary_image.margin = MARGIN;
         if (output.get_primary () == true) {
             primary_image.icon_name = "starred-symbolic";
+            primary_image.tooltip_text = _("Is primary display");
         }
 
         var primary = new GtkClutter.Actor.with_contents (primary_image);
@@ -36,6 +38,7 @@ class Monitor : Clutter.Actor {
         primary.button_release_event.connect ((event) => {
             if (primary_image.icon_name == "non-starred-symbolic" && event.button == 1) {
                 primary_image.icon_name = "starred-symbolic";
+                primary_image.tooltip_text = _("Is primary display");
                 output.set_primary (true);
                 is_primary ();
                 return true;
@@ -45,6 +48,7 @@ class Monitor : Clutter.Actor {
         });
 
         settings_image = new Gtk.Image.from_icon_name ("document-properties-symbolic", Gtk.IconSize.MENU);
+        settings_image.tooltip_text = _("Configure display");
         settings_image.margin = MARGIN;
         var settings = new GtkClutter.Actor.with_contents (settings_image);
         settings.reactive = true;
@@ -152,6 +156,7 @@ class Monitor : Clutter.Actor {
     public void unset_primary () {
         if (primary_image.icon_name == "starred-symbolic") {
             primary_image.icon_name = "non-starred-symbolic";
+            primary_image.tooltip_text = _("Set as primary display");
             output.set_primary (false);
         }
     }

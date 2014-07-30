@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 04:11+0200\n"
+"POT-Creation-Date: 2014-07-30 04:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,19 @@ msgstr ""
 msgid "Settings cannot be applied: %s"
 msgstr ""
 
-#: ../src/Monitor.vala:148
+#: ../src/Monitor.vala:29 ../src/Monitor.vala:159
+msgid "Set as primary display"
+msgstr ""
+
+#: ../src/Monitor.vala:33 ../src/Monitor.vala:41
+msgid "Is primary display"
+msgstr ""
+
+#: ../src/Monitor.vala:51
+msgid "Configure display"
+msgstr ""
+
+#: ../src/Monitor.vala:152
 msgid "Mirrored Displays"
 msgstr ""
 
