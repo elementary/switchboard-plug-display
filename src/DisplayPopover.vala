@@ -264,10 +264,10 @@ public class DisplayPopover : Gtk.Popover {
         };
 
         string[] desc = {
-            _("Normal"),
-            _("Counterclockwise"),
+            _("None"),
             _("Clockwise"),
-            _("180 Degrees")
+            _("Counterclockwise"),
+            _("Flipped")
         };
 
 #if HAS_GNOME312
