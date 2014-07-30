@@ -7,6 +7,7 @@ class Monitor : Clutter.Actor {
 
     public unowned Gnome.RROutputInfo output { get; construct; }
     Gdk.RGBA rgba;
+    GtkClutter.Actor primary;
     Gtk.Image primary_image;
     Gtk.Image settings_image;
     Gtk.Label label;
@@ -33,7 +34,7 @@ class Monitor : Clutter.Actor {
             primary_image.tooltip_text = _("Is primary display");
         }
 
-        var primary = new GtkClutter.Actor.with_contents (primary_image);
+        primary = new GtkClutter.Actor.with_contents (primary_image);
         primary.reactive = true;
         primary.button_release_event.connect ((event) => {
             if (primary_image.icon_name == "non-starred-symbolic" && event.button == 1) {
@@ -187,6 +188,12 @@ class Monitor : Clutter.Actor {
                       Math.floorf (offset_y + monitor_y * scale_factor));
         set_size (Math.floorf (monitor_width * scale_factor),
                   Math.floorf (monitor_height * scale_factor));
+
+        // update_reposition is called after all outputs have been added, so we can a chance
+        // to count the number and update accordingly. If only a single monitor is connected,
+        // changing the primary monitor makes no sense and gnome-rr returns that no monitor
+        // is set to primary, so we hide the button to avoid confusion
+        primary.visible = get_parent ().get_n_children () > 1;
     }
 
     public int get_real_width () {
