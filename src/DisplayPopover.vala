@@ -133,8 +133,8 @@ public class DisplayPopover : Gtk.Popover {
         }
 
         use_display.active = info.is_active ();
-        use_display_grid.no_show_all = !is_multi_monitor;
-        use_display_grid.visible = is_multi_monitor;
+        use_display_grid.no_show_all = !is_multi_monitor || current_config.get_clone ();
+        use_display_grid.visible = is_multi_monitor || !current_config.get_clone ();
         grid.sensitive = info.is_active ();
 
         update_modes ();
