@@ -287,7 +287,8 @@ public class DisplayPopover : Gtk.Popover {
                     n_rotations++;
                 }
             } catch (Error e) {
-                critical (e.message);
+                // ignore this case, it will only spam the console with useless messages
+                // about certain modes not being supported by the driver
             }
         }
 
