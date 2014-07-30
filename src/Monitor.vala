@@ -12,7 +12,7 @@ public class Monitor : Clutter.Actor {
     Gtk.Image settings_image;
     Gtk.Label label;
     DisplayPopover display_popover;
-    Gtk.Dialog monitor_revealer;
+    Gtk.Window monitor_revealer;
     Gtk.Label monitor_revealer_label;
     public Clutter.DragAction drag_action { get; private set; }
     public bool is_main_clone { get; private set; default=false; }
@@ -102,7 +102,7 @@ public class Monitor : Clutter.Actor {
         label_actor.y_align = Clutter.ActorAlign.CENTER;
         label_actor.y_expand = true;
 
-        monitor_revealer = new Gtk.Dialog ();
+        monitor_revealer = new Gtk.Window ();
         monitor_revealer_label = new Gtk.Label (output.get_display_name ());
         if (output.is_active ()) {
             monitor_revealer.accept_focus = false;
@@ -111,11 +111,11 @@ public class Monitor : Clutter.Actor {
             monitor_revealer.deletable = false;
             monitor_revealer.can_focus = false;
             monitor_revealer.skip_taskbar_hint = true;
+            monitor_revealer.skip_pager_hint = true;
             monitor_revealer.type_hint = Gdk.WindowTypeHint.TOOLTIP;
             monitor_revealer.set_keep_above (true);
             monitor_revealer.opacity = 0.75;
-            monitor_revealer.get_content_area ().add (monitor_revealer_label);
-            monitor_revealer.get_action_area ().destroy ();
+            monitor_revealer.add (monitor_revealer_label);
             monitor_revealer_label.margin = 12;
 
             int monitor_x, monitor_y;
@@ -184,10 +184,13 @@ public class Monitor : Clutter.Actor {
                 break;
         }
 
+        save_easing_state ();
+        set_easing_duration (200);
         set_position (Math.floorf (offset_x + monitor_x * scale_factor),
                       Math.floorf (offset_y + monitor_y * scale_factor));
         set_size (Math.floorf (monitor_width * scale_factor),
                   Math.floorf (monitor_height * scale_factor));
+        restore_easing_state ();
 
         // update_reposition is called after all outputs have been added, so we can a chance
         // to count the number and update accordingly. If only a single monitor is connected,

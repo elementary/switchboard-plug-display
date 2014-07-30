@@ -1,6 +1,6 @@
 
 public class OutputList : GtkClutter.Embed {
-    const int PADDING = 48;
+    const int PADDING = 12;
     public const string BLUE = "#4b91dd";
     public const string ORANGE = "#eb713f";
     public const string GREEN = "#408549";
@@ -10,6 +10,9 @@ public class OutputList : GtkClutter.Embed {
 
     public bool clone_mode { get; set; default = false; }
     private float scale_xy { get; set; default = 0; }
+
+    private float offset_x { get; set; default = 0; }
+    private float offset_y { get; set; default = 0; }
     public Monitor? dragged_monitor { get; set; default = null; }
 
     public OutputList () {
@@ -68,23 +71,24 @@ public class OutputList : GtkClutter.Embed {
 
         monitor.drag_action.drag_begin.connect (() => {
             dragged_monitor = monitor;
-
             reposition ();
         });
         monitor.drag_action.drag_progress.connect (drag_progress);
         monitor.drag_action.drag_motion.connect ((actor, delta_x, delta_y) => {
-            int monitor_x, monitor_y;
-            monitor.output.get_geometry (out monitor_x, out monitor_y, null, null);
-            int monitor_width = monitor.get_real_width ();
-            int monitor_height = monitor.get_real_height ();
-            int offset_x = (int)Math.floorf (delta_x/scale_xy);
-            int offset_y = (int)Math.floorf (delta_y/scale_xy);
-            monitor.output.set_geometry (monitor_x + offset_x, monitor_y + offset_y, monitor_width, monitor_height);
-            Configuration.get_default ().update_config ();
+            offset_x += delta_x/scale_xy;
+            offset_y += delta_y/scale_xy;
         });
 
         monitor.drag_action.drag_end.connect ((actor, delta_x, delta_y, modifiers) => {
             dragged_monitor = null;
+            int monitor_x, monitor_y;
+            monitor.output.get_geometry (out monitor_x, out monitor_y, null, null);
+            int monitor_width = monitor.get_real_width ();
+            int monitor_height = monitor.get_real_height ();
+            monitor.output.set_geometry (monitor_x + (int)offset_x, monitor_y + (int)offset_y, monitor_width, monitor_height);
+            Configuration.get_default ().update_config ();
+            offset_x = 0;
+            offset_y = 0;
 
             reposition ();
         });
@@ -98,13 +102,10 @@ public class OutputList : GtkClutter.Embed {
         var right = int.MIN;
         var bottom = int.MIN;
 
-        int x, y, width = 0, height = 0;
+        int x, y, width = 0, height = 0, width_max = 0, height_max = 0;
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor monitor = (Monitor) child;
-
-            if (monitor == dragged_monitor)
-                continue;
 
             if (clone_mode == true) {
                 if (monitor.output.get_primary () == false) {
@@ -119,7 +120,9 @@ public class OutputList : GtkClutter.Embed {
             }
 
             width = monitor.get_real_width ();
+            width_max = int.max (width_max, width);
             height = monitor.get_real_height ();
+            height_max = int.max (height_max, height);
             left = int.min (x, left);
             top = int.min (y, top);
             right = int.max (x + width, right);
@@ -134,16 +137,10 @@ public class OutputList : GtkClutter.Embed {
             top = 0;
         }
 
-        // make room on every edge for dropping the currently dragged monitor
-        if (dragged_monitor != null) {
-            width = dragged_monitor.get_real_width ();
-            height = dragged_monitor.get_real_height ();
-
-            left -= width;
-            right += width;
-            top -= height;
-            bottom += height;
-        }
+        left -= width_max;
+        right += width_max;
+        top -= height_max;
+        bottom += height_max;
 
         var layout_width = right - left;
         var layout_height = bottom - top;
@@ -153,20 +150,11 @@ public class OutputList : GtkClutter.Embed {
         var inner_height = container_height - PADDING * 2;
 
         scale_xy = (float) inner_height / layout_height;
-
         if (layout_width * scale_xy > inner_width)
             scale_xy = (float) inner_width / layout_width;
 
-        var offset_x = (container_width - layout_width * scale_xy) / 2.0f;
-        var offset_y = (container_height - layout_height * scale_xy) / 2.0f;
-
-        // if we subtracted on the edges for the dragged monitor, we need to make sure
-        // things actually go center again, since the layout is not actually filled right
-        // now, but has gaps
-        if (dragged_monitor != null) {
-            offset_x += width * scale_xy;
-            offset_y += height * scale_xy;
-        }
+        var offset_x = (container_width - layout_width * scale_xy) / 2.0f + width_max * scale_xy;
+        var offset_y = (container_height - layout_height * scale_xy) / 2.0f + height_max * scale_xy;
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor monitor = (Monitor) child;
@@ -217,10 +205,9 @@ public class OutputList : GtkClutter.Embed {
         monitor.output.get_geometry (out src_x, out src_y, null, null);
         src_width = monitor.get_real_width ();
         src_height = monitor.get_real_height ();
-        int offset_x = (int)Math.floorf (delta_x/scale_xy);
-        int offset_y = (int)Math.floorf (delta_y/scale_xy);
+
         var src_rect = Clutter.Rect.alloc ();
-        src_rect.init (src_x + offset_x, src_y + offset_y, src_width, src_height);
+        src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy), src_y + (int)(offset_y + delta_y/scale_xy), src_width, src_height);
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor mon = (Monitor) child;
@@ -236,18 +223,18 @@ public class OutputList : GtkClutter.Embed {
 
             // If it's not possible to move, check for the blocking side.
             if (src_rect.intersection (test_rect, null) == true) {
-                src_rect.init (src_x + offset_x, src_y, src_width, src_height);
+                src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy), src_y + (int)offset_y, src_width, src_height);
                 if (src_rect.intersection (test_rect, null) == false) {
                     // Try to fill the gap between them
-                    int min_y = calculate_gap (src_y, src_height, test_y, test_height);
+                    float min_y = calculate_gap ((float)src_y + offset_y, src_height, (float)test_y, test_height);
                     monitor.drag_action.drag_motion (actor, delta_x, min_y*scale_xy);
                     return false;
                 }
 
-                src_rect.init (src_x, src_y + offset_y, src_width, src_height);
+                src_rect.init (src_x + (int)offset_x, src_y + offset_y + (int)(delta_y/scale_xy), src_width, src_height);
                 if (src_rect.intersection (test_rect, null) == false) {
                     // Try to fill the gap between them
-                    int min_x = calculate_gap (src_x, src_width, test_x, test_width);
+                    float min_x = calculate_gap ((float)src_x + offset_x, src_width, (float)test_x , test_width);
                     monitor.drag_action.drag_motion (actor, min_x*scale_xy, delta_y);
                     return false;
                 }
@@ -259,7 +246,7 @@ public class OutputList : GtkClutter.Embed {
         return true;
     }
 
-    private int calculate_gap (int src_origin, int src_size, int test_origin, int test_size) {
+    private float calculate_gap (float src_origin, int src_size, float test_origin, int test_size) {
         if (src_origin + src_size < test_origin)
             return test_origin - (src_origin + src_size);
         else if (test_origin + test_size < src_origin)
