@@ -71,8 +71,8 @@ public class OutputList : GtkClutter.Embed {
             monitor.output.get_geometry (out monitor_x, out monitor_y, null, null);
             int monitor_width = monitor.get_real_width ();
             int monitor_height = monitor.get_real_height ();
-            int offset_x = (int)(delta_x/scale_xy);
-            int offset_y = (int)(delta_y/scale_xy);
+            int offset_x = (int)Math.floorf (delta_x/scale_xy);
+            int offset_y = (int)Math.floorf (delta_y/scale_xy);
             monitor.output.set_geometry (monitor_x + offset_x, monitor_y + offset_y, monitor_width, monitor_height);
             Configuration.get_default ().update_config ();
         });
@@ -82,8 +82,6 @@ public class OutputList : GtkClutter.Embed {
         });
 
         get_stage ().add_child (monitor);
-
-        reposition ();
     }
 
     public void reposition () {
@@ -147,6 +145,20 @@ public class OutputList : GtkClutter.Embed {
             }
 
             monitor.update_position (scale_xy, offset_x, offset_y);
+        }
+    }
+
+    public void show_dialogs () {
+        foreach (var child in get_stage ().get_children ()) {
+            unowned Monitor monitor = (Monitor) child;
+            monitor.show_dialog ();
+        }
+    }
+
+    public void hide_dialogs () {
+        foreach (var child in get_stage ().get_children ()) {
+            unowned Monitor monitor = (Monitor) child;
+            monitor.hide_dialog ();
         }
     }
 

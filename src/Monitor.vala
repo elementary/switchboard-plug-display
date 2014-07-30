@@ -131,6 +131,18 @@ class Monitor : Clutter.Actor {
         }
     }
 
+    public void hide_dialog () {
+        monitor_revealer.no_show_all = true;
+        monitor_revealer.hide ();
+    }
+
+    public void show_dialog () {
+        if (output.is_active () && is_main_clone == false) {
+            monitor_revealer.no_show_all = false;
+            monitor_revealer.show_all ();
+        }
+    }
+
     public void set_main_clone () {
         is_main_clone = true;
         label.label = _("Mirrored Displays");

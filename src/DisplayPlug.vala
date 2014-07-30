@@ -19,7 +19,7 @@ namespace Display {
             Object (category: Category.HARDWARE,
                     code_name: Build.PLUGCODENAME,
                     display_name: _("Displays"),
-                    description: _("Change the settings of your monitor."),
+                    description: _("Change resolution and position of monitors and projectors"),
                     icon: "preferences-desktop-display");
             plug = this;
         }
@@ -65,6 +65,7 @@ namespace Display {
             mirror_display_grid.add (mirror_display);
 
             var detect_displays = new Gtk.Button.with_label (_("Detect Displays"));
+            detect_displays.clicked.connect (() => {Configuration.get_default ().screen_changed ();});
             apply_button = new Gtk.Button.with_label (_("Apply"));
             apply_button.sensitive = false;
             apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
@@ -127,6 +128,7 @@ namespace Display {
                         break;
                 }
             }
+            output_list.reposition ();
 
             mirror_display.active = current_config.get_clone ();
             if (mirror_display.active || enabled_monitors > 1) {
@@ -147,11 +149,11 @@ namespace Display {
         }
 
         public override void shown () {
-            
+            output_list.show_dialogs ();
         }
 
         public override void hidden () {
-            
+            output_list.hide_dialogs ();
         }
 
         public override void search_callback (string location) {

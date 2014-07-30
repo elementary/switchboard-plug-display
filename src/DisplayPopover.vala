@@ -39,7 +39,60 @@ public class DisplayPopover : Gtk.Popover {
             if (ui_update)
                 return;
 
+            int x, y, monitor_width, monitor_height;
+            info.get_geometry (out x, out y, out monitor_width, out monitor_height);
+            if (monitor_width == 0) {
+                monitor_width = info.get_preferred_width ();
+            }
+
+            if (monitor_height == 0) {
+                monitor_height = info.get_preferred_height ();
+            }
+            unowned Gnome.RRMode[] modes;
+            unowned Gnome.RRMode current_mode = output.get_current_mode ();
+            if (current_mode == null) {
+                if (current_config.get_clone ())
+                    modes = current_screen.list_clone_modes ();
+                else
+                    modes = output.list_modes ();
+                foreach (unowned Gnome.RRMode mode in modes) {
+                    if (current_mode == null) {
+                        current_mode = mode;
+                    }
+
+                    if (current_mode.get_width () < mode.get_width ())
+                        current_mode = mode;
+
+                    if (mode.get_width () == monitor_width && mode.get_height () == monitor_height) {
+                        current_mode = mode;
+                        break;
+                    }
+                }
+            }
+
+            if (current_mode != null) {
+                info.set_geometry (x, y, (int)current_mode.get_width (), (int)current_mode.get_height ());
+                info.set_refresh_rate (current_mode.get_freq ());
+            } else {
+                info.set_geometry (x, y, (int)current_mode.get_width (), (int)current_mode.get_height ());
+            }
+
             info.set_active (use_display.active);
+
+            try {
+                if (current_config.applicable (screen) == false) {
+                    ui_update = true;
+                    use_display.active = false;
+                    info.set_active (false);
+                    ui_update = false;
+                }
+            } catch (Error e) {
+                ui_update = true;
+                use_display.active = false;
+                info.set_active (false);
+                critical (e.message);
+                ui_update = false;
+            }
 
             update_config ();
             update_settings ();
@@ -144,6 +197,13 @@ public class DisplayPopover : Gtk.Popover {
     }
 
     void update_modes () {
+        unowned Gnome.RRMode[] modes;
+
+        if (current_config.get_clone ())
+            modes = current_screen.list_clone_modes ();
+        else
+            modes = output.list_modes ();
+
         unowned Gnome.RRMode current_mode = output.get_current_mode ();
         int current_width = 0;
         int current_height = 0;
@@ -155,13 +215,6 @@ public class DisplayPopover : Gtk.Popover {
         } else {
             resolution.active = 0;
         }
-
-        unowned Gnome.RRMode[] modes;
-
-        if (current_config.get_clone ())
-            modes = current_screen.list_clone_modes ();
-        else
-            modes = output.list_modes ();
 
         foreach (unowned Gnome.RRMode mode in modes) {
             var mode_width = mode.get_width ();
