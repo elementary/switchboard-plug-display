@@ -10,6 +10,7 @@ public class OutputList : GtkClutter.Embed {
 
     public bool clone_mode { get; set; default = false; }
     private float scale_xy { get; set; default = 0; }
+    public Monitor? dragged_monitor { get; set; default = null; }
 
     public OutputList () {
         size_allocate.connect (reposition);
@@ -65,6 +66,11 @@ public class OutputList : GtkClutter.Embed {
             reposition ();
         });
 
+        monitor.drag_action.drag_begin.connect (() => {
+            dragged_monitor = monitor;
+
+            reposition ();
+        });
         monitor.drag_action.drag_progress.connect (drag_progress);
         monitor.drag_action.drag_motion.connect ((actor, delta_x, delta_y) => {
             int monitor_x, monitor_y;
@@ -78,6 +84,8 @@ public class OutputList : GtkClutter.Embed {
         });
 
         monitor.drag_action.drag_end.connect ((actor, delta_x, delta_y, modifiers) => {
+            dragged_monitor = null;
+
             reposition ();
         });
 
@@ -90,10 +98,13 @@ public class OutputList : GtkClutter.Embed {
         var right = int.MIN;
         var bottom = int.MIN;
 
-        int x, y, width, height;
+        int x, y, width = 0, height = 0;
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor monitor = (Monitor) child;
+
+            if (monitor == dragged_monitor)
+                continue;
 
             if (clone_mode == true) {
                 if (monitor.output.get_primary () == false) {
@@ -123,6 +134,17 @@ public class OutputList : GtkClutter.Embed {
             top = 0;
         }
 
+        // make room on every edge for dropping the currently dragged monitor
+        if (dragged_monitor != null) {
+            width = dragged_monitor.get_real_width ();
+            height = dragged_monitor.get_real_height ();
+
+            left -= width;
+            right += width;
+            top -= height;
+            bottom += height;
+        }
+
         var layout_width = right - left;
         var layout_height = bottom - top;
         var container_width = get_allocated_width ();
@@ -137,6 +159,14 @@ public class OutputList : GtkClutter.Embed {
 
         var offset_x = (container_width - layout_width * scale_xy) / 2.0f;
         var offset_y = (container_height - layout_height * scale_xy) / 2.0f;
+
+        // if we subtracted on the edges for the dragged monitor, we need to make sure
+        // things actually go center again, since the layout is not actually filled right
+        // now, but has gaps
+        if (dragged_monitor != null) {
+            offset_x += width * scale_xy;
+            offset_y += height * scale_xy;
+        }
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor monitor = (Monitor) child;

@@ -1,5 +1,5 @@
 
-class Monitor : Clutter.Actor {
+public class Monitor : Clutter.Actor {
     const int MARGIN = 6;
 
     public signal void is_primary ();
@@ -193,7 +193,9 @@ class Monitor : Clutter.Actor {
         // to count the number and update accordingly. If only a single monitor is connected,
         // changing the primary monitor makes no sense and gnome-rr returns that no monitor
         // is set to primary, so we hide the button to avoid confusion
-        primary.visible = get_parent ().get_n_children () > 1;
+        var is_multimonitor = get_parent ().get_n_children () > 1;
+        primary.visible = is_multimonitor;
+        drag_action.enabled = is_multimonitor;
     }
 
     public int get_real_width () {
