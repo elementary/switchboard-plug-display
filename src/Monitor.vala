@@ -21,6 +21,7 @@ class Monitor : Clutter.Actor {
         reactive = true;
 
         drag_action = new Clutter.DragAction ();
+        drag_action.set_drag_threshold (5, 5);
         add_action (drag_action);
 
         layout_manager = new Clutter.BinLayout ();
@@ -102,6 +103,9 @@ class Monitor : Clutter.Actor {
             monitor_revealer.accept_focus = false;
             monitor_revealer.decorated = false;
             monitor_revealer.resizable = false;
+            monitor_revealer.deletable = false;
+            monitor_revealer.can_focus = false;
+            monitor_revealer.skip_taskbar_hint = true;
             monitor_revealer.type_hint = Gdk.WindowTypeHint.TOOLTIP;
             monitor_revealer.set_keep_above (true);
             monitor_revealer.opacity = 0.75;

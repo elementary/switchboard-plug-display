@@ -101,10 +101,10 @@ public class OutputList : GtkClutter.Embed {
                 if (monitor.output.get_primary () == false) {
                     monitor.hide ();
                     continue;
+                } else {
+                    x = 0;
+                    y = 0;
                 }
-
-                x = 0;
-                y = 0;
             } else {
                 monitor.output.get_geometry (out x, out y, null, null);
             }
@@ -187,8 +187,8 @@ public class OutputList : GtkClutter.Embed {
 
             int test_x , test_y, test_width, test_height;
             mon.output.get_geometry (out test_x, out test_y, null, null);
-            test_width = monitor.get_real_width ();
-            test_height = monitor.get_real_height ();
+            test_width = mon.get_real_width ();
+            test_height = mon.get_real_height ();
             var test_rect = Clutter.Rect.alloc ();
             test_rect.init (test_x, test_y, test_width, test_height);
 
@@ -197,33 +197,31 @@ public class OutputList : GtkClutter.Embed {
                 src_rect.init (src_x + offset_x, src_y, src_width, src_height);
                 if (src_rect.intersection (test_rect, null) == false) {
                     // Try to fill the gap between them
-                    int min = 0;
-                    if (src_y + src_height < test_y)
-                        min = test_y - (src_y + src_height);
-                    else if (test_y + test_height < src_y)
-                        min = src_y - (test_y + test_height);
-                    monitor.drag_action.drag_motion (actor, delta_x, min*scale_xy);
+                    int min_y = calculate_gap (src_y, src_height, test_y, test_height);
+                    monitor.drag_action.drag_motion (actor, delta_x, min_y*scale_xy);
                     return false;
                 }
 
                 src_rect.init (src_x, src_y + offset_y, src_width, src_height);
                 if (src_rect.intersection (test_rect, null) == false) {
                     // Try to fill the gap between them
-                    int min = 0;
-                    if (src_x + src_width < test_x)
-                        min = test_x - (src_x + src_width);
-                    else if (test_x + test_width < src_x)
-                        min = src_x - (test_x + src_width);
-                    monitor.drag_action.drag_motion (actor, min*scale_xy, delta_y);
+                    int min_x = calculate_gap (src_x, src_width, test_x, test_width);
+                    monitor.drag_action.drag_motion (actor, min_x*scale_xy, delta_y);
                     return false;
                 }
 
                 return false;
-            } else {
-                warning ("");
             }
         }
 
         return true;
+    }
+
+    private int calculate_gap (int src_origin, int src_size, int test_origin, int test_size) {
+        if (src_origin + src_size < test_origin)
+            return test_origin - (src_origin + src_size);
+        else if (test_origin + test_size < src_origin)
+            return test_origin + test_size - src_origin;
+        return 0;
     }
 }

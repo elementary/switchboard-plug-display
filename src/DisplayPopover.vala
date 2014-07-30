@@ -33,7 +33,7 @@ public class DisplayPopover : Gtk.Popover {
         grid.column_spacing = 12;
 
         use_display = new Gtk.Switch ();
-        use_display.margin_right = 12;
+        use_display.margin_end = 12;
         use_display.halign = Gtk.Align.END;
         use_display.notify["active"].connect (() => {
             if (ui_update)
@@ -47,7 +47,7 @@ public class DisplayPopover : Gtk.Popover {
 
         var use_display_label = new Utils.RLabel.right (_("Use This Display"));
         use_display_label.hexpand = true;
-        use_display.margin_left = 12;
+        use_display.margin_start = 12;
 
         use_display_grid = new Gtk.Grid ();
         use_display_grid.margin_top = 6;
