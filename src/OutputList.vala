@@ -1,6 +1,7 @@
 
 public class OutputList : GtkClutter.Embed {
     const int PADDING = 12;
+    const int EDGE_SNAPPING = 5;
     public const string BLUE = "#4b91dd";
     public const string ORANGE = "#eb713f";
     public const string GREEN = "#408549";
@@ -207,7 +208,13 @@ public class OutputList : GtkClutter.Embed {
         src_height = monitor.get_real_height ();
 
         var src_rect = Clutter.Rect.alloc ();
-        src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy), src_y + (int)(offset_y + delta_y/scale_xy), src_width, src_height);
+        src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy),
+                       src_y + (int)(offset_y + delta_y/scale_xy),
+                       src_width, src_height);
+
+        var edge_x = edge_snapping_x ((float)src_x + offset_x, src_width);
+        var edge_y = edge_snapping_y ((float)src_y + offset_y, src_height);
+        bool can_snap = true;
 
         foreach (var child in get_stage ().get_children ()) {
             unowned Monitor mon = (Monitor) child;
@@ -223,10 +230,21 @@ public class OutputList : GtkClutter.Embed {
 
             // If it's not possible to move, check for the blocking side.
             if (src_rect.intersection (test_rect, null) == true) {
-                src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy), src_y + (int)offset_y, src_width, src_height);
+                src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy),
+                               src_y + (int)offset_y,
+                               src_width, src_height);
                 if (src_rect.intersection (test_rect, null) == false) {
                     // Try to fill the gap between them
+                    edge_y = edge_snapping_y ((float)src_y, src_height);
                     float min_y = calculate_gap ((float)src_y + offset_y, src_height, (float)test_y, test_height);
+                    // Snapping edges
+                    src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy),
+                                   src_y + (int)(offset_y + delta_y/scale_xy + edge_y),
+                                   src_width, src_height);
+                    if (src_rect.intersection (test_rect, null) == false) {
+                        min_y = calculate_gap ((float)src_y + offset_y, src_height, (float)test_y + edge_y, test_height);
+                    }
+
                     monitor.drag_action.drag_motion (actor, delta_x, min_y*scale_xy);
                     return false;
                 }
@@ -234,19 +252,83 @@ public class OutputList : GtkClutter.Embed {
                 src_rect.init (src_x + (int)offset_x, src_y + offset_y + (int)(delta_y/scale_xy), src_width, src_height);
                 if (src_rect.intersection (test_rect, null) == false) {
                     // Try to fill the gap between them
+                    edge_x = edge_snapping_x ((float)src_x, src_width);
                     float min_x = calculate_gap ((float)src_x + offset_x, src_width, (float)test_x , test_width);
+                    // Snapping edges
+                    src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy + edge_x),
+                                   src_y + (int)(offset_y + delta_y/scale_xy),
+                                   src_width, src_height);
+                    if (src_rect.intersection (test_rect, null) == false) {
+                        min_x = calculate_gap ((float)src_x + offset_x, src_width, (float)test_x + edge_x , test_width);
+                    }
+
                     monitor.drag_action.drag_motion (actor, min_x*scale_xy, delta_y);
                     return false;
                 }
-
                 return false;
             }
+
+            // Check if snapping edges does conflict
+            src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy + edge_x),
+                           src_y + (int)(offset_y + delta_y/scale_xy + edge_y),
+                           src_width, src_height);
+            if (src_rect.intersection (test_rect, null) == true) {
+                can_snap = false;
+            }
+
+            src_rect.init (src_x + (int)(offset_x + delta_x/scale_xy),
+                           src_y + (int)(offset_y + delta_y/scale_xy),
+                           src_width, src_height);
+        }
+
+        if (can_snap == true) {
+            monitor.drag_action.drag_motion (actor, delta_x + edge_x*scale_xy, delta_y + edge_y*scale_xy);
+            return false;
         }
 
         return true;
     }
 
-    private float calculate_gap (float src_origin, int src_size, float test_origin, int test_size) {
+    private float edge_snapping_x (float src_x, int src_width) {
+        float min_edge = 0;
+        foreach (var child in get_stage ().get_children ()) {
+            unowned Monitor monitor = (Monitor) child;
+            int x;
+            monitor.output.get_geometry (out x, null, null, null);
+            int width = monitor.get_real_width ();
+            var gap = calculate_gap (src_x, src_width, (float)x, width);
+            if (gap * scale_xy < EDGE_SNAPPING && gap * scale_xy > -EDGE_SNAPPING) {
+                if (min_edge == 0) {
+                    min_edge = gap;
+                } else {
+                    min_edge = float.min (gap, min_edge);
+                }
+            }
+        }
+        return min_edge;
+    }
+
+    private float edge_snapping_y (float src_y, int src_height) {
+        float min_edge = 0;
+        foreach (var child in get_stage ().get_children ()) {
+            unowned Monitor monitor = (Monitor) child;
+            int y;
+            monitor.output.get_geometry (null, out y, null, null);
+            int height = monitor.get_real_height ();
+            var gap = calculate_gap (src_y, src_height, (float)y, height);
+            if (gap * scale_xy < EDGE_SNAPPING && gap * scale_xy > -EDGE_SNAPPING) {
+                if (min_edge == 0) {
+                    min_edge = gap;
+                } else {
+                    min_edge = float.min (gap, min_edge);
+                }
+            }
+        }
+        return min_edge;
+    }
+
+    // simply calculate the gap between two sides.
+    private static float calculate_gap (float src_origin, int src_size, float test_origin, int test_size) {
         if (src_origin + src_size < test_origin)
             return test_origin - (src_origin + src_size);
         else if (test_origin + test_size < src_origin)

@@ -186,10 +186,12 @@ public class Monitor : Clutter.Actor {
 
         save_easing_state ();
         set_easing_duration (200);
+
         set_position (Math.floorf (offset_x + monitor_x * scale_factor),
                       Math.floorf (offset_y + monitor_y * scale_factor));
         set_size (Math.floorf (monitor_width * scale_factor),
                   Math.floorf (monitor_height * scale_factor));
+
         restore_easing_state ();
 
         // update_reposition is called after all outputs have been added, so we can a chance
