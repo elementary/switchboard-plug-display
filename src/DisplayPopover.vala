@@ -258,16 +258,16 @@ public class DisplayPopover : Gtk.Popover {
 
         Gnome.RRRotation[] rotations = {
             Gnome.RRRotation.ROTATION_0,
-            Gnome.RRRotation.ROTATION_90,
             Gnome.RRRotation.ROTATION_270,
+            Gnome.RRRotation.ROTATION_90,
             Gnome.RRRotation.ROTATION_180
         };
 
         string[] desc = {
-            _("Normal"),
-            _("Counterclockwise"),
+            _("None"),
             _("Clockwise"),
-            _("180 Degrees")
+            _("Counterclockwise"),
+            _("Flipped")
         };
 
 #if HAS_GNOME312
