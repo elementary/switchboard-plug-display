@@ -7,141 +7,80 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-11-06 19:57+0530\n"
-"PO-Revision-Date: 2014-02-22 16:23+0000\n"
+"POT-Creation-Date: 2014-08-02 21:35-0500\n"
+"PO-Revision-Date: 2014-08-03 22:45+0000\n"
 "Last-Translator: Leonardo Lemos <leonardolemos@live.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-26 06:26+0000\n"
-"X-Generator: Launchpad (build 17017)\n"
+"X-Launchpad-Export-Date: 2014-08-08 07:12+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
-msgid "No Videos Open"
-msgstr "Nenhum vídeo aberto"
+#: ../src/DisplayPopover.vala:101
+msgid "Use This Display"
+msgstr "Usar esta tela"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:88
-msgid "Select a source to begin playing."
-msgstr "Selecione uma fonte para começar a reprodução."
+#: ../src/DisplayPopover.vala:152
+msgid "Resolution:"
+msgstr "Resolução:"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
-msgid "Open file"
-msgstr "Abrir arquivo"
+#: ../src/DisplayPopover.vala:167
+msgid "Rotation:"
+msgstr "Rotação:"
 
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:89
-msgid "Open a saved file."
-msgstr "Abrir um arquivo salvo."
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:95
-msgid "Resume last video"
-msgstr "Reproduzir último video"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
-msgid "Play from Disc"
-msgstr "Reproduzir de um disco"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:99
-msgid "Watch a DVD or open a file from disc"
-msgstr "Assistir um DVD ou abrir um arquivo do disco"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:170
-msgid "Open location"
-msgstr "Abrir local"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:180
-msgid "Choose location"
-msgstr "Escolher local"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:290
-msgid "Add from Harddrive"
-msgstr "Adicionar do disco rígido"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:292
-msgid "Play a DVD"
-msgstr "Reproduzir um DVD"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:294
-msgid "Network File"
-msgstr "Arquivo da rede"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:550
-msgid "Open"
-msgstr "Abrir"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:555
-msgid "All files"
-msgstr "Todos os arquivos"
-
-#: /home/voldyman/x/audience/po/../Audience/Audience.vala:559
-msgid "Video files"
-msgstr "Arquivos de vídeo"
-
-#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:5
-msgid "Play your media"
-msgstr "Reproduza sua mídia"
-
-#: /home/voldyman/x/audience/po/../Audience/desktop-launcher.vala:6
-msgid "Media Player"
-msgstr "Reprodutor de mídia"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:527
-msgid "Error"
-msgstr "Erro"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:535
-msgid "Oops! Audience can't play this file!"
-msgstr "Oops! O Audience não pode reproduzir este arquivo!"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:559
-msgid ""
-"Some media files need extra software to be played. Audience can install this "
-"software automatically."
-msgstr ""
-"Alguns arquivos de mídia precisam de software extra para serem reproduzidos. "
-"O Audience pode instalar este software automaticamente."
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:565
-#, c-format
-msgid "Audience needs %s to play this file."
-msgstr "O Audience precisa de %s para reproduzir este arquivo."
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:568
-msgid "Don't install"
-msgstr "Não instalar"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/VideoPlayer.vala:569
-msgid "Install"
-msgstr "Instalar"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:59
-msgid "External Subtitle"
-msgstr "Legenda externa"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:60
-msgid "Audio"
-msgstr "Áudio"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:61
-msgid "Subtitles"
-msgstr "Legendas"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:62
-msgid "External Subtitles"
-msgstr "Legendas externas"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:92
-msgid "Playlist"
-msgstr "Lista de reprodução"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:93
-msgid "Options"
-msgstr "Opções"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:242
-msgid "Default"
-msgstr "Padrão"
-
-#: /home/voldyman/x/audience/po/../Audience/Widgets/TagView.vala:255
+#: ../src/DisplayPopover.vala:267
 msgid "None"
 msgstr "Nenhum"
+
+#: ../src/DisplayPopover.vala:268
+msgid "Clockwise"
+msgstr "Sentido horário"
+
+#: ../src/DisplayPopover.vala:269
+msgid "Counterclockwise"
+msgstr "Sentido anti-horário"
+
+#: ../src/DisplayPopover.vala:270
+msgid "Flipped"
+msgstr "Invertido"
+
+#: ../src/Configuration.vala:30
+msgid "Settings cannot be applied: %s"
+msgstr "As seguintes configurações não puderam ser aplicadas: %s"
+
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:160
+msgid "Set as primary display"
+msgstr "Definir como tela primária"
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr "É a tela primária"
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr "Configurar tela"
+
+#: ../src/Monitor.vala:153
+msgid "Mirrored Displays"
+msgstr "Telas espelhadas"
+
+#: ../src/DisplayPlug.vala:21
+msgid "Displays"
+msgstr "Telas"
+
+#: ../src/DisplayPlug.vala:22
+msgid "Change resolution and position of monitors and projectors"
+msgstr "Alterar resolução e posição dos monitores e projetores"
+
+#: ../src/DisplayPlug.vala:64
+msgid "Mirror Display:"
+msgstr "Espelhar tela:"
+
+#: ../src/DisplayPlug.vala:67
+msgid "Detect Displays"
+msgstr "Detectar telas"
+
+#: ../src/DisplayPlug.vala:69
+msgid "Apply"
+msgstr "Aplicar"
