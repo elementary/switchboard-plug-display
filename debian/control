@@ -18,8 +18,8 @@ Package: switchboard-plug-display
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Enhances: switchboard
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: Switchboard plug for display settings
+ This plug can be used to change display settings like orientation and resolution.
 
 Package: switchboard-plug-display-dbg
 Architecture: any
@@ -27,7 +27,7 @@ Section: debug
 Priority: extra
 Depends: switchboard-plug-display (= ${binary:Version}), ${misc:Depends}
 Enhances: switchboard-plug-display
-Description: <insert up to 60 chars description> (debugging symbols)
- <insert long description, indented with spaces>
+Description: Switchboard plug for display settings (debugging symbols)
+ This plug can be used to change display settings like orientation and resolution.
  .
- This package contains debugging symbols for switchboard-plug-template.
+ This package contains debugging symbols for switchboard-plug-display.
