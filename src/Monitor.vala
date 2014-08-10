@@ -88,12 +88,6 @@ public class Monitor : Clutter.Actor {
             canvas.set_size ((int) width, (int) height);
         });
 
-        content = canvas;
-
-        add_child (primary);
-        add_child (settings);
-        add_child (label_actor);
-
         settings.x_align = Clutter.ActorAlign.END;
         settings.x_expand = true;
         settings.y_align = Clutter.ActorAlign.START;
@@ -105,6 +99,7 @@ public class Monitor : Clutter.Actor {
         monitor_revealer = new Gtk.Window ();
         monitor_revealer_label = new Gtk.Label (output.get_display_name ());
         if (output.is_active ()) {
+            monitor_revealer.input_shape_combine_region (new Cairo.Region ());
             monitor_revealer.accept_focus = false;
             monitor_revealer.decorated = false;
             monitor_revealer.resizable = false;
@@ -134,6 +129,12 @@ public class Monitor : Clutter.Actor {
                 monitor_revealer.destroy ();
             });
         }
+
+        content = canvas;
+
+        add_child (primary);
+        add_child (settings);
+        add_child (label_actor);
     }
 
     public void hide_dialog () {
