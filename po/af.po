@@ -8,80 +8,80 @@ msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2014-08-01 01:59+0000\n"
-"Last-Translator: Cody Garver <cody@elementaryos.org>\n"
+"PO-Revision-Date: 2014-08-15 09:03+0000\n"
+"Last-Translator: Jaycee Lock <jaycee.lock@gmail.com>\n"
 "Language-Team: Afrikaans <af@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 07:12+0000\n"
+"X-Launchpad-Export-Date: 2014-08-16 06:54+0000\n"
 "X-Generator: Launchpad (build 17156)\n"
 "Language: af\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
-msgstr ""
+msgstr "Gebruik Hierdie Skerm"
 
 #: ../src/DisplayPopover.vala:152
 msgid "Resolution:"
-msgstr ""
+msgstr "Resolusie:"
 
 #: ../src/DisplayPopover.vala:167
 msgid "Rotation:"
-msgstr ""
+msgstr "Rotasie"
 
 #: ../src/DisplayPopover.vala:267
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #: ../src/DisplayPopover.vala:268
 msgid "Clockwise"
-msgstr ""
+msgstr "Kloksgewys"
 
 #: ../src/DisplayPopover.vala:269
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Anti-kloksgewys"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr ""
+msgstr "Omgekeer"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr ""
+msgstr "Instelling kan nie toegepas word nie: %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:160
 msgid "Set as primary display"
-msgstr ""
+msgstr "Stel as primêre skerm"
 
 #: ../src/Monitor.vala:34 ../src/Monitor.vala:42
 msgid "Is primary display"
-msgstr ""
+msgstr "is primêre skerm"
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
-msgstr ""
+msgstr "Konfigureer skerm"
 
 #: ../src/Monitor.vala:153
 msgid "Mirrored Displays"
-msgstr ""
+msgstr "Weerspeëlde skerms"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
-msgstr ""
+msgstr "Skerms"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Change resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Verander resolusie en posisie vann skerms en projektors"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
-msgstr ""
+msgstr "Weerspieël skerm:"
 
 #: ../src/DisplayPlug.vala:67
 msgid "Detect Displays"
-msgstr ""
+msgstr "Spoor skerms op"
 
 #: ../src/DisplayPlug.vala:69
 msgid "Apply"
-msgstr ""
+msgstr "Pas toe"
