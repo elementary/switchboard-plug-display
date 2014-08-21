@@ -8,79 +8,79 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2014-08-01 01:09+0000\n"
-"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
+"PO-Revision-Date: 2014-08-20 08:40+0000\n"
+"Last-Translator: Иван Благојевић <ivan_blagojevic@mail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 07:12+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-21 06:51+0000\n"
+"X-Generator: Launchpad (build 17163)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
-msgstr ""
+msgstr "Користи овај екран"
 
 #: ../src/DisplayPopover.vala:152
 msgid "Resolution:"
-msgstr ""
+msgstr "Резолуција:"
 
 #: ../src/DisplayPopover.vala:167
 msgid "Rotation:"
-msgstr ""
+msgstr "Окретање:"
 
 #: ../src/DisplayPopover.vala:267
 msgid "None"
-msgstr ""
+msgstr "Ниједан"
 
 #: ../src/DisplayPopover.vala:268
 msgid "Clockwise"
-msgstr ""
+msgstr "У смеру казаљке на сату"
 
 #: ../src/DisplayPopover.vala:269
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Супротно смеру казаљке на сату"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr ""
+msgstr "Обрнуто"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr ""
+msgstr "Поставке не могу бити сачуване: %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:160
 msgid "Set as primary display"
-msgstr ""
+msgstr "Постави као примарни екран"
 
 #: ../src/Monitor.vala:34 ../src/Monitor.vala:42
 msgid "Is primary display"
-msgstr ""
+msgstr "Је примарни екран"
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
-msgstr ""
+msgstr "Подеси екран"
 
 #: ../src/Monitor.vala:153
 msgid "Mirrored Displays"
-msgstr ""
+msgstr "Екрани у огледалу"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
-msgstr ""
+msgstr "Екрани"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Change resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Промените резолуцију и места екрана и пројектора"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
-msgstr ""
+msgstr "Екран у огледалу"
 
 #: ../src/DisplayPlug.vala:67
 msgid "Detect Displays"
-msgstr ""
+msgstr "Детектује екране"
 
 #: ../src/DisplayPlug.vala:69
 msgid "Apply"
-msgstr ""
+msgstr "Примени"
