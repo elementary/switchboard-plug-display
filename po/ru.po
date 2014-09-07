@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2014-08-30 21:33+0000\n"
+"PO-Revision-Date: 2014-09-06 13:59+0000\n"
 "Last-Translator: Artem Anufrij <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-31 08:15+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-07 07:46+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
-msgstr "Использовать этот дисплей"
+msgstr "Использовать этот экран"
 
 #: ../src/DisplayPopover.vala:152
 msgid "Resolution:"
@@ -51,15 +51,15 @@ msgstr "Настройки не могут быть изменены: %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:160
 msgid "Set as primary display"
-msgstr "Установить главным дисплеем"
+msgstr "Установить главным экраном"
 
 #: ../src/Monitor.vala:34 ../src/Monitor.vala:42
 msgid "Is primary display"
-msgstr "Главный дисплей"
+msgstr "Главный экран"
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
-msgstr "Настроить дисплей"
+msgstr "Настроить экран"
 
 #: ../src/Monitor.vala:153
 msgid "Mirrored Displays"
@@ -67,7 +67,7 @@ msgstr "Дублируемые экраны"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
-msgstr "Дисплей"
+msgstr "Настройка экранов"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Change resolution and position of monitors and projectors"
@@ -79,7 +79,7 @@ msgstr "Дублируемый экран:"
 
 #: ../src/DisplayPlug.vala:67
 msgid "Detect Displays"
-msgstr "Поиск дисплеев"
+msgstr "Определить экраны"
 
 #: ../src/DisplayPlug.vala:69
 msgid "Apply"
