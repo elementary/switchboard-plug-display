@@ -8,79 +8,79 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2014-08-01 01:32+0000\n"
-"Last-Translator: Mark Lutring <marcus@elitemail.hu>\n"
+"PO-Revision-Date: 2014-09-24 06:44+0000\n"
+"Last-Translator: Laszlo Espadas <kw@kardiweb.org>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 07:12+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-09-24 08:36+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
-msgstr ""
+msgstr "Kijelző használata"
 
 #: ../src/DisplayPopover.vala:152
 msgid "Resolution:"
-msgstr ""
+msgstr "Felbontás:"
 
 #: ../src/DisplayPopover.vala:167
 msgid "Rotation:"
-msgstr ""
+msgstr "Forgatás:"
 
 #: ../src/DisplayPopover.vala:267
 msgid "None"
-msgstr ""
+msgstr "Nincs"
 
 #: ../src/DisplayPopover.vala:268
 msgid "Clockwise"
-msgstr ""
+msgstr "Óra járása szerinti"
 
 #: ../src/DisplayPopover.vala:269
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Óra járásával ellentétes"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr ""
+msgstr "Tükrözött"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr ""
+msgstr "A beállítások nem alkalmazhatók: %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:160
 msgid "Set as primary display"
-msgstr ""
+msgstr "Beállítás elsődleges kijelzőnek"
 
 #: ../src/Monitor.vala:34 ../src/Monitor.vala:42
 msgid "Is primary display"
-msgstr ""
+msgstr "Elsődleges kijelző"
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
-msgstr ""
+msgstr "Kijelző beállítások"
 
 #: ../src/Monitor.vala:153
 msgid "Mirrored Displays"
-msgstr ""
+msgstr "Tükrözött kijelzők"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
-msgstr ""
+msgstr "Kijelzők"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Change resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Kijelzők és projektorok felbontásának és elhelyezésének módosítása"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
-msgstr ""
+msgstr "Tükrözött kijelző:"
 
 #: ../src/DisplayPlug.vala:67
 msgid "Detect Displays"
-msgstr ""
+msgstr "Kijelzők észlelése"
 
 #: ../src/DisplayPlug.vala:69
 msgid "Apply"
-msgstr ""
+msgstr "Alkalmazás"
