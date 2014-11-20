@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2014-08-04 10:16+0000\n"
-"Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
+"PO-Revision-Date: 2014-11-19 22:30+0000\n"
+"Last-Translator: Wizard <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 07:12+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-11-20 06:42+0000\n"
+"X-Generator: Launchpad (build 17252)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
-msgstr "Użyj tego ekranu"
+msgstr "Użyj tego monitora"
 
 #: ../src/DisplayPopover.vala:152
 msgid "Resolution:"
@@ -47,11 +47,11 @@ msgstr "Odwrócona"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr "Ustawienia nie mogą zostać zastosowane: %s"
+msgstr "Nie można użyć ustawień: %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:160
 msgid "Set as primary display"
-msgstr "Ustaw jako główny ekran"
+msgstr "Ustaw jako główny monitor"
 
 #: ../src/Monitor.vala:34 ../src/Monitor.vala:42
 msgid "Is primary display"
