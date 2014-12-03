@@ -48,7 +48,7 @@ public class Monitor : Clutter.Actor {
             return false;
         });
 
-        settings_image = new Gtk.Image.from_icon_name ("document-properties-symbolic", Gtk.IconSize.MENU);
+        settings_image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU);
         settings_image.tooltip_text = _("Configure display");
         settings_image.margin = MARGIN;
         var settings = new GtkClutter.Actor.with_contents (settings_image);
