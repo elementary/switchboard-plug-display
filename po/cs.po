@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2014-08-01 01:45+0000\n"
-"Last-Translator: Cody Garver <cody@elementaryos.org>\n"
+"PO-Revision-Date: 2014-12-16 15:07+0000\n"
+"Last-Translator: Long Do Hai <mailbox@thinky.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-08 07:12+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-12-17 07:28+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -59,28 +59,28 @@ msgstr ""
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
-msgstr ""
+msgstr "Nastavit displej"
 
 #: ../src/Monitor.vala:153
 msgid "Mirrored Displays"
-msgstr ""
+msgstr "Zrcadlené displeje"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
-msgstr ""
+msgstr "Displeje"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Change resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Změnit rozlišení a polohu monitorů a projektorů"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
-msgstr ""
+msgstr "Zrcadlit displej:"
 
 #: ../src/DisplayPlug.vala:67
 msgid "Detect Displays"
-msgstr ""
+msgstr "Rozpoznat displeje"
 
 #: ../src/DisplayPlug.vala:69
 msgid "Apply"
-msgstr ""
+msgstr "Použít"
