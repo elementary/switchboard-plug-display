@@ -8,54 +8,54 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2014-12-16 15:07+0000\n"
-"Last-Translator: Long Do Hai <mailbox@thinky.cz>\n"
+"PO-Revision-Date: 2014-12-22 23:11+0000\n"
+"Last-Translator: Marek Doležel <marekdolezel@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-17 07:28+0000\n"
+"X-Launchpad-Export-Date: 2014-12-23 07:54+0000\n"
 "X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
-msgstr ""
+msgstr "Použít tento displej"
 
 #: ../src/DisplayPopover.vala:152
 msgid "Resolution:"
-msgstr ""
+msgstr "Rozlišení:"
 
 #: ../src/DisplayPopover.vala:167
 msgid "Rotation:"
-msgstr ""
+msgstr "Otočení:"
 
 #: ../src/DisplayPopover.vala:267
 msgid "None"
-msgstr ""
+msgstr "Žádné"
 
 #: ../src/DisplayPopover.vala:268
 msgid "Clockwise"
-msgstr ""
+msgstr "Ve směru hodinových ručiček"
 
 #: ../src/DisplayPopover.vala:269
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Proti směru hodinových ručiček"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr ""
+msgstr "Převrácená"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr ""
+msgstr "Nastavení nemůže být aplikováno: %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:160
 msgid "Set as primary display"
-msgstr ""
+msgstr "Nastavit jako hlavní displej"
 
 #: ../src/Monitor.vala:34 ../src/Monitor.vala:42
 msgid "Is primary display"
-msgstr ""
+msgstr "Je hlavním displejem"
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
