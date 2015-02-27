@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2015-02-22 11:27+0000\n"
+"PO-Revision-Date: 2015-02-26 15:16+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-23 05:39+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-02-27 05:56+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -43,11 +43,11 @@ msgstr "Kundër akrepave të orës"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr ""
+msgstr "Përmbys"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr ""
+msgstr "Rregullimet nuk mund të zbatohen: %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:160
 msgid "Set as primary display"
@@ -63,7 +63,7 @@ msgstr "Konfiguro ekranin"
 
 #: ../src/Monitor.vala:153
 msgid "Mirrored Displays"
-msgstr ""
+msgstr "Ekrane të dyfishuar"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
