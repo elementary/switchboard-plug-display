@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-02 21:35-0500\n"
-"PO-Revision-Date: 2015-03-02 18:08+0000\n"
-"Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
+"PO-Revision-Date: 2015-03-04 10:22+0000\n"
+"Last-Translator: Joachim Johansson <Unknown>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-03 05:54+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-03-05 06:04+0000\n"
+"X-Generator: Launchpad (build 17374)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -43,7 +43,7 @@ msgstr "Moturs"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr ""
+msgstr "Vänd horisontellt"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
@@ -59,7 +59,7 @@ msgstr "Är primär bildskärm"
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
-msgstr ""
+msgstr "Ställ in bildskärm"
 
 #: ../src/Monitor.vala:153
 msgid "Mirrored Displays"
