@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-04-19 12:00+0200\n"
-"PO-Revision-Date: 2015-03-05 12:18+0000\n"
+"PO-Revision-Date: 2015-04-27 04:45+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-04-20 06:34+0000\n"
+"X-Launchpad-Export-Date: 2015-04-27 05:35+0000\n"
 "X-Generator: Launchpad (build 17430)\n"
 
 #: ../src/DisplayPopover.vala:101
@@ -35,11 +35,11 @@ msgstr "无"
 
 #: ../src/DisplayPopover.vala:268
 msgid "Clockwise"
-msgstr "顺时针"
+msgstr "逆时针"
 
 #: ../src/DisplayPopover.vala:269
 msgid "Counterclockwise"
-msgstr "逆时针"
+msgstr "顺时针"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
