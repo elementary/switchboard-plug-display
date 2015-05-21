@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Displays
+Comment=Change resolution and position of monitors and projectors
+Exec=switchboard -o hardware-pantheon-display
+Icon=preferences-desktop-display
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=X-PANTHEON-Switchboard-Plugs;
+OnlyShowIn=Pantheon;
+Keywords=displays;monitor;projector;resolution;rotation;
+X-GNOME-Gettext-Domain=switchboard
