@@ -1,3 +1,9 @@
+switchboard-plug-display (0.1.1) trusty; urgency=low
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Tue, 14 Jul 2015 20:34:22 -0500
+
 switchboard-plug-display (0.1) unstable; urgency=low
 
   * Initial Release.
