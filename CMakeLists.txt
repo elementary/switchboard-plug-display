@@ -31,11 +31,6 @@ configure_file (${CMAKE_SOURCE_DIR}/config.vala.cmake ${CMAKE_BINARY_DIR}/src/co
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 add_definitions (-DGNOME_DESKTOP_USE_UNSTABLE_API)
 
-# Files
-file (GLOB resources "${CMAKE_CURRENT_SOURCE_DIR}/data/*")
-
-install (FILES "${CMAKE_CURRENT_SOURCE_DIR}/data/pantheon-plug-display.desktop" DESTINATION "${CMAKE_INSTALL_FULL_DATAROOTDIR}/applications")
-
 # Add 'make dist' command for creating release tarball
 set (CPACK_PACKAGE_VERSION ${VERSION})
 set (CPACK_SOURCE_GENERATOR "TGZ")
