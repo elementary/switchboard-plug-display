@@ -8,79 +8,85 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-04-19 12:00+0200\n"
-"PO-Revision-Date: 2014-08-01 01:45+0000\n"
-"Last-Translator: Cody Garver <cody@elementaryos.org>\n"
+"PO-Revision-Date: 2015-10-07 02:10+0000\n"
+"Last-Translator: qezwan <Unknown>\n"
 "Language-Team: Kurdish (Sorani) <ckb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-22 06:04+0000\n"
-"X-Generator: Launchpad (build 17749)\n"
+"X-Launchpad-Export-Date: 2015-10-07 06:08+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
-msgstr ""
+msgstr "سوودوەرگرتن لەم پیشاندەرە"
 
 #: ../src/DisplayPopover.vala:152
 msgid "Resolution:"
-msgstr ""
+msgstr "ڕوناکی"
 
 #: ../src/DisplayPopover.vala:167
 msgid "Rotation:"
-msgstr ""
+msgstr "خولانەوه"
 
 #: ../src/DisplayPopover.vala:267
 msgid "None"
-msgstr ""
+msgstr "هیج"
 
 #: ../src/DisplayPopover.vala:268
 msgid "Clockwise"
-msgstr ""
+msgstr "لەگەڵ ڕێڕەوی میلی کاژێر"
 
 #: ../src/DisplayPopover.vala:269
 msgid "Counterclockwise"
-msgstr ""
+msgstr "بەپێچەوانەی ڕێڕەوی میلی کاژێر"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr ""
+msgstr "ناجددی"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
-msgstr ""
+msgstr "نیشاندەر"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Change resolution and position of monitors and projectors"
-msgstr ""
+msgstr "گۆڕینی ڕوناکی و سوێنی پیشاندەر و پرۆژێکتۆڕ"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
-msgstr ""
+msgstr "نیشاندانی ئاوێنەیی :"
 
 #: ../src/DisplayPlug.vala:67
 msgid "Detect Displays"
-msgstr ""
+msgstr "دۆزینەوەی پیشاندان"
 
 #: ../src/DisplayPlug.vala:69
 msgid "Apply"
-msgstr ""
+msgstr "بەکاربردن"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr ""
+msgstr "ڕیکخستنەکان بەکار نەبراوە :  %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:161
 msgid "Set as primary display"
-msgstr ""
+msgstr "ڕێکخستن وەکوو نیشاندانی سەرەتایی"
 
 #: ../src/Monitor.vala:34 ../src/Monitor.vala:42
 msgid "Is primary display"
-msgstr ""
+msgstr "نیشاندان سەرەتاییە ؟"
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
-msgstr ""
+msgstr "سازدانی پیشاندەر"
 
 #: ../src/Monitor.vala:154
 msgid "Mirrored Displays"
-msgstr ""
+msgstr "ئاوینەکردنی پیشاندەر"
+
+#~ msgid "180 Degrees"
+#~ msgstr "١٨٠ پلە"
+
+#~ msgid "Normal"
+#~ msgstr "ئاسایی"
