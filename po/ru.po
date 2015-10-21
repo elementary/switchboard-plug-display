@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-04-19 12:00+0200\n"
-"PO-Revision-Date: 2014-09-06 13:59+0000\n"
-"Last-Translator: Artem Anufrij <Unknown>\n"
+"PO-Revision-Date: 2015-10-20 11:38+0000\n"
+"Last-Translator: zEvilz <zevilz13@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-22 06:04+0000\n"
-"X-Generator: Launchpad (build 17749)\n"
+"X-Launchpad-Export-Date: 2015-10-21 06:20+0000\n"
+"X-Generator: Launchpad (build 17812)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -27,7 +27,7 @@ msgstr "Разрешение:"
 
 #: ../src/DisplayPopover.vala:167
 msgid "Rotation:"
-msgstr "Вращение:"
+msgstr "Поворот:"
 
 #: ../src/DisplayPopover.vala:267
 msgid "None"
@@ -43,7 +43,7 @@ msgstr "Против часовой стрелки"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr "Отраженный"
+msgstr "Отразить"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
@@ -51,7 +51,7 @@ msgstr "Настройка экранов"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Change resolution and position of monitors and projectors"
-msgstr "Изменить разрешение и положение мониторов и проекторов"
+msgstr "Изменить параметры мониторов/проекторов"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
