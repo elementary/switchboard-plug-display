@@ -8,79 +8,79 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-04-19 12:00+0200\n"
-"PO-Revision-Date: 2014-08-01 01:28+0000\n"
+"PO-Revision-Date: 2015-11-14 15:01+0000\n"
 "Last-Translator: Beqa Arabuli <arabulibeqa@yahoo.com>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-22 06:03+0000\n"
-"X-Generator: Launchpad (build 17749)\n"
+"X-Launchpad-Export-Date: 2015-11-15 05:31+0000\n"
+"X-Generator: Launchpad (build 17845)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
-msgstr ""
+msgstr "ამ ეკრანის გამოყენება"
 
 #: ../src/DisplayPopover.vala:152
 msgid "Resolution:"
-msgstr ""
+msgstr "გარჩევადობა:"
 
 #: ../src/DisplayPopover.vala:167
 msgid "Rotation:"
-msgstr ""
+msgstr "ბრუნვა:"
 
 #: ../src/DisplayPopover.vala:267
 msgid "None"
-msgstr ""
+msgstr "არცერთი"
 
 #: ../src/DisplayPopover.vala:268
 msgid "Clockwise"
-msgstr ""
+msgstr "საათის ისრის მიმართულებით"
 
 #: ../src/DisplayPopover.vala:269
 msgid "Counterclockwise"
-msgstr ""
+msgstr "საათის ისრის საწინააღმდეგოდ"
 
 #: ../src/DisplayPopover.vala:270
 msgid "Flipped"
-msgstr ""
+msgstr "ამობრუნებული"
 
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
-msgstr ""
+msgstr "ეკრანები"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Change resolution and position of monitors and projectors"
-msgstr ""
+msgstr "ეკრანების და პროექტორების გარჩევადობის და პოზიციის შეცვლა"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
-msgstr ""
+msgstr "ეკრანის არეკვლა:"
 
 #: ../src/DisplayPlug.vala:67
 msgid "Detect Displays"
-msgstr ""
+msgstr "ეკრანების აღმოჩენა"
 
 #: ../src/DisplayPlug.vala:69
 msgid "Apply"
-msgstr ""
+msgstr "მიღება"
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr ""
+msgstr "პარამეტრების მიღება ვერ მოხდა: %s"
 
 #: ../src/Monitor.vala:30 ../src/Monitor.vala:161
 msgid "Set as primary display"
-msgstr ""
+msgstr "მთავარი ეკრანის დაყენება"
 
 #: ../src/Monitor.vala:34 ../src/Monitor.vala:42
 msgid "Is primary display"
-msgstr ""
+msgstr "მთავარი ეკრანია"
 
 #: ../src/Monitor.vala:52
 msgid "Configure display"
-msgstr ""
+msgstr "ეკრანის გამართვა"
 
 #: ../src/Monitor.vala:154
 msgid "Mirrored Displays"
-msgstr ""
+msgstr "არეკლილი ეკრანები"
