@@ -19,7 +19,7 @@ namespace Display {
             Object (category: Category.HARDWARE,
                     code_name: Build.PLUGCODENAME,
                     display_name: _("Displays"),
-                    description: _("Change resolution and position of monitors and projectors"),
+                    description: _("Configure resolution and position of monitors and projectors"),
                     icon: "preferences-desktop-display");
             plug = this;
         }
