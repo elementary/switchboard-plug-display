@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-19 12:00+0200\n"
+"POT-Creation-Date: 2015-12-21 12:23-0200\n"
 "PO-Revision-Date: 2014-08-01 01:44+0000\n"
 "Last-Translator: evanjt <evan@evanjt.com>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-29 05:32+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-22 05:11+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: \n"
 
 #: ../src/DisplayPopover.vala:101
@@ -46,12 +46,28 @@ msgstr ""
 msgid "Flipped"
 msgstr ""
 
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
+msgid "Set as primary display"
+msgstr ""
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr ""
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr ""
+
+#: ../src/Monitor.vala:154
+msgid "Mirrored Displays"
+msgstr ""
+
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
 msgstr ""
 
 #: ../src/DisplayPlug.vala:22
-msgid "Change resolution and position of monitors and projectors"
+msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
 #: ../src/DisplayPlug.vala:64
@@ -68,20 +84,4 @@ msgstr ""
 
 #: ../src/Configuration.vala:30
 msgid "Settings cannot be applied: %s"
-msgstr ""
-
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr ""
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr ""
-
-#: ../src/Monitor.vala:52
-msgid "Configure display"
-msgstr ""
-
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
 msgstr ""

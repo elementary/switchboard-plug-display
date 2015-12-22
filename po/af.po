@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-19 12:00+0200\n"
+"POT-Creation-Date: 2015-12-21 12:23-0200\n"
 "PO-Revision-Date: 2014-08-15 09:03+0000\n"
 "Last-Translator: Jaycee Lock <jaycee.lock@gmail.com>\n"
 "Language-Team: Afrikaans <af@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-29 05:32+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: af\n"
 
 #: ../src/DisplayPopover.vala:101
@@ -46,13 +46,29 @@ msgstr "Anti-kloksgewys"
 msgid "Flipped"
 msgstr "Omgekeer"
 
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
+msgid "Set as primary display"
+msgstr "Stel as primêre skerm"
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr "is primêre skerm"
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr "Konfigureer skerm"
+
+#: ../src/Monitor.vala:154
+msgid "Mirrored Displays"
+msgstr "Weerspeëlde skerms"
+
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
 msgstr "Skerms"
 
 #: ../src/DisplayPlug.vala:22
-msgid "Change resolution and position of monitors and projectors"
-msgstr "Verander resolusie en posisie vann skerms en projektors"
+msgid "Configure resolution and position of monitors and projectors"
+msgstr ""
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
@@ -70,18 +86,5 @@ msgstr "Pas toe"
 msgid "Settings cannot be applied: %s"
 msgstr "Instelling kan nie toegepas word nie: %s"
 
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Stel as primêre skerm"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "is primêre skerm"
-
-#: ../src/Monitor.vala:52
-msgid "Configure display"
-msgstr "Konfigureer skerm"
-
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Weerspeëlde skerms"
+#~ msgid "Change resolution and position of monitors and projectors"
+#~ msgstr "Verander resolusie en posisie vann skerms en projektors"

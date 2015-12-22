@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-19 12:00+0200\n"
+"POT-Creation-Date: 2015-12-21 12:23-0200\n"
 "PO-Revision-Date: 2014-10-20 20:54+0000\n"
 "Last-Translator: Martin Myrvold <Unknown>\n"
 "Language-Team: Norwegian Nynorsk <nn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-29 05:32+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: nn\n"
 
 #: ../src/DisplayPopover.vala:101
@@ -46,13 +46,29 @@ msgstr "Mot klokka"
 msgid "Flipped"
 msgstr "Snudd"
 
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
+msgid "Set as primary display"
+msgstr "Velg som hovudskjerm"
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr "Er hovudskjerm"
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr "Endre instillingar for skjermen"
+
+#: ../src/Monitor.vala:154
+msgid "Mirrored Displays"
+msgstr "Like skjermar"
+
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
 msgstr "Skjermar"
 
 #: ../src/DisplayPlug.vala:22
-msgid "Change resolution and position of monitors and projectors"
-msgstr "Endra oppløysing og posisjonen til skjermar og prosjektorar"
+msgid "Configure resolution and position of monitors and projectors"
+msgstr ""
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
@@ -70,18 +86,5 @@ msgstr "Bruk"
 msgid "Settings cannot be applied: %s"
 msgstr "Instillingane kan ikkje utførast: %s"
 
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Velg som hovudskjerm"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "Er hovudskjerm"
-
-#: ../src/Monitor.vala:52
-msgid "Configure display"
-msgstr "Endre instillingar for skjermen"
-
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Like skjermar"
+#~ msgid "Change resolution and position of monitors and projectors"
+#~ msgstr "Endra oppløysing og posisjonen til skjermar og prosjektorar"

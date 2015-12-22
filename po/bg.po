@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-04-19 12:00+0200\n"
+"POT-Creation-Date: 2015-12-21 12:23-0200\n"
 "PO-Revision-Date: 2014-12-11 15:34+0000\n"
 "Last-Translator: ITPROJECTS <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-29 05:32+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -45,14 +45,29 @@ msgstr "Обратно на часовниковата стрелка"
 msgid "Flipped"
 msgstr "Обърнато"
 
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
+msgid "Set as primary display"
+msgstr "Означи основен екран"
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr "Е основен екран"
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr "Настрой екран"
+
+#: ../src/Monitor.vala:154
+msgid "Mirrored Displays"
+msgstr "Еднакво изображение на екраните"
+
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
 msgstr "Екрани"
 
 #: ../src/DisplayPlug.vala:22
-msgid "Change resolution and position of monitors and projectors"
+msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
-"Промяна на разделителната способност и положението на екраните и проекторите"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
@@ -70,21 +85,9 @@ msgstr "Приложи"
 msgid "Settings cannot be applied: %s"
 msgstr "Настройките не могат да бъдат приложени: %s"
 
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Означи основен екран"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "Е основен екран"
-
-#: ../src/Monitor.vala:52
-msgid "Configure display"
-msgstr "Настрой екран"
-
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Еднакво изображение на екраните"
+#~ msgid "Change resolution and position of monitors and projectors"
+#~ msgstr ""
+#~ "Промяна на разделителната способност и положението на екраните и проекторите"
 
 #~ msgid "180 Degrees"
 #~ msgstr "на 180°"

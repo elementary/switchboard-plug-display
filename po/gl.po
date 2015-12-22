@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-04-19 12:00+0200\n"
+"POT-Creation-Date: 2015-12-21 12:23-0200\n"
 "PO-Revision-Date: 2014-12-11 06:10+0000\n"
 "Last-Translator: Ivan <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-29 05:32+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -45,13 +45,29 @@ msgstr "Á esquerda"
 msgid "Flipped"
 msgstr "Invertido"
 
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
+msgid "Set as primary display"
+msgstr "Establecer como pantalla principal"
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr "É a pantalla principal"
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr "Configurar a pantalla"
+
+#: ../src/Monitor.vala:154
+msgid "Mirrored Displays"
+msgstr "Pantallas en espello"
+
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
 msgstr "Pantallas"
 
 #: ../src/DisplayPlug.vala:22
-msgid "Change resolution and position of monitors and projectors"
-msgstr "Cambiar a resolución e a posición dos monitores e proxectores"
+msgid "Configure resolution and position of monitors and projectors"
+msgstr ""
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
@@ -69,18 +85,5 @@ msgstr "Aplicar"
 msgid "Settings cannot be applied: %s"
 msgstr "Non é posíbel aplicar os axustes: %s"
 
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Establecer como pantalla principal"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "É a pantalla principal"
-
-#: ../src/Monitor.vala:52
-msgid "Configure display"
-msgstr "Configurar a pantalla"
-
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Pantallas en espello"
+#~ msgid "Change resolution and position of monitors and projectors"
+#~ msgstr "Cambiar a resolución e a posición dos monitores e proxectores"

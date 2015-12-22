@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-04-19 12:00+0200\n"
+"POT-Creation-Date: 2015-12-21 12:23-0200\n"
 "PO-Revision-Date: 2014-08-13 01:09+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-29 05:32+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -45,14 +45,29 @@ msgstr "Vastupäeva"
 msgid "Flipped"
 msgstr "Peegeldatud"
 
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
+msgid "Set as primary display"
+msgstr "Määra põhiliseks ekraaniks"
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr "Põhiline ekraan"
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr "Ekraani seadistamine"
+
+#: ../src/Monitor.vala:154
+msgid "Mirrored Displays"
+msgstr "Peegeldatud ekraanid"
+
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
 msgstr "Ekraanid"
 
 #: ../src/DisplayPlug.vala:22
-msgid "Change resolution and position of monitors and projectors"
+msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
-"Ekraanide ja projektorite resolutsioonide ja teiste omaduste muutmine"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
@@ -70,18 +85,6 @@ msgstr "Rakenda"
 msgid "Settings cannot be applied: %s"
 msgstr "Seadeid polnud võimalik rakendada: %s"
 
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Määra põhiliseks ekraaniks"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "Põhiline ekraan"
-
-#: ../src/Monitor.vala:52
-msgid "Configure display"
-msgstr "Ekraani seadistamine"
-
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Peegeldatud ekraanid"
+#~ msgid "Change resolution and position of monitors and projectors"
+#~ msgstr ""
+#~ "Ekraanide ja projektorite resolutsioonide ja teiste omaduste muutmine"

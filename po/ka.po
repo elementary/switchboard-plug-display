@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-04-19 12:00+0200\n"
+"POT-Creation-Date: 2015-12-21 12:23-0200\n"
 "PO-Revision-Date: 2015-11-14 15:01+0000\n"
 "Last-Translator: Beqa Arabuli <arabulibeqa@yahoo.com>\n"
 "Language-Team: Georgian <ka@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-29 05:32+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -45,13 +45,29 @@ msgstr "საათის ისრის საწინააღმდეგ�
 msgid "Flipped"
 msgstr "ამობრუნებული"
 
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
+msgid "Set as primary display"
+msgstr "მთავარი ეკრანის დაყენება"
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr "მთავარი ეკრანია"
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr "ეკრანის გამართვა"
+
+#: ../src/Monitor.vala:154
+msgid "Mirrored Displays"
+msgstr "არეკლილი ეკრანები"
+
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
 msgstr "ეკრანები"
 
 #: ../src/DisplayPlug.vala:22
-msgid "Change resolution and position of monitors and projectors"
-msgstr "ეკრანების და პროექტორების გარჩევადობის და პოზიციის შეცვლა"
+msgid "Configure resolution and position of monitors and projectors"
+msgstr ""
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
@@ -69,18 +85,5 @@ msgstr "მიღება"
 msgid "Settings cannot be applied: %s"
 msgstr "პარამეტრების მიღება ვერ მოხდა: %s"
 
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "მთავარი ეკრანის დაყენება"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "მთავარი ეკრანია"
-
-#: ../src/Monitor.vala:52
-msgid "Configure display"
-msgstr "ეკრანის გამართვა"
-
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "არეკლილი ეკრანები"
+#~ msgid "Change resolution and position of monitors and projectors"
+#~ msgstr "ეკრანების და პროექტორების გარჩევადობის და პოზიციის შეცვლა"

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-04-19 12:00+0200\n"
+"POT-Creation-Date: 2015-12-21 12:23-0200\n"
 "PO-Revision-Date: 2015-02-10 16:41+0000\n"
 "Last-Translator: Mantas Kriaučiūnas <mantas@akl.lt>\n"
 "Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-29 05:32+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -45,13 +45,29 @@ msgstr "Prieš laikrodžio rodyklę"
 msgid "Flipped"
 msgstr "Apversti"
 
+#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
+msgid "Set as primary display"
+msgstr "Nustatyti pagrindiniu ekranu"
+
+#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
+msgid "Is primary display"
+msgstr "Yra pagrindinis ekranas"
+
+#: ../src/Monitor.vala:52
+msgid "Configure display"
+msgstr "Konfigūruoti ekranų (vaizduoklių) nustatymus"
+
+#: ../src/Monitor.vala:154
+msgid "Mirrored Displays"
+msgstr "Dubliuoti ekranai"
+
 #: ../src/DisplayPlug.vala:21
 msgid "Displays"
 msgstr "Ekranai"
 
 #: ../src/DisplayPlug.vala:22
-msgid "Change resolution and position of monitors and projectors"
-msgstr "Keisti ekranų ar projektorių raišką bei padėtį"
+msgid "Configure resolution and position of monitors and projectors"
+msgstr ""
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
@@ -69,18 +85,5 @@ msgstr "Pritaikyti"
 msgid "Settings cannot be applied: %s"
 msgstr "Nepavyko pritaikyti nustatymų: %s"
 
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Nustatyti pagrindiniu ekranu"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "Yra pagrindinis ekranas"
-
-#: ../src/Monitor.vala:52
-msgid "Configure display"
-msgstr "Konfigūruoti ekranų (vaizduoklių) nustatymus"
-
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Dubliuoti ekranai"
+#~ msgid "Change resolution and position of monitors and projectors"
+#~ msgstr "Keisti ekranų ar projektorių raišką bei padėtį"
