@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-21 12:23-0200\n"
-"PO-Revision-Date: 2014-08-13 13:05+0000\n"
+"PO-Revision-Date: 2015-12-23 19:36+0000\n"
 "Last-Translator: Fabio Zaramella <FFabio.96.X@Gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
+"X-Launchpad-Export-Date: 2015-12-24 05:38+0000\n"
 "X-Generator: Launchpad (build 17865)\n"
 
 #: ../src/DisplayPopover.vala:101
@@ -67,7 +67,7 @@ msgstr "Monitor"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Configura la risoluzione e la posizione dei monitor e dei proiettori"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
