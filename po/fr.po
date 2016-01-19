@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-21 12:23-0200\n"
-"PO-Revision-Date: 2015-04-19 09:54+0000\n"
+"PO-Revision-Date: 2016-01-19 00:51+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-01-19 05:53+0000\n"
+"X-Generator: Launchpad (build 17886)\n"
 "Language: fr\n"
 
 #: ../src/DisplayPopover.vala:101
@@ -68,7 +68,7 @@ msgstr "Affichage"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Configurer la résolution et la position des écrans et projecteurs"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
