@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-21 12:23-0200\n"
-"PO-Revision-Date: 2014-08-05 19:44+0000\n"
-"Last-Translator: Mathias Bynke <Unknown>\n"
+"PO-Revision-Date: 2016-03-12 16:18+0000\n"
+"Last-Translator: ProsjektX <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-22 05:10+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-03-13 05:53+0000\n"
+"X-Generator: Launchpad (build 17939)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -67,7 +67,7 @@ msgstr "Skjermer"
 
 #: ../src/DisplayPlug.vala:22
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Konfigurer oppløsning og bildeposisjon for skjermer og projektorer"
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
