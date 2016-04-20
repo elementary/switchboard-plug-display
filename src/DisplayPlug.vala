@@ -1,175 +1,204 @@
+/*-
+ * Copyright (c) 2014-2016 elementary LLC.
+ *
+ * This software is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this software; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Corentin Noël <corentin@elementary.io>
+ */
 
-namespace Display {
+public class Display.Plug : Switchboard.Plug {
     public static Plug plug;
+    private Gtk.Grid main_grid;
+    private DisplaysView displays_view;
+    private Gtk.Stack stack;
+    private MirrorDisplay mirror_display;
 
-    public class Plug : Switchboard.Plug {
-        Gtk.Box main_box;
-        Gtk.Button apply_button;
-        OutputList output_list;
+    public Plug () {
+        Object (category: Category.HARDWARE,
+                code_name: Build.PLUGCODENAME,
+                display_name: _("Displays"),
+                description: _("Configure resolution and position of monitors and projectors"),
+                icon: "preferences-desktop-display");
+        plug = this;
+    }
 
-        Gtk.Switch mirror_display;
-        Gtk.Grid mirror_display_grid;
+    public override Gtk.Widget get_widget () {
+        if (main_grid == null) {
+            main_grid = new Gtk.Grid ();
+            main_grid.orientation = Gtk.Orientation.VERTICAL;
+            main_grid.column_spacing = 6;
+            displays_view = new DisplaysView ();
+            var action_bar = new Gtk.ActionBar ();
+            action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
 
-        Gtk.InfoBar error_bar;
-        Gtk.Label error_label;
-
-        bool ui_update = false;
-
-        public Plug () {
-            Object (category: Category.HARDWARE,
-                    code_name: Build.PLUGCODENAME,
-                    display_name: _("Displays"),
-                    description: _("Configure resolution and position of monitors and projectors"),
-                    icon: "preferences-desktop-display");
-            plug = this;
-        }
-
-        public override Gtk.Widget get_widget () {
-            if (main_box == null) {
-                create_interface ();
-                main_box.show_all ();
-            }
-
-            return main_box;
-        }
-
-        public void create_interface () {
-            main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
-
-            error_bar = new Gtk.InfoBar ();
-            error_bar.message_type = Gtk.MessageType.ERROR;
-            error_bar.no_show_all = true;
-            error_label = new Gtk.Label ("");
-            error_bar.get_content_area ().add (error_label);
-
-            output_list = new OutputList ();
-            output_list.set_size_request (700, 350);
-
-            var output_frame = new Gtk.Frame (null);
-            output_frame.margin = 12;
-            output_frame.margin_bottom = 0;
-            output_frame.add (output_list);
-
-            var bottom_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
-            bottom_box.margin = 12;
-            bottom_box.margin_top = 0;
-
-            mirror_display = new Gtk.Switch ();
-            mirror_display.halign = Gtk.Align.START;
-            mirror_display.notify["active"].connect (() => {update_clone ();});
-
-            mirror_display_grid = new Gtk.Grid ();
-            mirror_display_grid.orientation = Gtk.Orientation.HORIZONTAL;
-            mirror_display_grid.column_spacing = 12;
-            mirror_display_grid.add (new Utils.RLabel.right (_("Mirror Display:")));
-            mirror_display_grid.add (mirror_display);
-
-            var detect_displays = new Gtk.Button.with_label (_("Detect Displays"));
-            detect_displays.clicked.connect (() => {Configuration.get_default ().screen_changed ();});
-            apply_button = new Gtk.Button.with_label (_("Apply"));
-            apply_button.sensitive = false;
-            apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            apply_button.clicked.connect (() => {Configuration.get_default ().apply ();});
+            var mirror_grid = new Gtk.Grid ();
+            mirror_grid.margin = 12;
+            mirror_grid.column_spacing = 6;
+            mirror_grid.orientation = Gtk.Orientation.HORIZONTAL;
+            var mirror_label = new Gtk.Label (_("Mirror Display:"));
+            var mirror_switch = new Gtk.Switch ();
 
             var button_grid = new Gtk.Grid ();
-            button_grid.orientation = Gtk.Orientation.HORIZONTAL;
+            button_grid.margin = 12;
             button_grid.column_homogeneous = true;
-            button_grid.column_spacing = 12;
-            button_grid.add (detect_displays);
+            button_grid.column_spacing = 6;
+            button_grid.orientation = Gtk.Orientation.HORIZONTAL;
+            var detect_button = new Gtk.Button.with_label (_("Detect Displays"));
+            var apply_button = new Gtk.Button.with_label (_("Apply"));
+            apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            apply_button.sensitive = false;
+            mirror_grid.add (mirror_label);
+            mirror_grid.add (mirror_switch);
+            action_bar.pack_start (mirror_grid);
+            button_grid.add (detect_button);
             button_grid.add (apply_button);
+            action_bar.pack_end (button_grid);
 
-            bottom_box.pack_start (mirror_display_grid, false);
-            bottom_box.pack_end (button_grid, false);
+            mirror_display = new MirrorDisplay ();
 
-            main_box.pack_start (error_bar);
-            main_box.pack_start (output_frame);
-            main_box.pack_start (bottom_box, false);
+            stack = new Gtk.Stack ();
+            stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
+            stack.add (displays_view);
+            stack.add (mirror_display);
 
-            var config = Configuration.get_default ();
-            config.report_error.connect (report_error);
-            config.update_outputs.connect (update_outputs);
-            config.apply_state_changed.connect ((can_apply) => {
-                apply_button.sensitive = can_apply;
+            main_grid.add (stack);
+            main_grid.add (action_bar);
+            main_grid.show_all ();
+
+            displays_view.configuration_changed.connect ((changed) => {
+                apply_button.sensitive = changed;
             });
 
-            config.screen_changed ();
-        }
+            mirror_grid.sensitive = displays_view.active_displays > 1;
+            displays_view.notify["active-displays"].connect (() => {
+                mirror_grid.sensitive = displays_view.active_displays > 1;
+            });
 
-        void update_clone () {
-            if (ui_update)
-                return;
+            mirror_display.configuration_changed.connect ((changed) => {
+                apply_button.sensitive = changed;
+            });
 
-            var configuration = Configuration.get_default ();
-
-            if (mirror_display.active == true) {
-                if (configuration.enable_clone_mode () == false) {
-                    ui_update = true;
-                    mirror_display.active = false;
-                    ui_update = false;
+            detect_button.clicked.connect (() => displays_view.rescan_displays ());
+            apply_button.clicked.connect (() => {
+                var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
+                var rr_config = new Gnome.RRConfig.current (rr_screen);
+                if (rr_config.get_clone ()) {
+                    mirror_display.apply_configuration ();
+                } else {
+                    displays_view.apply_configuration ();
                 }
-            } else {
-                configuration.disable_clone_mode ();
+
+                apply_button.sensitive = false;
+            });
+
+            var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
+            var rr_config = new Gnome.RRConfig.current (rr_screen);
+            mirror_switch.active = rr_config.get_clone ();
+            if (rr_config.get_clone ()) {
+                stack.set_visible_child (mirror_display);
             }
-        }
 
-        void update_outputs (Gnome.RRConfig current_config) {
-            ui_update = true;
+            mirror_switch.notify["active"].connect (() => {
+                var rr_screen2 = new Gnome.RRScreen (Gdk.Screen.get_default ());
+                var rr_config2 = new Gnome.RRConfig.current (rr_screen2);
+                if (mirror_switch.active) {
+                    unowned Gnome.RRMode highest_mode = null;
+                    foreach (unowned Gnome.RRMode mode in rr_screen2.list_clone_modes ()) {
+                        if (highest_mode == null) {
+                            highest_mode = mode;
+                        } else if (mode.get_width () > highest_mode.get_width ()) {
+                            highest_mode = mode;
+                        }
+                    }
 
-            var enabled_monitors = 0;
+                    if (highest_mode == null)
+                        return;
 
-            output_list.clone_mode = current_config.get_clone ();
-            output_list.remove_all ();
-            foreach (unowned Gnome.RROutputInfo output in current_config.get_outputs ()) {
-                if (output.is_connected ()) {
-                    if (output_list.clone_mode && !output.is_active ())
-                        continue;
+                    foreach (unowned Gnome.RROutputInfo output in rr_config2.get_outputs ()) {
+                        if (output.is_connected ()) {
+                            int x, y;
+                            output.get_geometry (out x, out y, null, null);
+                            output.set_geometry (x, y, (int)highest_mode.get_width (), (int)highest_mode.get_height ());
+                        }
+                    }
 
-                    output_list.add_output (output);
+                    rr_config2.set_clone (true);
+                    stack.set_visible_child (mirror_display);
+                } else {
+                    rr_config2.set_clone (false);
+                    unowned Gnome.RROutputInfo[] outputs = rr_config2.get_outputs ();
+                    foreach (unowned Gnome.RROutputInfo output in outputs) {
+                        if (output.is_connected ()) {
+                            int x, y;
+                            output.get_geometry (out x, out y, null, null);
+                            output.set_geometry (x, y, output.get_preferred_width (), output.get_preferred_height ());
+                        }
+                    }
 
-                    if (output.is_active ())
-                        enabled_monitors++;
+                    int x = 0;
+                    foreach (unowned Gnome.RROutputInfo output in outputs) {
+                        if (output.is_connected () && output.is_active ()) {
+                            int width, height;
+                            output.get_geometry (null, null, out width, out height);
+                            output.set_geometry (x, 0, width, height);
 
-                    // a single active monitor is already enough while in clone mode
-                    if (output_list.clone_mode)
-                        break;
+                            x += width;
+                        }
+                    }
+
+                    foreach (unowned Gnome.RROutputInfo output in outputs) {
+                        if (!(output.is_connected () && output.is_active ())) {
+                            int width, height;
+                            output.get_geometry (null, null, out width, out height);
+                            output.set_geometry (x, 0, width, height);
+
+                            x += width;
+                        }
+                    }
+
+                    stack.set_visible_child (displays_view);
                 }
-            }
-            output_list.reposition ();
 
-            mirror_display.active = current_config.get_clone ();
-            if (mirror_display.active || enabled_monitors > 1) {
-                mirror_display_grid.no_show_all = false;
-                mirror_display_grid.show_all ();
-            } else {
-                mirror_display_grid.no_show_all = true;
-                mirror_display_grid.hide ();
-            }
-
-            ui_update = false;
+                rr_config2.sanitize ();
+                try {
+                    rr_config2.apply_persistent (rr_screen2);
+                } catch (Error e) {
+                    critical (e.message);
+                }
+            });
         }
 
-        void report_error (string message) {
-            error_label.label = message;
-            error_label.show ();
-            error_bar.show ();
-        }
+        return main_grid;
+    }
 
-        public override void shown () {
-            output_list.show_dialogs ();
-        }
+    public override void shown () {
+        displays_view.show_windows ();
+    }
 
-        public override void hidden () {
-            output_list.hide_dialogs ();
-        }
+    public override void hidden () {
+        displays_view.hide_windows ();
+    }
 
-        public override void search_callback (string location) {
-            
-        }
+    public override void search_callback (string location) {
+        
+    }
 
-        // 'search' returns results like ("Keyboard → Behavior → Duration", "keyboard<sep>behavior")
-        public override async Gee.TreeMap<string, string> search (string search) {
-            return new Gee.TreeMap<string, string> (null, null);
-        }
+    // 'search' returns results like ("Keyboard → Behavior → Duration", "keyboard<sep>behavior")
+    public override async Gee.TreeMap<string, string> search (string search) {
+        return new Gee.TreeMap<string, string> (null, null);
     }
 }
 
