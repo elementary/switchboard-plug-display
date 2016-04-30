@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-12-21 12:23-0200\n"
-"PO-Revision-Date: 2015-03-21 11:11+0000\n"
-"Last-Translator: Bogdan <werwolfua@gmail.com>\n"
+"PO-Revision-Date: 2016-04-29 14:47+0000\n"
+"Last-Translator: xxorrx <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-22 05:11+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-04-30 05:39+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
 #: ../src/DisplayPopover.vala:101
 msgid "Use This Display"
@@ -68,6 +68,7 @@ msgstr "Екрани"
 #: ../src/DisplayPlug.vala:22
 msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
+"Налаштування роздільної здатності, положення моніторів та проекторів."
 
 #: ../src/DisplayPlug.vala:64
 msgid "Mirror Display:"
