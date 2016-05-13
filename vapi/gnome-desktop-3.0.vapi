@@ -134,11 +134,7 @@ namespace Gnome {
 		protected RRConfig ();
 		public bool applicable (Gnome.RRScreen screen) throws GLib.Error;
 		public bool apply (Gnome.RRScreen screen) throws GLib.Error;
-#if HAS_GNOME312
 		public bool apply_persistent (Gnome.RRScreen screen) throws GLib.Error;
-#else
-		public bool save () throws GLib.Error;
-#endif
 		[CCode (has_construct_function = false)]
 		public RRConfig.current (Gnome.RRScreen screen) throws GLib.Error;
 		public bool ensure_primary ();
@@ -220,9 +216,7 @@ namespace Gnome {
 		public void set_primary (bool primary);
 		public void set_refresh_rate (int rate);
 		public void set_rotation (Gnome.RRRotation rotation);
-#if HAS_GNOME312
 		public bool supports_rotation (Gnome.RRRotation rotation);
-#endif
 	}
 	[CCode (cheader_filename = "libgnome-desktop/gnome-rr.h", type_id = "gnome_rr_screen_get_type ()")]
 	public class RRScreen : GLib.Object, GLib.AsyncInitable, GLib.Initable {
@@ -249,8 +243,8 @@ namespace Gnome {
 		[NoAccessorMethod]
 		public Gdk.Screen gdk_screen { owned get; construct; }
 		public virtual signal void changed ();
-		public virtual signal void output_connected (void* output);
-		public virtual signal void output_disconnected (void* output);
+		public virtual signal void output_connected (Gnome.RROutput output);
+		public virtual signal void output_disconnected (Gnome.RROutput output);
 	}
 	[CCode (cheader_filename = "libgnome-desktop/gnome-wall-clock.h", type_id = "gnome_wall_clock_get_type ()")]
 	public class WallClock : GLib.Object {

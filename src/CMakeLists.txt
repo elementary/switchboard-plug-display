@@ -1,7 +1,7 @@
 find_package (PkgConfig)
 
 # Add all your dependencies to the list below
-pkg_check_modules (DEPS REQUIRED gthread-2.0 gtk+-3.0 switchboard-2.0 granite clutter-gtk-1.0 clutter-1.0 gnome-desktop-3.0)
+pkg_check_modules (DEPS REQUIRED gthread-2.0 gtk+-3.0 switchboard-2.0 granite gnome-desktop-3.0)
 
 add_definitions (${DEPS_CFLAGS})
 link_directories (${DEPS_LIBRARY_DIRS})
@@ -14,19 +14,16 @@ include (ValaPrecompile)
 # Add all your vala files and requires packages to the List below to include them in the build
 vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/config.vala
-    Configuration.vala
     DisplayPlug.vala
-    DisplayPopover.vala
-    Monitor.vala
-    OutputList.vala
     SettingsDaemon.vala
-    Utils.vala
+    DisplaysView.vala
+    DisplayWidget.vala
+    DisplayWindow.vala
+    MirrorDisplay.vala
 PACKAGES
     gtk+-3.0
     switchboard-2.0
     granite
-    clutter-gtk-1.0
-    clutter-1.0
     gnome-desktop-3.0
     gdk-x11-3.0
 OPTIONS
