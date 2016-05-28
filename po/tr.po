@@ -7,83 +7,87 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-12-21 12:23-0200\n"
+"POT-Creation-Date: 2016-05-28 05:38+0400\n"
 "PO-Revision-Date: 2016-04-09 14:41+0000\n"
 "Last-Translator: Murat Yilmazlar <muratyilmazlar@windowslive.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-21 05:45+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-05-28 05:38+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 
-#: ../src/DisplayPopover.vala:101
-msgid "Use This Display"
-msgstr "Bu Ekranı Kullanın"
-
-#: ../src/DisplayPopover.vala:152
+#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
 msgstr "Çözünürlük:"
 
-#: ../src/DisplayPopover.vala:167
-msgid "Rotation:"
-msgstr "Döndürme:"
-
-#: ../src/DisplayPopover.vala:267
-msgid "None"
-msgstr "Hiçbiri"
-
-#: ../src/DisplayPopover.vala:268
-msgid "Clockwise"
-msgstr "Saat Yönünde"
-
-#: ../src/DisplayPopover.vala:269
-msgid "Counterclockwise"
-msgstr "Saat Yönünün Tersine"
-
-#: ../src/DisplayPopover.vala:270
-msgid "Flipped"
-msgstr "Ters Çevir"
-
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Ana ekran olarak kullan"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "Birincil ekran"
-
-#: ../src/Monitor.vala:52
+#: ../src/DisplayWidget.vala:72
 msgid "Configure display"
 msgstr "Ekranı ayarla"
 
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Yansıtılan Ekranlar"
+#: ../src/DisplayWidget.vala:94
+msgid "Use This Display:"
+msgstr ""
 
-#: ../src/DisplayPlug.vala:21
+#: ../src/DisplayWidget.vala:111
+msgid "Rotation:"
+msgstr "Döndürme:"
+
+#: ../src/DisplayWidget.vala:159
+msgid "None"
+msgstr "Hiçbiri"
+
+#: ../src/DisplayWidget.vala:164
+msgid "Clockwise"
+msgstr "Saat Yönünde"
+
+#: ../src/DisplayWidget.vala:173
+msgid "Flipped"
+msgstr "Ters Çevir"
+
+#: ../src/DisplayWidget.vala:182
+msgid "Counterclockwise"
+msgstr "Saat Yönünün Tersine"
+
+#: ../src/DisplayWidget.vala:287
+msgid "Is the primary display"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:290
+msgid "Set as primary display"
+msgstr "Ana ekran olarak kullan"
+
+#: ../src/DisplayPlug.vala:32
 msgid "Displays"
 msgstr "Ekranlar"
 
-#: ../src/DisplayPlug.vala:22
+#: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Projektör ve ekranların, pozisyon ve çözünürlüklerini ayarla"
 
-#: ../src/DisplayPlug.vala:64
+#: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
 msgstr "Yansıtan Ekran"
 
-#: ../src/DisplayPlug.vala:67
+#: ../src/DisplayPlug.vala:59
 msgid "Detect Displays"
 msgstr "Ekranları Belirle"
 
-#: ../src/DisplayPlug.vala:69
+#: ../src/DisplayPlug.vala:60
 msgid "Apply"
 msgstr "Uygula"
 
-#: ../src/Configuration.vala:30
-msgid "Settings cannot be applied: %s"
-msgstr "Ayarlar uygulanamıyor: %s"
+#~ msgid "Settings cannot be applied: %s"
+#~ msgstr "Ayarlar uygulanamıyor: %s"
+
+#~ msgid "Mirrored Displays"
+#~ msgstr "Yansıtılan Ekranlar"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Monitör ve yansıtıcı çözünürlüğü ve konumunu değiştir"
+
+#~ msgid "Is primary display"
+#~ msgstr "Birincil ekran"
+
+#~ msgid "Use This Display"
+#~ msgstr "Bu Ekranı Kullanın"

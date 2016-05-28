@@ -7,83 +7,87 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-12-21 12:23-0200\n"
+"POT-Creation-Date: 2016-05-28 05:38+0400\n"
 "PO-Revision-Date: 2015-12-25 04:15+0000\n"
 "Last-Translator: colindemian <dengmengpc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-21 05:45+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-05-28 05:38+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 
-#: ../src/DisplayPopover.vala:101
-msgid "Use This Display"
-msgstr "使用此显示器"
-
-#: ../src/DisplayPopover.vala:152
+#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
 msgstr "分辨率："
 
-#: ../src/DisplayPopover.vala:167
-msgid "Rotation:"
-msgstr "旋转："
-
-#: ../src/DisplayPopover.vala:267
-msgid "None"
-msgstr "无"
-
-#: ../src/DisplayPopover.vala:268
-msgid "Clockwise"
-msgstr "逆时针"
-
-#: ../src/DisplayPopover.vala:269
-msgid "Counterclockwise"
-msgstr "顺时针"
-
-#: ../src/DisplayPopover.vala:270
-msgid "Flipped"
-msgstr "上下翻转"
-
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "设置为第一屏幕"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "是第一屏幕"
-
-#: ../src/Monitor.vala:52
+#: ../src/DisplayWidget.vala:72
 msgid "Configure display"
 msgstr "显示器设置"
 
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "镜像显示"
+#: ../src/DisplayWidget.vala:94
+msgid "Use This Display:"
+msgstr ""
 
-#: ../src/DisplayPlug.vala:21
+#: ../src/DisplayWidget.vala:111
+msgid "Rotation:"
+msgstr "旋转："
+
+#: ../src/DisplayWidget.vala:159
+msgid "None"
+msgstr "无"
+
+#: ../src/DisplayWidget.vala:164
+msgid "Clockwise"
+msgstr "逆时针"
+
+#: ../src/DisplayWidget.vala:173
+msgid "Flipped"
+msgstr "上下翻转"
+
+#: ../src/DisplayWidget.vala:182
+msgid "Counterclockwise"
+msgstr "顺时针"
+
+#: ../src/DisplayWidget.vala:287
+msgid "Is the primary display"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:290
+msgid "Set as primary display"
+msgstr "设置为第一屏幕"
+
+#: ../src/DisplayPlug.vala:32
 msgid "Displays"
 msgstr "显示器"
 
-#: ../src/DisplayPlug.vala:22
+#: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "调整分辨率、配置显示器和投影仪的位置"
 
-#: ../src/DisplayPlug.vala:64
+#: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
 msgstr "镜像显示："
 
-#: ../src/DisplayPlug.vala:67
+#: ../src/DisplayPlug.vala:59
 msgid "Detect Displays"
 msgstr "检测显示器"
 
-#: ../src/DisplayPlug.vala:69
+#: ../src/DisplayPlug.vala:60
 msgid "Apply"
 msgstr "应用"
 
-#: ../src/Configuration.vala:30
-msgid "Settings cannot be applied: %s"
-msgstr "无法应用设置： %s"
+#~ msgid "Is primary display"
+#~ msgstr "是第一屏幕"
+
+#~ msgid "Settings cannot be applied: %s"
+#~ msgstr "无法应用设置： %s"
+
+#~ msgid "Mirrored Displays"
+#~ msgstr "镜像显示"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "更改显示器和投影仪的分辨率和位置"
+
+#~ msgid "Use This Display"
+#~ msgstr "使用此显示器"

@@ -7,83 +7,87 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-12-21 12:23-0200\n"
+"POT-Creation-Date: 2016-05-28 05:38+0400\n"
 "PO-Revision-Date: 2015-05-25 16:41+0000\n"
 "Last-Translator: Viktuk <register885@gmail.com>\n"
 "Language-Team: Belarusian <be@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-21 05:45+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-05-28 05:38+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 
-#: ../src/DisplayPopover.vala:101
-msgid "Use This Display"
-msgstr "Выкарыстоўваць гэты дысплей"
-
-#: ../src/DisplayPopover.vala:152
+#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
 msgstr "Разрознасць:"
 
-#: ../src/DisplayPopover.vala:167
-msgid "Rotation:"
-msgstr "Паварот:"
-
-#: ../src/DisplayPopover.vala:267
-msgid "None"
-msgstr "Няма"
-
-#: ../src/DisplayPopover.vala:268
-msgid "Clockwise"
-msgstr "Па ходу гадзіннікавай стрэлкі"
-
-#: ../src/DisplayPopover.vala:269
-msgid "Counterclockwise"
-msgstr "Супраць гадзіннікавай стрэлкі"
-
-#: ../src/DisplayPopover.vala:270
-msgid "Flipped"
-msgstr ""
-
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Ўсталяваць як асноўны дысплей"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "З'яўляецца асноўнай дысплей"
-
-#: ../src/Monitor.vala:52
+#: ../src/DisplayWidget.vala:72
 msgid "Configure display"
 msgstr "Наладзіць дысплей"
 
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Люстраваныя маніторы"
+#: ../src/DisplayWidget.vala:94
+msgid "Use This Display:"
+msgstr ""
 
-#: ../src/DisplayPlug.vala:21
+#: ../src/DisplayWidget.vala:111
+msgid "Rotation:"
+msgstr "Паварот:"
+
+#: ../src/DisplayWidget.vala:159
+msgid "None"
+msgstr "Няма"
+
+#: ../src/DisplayWidget.vala:164
+msgid "Clockwise"
+msgstr "Па ходу гадзіннікавай стрэлкі"
+
+#: ../src/DisplayWidget.vala:173
+msgid "Flipped"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:182
+msgid "Counterclockwise"
+msgstr "Супраць гадзіннікавай стрэлкі"
+
+#: ../src/DisplayWidget.vala:287
+msgid "Is the primary display"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:290
+msgid "Set as primary display"
+msgstr "Ўсталяваць як асноўны дысплей"
+
+#: ../src/DisplayPlug.vala:32
 msgid "Displays"
 msgstr "Маніторы"
 
-#: ../src/DisplayPlug.vala:22
+#: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:64
+#: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
 msgstr "Люстраны дысплей:"
 
-#: ../src/DisplayPlug.vala:67
+#: ../src/DisplayPlug.vala:59
 msgid "Detect Displays"
 msgstr "Выяўленне дысплеяў"
 
-#: ../src/DisplayPlug.vala:69
+#: ../src/DisplayPlug.vala:60
 msgid "Apply"
 msgstr "Ужыць"
 
-#: ../src/Configuration.vala:30
-msgid "Settings cannot be applied: %s"
-msgstr "Налады не могуць быць ужытыя: %s"
-
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Змяніць распазнавальнасць і месцазнаходжанне манітораў і праектараў"
+
+#~ msgid "Use This Display"
+#~ msgstr "Выкарыстоўваць гэты дысплей"
+
+#~ msgid "Is primary display"
+#~ msgstr "З'яўляецца асноўнай дысплей"
+
+#~ msgid "Mirrored Displays"
+#~ msgstr "Люстраваныя маніторы"
+
+#~ msgid "Settings cannot be applied: %s"
+#~ msgstr "Налады не могуць быць ужытыя: %s"

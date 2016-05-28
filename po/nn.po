@@ -7,84 +7,88 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-21 12:23-0200\n"
+"POT-Creation-Date: 2016-05-28 05:38+0400\n"
 "PO-Revision-Date: 2014-10-20 20:54+0000\n"
 "Last-Translator: Martin Myrvold <Unknown>\n"
 "Language-Team: Norwegian Nynorsk <nn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-21 05:45+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-05-28 05:38+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: nn\n"
 
-#: ../src/DisplayPopover.vala:101
-msgid "Use This Display"
-msgstr "Bruk denne skjermen"
-
-#: ../src/DisplayPopover.vala:152
+#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
 msgstr "Oppløysing:"
 
-#: ../src/DisplayPopover.vala:167
-msgid "Rotation:"
-msgstr "Rotasjon:"
-
-#: ../src/DisplayPopover.vala:267
-msgid "None"
-msgstr "Ingen"
-
-#: ../src/DisplayPopover.vala:268
-msgid "Clockwise"
-msgstr "Med klokka"
-
-#: ../src/DisplayPopover.vala:269
-msgid "Counterclockwise"
-msgstr "Mot klokka"
-
-#: ../src/DisplayPopover.vala:270
-msgid "Flipped"
-msgstr "Snudd"
-
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr "Velg som hovudskjerm"
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr "Er hovudskjerm"
-
-#: ../src/Monitor.vala:52
+#: ../src/DisplayWidget.vala:72
 msgid "Configure display"
 msgstr "Endre instillingar for skjermen"
 
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
-msgstr "Like skjermar"
+#: ../src/DisplayWidget.vala:94
+msgid "Use This Display:"
+msgstr ""
 
-#: ../src/DisplayPlug.vala:21
+#: ../src/DisplayWidget.vala:111
+msgid "Rotation:"
+msgstr "Rotasjon:"
+
+#: ../src/DisplayWidget.vala:159
+msgid "None"
+msgstr "Ingen"
+
+#: ../src/DisplayWidget.vala:164
+msgid "Clockwise"
+msgstr "Med klokka"
+
+#: ../src/DisplayWidget.vala:173
+msgid "Flipped"
+msgstr "Snudd"
+
+#: ../src/DisplayWidget.vala:182
+msgid "Counterclockwise"
+msgstr "Mot klokka"
+
+#: ../src/DisplayWidget.vala:287
+msgid "Is the primary display"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:290
+msgid "Set as primary display"
+msgstr "Velg som hovudskjerm"
+
+#: ../src/DisplayPlug.vala:32
 msgid "Displays"
 msgstr "Skjermar"
 
-#: ../src/DisplayPlug.vala:22
+#: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:64
+#: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
 msgstr "Like skjermar:"
 
-#: ../src/DisplayPlug.vala:67
+#: ../src/DisplayPlug.vala:59
 msgid "Detect Displays"
 msgstr "Søk etter skjermar"
 
-#: ../src/DisplayPlug.vala:69
+#: ../src/DisplayPlug.vala:60
 msgid "Apply"
 msgstr "Bruk"
 
-#: ../src/Configuration.vala:30
-msgid "Settings cannot be applied: %s"
-msgstr "Instillingane kan ikkje utførast: %s"
+#~ msgid "Is primary display"
+#~ msgstr "Er hovudskjerm"
+
+#~ msgid "Settings cannot be applied: %s"
+#~ msgstr "Instillingane kan ikkje utførast: %s"
+
+#~ msgid "Use This Display"
+#~ msgstr "Bruk denne skjermen"
+
+#~ msgid "Mirrored Displays"
+#~ msgstr "Like skjermar"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Endra oppløysing og posisjonen til skjermar og prosjektorar"

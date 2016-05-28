@@ -7,81 +7,73 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-21 12:23-0200\n"
+"POT-Creation-Date: 2016-05-28 05:38+0400\n"
 "PO-Revision-Date: 2014-08-01 01:23+0000\n"
 "Last-Translator: Cody Garver <cody@elementaryos.org>\n"
 "Language-Team: Malayalam <ml@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-21 05:45+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-05-28 05:38+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: ml\n"
 
-#: ../src/DisplayPopover.vala:101
-msgid "Use This Display"
-msgstr ""
-
-#: ../src/DisplayPopover.vala:152
+#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
 msgstr ""
 
-#: ../src/DisplayPopover.vala:167
-msgid "Rotation:"
-msgstr ""
-
-#: ../src/DisplayPopover.vala:267
-msgid "None"
-msgstr ""
-
-#: ../src/DisplayPopover.vala:268
-msgid "Clockwise"
-msgstr ""
-
-#: ../src/DisplayPopover.vala:269
-msgid "Counterclockwise"
-msgstr ""
-
-#: ../src/DisplayPopover.vala:270
-msgid "Flipped"
-msgstr ""
-
-#: ../src/Monitor.vala:30 ../src/Monitor.vala:161
-msgid "Set as primary display"
-msgstr ""
-
-#: ../src/Monitor.vala:34 ../src/Monitor.vala:42
-msgid "Is primary display"
-msgstr ""
-
-#: ../src/Monitor.vala:52
+#: ../src/DisplayWidget.vala:72
 msgid "Configure display"
 msgstr ""
 
-#: ../src/Monitor.vala:154
-msgid "Mirrored Displays"
+#: ../src/DisplayWidget.vala:94
+msgid "Use This Display:"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:21
+#: ../src/DisplayWidget.vala:111
+msgid "Rotation:"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:159
+msgid "None"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:164
+msgid "Clockwise"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:173
+msgid "Flipped"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:182
+msgid "Counterclockwise"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:287
+msgid "Is the primary display"
+msgstr ""
+
+#: ../src/DisplayWidget.vala:290
+msgid "Set as primary display"
+msgstr ""
+
+#: ../src/DisplayPlug.vala:32
 msgid "Displays"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:22
+#: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:64
+#: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:67
+#: ../src/DisplayPlug.vala:59
 msgid "Detect Displays"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:69
+#: ../src/DisplayPlug.vala:60
 msgid "Apply"
-msgstr ""
-
-#: ../src/Configuration.vala:30
-msgid "Settings cannot be applied: %s"
 msgstr ""
