@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2016-02-10 22:50+0000\n"
+"PO-Revision-Date: 2016-06-13 17:10+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-29 05:33+0000\n"
-"X-Generator: Launchpad (build 18053)\n"
+"X-Launchpad-Export-Date: 2016-06-14 06:23+0000\n"
+"X-Generator: Launchpad (build 18097)\n"
 
 #: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
@@ -27,7 +27,7 @@ msgstr "Ekraani seadistamine"
 
 #: ../src/DisplayWidget.vala:94
 msgid "Use This Display:"
-msgstr ""
+msgstr "Kasuta seda ekraani:"
 
 #: ../src/DisplayWidget.vala:111
 msgid "Rotation:"
@@ -51,7 +51,7 @@ msgstr "Vastupäeva"
 
 #: ../src/DisplayWidget.vala:287
 msgid "Is the primary display"
-msgstr ""
+msgstr "Põhiekraan"
 
 #: ../src/DisplayWidget.vala:290
 msgid "Set as primary display"
