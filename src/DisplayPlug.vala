@@ -198,7 +198,12 @@ public class Display.Plug : Switchboard.Plug {
 
     // 'search' returns results like ("Keyboard → Behavior → Duration", "keyboard<sep>behavior")
     public override async Gee.TreeMap<string, string> search (string search) {
-        return new Gee.TreeMap<string, string> (null, null);
+        var search_results = new Gee.TreeMap<string, string> ((GLib.CompareDataFunc<string>)strcmp, (Gee.EqualDataFunc<string>)str_equal);
+        search_results.set ("%s → %s".printf (display_name, _("Screen Resolution")), "");
+        search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "");
+        search_results.set ("%s → %s".printf (display_name, _("Primary display")), "");
+        search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "");
+        return search_results;
     }
 }
 
