@@ -95,12 +95,13 @@ public class Display.Plug : Switchboard.Plug {
             apply_button.clicked.connect (() => {
                 var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
                 var rr_config = new Gnome.RRConfig.current (rr_screen);
+                
                 if (rr_config.get_clone ()) {
                     mirror_display.apply_configuration ();
                 } else {
                     displays_view.apply_configuration ();
                 }
-
+               
                 apply_button.sensitive = false;
             });
 

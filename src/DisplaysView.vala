@@ -76,6 +76,7 @@ public class Display.DisplaysView : Gtk.Overlay {
 
     public void apply_configuration () {
         try {
+            rr_config.sanitize ();
             rr_config.apply_persistent (rr_screen);
         } catch (Error e) {
             critical (e.message);
