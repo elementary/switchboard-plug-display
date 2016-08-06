@@ -308,7 +308,7 @@ public class Display.DisplaysView : Gtk.Overlay {
 
 
 
-        /* Try to re-snap all
+        // Try to re-snap all
         anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget)) return;
@@ -316,7 +316,7 @@ public class Display.DisplaysView : Gtk.Overlay {
             snap_widget ((DisplayWidget) child, anchors);
 
             anchors.append ((DisplayWidget) child);
-        });*/
+        });
     }
 
     private void snap_widget (Display.DisplayWidget child, List<Display.DisplayWidget> anchors) {
@@ -365,14 +365,18 @@ public class Display.DisplaysView : Gtk.Overlay {
 
         if (snap_x & move) {
             stderr.printf ("moving child %d on X\n", shortest_x);
-            if (shortest_x != int.MAX) ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y , child_width, child_height); // X Snapping
-        } else if (snap_y & move) {
+            if (shortest_x < 100000) ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y , child_width, child_height); // X Snapping
+        } 
+        
+        if (snap_y & move) {
             stderr.printf ("moving child %d on Y\n", shortest_y);
-            if (shortest_y != int.MAX) ((DisplayWidget)child).set_geometry (child_x , child_y - shortest_y + 1, child_width, child_height); // Y Snapping
-        } else if (!snap_x && !snap_y) {
+            if (shortest_y < 100000) ((DisplayWidget)child).set_geometry (child_x , child_y - shortest_y + 1, child_width, child_height); // Y Snapping
+        } 
+        
+        if (!snap_x && !snap_y) {
             
-            if (shortest_x != int.MAX && shortest_y != int.MAX) {
-                //((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height); // X & Y Snapping
+            if (shortest_x < 100000 && shortest_y < 100000) {
+                ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height); // X & Y Snapping
                 stderr.printf ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
             }
         }
@@ -381,11 +385,14 @@ public class Display.DisplaysView : Gtk.Overlay {
     private void remove_extra_space () {
 
     }
-
+    
+    static bool equals = false;
     private bool is_projected (int child_x, int child_length, int anchor_x, int anchor_length) {
         var numberline = new List<int> ();
 
+        equals = false;
         CompareFunc<int> intcmp = (a, b) => {
+            if (a == b) equals = true;
             return (int) (a > b) - (int) (a < b);
         };
 
@@ -397,6 +404,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         numberline.insert_sorted (anchor_x, intcmp);
         numberline.insert_sorted (anchor_x2, intcmp);
         
+        if (equals) return false;
         return !((numberline.index (child_x) - numberline.index (child_x2)).abs () == 1 && (numberline.index (anchor_x) - numberline.index (anchor_x2)).abs () == 1);
     }
 
