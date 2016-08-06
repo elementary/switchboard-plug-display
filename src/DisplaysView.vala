@@ -205,8 +205,10 @@ public class Display.DisplaysView : Gtk.Overlay {
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
             display_widget.set_geometry ((int)(delta_x / current_ratio) + x, (int)(delta_y / current_ratio) + y, width, height);
+            snap_edges (display_widget);
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
+            calculate_ratio ();
         });
 
         check_intersects (display_widget);
@@ -287,4 +289,128 @@ public class Display.DisplaysView : Gtk.Overlay {
 
         source_display_widget.queue_resize_no_redraw ();
     }
+
+    public void snap_edges (DisplayWidget last_moved) {
+        // Grab a list of all N displays:
+        // Get the distanThoce between all displays N-1
+
+        //display_widget.get_geometry (out x, out y, out width, out height);
+
+        // Snap last_moved
+
+        var anchors = new List<DisplayWidget>();
+        get_children ().foreach ((child) => {
+            if (!(child is DisplayWidget) || last_moved.equals ((DisplayWidget)child)) return;
+            anchors.append ((DisplayWidget) child);
+            
+            snap_widget (last_moved, anchors);
+        });
+
+
+
+        /* Try to re-snap all
+        anchors = new List<DisplayWidget>();
+        get_children ().foreach ((child) => {
+            if (!(child is DisplayWidget)) return;
+
+            snap_widget ((DisplayWidget) child, anchors);
+
+            anchors.append ((DisplayWidget) child);
+        });*/
+    }
+
+    private void snap_widget (Display.DisplayWidget child, List<Display.DisplayWidget> anchors) {
+        if (anchors.length () == 0) return;
+        int child_x, child_y, child_width, child_height;
+        child.get_geometry (out child_x, out child_y, out child_width, out child_height);
+
+        bool snap_y = false, snap_x = false, move = false;
+        int case_1 = int.MAX, case_2 = int.MAX, case_3 = int.MAX, case_4 = int.MAX;
+
+        foreach (var anchor in anchors) {
+            if (child.equals (anchor)) continue;
+
+            int anchor_x, anchor_y, anchor_width, anchor_height;
+            anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
+            stderr.printf ("Anchor: %d %d %d %d\n", anchor_x, anchor_y, anchor_width, anchor_height);
+
+            var case_1_t = child_x - anchor_x - anchor_width;
+            var case_2_t = child_x - anchor_x + child_width;
+            var case_3_t = child_y - anchor_y - anchor_height;
+            var case_4_t = child_height + child_y - anchor_y;
+
+            case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;
+            case_2 = is_x_smaller_absolute (case_2, case_2_t) ? case_2 : case_2_t;
+            case_3 = is_x_smaller_absolute (case_3, case_3_t) ? case_3 : case_3_t;
+            case_4 = is_x_smaller_absolute (case_4, case_4_t) ? case_4 : case_4_t;
+
+            // Check projections
+            if (is_projected (child_y, child_height, anchor_y, anchor_height)) {
+                stderr.printf ("Child is on the X axis of Anchor\n");
+
+                snap_x = true;
+                move = true;
+            }
+
+            if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
+                stderr.printf ("Child is on the Y axis of Anchor\n");
+
+                snap_y = true;
+                move = true;
+            }
+        }
+
+        int shortest_x = is_x_smaller_absolute (case_1, case_2) ? case_1 : case_2;
+        int shortest_y = is_x_smaller_absolute (case_3, case_4) ? case_3 : case_4;
+
+        if (snap_x & move) {
+            stderr.printf ("moving child %d on X\n", shortest_x);
+            if (shortest_x != int.MAX) ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y , child_width, child_height); // X Snapping
+        } else if (snap_y & move) {
+            stderr.printf ("moving child %d on Y\n", shortest_y);
+            if (shortest_y != int.MAX) ((DisplayWidget)child).set_geometry (child_x , child_y - shortest_y + 1, child_width, child_height); // Y Snapping
+        } else if (!snap_x && !snap_y) {
+            
+            if (shortest_x != int.MAX && shortest_y != int.MAX) {
+                //((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height); // X & Y Snapping
+                stderr.printf ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
+            }
+        }
+    }
+
+    private void remove_extra_space () {
+
+    }
+
+    private bool is_projected (int child_x, int child_length, int anchor_x, int anchor_length) {
+        var numberline = new List<int> ();
+
+        CompareFunc<int> intcmp = (a, b) => {
+            return (int) (a > b) - (int) (a < b);
+        };
+
+        var child_x2 = child_x + child_length;
+        var anchor_x2 = anchor_x + anchor_length;
+
+        numberline.insert_sorted (child_x, intcmp);
+        numberline.insert_sorted (child_x2, intcmp);
+        numberline.insert_sorted (anchor_x, intcmp);
+        numberline.insert_sorted (anchor_x2, intcmp);
+        
+        return !((numberline.index (child_x) - numberline.index (child_x2)).abs () == 1 && (numberline.index (anchor_x) - numberline.index (anchor_x2)).abs () == 1);
+    }
+
+    private bool is_x_smaller_absolute (int x, int y) {
+        return x.abs () < y.abs ();
+    }
 }
+
+
+
+
+
+
+
+
+
+

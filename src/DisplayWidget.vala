@@ -305,6 +305,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
         real_height = height;
         output_info.set_geometry (real_x, real_y, real_width, real_height);
     }
+    
+    public bool equals (DisplayWidget sibling) {
+        return output_info.get_display_name () == sibling.output_info.get_display_name ();
+    }
 
     // copied from GCC panel
     public static string? make_aspect_string (uint width, uint height) {
