@@ -219,7 +219,11 @@ public class Display.DisplaysView : Gtk.Overlay {
         });
 
         check_intersects (display_widget);
-        display_widget.move_display (1, 1);
+        var old_delta_x = display_widget.delta_x;
+        var old_delta_y = display_widget.delta_y;
+        display_widget.delta_x = 0;
+        display_widget.delta_y = 0;
+        display_widget.move_display (old_delta_x, old_delta_y);
     }
 
     private void set_as_primary (Gnome.RROutputInfo output_info) {
@@ -295,21 +299,24 @@ public class Display.DisplaysView : Gtk.Overlay {
 
     public void snap_edges (DisplayWidget last_moved) {
         // Snap last_moved
+        debug ("\n\nSNAPING ");
         var anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget) || last_moved.equals ((DisplayWidget)child)) return;
             anchors.append ((DisplayWidget) child);
-
-            snap_widget (last_moved, anchors);
         });
 
-        // Try to re-snap all
+        snap_widget (last_moved, anchors);
+
+        // FIXME: Re-Snaping with 3 or more displays is broken
+        // This is used for
+        /*/ Try to re-snap all
         anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget)) return;
             snap_widget ((DisplayWidget) child, anchors);
             anchors.append ((DisplayWidget) child);
-        });
+        });/**/
     }
 
     private void snap_widget (Display.DisplayWidget child, List<Display.DisplayWidget> anchors) {
@@ -332,20 +339,19 @@ public class Display.DisplaysView : Gtk.Overlay {
             var case_3_t = child_y - anchor_y - anchor_height;
             var case_4_t = child_height + child_y - anchor_y;
 
-            case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;
-            case_2 = is_x_smaller_absolute (case_2, case_2_t) ? case_2 : case_2_t;
-            case_3 = is_x_smaller_absolute (case_3, case_3_t) ? case_3 : case_3_t;
-            case_4 = is_x_smaller_absolute (case_4, case_4_t) ? case_4 : case_4_t;
-
             // Check projections
             if (is_projected (child_y, child_height, anchor_y, anchor_height)) {
-                debug ("Child is on the X axis of Anchor\n");
+                debug ("Child is on the X axis of Anchor %s\n", anchor.output_info.get_display_name ());
+                case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;
+                case_2 = is_x_smaller_absolute (case_2, case_2_t) ? case_2 : case_2_t;
                 snap_x = true;
                 move = true;
             }
 
             if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
-                debug ("Child is on the Y axis of Anchor\n");
+                debug ("Child is on the Y axis of Anchor %s\n", anchor.output_info.get_display_name ());
+                case_3 = is_x_smaller_absolute (case_3, case_3_t) ? case_3 : case_3_t;
+                case_4 = is_x_smaller_absolute (case_4, case_4_t) ? case_4 : case_4_t;
                 snap_y = true;
                 move = true;
             }

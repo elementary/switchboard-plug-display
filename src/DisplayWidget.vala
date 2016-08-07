@@ -188,7 +188,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
-        if (!resolution_set && output_info.is_active ())
+        if (!resolution_set)
             resolution_combobox.set_active (0);
 
         rotation_combobox.changed.connect (() => {
@@ -281,7 +281,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
         }
 
-        if (!rotation_set && output_info.is_active ())
+        if (!rotation_set)
             rotation_combobox.set_active (0);
 
         configuration_changed ();
