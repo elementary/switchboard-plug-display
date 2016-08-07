@@ -242,6 +242,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                     break;
             }
 
+            rotation_set = true;
             configuration_changed ();
             check_position ();
         });

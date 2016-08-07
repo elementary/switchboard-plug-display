@@ -299,7 +299,7 @@ public class Display.DisplaysView : Gtk.Overlay {
 
     public void snap_edges (DisplayWidget last_moved) {
         // Snap last_moved
-        debug ("\n\nSNAPING ");
+        debug ("Snapping displays");
         var anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget) || last_moved.equals ((DisplayWidget)child)) return;
@@ -308,9 +308,8 @@ public class Display.DisplaysView : Gtk.Overlay {
 
         snap_widget (last_moved, anchors);
 
-        // FIXME: Re-Snaping with 3 or more displays is broken
-        // This is used for
-        /*/ Try to re-snap all
+        /*/ FIXME: Re-Snaping with 3 or more displays is broken
+        // This is used to make sure all displays are connected
         anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget)) return;
@@ -323,8 +322,12 @@ public class Display.DisplaysView : Gtk.Overlay {
         if (anchors.length () == 0) return;
         int child_x, child_y, child_width, child_height;
         child.get_geometry (out child_x, out child_y, out child_width, out child_height);
+        debug ("Child: %d %d %d %d\n", child_x, child_y, child_width, child_height);
+        
+        //Prevent the main display from wrongly moving when first loaded
+        if (child_x  == 0 && child_y == 0) return; 
 
-        bool snap_y = false, snap_x = false, move = false;
+        bool snap_y = false, snap_x = false, move = false, diagonally = false;
         int case_1 = int.MAX, case_2 = int.MAX, case_3 = int.MAX, case_4 = int.MAX;
 
         foreach (var anchor in anchors) {
@@ -342,18 +345,25 @@ public class Display.DisplaysView : Gtk.Overlay {
             // Check projections
             if (is_projected (child_y, child_height, anchor_y, anchor_height)) {
                 debug ("Child is on the X axis of Anchor %s\n", anchor.output_info.get_display_name ());
-                case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;
-                case_2 = is_x_smaller_absolute (case_2, case_2_t) ? case_2 : case_2_t;
+                case_1 = is_x_smaller_absolute (case_1, case_1_t) && !diagonally ? case_1 : case_1_t;
+                case_2 = is_x_smaller_absolute (case_2, case_2_t) && !diagonally ? case_2 : case_2_t;
                 snap_x = true;
                 move = true;
-            }
-
-            if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
+            } else if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
                 debug ("Child is on the Y axis of Anchor %s\n", anchor.output_info.get_display_name ());
-                case_3 = is_x_smaller_absolute (case_3, case_3_t) ? case_3 : case_3_t;
-                case_4 = is_x_smaller_absolute (case_4, case_4_t) ? case_4 : case_4_t;
+                case_3 = is_x_smaller_absolute (case_3, case_3_t) && !diagonally ? case_3 : case_3_t;
+                case_4 = is_x_smaller_absolute (case_4, case_4_t) && !diagonally ? case_4 : case_4_t;
                 snap_y = true;
                 move = true;
+            } else {
+                debug ("Child is diagonally of Anchor %s\n", anchor.output_info.get_display_name ());
+                if (!move) {
+                    diagonally = true;
+                    case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;
+                    case_2 = is_x_smaller_absolute (case_2, case_2_t) ? case_2 : case_2_t;
+                    case_3 = is_x_smaller_absolute (case_3, case_3_t) ? case_3 : case_3_t;
+                    case_4 = is_x_smaller_absolute (case_4, case_4_t) ? case_4 : case_4_t;
+                }
             }
         }
 
@@ -381,6 +391,8 @@ public class Display.DisplaysView : Gtk.Overlay {
             if (shortest_x < 100000 && shortest_y < 100000) {
                 ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height);
                 debug ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
+            } else {
+                debug ("too large");
             }
         }
     }
