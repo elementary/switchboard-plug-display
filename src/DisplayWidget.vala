@@ -51,8 +51,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         this.output = output;
         output_info.get_geometry (out real_x, out real_y, out real_width, out real_height);
         if (!output_info.is_active ()) {
-            real_width = 600;
-            real_height = 350;
+            real_width = 1280;
+            real_height = 720;
         }
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
@@ -156,22 +156,22 @@ public class Display.DisplayWidget : Gtk.EventBox {
             output_info.set_active (use_switch.active);
             resolution_combobox.sensitive = use_switch.active;
             rotation_combobox.sensitive = use_switch.active;
-            
+
             if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
-            
+
             if (use_switch.active) {
-                opacity = 1;
+                get_style_context ().remove_class ("disabled");
             } else {
-                opacity = 0.7;
+                get_style_context ().add_class ("disabled");
             }
-            
+
             configuration_changed ();
             active_changed ();
         });
-        
+
         if (!output_info.is_active ()) {
-            opacity = 0.7;
+            get_style_context ().add_class ("disabled");
         }
 
         bool rotation_set = false;
@@ -182,8 +182,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             resolution_list_store.get_value (iter, 1, out val);
             set_geometry (real_x, real_y, (int)((Gnome.RRMode) val).get_width (), (int)((Gnome.RRMode) val).get_height ());
             rotation_set = false;
-            rotation_combobox.set_active (0);   
-            rotation_set = true;         
+            rotation_combobox.set_active (0);
+            rotation_set = true;
             configuration_changed ();
             check_position ();
         });
@@ -196,11 +196,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
             Gtk.TreeIter iter;
             rotation_combobox.get_active_iter (out iter);
             rotation_list_store.get_value (iter, 1, out val);
-            
+
             Gnome.RRRotation old_rotation;
             if (!rotation_set)
                 old_rotation = Gnome.RRRotation.ROTATION_0;//output_info.get_rotation ();
-            else 
+            else
                 old_rotation = output_info.get_rotation ();
             output_info.set_rotation ((Gnome.RRRotation) val);
             switch ((Gnome.RRRotation) val) {

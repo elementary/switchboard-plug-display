@@ -37,6 +37,10 @@ public class Display.DisplaysView : Gtk.Overlay {
             background-color: %s;
             color: %s;
         }
+
+        .colored.disabled {
+            background-color: #aaa;
+        }
     """;
 
     public DisplaysView () {
@@ -98,6 +102,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         }
 
         change_active_displays_sensitivity ();
+        calculate_ratio ();
     }
 
     public void show_windows () {
@@ -158,7 +163,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         });
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
-        current_ratio = double.min ((double)(get_allocated_width ()-24) / (double) added_width, (double)(get_allocated_height ()-24) / (double) added_height);
+        current_ratio = double.min ((double)(get_allocated_width () -24) / (double) added_width, (double)(get_allocated_height ()-24) / (double) added_height);
         default_x_margin = (int) ((get_allocated_width () - max_width*current_ratio)/2);
         default_y_margin = (int) ((get_allocated_height () - max_height*current_ratio)/2);
     }
@@ -214,11 +219,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         });
 
         check_intersects (display_widget);
-        var old_delta_x = display_widget.delta_x;
-        var old_delta_y = display_widget.delta_y;
-        display_widget.delta_x = 0;
-        display_widget.delta_y = 0;
-        display_widget.move_display (old_delta_x, old_delta_y);
+        display_widget.move_display (1, 1);
     }
 
     private void set_as_primary (Gnome.RROutputInfo output_info) {
@@ -298,7 +299,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget) || last_moved.equals ((DisplayWidget)child)) return;
             anchors.append ((DisplayWidget) child);
-            
+
             snap_widget (last_moved, anchors);
         });
 
@@ -357,27 +358,27 @@ public class Display.DisplaysView : Gtk.Overlay {
         if (!snap_y || is_x_smaller_absolute (shortest_x, shortest_y)) {
             if (snap_x & move) {
                 debug ("moving child %d on X\n", shortest_x);
-                if (shortest_x < 100000) ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y , child_width, child_height); 
-            } 
+                if (shortest_x < 100000) ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y , child_width, child_height);
+            }
         }
-        
+
         // Y Snapping
         if (!snap_x || is_x_smaller_absolute (shortest_y, shortest_x)) {
             if (snap_y & move) {
                 debug ("moving child %d on Y\n", shortest_y);
-                if (shortest_y < 100000) ((DisplayWidget)child).set_geometry (child_x , child_y - shortest_y, child_width, child_height); 
-            } 
+                if (shortest_y < 100000) ((DisplayWidget) child).set_geometry (child_x , child_y - shortest_y, child_width, child_height);
+            }
         }
-        
+
         // X & Y Snapping
         if (!snap_x && !snap_y) {
             if (shortest_x < 100000 && shortest_y < 100000) {
-                ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height); 
+                ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height);
                 debug ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
             }
         }
     }
-    
+
     static bool equals = false;
     private bool is_projected (int child_x, int child_length, int anchor_x, int anchor_length) {
         var numberline = new List<int> ();
@@ -395,7 +396,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         numberline.insert_sorted (child_x2, intcmp);
         numberline.insert_sorted (anchor_x, intcmp);
         numberline.insert_sorted (anchor_x2, intcmp);
-        
+
         if (equals) return false;
         return !((numberline.index (child_x) - numberline.index (child_x2)).abs () == 1 && (numberline.index (anchor_x) - numberline.index (anchor_x2)).abs () == 1);
     }
