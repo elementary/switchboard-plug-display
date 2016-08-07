@@ -315,7 +315,7 @@ public class Display.DisplaysView : Gtk.Overlay {
             if (!(child is DisplayWidget)) return;
             snap_widget ((DisplayWidget) child, anchors);
             anchors.append ((DisplayWidget) child);
-        });/**/
+        });*/
     }
 
     private void snap_widget (Display.DisplayWidget child, List<Display.DisplayWidget> anchors) {
@@ -323,9 +323,9 @@ public class Display.DisplaysView : Gtk.Overlay {
         int child_x, child_y, child_width, child_height;
         child.get_geometry (out child_x, out child_y, out child_width, out child_height);
         debug ("Child: %d %d %d %d\n", child_x, child_y, child_width, child_height);
-        
+
         //Prevent the main display from wrongly moving when first loaded
-        if (child_x  == 0 && child_y == 0) return; 
+        if (child_x  == 0 && child_y == 0) return;
 
         bool snap_y = false, snap_x = false, move = false, diagonally = false;
         int case_1 = int.MAX, case_2 = int.MAX, case_3 = int.MAX, case_4 = int.MAX;
@@ -337,10 +337,10 @@ public class Display.DisplaysView : Gtk.Overlay {
             anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
             debug ("Anchor: %d %d %d %d\n", anchor_x, anchor_y, anchor_width, anchor_height);
 
-            var case_1_t = child_x - anchor_x - anchor_width;
-            var case_2_t = child_x - anchor_x + child_width;
-            var case_3_t = child_y - anchor_y - anchor_height;
-            var case_4_t = child_height + child_y - anchor_y;
+            int case_1_t = child_x - anchor_x - anchor_width;
+            int case_2_t = child_x - anchor_x + child_width;
+            int case_3_t = child_y - anchor_y - anchor_height;
+            int case_4_t = child_height + child_y - anchor_y;
 
             // Check projections
             if (is_projected (child_y, child_height, anchor_y, anchor_height)) {

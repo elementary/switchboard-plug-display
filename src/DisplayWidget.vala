@@ -188,8 +188,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
-        if (!resolution_set)
+        if (!resolution_set) {
             resolution_combobox.set_active (0);
+        }
 
         rotation_combobox.changed.connect (() => {
             Value val;
@@ -198,10 +199,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
             rotation_list_store.get_value (iter, 1, out val);
 
             Gnome.RRRotation old_rotation;
-            if (!rotation_set)
-                old_rotation = Gnome.RRRotation.ROTATION_0;//output_info.get_rotation ();
-            else
+            if (!rotation_set) {
+                old_rotation = Gnome.RRRotation.ROTATION_0;
+            } else { 
                 old_rotation = output_info.get_rotation ();
+            } 
             output_info.set_rotation ((Gnome.RRRotation) val);
             switch ((Gnome.RRRotation) val) {
                 case Gnome.RRRotation.ROTATION_90:
@@ -282,8 +284,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
         }
 
-        if (!rotation_set)
+        if (!rotation_set) {
             rotation_combobox.set_active (0);
+        }
 
         configuration_changed ();
         check_position ();
