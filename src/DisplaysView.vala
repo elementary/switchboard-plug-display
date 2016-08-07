@@ -195,6 +195,8 @@ public class Display.DisplaysView : Gtk.Overlay {
         display_widget.active_changed.connect (() => {
             active_displays += display_widget.output_info.is_active () ? 1 : -1;
             change_active_displays_sensitivity ();
+            check_configuration_changed ();
+            calculate_ratio ();
         });
 
         if (!rr_config.get_clone () && output_info.is_active ()) {

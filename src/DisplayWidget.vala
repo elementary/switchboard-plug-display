@@ -51,8 +51,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         this.output = output;
         output_info.get_geometry (out real_x, out real_y, out real_width, out real_height);
         if (!output_info.is_active ()) {
-            real_width = output_info.get_preferred_width ();
-            real_height = output_info.get_preferred_width ();
+            real_width = 600;
+            real_height = 350;
         }
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
@@ -158,10 +158,21 @@ public class Display.DisplayWidget : Gtk.EventBox {
             rotation_combobox.sensitive = use_switch.active;
             
             if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
+            if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
+            
+            if (use_switch.active) {
+                opacity = 1;
+            } else {
+                opacity = 0.7;
+            }
             
             configuration_changed ();
             active_changed ();
         });
+        
+        if (!output_info.is_active ()) {
+            opacity = 0.7;
+        }
 
         bool rotation_set = false;
         resolution_combobox.changed.connect (() => {
@@ -177,7 +188,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
-        if (!resolution_set)
+        if (!resolution_set && output_info.is_active ())
             resolution_combobox.set_active (0);
 
         rotation_combobox.changed.connect (() => {
@@ -270,7 +281,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
         }
 
-        if (!rotation_set)
+        if (!rotation_set && output_info.is_active ())
             rotation_combobox.set_active (0);
 
         configuration_changed ();
