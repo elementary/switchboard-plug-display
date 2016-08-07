@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2014-11-13 13:15+0000\n"
+"PO-Revision-Date: 2016-08-06 10:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-29 05:33+0000\n"
-"X-Generator: Launchpad (build 18053)\n"
+"X-Launchpad-Export-Date: 2016-08-07 05:46+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
@@ -27,7 +27,7 @@ msgstr "調整顯示器設定"
 
 #: ../src/DisplayWidget.vala:94
 msgid "Use This Display:"
-msgstr ""
+msgstr "使用這個顯示器："
 
 #: ../src/DisplayWidget.vala:111
 msgid "Rotation:"
@@ -51,7 +51,7 @@ msgstr "逆時針"
 
 #: ../src/DisplayWidget.vala:287
 msgid "Is the primary display"
-msgstr ""
+msgstr "是主要顯示器"
 
 #: ../src/DisplayWidget.vala:290
 msgid "Set as primary display"
@@ -63,7 +63,7 @@ msgstr "顯示器"
 
 #: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "調整解析度、以及螢幕和投影機的位置"
 
 #: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
