@@ -205,9 +205,9 @@ public class Display.DisplaysView : Gtk.Overlay {
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
             display_widget.set_geometry ((int)(delta_x / current_ratio) + x, (int)(delta_y / current_ratio) + y, width, height);
-            snap_edges (display_widget);
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
+            snap_edges (display_widget);
             calculate_ratio ();
         });
 
@@ -291,13 +291,7 @@ public class Display.DisplaysView : Gtk.Overlay {
     }
 
     public void snap_edges (DisplayWidget last_moved) {
-        // Grab a list of all N displays:
-        // Get the distanThoce between all displays N-1
-
-        //display_widget.get_geometry (out x, out y, out width, out height);
-
         // Snap last_moved
-
         var anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget) || last_moved.equals ((DisplayWidget)child)) return;
@@ -306,15 +300,11 @@ public class Display.DisplaysView : Gtk.Overlay {
             snap_widget (last_moved, anchors);
         });
 
-
-
         // Try to re-snap all
         anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget)) return;
-
             snap_widget ((DisplayWidget) child, anchors);
-
             anchors.append ((DisplayWidget) child);
         });
     }
@@ -332,7 +322,7 @@ public class Display.DisplaysView : Gtk.Overlay {
 
             int anchor_x, anchor_y, anchor_width, anchor_height;
             anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
-            stderr.printf ("Anchor: %d %d %d %d\n", anchor_x, anchor_y, anchor_width, anchor_height);
+            debug ("Anchor: %d %d %d %d\n", anchor_x, anchor_y, anchor_width, anchor_height);
 
             var case_1_t = child_x - anchor_x - anchor_width;
             var case_2_t = child_x - anchor_x + child_width;
@@ -346,15 +336,13 @@ public class Display.DisplaysView : Gtk.Overlay {
 
             // Check projections
             if (is_projected (child_y, child_height, anchor_y, anchor_height)) {
-                stderr.printf ("Child is on the X axis of Anchor\n");
-
+                debug ("Child is on the X axis of Anchor\n");
                 snap_x = true;
                 move = true;
             }
 
             if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
-                stderr.printf ("Child is on the Y axis of Anchor\n");
-
+                debug ("Child is on the Y axis of Anchor\n");
                 snap_y = true;
                 move = true;
             }
@@ -363,27 +351,29 @@ public class Display.DisplaysView : Gtk.Overlay {
         int shortest_x = is_x_smaller_absolute (case_1, case_2) ? case_1 : case_2;
         int shortest_y = is_x_smaller_absolute (case_3, case_4) ? case_3 : case_4;
 
-        if (snap_x & move) {
-            stderr.printf ("moving child %d on X\n", shortest_x);
-            if (shortest_x < 100000) ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y , child_width, child_height); // X Snapping
-        } 
+        // X Snapping
+        if (!snap_y || is_x_smaller_absolute (shortest_x, shortest_y)) {
+            if (snap_x & move) {
+                debug ("moving child %d on X\n", shortest_x);
+                if (shortest_x < 100000) ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y , child_width, child_height); 
+            } 
+        }
         
-        if (snap_y & move) {
-            stderr.printf ("moving child %d on Y\n", shortest_y);
-            if (shortest_y < 100000) ((DisplayWidget)child).set_geometry (child_x , child_y - shortest_y + 1, child_width, child_height); // Y Snapping
-        } 
+        // Y Snapping
+        if (!snap_x || is_x_smaller_absolute (shortest_y, shortest_x)) {
+            if (snap_y & move) {
+                debug ("moving child %d on Y\n", shortest_y);
+                if (shortest_y < 100000) ((DisplayWidget)child).set_geometry (child_x , child_y - shortest_y, child_width, child_height); 
+            } 
+        }
         
+        // X & Y Snapping
         if (!snap_x && !snap_y) {
-            
             if (shortest_x < 100000 && shortest_y < 100000) {
-                ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height); // X & Y Snapping
-                stderr.printf ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
+                ((DisplayWidget)child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height); 
+                debug ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
             }
         }
-    }
-
-    private void remove_extra_space () {
-
     }
     
     static bool equals = false;
@@ -412,13 +402,3 @@ public class Display.DisplaysView : Gtk.Overlay {
         return x.abs () < y.abs ();
     }
 }
-
-
-
-
-
-
-
-
-
-
