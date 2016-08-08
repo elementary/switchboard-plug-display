@@ -20,8 +20,11 @@
  */
 
 public class Display.DisplaysView : Gtk.Overlay {
+    private const int SNAP_LIMIT = int.MAX - 1;
+
     public signal void configuration_changed (bool changed);
 
+    private bool scanning = false;
     private double current_ratio = 1.0f;
     private int current_allocated_width = 0;
     private int current_allocated_height = 0;
@@ -36,6 +39,10 @@ public class Display.DisplaysView : Gtk.Overlay {
         .colored {
             background-color: %s;
             color: %s;
+        }
+
+        .colored.disabled {
+            background-color: #aaa;
         }
     """;
 
@@ -76,6 +83,7 @@ public class Display.DisplaysView : Gtk.Overlay {
 
     public void apply_configuration () {
         try {
+            rr_config.sanitize ();
             rr_config.apply_persistent (rr_screen);
         } catch (Error e) {
             critical (e.message);
@@ -83,6 +91,7 @@ public class Display.DisplaysView : Gtk.Overlay {
     }
 
     public void rescan_displays () {
+        scanning = true;
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 child.destroy ();
@@ -97,6 +106,8 @@ public class Display.DisplaysView : Gtk.Overlay {
         }
 
         change_active_displays_sensitivity ();
+        calculate_ratio ();
+        scanning = false;
     }
 
     public void show_windows () {
@@ -157,7 +168,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         });
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
-        current_ratio = double.min ((double)(get_allocated_width ()-24) / (double) added_width, (double)(get_allocated_height ()-24) / (double) added_height);
+        current_ratio = double.min ((double)(get_allocated_width () -24) / (double) added_width, (double)(get_allocated_height ()-24) / (double) added_height);
         default_x_margin = (int) ((get_allocated_width () - max_width*current_ratio)/2);
         default_y_margin = (int) ((get_allocated_height () - max_height*current_ratio)/2);
     }
@@ -194,6 +205,8 @@ public class Display.DisplaysView : Gtk.Overlay {
         display_widget.active_changed.connect (() => {
             active_displays += display_widget.output_info.is_active () ? 1 : -1;
             change_active_displays_sensitivity ();
+            check_configuration_changed ();
+            calculate_ratio ();
         });
 
         if (!rr_config.get_clone () && output_info.is_active ()) {
@@ -206,6 +219,8 @@ public class Display.DisplaysView : Gtk.Overlay {
             display_widget.set_geometry ((int)(delta_x / current_ratio) + x, (int)(delta_y / current_ratio) + y, width, height);
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
+            snap_edges (display_widget);
+            calculate_ratio ();
         });
 
         check_intersects (display_widget);
@@ -285,5 +300,141 @@ public class Display.DisplaysView : Gtk.Overlay {
         });
 
         source_display_widget.queue_resize_no_redraw ();
+    }
+
+    public void snap_edges (DisplayWidget last_moved) {
+        if (scanning) return;
+        // Snap last_moved
+        debug ("Snapping displays");
+        var anchors = new List<DisplayWidget>();
+        get_children ().foreach ((child) => {
+            if (!(child is DisplayWidget) || last_moved.equals ((DisplayWidget)child)) return;
+            anchors.append ((DisplayWidget) child);
+        });
+
+        snap_widget (last_moved, anchors);
+
+        /*/ FIXME: Re-Snaping with 3 or more displays is broken
+        // This is used to make sure all displays are connected
+        anchors = new List<DisplayWidget>();
+        get_children ().foreach ((child) => {
+            if (!(child is DisplayWidget)) return;
+            snap_widget ((DisplayWidget) child, anchors);
+            anchors.append ((DisplayWidget) child);
+        });*/
+    }
+
+   /******************************************************************************************
+    *   Widget snaping is done by trying to snap a child to other widgets called Anchors.    *
+    *   It first calculates the distance between each anchor and the child, and afterwards   *
+    *   snaps the child to the closest edge                                                  *
+    *                                                                                        *
+    *   Cases:          C = child, A = current anchor                                        *
+    *                                                                                        *
+    *   1.        2.        3.        4.                                                     *
+    *     A C       C A        A         C                                                   *
+    *                          C         A                                                   *
+    *                                                                                        *
+    ******************************************************************************************/
+    private void snap_widget (Display.DisplayWidget child, List<Display.DisplayWidget> anchors) {
+        if (anchors.length () == 0) return;
+        int child_x, child_y, child_width, child_height;
+        child.get_geometry (out child_x, out child_y, out child_width, out child_height);
+        debug ("Child: %d %d %d %d\n", child_x, child_y, child_width, child_height);
+
+        bool snap_y = false, snap_x = false, move = false, diagonally = false;
+        int case_1 = int.MAX, case_2 = int.MAX, case_3 = int.MAX, case_4 = int.MAX;
+
+        foreach (var anchor in anchors) {
+            if (child.equals (anchor)) continue;
+
+            int anchor_x, anchor_y, anchor_width, anchor_height;
+            anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
+            debug ("Anchor: %d %d %d %d\n", anchor_x, anchor_y, anchor_width, anchor_height);
+
+            int case_1_t = child_x - anchor_x - anchor_width;
+            int case_2_t = child_x - anchor_x + child_width;
+            int case_3_t = child_y - anchor_y - anchor_height;
+            int case_4_t = child_height + child_y - anchor_y;
+
+            // Check projections
+            if (is_projected (child_y, child_height, anchor_y, anchor_height)) {
+                debug ("Child is on the X axis of Anchor %s\n", anchor.output_info.get_display_name ());
+                case_1 = is_x_smaller_absolute (case_1, case_1_t) && !diagonally ? case_1 : case_1_t;
+                case_2 = is_x_smaller_absolute (case_2, case_2_t) && !diagonally ? case_2 : case_2_t;
+                snap_x = true;
+                move = true;
+            } else if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
+                debug ("Child is on the Y axis of Anchor %s\n", anchor.output_info.get_display_name ());
+                case_3 = is_x_smaller_absolute (case_3, case_3_t) && !diagonally ? case_3 : case_3_t;
+                case_4 = is_x_smaller_absolute (case_4, case_4_t) && !diagonally ? case_4 : case_4_t;
+                snap_y = true;
+                move = true;
+            } else {
+                debug ("Child is diagonally of Anchor %s\n", anchor.output_info.get_display_name ());
+                if (!move) {
+                    diagonally = true;
+                    case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;
+                    case_2 = is_x_smaller_absolute (case_2, case_2_t) ? case_2 : case_2_t;
+                    case_3 = is_x_smaller_absolute (case_3, case_3_t) ? case_3 : case_3_t;
+                    case_4 = is_x_smaller_absolute (case_4, case_4_t) ? case_4 : case_4_t;
+                }
+            }
+        }
+
+        int shortest_x = is_x_smaller_absolute (case_1, case_2) ? case_1 : case_2;
+        int shortest_y = is_x_smaller_absolute (case_3, case_4) ? case_3 : case_4;
+
+        // X Snapping
+        if (!snap_y || is_x_smaller_absolute (shortest_x, shortest_y)) {
+            if (snap_x & move) {
+                debug ("moving child %d on X\n", shortest_x);
+                if (shortest_x < SNAP_LIMIT) ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y , child_width, child_height);
+            }
+        }
+
+        // Y Snapping
+        if (!snap_x || is_x_smaller_absolute (shortest_y, shortest_x)) {
+            if (snap_y & move) {
+                debug ("moving child %d on Y\n", shortest_y);
+                if (shortest_y < SNAP_LIMIT) ((DisplayWidget) child).set_geometry (child_x , child_y - shortest_y, child_width, child_height);
+            }
+        }
+
+        // X & Y Snapping
+        if (!snap_x && !snap_y) {
+            if (shortest_x < SNAP_LIMIT && shortest_y < SNAP_LIMIT) {
+                ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height);
+                debug ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
+            } else {
+                debug ("too large");
+            }
+        }
+    }
+
+    static bool equals = false;
+    private bool is_projected (int child_x, int child_length, int anchor_x, int anchor_length) {
+        var numberline = new List<int> ();
+
+        equals = false;
+        CompareFunc<int> intcmp = (a, b) => {
+            if (a == b) equals = true;
+            return (int) (a > b) - (int) (a < b);
+        };
+
+        var child_x2 = child_x + child_length;
+        var anchor_x2 = anchor_x + anchor_length;
+
+        numberline.insert_sorted (child_x, intcmp);
+        numberline.insert_sorted (child_x2, intcmp);
+        numberline.insert_sorted (anchor_x, intcmp);
+        numberline.insert_sorted (anchor_x2, intcmp);
+
+        if (equals) return false;
+        return !((numberline.index (child_x) - numberline.index (child_x2)).abs () == 1 && (numberline.index (anchor_x) - numberline.index (anchor_x2)).abs () == 1);
+    }
+
+    private bool is_x_smaller_absolute (int x, int y) {
+        return x.abs () < y.abs ();
     }
 }

@@ -41,6 +41,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private int real_height = 0;
     private int real_x = 0;
     private int real_y = 0;
+    
+    struct Resolution {
+        uint width;
+        uint height;
+    }
 
     public DisplayWidget (Gnome.RROutputInfo output_info, Gnome.RROutput output) {
         display_window = new DisplayWindow (output_info);
@@ -51,8 +56,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         this.output = output;
         output_info.get_geometry (out real_x, out real_y, out real_width, out real_height);
         if (!output_info.is_active ()) {
-            real_width = output_info.get_preferred_width ();
-            real_height = output_info.get_preferred_width ();
+            real_width = 1280;
+            real_height = 720;
         }
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
@@ -117,6 +122,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         rotation_combobox.pack_start (text_renderer, true);
         rotation_combobox.add_attribute (text_renderer, "text", 0);
 
+        Resolution[] resolutions = {};
+        bool resolution_set = false;
         foreach (unowned Gnome.RRMode mode in output.list_modes ()) {
             var mode_width = mode.get_width ();
             var mode_height = mode.get_height ();
@@ -129,11 +136,17 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 text = "%u × %u".printf (mode_width, mode_height);
             }
 
+            Resolution res = {mode_width, mode_height};
+            if (res in resolutions) continue;
+            resolutions += res;
+
             Gtk.TreeIter iter;
             resolution_list_store.append (out iter);
             resolution_list_store.set (iter, 0, text, 1, mode);
+            
             if (output.get_current_mode () == mode) {
                 resolution_combobox.set_active_iter (iter);
+                resolution_set = true;
             }
         }
 
@@ -150,56 +163,54 @@ public class Display.DisplayWidget : Gtk.EventBox {
             output_info.set_active (use_switch.active);
             resolution_combobox.sensitive = use_switch.active;
             rotation_combobox.sensitive = use_switch.active;
+
+            if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
+            if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
+
+            if (use_switch.active) {
+                get_style_context ().remove_class ("disabled");
+            } else {
+                get_style_context ().add_class ("disabled");
+            }
+
             configuration_changed ();
             active_changed ();
         });
 
-        Gtk.TreeIter iter;
-        rotation_list_store.append (out iter);
-        rotation_list_store.set (iter, 0, _("None"), 1, Gnome.RRRotation.ROTATION_0);
-        rotation_combobox.set_active_iter (iter);
-
-        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_90)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Clockwise"), 1, Gnome.RRRotation.ROTATION_90);
-            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_90) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 90;
-            }
+        if (!output_info.is_active ()) {
+            get_style_context ().add_class ("disabled");
         }
 
-        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_180)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Flipped"), 1, Gnome.RRRotation.ROTATION_180);
-            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_180) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 180;
-            }
-        }
-
-        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_270)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Counterclockwise"), 1, Gnome.RRRotation.ROTATION_270);
-            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_270) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 270;
-            }
-        }
-
+        bool rotation_set = false;
         resolution_combobox.changed.connect (() => {
             Value val;
+            Gtk.TreeIter iter;
             resolution_combobox.get_active_iter (out iter);
             resolution_list_store.get_value (iter, 1, out val);
             set_geometry (real_x, real_y, (int)((Gnome.RRMode) val).get_width (), (int)((Gnome.RRMode) val).get_height ());
+            rotation_set = false;
+            rotation_combobox.set_active (0);
+            rotation_set = true;
             configuration_changed ();
             check_position ();
         });
 
+        if (!resolution_set) {
+            resolution_combobox.set_active (0);
+        }
+
         rotation_combobox.changed.connect (() => {
             Value val;
+            Gtk.TreeIter iter;
             rotation_combobox.get_active_iter (out iter);
             rotation_list_store.get_value (iter, 1, out val);
-            var old_rotation = output_info.get_rotation ();
+
+            Gnome.RRRotation old_rotation;
+            if (!rotation_set) {
+                old_rotation = Gnome.RRRotation.ROTATION_0;
+            } else { 
+                old_rotation = output_info.get_rotation ();
+            } 
             output_info.set_rotation ((Gnome.RRRotation) val);
             switch ((Gnome.RRRotation) val) {
                 case Gnome.RRRotation.ROTATION_90:
@@ -240,9 +251,52 @@ public class Display.DisplayWidget : Gtk.EventBox {
                     break;
             }
 
+            rotation_set = true;
             configuration_changed ();
             check_position ();
         });
+
+        Gtk.TreeIter iter;
+
+        rotation_list_store.append (out iter);
+        rotation_list_store.set (iter, 0, _("None"), 1, Gnome.RRRotation.ROTATION_0);
+
+        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_90)) {
+            rotation_list_store.append (out iter);
+            rotation_list_store.set (iter, 0, _("Clockwise"), 1, Gnome.RRRotation.ROTATION_90);
+            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_90) {
+                rotation_combobox.set_active_iter (iter);
+                label.angle = 90;
+                rotation_set = true;
+            }
+        }
+
+        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_180)) {
+            rotation_list_store.append (out iter);
+            rotation_list_store.set (iter, 0, _("Flipped"), 1, Gnome.RRRotation.ROTATION_180);
+            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_180) {
+                rotation_combobox.set_active_iter (iter);
+                label.angle = 180;
+                rotation_set = true;
+            }
+        }
+
+        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_270)) {
+            rotation_list_store.append (out iter);
+            rotation_list_store.set (iter, 0, _("Counterclockwise"), 1, Gnome.RRRotation.ROTATION_270);
+            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_270) {
+                rotation_combobox.set_active_iter (iter);
+                label.angle = 270;
+                rotation_set = true;
+            }
+        }
+
+        if (!rotation_set) {
+            rotation_combobox.set_active (0);
+        }
+
+        configuration_changed ();
+        check_position ();
     }
 
     public override bool button_press_event (Gdk.EventButton event) {
@@ -304,6 +358,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
         real_width = width;
         real_height = height;
         output_info.set_geometry (real_x, real_y, real_width, real_height);
+    }
+
+    public bool equals (DisplayWidget sibling) {
+        return output_info.get_display_name () == sibling.output_info.get_display_name ();
     }
 
     // copied from GCC panel

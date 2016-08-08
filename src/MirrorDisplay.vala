@@ -97,6 +97,7 @@ public class Display.MirrorDisplay : Gtk.Grid {
 
     public void apply_configuration () {
         try {
+            rr_config.sanitize ();
             rr_config.apply_persistent (rr_screen);
         } catch (Error e) {
             critical (e.message);
