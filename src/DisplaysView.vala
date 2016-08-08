@@ -20,6 +20,8 @@
  */
 
 public class Display.DisplaysView : Gtk.Overlay {
+    private const int SNAP_LIMIT = int.MAX - 1;
+
     public signal void configuration_changed (bool changed);
 
     private bool scanning = false;
@@ -387,7 +389,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         if (!snap_y || is_x_smaller_absolute (shortest_x, shortest_y)) {
             if (snap_x & move) {
                 debug ("moving child %d on X\n", shortest_x);
-                if (shortest_x < 100000) ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y , child_width, child_height);
+                if (shortest_x < SNAP_LIMIT) ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y , child_width, child_height);
             }
         }
 
@@ -395,13 +397,13 @@ public class Display.DisplaysView : Gtk.Overlay {
         if (!snap_x || is_x_smaller_absolute (shortest_y, shortest_x)) {
             if (snap_y & move) {
                 debug ("moving child %d on Y\n", shortest_y);
-                if (shortest_y < 100000) ((DisplayWidget) child).set_geometry (child_x , child_y - shortest_y, child_width, child_height);
+                if (shortest_y < SNAP_LIMIT) ((DisplayWidget) child).set_geometry (child_x , child_y - shortest_y, child_width, child_height);
             }
         }
 
         // X & Y Snapping
         if (!snap_x && !snap_y) {
-            if (shortest_x < 100000 && shortest_y < 100000) {
+            if (shortest_x < SNAP_LIMIT && shortest_y < SNAP_LIMIT) {
                 ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height);
                 debug ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
             } else {
