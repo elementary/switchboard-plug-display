@@ -22,6 +22,7 @@
 public class Display.DisplaysView : Gtk.Overlay {
     public signal void configuration_changed (bool changed);
 
+    private bool scanning = false;
     private double current_ratio = 1.0f;
     private int current_allocated_width = 0;
     private int current_allocated_height = 0;
@@ -88,6 +89,7 @@ public class Display.DisplaysView : Gtk.Overlay {
     }
 
     public void rescan_displays () {
+        scanning = true;
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 child.destroy ();
@@ -103,6 +105,7 @@ public class Display.DisplaysView : Gtk.Overlay {
 
         change_active_displays_sensitivity ();
         calculate_ratio ();
+        scanning = false;
     }
 
     public void show_windows () {
@@ -298,6 +301,7 @@ public class Display.DisplaysView : Gtk.Overlay {
     }
 
     public void snap_edges (DisplayWidget last_moved) {
+        if (scanning) return;
         // Snap last_moved
         debug ("Snapping displays");
         var anchors = new List<DisplayWidget>();
@@ -318,14 +322,23 @@ public class Display.DisplaysView : Gtk.Overlay {
         });*/
     }
 
+   /******************************************************************************************
+    *   Widget snaping is done by trying to snap a child to other widgets called Anchors.    *
+    *   It first calculates the distance between each anchor and the child, and afterwards   *
+    *   snaps the child to the closest edge                                                  *
+    *                                                                                        *
+    *   Cases:          C = child, A = current anchor                                        *
+    *                                                                                        *
+    *   1.        2.        3.        4.                                                     *
+    *     A C       C A        A         C                                                   *
+    *                          C         A                                                   *
+    *                                                                                        *
+    ******************************************************************************************/
     private void snap_widget (Display.DisplayWidget child, List<Display.DisplayWidget> anchors) {
         if (anchors.length () == 0) return;
         int child_x, child_y, child_width, child_height;
         child.get_geometry (out child_x, out child_y, out child_width, out child_height);
         debug ("Child: %d %d %d %d\n", child_x, child_y, child_width, child_height);
-
-        //Prevent the main display from wrongly moving when first loaded
-        if (child_x  == 0 && child_y == 0) return;
 
         bool snap_y = false, snap_x = false, move = false, diagonally = false;
         int case_1 = int.MAX, case_2 = int.MAX, case_3 = int.MAX, case_4 = int.MAX;
