@@ -41,6 +41,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private int real_height = 0;
     private int real_x = 0;
     private int real_y = 0;
+    
+    struct Resolution {
+        uint width;
+        uint height;
+    }
 
     public DisplayWidget (Gnome.RROutputInfo output_info, Gnome.RROutput output) {
         display_window = new DisplayWindow (output_info);
@@ -117,7 +122,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         rotation_combobox.pack_start (text_renderer, true);
         rotation_combobox.add_attribute (text_renderer, "text", 0);
 
-        string[] resolutions = {};
+        Resolution[] resolutions = {};
         bool resolution_set = false;
         foreach (unowned Gnome.RRMode mode in output.list_modes ()) {
             var mode_width = mode.get_width ();
@@ -131,12 +136,14 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 text = "%u × %u".printf (mode_width, mode_height);
             }
 
-            if (text in resolutions) continue;
-            resolutions += text;
+            Resolution res = {mode_width, mode_height};
+            if (res in resolutions) continue;
+            resolutions += res;
 
             Gtk.TreeIter iter;
             resolution_list_store.append (out iter);
             resolution_list_store.set (iter, 0, text, 1, mode);
+            
             if (output.get_current_mode () == mode) {
                 resolution_combobox.set_active_iter (iter);
                 resolution_set = true;
