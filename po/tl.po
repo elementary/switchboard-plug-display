@@ -3,34 +3,34 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2015-04-19 16:49+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-08-09 20:42+0000\n"
+"Last-Translator: yavinfour <anjelo.passionist@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-05-29 05:33+0000\n"
-"X-Generator: Launchpad (build 18053)\n"
+"X-Launchpad-Export-Date: 2016-08-10 05:42+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
-msgstr ""
+msgstr "Resolution:"
 
 #: ../src/DisplayWidget.vala:72
 msgid "Configure display"
-msgstr ""
+msgstr "I-configure ang display"
 
 #: ../src/DisplayWidget.vala:94
 msgid "Use This Display:"
-msgstr ""
+msgstr "Gamitin ang Display na Ito:"
 
 #: ../src/DisplayWidget.vala:111
 msgid "Rotation:"
-msgstr ""
+msgstr "Pag-iikot:"
 
 #: ../src/DisplayWidget.vala:159
 msgid "None"
-msgstr ""
+msgstr "Wala"
 
 #: ../src/DisplayWidget.vala:164
 msgid "Clockwise"
@@ -38,7 +38,7 @@ msgstr ""
 
 #: ../src/DisplayWidget.vala:173
 msgid "Flipped"
-msgstr ""
+msgstr "Nakabaligtad"
 
 #: ../src/DisplayWidget.vala:182
 msgid "Counterclockwise"
@@ -46,11 +46,11 @@ msgstr ""
 
 #: ../src/DisplayWidget.vala:287
 msgid "Is the primary display"
-msgstr ""
+msgstr "Pangunahing display ba"
 
 #: ../src/DisplayWidget.vala:290
 msgid "Set as primary display"
-msgstr ""
+msgstr "Italaga bilang pangunahing display"
 
 #: ../src/DisplayPlug.vala:32
 msgid "Displays"
@@ -70,4 +70,4 @@ msgstr ""
 
 #: ../src/DisplayPlug.vala:60
 msgid "Apply"
-msgstr ""
+msgstr "Ilapat"
