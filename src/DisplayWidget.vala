@@ -220,7 +220,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                         real_height = width;
                     }
 
-                    label.angle = 90;
+                    label.angle = 270;
                     break;
                 case Gnome.RRRotation.ROTATION_180:
                     if (old_rotation == Gnome.RRRotation.ROTATION_90 || old_rotation == Gnome.RRRotation.ROTATION_270) {
@@ -238,7 +238,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                         real_height = width;
                     }
 
-                    label.angle = 270;
+                    label.angle = 90;
                     break;
                 default:
                     if (old_rotation == Gnome.RRRotation.ROTATION_90 || old_rotation == Gnome.RRRotation.ROTATION_270) {
@@ -266,7 +266,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             rotation_list_store.set (iter, 0, _("Clockwise"), 1, Gnome.RRRotation.ROTATION_90);
             if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_90) {
                 rotation_combobox.set_active_iter (iter);
-                label.angle = 90;
+                label.angle = 270;
                 rotation_set = true;
             }
         }
@@ -286,7 +286,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             rotation_list_store.set (iter, 0, _("Counterclockwise"), 1, Gnome.RRRotation.ROTATION_270);
             if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_270) {
                 rotation_combobox.set_active_iter (iter);
-                label.angle = 270;
+                label.angle = 90;
                 rotation_set = true;
             }
         }
