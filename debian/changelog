@@ -1,3 +1,9 @@
+switchboard-plug-display (0.1.2.1) xenial; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Fri, 28 Oct 2016 18:50:16 +0200
+
 switchboard-plug-display (0.1.2) xenial; urgency=medium
 
   * New upstream release.
