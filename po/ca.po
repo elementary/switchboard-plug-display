@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2015-02-17 08:04+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"PO-Revision-Date: 2016-11-17 17:07+0000\n"
+"Last-Translator: Davidmp <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-11-05 06:08+0000\n"
-"X-Generator: Launchpad (build 18246)\n"
+"X-Launchpad-Export-Date: 2016-11-18 06:23+0000\n"
+"X-Generator: Launchpad (build 18269)\n"
 
 #: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
@@ -23,11 +23,11 @@ msgstr "Resolució:"
 
 #: ../src/DisplayWidget.vala:72
 msgid "Configure display"
-msgstr ""
+msgstr "Configura la pantalla"
 
 #: ../src/DisplayWidget.vala:94
 msgid "Use This Display:"
-msgstr ""
+msgstr "Usa aquesta pantalla:"
 
 #: ../src/DisplayWidget.vala:111
 msgid "Rotation:"
@@ -39,7 +39,7 @@ msgstr "Cap"
 
 #: ../src/DisplayWidget.vala:164
 msgid "Clockwise"
-msgstr "Sentit horari"
+msgstr "Cap a la dreta"
 
 #: ../src/DisplayWidget.vala:173
 msgid "Flipped"
@@ -47,15 +47,15 @@ msgstr "Invertit"
 
 #: ../src/DisplayWidget.vala:182
 msgid "Counterclockwise"
-msgstr "Sentit antihorari"
+msgstr "Cap a l'esquerra"
 
 #: ../src/DisplayWidget.vala:287
 msgid "Is the primary display"
-msgstr ""
+msgstr "És la pantalla primària"
 
 #: ../src/DisplayWidget.vala:290
 msgid "Set as primary display"
-msgstr ""
+msgstr "Estableix com a pantalla primària"
 
 #: ../src/DisplayPlug.vala:32
 msgid "Displays"
@@ -63,11 +63,11 @@ msgstr "Pantalles"
 
 #: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Configureu la resolució i la posició dels monitors i projectors."
 
 #: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
-msgstr ""
+msgstr "Pantalla mirall:"
 
 #: ../src/DisplayPlug.vala:59
 msgid "Detect Displays"
@@ -75,7 +75,7 @@ msgstr "Detecta les pantalles"
 
 #: ../src/DisplayPlug.vala:60
 msgid "Apply"
-msgstr "Aplica"
+msgstr "Aplica-ho"
 
 #~ msgid "Is primary display"
 #~ msgstr "És la pantalla primària"
