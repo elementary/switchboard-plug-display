@@ -27,11 +27,14 @@ public class Display.Plug : Switchboard.Plug {
     private MirrorDisplay mirror_display;
 
     public Plug () {
+        var settings = new Gee.TreeMap<string, string?> (null, null);
+        settings.set ("display", "null");
         Object (category: Category.HARDWARE,
                 code_name: Build.PLUGCODENAME,
                 display_name: _("Displays"),
                 description: _("Configure resolution and position of monitors and projectors"),
-                icon: "preferences-desktop-display");
+                icon: "preferences-desktop-display",
+                supported_settings: settings);
         plug = this;
     }
 
