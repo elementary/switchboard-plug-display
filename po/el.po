@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2017-01-16 16:42+0000\n"
+"PO-Revision-Date: 2017-02-22 12:45+0000\n"
 "Last-Translator: Christos Iatropoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-01-17 07:07+0000\n"
-"X-Generator: Launchpad (build 18302)\n"
+"X-Launchpad-Export-Date: 2017-02-23 06:46+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
@@ -43,7 +43,7 @@ msgstr "Δεξιόστροφα"
 
 #: ../src/DisplayWidget.vala:173
 msgid "Flipped"
-msgstr "Γυρισμένη"
+msgstr "Ανεστραμμένη"
 
 #: ../src/DisplayWidget.vala:182
 msgid "Counterclockwise"
@@ -67,11 +67,11 @@ msgstr "Ρύθμιση ανάλυσης και θέσης  οθονών και �
 
 #: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
-msgstr "Κατοπτρισμός Οθόνης:"
+msgstr "Κατοπτρισμός οθόνης:"
 
 #: ../src/DisplayPlug.vala:59
 msgid "Detect Displays"
-msgstr "Ανίχνευση Οθονών"
+msgstr "Ανίχνευση οθονών"
 
 #: ../src/DisplayPlug.vala:60
 msgid "Apply"
