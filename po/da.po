@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2015-12-07 20:21+0000\n"
-"Last-Translator: Jimmy Merrild Krag <jimmy@kragenet.dk>\n"
+"PO-Revision-Date: 2017-03-14 17:43+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
+"X-Launchpad-Export-Date: 2017-03-15 06:49+0000\n"
+"X-Generator: Launchpad (build 18331)\n"
 
 #: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
@@ -27,7 +27,7 @@ msgstr "Konfigurér skærm"
 
 #: ../src/DisplayWidget.vala:94
 msgid "Use This Display:"
-msgstr ""
+msgstr "Brug denne skærm:"
 
 #: ../src/DisplayWidget.vala:111
 msgid "Rotation:"
@@ -51,7 +51,7 @@ msgstr "Mod uret"
 
 #: ../src/DisplayWidget.vala:287
 msgid "Is the primary display"
-msgstr ""
+msgstr "Er den primære skærm"
 
 #: ../src/DisplayWidget.vala:290
 msgid "Set as primary display"
@@ -63,7 +63,7 @@ msgstr "Skærme"
 
 #: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Konfigurer opløsning og placering af skærme og projektorer"
 
 #: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
