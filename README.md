@@ -6,8 +6,6 @@
 You'll need the following dependencies:
 
 * cmake
-* libclutter-1.0-dev
-* libclutter-gtk-1.0-dev
 * libgnome-desktop-3-dev
 * libgranite-dev
 * libgtk-3-dev
