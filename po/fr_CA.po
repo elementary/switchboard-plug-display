@@ -8,72 +8,74 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2014-08-01 01:35+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
-"Language-Team: French (Canada) <fr_CA@li.org>\n"
+"PO-Revision-Date: 2017-04-19 19:32+0000\n"
+"Last-Translator: Benjamin CARADEUC <bencrdc@gmail.com>\n"
+"Language-Team: French <https://l10n.elementary.io/projects/switchboard"
+"/switchboard-plug-display/fr_CA/>\n"
+"Language: fr_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
-"Language: \n"
 
 #: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
 msgid "Resolution:"
-msgstr ""
+msgstr "Résolution:"
 
 #: ../src/DisplayWidget.vala:72
 msgid "Configure display"
-msgstr ""
+msgstr "Configurer l'écran"
 
 #: ../src/DisplayWidget.vala:94
 msgid "Use This Display:"
-msgstr ""
+msgstr "Utiliser cet écran:"
 
 #: ../src/DisplayWidget.vala:111
 msgid "Rotation:"
-msgstr ""
+msgstr "Rotation:"
 
 #: ../src/DisplayWidget.vala:159
 msgid "None"
-msgstr ""
+msgstr "Aucune"
 
 #: ../src/DisplayWidget.vala:164
 msgid "Clockwise"
-msgstr ""
+msgstr "Sens des aiguilles d'une montre"
 
 #: ../src/DisplayWidget.vala:173
 msgid "Flipped"
-msgstr ""
+msgstr "Retourné"
 
 #: ../src/DisplayWidget.vala:182
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Sens inverse des aiguilles d'une montre"
 
 #: ../src/DisplayWidget.vala:287
 msgid "Is the primary display"
-msgstr ""
+msgstr "Est le premier écran"
 
 #: ../src/DisplayWidget.vala:290
 msgid "Set as primary display"
-msgstr ""
+msgstr "Définir comme premier écran"
 
 #: ../src/DisplayPlug.vala:32
 msgid "Displays"
-msgstr ""
+msgstr "Ecrans"
 
 #: ../src/DisplayPlug.vala:33
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Configurer la résolution et la position des écrans et projecteurs"
 
 #: ../src/DisplayPlug.vala:51
 msgid "Mirror Display:"
-msgstr ""
+msgstr "Affichage dupliqué:"
 
 #: ../src/DisplayPlug.vala:59
 msgid "Detect Displays"
-msgstr ""
+msgstr "Détecter les écrans"
 
 #: ../src/DisplayPlug.vala:60
 msgid "Apply"
-msgstr ""
+msgstr "Appliquer"
