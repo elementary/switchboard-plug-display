@@ -17,6 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
+ *              Oleksandr Lynok <oleksandr.lynok@gmail.com>
  */
 
 public class Display.DisplayWidget : Gtk.EventBox {
@@ -31,16 +32,19 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public Gnome.RROutput output;
     public int delta_x { get; set; default = 0; }
     public int delta_y { get; set; default = 0; }
-    public bool only_display { get; set; default = false; }
+    public bool only_display { get; set; default = false; } 
     private double start_x = 0;
     private double start_y = 0;
     private bool holding = false;
+    private bool has_touchscreen = false;
     private Gtk.Button primary_image;
 
     private int real_width = 0;
     private int real_height = 0;
     private int real_x = 0;
     private int real_y = 0;
+
+    private GLib.Settings rotation_lock_setting;
     
     struct Resolution {
         uint width;
@@ -59,6 +63,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             real_width = 1280;
             real_height = 720;
         }
+
+        detect_touchscreen ();
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
         primary_image.margin = 6;
@@ -122,6 +128,22 @@ public class Display.DisplayWidget : Gtk.EventBox {
         rotation_combobox.pack_start (text_renderer, true);
         rotation_combobox.add_attribute (text_renderer, "text", 0);
 
+	    var schema_source = GLib.SettingsSchemaSource.get_default ();
+	    var rotation_lock_schema = schema_source.lookup ("org.gnome.settings-daemon.peripherals.touchscreen", true);
+	    if (rotation_lock_schema == null) {
+		    info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
+		    rotation_lock_setting = (GLib.Settings) null;
+	    } else {
+		    rotation_lock_setting = new GLib.Settings.full (rotation_lock_schema, null, null);
+	    }
+
+        var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
+        rotation_lock_label.halign = Gtk.Align.END;
+        var rotation_lock_switch = new Gtk.Switch ();
+        rotation_lock_switch.sensitive = use_switch.active;
+        rotation_lock_switch.halign = Gtk.Align.START;
+        rotation_lock_switch.active = rotation_lock_setting.get_boolean ("orientation-lock");
+
         Resolution[] resolutions = {};
         bool resolution_set = false;
         foreach (unowned Gnome.RRMode mode in output.list_modes ()) {
@@ -156,6 +178,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
         popover_grid.attach (resolution_combobox, 1, 1, 1, 1);
         popover_grid.attach (rotation_label, 0, 2, 1, 1);
         popover_grid.attach (rotation_combobox, 1, 2, 1, 1);
+        if (has_touchscreen && rotation_lock_schema != null) {
+            popover_grid.attach (rotation_lock_label, 0, 3, 1, 1);
+            popover_grid.attach (rotation_lock_switch, 1, 3, 1, 1);
+        }
         popover_grid.show_all ();
         display_window.attached_to = this;
         destroy.connect (() => display_window.destroy ());
@@ -163,6 +189,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             output_info.set_active (use_switch.active);
             resolution_combobox.sensitive = use_switch.active;
             rotation_combobox.sensitive = use_switch.active;
+            rotation_lock_switch.sensitive = use_switch.active;
 
             if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
@@ -254,6 +281,13 @@ public class Display.DisplayWidget : Gtk.EventBox {
             rotation_set = true;
             configuration_changed ();
             check_position ();
+        });
+
+        rotation_lock_switch.notify["active"].connect (() => {
+            rotation_lock_setting.set_boolean ("orientation-lock", rotation_lock_switch.active);
+
+            configuration_changed ();
+            active_changed ();
         });
 
         Gtk.TreeIter iter;
@@ -407,5 +441,18 @@ public class Display.DisplayWidget : Gtk.EventBox {
         }
 
         return aspect;
+    }
+
+    private void detect_touchscreen () {
+        var display = Gdk.Display.get_default ();
+        if (display != null) {
+            var manager = Gdk.Display.get_default ().get_device_manager ();
+            foreach (var device in manager.list_devices (Gdk.DeviceType.SLAVE)) {
+                if (device.get_source () == Gdk.InputSource.TOUCHSCREEN) {
+                    has_touchscreen = true;
+                    return;
+                }
+            }
+        }
     }
 }
