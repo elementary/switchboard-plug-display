@@ -17,6 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
+ *              Oleksandr Lynok <oleksandr.lynok@gmail.com>
  */
 
 public class Display.Plug : Switchboard.Plug {
