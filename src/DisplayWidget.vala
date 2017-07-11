@@ -31,7 +31,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public Gnome.RROutput output;
     public int delta_x { get; set; default = 0; }
     public int delta_y { get; set; default = 0; }
-    public bool only_display { get; set; default = false; } 
+    public bool only_display { get; set; default = false; }
     private double start_x = 0;
     private double start_y = 0;
     private bool holding = false;

@@ -26,8 +26,7 @@ public class Display.Plug : Switchboard.Plug {
     private DisplaysView displays_view;
     private Gtk.Stack stack;
     private MirrorDisplay mirror_display;
-    private bool has_touchscreen = false;
-    private GLib.Settings rotation_lock_setting;
+    private TouchscreenSettings? touchscreen_settings;
 
     public Plug () {
         var settings = new Gee.TreeMap<string, string?> (null, null);
@@ -50,17 +49,6 @@ public class Display.Plug : Switchboard.Plug {
             var action_bar = new Gtk.ActionBar ();
             action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
             
-            detect_touchscreen ();
-
-            var schema_source = GLib.SettingsSchemaSource.get_default ();
-            var rotation_lock_schema = schema_source.lookup ("org.gnome.settings-daemon.peripherals.touchscreen", true);
-            if (rotation_lock_schema == null) {
-	            info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
-	            rotation_lock_setting = (GLib.Settings) null;
-            } else {
-	            rotation_lock_setting = new GLib.Settings.full (rotation_lock_schema, null, null);
-            }
-
             var mirror_grid = new Gtk.Grid ();
             mirror_grid.margin = 12;
             mirror_grid.column_spacing = 6;
@@ -70,18 +58,29 @@ public class Display.Plug : Switchboard.Plug {
             mirror_grid.add (mirror_label);
             mirror_grid.add (mirror_switch);
 
-            var rotation_lock_grid = new Gtk.Grid ();
-            rotation_lock_grid.margin = 12;
-            rotation_lock_grid.column_spacing = 6;
-            rotation_lock_grid.orientation = Gtk.Orientation.HORIZONTAL;
-            var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
-            var rotation_lock_switch = new Gtk.Switch ();
-            rotation_lock_switch.active = rotation_lock_setting.get_boolean ("orientation-lock");
-            if (has_touchscreen && rotation_lock_schema != null) {
+            action_bar.pack_start (mirror_grid);
+
+            Gtk.Grid rotation_lock_grid = new Gtk.Grid ();
+            if (has_touchscreen ()) {
+                touchscreen_settings = new TouchscreenSettings ();
+
+                rotation_lock_grid = new Gtk.Grid ();
+                rotation_lock_grid.margin = 12;
+                rotation_lock_grid.column_spacing = 6;
+                rotation_lock_grid.orientation = Gtk.Orientation.HORIZONTAL;
+                var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
+                var rotation_lock_switch = new Gtk.Switch ();
                 rotation_lock_grid.add (rotation_lock_label);
                 rotation_lock_grid.add (rotation_lock_switch);
-            }
+                
+                action_bar.pack_start (rotation_lock_grid);
 
+                touchscreen_settings.bind_property ("orientation-lock",
+                                                    rotation_lock_switch,
+                                                    "state",
+                                                    BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            }
+            
             var button_grid = new Gtk.Grid ();
             button_grid.margin = 12;
             button_grid.column_homogeneous = true;
@@ -94,8 +93,6 @@ public class Display.Plug : Switchboard.Plug {
             button_grid.add (detect_button);
             button_grid.add (apply_button);
 
-            action_bar.pack_start (mirror_grid);
-            action_bar.pack_start (rotation_lock_grid);
             action_bar.pack_end (button_grid);
     
             mirror_display = new MirrorDisplay ();
@@ -210,10 +207,6 @@ public class Display.Plug : Switchboard.Plug {
                     critical (e.message);
                 }
             });
-
-            rotation_lock_switch.notify["active"].connect (() => {
-                rotation_lock_setting.set_boolean ("orientation-lock", rotation_lock_switch.active);
-            });
         }
 
         return main_grid;
@@ -241,17 +234,17 @@ public class Display.Plug : Switchboard.Plug {
         return search_results;
     }
 
-    private void detect_touchscreen () {
+    private static bool has_touchscreen () {
         var display = Gdk.Display.get_default ();
         if (display != null) {
-            var manager = Gdk.Display.get_default ().get_device_manager ();
+            var manager = display.get_device_manager ();
             foreach (var device in manager.list_devices (Gdk.DeviceType.SLAVE)) {
                 if (device.get_source () == Gdk.InputSource.TOUCHSCREEN) {
-                    has_touchscreen = true;
-                    return;
+                    return true;
                 }
             }
         }
+        return false;
     }
 }
 
