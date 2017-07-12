@@ -26,7 +26,6 @@ public class Display.Plug : Switchboard.Plug {
     private DisplaysView displays_view;
     private Gtk.Stack stack;
     private MirrorDisplay mirror_display;
-    private GLib.Settings? touchscreen_settings;
 
     public Plug () {
         var settings = new Gee.TreeMap<string, string?> (null, null);
@@ -61,11 +60,11 @@ public class Display.Plug : Switchboard.Plug {
             action_bar.pack_start (mirror_grid);
 
             Gtk.Grid rotation_lock_grid = new Gtk.Grid ();
-            if (has_touchscreen ()) {
+            if (!has_touchscreen ()) {
                 var schema_source = GLib.SettingsSchemaSource.get_default ();
                 var rotation_lock_schema = schema_source.lookup ("org.gnome.settings-daemon.peripherals.touchscreen", true);
                 if (rotation_lock_schema != null) {
-                    touchscreen_settings = new GLib.Settings.full (rotation_lock_schema, null, null);
+                    var touchscreen_settings = new GLib.Settings.full (rotation_lock_schema, null, null);
 
                     rotation_lock_grid = new Gtk.Grid ();
                     rotation_lock_grid.margin = 12;
