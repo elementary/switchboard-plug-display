@@ -17,6 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
+ *              Oleksandr Lynok <oleksandr.lynok@gmail.com>
  */
 
 public class Display.Plug : Switchboard.Plug {
@@ -46,14 +47,45 @@ public class Display.Plug : Switchboard.Plug {
             displays_view = new DisplaysView ();
             var action_bar = new Gtk.ActionBar ();
             action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
-
+            
             var mirror_grid = new Gtk.Grid ();
             mirror_grid.margin = 12;
             mirror_grid.column_spacing = 6;
             mirror_grid.orientation = Gtk.Orientation.HORIZONTAL;
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
             var mirror_switch = new Gtk.Switch ();
+            mirror_grid.add (mirror_label);
+            mirror_grid.add (mirror_switch);
 
+            action_bar.pack_start (mirror_grid);
+
+            Gtk.Grid rotation_lock_grid = new Gtk.Grid ();
+            if (has_touchscreen ()) {
+                var schema_source = GLib.SettingsSchemaSource.get_default ();
+                var rotation_lock_schema = schema_source.lookup ("org.gnome.settings-daemon.peripherals.touchscreen", true);
+                if (rotation_lock_schema != null) {
+                    var touchscreen_settings = new GLib.Settings.full (rotation_lock_schema, null, null);
+
+                    rotation_lock_grid = new Gtk.Grid ();
+                    rotation_lock_grid.margin = 12;
+                    rotation_lock_grid.column_spacing = 6;
+                    rotation_lock_grid.orientation = Gtk.Orientation.HORIZONTAL;
+                    var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
+                    var rotation_lock_switch = new Gtk.Switch ();
+                    rotation_lock_grid.add (rotation_lock_label);
+                    rotation_lock_grid.add (rotation_lock_switch);
+                    
+                    action_bar.pack_start (rotation_lock_grid);
+
+                    touchscreen_settings.bind ("orientation-lock",
+                                                rotation_lock_switch,
+                                                "state",
+                                                SettingsBindFlags.DEFAULT);
+                } else {
+                    info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
+                }
+            }
+            
             var button_grid = new Gtk.Grid ();
             button_grid.margin = 12;
             button_grid.column_homogeneous = true;
@@ -63,13 +95,11 @@ public class Display.Plug : Switchboard.Plug {
             var apply_button = new Gtk.Button.with_label (_("Apply"));
             apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             apply_button.sensitive = false;
-            mirror_grid.add (mirror_label);
-            mirror_grid.add (mirror_switch);
-            action_bar.pack_start (mirror_grid);
             button_grid.add (detect_button);
             button_grid.add (apply_button);
-            action_bar.pack_end (button_grid);
 
+            action_bar.pack_end (button_grid);
+    
             mirror_display = new MirrorDisplay ();
 
             stack = new Gtk.Stack ();
@@ -207,6 +237,19 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s".printf (display_name, _("Primary display")), "");
         search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "");
         return search_results;
+    }
+
+    private static bool has_touchscreen () {
+        var display = Gdk.Display.get_default ();
+        if (display != null) {
+            var manager = display.get_device_manager ();
+            foreach (var device in manager.list_devices (Gdk.DeviceType.SLAVE)) {
+                if (device.get_source () == Gdk.InputSource.TOUCHSCREEN) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
 
