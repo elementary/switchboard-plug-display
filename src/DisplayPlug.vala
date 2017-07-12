@@ -60,7 +60,7 @@ public class Display.Plug : Switchboard.Plug {
             action_bar.pack_start (mirror_grid);
 
             Gtk.Grid rotation_lock_grid = new Gtk.Grid ();
-            if (!has_touchscreen ()) {
+            if (has_touchscreen ()) {
                 var schema_source = GLib.SettingsSchemaSource.get_default ();
                 var rotation_lock_schema = schema_source.lookup ("org.gnome.settings-daemon.peripherals.touchscreen", true);
                 if (rotation_lock_schema != null) {
