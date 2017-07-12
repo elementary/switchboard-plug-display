@@ -26,7 +26,7 @@ public class Display.Plug : Switchboard.Plug {
     private DisplaysView displays_view;
     private Gtk.Stack stack;
     private MirrorDisplay mirror_display;
-    private TouchscreenSettings? touchscreen_settings;
+    private GLib.Settings? touchscreen_settings;
 
     public Plug () {
         var settings = new Gee.TreeMap<string, string?> (null, null);
@@ -61,24 +61,30 @@ public class Display.Plug : Switchboard.Plug {
             action_bar.pack_start (mirror_grid);
 
             Gtk.Grid rotation_lock_grid = new Gtk.Grid ();
-            if (has_touchscreen ()) {
-                touchscreen_settings = new TouchscreenSettings ();
+            if (    has_touchscreen ()) {
+                var schema_source = GLib.SettingsSchemaSource.get_default ();
+                var rotation_lock_schema = schema_source.lookup ("org.gnome.settings-daemon.peripherals.touchscreen", true);
+                if (rotation_lock_schema != null) {
+                    touchscreen_settings = new GLib.Settings.full (rotation_lock_schema, null, null);
 
-                rotation_lock_grid = new Gtk.Grid ();
-                rotation_lock_grid.margin = 12;
-                rotation_lock_grid.column_spacing = 6;
-                rotation_lock_grid.orientation = Gtk.Orientation.HORIZONTAL;
-                var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
-                var rotation_lock_switch = new Gtk.Switch ();
-                rotation_lock_grid.add (rotation_lock_label);
-                rotation_lock_grid.add (rotation_lock_switch);
-                
-                action_bar.pack_start (rotation_lock_grid);
+                    rotation_lock_grid = new Gtk.Grid ();
+                    rotation_lock_grid.margin = 12;
+                    rotation_lock_grid.column_spacing = 6;
+                    rotation_lock_grid.orientation = Gtk.Orientation.HORIZONTAL;
+                    var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
+                    var rotation_lock_switch = new Gtk.Switch ();
+                    rotation_lock_grid.add (rotation_lock_label);
+                    rotation_lock_grid.add (rotation_lock_switch);
+                    
+                    action_bar.pack_start (rotation_lock_grid);
 
-                touchscreen_settings.bind_property ("orientation-lock",
-                                                    rotation_lock_switch,
-                                                    "state",
-                                                    BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+                    touchscreen_settings.bind ("orientation-lock",
+                                                rotation_lock_switch,
+                                                "state",
+                                                SettingsBindFlags.DEFAULT);
+                } else {
+                    info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
+                }
             }
             
             var button_grid = new Gtk.Grid ();

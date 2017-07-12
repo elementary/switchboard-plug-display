@@ -16,7 +16,6 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/config.vala
     DisplayPlug.vala
     SettingsDaemon.vala
-    TouchscreenSettings.vala
     DisplaysView.vala
     DisplayWidget.vala
     DisplayWindow.vala
