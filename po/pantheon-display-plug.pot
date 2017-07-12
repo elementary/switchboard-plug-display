@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 05:38+0400\n"
+"POT-Creation-Date: 2017-07-11 17:58-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,62 +17,82 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
+#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:106
 msgid "Resolution:"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:72
+#: ../src/DisplayWidget.vala:77
 msgid "Configure display"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:94
+#: ../src/DisplayWidget.vala:99
 msgid "Use This Display:"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:111
+#: ../src/DisplayWidget.vala:116
 msgid "Rotation:"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:159
+#: ../src/DisplayWidget.vala:262
 msgid "None"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:164
+#: ../src/DisplayWidget.vala:266
 msgid "Clockwise"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:173
+#: ../src/DisplayWidget.vala:276
 msgid "Flipped"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:182
+#: ../src/DisplayWidget.vala:286
 msgid "Counterclockwise"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:287
+#: ../src/DisplayWidget.vala:341
 msgid "Is the primary display"
 msgstr ""
 
-#: ../src/DisplayWidget.vala:290
+#: ../src/DisplayWidget.vala:344
 msgid "Set as primary display"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:32
+#: ../src/DisplayPlug.vala:35
 msgid "Displays"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:33
+#: ../src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:51
+#: ../src/DisplayPlug.vala:55
 msgid "Mirror Display:"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:59
+#: ../src/DisplayPlug.vala:73
+msgid "Rotation Lock:"
+msgstr ""
+
+#: ../src/DisplayPlug.vala:94
 msgid "Detect Displays"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:60
+#: ../src/DisplayPlug.vala:95
 msgid "Apply"
+msgstr ""
+
+#: ../src/DisplayPlug.vala:235
+msgid "Screen Resolution"
+msgstr ""
+
+#: ../src/DisplayPlug.vala:236
+msgid "Screen Rotation"
+msgstr ""
+
+#: ../src/DisplayPlug.vala:237
+msgid "Primary display"
+msgstr ""
+
+#: ../src/DisplayPlug.vala:238
+msgid "Screen mirroring"
 msgstr ""
