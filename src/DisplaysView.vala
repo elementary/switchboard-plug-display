@@ -154,8 +154,8 @@ public class Display.DisplaysView : Gtk.Overlay {
     private void calculate_ratio () {
         int added_width = 0;
         int added_height = 0;
-        int max_width = 0;
-        int max_height = 0;
+        int max_width = int.MIN;
+        int max_height = int.MIN;
         int min_x = int.MAX;
         int min_y = int.MAX;
 
