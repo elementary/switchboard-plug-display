@@ -44,10 +44,19 @@ public class Displays.NightLightView : Granite.SimpleSettingsPage {
         schedule_button.append_text (_("Sunset to Sunrise"));
         schedule_button.append_text (_("Manual"));
 
+        var from_label = new Gtk.Label (_("From:"));
+        var from_time = new Granite.Widgets.TimePicker ();
+        var to_label = new Gtk.Label (_("To:"));
+        var to_time = new Granite.Widgets.TimePicker ();
+
         content_area.attach (temp_label, 0, 0, 1, 1);
-        content_area.attach (temp_scale, 1, 0, 1, 1);
+        content_area.attach (temp_scale, 1, 0, 4, 1);
         content_area.attach (schedule_label, 0, 1, 1, 1);
-        content_area.attach (schedule_button, 1, 1, 1, 1);
+        content_area.attach (schedule_button, 1, 1, 4, 1);
+        content_area.attach (from_label, 1, 2, 1, 1);
+        content_area.attach (from_time, 2, 2, 1, 1);
+        content_area.attach (to_label, 3, 2, 1, 1);
+        content_area.attach (to_time, 4, 2, 1, 1);
 
         var settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.color");
         settings.bind ("night-light-enabled", status_switch, "active", GLib.SettingsBindFlags.DEFAULT);
