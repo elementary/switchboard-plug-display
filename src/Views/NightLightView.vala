@@ -72,8 +72,16 @@ public class Displays.NightLightView : Granite.SimpleSettingsPage {
         schedule_button.mode_changed.connect (() => {
             if (schedule_button.selected == 0) {
                 settings.set_boolean ("night-light-schedule-automatic", true);
+                from_label.sensitive = false;
+                from_time.sensitive = false;
+                to_label.sensitive = false;
+                to_time.sensitive = false;
             } else {
                 settings.set_boolean ("night-light-schedule-automatic", false);
+                from_label.sensitive = true;
+                from_time.sensitive = true;
+                to_label.sensitive = true;
+                to_time.sensitive = true;
             }
         });
     }
