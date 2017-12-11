@@ -16,7 +16,7 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     ${CMAKE_CURRENT_BINARY_DIR}/config.vala
     DisplayPlug.vala
     SettingsDaemon.vala
-    DisplaysView.vala
+    DisplaysOverlay.vala
     DisplayWidget.vala
     DisplayWindow.vala
     MirrorDisplay.vala
