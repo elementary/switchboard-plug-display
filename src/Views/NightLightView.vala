@@ -84,5 +84,21 @@ public class Displays.NightLightView : Granite.SimpleSettingsPage {
                 to_time.sensitive = true;
             }
         });
+
+        from_time.time_changed.connect (() => {
+            settings.set_double ("night-light-schedule-from", date_time_double (from_time.time));
+        });
+
+        to_time.time_changed.connect (() => {
+            settings.set_double ("night-light-schedule-to", date_time_double (to_time.time));
+        });
+    }
+
+    private double date_time_double (DateTime date_time) {
+        double time_double = 0;
+        time_double += date_time.get_hour ();
+        time_double += date_time.get_minute () / 100;
+
+        return time_double;
     }
 }
