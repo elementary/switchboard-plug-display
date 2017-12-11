@@ -19,7 +19,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Display.DisplaysView : Gtk.Overlay {
+public class Display.DisplaysOverlay : Gtk.Overlay {
     private const int SNAP_LIMIT = int.MAX - 1;
 
     public signal void configuration_changed (bool changed);
@@ -47,7 +47,7 @@ public class Display.DisplaysView : Gtk.Overlay {
         }
     """;
 
-    public DisplaysView () {
+    public DisplaysOverlay () {
         var grid = new Gtk.Grid ();
         grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
         grid.expand = true;
