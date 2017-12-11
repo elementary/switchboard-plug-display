@@ -45,11 +45,11 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override void shown () {
-        displays_view.show_windows ();
+        displays_view.displays_overlay.show_windows ();
     }
 
     public override void hidden () {
-        displays_view.hide_windows ();
+        displays_view.displays_overlay.hide_windows ();
     }
 
     public override void search_callback (string location) {

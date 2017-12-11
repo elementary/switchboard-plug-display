@@ -21,7 +21,8 @@
  */
 
 public class Display.DisplaysView : Gtk.Grid {
-    private DisplaysOverlay displays_overlay;
+    public DisplaysOverlay displays_overlay;
+
     private Gtk.Stack stack;
     private MirrorDisplay mirror_display;
 
