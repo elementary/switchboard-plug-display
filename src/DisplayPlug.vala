@@ -23,7 +23,7 @@
 public class Display.Plug : Switchboard.Plug {
     public static Plug plug;
     private Gtk.Grid main_grid;
-    private DisplaysView displays_view;
+    private DisplaysOverlay displays_overlay;
     private Gtk.Stack stack;
     private MirrorDisplay mirror_display;
 
@@ -44,7 +44,7 @@ public class Display.Plug : Switchboard.Plug {
             main_grid = new Gtk.Grid ();
             main_grid.orientation = Gtk.Orientation.VERTICAL;
             main_grid.column_spacing = 6;
-            displays_view = new DisplaysView ();
+            displays_overlay = new DisplaysOverlay ();
             var action_bar = new Gtk.ActionBar ();
             action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
             
@@ -104,34 +104,34 @@ public class Display.Plug : Switchboard.Plug {
 
             stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
-            stack.add (displays_view);
+            stack.add (displays_overlay);
             stack.add (mirror_display);
 
             main_grid.add (stack);
             main_grid.add (action_bar);
             main_grid.show_all ();
 
-            displays_view.configuration_changed.connect ((changed) => {
+            displays_overlay.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;
             });
 
-            mirror_grid.sensitive = displays_view.active_displays > 1;
-            displays_view.notify["active-displays"].connect (() => {
-                mirror_grid.sensitive = displays_view.active_displays > 1;
+            mirror_grid.sensitive = displays_overlay.active_displays > 1;
+            displays_overlay.notify["active-displays"].connect (() => {
+                mirror_grid.sensitive = displays_overlay.active_displays > 1;
             });
 
             mirror_display.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;
             });
 
-            detect_button.clicked.connect (() => displays_view.rescan_displays ());
+            detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
             apply_button.clicked.connect (() => {
                 var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
                 var rr_config = new Gnome.RRConfig.current (rr_screen);
                 if (rr_config.get_clone ()) {
                     mirror_display.apply_configuration ();
                 } else {
-                    displays_view.apply_configuration ();
+                    displays_overlay.apply_configuration ();
                 }
 
                 apply_button.sensitive = false;
@@ -202,7 +202,7 @@ public class Display.Plug : Switchboard.Plug {
                         }
                     }
 
-                    stack.set_visible_child (displays_view);
+                    stack.set_visible_child (displays_overlay);
                 }
 
                 rr_config2.sanitize ();
@@ -218,11 +218,11 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override void shown () {
-        displays_view.show_windows ();
+        displays_overlay.show_windows ();
     }
 
     public override void hidden () {
-        displays_view.hide_windows ();
+        displays_overlay.hide_windows ();
     }
 
     public override void search_callback (string location) {
