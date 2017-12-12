@@ -17,7 +17,7 @@
 * Boston, MA 02110-1301 USA
 */
 
-public class Displays.NightLightView : Granite.SimpleSettingsPage {
+public class Display.NightLightView : Granite.SimpleSettingsPage {
     public NightLightView () {
         Object (
             activatable: true,
@@ -28,14 +28,7 @@ public class Displays.NightLightView : Granite.SimpleSettingsPage {
     }
 
     construct {
-        var temp_label = new Gtk.Label (_("Color temperature:"));
-        temp_label.halign = Gtk.Align.END;
-
-        var temp_scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 3500, 6000, 10);
-        temp_scale.draw_value = false;
-        temp_scale.inverted = true;
-        temp_scale.add_mark (3500, Gtk.PositionType.BOTTOM, "More Warm");
-        temp_scale.add_mark (6000, Gtk.PositionType.BOTTOM, "Less Warm");
+        var settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.color");
 
         var schedule_label = new Gtk.Label (_("Schedule:"));
         schedule_label.halign = Gtk.Align.END;
@@ -45,22 +38,45 @@ public class Displays.NightLightView : Granite.SimpleSettingsPage {
         schedule_button.append_text (_("Manual"));
 
         var from_label = new Gtk.Label (_("From:"));
+
         var from_time = new Granite.Widgets.TimePicker ();
+        from_time.time = double_date_time (settings.get_double ("night-light-schedule-from"));
+
         var to_label = new Gtk.Label (_("To:"));
+
         var to_time = new Granite.Widgets.TimePicker ();
+        to_time.time = double_date_time (settings.get_double ("night-light-schedule-to"));
 
-        content_area.attach (temp_label, 0, 0, 1, 1);
-        content_area.attach (temp_scale, 1, 0, 4, 1);
-        content_area.attach (schedule_label, 0, 1, 1, 1);
-        content_area.attach (schedule_button, 1, 1, 4, 1);
-        content_area.attach (from_label, 1, 2, 1, 1);
-        content_area.attach (from_time, 2, 2, 1, 1);
-        content_area.attach (to_label, 3, 2, 1, 1);
-        content_area.attach (to_time, 4, 2, 1, 1);
+        var temp_label = new Gtk.Label (_("Color temperature:"));
+        temp_label.halign = Gtk.Align.END;
+        temp_label.valign = Gtk.Align.START;
+        temp_label.margin_top = 24;
 
-        var settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.color");
+        var temp_scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 3500, 6000, 10);
+        temp_scale.draw_value = false;
+        temp_scale.has_origin = false;
+        temp_scale.inverted = true;
+        temp_scale.margin_top = 24;
+        temp_scale.add_mark (3500, Gtk.PositionType.BOTTOM, "More Warm");
+        temp_scale.add_mark (6000, Gtk.PositionType.BOTTOM, "Less Warm");
+        temp_scale.set_value (settings.get_uint ("night-light-temperature")); 
+
+        content_area.halign = Gtk.Align.CENTER;
+        content_area.margin_top = 24;
+        content_area.attach (schedule_label, 0, 0, 1, 1);
+        content_area.attach (schedule_button, 1, 0, 4, 1);
+        content_area.attach (from_label, 1, 1, 1, 1);
+        content_area.attach (from_time, 2, 1, 1, 1);
+        content_area.attach (to_label, 3, 1, 1, 1);
+        content_area.attach (to_time, 4, 1, 1, 1);
+        content_area.attach (temp_label, 0, 2, 1, 1);
+        content_area.attach (temp_scale, 1, 2, 4, 1);
+
+        margin = 12;
+        margin_top = 0;
+        show_all ();
+
         settings.bind ("night-light-enabled", status_switch, "active", GLib.SettingsBindFlags.DEFAULT);
-        settings.bind ("night-light-temperature", temp_scale, "value", GLib.SettingsBindFlags.DEFAULT);
 
         var automatic_schedule = settings.get_boolean ("night-light-schedule-automatic");
         if (automatic_schedule) {
@@ -93,6 +109,10 @@ public class Displays.NightLightView : Granite.SimpleSettingsPage {
             }
         });
 
+        temp_scale.value_changed.connect (() => {
+            settings.set_uint ("night-light-temperature", (uint) temp_scale.get_value ());
+        });
+
         from_time.time_changed.connect (() => {
             settings.set_double ("night-light-schedule-from", date_time_double (from_time.time));
         });
@@ -105,8 +125,21 @@ public class Displays.NightLightView : Granite.SimpleSettingsPage {
     private static double date_time_double (DateTime date_time) {
         double time_double = 0;
         time_double += date_time.get_hour ();
-        time_double += date_time.get_minute () / 100;
+        time_double += (double) date_time.get_minute () / 100;
 
         return time_double;
+    }
+
+    private static DateTime double_date_time (double dbl) {
+        var hours = (int) dbl;
+        var minutes = (int) (dbl - hours) * 100;
+
+        var date_time = new DateTime.local (1, 1, 1, hours, minutes, 0.0);
+
+        if (date_time == null) {
+            warning ("wtf why");
+        }
+
+        return date_time;
     }
 }
