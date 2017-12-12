@@ -23,6 +23,7 @@
 public class Display.Plug : Switchboard.Plug {
     public static Plug plug;
     private Gtk.Grid grid;
+    private Gtk.Stack? stack;
     private DisplaysView displays_view;
 
     public Plug () {
@@ -50,7 +51,7 @@ public class Display.Plug : Switchboard.Plug {
 
                     var nightlight_view = new NightLightView ();
 
-                    var stack = new Gtk.Stack ();
+                    stack = new Gtk.Stack ();
                     stack.add_titled (displays_view, "displays", _("Displays"));
                     stack.add_titled (nightlight_view, "nightlight", _("Night Light"));
 
@@ -62,6 +63,14 @@ public class Display.Plug : Switchboard.Plug {
 
                     grid.add (stack_switcher);
                     grid.add (stack);
+
+                    stack.notify["visible-child"].connect (() => {
+                        if (stack.visible_child == displays_view) {
+                            displays_view.displays_overlay.show_windows ();
+                        } else {
+                            displays_view.displays_overlay.hide_windows ();
+                        }
+                    });
                 }
             } else {
                 grid.add (displays_view);
@@ -74,7 +83,13 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override void shown () {
-        displays_view.displays_overlay.show_windows ();
+        if (stack != null) {
+            if (stack.visible_child == displays_view) {
+                displays_view.displays_overlay.show_windows ();
+            }
+        } else {
+            displays_view.displays_overlay.show_windows ();
+        }
     }
 
     public override void hidden () {
