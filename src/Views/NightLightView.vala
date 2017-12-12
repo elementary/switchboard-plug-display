@@ -19,7 +19,7 @@
 
 public class Display.NightLightView : Gtk.Grid {
     private const string SCALE_CSS = """
-        scale trough {
+        scale.night-light trough {
             background-image:
                 linear-gradient(
                     to right,
@@ -35,7 +35,7 @@ public class Display.NightLightView : Gtk.Grid {
             min-width: 5px;
         }
 
-        scale trough:disabled {
+        scale.night-light trough:disabled {
             background-image:
                 linear-gradient(
                     to bottom,
@@ -101,6 +101,7 @@ public class Display.NightLightView : Gtk.Grid {
         temp_scale.margin_top = 24;
         temp_scale.add_mark (3500, Gtk.PositionType.BOTTOM, "More Warm");
         temp_scale.add_mark (6000, Gtk.PositionType.BOTTOM, "Less Warm");
+        temp_scale.get_style_context ().add_class ("night-light");
         temp_scale.set_value (settings.get_uint ("night-light-temperature"));
 
         var content_grid = new Gtk.Grid ();
