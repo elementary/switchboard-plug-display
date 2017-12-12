@@ -40,7 +40,6 @@ public class Display.NightLightView : Granite.SimpleSettingsPage {
         Object (
             activatable: true,
             description: _("Night Light makes the colors of your display warmer. This may help prevent eye strain and sleeplessness."),
-            icon_name: "night-light",
             title: _("Night Light")
         );
     }
