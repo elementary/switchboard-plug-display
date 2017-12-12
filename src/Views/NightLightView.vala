@@ -18,6 +18,14 @@
 */
 
 public class Display.NightLightView : Gtk.Grid {
+    private Gtk.Scale temp_scale;
+
+    public int temperature {
+        set {
+            temp_scale.set_value (value);
+        }
+    }
+
     construct {
         var settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.color");
 
@@ -61,7 +69,7 @@ public class Display.NightLightView : Gtk.Grid {
         temp_label.margin_top = 24;
         temp_label.xalign = 1;
 
-        var temp_scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 3500, 6000, 10);
+        temp_scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 3500, 6000, 10);
         temp_scale.draw_value = false;
         temp_scale.has_origin = false;
         temp_scale.inverted = true;
@@ -100,6 +108,7 @@ public class Display.NightLightView : Gtk.Grid {
         size_group.add_widget (temp_label);
 
         settings.bind ("night-light-enabled", status_switch, "active", GLib.SettingsBindFlags.DEFAULT);
+        settings.bind ("night-light-temperature", this, "temperature", GLib.SettingsBindFlags.GET);
         status_switch.bind_property ("active", content_grid, "sensitive", GLib.BindingFlags.DEFAULT);
 
         var automatic_schedule = settings.get_boolean ("night-light-schedule-automatic");
