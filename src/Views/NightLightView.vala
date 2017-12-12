@@ -76,6 +76,8 @@ public class Display.NightLightView : Granite.SimpleSettingsPage {
         margin_top = 0;
         show_all ();
 
+        status_switch.bind_property ("active", content_area, "sensitive", GLib.BindingFlags.DEFAULT);
+
         settings.bind ("night-light-enabled", status_switch, "active", GLib.SettingsBindFlags.DEFAULT);
 
         var automatic_schedule = settings.get_boolean ("night-light-schedule-automatic");
