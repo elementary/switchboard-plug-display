@@ -22,7 +22,10 @@
 
 public class Display.Plug : Switchboard.Plug {
     public static Plug plug;
-    private DisplaysView displays_view;
+    //private DisplaysView displays_view;
+    private Granite.SettingsSidebar sidebar;
+    private Gtk.Stack stack;
+    private Gtk.Paned paned;
 
     public Plug () {
         var settings = new Gee.TreeMap<string, string?> (null, null);
@@ -37,19 +40,35 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override Gtk.Widget get_widget () {
-        if (displays_view == null) {
-            displays_view = new DisplaysView ();
+        if (paned == null) {
+            paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+            stack = new Gtk.Stack ();
+            sidebar = new Granite.SettingsSidebar (stack);
+            paned.pack1 (sidebar, false, false);
+            paned.pack2 (stack, true, false);
+
+            var layout = new Display.Views.Layout ();
+            stack.add (layout);
+
+            var night_shift = new Display.Views.NightShift ();
+            stack.add (night_shift);
+
+            var display = new Display.Views.Display (true);
+            stack.add (display);
+
+            unowned MutterDisplayConfig mdc = MutterDisplayConfig.get_instance ();
         }
 
-        return displays_view;
+        return paned;
     }
 
     public override void shown () {
-        displays_view.displays_overlay.show_windows ();
+        paned.show_all ();
+        //displays_view.displays_overlay.show_windows ();
     }
 
     public override void hidden () {
-        displays_view.displays_overlay.hide_windows ();
+        //displays_view.displays_overlay.hide_windows ();
     }
 
     public override void search_callback (string location) {
@@ -64,19 +83,6 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s".printf (display_name, _("Primary display")), "");
         search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "");
         return search_results;
-    }
-
-    private static bool has_touchscreen () {
-        var display = Gdk.Display.get_default ();
-        if (display != null) {
-            var manager = display.get_device_manager ();
-            foreach (var device in manager.list_devices (Gdk.DeviceType.SLAVE)) {
-                if (device.get_source () == Gdk.InputSource.TOUCHSCREEN) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }
 
