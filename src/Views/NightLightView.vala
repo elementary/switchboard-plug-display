@@ -18,6 +18,24 @@
 */
 
 public class Display.NightLightView : Granite.SimpleSettingsPage {
+    private const string SCALE_CSS = """
+        scale trough {
+            background-image:
+                linear-gradient(
+                    to right,
+                #3689e6,
+                    #f37329
+                );
+             border: none;
+            box-shadow:
+                inset 0 0 0 1px alpha (#000, 0.3),
+                inset 0 0 0 2px alpha (#000, 0.03),
+                0 1px 0 0 alpha (@bg_highlight_color, 0.3);
+            min-height: 5px;
+            min-width: 5px;
+        }
+    """;
+
     public NightLightView () {
         Object (
             activatable: true,
@@ -71,6 +89,15 @@ public class Display.NightLightView : Granite.SimpleSettingsPage {
         content_area.attach (to_time, 4, 1, 1, 1);
         content_area.attach (temp_label, 0, 2, 1, 1);
         content_area.attach (temp_scale, 1, 2, 4, 1);
+
+        var provider = new Gtk.CssProvider ();
+
+        try {
+            provider.load_from_data (SCALE_CSS, SCALE_CSS.length);
+            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        } catch (Error e) {
+            critical (e.message);
+        }
 
         margin = 12;
         margin_top = 0;

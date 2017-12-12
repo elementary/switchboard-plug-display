@@ -41,22 +41,32 @@ public class Display.Plug : Switchboard.Plug {
         if (grid == null) {
             displays_view = new DisplaysView ();
 
-            var nightlight_view = new NightLightView ();
-
-            var stack = new Gtk.Stack ();
-            stack.add_titled (displays_view, "displays", _("Displays"));
-            stack.add_titled (nightlight_view, "nightlight", _("Night Light"));
-
-            var stack_switcher = new Gtk.StackSwitcher ();
-            stack_switcher.halign = Gtk.Align.CENTER;
-            stack_switcher.homogeneous = true;
-            stack_switcher.margin = 12;
-            stack_switcher.stack = stack;
-
             grid = new Gtk.Grid ();
             grid.orientation = Gtk.Orientation.VERTICAL;
-            grid.add (stack_switcher);
-            grid.add (stack);
+
+            var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", false);
+            if (interface_settings_schema != null) {
+                if (interface_settings_schema.has_key ("night-light-enabled")) {
+
+                    var nightlight_view = new NightLightView ();
+
+                    var stack = new Gtk.Stack ();
+                    stack.add_titled (displays_view, "displays", _("Displays"));
+                    stack.add_titled (nightlight_view, "nightlight", _("Night Light"));
+
+                    var stack_switcher = new Gtk.StackSwitcher ();
+                    stack_switcher.halign = Gtk.Align.CENTER;
+                    stack_switcher.homogeneous = true;
+                    stack_switcher.margin = 12;
+                    stack_switcher.stack = stack;
+
+                    grid.add (stack_switcher);
+                    grid.add (stack);
+                }
+            } else {
+                grid.add (displays_view);
+            }
+
             grid.show_all ();
         }
 
