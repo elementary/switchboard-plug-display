@@ -102,7 +102,7 @@ public class Displays.NightLightView : Granite.SimpleSettingsPage {
         });
     }
 
-    private double date_time_double (DateTime date_time) {
+    private static double date_time_double (DateTime date_time) {
         double time_double = 0;
         time_double += date_time.get_hour ();
         time_double += date_time.get_minute () / 100;
