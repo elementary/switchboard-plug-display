@@ -141,8 +141,9 @@ public class Display.DisplaysView : Gtk.Grid {
                         }
                     }
 
-                    if (highest_mode == null)
+                    if (highest_mode == null) {
                         return;
+                    }
 
                     foreach (unowned Gnome.RROutputInfo output in rr_config2.get_outputs ()) {
                         if (output.is_connected ()) {
