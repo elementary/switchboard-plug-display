@@ -18,39 +18,6 @@
 */
 
 public class Display.NightLightView : Gtk.Grid {
-    private const string SCALE_CSS = """
-        scale.night-light trough {
-            background-image:
-                linear-gradient(
-                    to right,
-                #3689e6,
-                    #f37329
-                );
-             border: none;
-            box-shadow:
-                inset 0 0 0 1px alpha (#000, 0.3),
-                inset 0 0 0 2px alpha (#000, 0.03),
-                0 1px 0 0 alpha (@bg_highlight_color, 0.3);
-            min-height: 5px;
-            min-width: 5px;
-        }
-
-        scale.night-light trough:disabled {
-            background-image:
-                linear-gradient(
-                    to bottom,
-                    alpha (
-                        #000,
-                        0.15
-                    ),
-                    alpha (
-                        #000,
-                        0.07
-                    )
-                );
-        }
-    """;
-
     construct {
         var settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.color");
 
@@ -101,7 +68,7 @@ public class Display.NightLightView : Gtk.Grid {
         temp_scale.margin_top = 24;
         temp_scale.add_mark (3500, Gtk.PositionType.BOTTOM, "More Warm");
         temp_scale.add_mark (6000, Gtk.PositionType.BOTTOM, "Less Warm");
-        temp_scale.get_style_context ().add_class ("night-light");
+        temp_scale.get_style_context ().add_class ("temperature");
         temp_scale.set_value (settings.get_uint ("night-light-temperature"));
 
         var content_grid = new Gtk.Grid ();
@@ -131,15 +98,6 @@ public class Display.NightLightView : Gtk.Grid {
         size_group.add_widget (status_label);
         size_group.add_widget (schedule_label);
         size_group.add_widget (temp_label);
-
-        var provider = new Gtk.CssProvider ();
-
-        try {
-            provider.load_from_data (SCALE_CSS, SCALE_CSS.length);
-            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-        } catch (Error e) {
-            critical (e.message);
-        }
 
         settings.bind ("night-light-enabled", status_switch, "active", GLib.SettingsBindFlags.DEFAULT);
         status_switch.bind_property ("active", content_grid, "sensitive", GLib.BindingFlags.DEFAULT);
