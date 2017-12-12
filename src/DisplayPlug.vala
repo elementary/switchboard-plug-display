@@ -29,6 +29,7 @@ public class Display.Plug : Switchboard.Plug {
     public Plug () {
         var settings = new Gee.TreeMap<string, string?> (null, null);
         settings.set ("display", null);
+        settings.set ("display/night-light", "night-light");
         Object (category: Category.HARDWARE,
                 code_name: Build.PLUGCODENAME,
                 display_name: _("Displays"),
@@ -53,7 +54,7 @@ public class Display.Plug : Switchboard.Plug {
 
                     stack = new Gtk.Stack ();
                     stack.add_titled (displays_view, "displays", _("Displays"));
-                    stack.add_titled (nightlight_view, "nightlight", _("Night Light"));
+                    stack.add_titled (nightlight_view, "night-light", _("Night Light"));
 
                     var stack_switcher = new Gtk.StackSwitcher ();
                     stack_switcher.halign = Gtk.Align.CENTER;
@@ -98,8 +99,8 @@ public class Display.Plug : Switchboard.Plug {
 
     public override void search_callback (string location) {
         if (stack != null) {
-            if (location == "nightlight") {
-                stack.visible_child_name = "nightlight";
+            if (location == "night-light") {
+                stack.visible_child_name = "night-light";
             } else {
                 stack.visible_child_name = "displays";
             }
@@ -114,7 +115,7 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "");
         search_results.set ("%s → %s".printf (display_name, _("Primary display")), "");
         search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "");
-        search_results.set ("%s → %s".printf (display_name, _("Night Light")), "nightlight");
+        search_results.set ("%s → %s".printf (display_name, _("Night Light")), "night-light");
         return search_results;
     }
 
