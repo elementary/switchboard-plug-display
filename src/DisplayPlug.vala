@@ -97,7 +97,14 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override void search_callback (string location) {
-        
+        if (stack != null) {
+            if (location == "nightlight") {
+                stack.visible_child_name = "nightlight";
+            } else {
+                stack.visible_child_name = "displays";
+            }
+            stack.show_all ();
+        }
     }
 
     // 'search' returns results like ("Keyboard → Behavior → Duration", "keyboard<sep>behavior")
@@ -107,6 +114,7 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "");
         search_results.set ("%s → %s".printf (display_name, _("Primary display")), "");
         search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "");
+        search_results.set ("%s → %s".printf (display_name, _("Night Light")), "nightlight");
         return search_results;
     }
 
