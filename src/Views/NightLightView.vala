@@ -17,7 +17,7 @@
 * Boston, MA 02110-1301 USA
 */
 
-public class Display.NightLightView : Granite.SimpleSettingsPage {
+public class Display.NightLightView : Gtk.Grid {
     private const string SCALE_CSS = """
         scale trough {
             background-image:
@@ -34,21 +34,45 @@ public class Display.NightLightView : Granite.SimpleSettingsPage {
             min-height: 5px;
             min-width: 5px;
         }
-    """;
 
-    public NightLightView () {
-        Object (
-            activatable: true,
-            description: _("Night Light makes the colors of your display warmer. This may help prevent eye strain and sleeplessness."),
-            title: _("Night Light")
-        );
-    }
+        scale trough:disabled {
+            background-image:
+                linear-gradient(
+                    to bottom,
+                    alpha (
+                        #000,
+                        0.15
+                    ),
+                    alpha (
+                        #000,
+                        0.07
+                    )
+                );
+        }
+    """;
 
     construct {
         var settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.color");
 
+        var status_label = new Gtk.Label (_("Night Light:"));
+        status_label.halign = Gtk.Align.END;
+        status_label.xalign = 1;
+
+        var status_switch = new Gtk.Switch ();
+        status_switch.halign = Gtk.Align.START;
+        status_switch.hexpand = true;
+
+        var description_label = new Gtk.Label (_(
+            "Night Light makes the colors of your display warmer. This may help prevent eye strain and sleeplessness."
+        ));
+        description_label.max_width_chars = 60;
+        description_label.wrap = true;
+        description_label.xalign = 0;
+        description_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+
         var schedule_label = new Gtk.Label (_("Schedule:"));
         schedule_label.halign = Gtk.Align.END;
+        schedule_label.xalign = 1;
 
         var schedule_button = new Granite.Widgets.ModeButton ();
         schedule_button.append_text (_("Sunset to Sunrise"));
@@ -68,6 +92,7 @@ public class Display.NightLightView : Granite.SimpleSettingsPage {
         temp_label.halign = Gtk.Align.END;
         temp_label.valign = Gtk.Align.START;
         temp_label.margin_top = 24;
+        temp_label.xalign = 1;
 
         var temp_scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 3500, 6000, 10);
         temp_scale.draw_value = false;
@@ -76,18 +101,35 @@ public class Display.NightLightView : Granite.SimpleSettingsPage {
         temp_scale.margin_top = 24;
         temp_scale.add_mark (3500, Gtk.PositionType.BOTTOM, "More Warm");
         temp_scale.add_mark (6000, Gtk.PositionType.BOTTOM, "Less Warm");
-        temp_scale.set_value (settings.get_uint ("night-light-temperature")); 
+        temp_scale.set_value (settings.get_uint ("night-light-temperature"));
 
-        content_area.halign = Gtk.Align.CENTER;
-        content_area.margin_top = 24;
-        content_area.attach (schedule_label, 0, 0, 1, 1);
-        content_area.attach (schedule_button, 1, 0, 4, 1);
-        content_area.attach (from_label, 1, 1, 1, 1);
-        content_area.attach (from_time, 2, 1, 1, 1);
-        content_area.attach (to_label, 3, 1, 1, 1);
-        content_area.attach (to_time, 4, 1, 1, 1);
-        content_area.attach (temp_label, 0, 2, 1, 1);
-        content_area.attach (temp_scale, 1, 2, 4, 1);
+        var content_grid = new Gtk.Grid ();
+        content_grid.column_spacing = 12;
+        content_grid.row_spacing = 12;
+        content_grid.margin_top = 24;
+        content_grid.attach (schedule_label, 0, 0, 1, 1);
+        content_grid.attach (schedule_button, 1, 0, 4, 1);
+        content_grid.attach (from_label, 1, 1, 1, 1);
+        content_grid.attach (from_time, 2, 1, 1, 1);
+        content_grid.attach (to_label, 3, 1, 1, 1);
+        content_grid.attach (to_time, 4, 1, 1, 1);
+        content_grid.attach (temp_label, 0, 2, 1, 1);
+        content_grid.attach (temp_scale, 1, 2, 4, 1);
+
+        halign = Gtk.Align.CENTER;
+        column_spacing = 12;
+        row_spacing = 12;
+        margin = 12;
+        attach (status_label, 0, 0, 1, 1);
+        attach (status_switch, 1, 0, 1, 1);
+        attach (description_label, 1, 1, 1, 1);
+        attach (content_grid, 0, 2, 2, 1);
+        show_all ();
+
+        var size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
+        size_group.add_widget (status_label);
+        size_group.add_widget (schedule_label);
+        size_group.add_widget (temp_label);
 
         var provider = new Gtk.CssProvider ();
 
@@ -98,13 +140,8 @@ public class Display.NightLightView : Granite.SimpleSettingsPage {
             critical (e.message);
         }
 
-        margin = 12;
-        margin_top = 0;
-        show_all ();
-
-        status_switch.bind_property ("active", content_area, "sensitive", GLib.BindingFlags.DEFAULT);
-
         settings.bind ("night-light-enabled", status_switch, "active", GLib.SettingsBindFlags.DEFAULT);
+        status_switch.bind_property ("active", content_grid, "sensitive", GLib.BindingFlags.DEFAULT);
 
         var automatic_schedule = settings.get_boolean ("night-light-schedule-automatic");
         if (automatic_schedule) {
