@@ -47,32 +47,29 @@ public class Display.Plug : Switchboard.Plug {
             grid.orientation = Gtk.Orientation.VERTICAL;
 
             var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", false);
-            if (interface_settings_schema != null) {
-                if (interface_settings_schema.has_key ("night-light-enabled")) {
+            if (interface_settings_schema != null) && interface_settings_schema.has_key ("night-light-enabled")) {
+                var nightlight_view = new NightLightView ();
 
-                    var nightlight_view = new NightLightView ();
+                stack = new Gtk.Stack ();
+                stack.add_titled (displays_view, "displays", _("Displays"));
+                stack.add_titled (nightlight_view, "night-light", _("Night Light"));
 
-                    stack = new Gtk.Stack ();
-                    stack.add_titled (displays_view, "displays", _("Displays"));
-                    stack.add_titled (nightlight_view, "night-light", _("Night Light"));
+                var stack_switcher = new Gtk.StackSwitcher ();
+                stack_switcher.halign = Gtk.Align.CENTER;
+                stack_switcher.homogeneous = true;
+                stack_switcher.margin = 12;
+                stack_switcher.stack = stack;
 
-                    var stack_switcher = new Gtk.StackSwitcher ();
-                    stack_switcher.halign = Gtk.Align.CENTER;
-                    stack_switcher.homogeneous = true;
-                    stack_switcher.margin = 12;
-                    stack_switcher.stack = stack;
+                grid.add (stack_switcher);
+                grid.add (stack);
 
-                    grid.add (stack_switcher);
-                    grid.add (stack);
-
-                    stack.notify["visible-child"].connect (() => {
-                        if (stack.visible_child == displays_view) {
-                            displays_view.displays_overlay.show_windows ();
-                        } else {
-                            displays_view.displays_overlay.hide_windows ();
-                        }
-                    });
-                }
+                stack.notify["visible-child"].connect (() => {
+                    if (stack.visible_child == displays_view) {
+                        displays_view.displays_overlay.show_windows ();
+                    } else {
+                        displays_view.displays_overlay.hide_windows ();
+                    }
+                });
             } else {
                 grid.add (displays_view);
             }
