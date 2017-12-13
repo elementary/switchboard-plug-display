@@ -90,7 +90,7 @@ public class Display.DisplaysView : Gtk.Grid {
             action_bar.pack_end (button_grid);
 
             orientation = Gtk.Orientation.VERTICAL;
-            column_spacing = 6;
+            add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
             add (stack);
             add (action_bar);
             show_all ();
