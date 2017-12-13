@@ -47,7 +47,7 @@ public class Display.Plug : Switchboard.Plug {
             grid.orientation = Gtk.Orientation.VERTICAL;
 
             var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", false);
-            if (interface_settings_schema != null) && interface_settings_schema.has_key ("night-light-enabled")) {
+            if (interface_settings_schema != null && interface_settings_schema.has_key ("night-light-enabled")) {
                 var nightlight_view = new NightLightView ();
 
                 stack = new Gtk.Stack ();
@@ -81,10 +81,8 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override void shown () {
-        if (stack != null) {
-            if (stack.visible_child == displays_view) {
+        if (stack != null && stack.visible_child == displays_view) {
                 displays_view.displays_overlay.show_windows ();
-            }
         } else {
             displays_view.displays_overlay.show_windows ();
         }
