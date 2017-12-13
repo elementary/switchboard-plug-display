@@ -37,9 +37,9 @@ public class Display.NightLightView : Gtk.Grid {
         status_switch.halign = Gtk.Align.START;
         status_switch.hexpand = true;
 
-        var description_label = new Gtk.Label (_(
-            "Night Light makes the colors of your display warmer. This may help prevent eye strain and sleeplessness."
-        ));
+        var description_label = new Gtk.Label (
+            _("Night Light makes the colors of your display warmer. This may help prevent eye strain and sleeplessness.")
+        );
         description_label.max_width_chars = 60;
         description_label.wrap = true;
         description_label.xalign = 0;
@@ -74,8 +74,8 @@ public class Display.NightLightView : Gtk.Grid {
         temp_scale.has_origin = false;
         temp_scale.inverted = true;
         temp_scale.margin_top = 24;
-        temp_scale.add_mark (3500, Gtk.PositionType.BOTTOM, "More Warm");
-        temp_scale.add_mark (6000, Gtk.PositionType.BOTTOM, "Less Warm");
+        temp_scale.add_mark (3500, Gtk.PositionType.BOTTOM, _("More Warm"));
+        temp_scale.add_mark (6000, Gtk.PositionType.BOTTOM, _("Less Warm"));
         temp_scale.get_style_context ().add_class ("warmth");
         temp_scale.set_value (settings.get_uint ("night-light-temperature"));
 
@@ -168,10 +168,6 @@ public class Display.NightLightView : Gtk.Grid {
         var minutes = (int) (dbl - hours) * 100;
 
         var date_time = new DateTime.local (1, 1, 1, hours, minutes, 0.0);
-
-        if (date_time == null) {
-            warning ("wtf why");
-        }
 
         return date_time;
     }

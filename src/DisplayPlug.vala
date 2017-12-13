@@ -99,6 +99,7 @@ public class Display.Plug : Switchboard.Plug {
             } else {
                 stack.visible_child_name = "displays";
             }
+
             stack.show_all ();
         }
     }
