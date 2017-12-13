@@ -75,7 +75,7 @@ public class Display.NightLightView : Gtk.Grid {
         temp_scale.inverted = true;
         temp_scale.margin_top = 24;
         temp_scale.add_mark (3500, Gtk.PositionType.BOTTOM, _("More Warm"));
-        temp_scale.add_mark (4000, Gtk.PositionType.BOTTOM, null);
+        temp_scale.add_mark (4500, Gtk.PositionType.BOTTOM, null);
         temp_scale.add_mark (6000, Gtk.PositionType.BOTTOM, _("Less Warm"));
         temp_scale.get_style_context ().add_class ("warmth");
         temp_scale.set_value (settings.get_uint ("night-light-temperature"));
