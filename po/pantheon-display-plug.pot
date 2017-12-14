@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-11 17:58-0700\n"
+"POT-Creation-Date: 2017-12-14 09:39-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,47 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:106
-msgid "Resolution:"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:77
-msgid "Configure display"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:99
-msgid "Use This Display:"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:116
-msgid "Rotation:"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:262
-msgid "None"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:266
-msgid "Clockwise"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:276
-msgid "Flipped"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:286
-msgid "Counterclockwise"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:341
-msgid "Is the primary display"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:344
-msgid "Set as primary display"
-msgstr ""
-
-#: ../src/DisplayPlug.vala:35
+#: ../src/DisplayPlug.vala:35 ../src/DisplayPlug.vala:54
 msgid "Displays"
 msgstr ""
 
@@ -65,34 +25,120 @@ msgstr ""
 msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:55
-msgid "Mirror Display:"
+#: ../src/DisplayPlug.vala:55 ../src/DisplayPlug.vala:114
+msgid "Night Light"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:73
-msgid "Rotation Lock:"
-msgstr ""
-
-#: ../src/DisplayPlug.vala:94
-msgid "Detect Displays"
-msgstr ""
-
-#: ../src/DisplayPlug.vala:95
-msgid "Apply"
-msgstr ""
-
-#: ../src/DisplayPlug.vala:235
+#: ../src/DisplayPlug.vala:110
 msgid "Screen Resolution"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:236
+#: ../src/DisplayPlug.vala:111
 msgid "Screen Rotation"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:237
+#: ../src/DisplayPlug.vala:112
 msgid "Primary display"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:238
+#: ../src/DisplayPlug.vala:113
 msgid "Screen mirroring"
+msgstr ""
+
+#: ../src/Views/DisplaysView.vala:38
+msgid "Mirror Display:"
+msgstr ""
+
+#: ../src/Views/DisplaysView.vala:48
+msgid "Detect Displays"
+msgstr ""
+
+#: ../src/Views/DisplaysView.vala:50
+msgid "Apply"
+msgstr ""
+
+#: ../src/Views/DisplaysView.vala:72
+msgid "Rotation Lock:"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:32
+msgid "Night Light:"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:41
+msgid ""
+"Night Light makes the colors of your display warmer. This may help prevent "
+"eye strain and sleeplessness."
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:48
+msgid "Schedule:"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:53
+msgid "Sunset to Sunrise"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:54
+msgid "Manual"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:56
+msgid "From:"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:61
+msgid "To:"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:66
+msgid "Color temperature:"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:77
+msgid "More Warm"
+msgstr ""
+
+#: ../src/Views/NightLightView.vala:79
+msgid "Less Warm"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:77
+msgid "Configure display"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:99
+msgid "Use This Display:"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:106 ../src/Widgets/MirrorDisplay.vala:31
+msgid "Resolution:"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:116
+msgid "Rotation:"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:262
+msgid "None"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:266
+msgid "Clockwise"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:276
+msgid "Flipped"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:286
+msgid "Counterclockwise"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:341
+msgid "Is the primary display"
+msgstr ""
+
+#: ../src/Widgets/DisplayWidget.vala:344
+msgid "Set as primary display"
 msgstr ""
