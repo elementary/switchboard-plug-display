@@ -46,7 +46,7 @@ public class Display.Plug : Switchboard.Plug {
             grid = new Gtk.Grid ();
             grid.orientation = Gtk.Orientation.VERTICAL;
 
-            var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", false);
+            var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", true);
             if (interface_settings_schema != null && interface_settings_schema.has_key ("night-light-enabled")) {
                 var nightlight_view = new NightLightView ();
 
