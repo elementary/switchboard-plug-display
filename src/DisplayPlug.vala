@@ -114,19 +114,6 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s".printf (display_name, _("Night Light")), "night-light");
         return search_results;
     }
-
-    private static bool has_touchscreen () {
-        var display = Gdk.Display.get_default ();
-        if (display != null) {
-            var manager = display.get_device_manager ();
-            foreach (var device in manager.list_devices (Gdk.DeviceType.SLAVE)) {
-                if (device.get_source () == Gdk.InputSource.TOUCHSCREEN) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }
 
 public Switchboard.Plug get_plug (Module module) {
