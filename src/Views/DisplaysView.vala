@@ -63,7 +63,7 @@ public class Display.DisplaysView : Gtk.Grid {
             action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
             action_bar.pack_start (mirror_grid);
 
-            if (has_touchscreen ()) {
+            if (Utils.has_touchscreen ()) {
                 var schema_source = GLib.SettingsSchemaSource.get_default ();
                 var rotation_lock_schema = schema_source.lookup ("org.gnome.settings-daemon.peripherals.touchscreen", true);
                 if (rotation_lock_schema != null) {
@@ -197,18 +197,5 @@ public class Display.DisplaysView : Gtk.Grid {
                     critical (e.message);
                 }
             });
-    }
-
-    private static bool has_touchscreen () {
-        var display = Gdk.Display.get_default ();
-        if (display != null) {
-            var manager = display.get_device_manager ();
-            foreach (var device in manager.list_devices (Gdk.DeviceType.SLAVE)) {
-                if (device.get_source () == Gdk.InputSource.TOUCHSCREEN) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }
