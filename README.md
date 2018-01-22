@@ -1,6 +1,8 @@
 # Switchboard Display Plug
 [![l10n](https://l10n.elementary.io/widgets/switchboard/switchboard-plug-display/svg-badge.svg)](https://l10n.elementary.io/projects/switchboard/switchboard-plug-display)
 
+Extension for [Switchboard](https://github.com/elementary/switchboard) to manage multiple monitor setups.
+
 ## Building and Installation
 
 You'll need the following dependencies:
