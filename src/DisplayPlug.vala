@@ -82,9 +82,9 @@ public class Display.Plug : Switchboard.Plug {
 
     public override void shown () {
         if (stack != null && stack.visible_child == displays_view) {
-                displays_view.displays_overlay.show_windows ();
-        } else {
             displays_view.displays_overlay.show_windows ();
+        } else {
+            displays_view.displays_overlay.hide_windows ();
         }
     }
 
