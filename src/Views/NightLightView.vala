@@ -26,6 +26,15 @@ public class Display.NightLightView : Gtk.Grid {
         }
     }
 
+    public bool active {
+        set {
+            // Only on true to prevent it from re-enabling for a split second
+            if (value) {
+                clear_snooze ();
+            }
+        }
+    }
+
     construct {
         var settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.color");
 
@@ -141,19 +150,30 @@ public class Display.NightLightView : Gtk.Grid {
                 to_label.sensitive = true;
                 to_time.sensitive = true;
             }
+
+            clear_snooze ();
         });
 
         temp_scale.value_changed.connect (() => {
             settings.set_uint ("night-light-temperature", (uint) temp_scale.get_value ());
+            clear_snooze ();
         });
 
         from_time.time_changed.connect (() => {
             settings.set_double ("night-light-schedule-from", date_time_double (from_time.time));
+            clear_snooze ();
         });
 
         to_time.time_changed.connect (() => {
             settings.set_double ("night-light-schedule-to", date_time_double (to_time.time));
+            clear_snooze ();
         });
+
+        status_switch.bind_property ("active", this, "active", GLib.BindingFlags.DEFAULT);
+    }
+
+    private void clear_snooze () {
+        NightLightManager.get_instance ().snoozed = false;
     }
 
     private static double date_time_double (DateTime date_time) {
