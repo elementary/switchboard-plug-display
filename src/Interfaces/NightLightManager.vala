@@ -54,7 +54,7 @@ public class Display.NightLightManager : Object {
             snooze_cache = interface.disabled_until_tomorrow;
 
             (interface as DBusProxy).g_properties_changed.connect ((changed, invalid) => {
-                var snooze = changed.lookup_value("DisabledUntilTomorrow", new VariantType("b"));
+                var snooze = changed.lookup_value ("DisabledUntilTomorrow", new VariantType ("b"));
 
                 if (snooze != null) {
                     snooze_cache = snooze.get_boolean ();

@@ -26,15 +26,6 @@ public class Display.NightLightView : Gtk.Grid {
         }
     }
 
-    public bool active {
-        set {
-            // Only on true to prevent it from re-enabling for a split second
-            if (value) {
-                clear_snooze ();
-            }
-        }
-    }
-
     construct {
         var settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.color");
 
@@ -169,7 +160,11 @@ public class Display.NightLightView : Gtk.Grid {
             clear_snooze ();
         });
 
-        status_switch.bind_property ("active", this, "active", GLib.BindingFlags.DEFAULT);
+        status_switch.state_set.connect ((state) => {
+            if (state) {
+                clear_snooze ();
+            }
+        });
     }
 
     private void clear_snooze () {
