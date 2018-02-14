@@ -17,6 +17,7 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     DisplayPlug.vala
     SettingsDaemon.vala
     Utils.vala
+    Interfaces/NightLightManager.vala
     Views/DisplaysView.vala
     Views/NightLightView.vala
     Widgets/DisplaysOverlay.vala
@@ -35,7 +36,7 @@ OPTIONS
 )
 
 add_library (${CMAKE_PROJECT_NAME} MODULE ${VALA_C})
-target_link_libraries (${CMAKE_PROJECT_NAME} ${DEPS_LIBRARIES}) 
+target_link_libraries (${CMAKE_PROJECT_NAME} ${DEPS_LIBRARIES})
 
 # Installation
 install (TARGETS ${CMAKE_PROJECT_NAME} DESTINATION ${PKGDATADIR})
