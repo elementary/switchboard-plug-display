@@ -1,7 +1,7 @@
 find_package (PkgConfig)
 
 # Add all your dependencies to the list below
-pkg_check_modules (DEPS REQUIRED gthread-2.0 gtk+-3.0 switchboard-2.0 granite gnome-desktop-3.0)
+pkg_check_modules (DEPS REQUIRED gthread-2.0 gtk+-3.0 switchboard-2.0 granite)
 
 add_definitions (${DEPS_CFLAGS})
 link_directories (${DEPS_LIBRARY_DIRS})
@@ -17,7 +17,12 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     DisplayPlug.vala
     SettingsDaemon.vala
     Utils.vala
+    Interfaces/MutterDisplayConfig.vala
     Interfaces/NightLightManager.vala
+    Objects/Monitor.vala
+    Objects/MonitorManager.vala
+    Objects/MonitorMode.vala
+    Objects/VirtualMonitor.vala
     Views/DisplaysView.vala
     Views/NightLightView.vala
     Widgets/DisplaysOverlay.vala
@@ -28,8 +33,6 @@ PACKAGES
     gtk+-3.0
     switchboard-2.0
     granite
-    gnome-desktop-3.0
-    gdk-x11-3.0
 OPTIONS
     --thread
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
