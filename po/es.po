@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2018-02-05 00:11+0000\n"
+"PO-Revision-Date: 2018-04-25 00:03+0000\n"
 "Last-Translator: Wilsen Hernandez <wilsenh95@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/switchboard"
 "/switchboard-plug-display/es/>\n"
@@ -34,7 +34,7 @@ msgstr "Usar esta pantalla:"
 
 #: ../src/DisplayWidget.vala:111
 msgid "Rotation:"
-msgstr "Giro:"
+msgstr "Rotación:"
 
 #: ../src/DisplayWidget.vala:159
 msgid "None"
