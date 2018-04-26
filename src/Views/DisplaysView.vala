@@ -21,6 +21,8 @@
  */
 
 public class Display.DisplaysView : Gtk.Grid {
+    public signal void dpi_changed (bool changed);
+
     public DisplaysOverlay displays_overlay;
 
     private Gtk.Stack stack;
@@ -41,9 +43,21 @@ public class Display.DisplaysView : Gtk.Grid {
             var mirror_grid = new Gtk.Grid ();
             mirror_grid.margin = 12;
             mirror_grid.column_spacing = 6;
-            mirror_grid.orientation = Gtk.Orientation.HORIZONTAL;
             mirror_grid.add (mirror_label);
             mirror_grid.add (mirror_switch);
+
+            var dpi_label = new Gtk.Label (_("Scaling factor:"));
+
+            var dpi_combo = new Gtk.ComboBoxText ();
+            dpi_combo.append_text (_("Automatic"));
+            dpi_combo.append_text (_("LoDPI"));
+            dpi_combo.append_text (_("Pixel Doubled"));
+
+            var dpi_grid = new Gtk.Grid ();
+            dpi_grid.column_spacing = 6;
+            dpi_grid.margin = 12;
+            dpi_grid.add (dpi_label);
+            dpi_grid.add (dpi_combo);
 
             var detect_button = new Gtk.Button.with_label (_("Detect Displays"));
 
@@ -61,6 +75,7 @@ public class Display.DisplaysView : Gtk.Grid {
 
             var action_bar = new Gtk.ActionBar ();
             action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
+            action_bar.pack_start (dpi_grid);
             action_bar.pack_start (mirror_grid);
 
             if (Utils.has_touchscreen ()) {
@@ -94,6 +109,18 @@ public class Display.DisplaysView : Gtk.Grid {
             add (stack);
             add (action_bar);
             show_all ();
+
+            var interface_settings = new GLib.Settings ("org.gnome.desktop.interface");
+            interface_settings.bind ("scaling-factor", dpi_combo, "active", GLib.SettingsBindFlags.DEFAULT);
+
+            var initial_dpi = dpi_combo.active;
+            interface_settings.changed.connect (() => {
+                if (dpi_combo.active != initial_dpi) {
+                    dpi_changed (true);
+                } else {
+                    dpi_changed (false);
+                }
+            });
 
             displays_overlay.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;

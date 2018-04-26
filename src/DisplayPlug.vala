@@ -43,8 +43,14 @@ public class Display.Plug : Switchboard.Plug {
         if (grid == null) {
             displays_view = new DisplaysView ();
 
+            var restart_infobar = new Gtk.InfoBar ();
+            restart_infobar.message_type = Gtk.MessageType.WARNING;
+            restart_infobar.revealed = false;
+            restart_infobar.get_content_area ().add (new Gtk.Label (_("Scaling factor changes will not take effect until this device is restarted")));
+
             grid = new Gtk.Grid ();
             grid.orientation = Gtk.Orientation.VERTICAL;
+            grid.add (restart_infobar);
 
             var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", true);
             if (interface_settings_schema != null && interface_settings_schema.has_key ("night-light-enabled")) {
@@ -75,6 +81,10 @@ public class Display.Plug : Switchboard.Plug {
             }
 
             grid.show_all ();
+
+            displays_view.dpi_changed.connect ((changed) => {
+                restart_infobar.revealed = changed;
+            });
         }
 
         return grid;
