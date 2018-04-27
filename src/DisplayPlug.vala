@@ -45,12 +45,15 @@ public class Display.Plug : Switchboard.Plug {
 
             var restart_infobar = new Gtk.InfoBar ();
             restart_infobar.message_type = Gtk.MessageType.WARNING;
-            restart_infobar.revealed = false;
             restart_infobar.get_content_area ().add (new Gtk.Label (_("Scaling factor changes will not take effect until this device is restarted")));
+
+            var restart_infobar_revealer = new Gtk.Revealer ();
+            restart_infobar_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN;
+            restart_infobar_revealer.add (restart_infobar);
 
             grid = new Gtk.Grid ();
             grid.orientation = Gtk.Orientation.VERTICAL;
-            grid.add (restart_infobar);
+            grid.add (restart_infobar_revealer);
 
             var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", true);
             if (interface_settings_schema != null && interface_settings_schema.has_key ("night-light-enabled")) {
@@ -83,7 +86,7 @@ public class Display.Plug : Switchboard.Plug {
             grid.show_all ();
 
             displays_view.dpi_changed.connect ((changed) => {
-                restart_infobar.revealed = changed;
+                restart_infobar_revealer.reveal_child = changed;
             });
         }
 
