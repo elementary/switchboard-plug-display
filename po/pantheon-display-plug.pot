@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 09:39-0800\n"
+"POT-Creation-Date: 2018-04-28 11:05-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/DisplayPlug.vala:35 ../src/DisplayPlug.vala:54
+#: ../src/DisplayPlug.vala:35 ../src/DisplayPlug.vala:63
 msgid "Displays"
 msgstr ""
 
@@ -25,39 +25,60 @@ msgstr ""
 msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:55 ../src/DisplayPlug.vala:114
+#: ../src/DisplayPlug.vala:48
+msgid ""
+"Scaling factor changes will not take effect until this device is restarted"
+msgstr ""
+
+#: ../src/DisplayPlug.vala:64 ../src/DisplayPlug.vala:127
 msgid "Night Light"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:110
+#: ../src/DisplayPlug.vala:123
 msgid "Screen Resolution"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:111
+#: ../src/DisplayPlug.vala:124
 msgid "Screen Rotation"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:112
+#: ../src/DisplayPlug.vala:125
 msgid "Primary display"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:113
+#: ../src/DisplayPlug.vala:126
 msgid "Screen mirroring"
 msgstr ""
 
-#: ../src/Views/DisplaysView.vala:38
+#: ../src/Views/DisplaysView.vala:40
 msgid "Mirror Display:"
 msgstr ""
 
-#: ../src/Views/DisplaysView.vala:48
+#: ../src/Views/DisplaysView.vala:49
+msgid "Scaling factor:"
+msgstr ""
+
+#: ../src/Views/DisplaysView.vala:52
+msgid "Automatic"
+msgstr ""
+
+#: ../src/Views/DisplaysView.vala:53
+msgid "LoDPI"
+msgstr ""
+
+#: ../src/Views/DisplaysView.vala:54
+msgid "Pixel Doubled"
+msgstr ""
+
+#: ../src/Views/DisplaysView.vala:62
 msgid "Detect Displays"
 msgstr ""
 
-#: ../src/Views/DisplaysView.vala:50
+#: ../src/Views/DisplaysView.vala:64
 msgid "Apply"
 msgstr ""
 
-#: ../src/Views/DisplaysView.vala:72
+#: ../src/Views/DisplaysView.vala:87
 msgid "Rotation Lock:"
 msgstr ""
 
