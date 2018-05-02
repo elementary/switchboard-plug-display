@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2017 elementary LLC.
+ * Copyright (c) 2014-2018 elementary LLC.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -137,26 +137,19 @@ public class Display.DisplaysView : Gtk.Grid {
 
             detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
             apply_button.clicked.connect (() => {
-                var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
-                var rr_config = new Gnome.RRConfig.current (rr_screen);
-                if (rr_config.get_clone ()) {
-                    mirror_display.apply_configuration ();
-                } else {
-                    displays_overlay.apply_configuration ();
-                }
-
+                Display.MonitorManager.get_default ().set_monitor_config ();
                 apply_button.sensitive = false;
             });
 
-            var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
+            /*var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
             var rr_config = new Gnome.RRConfig.current (rr_screen);
             mirror_switch.active = rr_config.get_clone ();
             if (rr_config.get_clone ()) {
                 stack.set_visible_child (mirror_display);
-            }
+            }*/
 
             mirror_switch.notify["active"].connect (() => {
-                var rr_screen2 = new Gnome.RRScreen (Gdk.Screen.get_default ());
+                /*var rr_screen2 = new Gnome.RRScreen (Gdk.Screen.get_default ());
                 var rr_config2 = new Gnome.RRConfig.current (rr_screen2);
                 if (mirror_switch.active) {
                     unowned Gnome.RRMode highest_mode = null;
@@ -222,7 +215,7 @@ public class Display.DisplaysView : Gtk.Grid {
                     rr_config2.apply_persistent (rr_screen2);
                 } catch (Error e) {
                     critical (e.message);
-                }
+                }*/
             });
     }
 }

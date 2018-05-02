@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2016 elementary LLC.
+ * Copyright (c) 2014-2018 elementary LLC.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -21,8 +21,7 @@
 
 public class Display.MirrorDisplay : Gtk.Grid {
     public signal void configuration_changed (bool changed);
-    private Gnome.RRConfig rr_config;
-    private Gnome.RRScreen rr_screen;
+    private unowned Display.MonitorManager monitor_manager;
     private Gtk.ListStore resolution_list_store;
     private Gtk.ComboBox resolution_combobox;
     public MirrorDisplay () {
@@ -33,7 +32,7 @@ public class Display.MirrorDisplay : Gtk.Grid {
         resolution_label.valign = Gtk.Align.CENTER;
         resolution_label.expand = true;
 
-        resolution_list_store = new Gtk.ListStore (2, typeof (string), typeof (Gnome.RRMode));
+        resolution_list_store = new Gtk.ListStore (2, typeof (string), typeof (Display.MonitorMode));
         resolution_combobox = new Gtk.ComboBox.with_model (resolution_list_store);
         resolution_combobox.halign = Gtk.Align.START;
         resolution_combobox.valign = Gtk.Align.CENTER;
@@ -46,7 +45,7 @@ public class Display.MirrorDisplay : Gtk.Grid {
         add (resolution_combobox);
 
         resolution_combobox.changed.connect (() => {
-            Value val;
+            /*Value val;
             Gtk.TreeIter iter;
             resolution_combobox.get_active_iter (out iter);
             resolution_list_store.get_value (iter, 1, out val);
@@ -54,17 +53,18 @@ public class Display.MirrorDisplay : Gtk.Grid {
                 output_info.set_geometry (0, 0, (int)((Gnome.RRMode) val).get_width (), (int)((Gnome.RRMode) val).get_height ());
             }
 
-            check_configuration_changed ();
+            check_configuration_changed ();*/
         });
 
+        monitor_manager = Display.MonitorManager.get_default ();
         populate_clone_mode ();
-        rr_screen.output_connected.connect (() => populate_clone_mode ());
+        /*rr_screen.output_connected.connect (() => populate_clone_mode ());
         rr_screen.output_disconnected.connect (() => populate_clone_mode ());
-        rr_screen.changed.connect (() => populate_clone_mode ());
+        rr_screen.changed.connect (() => populate_clone_mode ());*/
     }
 
     public void populate_clone_mode () {
-        rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
+        /*rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
         rr_config = new Gnome.RRConfig.current (rr_screen);
         unowned Gnome.RRMode current_mode = null;
         foreach (unowned Gnome.RROutputInfo output_info in rr_config.get_outputs ()) {
@@ -92,23 +92,23 @@ public class Display.MirrorDisplay : Gtk.Grid {
             if (current_mode == mode) {
                 resolution_combobox.set_active_iter (iter);
             }
-        }
+        }*/
     }
 
     public void apply_configuration () {
-        try {
+        /*try {
             rr_config.sanitize ();
             rr_config.apply_persistent (rr_screen);
         } catch (Error e) {
             critical (e.message);
-        }
+        }*/
     }
 
     private void check_configuration_changed () {
-        try {
+        /*try {
             configuration_changed (rr_config.applicable (rr_screen));
         } catch (Error e) {
             // Nothing to show here
-        }
+        }*/
     }
 }
