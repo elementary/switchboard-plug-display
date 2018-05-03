@@ -55,4 +55,14 @@ public class Display.Monitor : GLib.Object {
     construct {
         modes = new Gee.LinkedList<Display.MonitorMode> ();
     }
+
+    public Display.MonitorMode? get_mode_by_id (string id) {
+        foreach (var mode in modes) {
+            if (mode.id == id) {
+                return mode;
+            }
+        }
+
+        return null;
+    }
 }
