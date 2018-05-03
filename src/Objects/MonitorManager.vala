@@ -56,6 +56,7 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         try {
             iface = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.Mutter.DisplayConfig", "/org/gnome/Mutter/DisplayConfig");
+            iface.monitors_changed.connect (get_monitor_config);
         } catch (Error e) {
             critical (e.message);
         }
@@ -95,7 +96,12 @@ public class Display.MonitorManager : GLib.Object {
         }
 
         foreach (var mutter_monitor in mutter_monitors) {
-            var monitor = new Display.Monitor ();
+            var monitor = get_monitor_by_serial (mutter_monitor.monitor.serial);
+            if (monitor == null) {
+                monitor = new Display.Monitor ();
+                monitors.add (monitor);
+            }
+            
             monitor.connector = mutter_monitor.monitor.connector;
             monitor.vendor = mutter_monitor.monitor.vendor;
             monitor.product = mutter_monitor.monitor.product;
@@ -118,7 +124,12 @@ public class Display.MonitorManager : GLib.Object {
             }
 
             foreach (var mutter_mode in mutter_monitor.modes) {
-                var mode = new Display.MonitorMode ();
+                var mode = monitor.get_mode_by_id (mutter_mode.id);
+                if (mode == null) {
+                    mode = new Display.MonitorMode ();
+                    monitor.modes.add (mode);
+                }
+
                 mode.id = mutter_mode.id;
                 mode.width = mutter_mode.width;
                 mode.height = mutter_mode.height;
@@ -134,10 +145,8 @@ public class Display.MonitorManager : GLib.Object {
                 if (is_current_variant != null) {
                     mode.is_current = is_current_variant.get_boolean ();
                 }
-                monitor.modes.add (mode);
+                
             }
-
-            monitors.add (monitor);
         }
 
         foreach (var mutter_logical_monitor in mutter_logical_monitors) {
@@ -168,7 +177,7 @@ public class Display.MonitorManager : GLib.Object {
 
         var properties = new GLib.HashTable<string, GLib.Variant> (str_hash, str_equal);
         try {
-            iface.apply_monitors_config (current_serial, MutterApplyMethod.VERIFY, logical_monitors, properties);
+            iface.apply_monitors_config (current_serial, MutterApplyMethod.PERSISTENT, logical_monitors, properties);
         } catch (Error e) {
             critical (e.message);
         }
@@ -217,10 +226,20 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitor_added (virtual_monitor);
     }
 
-    private bool compare_monitor_with_mutter_info (Display.Monitor monitor, MutterReadMonitorInfo mutter_info) {
+    private static bool compare_monitor_with_mutter_info (Display.Monitor monitor, MutterReadMonitorInfo mutter_info) {
         return monitor.connector == mutter_info.connector
                && monitor.vendor == mutter_info.vendor
                && monitor.product == mutter_info.product
                && monitor.serial == mutter_info.serial;
+    }
+
+    private Display.Monitor? get_monitor_by_serial (string serial) {
+        foreach (var monitor in monitors) {
+            if (monitor.serial == serial) {
+                return monitor;
+            }
+        }
+
+        return null;
     }
 }
