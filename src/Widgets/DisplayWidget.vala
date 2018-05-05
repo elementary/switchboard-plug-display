@@ -37,11 +37,17 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private bool holding = false;
     private Gtk.Button primary_image;
 
+    private Gtk.ComboBox resolution_combobox;
+    private Gtk.ListStore resolution_list_store;
+    
+    private Gtk.ComboBox rotation_combobox;
+    private Gtk.ListStore rotation_list_store;
+
     private int real_width = 0;
     private int real_height = 0;
     private int real_x = 0;
     private int real_y = 0;
-    
+
     struct Resolution {
         uint width;
         uint height;
@@ -55,12 +61,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         events |= Gdk.EventMask.POINTER_MOTION_MASK;
         real_x = virtual_monitor.x;
         real_y = virtual_monitor.y;
-        real_width = virtual_monitor.monitor.current_mode.width;
-        real_height = virtual_monitor.monitor.current_mode.height;
-        if (!virtual_monitor.is_active) {
-            real_width = 1280;
-            real_height = 720;
-        }
+        virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
         primary_image.margin = 6;
@@ -108,8 +109,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var resolution_label = new Gtk.Label (_("Resolution:"));
         resolution_label.halign = Gtk.Align.END;
 
-        var resolution_list_store = new Gtk.ListStore (2, typeof (string), typeof (Display.MonitorMode));
-        var resolution_combobox = new Gtk.ComboBox.with_model (resolution_list_store);
+        resolution_list_store = new Gtk.ListStore (2, typeof (string), typeof (Display.MonitorMode));
+        resolution_combobox = new Gtk.ComboBox.with_model (resolution_list_store);
         resolution_combobox.sensitive = use_switch.active;
         var text_renderer = new Gtk.CellRendererText ();
         resolution_combobox.pack_start (text_renderer, true);
@@ -117,8 +118,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         var rotation_label = new Gtk.Label (_("Rotation:"));
         rotation_label.halign = Gtk.Align.END;
-        var rotation_list_store = new Gtk.ListStore (2, typeof (string), typeof (int));
-        var rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store);
+        rotation_list_store = new Gtk.ListStore (2, typeof (string), typeof (int));
+        rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store);
         rotation_combobox.sensitive = use_switch.active;
         text_renderer = new Gtk.CellRendererText ();
         rotation_combobox.pack_start (text_renderer, true);
@@ -150,6 +151,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 resolution_combobox.set_active_iter (iter);
                 resolution_set = true;
             }
+        }
+
+        if (!resolution_set) {
+            resolution_combobox.set_active (0);
         }
 
         popover_grid.attach (use_label, 0, 0, 1, 1);
@@ -199,108 +204,117 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
-        if (!resolution_set) {
-            resolution_combobox.set_active (0);
-        }
-
         rotation_combobox.changed.connect (() => {
-            /*Value val;
+            Value val;
             Gtk.TreeIter iter;
             rotation_combobox.get_active_iter (out iter);
             rotation_list_store.get_value (iter, 1, out val);
 
-            Gnome.RRRotation old_rotation;
-            if (!rotation_set) {
-                old_rotation = Gnome.RRRotation.ROTATION_0;
-            } else { 
-                old_rotation = output_info.get_rotation ();
-            } 
-            output_info.set_rotation ((Gnome.RRRotation) val);
-            switch ((Gnome.RRRotation) val) {
-                case Gnome.RRRotation.ROTATION_90:
-                    if (old_rotation == Gnome.RRRotation.ROTATION_0 || old_rotation == Gnome.RRRotation.ROTATION_180) {
-                        var width = real_width;
-                        real_width = real_height;
-                        real_height = width;
-                    }
+            var transform = (DisplayTransform)((int)val);
+            virtual_monitor.transform = transform;
 
+            switch (transform) {
+                case DisplayTransform.ROTATION_90:
+                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
                     label.angle = 270;
                     break;
-                case Gnome.RRRotation.ROTATION_180:
-                    if (old_rotation == Gnome.RRRotation.ROTATION_90 || old_rotation == Gnome.RRRotation.ROTATION_270) {
-                        var width = real_width;
-                        real_width = real_height;
-                        real_height = width;
-                    }
-
+                case DisplayTransform.ROTATION_180:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 180;
                     break;
-                case Gnome.RRRotation.ROTATION_270:
-                    if (old_rotation == Gnome.RRRotation.ROTATION_0 || old_rotation == Gnome.RRRotation.ROTATION_180) {
-                        var width = real_width;
-                        real_width = real_height;
-                        real_height = width;
-                    }
-
+                case DisplayTransform.ROTATION_270:
+                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
                     label.angle = 90;
                     break;
                 default:
-                    if (old_rotation == Gnome.RRRotation.ROTATION_90 || old_rotation == Gnome.RRRotation.ROTATION_270) {
-                        var width = real_width;
-                        real_width = real_height;
-                        real_height = width;
-                    }
-
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 0;
                     break;
-            }*/
+            }
 
-            //rotation_set = true;
+            rotation_set = true;
             configuration_changed ();
             check_position ();
         });
 
-        /*Gtk.TreeIter iter;
+        //  Gtk.TreeIter iter;
 
-        rotation_list_store.append (out iter);
-        rotation_list_store.set (iter, 0, _("None"), 1, Gnome.RRRotation.ROTATION_0);
+        //  rotation_list_store.append (out iter);
+        //  rotation_list_store.set (iter, 0, _("None"), 1, DisplayTransform.ROTATION_0);
 
-        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_90)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Clockwise"), 1, Gnome.RRRotation.ROTATION_90);
-            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_90) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 270;
-                rotation_set = true;
-            }
-        }
+        //  if (output_info.supports_rotation (DisplayTransform.ROTATION_90)) {
+        //      rotation_list_store.append (out iter);
+        //      rotation_list_store.set (iter, 0, _("Clockwise"), 1, DisplayTransform.ROTATION_90);
+        //      if (output_info.get_rotation () == DisplayTransform.ROTATION_90) {
+        //          rotation_combobox.set_active_iter (iter);
+        //          label.angle = 270;
+        //          rotation_set = true;
+        //      }
+        //  }
 
-        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_180)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Flipped"), 1, Gnome.RRRotation.ROTATION_180);
-            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_180) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 180;
-                rotation_set = true;
-            }
-        }
+        //  if (output_info.supports_rotation (DisplayTransform.ROTATION_180)) {
+        //      rotation_list_store.append (out iter);
+        //      rotation_list_store.set (iter, 0, _("Flipped"), 1, DisplayTransform.ROTATION_180);
+        //      if (output_info.get_rotation () == DisplayTransform.ROTATION_180) {
+        //          rotation_combobox.set_active_iter (iter);
+        //          label.angle = 180;
+        //          rotation_set = true;
+        //      }
+        //  }
 
-        if (output_info.supports_rotation (Gnome.RRRotation.ROTATION_270)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Counterclockwise"), 1, Gnome.RRRotation.ROTATION_270);
-            if (output_info.get_rotation () == Gnome.RRRotation.ROTATION_270) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 90;
-                rotation_set = true;
-            }
-        }
+        //  if (output_info.supports_rotation (DisplayTransform.ROTATION_270)) {
+        //      rotation_list_store.append (out iter);
+        //      rotation_list_store.set (iter, 0, _("Counterclockwise"), 1, DisplayTransform.ROTATION_270);
+        //      if (output_info.get_rotation () == DisplayTransform.ROTATION_270) {
+        //          rotation_combobox.set_active_iter (iter);
+        //          label.angle = 90;
+        //          rotation_set = true;
+        //      }
+        //  }
 
-        if (!rotation_set) {
-            rotation_combobox.set_active (0);
-        }*/
+        rotation_combobox.set_active (0);
+        on_vm_transform_changed ();
+
+        virtual_monitor.monitor.modes_changed.connect (on_monitor_modes_changed);
+        virtual_monitor.notify["transform"].connect (on_vm_transform_changed);
 
         configuration_changed ();
         check_position ();
+    }
+
+    private void on_monitor_modes_changed () {
+        foreach (var mode in virtual_monitor.monitor.modes) {
+            if (!mode.is_current) {
+                continue;
+            }
+
+            resolution_list_store.@foreach ((model, path, iter) => {
+                Value val;
+                resolution_list_store.get_value (iter, 1, out val);
+                if (((Display.MonitorMode)val).id == mode.id) {
+                    resolution_combobox.set_active_iter (iter);
+                    return true;
+                }
+
+                return false;
+            });
+        }
+    }
+
+    private void on_vm_transform_changed () {
+        var transform = virtual_monitor.transform;
+        rotation_list_store.@foreach ((model, path, iter) => {
+            Value val;
+            rotation_list_store.get_value (iter, 1, out val);
+
+            var iter_transform = (DisplayTransform)((int)val);
+            if (iter_transform == transform) {
+                rotation_combobox.set_active_iter (iter);
+                return true;
+            }
+
+            return false;
+        });
     }
 
     public override bool button_press_event (Gdk.EventButton event) {
@@ -358,8 +372,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         minimum_height = (int)(real_height * window_ratio);
         natural_height = minimum_height;
     }
-
-    
 
     public void get_geometry (out int x, out int y, out int width, out int height) {
         x = real_x;

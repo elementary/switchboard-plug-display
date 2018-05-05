@@ -139,18 +139,29 @@ public class Display.MonitorManager : GLib.Object {
                 var is_preferred_variant = mutter_mode.properties.lookup ("is-preferred");
                 if (is_preferred_variant != null) {
                     mode.is_preferred = is_preferred_variant.get_boolean ();
+                } else {
+                    mode.is_preferred = false;
                 }
 
                 var is_current_variant = mutter_mode.properties.lookup ("is-current");
                 if (is_current_variant != null) {
                     mode.is_current = is_current_variant.get_boolean ();
+                } else {
+                    mode.is_current = false;
                 }
-                
             }
+
+            monitor.modes_changed ();
         }
 
         foreach (var mutter_logical_monitor in mutter_logical_monitors) {
-            var virtual_monitor = new Display.VirtualMonitor ();
+            string monitors_id = generate_id_from_monitors (mutter_logical_monitor.monitors);
+            var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
+            if (virtual_monitor == null) {
+                virtual_monitor = new VirtualMonitor ();
+                add_virtual_monitor (virtual_monitor);
+            }
+
             virtual_monitor.x = mutter_logical_monitor.x;
             virtual_monitor.y = mutter_logical_monitor.y;
             virtual_monitor.scale = mutter_logical_monitor.scale;
@@ -158,14 +169,12 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.primary = mutter_logical_monitor.primary;
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
                 foreach (var monitor in monitors) {
-                    if (compare_monitor_with_mutter_info (monitor, mutter_info)) {
+                    if (compare_monitor_with_mutter_info (monitor, mutter_info) && !(monitor in virtual_monitor.monitors)) {
                         virtual_monitor.monitors.add (monitor);
                         break;
                     }
                 }
             }
-
-            add_virtual_monitor (virtual_monitor);
         }
     }
 
@@ -224,6 +233,25 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors.add (virtual_monitor);
         notify_property ("monitor-number");
         virtual_monitor_added (virtual_monitor);
+    }
+
+    private VirtualMonitor? get_virtual_monitor_by_id (string id) {
+        foreach (var vm in virtual_monitors) {
+            if (vm.id == id) {
+                return vm;
+            }
+        }
+
+        return null;
+    }
+
+    private static string generate_id_from_monitors (MutterReadMonitorInfo[] infos) {
+        string val = "";
+        foreach (var info in infos) {
+            val += info.serial;
+        }
+
+        return val;
     }
 
     private static bool compare_monitor_with_mutter_info (Display.Monitor monitor, MutterReadMonitorInfo mutter_info) {

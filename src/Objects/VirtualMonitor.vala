@@ -27,6 +27,20 @@ public class Display.VirtualMonitor : GLib.Object {
     public bool primary { get; set; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
+    // Used to distinguish two VirtualMonitors from each other.
+    // We make up and ID by concatenating all serials of
+    // monitors that a VirtualMonitor has.
+    public string id {
+        owned get {
+            string val = "";
+            foreach (var monitor in monitors) {
+                val += monitor.serial;
+            }
+
+            return val;
+        }
+    }
+
     public bool is_mirror {
         get {
             return monitors.size > 1;
@@ -58,5 +72,15 @@ public class Display.VirtualMonitor : GLib.Object {
 
     construct {
         monitors = new Gee.LinkedList<Display.Monitor> ();
+    } 
+
+    public void get_current_mode_size (out int width, out int height) {
+        if (!is_active) {
+            width = 1280;
+            height = 720;
+        } else {
+            width = monitor.current_mode.width;
+            height = monitor.current_mode.height;
+        }
     }
 }
