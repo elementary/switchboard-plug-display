@@ -188,7 +188,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
             get_style_context ().add_class ("disabled");
         }
 
-        bool rotation_set = false;
         resolution_combobox.changed.connect (() => {
             Value val;
             Gtk.TreeIter iter;
@@ -197,15 +196,13 @@ public class Display.DisplayWidget : Gtk.EventBox {
             set_geometry (real_x, real_y, (int)((Display.MonitorMode) val).width, (int)((Display.MonitorMode) val).height);
             virtual_monitor.monitor.current_mode.is_current = false;
             ((Display.MonitorMode)val).is_current = true;
-            rotation_set = false;
             rotation_combobox.set_active (0);
-            rotation_set = true;
             configuration_changed ();
             check_position ();
         });
 
         rotation_combobox.changed.connect (() => {
-            /*Value val;
+            Value val;
             Gtk.TreeIter iter;
             rotation_combobox.get_active_iter (out iter);
             rotation_list_store.get_value (iter, 1, out val);
@@ -230,9 +227,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 0;
                     break;
-            }*/
+            }
 
-            //rotation_set = true;
             configuration_changed ();
             check_position ();
         });
