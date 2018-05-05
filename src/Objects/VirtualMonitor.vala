@@ -27,9 +27,11 @@ public class Display.VirtualMonitor : GLib.Object {
     public bool primary { get; set; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
-    // Used to distinguish two VirtualMonitors from each other.
-    // We make up and ID by concatenating all serials of
-    // monitors that a VirtualMonitor has.
+    /* 
+     * Used to distinguish two VirtualMonitors from each other.
+     * We make up and ID by concatenating all serials of
+     * monitors that a VirtualMonitor has.
+     */
     public string id {
         owned get {
             string val = "";
