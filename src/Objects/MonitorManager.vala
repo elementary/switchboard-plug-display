@@ -139,13 +139,17 @@ public class Display.MonitorManager : GLib.Object {
                 var is_preferred_variant = mutter_mode.properties.lookup ("is-preferred");
                 if (is_preferred_variant != null) {
                     mode.is_preferred = is_preferred_variant.get_boolean ();
+<<<<<<< HEAD
                 } else {
                     mode.is_preferred = false;
+=======
+>>>>>>> 3a2285bc2024dfe56f303050c1a84ecbf65dd585
                 }
 
                 var is_current_variant = mutter_mode.properties.lookup ("is-current");
                 if (is_current_variant != null) {
                     mode.is_current = is_current_variant.get_boolean ();
+<<<<<<< HEAD
                 } else {
                     mode.is_current = false;
                 }
@@ -162,6 +166,15 @@ public class Display.MonitorManager : GLib.Object {
                 add_virtual_monitor (virtual_monitor);
             }
 
+=======
+                }
+                
+            }
+        }
+
+        foreach (var mutter_logical_monitor in mutter_logical_monitors) {
+            var virtual_monitor = new Display.VirtualMonitor ();
+>>>>>>> 3a2285bc2024dfe56f303050c1a84ecbf65dd585
             virtual_monitor.x = mutter_logical_monitor.x;
             virtual_monitor.y = mutter_logical_monitor.y;
             virtual_monitor.scale = mutter_logical_monitor.scale;
@@ -169,12 +182,21 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.primary = mutter_logical_monitor.primary;
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
                 foreach (var monitor in monitors) {
+<<<<<<< HEAD
                     if (compare_monitor_with_mutter_info (monitor, mutter_info) && !(monitor in virtual_monitor.monitors)) {
+=======
+                    if (compare_monitor_with_mutter_info (monitor, mutter_info)) {
+>>>>>>> 3a2285bc2024dfe56f303050c1a84ecbf65dd585
                         virtual_monitor.monitors.add (monitor);
                         break;
                     }
                 }
             }
+<<<<<<< HEAD
+=======
+
+            add_virtual_monitor (virtual_monitor);
+>>>>>>> 3a2285bc2024dfe56f303050c1a84ecbf65dd585
         }
     }
 

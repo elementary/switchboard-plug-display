@@ -205,7 +205,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         });
 
         rotation_combobox.changed.connect (() => {
-            Value val;
+            /*Value val;
             Gtk.TreeIter iter;
             rotation_combobox.get_active_iter (out iter);
             rotation_list_store.get_value (iter, 1, out val);
@@ -230,9 +230,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 0;
                     break;
-            }
+            }*/
 
-            rotation_set = true;
+            //rotation_set = true;
             configuration_changed ();
             check_position ();
         });
