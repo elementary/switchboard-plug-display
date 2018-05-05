@@ -233,40 +233,40 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
-        //  Gtk.TreeIter iter;
+        /*Gtk.TreeIter iter;
 
-        //  rotation_list_store.append (out iter);
-        //  rotation_list_store.set (iter, 0, _("None"), 1, DisplayTransform.ROTATION_0);
+        rotation_list_store.append (out iter);
+        rotation_list_store.set (iter, 0, _("None"), 1, DisplayTransform.ROTATION_0);
 
-        //  if (output_info.supports_rotation (DisplayTransform.ROTATION_90)) {
-        //      rotation_list_store.append (out iter);
-        //      rotation_list_store.set (iter, 0, _("Clockwise"), 1, DisplayTransform.ROTATION_90);
-        //      if (output_info.get_rotation () == DisplayTransform.ROTATION_90) {
-        //          rotation_combobox.set_active_iter (iter);
-        //          label.angle = 270;
-        //          rotation_set = true;
-        //      }
-        //  }
+        if (output_info.supports_rotation (DisplayTransform.ROTATION_90)) {
+            rotation_list_store.append (out iter);
+            rotation_list_store.set (iter, 0, _("Clockwise"), 1, DisplayTransform.ROTATION_90);
+            if (output_info.get_rotation () == DisplayTransform.ROTATION_90) {
+                rotation_combobox.set_active_iter (iter);
+                label.angle = 270;
+                rotation_set = true;
+            }
+        }
 
-        //  if (output_info.supports_rotation (DisplayTransform.ROTATION_180)) {
-        //      rotation_list_store.append (out iter);
-        //      rotation_list_store.set (iter, 0, _("Flipped"), 1, DisplayTransform.ROTATION_180);
-        //      if (output_info.get_rotation () == DisplayTransform.ROTATION_180) {
-        //          rotation_combobox.set_active_iter (iter);
-        //          label.angle = 180;
-        //          rotation_set = true;
-        //      }
-        //  }
+        if (output_info.supports_rotation (DisplayTransform.ROTATION_180)) {
+            rotation_list_store.append (out iter);
+            rotation_list_store.set (iter, 0, _("Flipped"), 1, DisplayTransform.ROTATION_180);
+            if (output_info.get_rotation () == DisplayTransform.ROTATION_180) {
+                rotation_combobox.set_active_iter (iter);
+                label.angle = 180;
+                rotation_set = true;
+            }
+        }
 
-        //  if (output_info.supports_rotation (DisplayTransform.ROTATION_270)) {
-        //      rotation_list_store.append (out iter);
-        //      rotation_list_store.set (iter, 0, _("Counterclockwise"), 1, DisplayTransform.ROTATION_270);
-        //      if (output_info.get_rotation () == DisplayTransform.ROTATION_270) {
-        //          rotation_combobox.set_active_iter (iter);
-        //          label.angle = 90;
-        //          rotation_set = true;
-        //      }
-        //  }
+        if (output_info.supports_rotation (DisplayTransform.ROTATION_270)) {
+            rotation_list_store.append (out iter);
+            rotation_list_store.set (iter, 0, _("Counterclockwise"), 1, DisplayTransform.ROTATION_270);
+            if (output_info.get_rotation () == DisplayTransform.ROTATION_270) {
+                rotation_combobox.set_active_iter (iter);
+                label.angle = 90;
+                rotation_set = true;
+            }
+        }*/
 
         rotation_combobox.set_active (0);
         on_vm_transform_changed ();
