@@ -28,6 +28,8 @@ public class Display.Monitor : GLib.Object {
     public bool is_builtin { get; set; }
     public Gee.LinkedList<Display.MonitorMode> modes { get; construct; }
 
+    public signal void modes_changed ();
+
     public Display.MonitorMode current_mode {
         owned get {
             foreach (var mode in modes) {
