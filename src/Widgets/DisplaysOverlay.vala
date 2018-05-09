@@ -218,6 +218,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             check_configuration_changed ();
             snap_edges (display_widget);
             calculate_ratio ();
+            verify_global_positions ();
         });
 
         check_intersects (display_widget);
@@ -237,6 +238,32 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         });
         check_configuration_changed ();
     }*/
+
+    private void verify_global_positions () {
+        int min_x = int.MAX;
+        int min_y = int.MAX;
+        get_children ().foreach ((child) => {
+            if (child is DisplayWidget) {
+                var display_widget = (DisplayWidget) child;
+                int x, y, width, height;
+                display_widget.get_geometry (out x, out y, out width, out height);
+                min_x = int.min (min_x, x);
+                min_y = int.min (min_y, y);
+            }
+        });
+
+        if (min_x >= 0 && min_y >= 0)
+          return;
+
+        get_children ().foreach ((child) => {
+            if (child is DisplayWidget) {
+                var display_widget = (DisplayWidget) child;
+                int x, y, width, height;
+                display_widget.get_geometry (out x, out y, out width, out height);
+                display_widget.set_geometry (x - min_x, y - min_y, width, height);
+            }
+        });
+    }
 
     public void check_intersects (DisplayWidget source_display_widget) {
         int orig_x, orig_y, src_x, src_y, src_width, src_height;

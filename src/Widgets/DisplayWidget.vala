@@ -45,8 +45,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     private int real_width = 0;
     private int real_height = 0;
-    private int real_x = 0;
-    private int real_y = 0;
 
     struct Resolution {
         uint width;
@@ -59,8 +57,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         events |= Gdk.EventMask.BUTTON_PRESS_MASK;
         events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
         events |= Gdk.EventMask.POINTER_MOTION_MASK;
-        real_x = virtual_monitor.x;
-        real_y = virtual_monitor.y;
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
@@ -193,7 +189,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             Gtk.TreeIter iter;
             resolution_combobox.get_active_iter (out iter);
             resolution_list_store.get_value (iter, 1, out val);
-            set_geometry (real_x, real_y, (int)((Display.MonitorMode) val).width, (int)((Display.MonitorMode) val).height);
+            set_geometry (virtual_monitor.x, virtual_monitor.y, (int)((Display.MonitorMode) val).width, (int)((Display.MonitorMode) val).height);
             virtual_monitor.monitor.current_mode.is_current = false;
             ((Display.MonitorMode)val).is_current = true;
             rotation_combobox.set_active (0);
@@ -370,15 +366,15 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public void get_geometry (out int x, out int y, out int width, out int height) {
-        x = real_x;
-        y = real_y;
+        x = virtual_monitor.x;
+        y = virtual_monitor.y;
         width = real_width;
         height = real_height;
     }
 
     public void set_geometry (int x, int y, int width, int height) {
-        real_x = x;
-        real_y = y;
+        virtual_monitor.x = x;
+        virtual_monitor.y = y;
         real_width = width;
         real_height = height;
     }
