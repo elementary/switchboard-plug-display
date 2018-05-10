@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-28 05:38+0400\n"
-"PO-Revision-Date: 2018-04-26 00:03+0000\n"
+"PO-Revision-Date: 2018-05-11 00:06+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/switchboard"
 "/switchboard-plug-display/cs/>\n"
@@ -30,7 +30,7 @@ msgstr "Nastavit displej"
 
 #: ../src/DisplayWidget.vala:94
 msgid "Use This Display:"
-msgstr "Použít tuto obrazovku:"
+msgstr "Používat tuto obrazovku:"
 
 #: ../src/DisplayWidget.vala:111
 msgid "Rotation:"
@@ -46,7 +46,7 @@ msgstr "Ve směru hodinových ručiček"
 
 #: ../src/DisplayWidget.vala:173
 msgid "Flipped"
-msgstr "Převrácená"
+msgstr "Převrácení"
 
 #: ../src/DisplayWidget.vala:182
 msgid "Counterclockwise"
@@ -54,11 +54,11 @@ msgstr "Proti směru hodinových ručiček"
 
 #: ../src/DisplayWidget.vala:287
 msgid "Is the primary display"
-msgstr "Je primární obrazovka"
+msgstr "Je primární displej"
 
 #: ../src/DisplayWidget.vala:290
 msgid "Set as primary display"
-msgstr "Nastavit jako hlavní displej"
+msgstr "Nastavit jako primární displej"
 
 #: ../src/DisplayPlug.vala:32
 msgid "Displays"
