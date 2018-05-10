@@ -252,7 +252,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
         });
 
-        if (min_x >= 0 && min_y >= 0)
+        if (min_x == 0 && min_y == 0)
           return;
 
         get_children ().foreach ((child) => {
