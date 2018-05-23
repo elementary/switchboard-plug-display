@@ -345,7 +345,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public void set_primary (bool is_primary) {
-        //output_info.set_primary (is_primary);
         if (is_primary) {
             ((Gtk.Image) primary_image.image).icon_name = "starred-symbolic";
             primary_image.tooltip_text = _("Is the primary display");

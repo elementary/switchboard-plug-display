@@ -196,7 +196,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         display_widget.show_all ();
-        //display_widget.set_as_primary.connect (() => set_as_primary (output_info));
+        display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
         display_widget.check_position.connect (() => check_intersects (display_widget));
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
@@ -229,15 +229,22 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.move_display (old_delta_x, old_delta_y);
     }
 
-    /*private void set_as_primary (Gnome.RROutputInfo output_info) {
+    private void set_as_primary (Display.VirtualMonitor new_primary) {
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
-                var display_widget = (DisplayWidget) child;
-                display_widget.set_primary (display_widget.output_info == output_info);
+                var display_widget = child as DisplayWidget;
+                var virtual_monitor = display_widget.virtual_monitor;
+                var is_primary = virtual_monitor == new_primary;
+                display_widget.set_primary (is_primary);
+                virtual_monitor.primary = is_primary;
             }
         });
+        foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
+            virtual_monitor.primary = virtual_monitor == new_primary;
+        }
+
         check_configuration_changed ();
-    }*/
+    }
 
     private void verify_global_positions () {
         int min_x = int.MAX;
