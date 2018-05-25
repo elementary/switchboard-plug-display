@@ -28,7 +28,6 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     Widgets/DisplaysOverlay.vala
     Widgets/DisplayWidget.vala
     Widgets/DisplayWindow.vala
-    Widgets/MirrorDisplay.vala
 PACKAGES
     gtk+-3.0
     switchboard-2.0
