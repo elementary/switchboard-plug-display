@@ -200,7 +200,6 @@ public class Display.MonitorManager : GLib.Object {
             transform = virtual_monitor.transform,
             primary = virtual_monitor.primary
         };
-        warning ("%d %d", logical_monitor.x, logical_monitor.y);
 
         MutterWriteMonitor[] mutter_monitors = {};
         foreach (var monitor in virtual_monitor.monitors) {

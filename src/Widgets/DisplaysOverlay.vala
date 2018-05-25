@@ -142,8 +142,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         int added_height = 0;
         int max_width = int.MIN;
         int max_height = int.MIN;
-        int min_x = int.MAX;
-        int min_y = int.MAX;
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
@@ -158,16 +156,14 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 added_height += height;
                 max_width = int.max (max_width, x + width);
                 max_height = int.max (max_height, y + height);
-                min_x = int.min (min_x, x);
-                min_y = int.min (min_y, y);
             }
         });
 
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
         current_ratio = double.min ((double)(get_allocated_width () -24) / (double) added_width, (double)(get_allocated_height ()-24) / (double) added_height);
-        default_x_margin = (int) ((get_allocated_width () - (max_width + min_x) * current_ratio) / 2);
-        default_y_margin = (int) ((get_allocated_height () - (max_height + min_y) * current_ratio) / 2);
+        default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
+        default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
 
     private void add_output (Display.VirtualMonitor virtual_monitor) {
