@@ -20,18 +20,28 @@
  */
 
 public class Display.MonitorManager : GLib.Object {
-    public signal void virtual_monitor_added (Display.VirtualMonitor virtual_monitor);
-    public signal void virtual_monitor_removed (Display.VirtualMonitor virtual_monitor);
-
     public Gee.LinkedList<Display.VirtualMonitor> virtual_monitors { get; construct; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
+    public bool global_scale_required { get; private set; }
     public bool mirroring_supported { get; private set; }
     public int max_width { get; private set; }
     public int max_height { get; private set; }
     public int monitor_number {
         get {
+            return monitors.size;
+        }
+    }
+
+    public int virtual_monitor_number {
+        get {
             return virtual_monitors.size;
+        }
+    }
+
+    public bool is_mirrored {
+        get {
+            return virtual_monitors.size == 1 && monitors.size > 1;
         }
     }
 
@@ -83,6 +93,16 @@ public class Display.MonitorManager : GLib.Object {
             mirroring_supported = true;
         }
 
+        var global_scale_required_variant = properties.lookup ("global-scale-required");
+        if (global_scale_required_variant != null) {
+            global_scale_required = global_scale_required_variant.get_boolean ();
+        } else {
+            /*
+             * Absence of "global-scale-required" means false according to the documentation.
+             */
+            global_scale_required = false;
+        }
+
         var max_screen_size_variant = properties.lookup ("max-screen-size");
         if (max_screen_size_variant != null) {
             max_width = max_screen_size_variant.get_child_value (0).get_int32 ();
@@ -95,13 +115,16 @@ public class Display.MonitorManager : GLib.Object {
             max_height = int.MAX;
         }
 
+        var monitors_with_changed_modes = new Gee.LinkedList<Display.Monitor> ();
         foreach (var mutter_monitor in mutter_monitors) {
             var monitor = get_monitor_by_serial (mutter_monitor.monitor.serial);
             if (monitor == null) {
                 monitor = new Display.Monitor ();
                 monitors.add (monitor);
+            } else {
+                monitors_with_changed_modes.add (monitor);
             }
-            
+
             monitor.connector = mutter_monitor.monitor.connector;
             monitor.vendor = mutter_monitor.monitor.vendor;
             monitor.product = mutter_monitor.monitor.product;
@@ -150,8 +173,6 @@ public class Display.MonitorManager : GLib.Object {
                     mode.is_current = false;
                 }
             }
-
-            monitor.modes_changed ();
         }
 
         foreach (var mutter_logical_monitor in mutter_logical_monitors) {
@@ -171,6 +192,10 @@ public class Display.MonitorManager : GLib.Object {
                 foreach (var monitor in monitors) {
                     if (compare_monitor_with_mutter_info (monitor, mutter_info) && !(monitor in virtual_monitor.monitors)) {
                         virtual_monitor.monitors.add (monitor);
+                        if (monitor in monitors_with_changed_modes) {
+                            virtual_monitor.modes_changed ();
+                        }
+
                         break;
                     }
                 }
@@ -220,19 +245,96 @@ public class Display.MonitorManager : GLib.Object {
     //TODO: check for compatibility of displays in the same virtualmonitor.
     public void enable_clone_mode () {
         var clone_virtual_monitor = new Display.VirtualMonitor ();
-        foreach (var monitor in monitors) {
-            
+        clone_virtual_monitor.primary = true;
+        clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
+        clone_virtual_monitor.monitors.add_all (monitors);
+        var modes = clone_virtual_monitor.get_available_modes ();
+        /*
+         * Two choices here:
+         *  - Use the largest resolution already in use.
+         *  - Fallback to the largest resultion available.
+         */
+
+        Display.MonitorMode? largest_mode_in_use = null;
+        Display.MonitorMode largest_mode = modes.get (0);
+        foreach (var mode in modes) {
+            if (mode.is_current) {
+                if (largest_mode_in_use == null) {
+                    largest_mode_in_use = mode;
+                } else if (largest_mode_in_use.width < mode.width) {
+                    largest_mode_in_use = mode;
+                }
+            }
+
+            // If there is one compatible setting, stop computing the fallback
+            if (largest_mode_in_use == null) {
+                if (largest_mode == null) {
+                    largest_mode = mode;
+                } else if (largest_mode.width < mode.width) {
+                    largest_mode = mode;
+                }
+            }
         }
+
+        if (largest_mode_in_use != null) {
+            clone_virtual_monitor.set_current_mode (largest_mode_in_use);
+        } else {
+            clone_virtual_monitor.set_current_mode (largest_mode);
+        }
+
+        virtual_monitors.clear ();
+        virtual_monitors.add (clone_virtual_monitor);
+
+        notify_property ("virtual-monitor-number");
+        notify_property ("is-mirrored");
     }
 
     public void disable_clone_mode () {
-        
+        double max_scale = Utils.get_min_compatible_scale (monitors);
+        var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
+        foreach (var monitor in monitors) {
+            var single_virtual_monitor = new Display.VirtualMonitor ();
+            var preferred_mode = monitor.preferred_mode;
+            var current_mode = monitor.current_mode;
+            if (global_scale_required) {
+                single_virtual_monitor.scale = max_scale;
+                if (max_scale in preferred_mode.supported_scales) {
+                    current_mode.is_current = false;
+                    preferred_mode.is_current = true;
+                } else if (!(max_scale in current_mode.supported_scales)) {
+                    Display.MonitorMode? largest_mode = null;
+                    foreach (var mode in monitor.modes) {
+                        if (max_scale in mode.supported_scales) {
+                            if (largest_mode == null || mode.width > largest_mode.width) {
+                                largest_mode = mode;
+                            }
+                        }
+                    }
+
+                    current_mode.is_current = false;
+                    largest_mode.is_current = true;
+                }
+            } else {
+                current_mode.is_current = false;
+                preferred_mode.is_current = true;
+                single_virtual_monitor.scale = preferred_mode.preferred_scale;
+            }
+
+            single_virtual_monitor.monitors.add (monitor);
+            new_virtual_monitors.add (single_virtual_monitor);
+        }
+
+        new_virtual_monitors.get(0).primary = true;
+        virtual_monitors.clear ();
+        virtual_monitors.add_all (new_virtual_monitors);
+
+        notify_property ("virtual-monitor-number");
+        notify_property ("is-mirrored");
     }
 
     private void add_virtual_monitor (Display.VirtualMonitor virtual_monitor) {
         virtual_monitors.add (virtual_monitor);
-        notify_property ("monitor-number");
-        virtual_monitor_added (virtual_monitor);
+        notify_property ("virtual-monitor-number");
     }
 
     private VirtualMonitor? get_virtual_monitor_by_id (string id) {

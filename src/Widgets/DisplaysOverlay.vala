@@ -53,11 +53,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         add (grid);
 
         monitor_manager = Display.MonitorManager.get_default ();
+        monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
         rescan_displays ();
-
-        /*rr_screen.output_connected.connect (() => rescan_displays ());
-        rr_screen.output_disconnected.connect (() => rescan_displays ());
-        rr_screen.changed.connect (() => rescan_displays ());*/
     }
 
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
@@ -101,9 +98,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     public void show_windows () {
-        /*if (rr_config.get_clone ()) {
+        if (monitor_manager.is_mirrored) {
             return;
-        }*/
+        }
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
@@ -149,8 +146,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 int x, y, width, height;
                 x = display_widget.virtual_monitor.x;
                 y = display_widget.virtual_monitor.y;
-                width = display_widget.virtual_monitor.monitor.current_mode.width;
-                height = display_widget.virtual_monitor.monitor.current_mode.height;
+                display_widget.virtual_monitor.get_current_mode_size (out width, out height);
 
                 added_width += width;
                 added_height += height;
@@ -202,7 +198,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             calculate_ratio ();
         });
 
-        if (/*!rr_config.get_clone () && */virtual_monitor.is_active) {
+        if (!monitor_manager.is_mirrored && virtual_monitor.is_active) {
             display_widget.display_window.show_all ();
         }
 
@@ -389,19 +385,19 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
             // Check projections
             if (is_projected (child_y, child_height, anchor_y, anchor_height)) {
-                debug ("Child is on the X axis of Anchor %s\n", anchor.virtual_monitor.monitor.display_name);
+                debug ("Child is on the X axis of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
                 case_1 = is_x_smaller_absolute (case_1, case_1_t) && !diagonally ? case_1 : case_1_t;
                 case_2 = is_x_smaller_absolute (case_2, case_2_t) && !diagonally ? case_2 : case_2_t;
                 snap_x = true;
                 move = true;
             } else if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
-                debug ("Child is on the Y axis of Anchor %s\n", anchor.virtual_monitor.monitor.display_name);
+                debug ("Child is on the Y axis of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
                 case_3 = is_x_smaller_absolute (case_3, case_3_t) && !diagonally ? case_3 : case_3_t;
                 case_4 = is_x_smaller_absolute (case_4, case_4_t) && !diagonally ? case_4 : case_4_t;
                 snap_y = true;
                 move = true;
             } else {
-                debug ("Child is diagonally of Anchor %s\n", anchor.virtual_monitor.monitor.display_name);
+                debug ("Child is diagonally of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
                 if (!move) {
                     diagonally = true;
                     case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;

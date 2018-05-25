@@ -27,6 +27,8 @@ public class Display.VirtualMonitor : GLib.Object {
     public bool primary { get; set; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
+    public signal void modes_changed ();
+
     /* 
      * Used to distinguish two VirtualMonitors from each other.
      * We make up and ID by concatenating all serials of
@@ -76,13 +78,60 @@ public class Display.VirtualMonitor : GLib.Object {
         monitors = new Gee.LinkedList<Display.Monitor> ();
     } 
 
+    public const string mirrored_monitor = N_("Mirrored Display");
+    public unowned string get_display_name () {
+        if (is_mirror) {
+            return _(mirrored_monitor);
+        } else {
+            return monitor.display_name;
+        }
+    }
+
     public void get_current_mode_size (out int width, out int height) {
         if (!is_active) {
             width = 1280;
             height = 720;
+        } else if (is_mirror) {
+            width = monitors.get (0).current_mode.width;
+            height = monitors.get (0).current_mode.height;
         } else {
             width = monitor.current_mode.width;
             height = monitor.current_mode.height;
+        }
+    }
+
+    public Gee.LinkedList<Display.MonitorMode> get_available_modes () {
+        if (is_mirror) {
+            return Utils.get_common_monitor_modes (monitors);
+        } else {
+            return monitor.modes;
+        }
+    }
+
+    public void set_current_mode (Display.MonitorMode current_mode) {
+        if (is_mirror) {
+            monitors.foreach ((_monitor) => {
+                bool mode_found = false;
+                foreach (var mode in _monitor.modes) {
+                    if (mode_found) {
+                        mode.is_current = false;
+                        continue;
+                    }
+
+                    if (mode.width == current_mode.width && mode.height == current_mode.height) {
+                        mode_found = true;
+                        mode.is_current = true;
+                    } else {
+                        mode.is_current = false;
+                    }
+                }
+
+                return true;
+            });
+        } else {
+            foreach (var mode in monitor.modes) {
+                mode.is_current = mode == current_mode;
+            }
         }
     }
 }

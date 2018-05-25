@@ -21,7 +21,7 @@
 
 public class Display.DisplayWindow : Gtk.Window {
     public DisplayWindow (Display.VirtualMonitor virtual_monitor) {
-        var label = new Gtk.Label (virtual_monitor.monitor.display_name);
+        var label = new Gtk.Label (virtual_monitor.get_display_name ());
         label.margin = 12;
         add (label);
         var scale_factor = get_style_context ().get_scale ();

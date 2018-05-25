@@ -51,6 +51,18 @@ public class Display.DisplayWidget : Gtk.EventBox {
         uint height;
     }
 
+    private enum ResolutionColumns {
+        NAME,
+        MODE,
+        TOTAL
+    }
+
+    private enum RotationColumns {
+        NAME,
+        VALUE,
+        TOTAL
+    }
+
     public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
         this.virtual_monitor = virtual_monitor;
         display_window = new DisplayWindow (virtual_monitor);
@@ -75,7 +87,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         toggle_settings.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU);
         toggle_settings.tooltip_text = _("Configure display");
 
-        var label = new Gtk.Label (virtual_monitor.monitor.display_name);
+        var label = new Gtk.Label (virtual_monitor.get_display_name ());
         label.halign = Gtk.Align.CENTER;
         label.valign = Gtk.Align.CENTER;
         label.expand = true;
@@ -105,16 +117,16 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var resolution_label = new Gtk.Label (_("Resolution:"));
         resolution_label.halign = Gtk.Align.END;
 
-        resolution_list_store = new Gtk.ListStore (2, typeof (string), typeof (Display.MonitorMode));
+        resolution_list_store = new Gtk.ListStore (ResolutionColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
         resolution_combobox = new Gtk.ComboBox.with_model (resolution_list_store);
         resolution_combobox.sensitive = use_switch.active;
         var text_renderer = new Gtk.CellRendererText ();
         resolution_combobox.pack_start (text_renderer, true);
-        resolution_combobox.add_attribute (text_renderer, "text", 0);
+        resolution_combobox.add_attribute (text_renderer, "text", ResolutionColumns.NAME);
 
         var rotation_label = new Gtk.Label (_("Rotation:"));
         rotation_label.halign = Gtk.Align.END;
-        rotation_list_store = new Gtk.ListStore (2, typeof (string), typeof (int));
+        rotation_list_store = new Gtk.ListStore (RotationColumns.TOTAL, typeof (string), typeof (int));
         rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store);
         rotation_combobox.sensitive = use_switch.active;
         text_renderer = new Gtk.CellRendererText ();
@@ -124,12 +136,12 @@ public class Display.DisplayWidget : Gtk.EventBox {
         for (int i = 0; i <= DisplayTransform.FLIPPED_ROTATION_270; i++) {
             Gtk.TreeIter iter;
             rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, ((DisplayTransform) i).to_string (), 1, i);
+            rotation_list_store.set (iter, RotationColumns.NAME, ((DisplayTransform) i).to_string (), RotationColumns.VALUE, i);
         }
 
         Resolution[] resolutions = {};
         bool resolution_set = false;
-        foreach (var mode in virtual_monitor.monitor.modes) {
+        foreach (var mode in virtual_monitor.get_available_modes ()) {
             var mode_width = mode.width;
             var mode_height = mode.height;
 
@@ -142,7 +154,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
             Gtk.TreeIter iter;
             resolution_list_store.append (out iter);
-            resolution_list_store.set (iter, 0, mode.get_resolution (), 1, mode);
+            resolution_list_store.set (iter, ResolutionColumns.NAME, mode.get_resolution (), ResolutionColumns.MODE, mode);
             if (mode.is_current) {
                 resolution_combobox.set_active_iter (iter);
                 resolution_set = true;
@@ -188,10 +200,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
             Value val;
             Gtk.TreeIter iter;
             resolution_combobox.get_active_iter (out iter);
-            resolution_list_store.get_value (iter, 1, out val);
-            set_geometry (virtual_monitor.x, virtual_monitor.y, (int)((Display.MonitorMode) val).width, (int)((Display.MonitorMode) val).height);
-            virtual_monitor.monitor.current_mode.is_current = false;
-            ((Display.MonitorMode)val).is_current = true;
+            resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
+            Display.MonitorMode new_mode = (Display.MonitorMode) val;
+            set_geometry (virtual_monitor.x, virtual_monitor.y, (int)new_mode.width, (int)new_mode.height);
+            virtual_monitor.set_current_mode (new_mode);
             rotation_combobox.set_active (0);
             configuration_changed ();
             check_position ();
@@ -201,7 +213,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             Value val;
             Gtk.TreeIter iter;
             rotation_combobox.get_active_iter (out iter);
-            rotation_list_store.get_value (iter, 1, out val);
+            rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
 
             var transform = (DisplayTransform)((int)val);
             virtual_monitor.transform = transform;
@@ -229,45 +241,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
-        /*Gtk.TreeIter iter;
-
-        rotation_list_store.append (out iter);
-        rotation_list_store.set (iter, 0, _("None"), 1, DisplayTransform.ROTATION_0);
-
-        if (output_info.supports_rotation (DisplayTransform.ROTATION_90)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Clockwise"), 1, DisplayTransform.ROTATION_90);
-            if (output_info.get_rotation () == DisplayTransform.ROTATION_90) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 270;
-                rotation_set = true;
-            }
-        }
-
-        if (output_info.supports_rotation (DisplayTransform.ROTATION_180)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Flipped"), 1, DisplayTransform.ROTATION_180);
-            if (output_info.get_rotation () == DisplayTransform.ROTATION_180) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 180;
-                rotation_set = true;
-            }
-        }
-
-        if (output_info.supports_rotation (DisplayTransform.ROTATION_270)) {
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, 0, _("Counterclockwise"), 1, DisplayTransform.ROTATION_270);
-            if (output_info.get_rotation () == DisplayTransform.ROTATION_270) {
-                rotation_combobox.set_active_iter (iter);
-                label.angle = 90;
-                rotation_set = true;
-            }
-        }*/
-
         rotation_combobox.set_active (0);
         on_vm_transform_changed ();
 
-        virtual_monitor.monitor.modes_changed.connect (on_monitor_modes_changed);
+        virtual_monitor.modes_changed.connect (on_monitor_modes_changed);
         virtual_monitor.notify["transform"].connect (on_vm_transform_changed);
 
         configuration_changed ();
@@ -275,14 +252,14 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     private void on_monitor_modes_changed () {
-        foreach (var mode in virtual_monitor.monitor.modes) {
+        foreach (var mode in virtual_monitor.get_available_modes ()) {
             if (!mode.is_current) {
                 continue;
             }
 
             resolution_list_store.@foreach ((model, path, iter) => {
                 Value val;
-                resolution_list_store.get_value (iter, 1, out val);
+                resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
                 if (((Display.MonitorMode)val).id == mode.id) {
                     resolution_combobox.set_active_iter (iter);
                     return true;
@@ -297,7 +274,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var transform = virtual_monitor.transform;
         rotation_list_store.@foreach ((model, path, iter) => {
             Value val;
-            rotation_list_store.get_value (iter, 1, out val);
+            rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
 
             var iter_transform = (DisplayTransform)((int)val);
             if (iter_transform == transform) {
@@ -379,6 +356,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public bool equals (DisplayWidget sibling) {
-        return virtual_monitor.monitor.serial == sibling.virtual_monitor.monitor.serial;
+        return virtual_monitor.id == sibling.virtual_monitor.id;
     }
 }

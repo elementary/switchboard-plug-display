@@ -28,8 +28,6 @@ public class Display.Monitor : GLib.Object {
     public bool is_builtin { get; set; }
     public Gee.LinkedList<Display.MonitorMode> modes { get; construct; }
 
-    public signal void modes_changed ();
-
     public Display.MonitorMode current_mode {
         owned get {
             foreach (var mode in modes) {
@@ -52,6 +50,15 @@ public class Display.Monitor : GLib.Object {
 
             return null;
         }
+    }
+
+    public double get_max_scale () {
+        double max_scale = 1.0;
+        foreach (var mode in modes) {
+            max_scale = double.max (max_scale, mode.preferred_scale);
+        }
+
+        return max_scale;
     }
 
     construct {
