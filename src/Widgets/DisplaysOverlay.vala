@@ -221,8 +221,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
             snap_edges (display_widget);
-            calculate_ratio ();
             verify_global_positions ();
+            calculate_ratio ();
         });
 
         check_intersects (display_widget);
