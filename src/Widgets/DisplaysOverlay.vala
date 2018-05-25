@@ -211,6 +211,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         display_widget.move_display.connect ((delta_x, delta_y) => {
+            if (delta_x == 0 && delta_y == 0) {
+                return;
+            }
+
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
             display_widget.set_geometry ((int)(delta_x / current_ratio) + x, (int)(delta_y / current_ratio) + y, width, height);
