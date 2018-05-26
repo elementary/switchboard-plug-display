@@ -66,7 +66,7 @@ public class Display.VirtualMonitor : GLib.Object {
                 critical ("Do not use Display.VirtualMonitor.monitor in a mirror context!");
             }
 
-            return monitors.get (0);
+            return monitors[0];
         }
     }
 
@@ -92,11 +92,13 @@ public class Display.VirtualMonitor : GLib.Object {
             width = 1280;
             height = 720;
         } else if (is_mirror) {
-            width = monitors.get (0).current_mode.width;
-            height = monitors.get (0).current_mode.height;
+            var current_mode = monitors[0].current_mode;
+            width = current_mode.width;
+            height = current_mode.height;
         } else {
-            width = monitor.current_mode.width;
-            height = monitor.current_mode.height;
+            var current_mode = monitor.current_mode;
+            width = current_mode.width;
+            height = current_mode.height;
         }
     }
 

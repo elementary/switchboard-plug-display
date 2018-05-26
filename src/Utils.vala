@@ -56,6 +56,7 @@ namespace Display.Utils {
                         if (mode_to_check.width == monitor_mode.width &&
                             mode_to_check.height == monitor_mode.height) {
                             mode_found = true;
+                            break;
                         }
                     }
 

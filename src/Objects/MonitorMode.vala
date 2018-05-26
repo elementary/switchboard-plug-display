@@ -29,7 +29,7 @@ public class Display.MonitorMode : GLib.Object {
     public bool is_preferred { get; set; }
     public bool is_current { get; set; }
 
-    private string resolution_cache = null;
+    private string? resolution_cache = null;
     public unowned string get_resolution () {
         if (resolution_cache == null) {
             var aspect = make_aspect_string ();

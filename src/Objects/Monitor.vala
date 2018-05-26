@@ -36,7 +36,7 @@ public class Display.Monitor : GLib.Object {
                 }
             }
 
-            return null;
+            return modes[0];
         }
     }
 
@@ -48,7 +48,7 @@ public class Display.Monitor : GLib.Object {
                 }
             }
 
-            return null;
+            return modes[0];
         }
     }
 
