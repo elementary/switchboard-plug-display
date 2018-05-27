@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2017 elementary LLC.
+ * Copyright (c) 2014-2018 elementary LLC.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -25,17 +25,8 @@ public class Display.DisplaysView : Gtk.Grid {
 
     public DisplaysOverlay displays_overlay;
 
-    private Gtk.Stack stack;
-    private MirrorDisplay mirror_display;
-
     construct {
             displays_overlay = new DisplaysOverlay ();
-            mirror_display = new MirrorDisplay ();
-
-            stack = new Gtk.Stack ();
-            stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
-            stack.add (displays_overlay);
-            stack.add (mirror_display);
 
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
             var mirror_switch = new Gtk.Switch ();
@@ -106,7 +97,7 @@ public class Display.DisplaysView : Gtk.Grid {
 
             orientation = Gtk.Orientation.VERTICAL;
             add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-            add (stack);
+            add (displays_overlay);
             add (action_bar);
             show_all ();
 
@@ -126,103 +117,27 @@ public class Display.DisplaysView : Gtk.Grid {
                 apply_button.sensitive = changed;
             });
 
-            mirror_grid.sensitive = displays_overlay.active_displays > 1;
-            displays_overlay.notify["active-displays"].connect (() => {
-                mirror_grid.sensitive = displays_overlay.active_displays > 1;
-            });
-
-            mirror_display.configuration_changed.connect ((changed) => {
-                apply_button.sensitive = changed;
+            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
+            mirror_grid.sensitive = monitor_manager.monitors.size > 1;
+            monitor_manager.notify["monitor-number"].connect (() => {
+                mirror_grid.sensitive = monitor_manager.monitors.size > 1;
             });
 
             detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
             apply_button.clicked.connect (() => {
-                var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
-                var rr_config = new Gnome.RRConfig.current (rr_screen);
-                if (rr_config.get_clone ()) {
-                    mirror_display.apply_configuration ();
-                } else {
-                    displays_overlay.apply_configuration ();
-                }
-
+                monitor_manager.set_monitor_config ();
                 apply_button.sensitive = false;
             });
 
-            var rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
-            var rr_config = new Gnome.RRConfig.current (rr_screen);
-            mirror_switch.active = rr_config.get_clone ();
-            if (rr_config.get_clone ()) {
-                stack.set_visible_child (mirror_display);
-            }
-
+            mirror_switch.active = monitor_manager.is_mirrored;
             mirror_switch.notify["active"].connect (() => {
-                var rr_screen2 = new Gnome.RRScreen (Gdk.Screen.get_default ());
-                var rr_config2 = new Gnome.RRConfig.current (rr_screen2);
                 if (mirror_switch.active) {
-                    unowned Gnome.RRMode highest_mode = null;
-                    foreach (unowned Gnome.RRMode mode in rr_screen2.list_clone_modes ()) {
-                        if (highest_mode == null) {
-                            highest_mode = mode;
-                        } else if (mode.get_width () > highest_mode.get_width ()) {
-                            highest_mode = mode;
-                        }
-                    }
-
-                    if (highest_mode == null) {
-                        return;
-                    }
-
-                    foreach (unowned Gnome.RROutputInfo output in rr_config2.get_outputs ()) {
-                        if (output.is_connected ()) {
-                            int x, y;
-                            output.get_geometry (out x, out y, null, null);
-                            output.set_geometry (x, y, (int)highest_mode.get_width (), (int)highest_mode.get_height ());
-                        }
-                    }
-
-                    rr_config2.set_clone (true);
-                    stack.set_visible_child (mirror_display);
+                    monitor_manager.enable_clone_mode ();
                 } else {
-                    rr_config2.set_clone (false);
-                    unowned Gnome.RROutputInfo[] outputs = rr_config2.get_outputs ();
-                    foreach (unowned Gnome.RROutputInfo output in outputs) {
-                        if (output.is_connected ()) {
-                            int x, y;
-                            output.get_geometry (out x, out y, null, null);
-                            output.set_geometry (x, y, output.get_preferred_width (), output.get_preferred_height ());
-                        }
-                    }
-
-                    int x = 0;
-                    foreach (unowned Gnome.RROutputInfo output in outputs) {
-                        if (output.is_connected () && output.is_active ()) {
-                            int width, height;
-                            output.get_geometry (null, null, out width, out height);
-                            output.set_geometry (x, 0, width, height);
-
-                            x += width;
-                        }
-                    }
-
-                    foreach (unowned Gnome.RROutputInfo output in outputs) {
-                        if (!(output.is_connected () && output.is_active ())) {
-                            int width, height;
-                            output.get_geometry (null, null, out width, out height);
-                            output.set_geometry (x, 0, width, height);
-
-                            x += width;
-                        }
-                    }
-
-                    stack.set_visible_child (displays_overlay);
+                    monitor_manager.disable_clone_mode ();
                 }
 
-                rr_config2.sanitize ();
-                try {
-                    rr_config2.apply_persistent (rr_screen2);
-                } catch (Error e) {
-                    critical (e.message);
-                }
+                apply_button.sensitive = true;
             });
     }
 }
