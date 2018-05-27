@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2016 elementary LLC.
+ * Copyright (c) 2014-2018 elementary LLC.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -31,8 +31,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private int default_x_margin = 0;
     private int default_y_margin = 0;
 
-    private Gnome.RRConfig rr_config;
-    private Gnome.RRScreen rr_screen;
+    private unowned Display.MonitorManager monitor_manager;
     public int active_displays { get; set; default = 0; }
     private static string[] colors = {"#3892e0", "#da4d45", "#f37329", "#fbd25d", "#93d844", "#8a4ebf", "#333333"};
 
@@ -53,12 +52,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         grid.expand = true;
         add (grid);
 
-        rr_screen = new Gnome.RRScreen (Gdk.Screen.get_default ());
+        monitor_manager = Display.MonitorManager.get_default ();
+        monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
         rescan_displays ();
-
-        rr_screen.output_connected.connect (() => rescan_displays ());
-        rr_screen.output_disconnected.connect (() => rescan_displays ());
-        rr_screen.changed.connect (() => rescan_displays ());
     }
 
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
@@ -82,15 +78,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         return false;
     }
 
-    public void apply_configuration () {
-        try {
-            rr_config.sanitize ();
-            rr_config.apply_persistent (rr_screen);
-        } catch (Error e) {
-            critical (e.message);
-        }
-    }
-
     public void rescan_displays () {
         scanning = true;
         get_children ().foreach ((child) => {
@@ -99,11 +86,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
         });
 
-        rr_config = new Gnome.RRConfig.current (rr_screen);
         active_displays = 0;
-        foreach (unowned Gnome.RROutputInfo output_info in rr_config.get_outputs ()) {
-            active_displays += output_info.is_active () ? 1 : 0;
-            add_output (output_info);
+        foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
+            active_displays += virtual_monitor.is_active ? 1 : 0;
+            add_output (virtual_monitor);
         }
 
         change_active_displays_sensitivity ();
@@ -112,13 +98,13 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     public void show_windows () {
-        if (rr_config.get_clone ()) {
+        if (monitor_manager.is_mirrored) {
             return;
         }
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
-                if (((DisplayWidget) child).output_info.is_active ()) {
+                if (((DisplayWidget) child).virtual_monitor.is_active) {
                     ((DisplayWidget) child).display_window.show_all ();
                 }
             }
@@ -136,7 +122,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private void change_active_displays_sensitivity () {
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
-                if (((DisplayWidget) child).output_info.is_active ()) {
+                if (((DisplayWidget) child).virtual_monitor.is_active) {
                     ((DisplayWidget) child).only_display = (active_displays == 1);
                 }
             }
@@ -144,11 +130,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void check_configuration_changed () {
-        try {
-            configuration_changed (rr_config.applicable (rr_screen));
-        } catch (Error e) {
-            // Nothing to show here
-        }
+        // TODO check if it actually has changed
+        configuration_changed (true);
     }
 
     private void calculate_ratio () {
@@ -156,33 +139,31 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         int added_height = 0;
         int max_width = int.MIN;
         int max_height = int.MIN;
-        int min_x = int.MAX;
-        int min_y = int.MAX;
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
                 int x, y, width, height;
-                display_widget.output_info.get_geometry (out x, out y, out width, out height);
+                x = display_widget.virtual_monitor.x;
+                y = display_widget.virtual_monitor.y;
+                display_widget.virtual_monitor.get_current_mode_size (out width, out height);
 
                 added_width += width;
                 added_height += height;
                 max_width = int.max (max_width, x + width);
                 max_height = int.max (max_height, y + height);
-                min_x = int.min (min_x, x);
-                min_y = int.min (min_y, y);
             }
         });
 
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
         current_ratio = double.min ((double)(get_allocated_width () -24) / (double) added_width, (double)(get_allocated_height ()-24) / (double) added_height);
-        default_x_margin = (int) ((get_allocated_width () - (max_width + min_x) * current_ratio) / 2);
-        default_y_margin = (int) ((get_allocated_height () - (max_height + min_y) * current_ratio) / 2);
+        default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
+        default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
 
-    private void add_output (Gnome.RROutputInfo output_info) {
-        var display_widget = new DisplayWidget (output_info, rr_screen.get_output_by_name (output_info.get_name ()));
+    private void add_output (Display.VirtualMonitor virtual_monitor) {
+        var display_widget = new DisplayWidget (virtual_monitor);
         current_allocated_width = 0;
         current_allocated_height = 0;
         add_overlay (display_widget);
@@ -207,27 +188,32 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         display_widget.show_all ();
-        display_widget.set_as_primary.connect (() => set_as_primary (output_info));
+        display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
         display_widget.check_position.connect (() => check_intersects (display_widget));
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
-            active_displays += display_widget.output_info.is_active () ? 1 : -1;
+            active_displays += virtual_monitor.is_active ? 1 : -1;
             change_active_displays_sensitivity ();
             check_configuration_changed ();
             calculate_ratio ();
         });
 
-        if (!rr_config.get_clone () && output_info.is_active ()) {
+        if (!monitor_manager.is_mirrored && virtual_monitor.is_active) {
             display_widget.display_window.show_all ();
         }
 
         display_widget.move_display.connect ((delta_x, delta_y) => {
+            if (delta_x == 0 && delta_y == 0) {
+                return;
+            }
+
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
             display_widget.set_geometry ((int)(delta_x / current_ratio) + x, (int)(delta_y / current_ratio) + y, width, height);
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
             snap_edges (display_widget);
+            verify_global_positions ();
             calculate_ratio ();
         });
 
@@ -239,15 +225,47 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.move_display (old_delta_x, old_delta_y);
     }
 
-    private void set_as_primary (Gnome.RROutputInfo output_info) {
+    private void set_as_primary (Display.VirtualMonitor new_primary) {
+        get_children ().foreach ((child) => {
+            if (child is DisplayWidget) {
+                var display_widget = child as DisplayWidget;
+                var virtual_monitor = display_widget.virtual_monitor;
+                var is_primary = virtual_monitor == new_primary;
+                display_widget.set_primary (is_primary);
+                virtual_monitor.primary = is_primary;
+            }
+        });
+        foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
+            virtual_monitor.primary = virtual_monitor == new_primary;
+        }
+
+        check_configuration_changed ();
+    }
+
+    private void verify_global_positions () {
+        int min_x = int.MAX;
+        int min_y = int.MAX;
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
-                display_widget.set_primary (display_widget.output_info == output_info);
+                int x, y, width, height;
+                display_widget.get_geometry (out x, out y, out width, out height);
+                min_x = int.min (min_x, x);
+                min_y = int.min (min_y, y);
             }
         });
 
-        check_configuration_changed ();
+        if (min_x == 0 && min_y == 0)
+          return;
+
+        get_children ().foreach ((child) => {
+            if (child is DisplayWidget) {
+                var display_widget = (DisplayWidget) child;
+                int x, y, width, height;
+                display_widget.get_geometry (out x, out y, out width, out height);
+                display_widget.set_geometry (x - min_x, y - min_y, width, height);
+            }
+        });
     }
 
     public void check_intersects (DisplayWidget source_display_widget) {
@@ -367,19 +385,19 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
             // Check projections
             if (is_projected (child_y, child_height, anchor_y, anchor_height)) {
-                debug ("Child is on the X axis of Anchor %s\n", anchor.output_info.get_display_name ());
+                debug ("Child is on the X axis of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
                 case_1 = is_x_smaller_absolute (case_1, case_1_t) && !diagonally ? case_1 : case_1_t;
                 case_2 = is_x_smaller_absolute (case_2, case_2_t) && !diagonally ? case_2 : case_2_t;
                 snap_x = true;
                 move = true;
             } else if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
-                debug ("Child is on the Y axis of Anchor %s\n", anchor.output_info.get_display_name ());
+                debug ("Child is on the Y axis of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
                 case_3 = is_x_smaller_absolute (case_3, case_3_t) && !diagonally ? case_3 : case_3_t;
                 case_4 = is_x_smaller_absolute (case_4, case_4_t) && !diagonally ? case_4 : case_4_t;
                 snap_y = true;
                 move = true;
             } else {
-                debug ("Child is diagonally of Anchor %s\n", anchor.output_info.get_display_name ());
+                debug ("Child is diagonally of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
                 if (!move) {
                     diagonally = true;
                     case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;
