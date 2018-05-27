@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2016 elementary LLC.
+ * Copyright (c) 2014-2018 elementary LLC.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -20,13 +20,12 @@
  */
 
 public class Display.DisplayWindow : Gtk.Window {
-    public DisplayWindow (Gnome.RROutputInfo output_info) {
-        var label = new Gtk.Label (output_info.get_display_name ());
+    public DisplayWindow (Display.VirtualMonitor virtual_monitor) {
+        var label = new Gtk.Label (virtual_monitor.get_display_name ());
         label.margin = 12;
         add (label);
-        int monitor_x, monitor_y;
-        output_info.get_geometry (out monitor_x, out monitor_y, null, null);
-        move (monitor_x, monitor_y);
+        var scale_factor = get_style_context ().get_scale ();
+        move ((int) (virtual_monitor.x/scale_factor), (int) (virtual_monitor.y/scale_factor));
     }
 
     construct {
