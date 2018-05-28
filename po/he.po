@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 05:38+0400\n"
+"POT-Creation-Date: 2018-05-28 12:36-0700\n"
 "PO-Revision-Date: 2016-09-16 10:47+0000\n"
 "Last-Translator: Niv Baehr <Unknown>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -18,62 +18,176 @@ msgstr ""
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 "X-Generator: Launchpad (build 18298)\n"
 
-#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
-msgid "Resolution:"
-msgstr "הפרדה:"
-
-#: ../src/DisplayWidget.vala:72
-msgid "Configure display"
-msgstr "הגדרת התצוגה"
-
-#: ../src/DisplayWidget.vala:94
-msgid "Use This Display:"
-msgstr "שימוש בתצוגה זו:"
-
-#: ../src/DisplayWidget.vala:111
-msgid "Rotation:"
-msgstr "סיבוב:"
-
-#: ../src/DisplayWidget.vala:159
-msgid "None"
-msgstr "ללא"
-
-#: ../src/DisplayWidget.vala:164
-msgid "Clockwise"
-msgstr "עם כיוון השעון"
-
-#: ../src/DisplayWidget.vala:173
-msgid "Flipped"
-msgstr "היפוך"
-
-#: ../src/DisplayWidget.vala:182
-msgid "Counterclockwise"
-msgstr "נגד כיוון השעון"
-
-#: ../src/DisplayWidget.vala:287
-msgid "Is the primary display"
-msgstr "התצוגה הראשית"
-
-#: ../src/DisplayWidget.vala:290
-msgid "Set as primary display"
-msgstr "הגדרה כתצוגה הראשית"
-
-#: ../src/DisplayPlug.vala:32
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
 msgstr "תצוגות"
 
-#: ../src/DisplayPlug.vala:33
+#: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "הגדרת ההפרדה ומיקומם של מסכים ומקרנים"
 
-#: ../src/DisplayPlug.vala:51
+#: src/DisplayPlug.vala:48
+msgid ""
+"Scaling factor changes will not take effect until this device is restarted"
+msgstr ""
+
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+msgid "Night Light"
+msgstr ""
+
+#: src/DisplayPlug.vala:123
+#, fuzzy
+msgid "Screen Resolution"
+msgstr "הפרדה:"
+
+#: src/DisplayPlug.vala:124
+#, fuzzy
+msgid "Screen Rotation"
+msgstr "סיבוב:"
+
+#: src/DisplayPlug.vala:125
+#, fuzzy
+msgid "Primary display"
+msgstr "התצוגה הראשית"
+
+#: src/DisplayPlug.vala:126
+msgid "Screen mirroring"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:56
+msgid "Clockwise"
+msgstr "עם כיוון השעון"
+
+#: src/Interfaces/MutterDisplayConfig.vala:58
+msgid "Counterclockwise"
+msgstr "נגד כיוון השעון"
+
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Flipped"
+msgstr "היפוך"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
+#, fuzzy
+msgid "Flipped Clockwise"
+msgstr "עם כיוון השעון"
+
+#: src/Interfaces/MutterDisplayConfig.vala:66
+#, fuzzy
+msgid "Flipped Counterclockwise"
+msgstr "נגד כיוון השעון"
+
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "None"
+msgstr "ללא"
+
+#: src/Objects/VirtualMonitor.vala:81
+#, fuzzy
+msgid "Mirrored Display"
+msgstr "תצוגת מראה:"
+
+#: src/Views/NightLightView.vala:32
+msgid "Night Light:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:41
+msgid ""
+"Night Light makes the colors of your display warmer. This may help prevent "
+"eye strain and sleeplessness."
+msgstr ""
+
+#: src/Views/NightLightView.vala:48
+msgid "Schedule:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:53
+msgid "Sunset to Sunrise"
+msgstr ""
+
+#: src/Views/NightLightView.vala:54
+msgid "Manual"
+msgstr ""
+
+#: src/Views/NightLightView.vala:56
+msgid "From:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:61
+msgid "To:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:66
+msgid "Color temperature:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:77
+msgid "More Warm"
+msgstr ""
+
+#: src/Views/NightLightView.vala:79
+msgid "Less Warm"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
 msgstr "תצוגת מראה:"
 
-#: ../src/DisplayPlug.vala:59
+#: src/Views/DisplaysView.vala:40
+msgid "Scaling factor:"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:43
+msgid "Automatic"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:44
+msgid "LoDPI"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:45
+msgid "Pixel Doubled"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
 msgstr "זיהוי תצוגות"
 
-#: ../src/DisplayPlug.vala:60
+#: src/Views/DisplaysView.vala:55
 msgid "Apply"
 msgstr "החלה"
+
+#: src/Views/DisplaysView.vala:78
+#, fuzzy
+msgid "Rotation Lock:"
+msgstr "סיבוב:"
+
+#: src/Widgets/DisplayWidget.vala:88
+msgid "Configure display"
+msgstr "הגדרת התצוגה"
+
+#: src/Widgets/DisplayWidget.vala:110
+msgid "Use This Display:"
+msgstr "שימוש בתצוגה זו:"
+
+#: src/Widgets/DisplayWidget.vala:117
+msgid "Resolution:"
+msgstr "הפרדה:"
+
+#: src/Widgets/DisplayWidget.vala:127
+msgid "Rotation:"
+msgstr "סיבוב:"
+
+#: src/Widgets/DisplayWidget.vala:327
+msgid "Is the primary display"
+msgstr "התצוגה הראשית"
+
+#: src/Widgets/DisplayWidget.vala:330
+msgid "Set as primary display"
+msgstr "הגדרה כתצוגה הראשית"

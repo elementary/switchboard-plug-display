@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 05:38+0400\n"
+"POT-Creation-Date: 2018-05-28 12:36-0700\n"
 "PO-Revision-Date: 2014-10-20 20:54+0000\n"
 "Last-Translator: Martin Myrvold <Unknown>\n"
 "Language-Team: Norwegian Nynorsk <nn@li.org>\n"
@@ -18,77 +18,185 @@ msgstr ""
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 "X-Generator: Launchpad (build 18298)\n"
 
-#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
-msgid "Resolution:"
-msgstr "Oppløysing:"
-
-#: ../src/DisplayWidget.vala:72
-msgid "Configure display"
-msgstr "Endre instillingar for skjermen"
-
-#: ../src/DisplayWidget.vala:94
-msgid "Use This Display:"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:111
-msgid "Rotation:"
-msgstr "Rotasjon:"
-
-#: ../src/DisplayWidget.vala:159
-msgid "None"
-msgstr "Ingen"
-
-#: ../src/DisplayWidget.vala:164
-msgid "Clockwise"
-msgstr "Med klokka"
-
-#: ../src/DisplayWidget.vala:173
-msgid "Flipped"
-msgstr "Snudd"
-
-#: ../src/DisplayWidget.vala:182
-msgid "Counterclockwise"
-msgstr "Mot klokka"
-
-#: ../src/DisplayWidget.vala:287
-msgid "Is the primary display"
-msgstr ""
-
-#: ../src/DisplayWidget.vala:290
-msgid "Set as primary display"
-msgstr "Velg som hovudskjerm"
-
-#: ../src/DisplayPlug.vala:32
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
 msgstr "Skjermar"
 
-#: ../src/DisplayPlug.vala:33
+#: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
-#: ../src/DisplayPlug.vala:51
+#: src/DisplayPlug.vala:48
+msgid ""
+"Scaling factor changes will not take effect until this device is restarted"
+msgstr ""
+
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+msgid "Night Light"
+msgstr ""
+
+#: src/DisplayPlug.vala:123
+#, fuzzy
+msgid "Screen Resolution"
+msgstr "Oppløysing:"
+
+#: src/DisplayPlug.vala:124
+#, fuzzy
+msgid "Screen Rotation"
+msgstr "Rotasjon:"
+
+#: src/DisplayPlug.vala:125
+#, fuzzy
+msgid "Primary display"
+msgstr "Er hovudskjerm"
+
+#: src/DisplayPlug.vala:126
+msgid "Screen mirroring"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:56
+msgid "Clockwise"
+msgstr "Med klokka"
+
+#: src/Interfaces/MutterDisplayConfig.vala:58
+msgid "Counterclockwise"
+msgstr "Mot klokka"
+
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Flipped"
+msgstr "Snudd"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
+#, fuzzy
+msgid "Flipped Clockwise"
+msgstr "Med klokka"
+
+#: src/Interfaces/MutterDisplayConfig.vala:66
+#, fuzzy
+msgid "Flipped Counterclockwise"
+msgstr "Mot klokka"
+
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "None"
+msgstr "Ingen"
+
+#: src/Objects/VirtualMonitor.vala:81
+#, fuzzy
+msgid "Mirrored Display"
+msgstr "Like skjermar"
+
+#: src/Views/NightLightView.vala:32
+msgid "Night Light:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:41
+msgid ""
+"Night Light makes the colors of your display warmer. This may help prevent "
+"eye strain and sleeplessness."
+msgstr ""
+
+#: src/Views/NightLightView.vala:48
+msgid "Schedule:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:53
+msgid "Sunset to Sunrise"
+msgstr ""
+
+#: src/Views/NightLightView.vala:54
+msgid "Manual"
+msgstr ""
+
+#: src/Views/NightLightView.vala:56
+msgid "From:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:61
+msgid "To:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:66
+msgid "Color temperature:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:77
+msgid "More Warm"
+msgstr ""
+
+#: src/Views/NightLightView.vala:79
+msgid "Less Warm"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
 msgstr "Like skjermar:"
 
-#: ../src/DisplayPlug.vala:59
+#: src/Views/DisplaysView.vala:40
+msgid "Scaling factor:"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:43
+msgid "Automatic"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:44
+msgid "LoDPI"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:45
+msgid "Pixel Doubled"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
 msgstr "Søk etter skjermar"
 
-#: ../src/DisplayPlug.vala:60
+#: src/Views/DisplaysView.vala:55
 msgid "Apply"
 msgstr "Bruk"
 
-#~ msgid "Is primary display"
-#~ msgstr "Er hovudskjerm"
+#: src/Views/DisplaysView.vala:78
+#, fuzzy
+msgid "Rotation Lock:"
+msgstr "Rotasjon:"
+
+#: src/Widgets/DisplayWidget.vala:88
+msgid "Configure display"
+msgstr "Endre instillingar for skjermen"
+
+#: src/Widgets/DisplayWidget.vala:110
+msgid "Use This Display:"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:117
+msgid "Resolution:"
+msgstr "Oppløysing:"
+
+#: src/Widgets/DisplayWidget.vala:127
+msgid "Rotation:"
+msgstr "Rotasjon:"
+
+#: src/Widgets/DisplayWidget.vala:327
+msgid "Is the primary display"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:330
+msgid "Set as primary display"
+msgstr "Velg som hovudskjerm"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Instillingane kan ikkje utførast: %s"
 
 #~ msgid "Use This Display"
 #~ msgstr "Bruk denne skjermen"
-
-#~ msgid "Mirrored Displays"
-#~ msgstr "Like skjermar"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Endra oppløysing og posisjonen til skjermar og prosjektorar"
