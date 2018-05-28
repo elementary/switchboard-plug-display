@@ -13,4 +13,7 @@
 	dh $@ 
 
 override_dh_strip:
-	dh_strip --dbg-package=switchboard-plug-display-dbg
+	dh_strip --dbgsym-migration='switchboard-plug-display-dbg (<< 0.1.3)'
+
+override_dh_missing:
+	dh_missing --fail-missing
