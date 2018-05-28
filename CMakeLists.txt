@@ -27,7 +27,6 @@ set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}-plug")
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 # Configure file
-configure_file (${CMAKE_SOURCE_DIR}/config.vala.cmake ${CMAKE_BINARY_DIR}/src/config.vala)
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 add_definitions (-DGNOME_DESKTOP_USE_UNSTABLE_API)
 
