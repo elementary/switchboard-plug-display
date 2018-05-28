@@ -1,4 +1,5 @@
 # Switchboard Display Plug
+[![Packaging status](https://repology.org/badge/tiny-repos/switchboard-plug-display.svg)](https://repology.org/metapackage/switchboard-plug-display)
 [![l10n](https://l10n.elementary.io/widgets/switchboard/switchboard-plug-display/svg-badge.svg)](https://l10n.elementary.io/projects/switchboard/switchboard-plug-display)
 
 Extension for [Switchboard](https://github.com/elementary/switchboard) to manage multiple monitor setups.
@@ -7,24 +8,18 @@ Extension for [Switchboard](https://github.com/elementary/switchboard) to manage
 
 You'll need the following dependencies:
 
-* cmake
-* libgnome-desktop-3-dev
 * libgranite-dev
 * libgtk-3-dev
 * libswitchboard-2.0-dev
+* meson
 * valac
 
-It's recommended to create a clean build environment
+Run `meson` to configure the build environment and then `ninja` to build
 
-    mkdir build
-    cd build/
-    
-Run `cmake` to configure the build environment and then `make` to build
+    meson build --prefix=/usr
+    cd build
+    ninja
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
-    make
-    
-To install, use `make install`, then execute with `switchboard`
+To install, use `ninja install`
 
-    sudo make install
-    switchboard
+    sudo ninja install
