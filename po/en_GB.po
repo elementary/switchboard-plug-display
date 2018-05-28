@@ -7,12 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 05:38+0400\n"
+"POT-Creation-Date: 2018-05-28 12:36-0700\n"
 "PO-Revision-Date: 2018-04-29 14:24+0000\n"
 "Last-Translator: Ciaran Ainsworth <cda@whistlingkappa.com>\n"
-"Language-Team: English (United Kingdom) "
-"<https://weblate.elementary.io/projects/switchboard/switchboard-plug-"
-"display/en_GB/>\n"
+"Language-Team: English (United Kingdom) <https://weblate.elementary.io/"
+"projects/switchboard/switchboard-plug-display/en_GB/>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,71 +20,179 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
-msgid "Resolution:"
-msgstr "Resolution:"
-
-#: ../src/DisplayWidget.vala:72
-msgid "Configure display"
-msgstr "Configure display"
-
-#: ../src/DisplayWidget.vala:94
-msgid "Use This Display:"
-msgstr "Use This Display:"
-
-#: ../src/DisplayWidget.vala:111
-msgid "Rotation:"
-msgstr "Rotation:"
-
-#: ../src/DisplayWidget.vala:159
-msgid "None"
-msgstr "None"
-
-#: ../src/DisplayWidget.vala:164
-msgid "Clockwise"
-msgstr "Clockwise"
-
-#: ../src/DisplayWidget.vala:173
-msgid "Flipped"
-msgstr "Flipped"
-
-#: ../src/DisplayWidget.vala:182
-msgid "Counterclockwise"
-msgstr "Anticlockwise"
-
-#: ../src/DisplayWidget.vala:287
-msgid "Is the primary display"
-msgstr "Is the primary display"
-
-#: ../src/DisplayWidget.vala:290
-msgid "Set as primary display"
-msgstr "Set as primary display"
-
-#: ../src/DisplayPlug.vala:32
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
 msgstr "Displays"
 
-#: ../src/DisplayPlug.vala:33
+#: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configure resolution and position of monitors and projectors"
 
-#: ../src/DisplayPlug.vala:51
+#: src/DisplayPlug.vala:48
+msgid ""
+"Scaling factor changes will not take effect until this device is restarted"
+msgstr ""
+
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+msgid "Night Light"
+msgstr ""
+
+#: src/DisplayPlug.vala:123
+#, fuzzy
+msgid "Screen Resolution"
+msgstr "Resolution:"
+
+#: src/DisplayPlug.vala:124
+#, fuzzy
+msgid "Screen Rotation"
+msgstr "Rotation:"
+
+#: src/DisplayPlug.vala:125
+#, fuzzy
+msgid "Primary display"
+msgstr "Is primary display"
+
+#: src/DisplayPlug.vala:126
+msgid "Screen mirroring"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:56
+msgid "Clockwise"
+msgstr "Clockwise"
+
+#: src/Interfaces/MutterDisplayConfig.vala:58
+msgid "Counterclockwise"
+msgstr "Anticlockwise"
+
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Flipped"
+msgstr "Flipped"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
+#, fuzzy
+msgid "Flipped Clockwise"
+msgstr "Clockwise"
+
+#: src/Interfaces/MutterDisplayConfig.vala:66
+#, fuzzy
+msgid "Flipped Counterclockwise"
+msgstr "Anticlockwise"
+
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "None"
+msgstr "None"
+
+#: src/Objects/VirtualMonitor.vala:81
+#, fuzzy
+msgid "Mirrored Display"
+msgstr "Mirrored Displays"
+
+#: src/Views/NightLightView.vala:32
+msgid "Night Light:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:41
+msgid ""
+"Night Light makes the colors of your display warmer. This may help prevent "
+"eye strain and sleeplessness."
+msgstr ""
+
+#: src/Views/NightLightView.vala:48
+msgid "Schedule:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:53
+msgid "Sunset to Sunrise"
+msgstr ""
+
+#: src/Views/NightLightView.vala:54
+msgid "Manual"
+msgstr ""
+
+#: src/Views/NightLightView.vala:56
+msgid "From:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:61
+msgid "To:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:66
+msgid "Color temperature:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:77
+msgid "More Warm"
+msgstr ""
+
+#: src/Views/NightLightView.vala:79
+msgid "Less Warm"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
 msgstr "Mirror Display:"
 
-#: ../src/DisplayPlug.vala:59
+#: src/Views/DisplaysView.vala:40
+msgid "Scaling factor:"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:43
+msgid "Automatic"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:44
+msgid "LoDPI"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:45
+msgid "Pixel Doubled"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
 msgstr "Detect Displays"
 
-#: ../src/DisplayPlug.vala:60
+#: src/Views/DisplaysView.vala:55
 msgid "Apply"
 msgstr "Apply"
 
-#~ msgid "Is primary display"
-#~ msgstr "Is primary display"
+#: src/Views/DisplaysView.vala:78
+#, fuzzy
+msgid "Rotation Lock:"
+msgstr "Rotation:"
 
-#~ msgid "Mirrored Displays"
-#~ msgstr "Mirrored Displays"
+#: src/Widgets/DisplayWidget.vala:88
+msgid "Configure display"
+msgstr "Configure display"
+
+#: src/Widgets/DisplayWidget.vala:110
+msgid "Use This Display:"
+msgstr "Use This Display:"
+
+#: src/Widgets/DisplayWidget.vala:117
+msgid "Resolution:"
+msgstr "Resolution:"
+
+#: src/Widgets/DisplayWidget.vala:127
+msgid "Rotation:"
+msgstr "Rotation:"
+
+#: src/Widgets/DisplayWidget.vala:327
+msgid "Is the primary display"
+msgstr "Is the primary display"
+
+#: src/Widgets/DisplayWidget.vala:330
+msgid "Set as primary display"
+msgstr "Set as primary display"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Settings cannot be applied: %s"

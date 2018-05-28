@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 05:38+0400\n"
+"POT-Creation-Date: 2018-05-28 12:36-0700\n"
 "PO-Revision-Date: 2017-02-22 12:45+0000\n"
 "Last-Translator: Christos Iatropoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -18,74 +18,182 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-02-23 06:46+0000\n"
 "X-Generator: Launchpad (build 18326)\n"
 
-#: ../src/MirrorDisplay.vala:31 ../src/DisplayWidget.vala:101
-msgid "Resolution:"
-msgstr "Ανάλυση:"
-
-#: ../src/DisplayWidget.vala:72
-msgid "Configure display"
-msgstr "Ρύθμιση οθόνης"
-
-#: ../src/DisplayWidget.vala:94
-msgid "Use This Display:"
-msgstr "Χρήση αυτής της οθόνης:"
-
-#: ../src/DisplayWidget.vala:111
-msgid "Rotation:"
-msgstr "Περιστροφή:"
-
-#: ../src/DisplayWidget.vala:159
-msgid "None"
-msgstr "Καμία"
-
-#: ../src/DisplayWidget.vala:164
-msgid "Clockwise"
-msgstr "Δεξιόστροφα"
-
-#: ../src/DisplayWidget.vala:173
-msgid "Flipped"
-msgstr "Ανεστραμμένη"
-
-#: ../src/DisplayWidget.vala:182
-msgid "Counterclockwise"
-msgstr "Αριστερόστροφα"
-
-#: ../src/DisplayWidget.vala:287
-msgid "Is the primary display"
-msgstr "Είναι η αρχική οθόνη"
-
-#: ../src/DisplayWidget.vala:290
-msgid "Set as primary display"
-msgstr "Ορισμός ως αρχικής οθόνης"
-
-#: ../src/DisplayPlug.vala:32
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
 msgstr "Οθόνες"
 
-#: ../src/DisplayPlug.vala:33
+#: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Ρύθμιση ανάλυσης και θέσης  οθονών και προβολέων"
 
-#: ../src/DisplayPlug.vala:51
+#: src/DisplayPlug.vala:48
+msgid ""
+"Scaling factor changes will not take effect until this device is restarted"
+msgstr ""
+
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+msgid "Night Light"
+msgstr ""
+
+#: src/DisplayPlug.vala:123
+#, fuzzy
+msgid "Screen Resolution"
+msgstr "Ανάλυση:"
+
+#: src/DisplayPlug.vala:124
+#, fuzzy
+msgid "Screen Rotation"
+msgstr "Περιστροφή:"
+
+#: src/DisplayPlug.vala:125
+#, fuzzy
+msgid "Primary display"
+msgstr "Είναι πρωταρχική οθόνη"
+
+#: src/DisplayPlug.vala:126
+msgid "Screen mirroring"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:56
+msgid "Clockwise"
+msgstr "Δεξιόστροφα"
+
+#: src/Interfaces/MutterDisplayConfig.vala:58
+msgid "Counterclockwise"
+msgstr "Αριστερόστροφα"
+
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Flipped"
+msgstr "Ανεστραμμένη"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
+#, fuzzy
+msgid "Flipped Clockwise"
+msgstr "Δεξιόστροφα"
+
+#: src/Interfaces/MutterDisplayConfig.vala:66
+#, fuzzy
+msgid "Flipped Counterclockwise"
+msgstr "Αριστερόστροφα"
+
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "None"
+msgstr "Καμία"
+
+#: src/Objects/VirtualMonitor.vala:81
+#, fuzzy
+msgid "Mirrored Display"
+msgstr "Κατοπτρισμένες Οθόνες"
+
+#: src/Views/NightLightView.vala:32
+msgid "Night Light:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:41
+msgid ""
+"Night Light makes the colors of your display warmer. This may help prevent "
+"eye strain and sleeplessness."
+msgstr ""
+
+#: src/Views/NightLightView.vala:48
+msgid "Schedule:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:53
+msgid "Sunset to Sunrise"
+msgstr ""
+
+#: src/Views/NightLightView.vala:54
+msgid "Manual"
+msgstr ""
+
+#: src/Views/NightLightView.vala:56
+msgid "From:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:61
+msgid "To:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:66
+msgid "Color temperature:"
+msgstr ""
+
+#: src/Views/NightLightView.vala:77
+msgid "More Warm"
+msgstr ""
+
+#: src/Views/NightLightView.vala:79
+msgid "Less Warm"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
 msgstr "Κατοπτρισμός οθόνης:"
 
-#: ../src/DisplayPlug.vala:59
+#: src/Views/DisplaysView.vala:40
+msgid "Scaling factor:"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:43
+msgid "Automatic"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:44
+msgid "LoDPI"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:45
+msgid "Pixel Doubled"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
 msgstr "Ανίχνευση οθονών"
 
-#: ../src/DisplayPlug.vala:60
+#: src/Views/DisplaysView.vala:55
 msgid "Apply"
 msgstr "Εφαρμογή"
 
-#~ msgid "Is primary display"
-#~ msgstr "Είναι πρωταρχική οθόνη"
+#: src/Views/DisplaysView.vala:78
+#, fuzzy
+msgid "Rotation Lock:"
+msgstr "Περιστροφή:"
+
+#: src/Widgets/DisplayWidget.vala:88
+msgid "Configure display"
+msgstr "Ρύθμιση οθόνης"
+
+#: src/Widgets/DisplayWidget.vala:110
+msgid "Use This Display:"
+msgstr "Χρήση αυτής της οθόνης:"
+
+#: src/Widgets/DisplayWidget.vala:117
+msgid "Resolution:"
+msgstr "Ανάλυση:"
+
+#: src/Widgets/DisplayWidget.vala:127
+msgid "Rotation:"
+msgstr "Περιστροφή:"
+
+#: src/Widgets/DisplayWidget.vala:327
+msgid "Is the primary display"
+msgstr "Είναι η αρχική οθόνη"
+
+#: src/Widgets/DisplayWidget.vala:330
+msgid "Set as primary display"
+msgstr "Ορισμός ως αρχικής οθόνης"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Αλλάξτε την ανάλυση και τη θέση των οθονών και των projectors"
-
-#~ msgid "Mirrored Displays"
-#~ msgstr "Κατοπτρισμένες Οθόνες"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Αδυναμία εφαρμογής ρυθμίσεων: %s"
