@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-05-30 00:03+0000\n"
+"PO-Revision-Date: 2018-05-31 05:52+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard"
 "/switchboard-plug-display/ja/>\n"
@@ -149,7 +149,7 @@ msgstr "低 DPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "ピクセル倍増"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
