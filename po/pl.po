@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-05-29 00:12+0000\n"
+"PO-Revision-Date: 2018-05-29 04:45+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://weblate.elementary.io/projects/switchboard"
 "/switchboard-plug-display/pl/>\n"
@@ -33,6 +33,8 @@ msgstr "Konfiguruj rozdzielczość i pozycję monitorów i projektorów"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Zmiany w czynniku skalowania nie przyniosą rezultatu przed ponownym "
+"uruchomieniem tego urządzenia"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
@@ -64,34 +66,31 @@ msgstr "Przeciwnie do ruchu wskazówek zegara"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Do góry nogami"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
-msgstr "Odwrócona"
+msgstr "Odwrócony"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "Zgodnie z ruchem wskazówek zegara"
+msgstr "Odwrócenie zgodnie z ruchem wskazówek zegara"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Przeciwnie do ruchu wskazówek zegara"
+msgstr "Odwrócenie przeciwnie do ruchu wskazówek zegara"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Odwrócenie do góry nogami"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
 msgstr "Brak"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Ten sam obraz na wszystkich monitorach"
+msgstr "Ekran lustrzanego odbicia"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
@@ -102,14 +101,16 @@ msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Światło nocne dba o regulację ciepłoty kolorów ekranu. Ma ona pomagać w "
+"zapobieganiu zmęczeniu oczu i uczuciu senności."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Zaplanowany:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Od zachodu słońca do wschodu"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
@@ -141,19 +142,19 @@ msgstr "Lustrzany ekran:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Czynnik skalowania:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Automatyczny"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "Niskie DPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Podwojenie pikseli"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -164,9 +165,8 @@ msgid "Apply"
 msgstr "Zastosuj"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Obrót:"
+msgstr "Blokada obrotu:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
