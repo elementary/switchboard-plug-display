@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-05-29 13:52+0000\n"
+"PO-Revision-Date: 2018-05-30 00:03+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://weblate.elementary.io/projects/switchboard"
 "/switchboard-plug-display/ca/>\n"
@@ -89,7 +89,7 @@ msgstr "Cap"
 
 #: src/Objects/VirtualMonitor.vala:81
 msgid "Mirrored Display"
-msgstr "Pantalla duplicada"
+msgstr "Pantalla replicada"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
@@ -137,7 +137,7 @@ msgstr "Menys càlid"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "Pantalla mirall:"
+msgstr "Pantalla de rèplica:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
