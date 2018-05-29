@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2016-09-16 10:47+0000\n"
-"Last-Translator: Niv Baehr <Unknown>\n"
-"Language-Team: Hebrew <he@li.org>\n"
+"PO-Revision-Date: 2018-05-29 06:35+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: Hebrew <https://weblate.elementary.io/projects/switchboard"
+"/switchboard-plug-display/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
@@ -29,30 +31,27 @@ msgstr "הגדרת ההפרדה ומיקומם של מסכים ומקרנים"
 #: src/DisplayPlug.vala:48
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
-msgstr ""
+msgstr "השינויים למקדם שינוי הגודל לא יחולו עד להפעלת ההתקן מחדש"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "תאורת לילה"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "הפרדה:"
+msgstr "רזולוציית המסך"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "סיבוב:"
+msgstr "סיבוב המסך"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "התצוגה הראשית"
+msgstr "תצוגה ראשית"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "שידור המסך"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Clockwise"
@@ -64,76 +63,74 @@ msgstr "נגד כיוון השעון"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "היפוך אנכי"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
 msgstr "היפוך"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "עם כיוון השעון"
+msgstr "מהופך עם כיוון השעון"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "נגד כיוון השעון"
+msgstr "מהופך נגד כיוון השעון"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "מהופך אנכית"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
 msgstr "ללא"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "תצוגת מראה:"
+msgstr "תצוגה משוכפלת"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "תאורת לילה:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"תאורת לילה מציגה צבעים חמים יותר בתצוגה. עשוי למנוע את הטרחת העין ועייפות."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "לו״ז:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "שקיעה עד זריחה"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "ידני"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "התחלה:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "סיום:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "טמפרטורת הצבע:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "חם יותר"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "חם פחות"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -141,19 +138,19 @@ msgstr "תצוגת מראה:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "מקדם שינוי גודל:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "אוטומטי"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "DPI נמוך"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "פיקסלים מוכפלים"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -164,9 +161,8 @@ msgid "Apply"
 msgstr "החלה"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "סיבוב:"
+msgstr "נעילת סיבוב:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
