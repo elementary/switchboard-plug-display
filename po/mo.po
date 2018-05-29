@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-05-27 13:00+0000\n"
+"PO-Revision-Date: 2018-05-29 12:21+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
-"Language-Team: Moldovan <https://weblate.elementary.io/projects/switchboard/"
-"switchboard-plug-display/mo/>\n"
+"Language-Team: Moldovan <https://weblate.elementary.io/projects/switchboard"
+"/switchboard-plug-display/mo/>\n"
 "Language: mo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,29 +25,28 @@ msgstr "Configurați rezoluția și poziția monitoarelor și proiectoarelor"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Modificările factorului de scalare nu va avea efect până când acesta nu este "
+"repornit"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "Lumină de noapte"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Rezoluţie:"
+msgstr "Rezolutia ecranului"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Rotație:"
+msgstr "Rotația ecranului"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "Este afișajul principal"
+msgstr "Afișaj primar"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Dublar ecranul"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Clockwise"
@@ -59,76 +58,75 @@ msgstr "Contrar acelor de ceas"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Răsturnat"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
 msgstr "Răsturnat"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "Ace de ceas"
+msgstr "Întors spre dreapta"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Contrar acelor de ceas"
+msgstr "Întors la stânga"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Flipped Upsidedown"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
 msgstr "Nici unul"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Afișaj pentru oglindă:"
+msgstr "Ecranul reflectat"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Lumină de noapte:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Lumina de noapte face ca culorile afișajului să fie mai calde. Acest lucru "
+"poate ajuta la prevenirea tulburării ochilor și a insomniei."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Planifică:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Apus de soare la răsăritul soarelui"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Manuală"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "De la:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Pentru:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Temperatura de culoare:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Mai cald"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Mai puțin cald"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -136,19 +134,19 @@ msgstr "Afișaj pentru oglindă:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Factorul de scalare:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Automatico"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "Lo DPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Pixel dublat"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -159,9 +157,8 @@ msgid "Apply"
 msgstr "Aplică"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Rotație:"
+msgstr "Blocare rotație:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
