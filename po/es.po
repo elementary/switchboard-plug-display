@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-04-25 00:03+0000\n"
-"Last-Translator: Wilsen Hernandez <wilsenh95@gmail.com>\n"
-"Language-Team: Spanish <https://weblate.elementary.io/projects/switchboard/"
-"switchboard-plug-display/es/>\n"
+"PO-Revision-Date: 2018-05-30 00:03+0000\n"
+"Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
+"Language-Team: Spanish <https://weblate.elementary.io/projects/switchboard"
+"/switchboard-plug-display/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,29 +32,28 @@ msgstr "Configurar la resolución y la posición de los monitores y proyectores"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Los cambios del factor de escala no tendrán efecto hasta que se reinicie "
+"este dispositivo"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "Luz de noche"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Resolución:"
+msgstr "Resolución de la pantalla"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Rotación:"
+msgstr "Rotacion de pantalla"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "Es la pantalla principal"
+msgstr "Pantalla principal"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Duplicar pantalla"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Clockwise"
@@ -66,19 +65,17 @@ msgstr "Sentido anti-horario"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Al revés"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
 msgstr "Invertido"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Clockwise"
 msgstr "Sentido horario"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
 msgstr "Sentido anti-horario"
 
@@ -91,27 +88,28 @@ msgid "None"
 msgstr "Ninguno"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
 msgstr "Pantallas duplicadas"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Luz de noche:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"La luz nocturna hace que los colores de su pantalla sean más cálidos. Esto "
+"puede ayudar a prevenir la fatiga visual y el insomnio."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Fijar el horario:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Atardecer al amanecer"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
@@ -119,23 +117,23 @@ msgstr ""
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "Desde:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Hasta:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Temperatura del color:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Más cálido"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Menos cálido"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -143,19 +141,19 @@ msgstr "Pantalla duplicada:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Factor de escala:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Automático"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Pixel duplicado"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -166,9 +164,8 @@ msgid "Apply"
 msgstr "Aplicar"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Rotación:"
+msgstr "Bloqueo de rotación:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
