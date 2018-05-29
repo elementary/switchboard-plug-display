@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-05-29 00:12+0000\n"
+"PO-Revision-Date: 2018-05-30 00:03+0000\n"
 "Last-Translator: Fernando da Silva Sousa <wild.nando@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) "
 "<https://weblate.elementary.io/projects/switchboard/switchboard-plug-"
@@ -39,19 +39,16 @@ msgid "Night Light"
 msgstr ""
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Resolução:"
+msgstr "Resolução de tela"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Rotação:"
+msgstr "Rotação de tela"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "É a tela principal"
+msgstr "Tela principal"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
@@ -92,7 +89,6 @@ msgid "None"
 msgstr "Nenhum"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
 msgstr "Telas espelhadas"
 
@@ -167,9 +163,8 @@ msgid "Apply"
 msgstr "Aplicar"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Rotação:"
+msgstr "Trava de Rotação:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
