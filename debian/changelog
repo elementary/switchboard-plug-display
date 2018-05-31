@@ -1,3 +1,9 @@
+switchboard-plug-display (0.1.4) UNRELEASED; urgency=medium
+
+  * Pre-release version bump.
+
+ -- Cody Garver <cody@elementary.io>  Wed, 30 May 2018 19:36:50 -0500
+
 switchboard-plug-display (0.1.3) xenial; urgency=medium
 
   * New upstream release.
