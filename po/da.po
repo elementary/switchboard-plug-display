@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-05-29 00:12+0000\n"
+"PO-Revision-Date: 2018-06-02 00:06+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/switchboard"
 "/switchboard-plug-display/da/>\n"
@@ -65,21 +65,19 @@ msgstr "Mod uret"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Vendt på hovedet"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
 msgstr "Vendt"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "Med uret"
+msgstr "Vendt med uret"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Mod uret"
+msgstr "Vendt imod uret"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
