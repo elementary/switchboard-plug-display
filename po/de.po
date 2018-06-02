@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2016-08-01 20:59+0000\n"
-"Last-Translator: UweS <Unknown>\n"
-"Language-Team: German <de@li.org>\n"
+"PO-Revision-Date: 2018-06-02 19:53+0000\n"
+"Last-Translator: Jörg Arnold <j.ar@mailbox.org>\n"
+"Language-Team: German <https://weblate.elementary.io/projects/switchboard"
+"/switchboard-plug-display/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
@@ -30,29 +32,28 @@ msgstr "Auflösung und Anordnung von Bildschirmen und Projektoren einrichten"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Änderungen des Skalierungsfaktors werden erst nach einem Neustart des "
+"Gerätes wirksam"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "Night-Light"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Auflösung:"
+msgstr "Bildschirmauflösung"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Drehung:"
+msgstr "Bildschirmausrichtung"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "Dies ist der primäre Bildschirm"
+msgstr "Primäre Anzeige"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Bildschirmspiegelung"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Clockwise"
@@ -64,76 +65,75 @@ msgstr "Gegen den Uhrzeigersinn"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Kopfstehend"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
 msgstr "Umgekehrt"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "Im Uhrzeigersinn"
+msgstr "Gespiegelt im Uhrzeigersinn"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Gegen den Uhrzeigersinn"
+msgstr "Gespiegelt gegen den Uhrzeigersinn"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Gespiegelt Kopfstehend"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
 msgstr "Keine"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Gespiegelte Bildschirme"
+msgstr "Gespiegelte Anzeige"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Night-Light:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Night-Light macht die Farben Ihres Displays wärmer. Dies kann helfen, "
+"Augenbelastung und Schlaflosigkeit zu vermeiden."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Zeitplan:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Sonnenuntergang bis Sonnenaufgang"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "Von:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Bis:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Farbtemperatur:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Wärmer"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Kälter"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -141,19 +141,19 @@ msgstr "Bild spiegeln:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Skalierungsfaktor:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Pixel verdoppelt"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -164,9 +164,8 @@ msgid "Apply"
 msgstr "Übernehmen"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Drehung:"
+msgstr "Rotationssperre:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
