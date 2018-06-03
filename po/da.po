@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-06-02 00:06+0000\n"
+"PO-Revision-Date: 2018-06-03 17:56+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/switchboard"
 "/switchboard-plug-display/da/>\n"
@@ -81,7 +81,7 @@ msgstr "Vendt imod uret"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Spejlvendt og vendt på hovedet"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
@@ -100,6 +100,8 @@ msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Nattelys gør skærmens farver varmere. Dette kan hjælpe med at forebygge "
+"overanstrengelse af øjnene samt søvnbesvær."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
@@ -107,7 +109,7 @@ msgstr "Tidsplan:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Solnedgang til Solopgang"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
@@ -146,13 +148,12 @@ msgid "Automatic"
 msgstr "Automatisk"
 
 #: src/Views/DisplaysView.vala:44
-#, fuzzy
 msgid "LoDPI"
 msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Pixel Fordoblet"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
