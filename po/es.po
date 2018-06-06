@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2018-05-30 00:03+0000\n"
+"PO-Revision-Date: 2018-06-06 06:02+0000\n"
 "Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/switchboard"
 "/switchboard-plug-display/es/>\n"
@@ -81,7 +81,7 @@ msgstr "Sentido anti-horario"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Volteado al revés"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
@@ -113,7 +113,7 @@ msgstr "Atardecer al amanecer"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
