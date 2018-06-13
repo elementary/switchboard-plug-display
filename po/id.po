@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2017-07-31 15:24+0700\n"
-"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
-"Language-Team: Indonesian <https://weblate.elementary.io/projects/"
-"switchboard/switchboard-plug-display/id/>\n"
+"PO-Revision-Date: 2018-06-13 16:58+0000\n"
+"Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
+"Language-Team: Indonesian <https://weblate.elementary.io/projects/switchboard"
+"/switchboard-plug-display/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -31,29 +31,28 @@ msgstr "Konfigurasikan resolusi dan posisi dari monitor dan proyektor"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Perubahan faktor skala tidak akan berpengaruh hingga perangkat ini dimulai "
+"ulang"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "Cahaya Malam"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Resolusi:"
+msgstr "Resolusi Layar"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Rotasi:"
+msgstr "Rotasi Layar"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "Adalah tampilan utama"
+msgstr "Tampilan utama"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Pencerminan layar"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Clockwise"
@@ -65,76 +64,75 @@ msgstr "Berlawanan arah jarum jam"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Terbalik"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
 msgstr "Terbalik"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "Searah jarum jam"
+msgstr "Dibalik searah jarum jam"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Berlawanan arah jarum jam"
+msgstr "Dibalik berlawanan arah jarum jam"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Dibalik terbalik"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
 msgstr "Nihil"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Tampilan Cermin:"
+msgstr "Tampilan Cermin"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Cahaya Malam:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Cahaya Malam membuat warna tampilan Anda lebih hangat. Ini dapat membantu "
+"mencegah ketegangan mata dan sulit tidur."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Jadwal:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Matahari terbenam sampai Matahari terbit"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "Dari:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Kepada:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Temperatur warna:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Lebih Hangat"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Sedikit Hangat"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -142,19 +140,19 @@ msgstr "Tampilan Cermin:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Faktor penskalaan:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Otomatis"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Pixel Digandakan"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -165,9 +163,8 @@ msgid "Apply"
 msgstr "Terapkan"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Rotasi:"
+msgstr "Kunci Rotasi:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
