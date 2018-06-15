@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 12:36-0700\n"
-"PO-Revision-Date: 2017-04-19 19:32+0000\n"
-"Last-Translator: Benjamin CARADEUC <bencrdc@gmail.com>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
-"switchboard-plug-display/fr_CA/>\n"
+"PO-Revision-Date: 2018-06-16 00:10+0000\n"
+"Last-Translator: martin fromont <martin.fromont1@gmail.com>\n"
+"Language-Team: French (Canada) "
+"<https://weblate.elementary.io/projects/switchboard/switchboard-plug-"
+"display/fr_CA/>\n"
 "Language: fr_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.13-dev\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -32,29 +33,28 @@ msgstr "Configurer la résolution et la position des écrans et projecteurs"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Les changements de l'échelle ne prendront effet que lors du redémarrage de "
+"l'appareil"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "Mode nuit"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Résolution:"
+msgstr "Résolution de l'écran"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Rotation:"
+msgstr "Rotation de l'écran"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "Est le premier écran"
+msgstr "Affichage principal"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Projection d'écran"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Clockwise"
