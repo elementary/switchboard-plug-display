@@ -219,21 +219,37 @@ public class Display.DisplayWidget : Gtk.EventBox {
             virtual_monitor.transform = transform;
 
             switch (transform) {
+            	case DisplayTransform.NORMAL:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 0;
+                    break;
                 case DisplayTransform.ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.angle = 270;
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 90;
                     break;
                 case DisplayTransform.ROTATION_180:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 180;
                     break;
                 case DisplayTransform.ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.angle = 90;
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 270;
                     break;
-                default:
+                case DisplayTransform.FLIPPED:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 0;
+                    break;
+                case DisplayTransform.FLIPPED_ROTATION_90:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 90;
+                    break;
+                case DisplayTransform.FLIPPED_ROTATION_180:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 180;
+                    break;
+                case DisplayTransform.FLIPPED_ROTATION_270:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 270;
                     break;
             }
 
