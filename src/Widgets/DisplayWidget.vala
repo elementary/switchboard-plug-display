@@ -87,7 +87,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         toggle_settings.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU);
         toggle_settings.tooltip_text = _("Configure display");
 
-        var label = new Gtk.Label (virtual_monitor.get_display_name ());
+        var virtual_monitor_name = virtual_monitor.get_display_name ();
+        var label = new Gtk.Label (virtual_monitor_name);
         label.halign = Gtk.Align.CENTER;
         label.valign = Gtk.Align.CENTER;
         label.expand = true;
@@ -219,21 +220,45 @@ public class Display.DisplayWidget : Gtk.EventBox {
             virtual_monitor.transform = transform;
 
             switch (transform) {
+            	case DisplayTransform.NORMAL:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 0;
+                    label.label = virtual_monitor_name;
+                    break;
                 case DisplayTransform.ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.angle = 270;
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 90;
+                    label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_180:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 180;
+                    label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.angle = 90;
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 270;
+                    label.label = virtual_monitor_name;
                     break;
-                default:
+                case DisplayTransform.FLIPPED:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 0;
+                    label.label = virtual_monitor_name.reverse(); //mirroring simulation, because we can't really mirror the text
+                    break;
+                case DisplayTransform.FLIPPED_ROTATION_90:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 90;
+                    label.label = virtual_monitor_name.reverse();
+                    break;
+                case DisplayTransform.FLIPPED_ROTATION_180:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 180;
+                    label.label = virtual_monitor_name.reverse();
+                    break;
+                case DisplayTransform.FLIPPED_ROTATION_270:
+                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    label.angle = 270;
+                    label.label = virtual_monitor_name.reverse();
                     break;
             }
 
