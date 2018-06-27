@@ -7,12 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 12:36-0700\n"
+"POT-Creation-Date: 2018-06-27 08:50-0700\n"
 "PO-Revision-Date: 2018-06-16 00:10+0000\n"
 "Last-Translator: martin fromont <martin.fromont1@gmail.com>\n"
-"Language-Team: French (Canada) "
-"<https://weblate.elementary.io/projects/switchboard/switchboard-plug-"
-"display/fr_CA/>\n"
+"Language-Team: French (Canada) <https://weblate.elementary.io/projects/"
+"switchboard/switchboard-plug-display/fr_CA/>\n"
 "Language: fr_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,16 +56,16 @@ msgid "Screen mirroring"
 msgstr "Projection d'écran"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Clockwise"
-msgstr "Sens des aiguilles d'une montre"
-
-#: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Counterclockwise"
 msgstr "Sens inverse des aiguilles d'une montre"
 
-#: src/Interfaces/MutterDisplayConfig.vala:60
+#: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Upside-down"
 msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Clockwise"
+msgstr "Sens des aiguilles d'une montre"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
@@ -74,17 +73,17 @@ msgstr "Retourné"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 #, fuzzy
-msgid "Flipped Clockwise"
-msgstr "Sens des aiguilles d'une montre"
-
-#: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
 msgstr "Sens inverse des aiguilles d'une montre"
 
-#: src/Interfaces/MutterDisplayConfig.vala:68
+#: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Upside-down"
 msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:68
+#, fuzzy
+msgid "Flipped Clockwise"
+msgstr "Sens des aiguilles d'une montre"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
@@ -174,22 +173,22 @@ msgstr "Rotation:"
 msgid "Configure display"
 msgstr "Configurer l'écran"
 
-#: src/Widgets/DisplayWidget.vala:110
+#: src/Widgets/DisplayWidget.vala:111
 msgid "Use This Display:"
 msgstr "Utiliser cet écran:"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:118
 msgid "Resolution:"
 msgstr "Résolution:"
 
-#: src/Widgets/DisplayWidget.vala:127
+#: src/Widgets/DisplayWidget.vala:128
 msgid "Rotation:"
 msgstr "Rotation:"
 
-#: src/Widgets/DisplayWidget.vala:327
+#: src/Widgets/DisplayWidget.vala:352
 msgid "Is the primary display"
 msgstr "Est le premier écran"
 
-#: src/Widgets/DisplayWidget.vala:330
+#: src/Widgets/DisplayWidget.vala:355
 msgid "Set as primary display"
 msgstr "Définir comme premier écran"

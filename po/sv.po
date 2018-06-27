@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 12:36-0700\n"
+"POT-Creation-Date: 2018-06-27 08:50-0700\n"
 "PO-Revision-Date: 2016-07-20 14:32+0000\n"
 "Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -55,16 +55,16 @@ msgid "Screen mirroring"
 msgstr ""
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Clockwise"
-msgstr "Medurs"
-
-#: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Counterclockwise"
 msgstr "Moturs"
 
-#: src/Interfaces/MutterDisplayConfig.vala:60
+#: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Upside-down"
 msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Clockwise"
+msgstr "Medurs"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
@@ -72,17 +72,17 @@ msgstr "Vänd horisontellt"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 #, fuzzy
-msgid "Flipped Clockwise"
-msgstr "Medurs"
-
-#: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Counterclockwise"
 msgstr "Moturs"
 
-#: src/Interfaces/MutterDisplayConfig.vala:68
+#: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Upside-down"
 msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:68
+#, fuzzy
+msgid "Flipped Clockwise"
+msgstr "Medurs"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
@@ -172,23 +172,23 @@ msgstr "Rotation:"
 msgid "Configure display"
 msgstr "Ställ in bildskärm"
 
-#: src/Widgets/DisplayWidget.vala:110
+#: src/Widgets/DisplayWidget.vala:111
 msgid "Use This Display:"
 msgstr "Använd den här skärmen:"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:118
 msgid "Resolution:"
 msgstr "Upplösning:"
 
-#: src/Widgets/DisplayWidget.vala:127
+#: src/Widgets/DisplayWidget.vala:128
 msgid "Rotation:"
 msgstr "Rotation:"
 
-#: src/Widgets/DisplayWidget.vala:327
+#: src/Widgets/DisplayWidget.vala:352
 msgid "Is the primary display"
 msgstr "är primär skärm"
 
-#: src/Widgets/DisplayWidget.vala:330
+#: src/Widgets/DisplayWidget.vala:355
 msgid "Set as primary display"
 msgstr "Använd som primär bildskärm"
 
