@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-07-16 21:27+0000\n"
+"PO-Revision-Date: 2018-07-17 00:03+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementary.io>\n"
 "Language-Team: French <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fr/>\n"
@@ -150,7 +150,7 @@ msgstr "Automatique"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr "LoDPI"
+msgstr "Faible DPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
