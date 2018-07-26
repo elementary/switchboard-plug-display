@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-06-23 00:11+0000\n"
-"Last-Translator: Fernando Campanate <fernando.campanate@hotmail.com>\n"
+"PO-Revision-Date: 2018-07-26 14:55+0000\n"
+"Last-Translator: Christophe Silva <Christophesilva80@gmail.com>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -32,6 +32,8 @@ msgstr "Configurar a resolução e a posição dos monitores e projetores"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"As alterações do fator de escala não terão efeito até que este dispositivo "
+"seja reiniciado"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
@@ -70,16 +72,14 @@ msgid "Flipped"
 msgstr "Invertido"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Counterclockwise"
 msgstr "Sentido Anti-Horário"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Verticalmente invertido"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
-#, fuzzy
 msgid "Flipped Clockwise"
 msgstr "Sentido Horário"
 
@@ -88,7 +88,6 @@ msgid "None"
 msgstr "Nenhuma"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
 msgstr "Ecrãs Espelhados"
 
@@ -110,31 +109,31 @@ msgstr "Cronograma:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Pôr do sol ao nascer do sol"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "De:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Para:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Temperatura de cor:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Mais quente"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Menos Quente"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -142,19 +141,19 @@ msgstr "Espelhar Ecrã:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Fator de escala:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Automático"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Pixel Duplicado"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -165,9 +164,8 @@ msgid "Apply"
 msgstr "Aplicar"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Rotação :"
+msgstr "Rotação:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
