@@ -266,7 +266,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
-        rotation_combobox.set_active (0);
+        rotation_combobox.set_active ((int) virtual_monitor.transform);
         on_vm_transform_changed ();
 
         virtual_monitor.modes_changed.connect (on_monitor_modes_changed);
