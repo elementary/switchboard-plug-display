@@ -53,19 +53,19 @@ public enum DisplayTransform {
     public string to_string () {
         switch (this) {
             case ROTATION_90:
-                return _("Counterclockwise");
+                return _("Clockwise");
             case ROTATION_180:
                 return _("Upside-down");
             case ROTATION_270:
-                return _("Clockwise");
+                return _("Counterclockwise");
             case FLIPPED:
                 return _("Flipped");
             case FLIPPED_ROTATION_90:
-                return _("Flipped Counterclockwise");
+                return _("Flipped Clockwise");
             case FLIPPED_ROTATION_180:
                 return _("Flipped Upside-down");
             case FLIPPED_ROTATION_270:
-                return _("Flipped Clockwise");
+                return _("Flipped Counterclockwise");
             default:
                 return _("None");
         }
