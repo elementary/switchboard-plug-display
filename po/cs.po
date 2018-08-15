@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-05-30 12:49+0000\n"
+"PO-Revision-Date: 2018-08-15 00:09+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/cs/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -71,15 +71,15 @@ msgstr "Převrácený"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped Counterclockwise"
-msgstr "Převrácený proti směru hodinových ručiček"
+msgstr "Zrcadlově proti směru hodinových ručiček"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Upside-down"
-msgstr "Převrácený vzhůru nohama"
+msgstr "Zrcadlově vzhůru nohama"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
-msgstr "Převrácený ve směru hodinových ručiček"
+msgstr "Zrcadlově ve směru hodinových ručiček"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
