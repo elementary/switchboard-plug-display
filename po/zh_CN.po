@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2016-06-16 16:48+0000\n"
+"PO-Revision-Date: 2018-08-13 00:03+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
-"Language: \n"
+"Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
+"switchboard/switchboard-plug-display/zh_Hans/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
@@ -29,11 +31,11 @@ msgstr "调整分辨率、配置显示器和投影仪的位置"
 #: src/DisplayPlug.vala:48
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
-msgstr ""
+msgstr "变更将会在设备重启后生效"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "夜灯"
 
 #: src/DisplayPlug.vala:123
 #, fuzzy
@@ -52,7 +54,7 @@ msgstr "是第一屏幕"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "屏幕镜像"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Counterclockwise"
@@ -60,7 +62,7 @@ msgstr "顺时针"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Upside-down"
-msgstr ""
+msgstr "上下旋转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
@@ -77,7 +79,7 @@ msgstr "顺时针"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "上下翻转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 #, fuzzy
@@ -95,45 +97,45 @@ msgstr "镜像显示"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "夜灯："
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
-msgstr ""
+msgstr "夜灯功能会将屏幕颜色调暖，有助于缓解眼部疲劳、改善睡眠。"
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "计划："
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "日落至日出"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "手动选择"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "开始时间："
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "结束时间："
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "颜色温度："
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "较暖"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "较冷"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -141,19 +143,19 @@ msgstr "镜像显示："
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "比例因数："
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "自动"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "双倍像素"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
