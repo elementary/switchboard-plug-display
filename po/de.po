@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
 "PO-Revision-Date: 2018-08-19 00:09+0000\n"
-"Last-Translator: Jörg Arnold <j.ar@mailbox.org>\n"
+"Last-Translator: Julian Raschke <julian@raschke.de>\n"
 "Language-Team: German <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/de/>\n"
 "Language: de\n"
@@ -61,7 +61,7 @@ msgstr "Gegen den Uhrzeigersinn"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Upside-down"
-msgstr "Kopfstehend"
+msgstr "Auf dem Kopf"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
@@ -73,15 +73,15 @@ msgstr "Gespiegelt"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped Counterclockwise"
-msgstr "Gespiegelt gegen den Uhrzeigersinn"
+msgstr "Gespiegelt, gegen den Uhrzeigersinn"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Upside-down"
-msgstr "Gespiegelt Kopfstehend"
+msgstr "Gespiegelt, auf dem Kopf"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
-msgstr "Gespiegelt im Uhrzeigersinn"
+msgstr "Gespiegelt, im Uhrzeigersinn"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
