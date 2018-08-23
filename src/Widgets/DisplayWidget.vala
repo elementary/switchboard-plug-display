@@ -226,8 +226,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.angle = 90;
+                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                    label.angle = 270;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_180:
@@ -236,8 +236,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.angle = 270;
+                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                    label.angle = 90;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.FLIPPED:
@@ -246,8 +246,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
                     label.label = virtual_monitor_name.reverse(); //mirroring simulation, because we can't really mirror the text
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.angle = 90;
+                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                    label.angle = 270;
                     label.label = virtual_monitor_name.reverse();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_180:
@@ -256,8 +256,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
                     label.label = virtual_monitor_name.reverse();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.angle = 270;
+                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                    label.angle = 90;
                     label.label = virtual_monitor_name.reverse();
                     break;
             }
