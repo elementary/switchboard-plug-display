@@ -51,21 +51,23 @@ public enum DisplayTransform {
     FLIPPED_ROTATION_270 = 7;
 
     public string to_string () {
+        // These values are based on the direction that the physical display has been rotated from its original position.
+        // They should not reflect the rotation that must be applied to the contents on screen.
         switch (this) {
             case ROTATION_90:
-                return _("Counterclockwise");
+                return _("Clockwise");
             case ROTATION_180:
                 return _("Upside-down");
             case ROTATION_270:
-                return _("Clockwise");
+                return _("Counterclockwise");
             case FLIPPED:
                 return _("Flipped");
             case FLIPPED_ROTATION_90:
-                return _("Flipped Counterclockwise");
+                return _("Flipped Clockwise");
             case FLIPPED_ROTATION_180:
                 return _("Flipped Upside-down");
             case FLIPPED_ROTATION_270:
-                return _("Flipped Clockwise");
+                return _("Flipped Counterclockwise");
             default:
                 return _("None");
         }
