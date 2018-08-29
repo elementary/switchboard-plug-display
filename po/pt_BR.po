@@ -9,7 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
 "PO-Revision-Date: 2018-08-30 00:07+0000\n"
-"Last-Translator: Fabricio Caseiro <fcaseiro@gmail.com>\n"
+"Last-Translator: Israel Felipe de Lima Araújo S <israelita.felipe@gmail.com>"
+"\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -129,11 +130,11 @@ msgstr "Temperatura da cor:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Mais Quente"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Menos Quente"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -141,7 +142,7 @@ msgstr "Espelhar tela:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Fator de escala:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
@@ -149,11 +150,11 @@ msgstr "Automático"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Pixel Duplicado"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
