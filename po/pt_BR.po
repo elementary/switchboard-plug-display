@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
 "PO-Revision-Date: 2018-08-30 00:07+0000\n"
-"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
+"Last-Translator: Fabricio Caseiro <fcaseiro@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -109,7 +109,7 @@ msgstr "Cronograma:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Do pôr ao nascer do sol"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
@@ -117,15 +117,15 @@ msgstr "Manual"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "Das:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Às:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Temperatura da cor:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
