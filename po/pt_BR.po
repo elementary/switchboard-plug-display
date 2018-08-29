@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-05-30 00:03+0000\n"
-"Last-Translator: Fernando da Silva Sousa <wild.nando@gmail.com>\n"
+"PO-Revision-Date: 2018-08-29 06:22+0000\n"
+"Last-Translator: Fabricio Caseiro <fcaseiro@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -32,10 +32,12 @@ msgstr "Configurar resolução e posição de monitores e projetores"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Mudanças no fator de escala não terão efeito até que este dispositivo seja "
+"reiniciado"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "Luz noturna"
 
 #: src/DisplayPlug.vala:123
 msgid "Screen Resolution"
@@ -51,7 +53,7 @@ msgstr "Tela principal"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Espelhamento de tela"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Counterclockwise"
@@ -59,7 +61,7 @@ msgstr "Sentido anti-horário"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Upside-down"
-msgstr ""
+msgstr "Invertido"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
@@ -70,9 +72,8 @@ msgid "Flipped"
 msgstr "Invertido"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Sentido anti-horário"
+msgstr "Girado no sentido anti-horário"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Upside-down"
