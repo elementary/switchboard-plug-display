@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
 "PO-Revision-Date: 2018-08-29 06:24+0000\n"
-"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
+"Last-Translator: Fabricio Caseiro <fcaseiro@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -93,17 +93,19 @@ msgstr "Telas espelhadas"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Luz noturna:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"A luz noturna deixa as cores de sua tela mais quentes. Isso pode te ajudar a "
+"prevenir tensão ocular e insônia."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Agendamento:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
