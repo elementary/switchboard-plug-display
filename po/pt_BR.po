@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-08-29 06:24+0000\n"
-"Last-Translator: Fabricio Caseiro <fcaseiro@gmail.com>\n"
+"PO-Revision-Date: 2018-08-30 00:07+0000\n"
+"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr "Agendamento:"
+msgstr "Cronograma:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
