@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2016-06-28 00:42+0000\n"
-"Last-Translator: Melih Güçlü <melihguclu@hotmail.com>\n"
-"Language-Team: Turkish <tr@li.org>\n"
+"PO-Revision-Date: 2018-09-01 00:08+0000\n"
+"Last-Translator: İbrahim Ethem Göl <ethem578@gmail.com>\n"
+"Language-Team: Turkish <https://weblate.elementary.io/projects/switchboard/"
+"switchboard-plug-display/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
@@ -33,26 +35,23 @@ msgstr ""
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
 msgid "Night Light"
-msgstr ""
+msgstr "Gece Lambası"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Çözünürlük:"
+msgstr "Ekran Çözünürlüğü"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Döndürme:"
+msgstr "Ekran Döndürme"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
 msgstr "Birincil ekran"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Ekran yansıtma"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Counterclockwise"
@@ -89,23 +88,24 @@ msgid "None"
 msgstr "Hiçbiri"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Yansıtılan Ekranlar"
+msgstr "Yansıtılan Ekran"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Gece Lambası:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Gece Lambası, ekranınızın renklerini daha sıcak hale getirir. Bu göz "
+"yorgunluğunu ve uykusuzluğu önlemeye yardımcı olabilir."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Zamanlama:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
