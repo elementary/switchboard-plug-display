@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-09-06 21:05+0000\n"
+"PO-Revision-Date: 2018-09-07 00:06+0000\n"
 "Last-Translator: strozzascotte <marco.depaolini@gmail.com>\n"
 "Language-Team: Italian <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/it/>\n"
@@ -26,7 +26,7 @@ msgstr "Monitor"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "Configura la risoluzione e la posizione dei monitor e dei proiettori"
+msgstr "Configura la risoluzione e la posizione di monitor e proiettori"
 
 #: src/DisplayPlug.vala:48
 msgid ""
@@ -53,7 +53,7 @@ msgstr "Monitor principale"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr "Duplicazione schermo"
+msgstr "Duplicazione dello schermo"
 
 #: src/Interfaces/MutterDisplayConfig.vala:56
 msgid "Counterclockwise"
@@ -61,7 +61,7 @@ msgstr "Antioraria"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Upside-down"
-msgstr "Invertito"
+msgstr "Capovolto"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
@@ -69,11 +69,11 @@ msgstr "Oraria"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Flipped"
-msgstr "Capovolto"
+msgstr "Invertito"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped Counterclockwise"
-msgstr "Invertito, senso antiorario"
+msgstr "Invertito, rotazione antioraria"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Upside-down"
@@ -81,7 +81,7 @@ msgstr "Invertito, capovolto"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
-msgstr "Invertito, senso orario"
+msgstr "Invertito, rotazione oraria"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "None"
@@ -117,11 +117,11 @@ msgstr "Manuale"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr "Dal:"
+msgstr "Dalle:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr "Al:"
+msgstr "Alle:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
@@ -137,7 +137,7 @@ msgstr "Meno caldo"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "Replica monitor:"
+msgstr "Duplicazione monitor:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
@@ -153,7 +153,7 @@ msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr "Pixel raddoppiato"
+msgstr "Pixel doppio"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -189,7 +189,7 @@ msgstr "È lo schermo principale"
 
 #: src/Widgets/DisplayWidget.vala:355
 msgid "Set as primary display"
-msgstr "Imposta come monitor primario"
+msgstr "Imposta come monitor principale"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Le impostazioni non possono essere applicate: %s"
