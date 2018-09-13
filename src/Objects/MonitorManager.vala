@@ -46,7 +46,6 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     private MutterDisplayConfigInterface iface;
-    private uint current_serial;
 
     private static MonitorManager monitor_manager;
     public static unowned MonitorManager get_default () {
@@ -61,6 +60,8 @@ public class Display.MonitorManager : GLib.Object {
         get_monitor_config ();
     }
 
+    private MonitorConfigurationService monitor_configuration_service;
+
     construct {
         monitors = new Gee.LinkedList<Display.Monitor> ();
         virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
@@ -70,136 +71,27 @@ public class Display.MonitorManager : GLib.Object {
         } catch (Error e) {
             critical (e.message);
         }
+        monitor_configuration_service = new MonitorConfigurationService (iface);
     }
 
     public void get_monitor_config () {
-        MutterReadMonitor[] mutter_monitors;
-        MutterReadLogicalMonitor[] mutter_logical_monitors;
-        GLib.HashTable<string, GLib.Variant> properties;
-        try {
-            iface.get_current_state (out current_serial, out mutter_monitors, out mutter_logical_monitors, out properties);
-        } catch (Error e) {
-            critical (e.message);
-        }
-
-        //TODO: make use of the "global-scale-required" property to differenciate between X and Wayland
-        var supports_mirroring_variant = properties.lookup ("supports-mirroring");
-        if (supports_mirroring_variant != null) {
-            mirroring_supported = supports_mirroring_variant.get_boolean ();
-        } else {
-            /*
-             * Absence of "supports-mirroring" means true according to the documentation.
-             */
-            mirroring_supported = true;
-        }
-
-        var global_scale_required_variant = properties.lookup ("global-scale-required");
-        if (global_scale_required_variant != null) {
-            global_scale_required = global_scale_required_variant.get_boolean ();
-        } else {
-            /*
-             * Absence of "global-scale-required" means false according to the documentation.
-             */
-            global_scale_required = false;
-        }
-
-        var max_screen_size_variant = properties.lookup ("max-screen-size");
-        if (max_screen_size_variant != null) {
-            max_width = max_screen_size_variant.get_child_value (0).get_int32 ();
-            max_height = max_screen_size_variant.get_child_value (1).get_int32 ();
-        } else {
-            /*
-             * Absence of "supports-mirroring" means true according to the documentation.
-             */
-            max_width = int.MAX;
-            max_height = int.MAX;
-        }
+        monitor_configuration_service.read_config ();
+        mirroring_supported = monitor_configuration_service.mirroring_supported;
+        global_scale_required = monitor_configuration_service.global_scale_required;
+        max_width = monitor_configuration_service.max_width;
+        max_height = monitor_configuration_service.max_height;
 
         var monitors_with_changed_modes = new Gee.LinkedList<Display.Monitor> ();
-        foreach (var mutter_monitor in mutter_monitors) {
-            var monitor = get_monitor_by_serial (mutter_monitor.monitor.serial);
-            if (monitor == null) {
-                monitor = new Display.Monitor ();
-                monitors.add (monitor);
-            } else {
+        foreach (var mutter_monitor in monitor_configuration_service.get_monitors ()) {
+            var monitor = get_monitor_by_hash (mutter_monitor.monitor.hash);
+            if (monitor != null) {
                 monitors_with_changed_modes.add (monitor);
             }
-
-            monitor.connector = mutter_monitor.monitor.connector;
-            monitor.vendor = mutter_monitor.monitor.vendor;
-            monitor.product = mutter_monitor.monitor.product;
-            monitor.serial = mutter_monitor.monitor.serial;
-            var display_name_variant = mutter_monitor.properties.lookup ("display-name");
-            if (display_name_variant != null) {
-                monitor.display_name = display_name_variant.get_string ();
-            } else {
-                monitor.display_name = monitor.connector;
-            }
-
-            var is_builtin_variant = mutter_monitor.properties.lookup ("is-builtin");
-            if (is_builtin_variant != null) {
-                monitor.is_builtin = is_builtin_variant.get_boolean ();
-            } else {
-                /*
-                 * Absence of "is-builtin" means it's not according to the documentation.
-                 */
-                monitor.is_builtin = false;
-            }
-
-            foreach (var mutter_mode in mutter_monitor.modes) {
-                var mode = monitor.get_mode_by_id (mutter_mode.id);
-                if (mode == null) {
-                    mode = new Display.MonitorMode ();
-                    monitor.modes.add (mode);
-                }
-
-                mode.id = mutter_mode.id;
-                mode.width = mutter_mode.width;
-                mode.height = mutter_mode.height;
-                mode.frequency = mutter_mode.frequency;
-                mode.preferred_scale = mutter_mode.preferred_scale;
-                mode.supported_scales = mutter_mode.supported_scales;
-                var is_preferred_variant = mutter_mode.properties.lookup ("is-preferred");
-                if (is_preferred_variant != null) {
-                    mode.is_preferred = is_preferred_variant.get_boolean ();
-                } else {
-                    mode.is_preferred = false;
-                }
-
-                var is_current_variant = mutter_mode.properties.lookup ("is-current");
-                if (is_current_variant != null) {
-                    mode.is_current = is_current_variant.get_boolean ();
-                } else {
-                    mode.is_current = false;
-                }
-            }
+            add_or_update_monitor (mutter_monitor);
         }
 
-        foreach (var mutter_logical_monitor in mutter_logical_monitors) {
-            string monitors_id = generate_id_from_monitors (mutter_logical_monitor.monitors);
-            var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
-            if (virtual_monitor == null) {
-                virtual_monitor = new VirtualMonitor ();
-                add_virtual_monitor (virtual_monitor);
-            }
-
-            virtual_monitor.x = mutter_logical_monitor.x;
-            virtual_monitor.y = mutter_logical_monitor.y;
-            virtual_monitor.scale = mutter_logical_monitor.scale;
-            virtual_monitor.transform = mutter_logical_monitor.transform;
-            virtual_monitor.primary = mutter_logical_monitor.primary;
-            foreach (var mutter_info in mutter_logical_monitor.monitors) {
-                foreach (var monitor in monitors) {
-                    if (compare_monitor_with_mutter_info (monitor, mutter_info) && !(monitor in virtual_monitor.monitors)) {
-                        virtual_monitor.monitors.add (monitor);
-                        if (monitor in monitors_with_changed_modes) {
-                            virtual_monitor.modes_changed ();
-                        }
-
-                        break;
-                    }
-                }
-            }
+        foreach (var mutter_logical_monitor in monitor_configuration_service.get_logical_monitors ()) {
+            add_or_update_virtual_monitor (mutter_logical_monitor, monitors_with_changed_modes);
         }
     }
 
@@ -208,13 +100,8 @@ public class Display.MonitorManager : GLib.Object {
         foreach (var virtual_monitor in virtual_monitors) {
             logical_monitors += get_mutter_logical_monitor (virtual_monitor);
         }
-
-        var properties = new GLib.HashTable<string, GLib.Variant> (str_hash, str_equal);
-        try {
-            iface.apply_monitors_config (current_serial, MutterApplyMethod.PERSISTENT, logical_monitors, properties);
-        } catch (Error e) {
-            critical (e.message);
-        }
+        
+        monitor_configuration_service.write_config (logical_monitors);
     }
 
     public static MutterWriteLogicalMonitor get_mutter_logical_monitor (Display.VirtualMonitor virtual_monitor) {
@@ -332,9 +219,91 @@ public class Display.MonitorManager : GLib.Object {
         notify_property ("is-mirrored");
     }
 
-    private void add_virtual_monitor (Display.VirtualMonitor virtual_monitor) {
-        virtual_monitors.add (virtual_monitor);
-        notify_property ("virtual-monitor-number");
+
+    private void add_or_update_monitor (MutterReadMonitor mutter_monitor) {
+        var monitor = get_monitor_by_hash (mutter_monitor.monitor.hash);
+        if (monitor == null) {
+            monitor = new Display.Monitor ();
+            monitors.add (monitor);
+        }
+
+        monitor.connector = mutter_monitor.monitor.connector;
+        monitor.vendor = mutter_monitor.monitor.vendor;
+        monitor.product = mutter_monitor.monitor.product;
+        monitor.serial = mutter_monitor.monitor.serial;
+        var display_name_variant = mutter_monitor.properties.lookup ("display-name");
+        if (display_name_variant != null) {
+            monitor.display_name = display_name_variant.get_string ();
+        } else {
+            monitor.display_name = monitor.connector;
+        }
+
+        var is_builtin_variant = mutter_monitor.properties.lookup ("is-builtin");
+        if (is_builtin_variant != null) {
+            monitor.is_builtin = is_builtin_variant.get_boolean ();
+        } else {
+            /*
+             * Absence of "is-builtin" means it's not according to the documentation.
+             */
+            monitor.is_builtin = false;
+        }
+
+        foreach (var mutter_mode in mutter_monitor.modes) {
+            var mode = monitor.get_mode_by_id (mutter_mode.id);
+            if (mode == null) {
+                mode = new Display.MonitorMode ();
+                monitor.modes.add (mode);
+            }
+
+            mode.id = mutter_mode.id;
+            mode.width = mutter_mode.width;
+            mode.height = mutter_mode.height;
+            mode.frequency = mutter_mode.frequency;
+            mode.preferred_scale = mutter_mode.preferred_scale;
+            mode.supported_scales = mutter_mode.supported_scales;
+            var is_preferred_variant = mutter_mode.properties.lookup ("is-preferred");
+            if (is_preferred_variant != null) {
+                mode.is_preferred = is_preferred_variant.get_boolean ();
+            } else {
+                mode.is_preferred = false;
+            }
+
+            var is_current_variant = mutter_mode.properties.lookup ("is-current");
+            if (is_current_variant != null) {
+                mode.is_current = is_current_variant.get_boolean ();
+            } else {
+                mode.is_current = false;
+            }
+        }
+    }
+
+    private void add_or_update_virtual_monitor (MutterReadLogicalMonitor mutter_logical_monitor, Gee.LinkedList<Display.Monitor>? monitors_with_changed_modes = null) {
+        string monitors_id = generate_id_from_monitors (mutter_logical_monitor.monitors);
+        var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
+        if (virtual_monitor == null) {
+            virtual_monitor = new VirtualMonitor ();
+            virtual_monitors.add (virtual_monitor);
+            notify_property ("virtual-monitor-number");
+        }
+
+        virtual_monitor.x = mutter_logical_monitor.x;
+        virtual_monitor.y = mutter_logical_monitor.y;
+        virtual_monitor.scale = mutter_logical_monitor.scale;
+        virtual_monitor.transform = mutter_logical_monitor.transform;
+        virtual_monitor.primary = mutter_logical_monitor.primary;
+        foreach (var mutter_info in mutter_logical_monitor.monitors) {
+            foreach (var monitor in monitors) {
+                if (compare_monitor_with_mutter_info (monitor, mutter_info) && !(monitor in virtual_monitor.monitors)) {
+                    virtual_monitor.monitors.add (monitor);
+                    virtual_monitor.modes_changed ();
+                    if (monitors_with_changed_modes != null && monitor in monitors_with_changed_modes) {
+                        virtual_monitor.modes_changed ();
+                    }
+
+                    break;
+                }
+            }
+        }
     }
 
     private VirtualMonitor? get_virtual_monitor_by_id (string id) {
@@ -366,6 +335,16 @@ public class Display.MonitorManager : GLib.Object {
     private Display.Monitor? get_monitor_by_serial (string serial) {
         foreach (var monitor in monitors) {
             if (monitor.serial == serial) {
+                return monitor;
+            }
+        }
+
+        return null;
+    }
+
+    private Display.Monitor? get_monitor_by_hash (uint hash) {
+        foreach (var monitor in monitors) {
+            if (monitor.hash == hash) {
                 return monitor;
             }
         }

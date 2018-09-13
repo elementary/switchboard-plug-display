@@ -79,6 +79,11 @@ public struct MutterReadMonitorInfo {
     public string vendor;
     public string product;
     public string serial;
+    public uint hash {
+        get {
+            return (connector+vendor+product+serial).hash ();
+        }
+    }
 }
 
 public struct MutterReadMonitorMode {
