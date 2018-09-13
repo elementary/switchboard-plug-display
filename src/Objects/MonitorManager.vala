@@ -83,7 +83,7 @@ public class Display.MonitorManager : GLib.Object {
 
         var monitors_with_changed_modes = new Gee.LinkedList<Display.Monitor> ();
         foreach (var mutter_monitor in monitor_configuration_service.get_monitors ()) {
-            var monitor = get_monitor_by_serial (mutter_monitor.monitor.serial);
+            var monitor = get_monitor_by_hash (mutter_monitor.monitor.hash);
             if (monitor != null) {
                 monitors_with_changed_modes.add (monitor);
             }
@@ -221,7 +221,7 @@ public class Display.MonitorManager : GLib.Object {
 
 
     private void add_or_update_monitor (MutterReadMonitor mutter_monitor) {
-        var monitor = get_monitor_by_serial (mutter_monitor.monitor.serial);
+        var monitor = get_monitor_by_hash (mutter_monitor.monitor.hash);
         if (monitor == null) {
             monitor = new Display.Monitor ();
             monitors.add (monitor);
@@ -335,6 +335,16 @@ public class Display.MonitorManager : GLib.Object {
     private Display.Monitor? get_monitor_by_serial (string serial) {
         foreach (var monitor in monitors) {
             if (monitor.serial == serial) {
+                return monitor;
+            }
+        }
+
+        return null;
+    }
+
+    private Display.Monitor? get_monitor_by_hash (uint hash) {
+        foreach (var monitor in monitors) {
+            if (monitor.hash == hash) {
                 return monitor;
             }
         }
