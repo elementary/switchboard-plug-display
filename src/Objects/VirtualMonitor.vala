@@ -31,17 +31,17 @@ public class Display.VirtualMonitor : GLib.Object {
 
     /* 
      * Used to distinguish two VirtualMonitors from each other.
-     * We make up and ID by concatenating all serials of
+     * We make up and ID by sum all hashes of
      * monitors that a VirtualMonitor has.
      */
     public string id {
         owned get {
-            string val = "";
+            uint val = 0;
             foreach (var monitor in monitors) {
-                val += monitor.serial;
+                val += monitor.hash;
             }
 
-            return val;
+            return val.to_string ();
         }
     }
 
@@ -135,5 +135,15 @@ public class Display.VirtualMonitor : GLib.Object {
                 mode.is_current = mode == current_mode;
             }
         }
+    }
+
+    public static string generate_id_from_monitors (MutterReadMonitorInfo[] infos) {
+        uint val = 0;
+        foreach (var info in infos) {
+            val += info.hash;
+        }
+
+        print (@"$val\n");
+        return val.to_string ();
     }
 }
