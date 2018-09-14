@@ -83,7 +83,7 @@ public class Display.MonitorManager : GLib.Object {
 
         var monitors_with_changed_modes = new Gee.LinkedList<Display.Monitor> ();
         foreach (var mutter_monitor in monitor_configuration_service.get_monitors ()) {
-            var monitor = get_monitor_by_serial (mutter_monitor.monitor.serial);
+            var monitor = get_monitor_by_hash (mutter_monitor.monitor.hash);
             if (monitor != null) {
                 monitors_with_changed_modes.add (monitor);
             }
@@ -278,7 +278,7 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     private void add_or_update_virtual_monitor (MutterReadLogicalMonitor mutter_logical_monitor, Gee.LinkedList<Display.Monitor>? monitors_with_changed_modes = null) {
-        string monitors_id = generate_id_from_monitors (mutter_logical_monitor.monitors);
+        string monitors_id = VirtualMonitor.generate_id_from_monitors (mutter_logical_monitor.monitors);
         var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
         if (virtual_monitor == null) {
             virtual_monitor = new VirtualMonitor ();
@@ -316,15 +316,6 @@ public class Display.MonitorManager : GLib.Object {
         return null;
     }
 
-    private static string generate_id_from_monitors (MutterReadMonitorInfo[] infos) {
-        string val = "";
-        foreach (var info in infos) {
-            val += info.serial;
-        }
-
-        return val;
-    }
-
     private static bool compare_monitor_with_mutter_info (Display.Monitor monitor, MutterReadMonitorInfo mutter_info) {
         return monitor.connector == mutter_info.connector
                && monitor.vendor == mutter_info.vendor
@@ -335,6 +326,16 @@ public class Display.MonitorManager : GLib.Object {
     private Display.Monitor? get_monitor_by_serial (string serial) {
         foreach (var monitor in monitors) {
             if (monitor.serial == serial) {
+                return monitor;
+            }
+        }
+
+        return null;
+    }
+    
+    private Display.Monitor? get_monitor_by_hash (uint hash) {
+        foreach (var monitor in monitors) {
+            if (monitor.hash == hash) {
                 return monitor;
             }
         }
