@@ -143,7 +143,6 @@ public class Display.VirtualMonitor : GLib.Object {
             val += info.hash;
         }
 
-        print (@"$val\n");
         return val.to_string ();
     }
 }
