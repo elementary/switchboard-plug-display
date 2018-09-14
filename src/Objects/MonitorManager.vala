@@ -323,16 +323,6 @@ public class Display.MonitorManager : GLib.Object {
                && monitor.serial == mutter_info.serial;
     }
 
-    private Display.Monitor? get_monitor_by_serial (string serial) {
-        foreach (var monitor in monitors) {
-            if (monitor.serial == serial) {
-                return monitor;
-            }
-        }
-
-        return null;
-    }
-    
     private Display.Monitor? get_monitor_by_hash (uint hash) {
         foreach (var monitor in monitors) {
             if (monitor.hash == hash) {
