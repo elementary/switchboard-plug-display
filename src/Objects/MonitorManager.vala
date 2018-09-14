@@ -221,7 +221,7 @@ public class Display.MonitorManager : GLib.Object {
 
 
     private void add_or_update_monitor (MutterReadMonitor mutter_monitor) {
-        var monitor = get_monitor_by_serial (mutter_monitor.monitor.serial);
+        var monitor = get_monitor_by_hash (mutter_monitor.monitor.hash);
         if (monitor == null) {
             monitor = new Display.Monitor ();
             monitors.add (monitor);
