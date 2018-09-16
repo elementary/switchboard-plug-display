@@ -24,6 +24,12 @@ public class Display.Monitor : GLib.Object {
     public string vendor { get; set; }
     public string product { get; set; }
     public string serial { get; set; }
+    public uint hash {
+        get {
+            return (connector+vendor+product+serial).hash ();
+        }
+    }
+    
     public string display_name { get; set; }
     public bool is_builtin { get; set; }
     public Gee.LinkedList<Display.MonitorMode> modes { get; construct; }
