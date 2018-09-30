@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-05-31 05:52+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
+"PO-Revision-Date: 2018-10-01 00:08+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-02-15 06:45+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -97,9 +97,7 @@ msgstr "Night Light:"
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
-msgstr ""
-"Night Light はディスプレイの色を暖色にします。これは目の疲れと不眠の防止に役"
-"立ちます。"
+msgstr "Night Light はディスプレイの色を暖色にします。これは目の疲れと不眠の防止に役立つ可能性があります。"
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
@@ -167,7 +165,7 @@ msgstr "回転をロック:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
-msgstr "ディスプレイの設定"
+msgstr "ディスプレイを設定します"
 
 #: src/Widgets/DisplayWidget.vala:111
 msgid "Use This Display:"
@@ -187,4 +185,4 @@ msgstr "プライマリーディスプレイ"
 
 #: src/Widgets/DisplayWidget.vala:355
 msgid "Set as primary display"
-msgstr "プライマリーディスプレイとして設定"
+msgstr "プライマリーディスプレイとして設定します"
