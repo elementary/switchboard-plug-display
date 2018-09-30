@@ -360,7 +360,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
                 frequencies += mode.frequency;
 
-                var freq_name = Math.roundf ((float)mode.frequency).to_string () + "Hz";
+                var freq_name = _("%g Hz").printf (Math.roundf ((float)mode.frequency));
                 refresh_list_store.append (out iter);
                 refresh_list_store.set (iter, ResolutionColumns.NAME, freq_name, ResolutionColumns.MODE, mode);
                 added++;
