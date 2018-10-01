@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-10-01 00:08+0000\n"
+"PO-Revision-Date: 2018-10-01 07:23+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
@@ -26,7 +26,7 @@ msgstr "ディスプレイ"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "モニターやプロジェクターの解像度と位置の設定をします"
+msgstr "モニターやプロジェクターの解像度と位置を設定します"
 
 #: src/DisplayPlug.vala:48
 msgid ""
@@ -87,7 +87,7 @@ msgstr "なし"
 
 #: src/Objects/VirtualMonitor.vala:81
 msgid "Mirrored Display"
-msgstr "ミラーディスプレイ"
+msgstr "ミラーリングされたディスプレイ"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
@@ -133,7 +133,7 @@ msgstr "冷ため"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "ミラーディスプレイ:"
+msgstr "ディスプレイをミラーリング:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
@@ -153,7 +153,7 @@ msgstr "ピクセル倍増"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
-msgstr "ディスプレイの検出"
+msgstr "ディスプレイを検出"
 
 #: src/Views/DisplaysView.vala:55
 msgid "Apply"
@@ -169,7 +169,7 @@ msgstr "ディスプレイを設定します"
 
 #: src/Widgets/DisplayWidget.vala:111
 msgid "Use This Display:"
-msgstr "このディスプレイを使用:"
+msgstr "このディスプレイを使う:"
 
 #: src/Widgets/DisplayWidget.vala:118
 msgid "Resolution:"
