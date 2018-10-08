@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 12:47-0700\n"
-"PO-Revision-Date: 2018-07-21 00:07+0000\n"
+"PO-Revision-Date: 2018-10-08 20:19+0000\n"
 "Last-Translator: Nils K <slx@nilsk.net>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/nb/>\n"
@@ -56,24 +56,20 @@ msgid "Screen mirroring"
 msgstr "Skjermbildekopi"
 
 #: src/DisplayPlug.vala:127
-#, fuzzy
 msgid "Scaling factor"
-msgstr "Skaleringsfaktor:"
+msgstr "Skaleringsfaktor"
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Rotasjonslås:"
+msgstr "Rotasjonslås"
 
 #: src/DisplayPlug.vala:130
-#, fuzzy
 msgid "Schedule"
-msgstr "Kjørepan:"
+msgstr "Kjøreplan"
 
 #: src/DisplayPlug.vala:131
-#, fuzzy
 msgid "Color temperature"
-msgstr "Fargetemperatur:"
+msgstr "Fargetemperatur"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
