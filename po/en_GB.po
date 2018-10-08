@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
+"POT-Creation-Date: 2018-10-08 12:47-0700\n"
 "PO-Revision-Date: 2018-05-28 23:45+0000\n"
 "Last-Translator: Ciaran Ainsworth <cda@whistlingkappa.com>\n"
 "Language-Team: English (United Kingdom) <https://weblate.elementary.io/"
@@ -34,7 +34,8 @@ msgid ""
 msgstr ""
 "Scaling factor changes will not take effect until this device is restarted"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "Night Light"
 
@@ -54,35 +55,55 @@ msgstr "Primary display"
 msgid "Screen mirroring"
 msgstr "Screen mirroring"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Anticlockwise"
+#: src/DisplayPlug.vala:127
+#, fuzzy
+msgid "Scaling factor"
+msgstr "Scaling factor:"
+
+#: src/DisplayPlug.vala:128
+#, fuzzy
+msgid "Rotation lock"
+msgstr "Rotation Lock:"
+
+#: src/DisplayPlug.vala:130
+#, fuzzy
+msgid "Schedule"
+msgstr "Schedule:"
+
+#: src/DisplayPlug.vala:131
+#, fuzzy
+msgid "Color temperature"
+msgstr "Colour temperature:"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "Upside-down"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "Clockwise"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "Upside-down"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Anticlockwise"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Flipped"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "Flipped Counterclockwise"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "Flipped Upside-down"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "Flipped Clockwise"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "Flipped Upside-down"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "Flipped Counterclockwise"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "None"
 

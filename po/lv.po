@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
+"POT-Creation-Date: 2018-10-08 12:47-0700\n"
 "PO-Revision-Date: 2014-12-22 12:51+0000\n"
 "Last-Translator: ERX <eriksh@inbox.lv>\n"
 "Language-Team: Latvian <lv@li.org>\n"
@@ -31,7 +31,8 @@ msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr ""
 
@@ -54,37 +55,54 @@ msgstr "Primārais ekrāns"
 msgid "Screen mirroring"
 msgstr ""
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Pretēji pulksteņrādītāja virzienam"
-
-#: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
 msgstr ""
 
-#: src/Interfaces/MutterDisplayConfig.vala:60
+#: src/DisplayPlug.vala:128
+#, fuzzy
+msgid "Rotation lock"
+msgstr "Rotācija:"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr ""
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
 msgstr "Pulksteņrādītāja virzienā"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr ""
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Pretēji pulksteņrādītāja virzienam"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Pagriezts"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-#, fuzzy
-msgid "Flipped Counterclockwise"
-msgstr "Pretēji pulksteņrādītāja virzienam"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr ""
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 #, fuzzy
 msgid "Flipped Clockwise"
 msgstr "Pulksteņrādītāja virzienā"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr ""
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+#, fuzzy
+msgid "Flipped Counterclockwise"
+msgstr "Pretēji pulksteņrādītāja virzienam"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Neko"
 
