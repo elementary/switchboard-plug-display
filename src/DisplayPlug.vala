@@ -124,7 +124,11 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "");
         search_results.set ("%s → %s".printf (display_name, _("Primary display")), "");
         search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "");
+        search_results.set ("%s → %s".printf (display_name, _("Scaling factor")), "");
+        search_results.set ("%s → %s".printf (display_name, _("Rotation lock")), "");
         search_results.set ("%s → %s".printf (display_name, _("Night Light")), "night-light");
+        search_results.set ("%s → %s → %s".printf (display_name, _("Night Light"), _("Schedule")), "night-light");
+        search_results.set ("%s → %s → %s".printf (display_name, _("Night Light"), _("Color temperature")), "night-light");
         return search_results;
     }
 }
