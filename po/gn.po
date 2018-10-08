@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
+"POT-Creation-Date: 2018-10-08 12:47-0700\n"
 "PO-Revision-Date: 2015-04-19 16:49+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,8 @@ msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr ""
 
@@ -46,35 +47,51 @@ msgstr ""
 msgid "Screen mirroring"
 msgstr ""
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
+msgstr ""
+
+#: src/DisplayPlug.vala:128
+msgid "Rotation lock"
+msgstr ""
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr ""
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
 msgstr ""
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr ""
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr ""
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr ""
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
-msgid "Flipped"
+msgid "Counterclockwise"
 msgstr ""
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
+msgid "Flipped"
 msgstr ""
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr ""
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr ""
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr ""
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr ""
 

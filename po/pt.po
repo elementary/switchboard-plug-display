@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
+"POT-Creation-Date: 2018-10-08 12:47-0700\n"
 "PO-Revision-Date: 2018-07-26 14:55+0000\n"
 "Last-Translator: Christophe Silva <Christophesilva80@gmail.com>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/"
@@ -35,7 +35,8 @@ msgstr ""
 "As alterações do fator de escala não terão efeito até que este dispositivo "
 "seja reiniciado"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "Luz noturna"
 
@@ -55,35 +56,55 @@ msgstr "Ecrã principal"
 msgid "Screen mirroring"
 msgstr "Espelhamento de ecrã"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Sentido Anti-Horário"
+#: src/DisplayPlug.vala:127
+#, fuzzy
+msgid "Scaling factor"
+msgstr "Fator de escala:"
+
+#: src/DisplayPlug.vala:128
+#, fuzzy
+msgid "Rotation lock"
+msgstr "Rotação:"
+
+#: src/DisplayPlug.vala:130
+#, fuzzy
+msgid "Schedule"
+msgstr "Cronograma:"
+
+#: src/DisplayPlug.vala:131
+#, fuzzy
+msgid "Color temperature"
+msgstr "Temperatura de cor:"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "Invertido"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "Sentido Horário"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "Invertido"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Sentido Anti-Horário"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Invertido"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "Sentido Anti-Horário"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "Verticalmente invertido"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "Sentido Horário"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "Verticalmente invertido"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "Sentido Anti-Horário"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Nenhuma"
 

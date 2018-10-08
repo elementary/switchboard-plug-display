@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
+"POT-Creation-Date: 2018-10-08 12:47-0700\n"
 "PO-Revision-Date: 2018-05-29 06:35+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://weblate.elementary.io/projects/switchboard/"
@@ -33,7 +33,8 @@ msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr "השינויים למקדם שינוי הגודל לא יחולו עד להפעלת ההתקן מחדש"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "תאורת לילה"
 
@@ -53,35 +54,55 @@ msgstr "תצוגה ראשית"
 msgid "Screen mirroring"
 msgstr "שידור המסך"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "נגד כיוון השעון"
+#: src/DisplayPlug.vala:127
+#, fuzzy
+msgid "Scaling factor"
+msgstr "מקדם שינוי גודל:"
+
+#: src/DisplayPlug.vala:128
+#, fuzzy
+msgid "Rotation lock"
+msgstr "נעילת סיבוב:"
+
+#: src/DisplayPlug.vala:130
+#, fuzzy
+msgid "Schedule"
+msgstr "לו״ז:"
+
+#: src/DisplayPlug.vala:131
+#, fuzzy
+msgid "Color temperature"
+msgstr "טמפרטורת הצבע:"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "היפוך אנכי"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "עם כיוון השעון"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "היפוך אנכי"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "נגד כיוון השעון"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "היפוך"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "מהופך נגד כיוון השעון"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "מהופך אנכית"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "מהופך עם כיוון השעון"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "מהופך אנכית"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "מהופך נגד כיוון השעון"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "ללא"
 

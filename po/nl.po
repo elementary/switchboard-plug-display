@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
+"POT-Creation-Date: 2018-10-08 12:47-0700\n"
 "PO-Revision-Date: 2018-06-07 00:09+0000\n"
 "Last-Translator: Dieter Debast <dieter_debast@hotmail.com>\n"
 "Language-Team: Dutch <https://weblate.elementary.io/projects/switchboard/"
@@ -33,7 +33,8 @@ msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr ""
 
@@ -53,35 +54,52 @@ msgstr "Primair beeldscherm"
 msgid "Screen mirroring"
 msgstr ""
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Tegen de klok in"
-
-#: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
 msgstr ""
 
-#: src/Interfaces/MutterDisplayConfig.vala:60
+#: src/DisplayPlug.vala:128
+#, fuzzy
+msgid "Rotation lock"
+msgstr "Rotatievergrendeling:"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr ""
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr ""
+
+#: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
 msgstr "Met de klok mee"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr ""
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Tegen de klok in"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Gespiegeld"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "Linksom gedraaid"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr ""
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "Rechtsom gedraaid"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr ""
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "Linksom gedraaid"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Geen"
 
