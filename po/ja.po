@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 12:47-0700\n"
-"PO-Revision-Date: 2018-10-01 07:23+0000\n"
+"PO-Revision-Date: 2018-10-09 01:51+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
@@ -55,24 +55,20 @@ msgid "Screen mirroring"
 msgstr "画面の複製"
 
 #: src/DisplayPlug.vala:127
-#, fuzzy
 msgid "Scaling factor"
-msgstr "スケーリングファクター:"
+msgstr "スケーリングファクター"
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "回転をロック:"
+msgstr "回転をロック"
 
 #: src/DisplayPlug.vala:130
-#, fuzzy
 msgid "Schedule"
-msgstr "スケジュール:"
+msgstr "スケジュール"
 
 #: src/DisplayPlug.vala:131
-#, fuzzy
 msgid "Color temperature"
-msgstr "色温度:"
+msgstr "色温度"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
