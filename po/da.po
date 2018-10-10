@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 12:47-0700\n"
-"PO-Revision-Date: 2018-06-03 17:56+0000\n"
+"PO-Revision-Date: 2018-10-10 21:18+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/da/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-15 06:49+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -57,24 +57,20 @@ msgid "Screen mirroring"
 msgstr "Skærm spejling"
 
 #: src/DisplayPlug.vala:127
-#, fuzzy
 msgid "Scaling factor"
-msgstr "Skaleringsfaktor:"
+msgstr "Skaleringsfaktor"
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Rotationslås:"
+msgstr "Rotationslås"
 
 #: src/DisplayPlug.vala:130
-#, fuzzy
 msgid "Schedule"
-msgstr "Tidsplan:"
+msgstr "Tidsplan"
 
 #: src/DisplayPlug.vala:131
-#, fuzzy
 msgid "Color temperature"
-msgstr "Farvetemperatur:"
+msgstr "Farvetemperatur"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
