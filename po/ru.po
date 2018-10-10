@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 12:47-0700\n"
-"PO-Revision-Date: 2018-10-10 17:09+0000\n"
+"PO-Revision-Date: 2018-10-11 00:06+0000\n"
 "Last-Translator: Kirill Romanov <djaler1@gmail.com>\n"
 "Language-Team: Russian <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ru/>\n"
@@ -183,7 +183,7 @@ msgstr "Применить"
 
 #: src/Views/DisplaysView.vala:78
 msgid "Rotation Lock:"
-msgstr "Блокировка поворта:"
+msgstr "Блокировка поворота:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
