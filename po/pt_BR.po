@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 12:47-0700\n"
-"PO-Revision-Date: 2018-10-11 00:54+0000\n"
+"PO-Revision-Date: 2018-10-12 00:05+0000\n"
 "Last-Translator: Deyvison Rocha <deyvison@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt_BR/>\n"
@@ -62,7 +62,7 @@ msgstr "Fator de escala"
 
 #: src/DisplayPlug.vala:128
 msgid "Rotation lock"
-msgstr "Trava de Rotação"
+msgstr "Bloqueio de rotação"
 
 #: src/DisplayPlug.vala:130
 msgid "Schedule"
