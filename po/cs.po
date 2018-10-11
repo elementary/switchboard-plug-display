@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-08 12:47-0700\n"
-"PO-Revision-Date: 2018-08-15 00:09+0000\n"
+"PO-Revision-Date: 2018-10-11 17:36+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/cs/>\n"
@@ -55,24 +55,20 @@ msgid "Screen mirroring"
 msgstr "Zrcadlení obrazovky"
 
 #: src/DisplayPlug.vala:127
-#, fuzzy
 msgid "Scaling factor"
-msgstr "Měřítko:"
+msgstr "Měřítko"
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Zamknutí otočení:"
+msgstr "Zamknutí otáčení"
 
 #: src/DisplayPlug.vala:130
-#, fuzzy
 msgid "Schedule"
-msgstr "Rozvrh:"
+msgstr "Rozvrh"
 
 #: src/DisplayPlug.vala:131
-#, fuzzy
 msgid "Color temperature"
-msgstr "Teplota barev:"
+msgstr "Teplota barev"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
