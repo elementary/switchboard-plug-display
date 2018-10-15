@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2018-07-26 14:55+0000\n"
-"Last-Translator: Christophe Silva <Christophesilva80@gmail.com>\n"
+"PO-Revision-Date: 2018-10-15 14:47+0000\n"
+"Last-Translator: Nuno Alexandre MS Ribeiro <nuno.anarresti@gmail.com>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt/>\n"
 "Language: pt\n"
@@ -57,24 +57,20 @@ msgid "Screen mirroring"
 msgstr "Espelhamento de ecrã"
 
 #: src/DisplayPlug.vala:127
-#, fuzzy
 msgid "Scaling factor"
-msgstr "Fator de escala:"
+msgstr "Fator de escala"
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Rotação:"
+msgstr "Bloqueio da rotação"
 
 #: src/DisplayPlug.vala:130
-#, fuzzy
 msgid "Schedule"
-msgstr "Cronograma:"
+msgstr "Agendar"
 
 #: src/DisplayPlug.vala:131
-#, fuzzy
 msgid "Color temperature"
-msgstr "Temperatura de cor:"
+msgstr "Temperatura da cor"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
