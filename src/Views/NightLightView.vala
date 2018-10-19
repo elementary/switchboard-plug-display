@@ -126,6 +126,11 @@ public class Display.NightLightView : Gtk.Grid {
             to_label.sensitive = true;
             to_time.sensitive = true;
         }
+        
+        var night_light_enabled = settings.get_boolean ("night-light-enabled");
+        if (night_light_enabled) {
+            content_grid.sensitive = false;
+        }
 
         schedule_button.mode_changed.connect (() => {
             if (schedule_button.selected == 0) {
