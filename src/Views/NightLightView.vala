@@ -109,6 +109,7 @@ public class Display.NightLightView : Gtk.Grid {
         size_group.add_widget (temp_label);
 
         settings.bind ("night-light-enabled", status_switch, "active", GLib.SettingsBindFlags.DEFAULT);
+	settings.bind ("night-light-enabled", content_grid, "sensitive", GLib.SettingsBindFlags.GET); 
         settings.bind ("night-light-temperature", this, "temperature", GLib.SettingsBindFlags.GET);
         status_switch.bind_property ("active", content_grid, "sensitive", GLib.BindingFlags.DEFAULT);
 
@@ -125,11 +126,6 @@ public class Display.NightLightView : Gtk.Grid {
             from_time.sensitive = true;
             to_label.sensitive = true;
             to_time.sensitive = true;
-        }
-        
-        var night_light_enabled = settings.get_boolean ("night-light-enabled");
-        if (night_light_enabled) {
-            content_grid.sensitive = false;
         }
 
         schedule_button.mode_changed.connect (() => {
