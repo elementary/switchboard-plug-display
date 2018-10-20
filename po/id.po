@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2018-10-20 21:52+0000\n"
+"PO-Revision-Date: 2018-10-24 22:10+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/id/>\n"
@@ -165,7 +165,7 @@ msgstr "Otomatis"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr "LoDPI"
+msgstr "RendahDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
