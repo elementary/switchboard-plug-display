@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2016-07-20 14:32+0000\n"
-"Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2018-10-22 15:49+0000\n"
+"Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
+"Language-Team: Swedish <https://weblate.elementary.io/projects/switchboard/"
+"switchboard-plug-display/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
@@ -30,47 +32,44 @@ msgstr "Ställ in upplösning och placering av bildskärmar och projektorer"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Skalningsfaktorändringar kommer inte träda ikraft förrän enheten startats om"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
 #: src/DisplayPlug.vala:131
 msgid "Night Light"
-msgstr ""
+msgstr "Nattljus"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Upplösning:"
+msgstr "Skärmupplösning"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Rotation:"
+msgstr "Skärmrotation"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "Är primär bildskärm"
+msgstr "Primär bildskärm"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Skärmspegling"
 
 #: src/DisplayPlug.vala:127
 msgid "Scaling factor"
-msgstr ""
+msgstr "Skalningsfaktor"
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Rotation:"
+msgstr "Rotationslås"
 
 #: src/DisplayPlug.vala:130
 msgid "Schedule"
-msgstr ""
+msgstr "Schema"
 
 #: src/DisplayPlug.vala:131
 msgid "Color temperature"
-msgstr ""
+msgstr "Färgtemperatur"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -78,7 +77,7 @@ msgstr "Medurs"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Upp och ner"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
@@ -89,69 +88,68 @@ msgid "Flipped"
 msgstr "Vänd horisontellt"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "Medurs"
+msgstr "Vänd medurs"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Vänd upp och ner"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Moturs"
+msgstr "Vänd moturs"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Ingen"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Speglade bildskärmar"
+msgstr "Speglad bildskärm"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Nattljus:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Nattljus gör färgerna på din skärm varmare. Detta kan förhindra "
+"ögonansträngning och sömnlöshet."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Schema:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Solnedgång till soluppgång"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Manuell"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "Från:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Till:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Färgtemperatur:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Mer varm"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Mindre varm"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -159,19 +157,19 @@ msgstr "Spegla bildskärm:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Skalningsfaktor:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisk"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Pixeldubblerad"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -182,9 +180,8 @@ msgid "Apply"
 msgstr "Tillämpa"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Rotation:"
+msgstr "Rotationslås:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
