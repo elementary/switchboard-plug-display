@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2018-10-22 15:49+0000\n"
+"PO-Revision-Date: 2018-10-26 19:07+0000\n"
 "Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/sv/>\n"
@@ -129,7 +129,7 @@ msgstr "Solnedgång till soluppgång"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr "Manuell"
+msgstr "Manuellt"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
@@ -185,7 +185,7 @@ msgstr "Rotationslås:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
-msgstr "Ställ in bildskärm"
+msgstr "Konfigurera bildskärm"
 
 #: src/Widgets/DisplayWidget.vala:111
 msgid "Use This Display:"
@@ -201,7 +201,7 @@ msgstr "Rotation:"
 
 #: src/Widgets/DisplayWidget.vala:352
 msgid "Is the primary display"
-msgstr "är primär skärm"
+msgstr "Är den primära skärmen"
 
 #: src/Widgets/DisplayWidget.vala:355
 msgid "Set as primary display"
