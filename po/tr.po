@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2018-09-01 00:08+0000\n"
+"PO-Revision-Date: 2018-10-23 22:08+0000\n"
 "Last-Translator: İbrahim Ethem Göl <ethem578@gmail.com>\n"
 "Language-Team: Turkish <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/tr/>\n"
@@ -70,7 +70,7 @@ msgstr "Zamanlama:"
 
 #: src/DisplayPlug.vala:131
 msgid "Color temperature"
-msgstr ""
+msgstr "Renk Sıcaklığı"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -128,31 +128,31 @@ msgstr "Zamanlama:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Gün Batımından Gün Doğumuna"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Elle"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "Başlangıç:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Bitiş:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Renk Sıcaklığı:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Daha Sıcak"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Daha Soğuk"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -160,11 +160,11 @@ msgstr "Yansıtan Ekran"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Ölçekleme Faktörü:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Otomatik"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"

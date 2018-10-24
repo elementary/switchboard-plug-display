@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2018-06-13 16:58+0000\n"
+"PO-Revision-Date: 2018-10-24 22:10+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/id/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -56,24 +56,20 @@ msgid "Screen mirroring"
 msgstr "Pencerminan layar"
 
 #: src/DisplayPlug.vala:127
-#, fuzzy
 msgid "Scaling factor"
-msgstr "Faktor penskalaan:"
+msgstr "Faktor penskalaan"
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Kunci Rotasi:"
+msgstr "Kunci rotasi"
 
 #: src/DisplayPlug.vala:130
-#, fuzzy
 msgid "Schedule"
-msgstr "Jadwal:"
+msgstr "Jadwal"
 
 #: src/DisplayPlug.vala:131
-#, fuzzy
 msgid "Color temperature"
-msgstr "Temperatur warna:"
+msgstr "Temperatur warna"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -169,7 +165,7 @@ msgstr "Otomatis"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr "LoDPI"
+msgstr "RendahDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
