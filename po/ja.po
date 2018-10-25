@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-10-01 07:23+0000\n"
+"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"PO-Revision-Date: 2018-10-09 01:51+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
@@ -33,7 +33,8 @@ msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr "スケールファクターの変更はこのデバイスの再起動後に反映されます"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "Night Light"
 
@@ -53,35 +54,51 @@ msgstr "プライマリーディスプレイ"
 msgid "Screen mirroring"
 msgstr "画面の複製"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "270度回転"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
+msgstr "スケーリングファクター"
+
+#: src/DisplayPlug.vala:128
+msgid "Rotation lock"
+msgstr "回転をロック"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr "スケジュール"
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr "色温度"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "上下反転"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "90度回転"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "上下反転"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "270度回転"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "反転"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "左右反転、270度回転"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "左右上下反転"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "左右反転、90度回転"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "左右上下反転"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "左右反転、270度回転"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "なし"
 
@@ -97,7 +114,9 @@ msgstr "Night Light:"
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
-msgstr "Night Light はディスプレイの色を暖色にします。これは目の疲れと不眠の防止に役立つ可能性があります。"
+msgstr ""
+"Night Light はディスプレイの色を暖色にします。これは目の疲れと不眠の防止に役"
+"立つ可能性があります。"
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"

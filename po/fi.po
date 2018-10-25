@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-09-06 00:09+0000\n"
-"Last-Translator: Veli-Pekka Samuli Finnilä <vpf@tuta.io>\n"
+"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"PO-Revision-Date: 2018-10-08 20:15+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fi/>\n"
 "Language: fi\n"
@@ -35,7 +35,8 @@ msgstr ""
 "Skaalauksen muutokset eivät tule voimaan, ennen kuin laite käynnistetään "
 "uudelleen"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "Yövalo"
 
@@ -55,35 +56,51 @@ msgstr "Ensisijainen näyttö"
 msgid "Screen mirroring"
 msgstr "Näytön peilaus"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Vastapäivään"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
+msgstr "Skaalauskerroin"
+
+#: src/DisplayPlug.vala:128
+msgid "Rotation lock"
+msgstr "Kiertolukko"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr "Aikataulu"
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr "Värilämpötila"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "Ylösalaisin"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "Myötäpäivään"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "Ylösalaisin"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Vastapäivään"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Käännetty"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "Käännetty vastapäivään"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "Käännetty ylösalaisin"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "Käännetty myötäpäivään"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "Käännetty ylösalaisin"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "Käännetty vastapäivään"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Ei mitään"
 

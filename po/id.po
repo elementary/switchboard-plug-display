@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-06-13 16:58+0000\n"
+"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"PO-Revision-Date: 2018-10-24 22:10+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/id/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -34,7 +34,8 @@ msgstr ""
 "Perubahan faktor skala tidak akan berpengaruh hingga perangkat ini dimulai "
 "ulang"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "Cahaya Malam"
 
@@ -54,35 +55,51 @@ msgstr "Tampilan utama"
 msgid "Screen mirroring"
 msgstr "Pencerminan layar"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Berlawanan arah jarum jam"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
+msgstr "Faktor penskalaan"
+
+#: src/DisplayPlug.vala:128
+msgid "Rotation lock"
+msgstr "Kunci rotasi"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr "Jadwal"
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr "Temperatur warna"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "Terbalik"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "Searah jarum jam"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "Terbalik"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Berlawanan arah jarum jam"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Terbalik"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "Dibalik berlawanan arah jarum jam"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "Dibalik terbalik"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "Dibalik searah jarum jam"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "Dibalik terbalik"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "Dibalik berlawanan arah jarum jam"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Nihil"
 
@@ -148,7 +165,7 @@ msgstr "Otomatis"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr "LoDPI"
+msgstr "RendahDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"

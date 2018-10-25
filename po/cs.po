@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-08-15 00:09+0000\n"
+"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"PO-Revision-Date: 2018-10-11 17:36+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/cs/>\n"
@@ -33,7 +33,8 @@ msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr "Změny v nastavení měřítka se projeví až po restartu tohoto zařízení"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "Noční světlo"
 
@@ -53,35 +54,51 @@ msgstr "Hlavní displej"
 msgid "Screen mirroring"
 msgstr "Zrcadlení obrazovky"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Proti směru hodinových ručiček"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
+msgstr "Měřítko"
+
+#: src/DisplayPlug.vala:128
+msgid "Rotation lock"
+msgstr "Zamknutí otáčení"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr "Rozvrh"
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr "Teplota barev"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "Vzhůru nohama"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "Ve směru hodinových ručiček"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "Vzhůru nohama"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Proti směru hodinových ručiček"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Převrácený"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "Zrcadlově proti směru hodinových ručiček"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "Zrcadlově vzhůru nohama"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "Zrcadlově ve směru hodinových ručiček"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "Zrcadlově vzhůru nohama"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "Zrcadlově proti směru hodinových ručiček"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Žádný"
 

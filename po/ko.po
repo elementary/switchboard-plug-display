@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-06-06 00:09+0000\n"
+"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"PO-Revision-Date: 2018-10-10 14:17+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -33,7 +33,8 @@ msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr "바꾼 비율은 이 장비를 다시 시작해야 적용됩니다"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "나이트 라이트"
 
@@ -53,35 +54,51 @@ msgstr "주 디스플레이"
 msgid "Screen mirroring"
 msgstr "미러 스크린"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "반시계방향"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
+msgstr "비율 조정"
+
+#: src/DisplayPlug.vala:128
+msgid "Rotation lock"
+msgstr "회전 잠금"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr "설정"
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr "색 온도"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "아래 위 바꿈"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "시계방향"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "아래 위 바꿈"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "반시계방향"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "뒤집기"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "반시계방향으로 뒤집기"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "아래 위로 뒤집기"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "시계방향으로 뒤집기"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "아래 위로 뒤집기"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "반시계방향으로 뒤집기"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "안 함"
 

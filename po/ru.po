@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-06-22 21:07+0000\n"
+"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"PO-Revision-Date: 2018-10-11 00:06+0000\n"
 "Last-Translator: Kirill Romanov <djaler1@gmail.com>\n"
 "Language-Team: Russian <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ru/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -36,7 +36,8 @@ msgstr ""
 "Изменения коэффициента масштабирования не будут применены до перезагрузки "
 "устройства"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
 msgstr "Ночной режим"
 
@@ -56,35 +57,51 @@ msgstr "Главный экран"
 msgid "Screen mirroring"
 msgstr "Дублирование экрана"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Против часовой стрелки"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
+msgstr "Коэффициент масштабирования"
+
+#: src/DisplayPlug.vala:128
+msgid "Rotation lock"
+msgstr "Блокировка поворота"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr "Расписание"
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr "Цветовая температура"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "Перевернутый"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "По часовой стрелке"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "Перевернутый"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Против часовой стрелки"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Отразить"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "Против часовой стрелки (отраженный)"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "Перевернутый (отраженный)"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "По часовой стрелке (отраженный)"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "Перевернутый (отраженный)"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "Против часовой стрелки (отраженный)"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Отсутствует"
 
@@ -166,7 +183,7 @@ msgstr "Применить"
 
 #: src/Views/DisplaysView.vala:78
 msgid "Rotation Lock:"
-msgstr "Блокировка поворта:"
+msgstr "Блокировка поворота:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"

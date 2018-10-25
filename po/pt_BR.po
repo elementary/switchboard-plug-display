@@ -7,10 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:50-0700\n"
-"PO-Revision-Date: 2018-08-30 00:07+0000\n"
-"Last-Translator: Israel Felipe de Lima Araújo S <israelita.felipe@gmail.com>"
-"\n"
+"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"PO-Revision-Date: 2018-10-18 00:10+0000\n"
+"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -36,9 +35,10 @@ msgstr ""
 "Mudanças no fator de escala não terão efeito até que este dispositivo seja "
 "reiniciado"
 
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:131
 msgid "Night Light"
-msgstr "Luz noturna"
+msgstr "Luz Noturna"
 
 #: src/DisplayPlug.vala:123
 msgid "Screen Resolution"
@@ -56,35 +56,51 @@ msgstr "Tela principal"
 msgid "Screen mirroring"
 msgstr "Espelhamento de tela"
 
-#: src/Interfaces/MutterDisplayConfig.vala:56
-msgid "Counterclockwise"
-msgstr "Sentido anti-horário"
+#: src/DisplayPlug.vala:127
+msgid "Scaling factor"
+msgstr "Fator de escala"
+
+#: src/DisplayPlug.vala:128
+msgid "Rotation lock"
+msgstr "Bloqueio de rotação"
+
+#: src/DisplayPlug.vala:130
+msgid "Schedule"
+msgstr "Cronograma"
+
+#: src/DisplayPlug.vala:131
+msgid "Color temperature"
+msgstr "Temperatura da cor"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
-msgid "Upside-down"
-msgstr "Invertido"
-
-#: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Clockwise"
 msgstr "Sentido horário"
 
+#: src/Interfaces/MutterDisplayConfig.vala:60
+msgid "Upside-down"
+msgstr "Invertido"
+
 #: src/Interfaces/MutterDisplayConfig.vala:62
+msgid "Counterclockwise"
+msgstr "Sentido anti-horário"
+
+#: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
 msgstr "Invertido"
 
-#: src/Interfaces/MutterDisplayConfig.vala:64
-msgid "Flipped Counterclockwise"
-msgstr "Girado no sentido anti-horário"
-
 #: src/Interfaces/MutterDisplayConfig.vala:66
-msgid "Flipped Upside-down"
-msgstr "Virado de cabeça para baixo"
-
-#: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Clockwise"
 msgstr "Virado no Sentido Horário"
 
+#: src/Interfaces/MutterDisplayConfig.vala:68
+msgid "Flipped Upside-down"
+msgstr "Virado de cabeça para baixo"
+
 #: src/Interfaces/MutterDisplayConfig.vala:70
+msgid "Flipped Counterclockwise"
+msgstr "Girado no sentido anti-horário"
+
+#: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Nenhum"
 
@@ -94,15 +110,15 @@ msgstr "Telas espelhadas"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr "Luz noturna:"
+msgstr "Luz Noturna:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
-"A luz noturna deixa as cores de sua tela mais quentes. Isso pode te ajudar a "
-"prevenir tensão ocular e insônia."
+"Luz Noturna torna as cores do seu monitor mais quentes. Isso pode ajudar a "
+"evitar cansaço visual e insônia."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"

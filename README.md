@@ -4,6 +4,8 @@
 
 Extension for [Switchboard](https://github.com/elementary/switchboard) to manage multiple monitor setups.
 
+![screenshot](data/screenshot.png?raw=true)
+
 ## Building and Installation
 
 You'll need the following dependencies:
