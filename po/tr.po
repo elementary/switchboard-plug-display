@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2018-10-28 09:34+0000\n"
+"PO-Revision-Date: 2018-10-28 17:21+0000\n"
 "Last-Translator: Sinan Decron <intenfinitia@gmail.com>\n"
 "Language-Team: Turkish <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/tr/>\n"
@@ -154,7 +154,7 @@ msgstr "Daha Soğuk"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "Yansıtan Ekran"
+msgstr "Ekranı Yansıt:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
