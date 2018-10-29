@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2018-08-13 00:03+0000\n"
+"PO-Revision-Date: 2018-10-29 03:15+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/zh_Hans/>\n"
@@ -39,41 +39,34 @@ msgid "Night Light"
 msgstr "夜灯"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
 msgstr "分辨率："
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
 msgstr "旋转："
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "是第一屏幕"
+msgstr "主显示器"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
 msgstr "屏幕镜像"
 
 #: src/DisplayPlug.vala:127
-#, fuzzy
 msgid "Scaling factor"
-msgstr "比例因数："
+msgstr "比例系数："
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "旋转："
+msgstr "旋转锁："
 
 #: src/DisplayPlug.vala:130
-#, fuzzy
 msgid "Schedule"
 msgstr "计划："
 
 #: src/DisplayPlug.vala:131
-#, fuzzy
 msgid "Color temperature"
 msgstr "颜色温度："
 
@@ -94,25 +87,22 @@ msgid "Flipped"
 msgstr "上下翻转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "逆时针"
+msgstr "逆时针翻转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
 msgstr "上下翻转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "顺时针"
+msgstr "逆时针翻转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "无"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
 msgstr "镜像显示"
 
@@ -187,9 +177,8 @@ msgid "Apply"
 msgstr "应用"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "旋转："
+msgstr "旋转锁："
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
