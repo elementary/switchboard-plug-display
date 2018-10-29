@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2018-10-29 03:15+0000\n"
+"PO-Revision-Date: 2018-11-02 04:04+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/zh_Hans/>\n"
@@ -72,7 +72,7 @@ msgstr "颜色温度："
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
-msgstr "逆时针"
+msgstr "顺时针"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
@@ -80,7 +80,7 @@ msgstr "上下旋转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
-msgstr "顺时针"
+msgstr "逆时针"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
@@ -88,7 +88,7 @@ msgstr "上下翻转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Clockwise"
-msgstr "逆时针翻转"
+msgstr "顺时针翻转"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
