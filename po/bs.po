@@ -8,15 +8,18 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-13 17:12-0700\n"
-"PO-Revision-Date: 2014-11-11 12:35+0000\n"
-"Last-Translator: aleksandar-todorovic <aleksandar.todorovic@mail.ru>\n"
-"Language-Team: Bosnian <bs@li.org>\n"
+"PO-Revision-Date: 2018-11-05 23:04+0000\n"
+"Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
+"Language-Team: Bosnian <https://weblate.elementary.io/projects/switchboard/"
+"switchboard-plug-display/bs/>\n"
 "Language: bs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
 msgid "Displays"
@@ -24,53 +27,51 @@ msgstr "Displeji"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Podesite rezoluciji i poziciju monitora i projektora"
 
 #: src/DisplayPlug.vala:48
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
+"Promjene faktora skaliranja neće imati učinka dok se ovaj uređaj ne pokrene "
+"nanovo"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
 #: src/DisplayPlug.vala:131
 msgid "Night Light"
-msgstr ""
+msgstr "Noćno svjetlo"
 
 #: src/DisplayPlug.vala:123
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Rezolucija:"
+msgstr "Rezolucija ekrana"
 
 #: src/DisplayPlug.vala:124
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Rotacija:"
+msgstr "Rotacija ekrana"
 
 #: src/DisplayPlug.vala:125
-#, fuzzy
 msgid "Primary display"
-msgstr "je primarni displej"
+msgstr "Glavni ekran"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Dupliciranje ekrana"
 
 #: src/DisplayPlug.vala:127
 msgid "Scaling factor"
-msgstr ""
+msgstr "Faktor skaliranja"
 
 #: src/DisplayPlug.vala:128
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Rotacija:"
+msgstr "Zaključavanje rotacije"
 
 #: src/DisplayPlug.vala:130
 msgid "Schedule"
-msgstr ""
+msgstr "Vremenski plan"
 
 #: src/DisplayPlug.vala:131
 msgid "Color temperature"
-msgstr ""
+msgstr "Temperatura boja"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -78,7 +79,7 @@ msgstr "U smijeru kazaljke na satu"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Naopako"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
@@ -89,69 +90,68 @@ msgid "Flipped"
 msgstr "Naopako"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "U smijeru kazaljke na satu"
+msgstr "Okrenut u smjeru kazaljke"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Okrenut naopako"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "U smijeru suprotnom od smijera kretanja kazaljke na satu"
+msgstr "Okrenut u smjeru obrnutom od kazaljke"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
-msgstr "Nijedan"
+msgstr "Nijedno"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Duplicirani displej"
+msgstr "Dupliciran ekran"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Noćno svjetlo:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"S noćnim svjetlom su boje vašeg ekrana toplije. Ovo može pomoći u prevenciji "
+"naprezanja očiju i nesanice."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Vremenski plan:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Od sumraka do zore"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Ručno"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "Od:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "Do:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Temperatura boja:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Toplije"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Manje toplo"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -159,19 +159,19 @@ msgstr "Dupliciraj displej:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Faktor skaliranja:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
-msgstr ""
+msgstr "Automatsko"
 
 #: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
-msgstr ""
+msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Dvostruki pikseli"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -182,9 +182,8 @@ msgid "Apply"
 msgstr "Primijeni"
 
 #: src/Views/DisplaysView.vala:78
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Rotacija:"
+msgstr "Zaključavanje rotacije:"
 
 #: src/Widgets/DisplayWidget.vala:88
 msgid "Configure display"
@@ -192,7 +191,7 @@ msgstr "Konfiguriši displej"
 
 #: src/Widgets/DisplayWidget.vala:111
 msgid "Use This Display:"
-msgstr ""
+msgstr "Koristi ovaj ekran:"
 
 #: src/Widgets/DisplayWidget.vala:118
 msgid "Resolution:"
@@ -204,7 +203,7 @@ msgstr "Rotacija:"
 
 #: src/Widgets/DisplayWidget.vala:352
 msgid "Is the primary display"
-msgstr ""
+msgstr "Ovo je glavni ekran"
 
 #: src/Widgets/DisplayWidget.vala:355
 msgid "Set as primary display"
