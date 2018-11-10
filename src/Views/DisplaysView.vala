@@ -164,8 +164,9 @@ public class Display.DisplaysView : Gtk.Grid {
             var dict = new VariantDict (overrides);
 
             // Be warned: Setting 0 on the GSettings key no longer means automatic scaling, it seems to mean
-            // "Crash the session and do horrible things", so remove it here
-            if (new_setting == 0) {
+            // "Crash the session and do horrible things", so remove it here, and do the same for anything less
+            // than 1 to be safe
+            if (new_setting < 1) {
                 dict.remove ("Gdk/WindowScalingFactor");
             } else {
                 dict.insert_value ("Gdk/WindowScalingFactor", new Variant.int32 (new_setting));
