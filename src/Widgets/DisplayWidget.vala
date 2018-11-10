@@ -43,7 +43,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private Gtk.ComboBox rotation_combobox;
     private Gtk.ListStore rotation_list_store;
 
-    private Gtk.Revealer refresh_combobox_revealer;
     private Gtk.ComboBox refresh_combobox;
     private Gtk.ListStore refresh_list_store;
 
@@ -152,16 +151,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         text_renderer = new Gtk.CellRendererText ();
         refresh_combobox.pack_start (text_renderer, true);
         refresh_combobox.add_attribute (text_renderer, "text", RefreshColumns.NAME);
-        var refresh_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12);
-        refresh_box.halign = Gtk.Align.END;
-        refresh_box.add (refresh_label);
-        refresh_box.add (refresh_combobox);
-        refresh_combobox_revealer = new Gtk.Revealer ();
-        refresh_combobox_revealer.add (refresh_box);
-
-        var refresh_combobox_size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.BOTH);
-        refresh_combobox_size_group.add_widget (rotation_combobox);
-        refresh_combobox_size_group.add_widget (refresh_combobox);
 
         for (int i = 0; i <= DisplayTransform.FLIPPED_ROTATION_270; i++) {
             Gtk.TreeIter iter;
@@ -170,7 +159,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         }
 
         Resolution[] resolutions = {};
-        double[] frequencies = {};
         bool resolution_set = false;
         foreach (var mode in virtual_monitor.get_available_modes ()) {
             var mode_width = mode.width;
@@ -204,7 +192,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         popover_grid.attach (resolution_combobox, 1, 1, 1, 1);
         popover_grid.attach (rotation_label, 0, 2, 1, 1);
         popover_grid.attach (rotation_combobox, 1, 2, 1, 1);
-        popover_grid.attach (refresh_combobox_revealer, 0, 3, 2, 1);
+        popover_grid.attach (refresh_label, 0, 3, 1, 1);
+        popover_grid.attach (refresh_combobox, 1, 3, 1, 1);
         popover_grid.show_all ();
         display_window.attached_to = this;
         destroy.connect (() => display_window.destroy ());
@@ -371,7 +360,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
         }
 
-        refresh_combobox_revealer.reveal_child = added > 1;
+        refresh_combobox.sensitive = added > 1;
     }
 
     private void on_monitor_modes_changed () {
