@@ -50,6 +50,11 @@ public class Display.DisplaysView : Gtk.Grid {
             dpi_grid.add (dpi_label);
             dpi_grid.add (dpi_combo);
 
+            dpi_combo.active = get_current_scale_factor_setting ();
+            dpi_combo.changed.connect (() => {
+                set_current_scale_factor_setting (dpi_combo.active);
+            });
+
             var detect_button = new Gtk.Button.with_label (_("Detect Displays"));
 
             var apply_button = new Gtk.Button.with_label (_("Apply"));
@@ -84,7 +89,7 @@ public class Display.DisplaysView : Gtk.Grid {
                     rotation_lock_grid.orientation = Gtk.Orientation.HORIZONTAL;
                     rotation_lock_grid.add (rotation_lock_label);
                     rotation_lock_grid.add (rotation_lock_switch);
-                    
+
                     action_bar.pack_start (rotation_lock_grid);
 
                     touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", SettingsBindFlags.DEFAULT);
@@ -100,18 +105,6 @@ public class Display.DisplaysView : Gtk.Grid {
             add (displays_overlay);
             add (action_bar);
             show_all ();
-
-            var interface_settings = new GLib.Settings ("org.gnome.desktop.interface");
-            interface_settings.bind ("scaling-factor", dpi_combo, "active", GLib.SettingsBindFlags.DEFAULT);
-
-            var initial_dpi = dpi_combo.active;
-            interface_settings.changed.connect (() => {
-                if (dpi_combo.active != initial_dpi) {
-                    dpi_changed (true);
-                } else {
-                    dpi_changed (false);
-                }
-            });
 
             displays_overlay.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;
@@ -139,5 +132,47 @@ public class Display.DisplaysView : Gtk.Grid {
 
                 apply_button.sensitive = true;
             });
+    }
+
+    private int get_current_scale_factor_setting () {
+        int current_dpi = 0;
+        var xsettings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.xsettings", false);
+
+        if (xsettings_schema != null) {
+            var xsettings = new GLib.Settings ("org.gnome.settings-daemon.plugins.xsettings");
+
+            var current_value = xsettings.get_value ("overrides").lookup_value ("Gdk/WindowScalingFactor", VariantType.INT32);
+            if (current_value != null) {
+                current_dpi = current_value.get_int32 ();
+            }
+        }
+
+        return current_dpi;
+    }
+
+    private void set_current_scale_factor_setting (int new_setting) {
+        if (get_current_scale_factor_setting () == new_setting) {
+            return;
+        }
+
+        var xsettings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.xsettings", false);
+
+        if (xsettings_schema != null) {
+            var xsettings = new GLib.Settings ("org.gnome.settings-daemon.plugins.xsettings");
+
+            var overrides = xsettings.get_value ("overrides");
+            var dict = new VariantDict (overrides);
+
+            // Be warned: Setting 0 on the GSettings key no longer means automatic scaling, it seems to mean
+            // "Crash the session and do horrible things", so remove it here
+            if (new_setting == 0) {
+                dict.remove ("Gdk/WindowScalingFactor");
+            } else {
+                dict.insert_value ("Gdk/WindowScalingFactor", new Variant.int32 (new_setting));
+            }
+
+            overrides = dict.end ();
+            xsettings.set_value ("overrides", overrides);
+        }
     }
 }
