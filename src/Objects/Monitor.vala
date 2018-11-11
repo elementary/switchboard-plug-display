@@ -29,7 +29,7 @@ public class Display.Monitor : GLib.Object {
             return (connector+vendor+product+serial).hash ();
         }
     }
-    
+
     public string display_name { get; set; }
     public bool is_builtin { get; set; }
     public Gee.LinkedList<Display.MonitorMode> modes { get; construct; }
@@ -61,7 +61,9 @@ public class Display.Monitor : GLib.Object {
     public double get_max_scale () {
         double max_scale = 1.0;
         foreach (var mode in modes) {
-            max_scale = double.max (max_scale, mode.preferred_scale);
+            foreach (var scale in mode.supported_scales) {
+                max_scale = double.max (max_scale, scale);
+            }
         }
 
         return max_scale;

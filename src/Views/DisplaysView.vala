@@ -25,6 +25,8 @@ public class Display.DisplaysView : Gtk.Grid {
 
     public DisplaysOverlay displays_overlay;
 
+    private Gtk.ComboBoxText dpi_combo;
+
     construct {
             displays_overlay = new DisplaysOverlay ();
 
@@ -39,8 +41,7 @@ public class Display.DisplaysView : Gtk.Grid {
 
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
-            var dpi_combo = new Gtk.ComboBoxText ();
-            dpi_combo.append_text (_("Automatic"));
+            dpi_combo = new Gtk.ComboBoxText ();
             dpi_combo.append_text (_("LoDPI"));
             dpi_combo.append_text (_("Pixel Doubled"));
 
@@ -84,7 +85,7 @@ public class Display.DisplaysView : Gtk.Grid {
                     rotation_lock_grid.orientation = Gtk.Orientation.HORIZONTAL;
                     rotation_lock_grid.add (rotation_lock_label);
                     rotation_lock_grid.add (rotation_lock_switch);
-                    
+
                     action_bar.pack_start (rotation_lock_grid);
 
                     touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", SettingsBindFlags.DEFAULT);
@@ -101,18 +102,6 @@ public class Display.DisplaysView : Gtk.Grid {
             add (action_bar);
             show_all ();
 
-            var interface_settings = new GLib.Settings ("org.gnome.desktop.interface");
-            interface_settings.bind ("scaling-factor", dpi_combo, "active", GLib.SettingsBindFlags.DEFAULT);
-
-            var initial_dpi = dpi_combo.active;
-            interface_settings.changed.connect (() => {
-                if (dpi_combo.active != initial_dpi) {
-                    dpi_changed (true);
-                } else {
-                    dpi_changed (false);
-                }
-            });
-
             displays_overlay.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;
             });
@@ -127,6 +116,12 @@ public class Display.DisplaysView : Gtk.Grid {
             apply_button.clicked.connect (() => {
                 monitor_manager.set_monitor_config ();
                 apply_button.sensitive = false;
+            });
+
+            dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
+
+            dpi_combo.changed.connect (() => {
+                monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
             });
 
             mirror_switch.active = monitor_manager.is_mirrored;
