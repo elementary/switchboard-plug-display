@@ -21,8 +21,6 @@
  */
 
 public class Display.DisplaysView : Gtk.Grid {
-    public signal void dpi_changed (bool changed);
-
     public DisplaysOverlay displays_overlay;
 
     private Gtk.ComboBoxText dpi_combo;
