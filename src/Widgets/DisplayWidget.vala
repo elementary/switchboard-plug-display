@@ -39,9 +39,12 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     private Gtk.ComboBox resolution_combobox;
     private Gtk.ListStore resolution_list_store;
-    
+
     private Gtk.ComboBox rotation_combobox;
     private Gtk.ListStore rotation_list_store;
+
+    private Gtk.ComboBox refresh_combobox;
+    private Gtk.ListStore refresh_list_store;
 
     private int real_width = 0;
     private int real_height = 0;
@@ -58,6 +61,12 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     private enum RotationColumns {
+        NAME,
+        VALUE,
+        TOTAL
+    }
+
+    private enum RefreshColumns {
         NAME,
         VALUE,
         TOTAL
@@ -132,7 +141,16 @@ public class Display.DisplayWidget : Gtk.EventBox {
         rotation_combobox.sensitive = use_switch.active;
         text_renderer = new Gtk.CellRendererText ();
         rotation_combobox.pack_start (text_renderer, true);
-        rotation_combobox.add_attribute (text_renderer, "text", 0);
+        rotation_combobox.add_attribute (text_renderer, "text", RotationColumns.NAME);
+
+        var refresh_label = new Gtk.Label (_("Refresh Rate:"));
+        refresh_label.halign = Gtk.Align.END;
+        refresh_list_store = new Gtk.ListStore (RefreshColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
+        refresh_combobox = new Gtk.ComboBox.with_model (refresh_list_store);
+        refresh_combobox.sensitive = use_switch.active;
+        text_renderer = new Gtk.CellRendererText ();
+        refresh_combobox.pack_start (text_renderer, true);
+        refresh_combobox.add_attribute (text_renderer, "text", RefreshColumns.NAME);
 
         for (int i = 0; i <= DisplayTransform.FLIPPED_ROTATION_270; i++) {
             Gtk.TreeIter iter;
@@ -166,12 +184,16 @@ public class Display.DisplayWidget : Gtk.EventBox {
             resolution_combobox.set_active (0);
         }
 
+        populate_refresh_rates ();
+
         popover_grid.attach (use_label, 0, 0, 1, 1);
         popover_grid.attach (use_switch, 1, 0, 1, 1);
         popover_grid.attach (resolution_label, 0, 1, 1, 1);
         popover_grid.attach (resolution_combobox, 1, 1, 1, 1);
         popover_grid.attach (rotation_label, 0, 2, 1, 1);
         popover_grid.attach (rotation_combobox, 1, 2, 1, 1);
+        popover_grid.attach (refresh_label, 0, 3, 1, 1);
+        popover_grid.attach (refresh_combobox, 1, 3, 1, 1);
         popover_grid.show_all ();
         display_window.attached_to = this;
         destroy.connect (() => display_window.destroy ());
@@ -179,9 +201,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
             //output_info.set_active (use_switch.active);
             resolution_combobox.sensitive = use_switch.active;
             rotation_combobox.sensitive = use_switch.active;
+            refresh_combobox.sensitive = use_switch.active;
 
             if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
+            if (refresh_combobox.active == -1) refresh_combobox.set_active (0);
 
             if (use_switch.active) {
                 get_style_context ().remove_class ("disabled");
@@ -206,6 +230,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             set_geometry (virtual_monitor.x, virtual_monitor.y, (int)new_mode.width, (int)new_mode.height);
             virtual_monitor.set_current_mode (new_mode);
             rotation_combobox.set_active (0);
+            populate_refresh_rates ();
             configuration_changed ();
             check_position ();
         });
@@ -266,6 +291,18 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
+        refresh_combobox.changed.connect (() => {
+            Value val;
+            Gtk.TreeIter iter;
+            refresh_combobox.get_active_iter (out iter);
+            refresh_list_store.get_value (iter, ResolutionColumns.MODE, out val);
+            Display.MonitorMode new_mode = (Display.MonitorMode) val;
+            virtual_monitor.set_current_mode (new_mode);
+            rotation_combobox.set_active (0);
+            configuration_changed ();
+            check_position ();
+        });
+
         rotation_combobox.set_active ((int) virtual_monitor.transform);
         on_vm_transform_changed ();
 
@@ -274,6 +311,56 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         configuration_changed ();
         check_position ();
+    }
+
+    private void populate_refresh_rates () {
+        refresh_list_store.clear ();
+
+        Gtk.TreeIter iter;
+        int added = 0;
+        if (resolution_combobox.get_active_iter (out iter)) {
+            Value val;
+            resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
+            var width = ((Display.MonitorMode)val).width;
+            var height = ((Display.MonitorMode)val).height;
+
+            double[] frequencies = {};
+            bool refresh_set = false;
+            foreach (var mode in virtual_monitor.get_available_modes ()) {
+                if (mode.width != width || mode.height != height) {
+                    continue;
+                }
+
+                if (mode.frequency in frequencies) {
+                    continue;
+                }
+
+                bool freq_already_added = false;
+                foreach (var freq in frequencies) {
+                    if ((mode.frequency - freq).abs () < 1) {
+                        freq_already_added = true;
+                        break;
+                    }
+                }
+
+                if (freq_already_added) {
+                    continue;
+                }
+
+                frequencies += mode.frequency;
+
+                var freq_name = _("%g Hz").printf (Math.roundf ((float)mode.frequency));
+                refresh_list_store.append (out iter);
+                refresh_list_store.set (iter, ResolutionColumns.NAME, freq_name, ResolutionColumns.MODE, mode);
+                added++;
+                if (mode.is_current) {
+                    refresh_combobox.set_active_iter (iter);
+                    refresh_set = true;
+                }
+            }
+        }
+
+        refresh_combobox.sensitive = added > 1;
     }
 
     private void on_monitor_modes_changed () {
