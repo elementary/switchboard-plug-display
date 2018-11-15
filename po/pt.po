@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"POT-Creation-Date: 2018-11-15 11:17-0800\n"
 "PO-Revision-Date: 2018-10-15 14:47+0000\n"
 "Last-Translator: Nuno Alexandre MS Ribeiro <nuno.anarresti@gmail.com>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/"
@@ -184,27 +184,36 @@ msgstr "Aplicar"
 msgid "Rotation Lock:"
 msgstr "Rotação:"
 
-#: src/Widgets/DisplayWidget.vala:88
+#: src/Widgets/DisplayWidget.vala:97
 msgid "Configure display"
 msgstr "Configurar ecrã"
 
-#: src/Widgets/DisplayWidget.vala:111
+#: src/Widgets/DisplayWidget.vala:120
 msgid "Use This Display:"
 msgstr "Usar este ecrã:"
 
-#: src/Widgets/DisplayWidget.vala:118
+#: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
 msgstr "Resolução:"
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:137
 msgid "Rotation:"
 msgstr "Rotação :"
 
+#: src/Widgets/DisplayWidget.vala:146
+msgid "Refresh Rate:"
+msgstr ""
+
 #: src/Widgets/DisplayWidget.vala:352
+#, c-format
+msgid "%g Hz"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:439
 msgid "Is the primary display"
 msgstr "É o ecrã primário"
 
-#: src/Widgets/DisplayWidget.vala:355
+#: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Definir como ecrã principal"
 

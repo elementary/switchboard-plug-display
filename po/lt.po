@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"POT-Creation-Date: 2018-11-15 11:17-0800\n"
 "PO-Revision-Date: 2018-10-09 09:22+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://weblate.elementary.io/projects/"
@@ -185,27 +185,36 @@ msgstr "Taikyti"
 msgid "Rotation Lock:"
 msgstr "Pasukimo užraktas:"
 
-#: src/Widgets/DisplayWidget.vala:88
+#: src/Widgets/DisplayWidget.vala:97
 msgid "Configure display"
 msgstr "Konfigūruoti ekraną"
 
-#: src/Widgets/DisplayWidget.vala:111
+#: src/Widgets/DisplayWidget.vala:120
 msgid "Use This Display:"
 msgstr "Naudoti šį ekraną:"
 
-#: src/Widgets/DisplayWidget.vala:118
+#: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
 msgstr "Raiška:"
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:137
 msgid "Rotation:"
 msgstr "Pasukimas:"
 
+#: src/Widgets/DisplayWidget.vala:146
+msgid "Refresh Rate:"
+msgstr ""
+
 #: src/Widgets/DisplayWidget.vala:352
+#, c-format
+msgid "%g Hz"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:439
 msgid "Is the primary display"
 msgstr "Yra pirminis ekranas"
 
-#: src/Widgets/DisplayWidget.vala:355
+#: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Nustatyti kaip pirminį ekraną"
 

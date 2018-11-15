@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"POT-Creation-Date: 2018-11-15 11:17-0800\n"
 "PO-Revision-Date: 2016-08-06 10:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
@@ -186,27 +186,36 @@ msgstr "套用"
 msgid "Rotation Lock:"
 msgstr "旋轉："
 
-#: src/Widgets/DisplayWidget.vala:88
+#: src/Widgets/DisplayWidget.vala:97
 msgid "Configure display"
 msgstr "調整顯示器設定"
 
-#: src/Widgets/DisplayWidget.vala:111
+#: src/Widgets/DisplayWidget.vala:120
 msgid "Use This Display:"
 msgstr "使用這個顯示器："
 
-#: src/Widgets/DisplayWidget.vala:118
+#: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
 msgstr "解析度："
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:137
 msgid "Rotation:"
 msgstr "旋轉："
 
+#: src/Widgets/DisplayWidget.vala:146
+msgid "Refresh Rate:"
+msgstr ""
+
 #: src/Widgets/DisplayWidget.vala:352
+#, c-format
+msgid "%g Hz"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:439
 msgid "Is the primary display"
 msgstr "是主要顯示器"
 
-#: src/Widgets/DisplayWidget.vala:355
+#: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "設為主要顯示器"
 
