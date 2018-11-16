@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"POT-Creation-Date: 2018-11-15 11:17-0800\n"
 "PO-Revision-Date: 2017-01-06 06:41+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -186,27 +186,36 @@ msgstr "Примени"
 msgid "Rotation Lock:"
 msgstr "Окренутост:"
 
-#: src/Widgets/DisplayWidget.vala:88
+#: src/Widgets/DisplayWidget.vala:97
 msgid "Configure display"
 msgstr "Подеси екран"
 
-#: src/Widgets/DisplayWidget.vala:111
+#: src/Widgets/DisplayWidget.vala:120
 msgid "Use This Display:"
 msgstr "Користи овај екран:"
 
-#: src/Widgets/DisplayWidget.vala:118
+#: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
 msgstr "Резолуција:"
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:137
 msgid "Rotation:"
 msgstr "Окренутост:"
 
+#: src/Widgets/DisplayWidget.vala:146
+msgid "Refresh Rate:"
+msgstr ""
+
 #: src/Widgets/DisplayWidget.vala:352
+#, c-format
+msgid "%g Hz"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:439
 msgid "Is the primary display"
 msgstr "Главни је екран"
 
-#: src/Widgets/DisplayWidget.vala:355
+#: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Постави као главни екран"
 

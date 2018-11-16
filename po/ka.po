@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-13 17:12-0700\n"
+"POT-Creation-Date: 2018-11-15 11:17-0800\n"
 "PO-Revision-Date: 2015-11-14 15:01+0000\n"
 "Last-Translator: Beqa Arabuli <arabulibeqa@yahoo.com>\n"
 "Language-Team: Georgian <ka@li.org>\n"
@@ -186,27 +186,36 @@ msgstr "მიღება"
 msgid "Rotation Lock:"
 msgstr "ბრუნვა:"
 
-#: src/Widgets/DisplayWidget.vala:88
+#: src/Widgets/DisplayWidget.vala:97
 msgid "Configure display"
 msgstr "ეკრანის გამართვა"
 
-#: src/Widgets/DisplayWidget.vala:111
+#: src/Widgets/DisplayWidget.vala:120
 msgid "Use This Display:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:118
+#: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
 msgstr "გარჩევადობა:"
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:137
 msgid "Rotation:"
 msgstr "ბრუნვა:"
 
+#: src/Widgets/DisplayWidget.vala:146
+msgid "Refresh Rate:"
+msgstr ""
+
 #: src/Widgets/DisplayWidget.vala:352
+#, c-format
+msgid "%g Hz"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:439
 msgid "Is the primary display"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:355
+#: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "მთავარი ეკრანის დაყენება"
 
