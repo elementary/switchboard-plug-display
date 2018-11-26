@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-15 11:17-0800\n"
-"PO-Revision-Date: 2018-10-25 08:08+0000\n"
-"Last-Translator: Ciaran Ainsworth <ciaranainsworth@outlook.com>\n"
+"PO-Revision-Date: 2018-11-22 08:39+0000\n"
+"Last-Translator: Ciarán Ainsworth <ciaranainsworth@outlook.com>\n"
 "Language-Team: English (United Kingdom) <https://weblate.elementary.io/"
 "projects/switchboard/switchboard-plug-display/en_GB/>\n"
 "Language: en_GB\n"
@@ -201,12 +201,12 @@ msgstr "Rotation:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
-msgstr ""
+msgstr "Refresh Rate:"
 
 #: src/Widgets/DisplayWidget.vala:352
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g Hz"
 
 #: src/Widgets/DisplayWidget.vala:439
 msgid "Is the primary display"
