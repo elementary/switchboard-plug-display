@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-15 11:17-0800\n"
-"PO-Revision-Date: 2018-11-27 15:03+0000\n"
+"PO-Revision-Date: 2018-12-02 06:36+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
@@ -108,7 +108,7 @@ msgstr "ミラーリングされたディスプレイ"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr "夜間モード："
+msgstr "夜間モード:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
@@ -118,7 +118,7 @@ msgstr "夜間モードはディスプレイの色を暖色にします。これ
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr "スケジュール："
+msgstr "スケジュール:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
@@ -130,15 +130,15 @@ msgstr "手動"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr "開始："
+msgstr "開始:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr "終了："
+msgstr "終了:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr "色温度："
+msgstr "色温度:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
@@ -150,11 +150,11 @@ msgstr "冷ため"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "ディスプレイをミラーリング："
+msgstr "ディスプレイをミラーリング:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr "スケーリングファクター："
+msgstr "スケーリングファクター:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "Automatic"
@@ -178,7 +178,7 @@ msgstr "適用"
 
 #: src/Views/DisplaysView.vala:78
 msgid "Rotation Lock:"
-msgstr "回転をロック："
+msgstr "回転をロック:"
 
 #: src/Widgets/DisplayWidget.vala:97
 msgid "Configure display"
@@ -186,19 +186,19 @@ msgstr "ディスプレイを設定します"
 
 #: src/Widgets/DisplayWidget.vala:120
 msgid "Use This Display:"
-msgstr "このディスプレイを使う："
+msgstr "このディスプレイを使う:"
 
 #: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
-msgstr "解像度："
+msgstr "解像度:"
 
 #: src/Widgets/DisplayWidget.vala:137
 msgid "Rotation:"
-msgstr "回転："
+msgstr "回転:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
-msgstr "リフレッシュレート："
+msgstr "リフレッシュレート:"
 
 #: src/Widgets/DisplayWidget.vala:352
 #, c-format
