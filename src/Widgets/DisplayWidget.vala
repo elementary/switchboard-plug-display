@@ -134,7 +134,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         resolution_combobox.pack_start (text_renderer, true);
         resolution_combobox.add_attribute (text_renderer, "text", ResolutionColumns.NAME);
 
-        var rotation_label = new Gtk.Label (_("Rotation:"));
+        var rotation_label = new Gtk.Label (_("Screen Rotation:"));
         rotation_label.halign = Gtk.Align.END;
         rotation_list_store = new Gtk.ListStore (RotationColumns.TOTAL, typeof (string), typeof (int));
         rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store);
