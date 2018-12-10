@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2018-11-16 04:26+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
@@ -197,8 +197,9 @@ msgid "Resolution:"
 msgstr "Resolução:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotação:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "Rotação de tela"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -216,6 +217,9 @@ msgstr "É a tela primária"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Definir como tela principal"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotação:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "As seguintes configurações não puderam ser aplicadas: %s"

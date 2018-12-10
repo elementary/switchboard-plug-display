@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2018-05-29 12:21+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/switchboard/"
@@ -194,8 +194,9 @@ msgid "Resolution:"
 msgstr "Rezoluţie:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotație:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "Rotația ecranului"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -213,3 +214,6 @@ msgstr "Este afișajul principal"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Setați ca afișaj principal"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotație:"

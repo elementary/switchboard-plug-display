@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2015-10-07 02:10+0000\n"
 "Last-Translator: qezwan <Unknown>\n"
 "Language-Team: Kurdish (Sorani) <ckb@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "ڕوناکی"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "خولانەوه"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr ""
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "ڕێکخستن وەکوو نیشاندانی سەرەتایی"
+
+#~ msgid "Rotation:"
+#~ msgstr "خولانەوه"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "ڕیکخستنەکان بەکار نەبراوە :  %s"

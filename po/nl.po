@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2018-06-07 00:09+0000\n"
 "Last-Translator: Dieter Debast <dieter_debast@hotmail.com>\n"
 "Language-Team: Dutch <https://weblate.elementary.io/projects/switchboard/"
@@ -194,8 +194,9 @@ msgid "Resolution:"
 msgstr "Resolutie:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotatie:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "Schermrotatie"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -213,6 +214,9 @@ msgstr "Is het primair beeldscherm"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Kies als primair beeldscherm"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotatie:"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Wijzig resolutie en positie van schermen en projectoren"

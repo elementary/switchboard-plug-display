@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2014-12-22 12:51+0000\n"
 "Last-Translator: ERX <eriksh@inbox.lv>\n"
 "Language-Team: Latvian <lv@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "Izšķirtspēja:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "Rotācija:"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr ""
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Atzīmēt kā primāro ekrānu"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotācija:"
 
 #~ msgid "Use This Display"
 #~ msgstr "Izmantot šo Ekrānu"
