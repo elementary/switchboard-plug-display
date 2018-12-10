@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-11-16 11:57+0000\n"
+"PO-Revision-Date: 2018-12-10 20:38+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ko/>\n"
@@ -195,9 +195,8 @@ msgid "Resolution:"
 msgstr "해상도:"
 
 #: src/Widgets/DisplayWidget.vala:137
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "화면 회전"
+msgstr "화면 회전:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
