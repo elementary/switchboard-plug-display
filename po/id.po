@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2018-10-24 22:10+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/"
@@ -196,8 +196,9 @@ msgid "Resolution:"
 msgstr "Resolusi:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotasi:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "Rotasi Layar"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -215,6 +216,9 @@ msgstr "Adalah tampilan utama"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Atur sebagai tampilan utama"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotasi:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Pengaturan tidak dapat diterapkan: %s"

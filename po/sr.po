@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2017-01-06 06:41+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "Резолуција:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "Окренутост:"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr "Главни је екран"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Постави као главни екран"
+
+#~ msgid "Rotation:"
+#~ msgstr "Окренутост:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Поставке не могу бити сачуване: %s"

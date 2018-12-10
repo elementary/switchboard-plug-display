@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2018-11-16 17:18+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://weblate.elementary.io/projects/switchboard/"
@@ -197,8 +197,9 @@ msgid "Resolution:"
 msgstr "Resolució:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotació:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "Rotació de la pantalla"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -216,6 +217,9 @@ msgstr "És la pantalla primària"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Estableix com a pantalla primària"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotació:"
 
 #~ msgid "Use This Display"
 #~ msgstr "Utilitza aquesta pantalla"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2017-08-16 11:46+0000\n"
 "Last-Translator: gogogogi <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <https://weblate.elementary.io/projects/switchboard/"
@@ -202,7 +202,8 @@ msgid "Resolution:"
 msgstr "Razlučivost:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "Zakretanje:"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -221,6 +222,9 @@ msgstr "Postavi kao glavni zaslon"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Postavi kao glavni zaslon"
+
+#~ msgid "Rotation:"
+#~ msgstr "Zakretanje:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Postavke se ne mogu primjeniti: %s"

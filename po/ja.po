@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2018-12-02 06:36+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard/"
@@ -114,7 +114,9 @@ msgstr "夜間モード:"
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
-msgstr "夜間モードはディスプレイの色を暖色にします。これは目の疲れと不眠の防止に役立つ可能性があります。"
+msgstr ""
+"夜間モードはディスプレイの色を暖色にします。これは目の疲れと不眠の防止に役立"
+"つ可能性があります。"
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
@@ -193,8 +195,9 @@ msgid "Resolution:"
 msgstr "解像度:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "回転:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "画面の回転"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -212,3 +215,6 @@ msgstr "プライマリーディスプレイ"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "プライマリーディスプレイとして設定します"
+
+#~ msgid "Rotation:"
+#~ msgstr "回転:"

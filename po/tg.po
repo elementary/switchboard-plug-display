@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2015-04-19 16:49+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,7 +186,7 @@ msgid "Resolution:"
 msgstr ""
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+msgid "Screen Rotation:"
 msgstr ""
 
 #: src/Widgets/DisplayWidget.vala:146
