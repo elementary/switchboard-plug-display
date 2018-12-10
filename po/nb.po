@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-11-23 18:27+0000\n"
+"PO-Revision-Date: 2018-12-11 00:11+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/nb/>\n"
@@ -198,7 +198,7 @@ msgstr "Oppløsning:"
 #: src/Widgets/DisplayWidget.vala:137
 #, fuzzy
 msgid "Screen Rotation:"
-msgstr "Skjermrotasjon"
+msgstr "Skjermretning:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
