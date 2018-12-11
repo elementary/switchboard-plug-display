@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-12-11 12:14+0000\n"
+"PO-Revision-Date: 2018-12-15 13:05+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/he/>\n"
@@ -191,7 +191,7 @@ msgstr "שימוש בתצוגה זו:"
 
 #: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
-msgstr "הפרדה:"
+msgstr "רזולוציה:"
 
 #: src/Widgets/DisplayWidget.vala:137
 msgid "Screen Rotation:"
