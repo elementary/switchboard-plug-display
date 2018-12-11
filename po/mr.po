@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-10-12 00:05+0000\n"
+"PO-Revision-Date: 2018-12-11 00:11+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/mr/>\n"
@@ -100,7 +100,7 @@ msgstr ""
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
-msgstr ""
+msgstr "काहीही नाही"
 
 #: src/Objects/VirtualMonitor.vala:81
 msgid "Mirrored Display"
