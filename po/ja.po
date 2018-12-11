@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-12-02 06:36+0000\n"
+"PO-Revision-Date: 2018-12-11 01:50+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
@@ -195,9 +195,8 @@ msgid "Resolution:"
 msgstr "解像度:"
 
 #: src/Widgets/DisplayWidget.vala:137
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "画面の回転"
+msgstr "画面の回転:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
