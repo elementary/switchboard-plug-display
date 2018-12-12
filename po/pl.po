@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-11-17 18:06+0000\n"
+"PO-Revision-Date: 2018-12-12 07:52+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/pl/>\n"
@@ -198,9 +198,8 @@ msgid "Resolution:"
 msgstr "Rozdzielczość:"
 
 #: src/Widgets/DisplayWidget.vala:137
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "Obrót ekranu"
+msgstr "Obrót ekranu:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
