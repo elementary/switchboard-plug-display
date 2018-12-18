@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-12-11 01:50+0000\n"
+"PO-Revision-Date: 2018-12-19 00:07+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
@@ -26,12 +26,12 @@ msgstr "ディスプレイ"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "モニターやプロジェクターの解像度と位置を設定します"
+msgstr "モニターとプロジェクターの解像度と位置を設定します"
 
 #: src/DisplayPlug.vala:48
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
-msgstr "スケールファクターの変更はこのデバイスの再起動後に反映されます"
+msgstr "スケールファクターの変更は、このデバイスの再起動後に反映されます"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
 #: src/DisplayPlug.vala:131
@@ -72,7 +72,7 @@ msgstr "色温度"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
-msgstr "90度回転"
+msgstr "右に 90 度回転"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
@@ -80,15 +80,15 @@ msgstr "上下反転"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
-msgstr "270度回転"
+msgstr "左に 90 度回転"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
-msgstr "反転"
+msgstr "左右反転"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Clockwise"
-msgstr "左右反転、90度回転"
+msgstr "左右反転、右に 90 度回転"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
@@ -96,7 +96,7 @@ msgstr "左右上下反転"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "Flipped Counterclockwise"
-msgstr "左右反転、270度回転"
+msgstr "左右反転、左に 90 度回転"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
