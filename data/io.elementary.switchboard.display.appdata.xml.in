@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="addon">
-  <id>io.elementary.switchboard-plug-display</id>
+  <id>io.elementary.switchboard.display</id>
   <extends>io.elementary.switchboard</extends>
   <name>Display Settings</name>
   <summary>Configure resolution and position of monitors and projectors</summary>
