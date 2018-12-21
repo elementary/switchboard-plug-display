@@ -1,7 +1,7 @@
 project(
     'display',
     'vala', 'c',
-    version: '2.1.5'
+    version: '2.1.6'
 )
 
 gettext_name = meson.project_name() + '-plug'

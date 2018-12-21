@@ -1,3 +1,9 @@
+switchboard-plug-display (2.1.6) bionic; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Fri, 21 Dec 2018 08:18:01 -0600
+
 switchboard-plug-display (2.1.5) bionic; urgency=medium
 
   * New upstream release.
