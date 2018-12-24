@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-11-16 18:53+0000\n"
+"PO-Revision-Date: 2018-12-24 10:48+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fi/>\n"
@@ -197,9 +197,8 @@ msgid "Resolution:"
 msgstr "Resoluutio:"
 
 #: src/Widgets/DisplayWidget.vala:137
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "Näytön kierto"
+msgstr "Näytön kierto:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
