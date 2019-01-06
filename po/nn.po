@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2019-01-06 14:15+0000\n"
+"PO-Revision-Date: 2019-01-07 00:03+0000\n"
 "Last-Translator: Simon Dagfinrud <semonje@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/nn/>\n"
@@ -215,7 +215,7 @@ msgstr "Er hovudskjermen"
 
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
-msgstr "Velg som hovudskjerm"
+msgstr "Bruk som hovudskjerm"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotasjon:"
