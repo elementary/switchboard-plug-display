@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2015-05-25 16:41+0000\n"
 "Last-Translator: Viktuk <register885@gmail.com>\n"
 "Language-Team: Belarusian <be@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "Разрознасць:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "Паварот:"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr ""
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Ўсталяваць як асноўны дысплей"
+
+#~ msgid "Rotation:"
+#~ msgstr "Паварот:"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Змяніць распазнавальнасць і месцазнаходжанне манітораў і праектараў"

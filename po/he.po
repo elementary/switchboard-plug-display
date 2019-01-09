@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
-"PO-Revision-Date: 2018-11-17 07:16+0000\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"PO-Revision-Date: 2018-12-15 13:05+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/he/>\n"
@@ -191,11 +191,11 @@ msgstr "שימוש בתצוגה זו:"
 
 #: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
-msgstr "הפרדה:"
+msgstr "רזולוציה:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "סיבוב:"
+msgid "Screen Rotation:"
+msgstr "סיבוב המסך:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -213,3 +213,6 @@ msgstr "התצוגה הראשית"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "הגדרה כתצוגה הראשית"
+
+#~ msgid "Rotation:"
+#~ msgstr "סיבוב:"

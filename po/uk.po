@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2016-06-14 22:34+0000\n"
 "Last-Translator: Roman Sytnyk <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "Роздільна здатність:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "Поворот:"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr "Є основним дисплеєм"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Зробити основним екраном"
+
+#~ msgid "Rotation:"
+#~ msgstr "Поворот:"
 
 #~ msgid "Use This Display"
 #~ msgstr "Використовувати цей екран"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2015-11-14 15:01+0000\n"
 "Last-Translator: Beqa Arabuli <arabulibeqa@yahoo.com>\n"
 "Language-Team: Georgian <ka@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "გარჩევადობა:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "ბრუნვა:"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr ""
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "მთავარი ეკრანის დაყენება"
+
+#~ msgid "Rotation:"
+#~ msgstr "ბრუნვა:"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "ეკრანების და პროექტორების გარჩევადობის და პოზიციის შეცვლა"

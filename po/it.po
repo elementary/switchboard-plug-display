@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
-"PO-Revision-Date: 2018-11-16 04:53+0000\n"
-"Last-Translator: Marco De Paolini <marco.depaolini@gmail.com>\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"PO-Revision-Date: 2018-12-09 17:36+0000\n"
+"Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
 "Language-Team: Italian <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/it/>\n"
 "Language: it\n"
@@ -32,13 +32,13 @@ msgstr "Configura la risoluzione e la posizione di monitor e proiettori"
 msgid ""
 "Scaling factor changes will not take effect until this device is restarted"
 msgstr ""
-"I cambi al fattore di scala avranno effetto solo dopo il riavvio del "
+"Cambiamenti al fattore di scala avranno effetto solo dopo il riavvio del "
 "dispositivo"
 
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
 #: src/DisplayPlug.vala:131
 msgid "Night Light"
-msgstr "Modo notturno"
+msgstr "Luce Notturna"
 
 #: src/DisplayPlug.vala:123
 msgid "Screen Resolution"
@@ -110,15 +110,15 @@ msgstr "Monitor duplicati"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr "Modo notturno:"
+msgstr "Luce Notturna:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
-"Il modo notturno rende i colori dello schermo più caldi. Questa funzione può "
-"aiutare a prevenire l'affaticamento della vista e l'insonnia."
+"La modalità Luce Notturna rende i colori dello schermo più caldi. Questa "
+"funzione può aiutare a prevenire l'affaticamento della vista e l'insonnia."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
@@ -170,7 +170,7 @@ msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Pixel Doubled"
-msgstr "Pixel doppio"
+msgstr "Pixel raddoppiati"
 
 #: src/Views/DisplaysView.vala:53
 msgid "Detect Displays"
@@ -197,8 +197,9 @@ msgid "Resolution:"
 msgstr "Risoluzione:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotazione:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "Rotazione dello schermo"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -215,7 +216,10 @@ msgstr "È lo schermo principale"
 
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
-msgstr "Imposta come monitor principale"
+msgstr "Imposta come schermo principale"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotazione:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Le impostazioni non possono essere applicate: %s"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
-"PO-Revision-Date: 2018-10-10 21:18+0000\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"PO-Revision-Date: 2018-12-08 21:47+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/da/>\n"
@@ -197,17 +197,18 @@ msgid "Resolution:"
 msgstr "Opløsning:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotering:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "Skærmrotation"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
-msgstr ""
+msgstr "Opdateringshastighed:"
 
 #: src/Widgets/DisplayWidget.vala:352
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g Hz"
 
 #: src/Widgets/DisplayWidget.vala:439
 msgid "Is the primary display"
@@ -216,6 +217,9 @@ msgstr "Er den primære skærm"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Angiv som primær skærm"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotering:"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Skift opløsning og position for skærme"

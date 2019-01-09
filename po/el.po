@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2017-02-22 12:45+0000\n"
 "Last-Translator: Christos Iatropoulos <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "Ανάλυση:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "Περιστροφή:"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr "Είναι η αρχική οθόνη"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Ορισμός ως αρχικής οθόνης"
+
+#~ msgid "Rotation:"
+#~ msgstr "Περιστροφή:"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Αλλάξτε την ανάλυση και τη θέση των οθονών και των projectors"

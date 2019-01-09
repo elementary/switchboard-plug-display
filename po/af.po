@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2014-08-15 09:03+0000\n"
 "Last-Translator: Jaycee Lock <jaycee.lock@gmail.com>\n"
 "Language-Team: Afrikaans <af@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "Resolusie:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "Rotasie"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr ""
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Stel as primêre skerm"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotasie"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Instelling kan nie toegepas word nie: %s"

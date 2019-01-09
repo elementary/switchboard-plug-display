@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2016-08-06 10:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
@@ -199,7 +199,8 @@ msgid "Resolution:"
 msgstr "解析度："
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "旋轉："
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -218,6 +219,9 @@ msgstr "是主要顯示器"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "設為主要顯示器"
+
+#~ msgid "Rotation:"
+#~ msgstr "旋轉："
 
 #~ msgid "Use This Display"
 #~ msgstr "使用此顯示器"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
-"PO-Revision-Date: 2018-11-22 08:39+0000\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"PO-Revision-Date: 2018-12-17 10:54+0000\n"
 "Last-Translator: Ciarán Ainsworth <ciaranainsworth@outlook.com>\n"
 "Language-Team: English (United Kingdom) <https://weblate.elementary.io/"
 "projects/switchboard/switchboard-plug-display/en_GB/>\n"
@@ -196,8 +196,8 @@ msgid "Resolution:"
 msgstr "Resolution:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotation:"
+msgid "Screen Rotation:"
+msgstr "Screen Rotation:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -215,6 +215,9 @@ msgstr "Is the primary display"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Set as primary display"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotation:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Settings cannot be applied: %s"

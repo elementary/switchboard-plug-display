@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
-"PO-Revision-Date: 2018-11-16 11:57+0000\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"PO-Revision-Date: 2018-12-10 20:38+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ko/>\n"
@@ -195,8 +195,8 @@ msgid "Resolution:"
 msgstr "해상도:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "회전:"
+msgid "Screen Rotation:"
+msgstr "화면 회전:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -214,6 +214,9 @@ msgstr "주 모니터입니다"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "주 디스플레이로 설정"
+
+#~ msgid "Rotation:"
+#~ msgstr "회전:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "설정을 적용할 수 없습니다: %s"

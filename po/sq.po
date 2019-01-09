@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2016-06-29 14:13+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -198,7 +198,8 @@ msgid "Resolution:"
 msgstr ""
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
 msgstr "Rrotullimi:"
 
 #: src/Widgets/DisplayWidget.vala:146
@@ -217,6 +218,9 @@ msgstr "Është ekrani primar"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Caktoje si ekran kryesor"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rrotullimi:"
 
 #~ msgid "Use This Display"
 #~ msgstr "Përdor këtë ekran"

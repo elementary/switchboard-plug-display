@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
-"PO-Revision-Date: 2018-11-15 21:04+0000\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"PO-Revision-Date: 2018-12-10 21:28+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/lt/>\n"
@@ -198,8 +198,8 @@ msgid "Resolution:"
 msgstr "Raiška:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Pasukimas:"
+msgid "Screen Rotation:"
+msgstr "Ekrano pasukimas:"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -217,6 +217,9 @@ msgstr "Yra pirminis ekranas"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Nustatyti kaip pirminį ekraną"
+
+#~ msgid "Rotation:"
+#~ msgstr "Pasukimas:"
 
 #~ msgid "Use This Display"
 #~ msgstr "Naudoti šį ekraną"

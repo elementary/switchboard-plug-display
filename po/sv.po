@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-15 11:17-0800\n"
+"POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2018-10-26 19:07+0000\n"
 "Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/switchboard/"
@@ -196,8 +196,9 @@ msgid "Resolution:"
 msgstr "Upplösning:"
 
 #: src/Widgets/DisplayWidget.vala:137
-msgid "Rotation:"
-msgstr "Rotation:"
+#, fuzzy
+msgid "Screen Rotation:"
+msgstr "Skärmrotation"
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
@@ -215,6 +216,9 @@ msgstr "Är den primära skärmen"
 #: src/Widgets/DisplayWidget.vala:442
 msgid "Set as primary display"
 msgstr "Använd som primär bildskärm"
+
+#~ msgid "Rotation:"
+#~ msgstr "Rotation:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Inställningarna kan inte verkställas: %s"
