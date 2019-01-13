@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-12-11 07:11+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
+"PO-Revision-Date: 2019-01-14 00:09+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://weblate.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fr/>\n"
 "Language: fr\n"
@@ -54,7 +54,7 @@ msgstr "Affichage principal"
 
 #: src/DisplayPlug.vala:126
 msgid "Screen mirroring"
-msgstr "Écrans clonés"
+msgstr "Dupliquer l'écran"
 
 #: src/DisplayPlug.vala:127
 msgid "Scaling factor"
@@ -106,7 +106,7 @@ msgstr "Aucun"
 
 #: src/Objects/VirtualMonitor.vala:81
 msgid "Mirrored Display"
-msgstr "Écrans clonés"
+msgstr "Dupliquer l'écran"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
@@ -117,7 +117,7 @@ msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
-"Le mode nuit altère les couleurs de l'écran pour les rendre plus chaudes. "
+"Le mode nuit altère les couleurs de l'écran pour les rendre plus chaudes. \n"
 "Ceci peut permettre de diminuer l'effort demandé aux yeux ainsi que "
 "l'insomnie."
 
@@ -155,7 +155,7 @@ msgstr "Moins chaud"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "Même image sur tous les écrans :"
+msgstr "Dupliquer l'écran :"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
