@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2019-01-15 00:05+0000\n"
+"PO-Revision-Date: 2019-01-16 00:03+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/zh_Hans/>\n"
@@ -40,7 +40,7 @@ msgstr "夜灯"
 
 #: src/DisplayPlug.vala:123
 msgid "Screen Resolution"
-msgstr "屏幕分辨率"
+msgstr "分辨率"
 
 #: src/DisplayPlug.vala:124
 msgid "Screen Rotation"
