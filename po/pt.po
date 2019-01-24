@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2019-01-09 00:06+0000\n"
+"PO-Revision-Date: 2019-01-25 00:01+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/pt/>\n"
@@ -117,12 +117,12 @@ msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
-"A luz noturna deixa as cores do ecrã mais quentes. Isso pode ajudar-te a "
-"evitar o cansaço visual e insónias."
+"A luz noturna deixa as cores do ecrã mais quentes. Isso pode ajudar a evitar "
+"o cansaço visual e insónias."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr "Cronograma:"
+msgstr "Agendar:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
@@ -138,11 +138,11 @@ msgstr "De:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr "Para:"
+msgstr "Até:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr "Temperatura de cor:"
+msgstr "Temperatura da cor:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
@@ -182,7 +182,7 @@ msgstr "Aplicar"
 
 #: src/Views/DisplaysView.vala:78
 msgid "Rotation Lock:"
-msgstr "Rotação:"
+msgstr "Bloqueio de rotação:"
 
 #: src/Widgets/DisplayWidget.vala:97
 msgid "Configure display"
