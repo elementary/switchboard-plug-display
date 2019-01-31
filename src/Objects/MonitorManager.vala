@@ -289,6 +289,23 @@ public class Display.MonitorManager : GLib.Object {
         notify_property ("is-mirrored");
     }
 
+    public void set_scale_on_all_monitors (double new_scale) {
+        if (new_scale <= 0.0) {
+            return;
+        }
+
+        double max_scale = Utils.get_min_compatible_scale (monitors);
+        if (new_scale > max_scale) {
+            return;
+        }
+
+        foreach (var monitor in virtual_monitors) {
+            monitor.scale = new_scale;
+        }
+
+        set_monitor_config ();
+    }
+
     public void disable_clone_mode () {
         double max_scale = Utils.get_min_compatible_scale (monitors);
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();

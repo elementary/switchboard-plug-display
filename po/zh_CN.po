@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2018-11-02 04:04+0000\n"
+"PO-Revision-Date: 2019-01-16 00:03+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
 "switchboard/switchboard-plug-display/zh_Hans/>\n"
@@ -40,11 +40,11 @@ msgstr "夜灯"
 
 #: src/DisplayPlug.vala:123
 msgid "Screen Resolution"
-msgstr "分辨率："
+msgstr "分辨率"
 
 #: src/DisplayPlug.vala:124
 msgid "Screen Rotation"
-msgstr "旋转："
+msgstr "屏幕旋转"
 
 #: src/DisplayPlug.vala:125
 msgid "Primary display"
@@ -56,19 +56,19 @@ msgstr "屏幕镜像"
 
 #: src/DisplayPlug.vala:127
 msgid "Scaling factor"
-msgstr "比例系数："
+msgstr "比例系数"
 
 #: src/DisplayPlug.vala:128
 msgid "Rotation lock"
-msgstr "旋转锁："
+msgstr "旋转锁"
 
 #: src/DisplayPlug.vala:130
 msgid "Schedule"
-msgstr "计划："
+msgstr "计划"
 
 #: src/DisplayPlug.vala:131
 msgid "Color temperature"
-msgstr "颜色温度："
+msgstr "颜色温度"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -186,25 +186,24 @@ msgstr "显示器设置"
 
 #: src/Widgets/DisplayWidget.vala:120
 msgid "Use This Display:"
-msgstr "启用："
+msgstr "启用屏幕："
 
 #: src/Widgets/DisplayWidget.vala:127
 msgid "Resolution:"
 msgstr "分辨率："
 
 #: src/Widgets/DisplayWidget.vala:137
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "旋转："
+msgstr "屏幕旋转："
 
 #: src/Widgets/DisplayWidget.vala:146
 msgid "Refresh Rate:"
-msgstr ""
+msgstr "刷新频率："
 
 #: src/Widgets/DisplayWidget.vala:352
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g Hz"
 
 #: src/Widgets/DisplayWidget.vala:439
 msgid "Is the primary display"
