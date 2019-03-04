@@ -37,7 +37,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private bool holding = false;
 
     public Gtk.Button primary_image { get; private set; }
-    public Gtk.ToggleButton toggle_settings { get; private set; }
+    public Gtk.MenuButton toggle_settings { get; private set; }
 
     private Gtk.ComboBox resolution_combobox;
     private Gtk.ListStore resolution_list_store;
@@ -90,34 +90,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
         primary_image.clicked.connect (() => set_as_primary ());
         set_primary (virtual_monitor.primary);
 
-        toggle_settings = new Gtk.ToggleButton ();
-        toggle_settings.margin = 6;
-        toggle_settings.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        toggle_settings.halign = Gtk.Align.END;
-        toggle_settings.valign = Gtk.Align.START;
-        toggle_settings.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU);
-        toggle_settings.tooltip_text = _("Configure display");
-
         var virtual_monitor_name = virtual_monitor.get_display_name ();
         var label = new Gtk.Label (virtual_monitor_name);
         label.halign = Gtk.Align.CENTER;
         label.valign = Gtk.Align.CENTER;
         label.expand = true;
-
-        var grid = new Gtk.Grid ();
-        grid.attach (primary_image, 0, 0, 1, 1);
-        grid.attach (toggle_settings, 2, 0, 1, 1);
-        grid.attach (label, 0, 0, 3, 2);
-        add (grid);
-
-        var popover_grid = new Gtk.Grid ();
-        popover_grid.column_spacing = 12;
-        popover_grid.row_spacing = 6;
-        popover_grid.margin = 12;
-        var popover = new Gtk.Popover (toggle_settings);
-        popover.position = Gtk.PositionType.BOTTOM;
-        popover.bind_property ("visible", toggle_settings, "active", GLib.BindingFlags.BIDIRECTIONAL);
-        popover.add (popover_grid);
 
         var use_label = new Gtk.Label (_("Use This Display:"));
         use_label.halign = Gtk.Align.END;
@@ -188,17 +165,44 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         populate_refresh_rates ();
 
-        popover_grid.attach (use_label, 0, 0, 1, 1);
-        popover_grid.attach (use_switch, 1, 0, 1, 1);
-        popover_grid.attach (resolution_label, 0, 1, 1, 1);
-        popover_grid.attach (resolution_combobox, 1, 1, 1, 1);
-        popover_grid.attach (rotation_label, 0, 2, 1, 1);
-        popover_grid.attach (rotation_combobox, 1, 2, 1, 1);
-        popover_grid.attach (refresh_label, 0, 3, 1, 1);
-        popover_grid.attach (refresh_combobox, 1, 3, 1, 1);
+        var popover_grid = new Gtk.Grid ();
+        popover_grid.column_spacing = 12;
+        popover_grid.row_spacing = 6;
+        popover_grid.margin = 12;
+        popover_grid.attach (use_label, 0, 0);
+        popover_grid.attach (use_switch, 1, 0);
+        popover_grid.attach (resolution_label, 0, 1);
+        popover_grid.attach (resolution_combobox, 1, 1);
+        popover_grid.attach (rotation_label, 0, 2);
+        popover_grid.attach (rotation_combobox, 1, 2);
+        popover_grid.attach (refresh_label, 0, 3);
+        popover_grid.attach (refresh_combobox, 1, 3);
         popover_grid.show_all ();
+
+        var popover = new Gtk.Popover (toggle_settings);
+        popover.position = Gtk.PositionType.BOTTOM;
+        popover.add (popover_grid);
+
+        toggle_settings = new Gtk.MenuButton ();
+        toggle_settings.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU);
+        toggle_settings.halign = Gtk.Align.END;
+        toggle_settings.valign = Gtk.Align.START;
+        toggle_settings.margin = 6;
+        toggle_settings.popover = popover;
+        toggle_settings.tooltip_text = _("Configure display");
+        toggle_settings.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+
+        var grid = new Gtk.Grid ();
+        grid.attach (primary_image, 0, 0);
+        grid.attach (toggle_settings, 2, 0);
+        grid.attach (label, 0, 0, 3, 2);
+
+        add (grid);
+
         display_window.attached_to = this;
+
         destroy.connect (() => display_window.destroy ());
+
         use_switch.notify["active"].connect (() => {
             //output_info.set_active (use_switch.active);
             resolution_combobox.sensitive = use_switch.active;
