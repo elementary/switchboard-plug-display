@@ -169,14 +169,14 @@ public class Display.DisplayWidget : Gtk.EventBox {
         popover_grid.column_spacing = 12;
         popover_grid.row_spacing = 6;
         popover_grid.margin = 12;
-        popover_grid.attach (use_label, 0, 0, 1, 1);
-        popover_grid.attach (use_switch, 1, 0, 1, 1);
-        popover_grid.attach (resolution_label, 0, 1, 1, 1);
-        popover_grid.attach (resolution_combobox, 1, 1, 1, 1);
-        popover_grid.attach (rotation_label, 0, 2, 1, 1);
-        popover_grid.attach (rotation_combobox, 1, 2, 1, 1);
-        popover_grid.attach (refresh_label, 0, 3, 1, 1);
-        popover_grid.attach (refresh_combobox, 1, 3, 1, 1);
+        popover_grid.attach (use_label, 0, 0);
+        popover_grid.attach (use_switch, 1, 0);
+        popover_grid.attach (resolution_label, 0, 1);
+        popover_grid.attach (resolution_combobox, 1, 1);
+        popover_grid.attach (rotation_label, 0, 2);
+        popover_grid.attach (rotation_combobox, 1, 2);
+        popover_grid.attach (refresh_label, 0, 3);
+        popover_grid.attach (refresh_combobox, 1, 3);
         popover_grid.show_all ();
 
         var popover = new Gtk.Popover (toggle_settings);
