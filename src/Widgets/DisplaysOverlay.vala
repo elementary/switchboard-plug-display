@@ -33,11 +33,31 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     private unowned Display.MonitorManager monitor_manager;
     public int active_displays { get; set; default = 0; }
-    private static string[] colors = {"#3892e0", "#da4d45", "#f37329", "#fbd25d", "#93d844", "#8a4ebf", "#333333"};
+    private static string[] colors = {
+        "@BLUEBERRY_100",
+        "@STRAWBERRY_100",
+        "@ORANGE_100",
+        "@BANANA_100",
+        "@LIME_100",
+        "@GRAPE_100",
+        "@COCOA_100",
+        "@SLATE_100",
+    };
+    private static string[] border_colors = {
+        "@BLUEBERRY_500",
+        "@STRAWBERRY_500",
+        "@ORANGE_500",
+        "@BANANA_500",
+        "@LIME_500",
+        "@GRAPE_500",
+        "@COCOA_500",
+        "@SLATE_500",
+    };
 
     const string COLORED_STYLE_CSS = """
         .colored {
             background-color: %s;
+            border: 1px %s solid;
             color: %s;
         }
 
@@ -170,12 +190,13 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         var provider = new Gtk.CssProvider ();
         try {
             var color_number = (get_children ().length ()-2)%7;
-            var font_color = "#ffffff";
-            if (color_number == 3 || color_number == 4) {
-                font_color = "#333333";
-            }
+            //  var font_color = "#ffffff";
+            //  if (color_number == 3 || color_number == 4) {
+            //      font_color = "#333333";
+            //  }
+            var font_color = "@BLACK_500";
 
-            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], font_color);
+            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], border_colors[color_number], font_color);
             provider.load_from_data (colored_css, colored_css.length);
             var context = display_widget.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
