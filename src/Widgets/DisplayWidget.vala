@@ -35,7 +35,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private double start_x = 0;
     private double start_y = 0;
     private bool holding = false;
-    private Gtk.Button primary_image;
+
+    public Gtk.Button primary_image { get; private set; }
+    public Gtk.ToggleButton toggle_settings { get; private set; }
 
     private Gtk.ComboBox resolution_combobox;
     private Gtk.ListStore resolution_list_store;
@@ -88,7 +90,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         primary_image.clicked.connect (() => set_as_primary ());
         set_primary (virtual_monitor.primary);
 
-        var toggle_settings = new Gtk.ToggleButton ();
+        toggle_settings = new Gtk.ToggleButton ();
         toggle_settings.margin = 6;
         toggle_settings.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         toggle_settings.halign = Gtk.Align.END;
