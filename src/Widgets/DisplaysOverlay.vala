@@ -40,29 +40,60 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         "@BANANA_100",
         "@LIME_100",
         "@GRAPE_100",
-        "@COCOA_100",
-        "@SLATE_100",
+        "@COCOA_100"
     };
-    private static string[] border_colors = {
-        "@BLUEBERRY_500",
-        "@STRAWBERRY_500",
-        "@ORANGE_500",
-        "@BANANA_500",
-        "@LIME_500",
-        "@GRAPE_500",
-        "@COCOA_500",
-        "@SLATE_500",
+    private static string[] text_colors = {
+        "@BLUEBERRY_900",
+        "@STRAWBERRY_900",
+        "@ORANGE_900",
+        "@BANANA_900",
+        "@LIME_900",
+        "@GRAPE_900",
+        "@COCOA_900"
     };
 
     const string COLORED_STYLE_CSS = """
+        @define-color BG_COLOR %s;
+        @define-color TEXT_COLOR %s;
+
         .colored {
-            background-color: %s;
-            border: 1px %s solid;
-            color: %s;
+            background-color: @BG_COLOR;
+            color: @TEXT_COLOR;
+            text-shadow: 0 1px 1px alpha (#fff, 0.1);
+            -gtk-icon-shadow: 0 1px 1px alpha (#fff, 0.1);
+            -gtk-icon-palette: warning #fff;
+        }
+
+        widget.colored {
+            border: 1px solid mix (@BG_COLOR, @TEXT_COLOR, 0.3);
+        }
+
+        .colored button {
+            border-radius: 50%;
+            padding: 6px;
+        }
+
+        .colored button:focus {
+            background: alpha (@TEXT_COLOR, 0.25);
+        }
+
+        .colored button:checked {
+            background: alpha (@TEXT_COLOR, 0.5);
+            border-color: transparent;
         }
 
         .colored.disabled {
-            background-color: #aaa;
+            background-color: @SLATE_100;
+            color: @SLATE_700;
+        }
+
+        .colored.disabled button:focus {
+            background: alpha (@SLATE_700, 0.25);
+        }
+
+        .colored.disabled button:checked {
+            background: alpha (@TEXT_COLOR, 0.5);
+            border-color: transparent;
         }
     """;
 
@@ -190,18 +221,23 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         var provider = new Gtk.CssProvider ();
         try {
             var color_number = (get_children ().length ()-2)%7;
-            //  var font_color = "#ffffff";
-            //  if (color_number == 3 || color_number == 4) {
-            //      font_color = "#333333";
-            //  }
-            var font_color = "@BLACK_500";
 
-            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], border_colors[color_number], font_color);
+            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
             provider.load_from_data (colored_css, colored_css.length);
+
             var context = display_widget.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
+
             context = display_widget.display_window.get_style_context ();
+            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            context.add_class ("colored");
+
+            context = display_widget.primary_image.get_style_context ();
+            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            context.add_class ("colored");
+
+            context = display_widget.toggle_settings.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
         } catch (GLib.Error e) {
