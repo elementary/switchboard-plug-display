@@ -13,6 +13,12 @@ add_project_arguments(
     language:'c'
 )
 
+asresources = gnome.compile_resources(
+    'as-resources', 'data/' + 'io.elementary.switchboard.display.gresource.xml',
+    source_dir: 'data',
+    c_name: 'as'
+)
+
 subdir('data')
 subdir('src')
 subdir('po')

@@ -55,46 +55,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     const string COLORED_STYLE_CSS = """
         @define-color BG_COLOR %s;
         @define-color TEXT_COLOR %s;
-
-        .colored {
-            background-color: @BG_COLOR;
-            color: @TEXT_COLOR;
-            text-shadow: 0 1px 1px alpha (#fff, 0.1);
-            -gtk-icon-shadow: 0 1px 1px alpha (#fff, 0.1);
-            -gtk-icon-palette: warning #fff;
-        }
-
-        widget.colored {
-            border: 1px solid mix (@BG_COLOR, @TEXT_COLOR, 0.3);
-        }
-
-        .colored button {
-            border-radius: 50%;
-            padding: 6px;
-        }
-
-        .colored button:focus {
-            background: alpha (@TEXT_COLOR, 0.25);
-        }
-
-        .colored button:checked {
-            background: alpha (@TEXT_COLOR, 0.5);
-            border-color: transparent;
-        }
-
-        .colored.disabled {
-            background-color: @SLATE_100;
-            color: @SLATE_700;
-        }
-
-        .colored.disabled button:focus {
-            background: alpha (@SLATE_700, 0.25);
-        }
-
-        .colored.disabled button:checked {
-            background: alpha (@TEXT_COLOR, 0.5);
-            border-color: transparent;
-        }
     """;
 
     public DisplaysOverlay () {
@@ -225,20 +185,27 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
             provider.load_from_data (colored_css, colored_css.length);
 
+            var display_provider = new Gtk.CssProvider ();
+            display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
+
             var context = display_widget.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
 
             context = display_widget.display_window.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
 
             context = display_widget.primary_image.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
 
             context = display_widget.toggle_settings.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
         } catch (GLib.Error e) {
             critical (e.message);
