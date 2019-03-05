@@ -1,0 +1,38 @@
+.colored {
+    background-color: @BG_COLOR;
+    color: @TEXT_COLOR;
+    text-shadow: 0 1px 1px alpha (#fff, 0.1);
+    -gtk-icon-shadow: 0 1px 1px alpha (#fff, 0.1);
+    -gtk-icon-palette: warning #fff;
+}
+
+widget.colored {
+    border: 1px solid mix (@BG_COLOR, @TEXT_COLOR, 0.3);
+}
+
+.colored button {
+    border-radius: 50%;
+    padding: 6px;
+}
+
+.colored button:focus {
+    background: alpha (@TEXT_COLOR, 0.25);
+}
+
+.colored button:checked {
+    background: alpha (@TEXT_COLOR, 0.5);
+    border-color: transparent;
+}
+
+.colored.disabled {
+    background-color: @SLATE_100;
+    color: @SLATE_700;
+}
+
+.colored.disabled button:focus {
+    background: alpha (@SLATE_700, 0.25);
+}
+
+.colored.disabled button:checked {
+    background: alpha (@SLATE_700, 0.5);
+}
