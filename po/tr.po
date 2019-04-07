@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
 "PO-Revision-Date: 2019-04-08 21:10+0000\n"
-"Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
+"Last-Translator: Mehmet Zahit Yılmaz <darkmehmet3@gmail.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/tr/>\n"
 "Language: tr\n"
@@ -38,7 +38,7 @@ msgstr ""
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
 #: src/DisplayPlug.vala:131
 msgid "Night Light"
-msgstr "Gece Lambası"
+msgstr "Gece Işığı"
 
 #: src/DisplayPlug.vala:123
 msgid "Screen Resolution"
