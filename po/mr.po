@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2019-03-09 10:26+0000\n"
+"PO-Revision-Date: 2019-05-15 03:03+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/mr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
@@ -26,7 +26,7 @@ msgstr "प्रदर्शन"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "मॉनिटर्स आणि प्रोजेक्टर्सची रिझोल्यूशन आणि स्थिती कॉन्फिगर करा"
+msgstr "मॉनिटर्स आणि प्रोजेक्टर्सची रिझोल्यूशन आणि जागेची स्थिती कॉन्फिगर करा"
 
 #: src/DisplayPlug.vala:48
 msgid ""
