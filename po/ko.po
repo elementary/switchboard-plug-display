@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 08:57-0800\n"
-"PO-Revision-Date: 2019-05-15 03:02+0000\n"
+"PO-Revision-Date: 2019-05-24 04:15+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ko/>\n"
@@ -36,7 +36,7 @@ msgstr "바꾼 비율은 이 장비를 다시 시작해야 적용됩니다"
 #: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
 #: src/DisplayPlug.vala:131
 msgid "Night Light"
-msgstr "나이트 라이트"
+msgstr "낮은 색온도"
 
 #: src/DisplayPlug.vala:123
 msgid "Screen Resolution"
@@ -108,15 +108,13 @@ msgstr "미러 디스플레이"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr "나이트 라이트:"
+msgstr "낮은 색온도:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
-msgstr ""
-"나이트 라이트는 여러분의 디스플레이를 좀 더 따뜻한 색으로 만듭니다. 눈의 피로"
-"와 불면 예방에 도움이 될 겁니다."
+msgstr "낮은 색온도는 여러분의 디스플레이를 좀 더 따뜻한 색으로 만듭니다. 눈의 피로와 불면 예방에 도움이 될 겁니다."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
