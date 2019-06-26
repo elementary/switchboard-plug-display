@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"POT-Creation-Date: 2019-06-26 22:45+0200\n"
 "PO-Revision-Date: 2018-05-29 12:21+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/switchboard/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
 msgid "Displays"
 msgstr "Monitoare"
 
@@ -21,50 +21,43 @@ msgstr "Monitoare"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configurați rezoluția și poziția monitoarelor și proiectoarelor"
 
-#: src/DisplayPlug.vala:48
-msgid ""
-"Scaling factor changes will not take effect until this device is restarted"
-msgstr ""
-"Modificările factorului de scalare nu va avea efect până când acesta nu este "
-"repornit"
-
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:118
 msgid "Night Light"
 msgstr "Lumină de noapte"
 
-#: src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
 msgstr "Rezolutia ecranului"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
 msgstr "Rotația ecranului"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:112
 msgid "Primary display"
 msgstr "Afișaj primar"
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
 msgstr "Dublar ecranul"
 
-#: src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:114
 #, fuzzy
 msgid "Scaling factor"
 msgstr "Factorul de scalare:"
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:115
 #, fuzzy
 msgid "Rotation lock"
 msgstr "Blocare rotație:"
 
-#: src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:117
 #, fuzzy
 msgid "Schedule"
 msgstr "Planifică:"
 
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:118
 #, fuzzy
 msgid "Color temperature"
 msgstr "Temperatura de culoare:"
@@ -158,62 +151,67 @@ msgid "Scaling factor:"
 msgstr "Factorul de scalare:"
 
 #: src/Views/DisplaysView.vala:43
-msgid "Automatic"
-msgstr "Automatico"
-
-#: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
 msgstr "Lo DPI"
 
-#: src/Views/DisplaysView.vala:45
+#: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
 msgstr "Pixel dublat"
 
-#: src/Views/DisplaysView.vala:53
+#: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
 msgstr "Detectați monitoare"
 
-#: src/Views/DisplaysView.vala:55
+#: src/Views/DisplaysView.vala:54
 msgid "Apply"
 msgstr "Aplică"
 
-#: src/Views/DisplaysView.vala:78
+#: src/Views/DisplaysView.vala:77
 msgid "Rotation Lock:"
 msgstr "Blocare rotație:"
 
-#: src/Widgets/DisplayWidget.vala:97
-msgid "Configure display"
-msgstr "Configurați afișarea"
-
-#: src/Widgets/DisplayWidget.vala:120
+#: src/Widgets/DisplayWidget.vala:99
 msgid "Use This Display:"
 msgstr "Utilizați acest afișaj:"
 
-#: src/Widgets/DisplayWidget.vala:127
+#: src/Widgets/DisplayWidget.vala:106
 msgid "Resolution:"
 msgstr "Rezoluţie:"
 
-#: src/Widgets/DisplayWidget.vala:137
+#: src/Widgets/DisplayWidget.vala:116
 #, fuzzy
 msgid "Screen Rotation:"
 msgstr "Rotația ecranului"
 
-#: src/Widgets/DisplayWidget.vala:146
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:352
+#: src/Widgets/DisplayWidget.vala:192
+msgid "Configure display"
+msgstr "Configurați afișarea"
+
+#: src/Widgets/DisplayWidget.vala:358
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:439
+#: src/Widgets/DisplayWidget.vala:445
 msgid "Is the primary display"
 msgstr "Este afișajul principal"
 
-#: src/Widgets/DisplayWidget.vala:442
+#: src/Widgets/DisplayWidget.vala:448
 msgid "Set as primary display"
 msgstr "Setați ca afișaj principal"
+
+#~ msgid ""
+#~ "Scaling factor changes will not take effect until this device is restarted"
+#~ msgstr ""
+#~ "Modificările factorului de scalare nu va avea efect până când acesta nu "
+#~ "este repornit"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatico"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotație:"
