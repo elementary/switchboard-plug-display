@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"POT-Creation-Date: 2019-06-26 22:45+0200\n"
 "PO-Revision-Date: 2018-12-15 13:05+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://weblate.elementary.io/projects/switchboard/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
 msgid "Displays"
 msgstr "תצוגות"
 
@@ -28,45 +28,40 @@ msgstr "תצוגות"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "הגדרת ההפרדה ומיקומם של מסכים ומקרנים"
 
-#: src/DisplayPlug.vala:48
-msgid ""
-"Scaling factor changes will not take effect until this device is restarted"
-msgstr "השינויים למקדם שינוי הגודל לא יחולו עד להפעלת ההתקן מחדש"
-
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:118
 msgid "Night Light"
 msgstr "תאורת לילה"
 
-#: src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
 msgstr "רזולוציית המסך"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
 msgstr "סיבוב המסך"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:112
 msgid "Primary display"
 msgstr "תצוגה ראשית"
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
 msgstr "שידור המסך"
 
-#: src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:114
 msgid "Scaling factor"
 msgstr "מקדם שינוי גודל"
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:115
 msgid "Rotation lock"
 msgstr "נעילת סיבוב"
 
-#: src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:117
 msgid "Schedule"
 msgstr "לו״ז"
 
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:118
 msgid "Color temperature"
 msgstr "טמפרטורת הצבע"
 
@@ -158,61 +153,64 @@ msgid "Scaling factor:"
 msgstr "מקדם שינוי גודל:"
 
 #: src/Views/DisplaysView.vala:43
-msgid "Automatic"
-msgstr "אוטומטי"
-
-#: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
 msgstr "DPI נמוך"
 
-#: src/Views/DisplaysView.vala:45
+#: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
 msgstr "פיקסלים מוכפלים"
 
-#: src/Views/DisplaysView.vala:53
+#: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
 msgstr "זיהוי תצוגות"
 
-#: src/Views/DisplaysView.vala:55
+#: src/Views/DisplaysView.vala:54
 msgid "Apply"
 msgstr "החלה"
 
-#: src/Views/DisplaysView.vala:78
+#: src/Views/DisplaysView.vala:77
 msgid "Rotation Lock:"
 msgstr "נעילת סיבוב:"
 
-#: src/Widgets/DisplayWidget.vala:97
-msgid "Configure display"
-msgstr "הגדרת התצוגה"
-
-#: src/Widgets/DisplayWidget.vala:120
+#: src/Widgets/DisplayWidget.vala:99
 msgid "Use This Display:"
 msgstr "שימוש בתצוגה זו:"
 
-#: src/Widgets/DisplayWidget.vala:127
+#: src/Widgets/DisplayWidget.vala:106
 msgid "Resolution:"
 msgstr "רזולוציה:"
 
-#: src/Widgets/DisplayWidget.vala:137
+#: src/Widgets/DisplayWidget.vala:116
 msgid "Screen Rotation:"
 msgstr "סיבוב המסך:"
 
-#: src/Widgets/DisplayWidget.vala:146
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Refresh Rate:"
 msgstr "קצב רענון:"
 
-#: src/Widgets/DisplayWidget.vala:352
+#: src/Widgets/DisplayWidget.vala:192
+msgid "Configure display"
+msgstr "הגדרת התצוגה"
+
+#: src/Widgets/DisplayWidget.vala:358
 #, c-format
 msgid "%g Hz"
 msgstr "%g הרץ"
 
-#: src/Widgets/DisplayWidget.vala:439
+#: src/Widgets/DisplayWidget.vala:445
 msgid "Is the primary display"
 msgstr "התצוגה הראשית"
 
-#: src/Widgets/DisplayWidget.vala:442
+#: src/Widgets/DisplayWidget.vala:448
 msgid "Set as primary display"
 msgstr "הגדרה כתצוגה הראשית"
+
+#~ msgid ""
+#~ "Scaling factor changes will not take effect until this device is restarted"
+#~ msgstr "השינויים למקדם שינוי הגודל לא יחולו עד להפעלת ההתקן מחדש"
+
+#~ msgid "Automatic"
+#~ msgstr "אוטומטי"
 
 #~ msgid "Rotation:"
 #~ msgstr "סיבוב:"

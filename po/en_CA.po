@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"POT-Creation-Date: 2019-06-26 22:45+0200\n"
 "PO-Revision-Date: 2018-06-22 12:57+0000\n"
 "Last-Translator: Shawn <syst3mfailur3@gmail.com>\n"
 "Language-Team: English (Canada) <https://weblate.elementary.io/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-01-28 06:08+0000\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
 msgid "Displays"
 msgstr "Displays"
 
@@ -28,49 +28,43 @@ msgstr "Displays"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configure resolution and position of monitors and projectors"
 
-#: src/DisplayPlug.vala:48
-msgid ""
-"Scaling factor changes will not take effect until this device is restarted"
-msgstr ""
-"Scaling factor changes will not take effect until this device is restarted"
-
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:118
 msgid "Night Light"
 msgstr "Night Light"
 
-#: src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
 msgstr "Screen Resolution"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
 msgstr "Screen Rotation"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:112
 msgid "Primary display"
 msgstr "Primary display"
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
 msgstr "Screen mirroring"
 
-#: src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:114
 #, fuzzy
 msgid "Scaling factor"
 msgstr "Scaling factor:"
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:115
 #, fuzzy
 msgid "Rotation lock"
 msgstr "Rotation Lock:"
 
-#: src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:117
 #, fuzzy
 msgid "Schedule"
 msgstr "Schedule:"
 
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:118
 #, fuzzy
 msgid "Color temperature"
 msgstr "Colour temperature:"
@@ -164,62 +158,66 @@ msgid "Scaling factor:"
 msgstr "Scaling factor:"
 
 #: src/Views/DisplaysView.vala:43
-msgid "Automatic"
-msgstr "Automatic"
-
-#: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
 msgstr "LoDPI"
 
-#: src/Views/DisplaysView.vala:45
+#: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
 msgstr "Pixel Doubled"
 
-#: src/Views/DisplaysView.vala:53
+#: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
 msgstr "Detect Displays"
 
-#: src/Views/DisplaysView.vala:55
+#: src/Views/DisplaysView.vala:54
 msgid "Apply"
 msgstr "Apply"
 
-#: src/Views/DisplaysView.vala:78
+#: src/Views/DisplaysView.vala:77
 msgid "Rotation Lock:"
 msgstr "Rotation Lock:"
 
-#: src/Widgets/DisplayWidget.vala:97
-msgid "Configure display"
-msgstr "Configure display"
-
-#: src/Widgets/DisplayWidget.vala:120
+#: src/Widgets/DisplayWidget.vala:99
 msgid "Use This Display:"
 msgstr "Use This Display:"
 
-#: src/Widgets/DisplayWidget.vala:127
+#: src/Widgets/DisplayWidget.vala:106
 msgid "Resolution:"
 msgstr "Resolution:"
 
-#: src/Widgets/DisplayWidget.vala:137
+#: src/Widgets/DisplayWidget.vala:116
 #, fuzzy
 msgid "Screen Rotation:"
 msgstr "Screen Rotation"
 
-#: src/Widgets/DisplayWidget.vala:146
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:352
+#: src/Widgets/DisplayWidget.vala:192
+msgid "Configure display"
+msgstr "Configure display"
+
+#: src/Widgets/DisplayWidget.vala:358
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:439
+#: src/Widgets/DisplayWidget.vala:445
 msgid "Is the primary display"
 msgstr "Is the primary display"
 
-#: src/Widgets/DisplayWidget.vala:442
+#: src/Widgets/DisplayWidget.vala:448
 msgid "Set as primary display"
 msgstr "Set as primary display"
+
+#~ msgid ""
+#~ "Scaling factor changes will not take effect until this device is restarted"
+#~ msgstr ""
+#~ "Scaling factor changes will not take effect until this device is restarted"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatic"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotation:"

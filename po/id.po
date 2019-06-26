@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"POT-Creation-Date: 2019-06-26 22:45+0200\n"
 "PO-Revision-Date: 2018-10-24 22:10+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
 msgid "Displays"
 msgstr "Tampilan"
 
@@ -27,47 +27,40 @@ msgstr "Tampilan"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Konfigurasikan resolusi dan posisi dari monitor dan proyektor"
 
-#: src/DisplayPlug.vala:48
-msgid ""
-"Scaling factor changes will not take effect until this device is restarted"
-msgstr ""
-"Perubahan faktor skala tidak akan berpengaruh hingga perangkat ini dimulai "
-"ulang"
-
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:118
 msgid "Night Light"
 msgstr "Cahaya Malam"
 
-#: src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
 msgstr "Resolusi Layar"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
 msgstr "Rotasi Layar"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:112
 msgid "Primary display"
 msgstr "Tampilan utama"
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
 msgstr "Pencerminan layar"
 
-#: src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:114
 msgid "Scaling factor"
 msgstr "Faktor penskalaan"
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:115
 msgid "Rotation lock"
 msgstr "Kunci rotasi"
 
-#: src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:117
 msgid "Schedule"
 msgstr "Jadwal"
 
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:118
 msgid "Color temperature"
 msgstr "Temperatur warna"
 
@@ -160,62 +153,67 @@ msgid "Scaling factor:"
 msgstr "Faktor penskalaan:"
 
 #: src/Views/DisplaysView.vala:43
-msgid "Automatic"
-msgstr "Otomatis"
-
-#: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
 msgstr "RendahDPI"
 
-#: src/Views/DisplaysView.vala:45
+#: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
 msgstr "Pixel Digandakan"
 
-#: src/Views/DisplaysView.vala:53
+#: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
 msgstr "Deteksi Tampilan"
 
-#: src/Views/DisplaysView.vala:55
+#: src/Views/DisplaysView.vala:54
 msgid "Apply"
 msgstr "Terapkan"
 
-#: src/Views/DisplaysView.vala:78
+#: src/Views/DisplaysView.vala:77
 msgid "Rotation Lock:"
 msgstr "Kunci Rotasi:"
 
-#: src/Widgets/DisplayWidget.vala:97
-msgid "Configure display"
-msgstr "Konfigurasi tampilan"
-
-#: src/Widgets/DisplayWidget.vala:120
+#: src/Widgets/DisplayWidget.vala:99
 msgid "Use This Display:"
 msgstr "Gunakan Tampilan Ini:"
 
-#: src/Widgets/DisplayWidget.vala:127
+#: src/Widgets/DisplayWidget.vala:106
 msgid "Resolution:"
 msgstr "Resolusi:"
 
-#: src/Widgets/DisplayWidget.vala:137
+#: src/Widgets/DisplayWidget.vala:116
 #, fuzzy
 msgid "Screen Rotation:"
 msgstr "Rotasi Layar"
 
-#: src/Widgets/DisplayWidget.vala:146
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:352
+#: src/Widgets/DisplayWidget.vala:192
+msgid "Configure display"
+msgstr "Konfigurasi tampilan"
+
+#: src/Widgets/DisplayWidget.vala:358
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:439
+#: src/Widgets/DisplayWidget.vala:445
 msgid "Is the primary display"
 msgstr "Adalah tampilan utama"
 
-#: src/Widgets/DisplayWidget.vala:442
+#: src/Widgets/DisplayWidget.vala:448
 msgid "Set as primary display"
 msgstr "Atur sebagai tampilan utama"
+
+#~ msgid ""
+#~ "Scaling factor changes will not take effect until this device is restarted"
+#~ msgstr ""
+#~ "Perubahan faktor skala tidak akan berpengaruh hingga perangkat ini "
+#~ "dimulai ulang"
+
+#~ msgid "Automatic"
+#~ msgstr "Otomatis"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotasi:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-10 08:57-0800\n"
+"POT-Creation-Date: 2019-06-26 22:45+0200\n"
 "PO-Revision-Date: 2019-01-07 00:03+0000\n"
 "Last-Translator: Simon Dagfinrud <semonje@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://weblate.elementary.io/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:63
+#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
 msgid "Displays"
 msgstr "Skjermar"
 
@@ -28,47 +28,40 @@ msgstr "Skjermar"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Konfigurer oppløysing og biletposisjon for skjermar og prosjektorar"
 
-#: src/DisplayPlug.vala:48
-msgid ""
-"Scaling factor changes will not take effect until this device is restarted"
-msgstr ""
-"Endringar av skaleringsfaktor trer ikkje i kraft før eininga vert starta på "
-"nytt"
-
-#: src/DisplayPlug.vala:64 src/DisplayPlug.vala:129 src/DisplayPlug.vala:130
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:118
 msgid "Night Light"
 msgstr "Nattlys"
 
-#: src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
 msgstr "Skjermoppløysing"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
 msgstr "Skjermrotasjon"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:112
 msgid "Primary display"
 msgstr "Hovudskjerm"
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
 msgstr "Spegla skjermar"
 
-#: src/DisplayPlug.vala:127
+#: src/DisplayPlug.vala:114
 msgid "Scaling factor"
 msgstr "Skaleringsfaktor"
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:115
 msgid "Rotation lock"
 msgstr "Rotasjonslås"
 
-#: src/DisplayPlug.vala:130
+#: src/DisplayPlug.vala:117
 msgid "Schedule"
 msgstr "Køyreplan"
 
-#: src/DisplayPlug.vala:131
+#: src/DisplayPlug.vala:118
 msgid "Color temperature"
 msgstr "Fargetemperatur"
 
@@ -161,61 +154,66 @@ msgid "Scaling factor:"
 msgstr "Skaleringsfaktor:"
 
 #: src/Views/DisplaysView.vala:43
-msgid "Automatic"
-msgstr "Automatisk"
-
-#: src/Views/DisplaysView.vala:44
 msgid "LoDPI"
 msgstr "LavDPI"
 
-#: src/Views/DisplaysView.vala:45
+#: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
 msgstr "Pikseldobling"
 
-#: src/Views/DisplaysView.vala:53
+#: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
 msgstr "Leit etter skjermar"
 
-#: src/Views/DisplaysView.vala:55
+#: src/Views/DisplaysView.vala:54
 msgid "Apply"
 msgstr "Bruk"
 
-#: src/Views/DisplaysView.vala:78
+#: src/Views/DisplaysView.vala:77
 msgid "Rotation Lock:"
 msgstr "Rotasjonslås:"
 
-#: src/Widgets/DisplayWidget.vala:97
-msgid "Configure display"
-msgstr "Konfigurer skjerm"
-
-#: src/Widgets/DisplayWidget.vala:120
+#: src/Widgets/DisplayWidget.vala:99
 msgid "Use This Display:"
 msgstr "Bruk denne skjermen:"
 
-#: src/Widgets/DisplayWidget.vala:127
+#: src/Widgets/DisplayWidget.vala:106
 msgid "Resolution:"
 msgstr "Oppløysing:"
 
-#: src/Widgets/DisplayWidget.vala:137
+#: src/Widgets/DisplayWidget.vala:116
 msgid "Screen Rotation:"
 msgstr "Skjermrotasjon:"
 
-#: src/Widgets/DisplayWidget.vala:146
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Refresh Rate:"
 msgstr "Oppfriskingsrate:"
 
-#: src/Widgets/DisplayWidget.vala:352
+#: src/Widgets/DisplayWidget.vala:192
+msgid "Configure display"
+msgstr "Konfigurer skjerm"
+
+#: src/Widgets/DisplayWidget.vala:358
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:439
+#: src/Widgets/DisplayWidget.vala:445
 msgid "Is the primary display"
 msgstr "Er hovudskjermen"
 
-#: src/Widgets/DisplayWidget.vala:442
+#: src/Widgets/DisplayWidget.vala:448
 msgid "Set as primary display"
 msgstr "Bruk som hovudskjerm"
+
+#~ msgid ""
+#~ "Scaling factor changes will not take effect until this device is restarted"
+#~ msgstr ""
+#~ "Endringar av skaleringsfaktor trer ikkje i kraft før eininga vert starta "
+#~ "på nytt"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatisk"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotasjon:"
