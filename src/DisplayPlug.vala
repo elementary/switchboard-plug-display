@@ -31,7 +31,7 @@ public class Display.Plug : Switchboard.Plug {
         settings.set ("display", null);
         settings.set ("display/night-light", "night-light");
         Object (category: Category.HARDWARE,
-                code_name: "pantheon-display",
+                code_name: "io.elementary.switchboard.display",
                 display_name: _("Displays"),
                 description: _("Configure resolution and position of monitors and projectors"),
                 icon: "preferences-desktop-display",
