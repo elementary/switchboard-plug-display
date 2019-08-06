@@ -176,14 +176,14 @@ public class Display.NightLightView : Gtk.Grid {
     private static double date_time_double (DateTime date_time) {
         double time_double = 0;
         time_double += date_time.get_hour ();
-        time_double += (double) date_time.get_minute () / 100;
+        time_double += (double) date_time.get_minute () / 60;
 
         return time_double;
     }
 
     private static DateTime double_date_time (double dbl) {
         var hours = (int) dbl;
-        var minutes = (int) (dbl - hours) * 100;
+        var minutes = (int) Math.round ((dbl - hours) * 60);
 
         var date_time = new DateTime.local (1, 1, 1, hours, minutes, 0.0);
 
