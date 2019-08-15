@@ -25,7 +25,7 @@ public class Display.DisplayWindow : Gtk.Window {
         label.margin = 12;
         add (label);
         var scale_factor = get_style_context ().get_scale ();
-        move ((int) (virtual_monitor.x/scale_factor), (int) (virtual_monitor.y/scale_factor));
+        move (virtual_monitor.current_x, virtual_monitor.current_y);
     }
 
     construct {
