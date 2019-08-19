@@ -431,8 +431,53 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     public override bool motion_notify_event (Gdk.EventMotion event) {
         if (holding && !only_display) {
-            delta_x = (int)(event.x_root - start_x);
-            delta_y = (int)(event.y_root - start_y);
+            var display_overlay = get_parent () as DisplaysOverlay;
+            var current_ratio = display_overlay.current_ratio;
+            bool[2] snapped = {false, false};
+            int[2] delta_snapped = {0};
+            int[2] diff = { (int)((event.x_root - start_x) / current_ratio),
+                             (int)((event.y_root - start_y) / current_ratio) };
+
+            if (event.state != Gdk.ModifierType.CONTROL_MASK) {
+                var anchor = new int[6];
+                var old_anchors = new int[6];
+                old_anchors [0] = virtual_monitor.x;
+                old_anchors [1] = old_anchors [0] + real_width / 2 - 1;
+                old_anchors [2] = old_anchors [0] + real_width - 1; 
+                old_anchors [3] = virtual_monitor.y;
+                old_anchors [4] = old_anchors [3] + real_height / 2 - 1;
+                old_anchors [5] = old_anchors [3] + real_height - 1;
+
+                int[2] threshold = {real_width / 10, real_height / 10};
+
+                foreach (var child in display_overlay.get_children ()) {
+                    if (child is DisplayWidget && child != this) {
+                        var display_widget = (DisplayWidget) child;
+                        int x, y, width, height; 
+                        display_widget.get_geometry (out x, out y, out width, out height);
+                        anchor [0] = x;
+                        anchor [1] = x + width / 2 - 1;
+                        anchor [2] = x + width - 1;
+                        anchor [3] = y;
+                        anchor [4] = y + height / 2 - 1;
+                        anchor [5] = y + height - 1;
+
+                        for (var u = 0; u < 2; u++) {
+                            for (var i = 0; i < 3 && !snapped [u]; i++) {
+                                for (var j = 0; j < 3 && !snapped [u]; j++) {
+                                    if (threshold [u] > (anchor [i + 3 * u] - old_anchors [j + 3 * u] - diff [u]).abs ()) {
+                                        delta_snapped [u] = anchor [i + 3 * u] - old_anchors [j + 3 * u];
+                                        snapped [u] = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            delta_x = snapped [0] ? delta_snapped [0] : diff [0];
+            delta_y = snapped [1] ? delta_snapped [1] : diff [1];
             check_position ();
         }
 

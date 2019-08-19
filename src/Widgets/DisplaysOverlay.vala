@@ -25,7 +25,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     public signal void configuration_changed (bool changed);
 
     private bool scanning = false;
-    private double current_ratio = 1.0f;
+    public double current_ratio = 1.0f;
     private int current_allocated_width = 0;
     private int current_allocated_height = 0;
     private int default_x_margin = 0;
@@ -81,8 +81,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             allocation = Gdk.Rectangle ();
             allocation.width = (int)(width * current_ratio);
             allocation.height = (int)(height * current_ratio);
-            allocation.x = default_x_margin + (int)(x * current_ratio) + display_widget.delta_x;
-            allocation.y = default_y_margin + (int)(y * current_ratio) + display_widget.delta_y;
+            allocation.x = default_x_margin + (int)((x +  display_widget.delta_x) * current_ratio);
+            allocation.y = default_y_margin + (int)((y +  display_widget.delta_y) * current_ratio);
             return true;
         }
 
@@ -231,15 +231,22 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 return;
             }
 
+           if (!check_for_gaps (display_widget, delta_x, delta_y)) {
+                debug ("has gaps! reset!");
+                delta_x = 0;
+                delta_y = 0;
+            }
+
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
-            display_widget.set_geometry ((int)(delta_x / current_ratio) + x, (int)(delta_y / current_ratio) + y, width, height);
+            display_widget.set_geometry (delta_x  + x, delta_y + y, width, height);
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
             snap_edges (display_widget);
             verify_global_positions ();
             calculate_ratio ();
         });
+
 
         check_intersects (display_widget);
         var old_delta_x = display_widget.delta_x;
@@ -264,6 +271,62 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         check_configuration_changed ();
+    }
+
+    private bool check_for_gaps (DisplayWidget source_display_widget, int delta_x, int delta_y) {
+        var other_display_widgets = new List<DisplayWidget>();
+        foreach (var child in get_children ()) {
+            if (child is DisplayWidget) other_display_widgets.append ((DisplayWidget) child);
+        } 
+
+        var i = -1;
+        foreach (var dw_1 in other_display_widgets) {
+            i++;
+            int x_1, y_1, width_1, height_1;
+            dw_1.get_geometry (out x_1, out y_1, out width_1, out height_1);
+
+            var top_1 = y_1;
+            var bottom_1 = top_1 + height_1 - 1;
+            var left_1 = x_1;
+            var right_1 = left_1 + width_1 - 1;
+            if (dw_1 == source_display_widget) {
+                debug ("source widget! delta_x %d delta_y %d", delta_x, delta_y);
+                top_1 += delta_y;
+                bottom_1 += delta_y;
+                left_1 += delta_x;
+                right_1 += delta_x;
+            }
+            debug ("MONITOR %d: left %d top %d right %d bottom %d", i, left_1, top_1, right_1, bottom_1);
+
+            bool no_gaps = false;
+            foreach (var dw_2 in other_display_widgets) {
+                if (dw_1 == dw_2) continue;
+                int x_2, y_2, width_2, height_2;
+                dw_2.get_geometry (out x_2, out y_2, out width_2, out height_2);
+
+                var top_2 = y_2;
+                var bottom_2 = top_2 + height_2 - 1;
+                var left_2 = x_2;
+                var right_2 = left_2 + width_2 - 1;
+                if (dw_2 == source_display_widget) {
+                    debug ("source widget!");
+                    top_2 += delta_y;
+                    bottom_2 += delta_y;
+                    left_2 += delta_x;
+                    right_2 += delta_x;
+                }
+
+                var con_1 = top_1 == bottom_2 + 1;
+                var con_2 = bottom_1 + 1 == top_2;
+                var con_3 = left_1 == right_2 + 1;
+                var con_4 = right_1 + 1 == left_2;
+                no_gaps = con_1 || con_2 || con_3 || con_4;
+                if (no_gaps) break;
+            }
+
+            if (!no_gaps) return false;
+        }
+        return true;
     }
 
     private void verify_global_positions () {
@@ -295,8 +358,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     public void check_intersects (DisplayWidget source_display_widget) {
         int orig_x, orig_y, src_x, src_y, src_width, src_height;
         source_display_widget.get_geometry (out orig_x, out orig_y, out src_width, out src_height);
-        src_x = orig_x + (int)(source_display_widget.delta_x/current_ratio);
-        src_y = orig_y + (int)(source_display_widget.delta_y/current_ratio);
+        src_x = orig_x + source_display_widget.delta_x;
+        src_y = orig_y + source_display_widget.delta_y;
         Gdk.Rectangle src_rect = {src_x, src_y, src_width, src_height};
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
@@ -313,35 +376,35 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     if (intersection.height == src_height) {
                         // on the left side
                         if (intersection.x <= x + width/2) {
-                            source_display_widget.delta_x = (int) ((x - (orig_x + src_width)) * current_ratio);
+                            source_display_widget.delta_x =  x - (orig_x + src_width);
                         // on the right side
                         } else {
-                            source_display_widget.delta_x = (int) ((x - orig_x + width) * current_ratio);
+                            source_display_widget.delta_x = x - orig_x + width;
                         }
                     } else if (intersection.width == src_width) {
                         // on the bottom side
                         if (intersection.y <= y + height/2) {
-                            source_display_widget.delta_y = (int) ((y - (orig_y + src_height)) * current_ratio);
+                            source_display_widget.delta_y = y - (orig_y + src_height);
                         } else {
                         // on the upper side
-                            source_display_widget.delta_y = (int) ((y - orig_y + height) * current_ratio);
+                            source_display_widget.delta_y = y - orig_y + height;
                         }
                     } else {
                         if (intersection.width < intersection.height) {
                             // on the left side
                             if (intersection.x <= x + width/2) {
-                                source_display_widget.delta_x = (int) ((x - (orig_x + src_width)) * current_ratio);
+                                source_display_widget.delta_x = x - (orig_x + src_width);
                             // on the right side
                             } else {
-                                source_display_widget.delta_x = (int) ((x - orig_x + width) * current_ratio);
+                                source_display_widget.delta_x = x - orig_x + width;
                             }
                         } else {
                             // on the bottom side
                             if (intersection.y <= y + height/2) {
-                                source_display_widget.delta_y = (int) ((y - (orig_y + src_height)) * current_ratio);
+                                source_display_widget.delta_y = y - (orig_y + src_height);
                             } else {
                             // on the upper side
-                                source_display_widget.delta_y = (int) ((y - orig_y + height) * current_ratio);
+                                source_display_widget.delta_y = y - orig_y + height;
                             }
                         }
                     }
