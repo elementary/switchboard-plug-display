@@ -21,9 +21,9 @@
 
 public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
-    public signal void move_display (int delta_x, int delta_y);
+    public signal void move_display (double diff_x, double diff_y, bool align_widgets);
+    public signal void end_grab (int delta_x, int delta_y);
     public signal void check_position ();
-    public signal void check_constraints (double diff_x, double diff_y);
     public signal void configuration_changed ();
     public signal void active_changed ();
 
@@ -32,8 +32,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public double window_ratio = 1.0;
     public int delta_x { get; set; default = 0; }
     public int delta_y { get; set; default = 0; }
-    public int last_valid_delta_x { get; set; default = 0; }
-    public int last_valid_delta_y { get; set; default = 0; }
     public bool only_display { get; set; default = false; }
     public bool holding = false;
     private double start_x = 0;
@@ -422,7 +420,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         if (only_display) {
             return false;
         }
-        debug ("delta_x %d, delta_y %d", delta_x, delta_y);
 
         start_x = event.x_root;
         start_y = event.y_root;
@@ -440,15 +437,14 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var old_delta_y = delta_y;
         delta_x = 0;
         delta_y = 0;
-        last_valid_delta_x = 0;
-        last_valid_delta_y = 0;
-        move_display (old_delta_x, old_delta_y);
+        end_grab (old_delta_x, old_delta_y);
         return false;
     }
 
     public override bool motion_notify_event (Gdk.EventMotion event) {
         if (holding && !only_display) {
-            check_constraints (event.x_root - start_x, event.y_root - start_y);
+            var align_widgets = !(Gdk.ModifierType.CONTROL_MASK in event.state);
+            move_display (event.x_root - start_x, event.y_root - start_y, align_widgets);
             geometry_label.label = update_geometry_label ();
         }
 
