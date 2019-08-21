@@ -35,9 +35,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public int last_valid_delta_x { get; set; default = 0; }
     public int last_valid_delta_y { get; set; default = 0; }
     public bool only_display { get; set; default = false; }
+    public bool holding = false;
     private double start_x = 0;
     private double start_y = 0;
-    private bool holding = false;
 
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
@@ -330,7 +330,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     string update_geometry_label () {
-        debug (@"x: $(virtual_monitor.x + delta_x), y: $(virtual_monitor.y + delta_y), w: $real_width, h: $real_height");
         return @"x: $(virtual_monitor.x + delta_x) y: $(virtual_monitor.y + delta_y) w: $real_width h: $real_height";
 
     }
@@ -423,6 +422,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         if (only_display) {
             return false;
         }
+        debug ("delta_x %d, delta_y %d", delta_x, delta_y);
 
         start_x = event.x_root;
         start_y = event.y_root;
