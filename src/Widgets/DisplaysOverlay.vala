@@ -238,6 +238,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
             snap_edges (display_widget);
+            check_intersects (display_widget);
             close_gaps ();
             verify_global_positions ();
             calculate_ratio ();
@@ -269,10 +270,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void check_constraints (DisplayWidget display_widget, double diff_x, double diff_y) {
+        reorder_overlay (display_widget, -1);
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
         align_edges (display_widget);
-        check_intersects (display_widget);
+        //  check_intersects (display_widget);
         display_widget.queue_resize_no_redraw ();
     }
 
@@ -313,9 +315,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                         for (var j = 0; j < 3; j++) {
                             var distance = (anchor [i + 3 * u] - source_anchors [j + 3 * u] - diff [u]).abs ();
                             if (threshold > distance) {
-                                if ((i - j).abs () == 2) {
-                                    continue;
-                                }
+                                //  if ((i - j).abs () == 2) { dont snap on edges
+                                //      continue;
+                                //  }
                                 var test_delta = anchor [i + 3 * u] - source_anchors [j + 3 * u];
                                 if (test_delta.abs () < delta_aligned [u].abs ()) {
                                     delta_aligned [u] = test_delta;
@@ -417,7 +419,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     // This can be prevented by moving B instead of A if A has already intersected with B.
     Gee.HashMap<DisplayWidget,Gee.HashSet<DisplayWidget>> intersected_wigets = new Gee.HashMap<DisplayWidget,Gee.HashSet<DisplayWidget>> ();
     public void check_intersects (DisplayWidget source_display_widget, int level = 0) {
-        if (level > 100) {
+        if (level > 10) {
             debug ("MAX level of recursion! Could not fix intersects!");
             return;
         }
@@ -431,62 +433,77 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         src_x = orig_x + source_display_widget.delta_x;
         src_y = orig_y + source_display_widget.delta_y;
         Gdk.Rectangle src_rect = {src_x, src_y, src_width, src_height};
-        foreach (var child in get_children ()) {
-            if (child is DisplayWidget) {
-                var display_widget = (DisplayWidget) child;
-                if (display_widget == source_display_widget) {
-                    continue;
-                }
 
+        int n_intersections = 0;
+        var intersecting_widgets = new List<DisplayWidget>();
+        foreach (var child in get_children ()) {
+            if (child is DisplayWidget && (DisplayWidget) child != source_display_widget) {
+                var display_widget = (DisplayWidget) child;
                 int x, y, width, height;
                 display_widget.get_geometry (out x, out y, out width, out height);
                 Gdk.Rectangle test_rect = {x + display_widget.delta_x, y + display_widget.delta_y, width, height};
-                Gdk.Rectangle intersection;
-                if (src_rect.intersect (test_rect, out intersection)) {
-                    if (intersected_wigets.get (source_display_widget).contains (display_widget)) {
-                        check_intersects (display_widget, level + 1);
-                    } else {
-                        var distance_x = 0;
-                        var distance_y = 0;
-                        if ((intersection.width < intersection.height || intersection.height == src_height) && !(intersection.width == src_width)) {
-                            // on the left side
-                            if (intersection.x <= x) {
-                                distance_x = -intersection.width;
-                            // on the right side
-                            } else {
-                                distance_x = intersection.width;
-                            }
-                        } else {
-                            // on the bottom side
-                            if (intersection.y <= y) {
-                                distance_y = -intersection.height;
-                            } else {
-                            // on the upper side
-                                distance_y = intersection.height;
-                            }
-                        }
-
-                        if (source_display_widget.holding) {
-                            debug ("set holding!");
-                            source_display_widget.delta_x += distance_x;
-                            source_display_widget.delta_y += distance_y;
-                        } else {
-                            debug ("move other not holdong!");
-                            source_display_widget.set_geometry (orig_x + distance_x, orig_y + distance_y, src_width, src_height);
-                        }
-
-                        source_display_widget.queue_resize_no_redraw ();
-                        intersected_wigets.get (source_display_widget).add (display_widget);
-                        check_intersects (source_display_widget, level + 1);
-                        break;
-                    }
+                if (src_rect.intersect (test_rect, null)) {
+                    n_intersections++;
+                    intersecting_widgets.append (display_widget);
                 }
             }
         }
+        debug ("n_intersections before test %d", n_intersections);
 
-        if (level == 0) {
-            intersected_wigets.clear ();
+        if (n_intersections == 0) {
+            return;
+        } else if (n_intersections < 2) {
+            debug ("n intersections < 2");
+            var display_widget = intersecting_widgets.first ().data;
+            int x, y, width, height;
+            display_widget.get_geometry (out x, out y, out width, out height);
+            Gdk.Rectangle test_rect = {x + display_widget.delta_x, y + display_widget.delta_y, width, height};
+            Gdk.Rectangle intersection;
+            src_rect.intersect (test_rect, out intersection);
+            var distance_x = 0;
+            var distance_y = 0;
+            if ((intersection.width < intersection.height || intersection.height == src_height) && !(intersection.width == src_width)) {
+                distance_x = intersection.x <= x ? -intersection.width : intersection.width;
+            } else {
+                distance_y = intersection.y <= y ? -intersection.height : intersection.height;
+            }
+
+            src_rect = {src_x + distance_x, src_y + distance_y, src_width, src_height};
+            debug ("After rect x %d y %d", src_rect.x, src_rect.y);
+            debug ("After distance x %d distance y %d", distance_x, distance_y);
+            n_intersections = 0;
+            foreach (var child in get_children ()) {
+                if (child is DisplayWidget && (DisplayWidget) child != source_display_widget) {
+                    display_widget = (DisplayWidget) child;
+    
+                    display_widget.get_geometry (out x, out y, out width, out height);
+                    test_rect = {x + display_widget.delta_x, y + display_widget.delta_y, width, height};
+                    if (src_rect.intersect (test_rect, out intersection)) {
+                        n_intersections++;
+                    }
+                }
+            }
+            debug ("n_intersections after test %d", n_intersections);
+
+            if (n_intersections == 0 || level > 0) {
+                if (source_display_widget.holding) {
+                    debug ("set holding!");
+                    source_display_widget.delta_x += distance_x;
+                    source_display_widget.delta_y += distance_y;
+                } else {
+                    debug ("move other not holdong!");
+                    source_display_widget.set_geometry (orig_x + distance_x, orig_y + distance_y, src_width, src_height);
+                }
+
+                source_display_widget.queue_resize_no_redraw ();
+                return;
+            }
         }
+
+        foreach (var display_widget in intersecting_widgets) {
+            check_intersects (display_widget, level + 1);
+        }
+
         source_display_widget.queue_resize_no_redraw ();
     }
 
@@ -651,7 +668,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             multiplier_x = i_snapped == 0 ? 1 : -1;
         }
 
-        var margin = 1; // int.min (child_width, child_height) / 10;
+        var margin = int.min (child_width, child_height) / 20;
         if (child.holding) {
             child.delta_x += distance_x + multiplier_x * margin;
             child.delta_y += distance_y + multiplier_y * margin;
