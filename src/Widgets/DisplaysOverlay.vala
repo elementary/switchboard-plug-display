@@ -240,8 +240,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.set_geometry (delta_x + x, delta_y + y, width, height);
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
-            snap_edges (display_widget);
             check_intersects (display_widget);
+            snap_edges (display_widget);
             close_gaps ();
             verify_global_positions ();
             calculate_ratio ();
@@ -444,7 +444,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     if (src_rect.intersect (test_rect, out intersection)) {
                         var distance_x = 0;
                         var distance_y = 0;
-                        if ((intersection.width < intersection.height || intersection.height == src_height) && !(intersection.width == src_width)) {
+                        if ((intersection.width < intersection.height && intersection.width != src_width) || intersection.height == src_height) {
                             distance_x = intersection.x <= x ? -intersection.width : intersection.width;
                         } else {
                             distance_y = intersection.y <= y ? -intersection.height : intersection.height;
