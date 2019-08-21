@@ -23,6 +23,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
     public signal void move_display (int delta_x, int delta_y);
     public signal void check_position ();
+    public signal void check_constraints (double diff_x, double diff_y);
     public signal void configuration_changed ();
     public signal void active_changed ();
 
@@ -31,6 +32,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public double window_ratio = 1.0;
     public int delta_x { get; set; default = 0; }
     public int delta_y { get; set; default = 0; }
+    public int last_valid_delta_x { get; set; default = 0; }
+    public int last_valid_delta_y { get; set; default = 0; }
     public bool only_display { get; set; default = false; }
     private double start_x = 0;
     private double start_y = 0;
@@ -47,6 +50,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     private Gtk.ComboBox refresh_combobox;
     private Gtk.ListStore refresh_list_store;
+
+    Gtk.Label geometry_label;
 
     private int real_width = 0;
     private int real_height = 0;
@@ -95,6 +100,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
         label.halign = Gtk.Align.CENTER;
         label.valign = Gtk.Align.CENTER;
         label.expand = true;
+        geometry_label = new Gtk.Label (update_geometry_label ());
+        geometry_label.halign = Gtk.Align.CENTER;
+        geometry_label.valign = Gtk.Align.CENTER;
+        geometry_label.expand = true;
 
         var use_label = new Gtk.Label (_("Use This Display:"));
         use_label.halign = Gtk.Align.END;
@@ -195,7 +204,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var grid = new Gtk.Grid ();
         grid.attach (primary_image, 0, 0);
         grid.attach (toggle_settings, 2, 0);
-        grid.attach (label, 0, 0, 3, 2);
+        grid.attach (label, 0, 1, 3, 2);
+        grid.attach (geometry_label, 0, 3, 3, 1);
 
         add (grid);
 
@@ -319,6 +329,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
         check_position ();
     }
 
+    string update_geometry_label () {
+        debug (@"x: $(virtual_monitor.x + delta_x), y: $(virtual_monitor.y + delta_y), w: $real_width, h: $real_height");
+        return @"x: $(virtual_monitor.x + delta_x) y: $(virtual_monitor.y + delta_y) w: $real_width h: $real_height";
+
+    }
     private void populate_refresh_rates () {
         refresh_list_store.clear ();
 
@@ -416,6 +431,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public override bool button_release_event (Gdk.EventButton event) {
+        holding = false;
         if ((delta_x == 0 && delta_y == 0) || only_display) {
             return false;
         }
@@ -424,61 +440,16 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var old_delta_y = delta_y;
         delta_x = 0;
         delta_y = 0;
+        last_valid_delta_x = 0;
+        last_valid_delta_y = 0;
         move_display (old_delta_x, old_delta_y);
-        holding = false;
         return false;
     }
 
     public override bool motion_notify_event (Gdk.EventMotion event) {
         if (holding && !only_display) {
-            var display_overlay = get_parent () as DisplaysOverlay;
-            var current_ratio = display_overlay.current_ratio;
-            bool[2] snapped = {false, false};
-            int[2] delta_snapped = {0};
-            int[2] diff = { (int)((event.x_root - start_x) / current_ratio),
-                             (int)((event.y_root - start_y) / current_ratio) };
-
-            if (event.state != Gdk.ModifierType.CONTROL_MASK) {
-                var anchor = new int[6];
-                var old_anchors = new int[6];
-                old_anchors [0] = virtual_monitor.x;
-                old_anchors [1] = old_anchors [0] + real_width / 2 - 1;
-                old_anchors [2] = old_anchors [0] + real_width - 1; 
-                old_anchors [3] = virtual_monitor.y;
-                old_anchors [4] = old_anchors [3] + real_height / 2 - 1;
-                old_anchors [5] = old_anchors [3] + real_height - 1;
-
-                int[2] threshold = {real_width / 10, real_height / 10};
-
-                foreach (var child in display_overlay.get_children ()) {
-                    if (child is DisplayWidget && child != this) {
-                        var display_widget = (DisplayWidget) child;
-                        int x, y, width, height; 
-                        display_widget.get_geometry (out x, out y, out width, out height);
-                        anchor [0] = x;
-                        anchor [1] = x + width / 2 - 1;
-                        anchor [2] = x + width - 1;
-                        anchor [3] = y;
-                        anchor [4] = y + height / 2 - 1;
-                        anchor [5] = y + height - 1;
-
-                        for (var u = 0; u < 2; u++) {
-                            for (var i = 0; i < 3 && !snapped [u]; i++) {
-                                for (var j = 0; j < 3 && !snapped [u]; j++) {
-                                    if (threshold [u] > (anchor [i + 3 * u] - old_anchors [j + 3 * u] - diff [u]).abs ()) {
-                                        delta_snapped [u] = anchor [i + 3 * u] - old_anchors [j + 3 * u];
-                                        snapped [u] = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            delta_x = snapped [0] ? delta_snapped [0] : diff [0];
-            delta_y = snapped [1] ? delta_snapped [1] : diff [1];
-            check_position ();
+            check_constraints (event.x_root - start_x, event.y_root - start_y);
+            geometry_label.label = update_geometry_label ();
         }
 
         return false;
@@ -516,6 +487,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         virtual_monitor.y = y;
         real_width = width;
         real_height = height;
+        geometry_label.label = update_geometry_label ();
     }
 
     public bool equals (DisplayWidget sibling) {
