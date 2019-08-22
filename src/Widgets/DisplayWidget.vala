@@ -21,7 +21,7 @@
 
 public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
-    public signal void move_display (double diff_x, double diff_y, bool align_widgets);
+    public signal void move_display (double diff_x, double diff_y, Gdk.EventMotion event);
     public signal void end_grab (int delta_x, int delta_y);
     public signal void check_position ();
     public signal void configuration_changed ();
@@ -443,8 +443,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     public override bool motion_notify_event (Gdk.EventMotion event) {
         if (holding && !only_display) {
-            var align_widgets = !(Gdk.ModifierType.CONTROL_MASK in event.state);
-            move_display (event.x_root - start_x, event.y_root - start_y, align_widgets);
+            move_display (event.x_root - start_x, event.y_root - start_y, event);
             geometry_label.label = update_geometry_label ();
         }
 

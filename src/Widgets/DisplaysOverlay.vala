@@ -168,7 +168,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
-        current_ratio = 0.75 * double.min ((double) (get_allocated_width () - 24) / (double) added_width, (double) (get_allocated_height () - 24) / (double) added_height);
+        current_ratio = double.min ((double) (get_allocated_width () - 24) / (double) added_width, (double) (get_allocated_height () - 24) / (double) added_height);
         default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
         default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
@@ -217,7 +217,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             check_intersects (display_widget);
             close_gaps ();
         });
-        display_widget.move_display.connect ((diff_x, diff_y, align_widgets) => move_display (display_widget, diff_x, diff_y, align_widgets));
+        display_widget.move_display.connect ((diff_x, diff_y, event) => move_display (display_widget, diff_x, diff_y, event));
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
@@ -272,68 +272,63 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         check_configuration_changed ();
     }
 
-    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y, bool align_widgets) {
+    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y, Gdk.EventMotion event) {
         reorder_overlay (display_widget, -1);
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
-        if (align_widgets) {
+        if (!(Gdk.ModifierType.CONTROL_MASK in event.state)) {
             align_edges (display_widget);
+        }
+
+        if ((Gdk.ModifierType.SHIFT_MASK in event.state)) {
+            snap_edges (display_widget);
         }
     }
 
-    private void align_edges (DisplayWidget source_display_widget) {
-        bool[2] aligned = { false, false };
-        int[2] delta_aligned = { int.MAX, int.MAX };
-        int[2] diff = { source_display_widget.delta_x, source_display_widget.delta_y };
+    private void align_edges (DisplayWidget display_widget) {
+        int widget_x, widget_y, widget_width, widget_height; 
+        display_widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
 
-        var anchor = new int[6];
-        var source_anchors = new int[6];
+        int anchor_points[6];
+        int widget_points[6]; 
+        widget_points [0] = widget_x;
+        widget_points [1] = widget_x + widget_width / 2 - 1;
+        widget_points [2] = widget_x + widget_width - 1;
+        widget_points [3] = widget_y;
+        widget_points [4] = widget_y + widget_height / 2 - 1;
+        widget_points [5] = widget_y + widget_height - 1;
 
-        int sdw_x, sdw_y, sdw_width, sdw_height; 
-        source_display_widget.get_geometry (out sdw_x, out sdw_y, out sdw_width, out sdw_height);
-        source_anchors [0] = sdw_x;
-        source_anchors [1] = sdw_x + sdw_width / 2 - 1;
-        source_anchors [2] = sdw_x + sdw_width - 1; 
-        source_anchors [3] = sdw_y;
-        source_anchors [4] = sdw_y + sdw_height / 2 - 1;
-        source_anchors [5] = sdw_y + sdw_height - 1;
-
-        var threshold = int.min (sdw_width / 10, sdw_height / 10);
+        bool aligned[2] = { false, false };
+        int aligned_delta[2] = { int.MAX, int.MAX };
+        int current_delta[2] = { display_widget.delta_x, display_widget.delta_y };
+        var threshold = int.min ( widget_width / 10, widget_height / 10 );
 
         foreach (var child in get_children ()) {
-            if (child is DisplayWidget && child != source_display_widget) {
-                var display_widget = (DisplayWidget) child;
+            if (child is DisplayWidget && child != display_widget) {
+                var anchor = (DisplayWidget) child;
 
                 int x, y, width, height; 
-                display_widget.get_geometry (out x, out y, out width, out height);
-                anchor [0] = x;
-                anchor [1] = x + width / 2 - 1;
-                anchor [2] = x + width - 1;
-                anchor [3] = y;
-                anchor [4] = y + height / 2 - 1;
-                anchor [5] = y + height - 1;
+                anchor.get_geometry (out x, out y, out width, out height);
+                anchor_points [0] = x;
+                anchor_points [1] = x + width / 2 - 1;
+                anchor_points [2] = x + width - 1;
+                anchor_points [3] = y;
+                anchor_points [4] = y + height / 2 - 1;
+                anchor_points [5] = y + height - 1;
 
                 for (var u = 0; u < 2; u++) {
                     for (var i = 0; i < 3; i++) {
                         for (var j = 0; j < 3; j++) {
-                            var distance = (anchor [i + 3 * u] - source_anchors [j + 3 * u] - diff [u]).abs ();
-                            if (threshold > distance) {
-                                // dont snap to opposite edge 
-                                //  if ((i - j).abs () == 2) { 
-                                //      continue;
-                                //  }
-
-                                // snap to closest edge
-                                var test_delta = anchor [i + 3 * u] - source_anchors [j + 3 * u];
-                                if (test_delta.abs () < delta_aligned [u].abs ()) {
-                                    delta_aligned [u] = test_delta;
-                                    if (i == 0 && j != i) {
-                                        delta_aligned [u] -= 1;
-                                    } else if (j == 0 && i != j) {
-                                        delta_aligned [u] += 1;
-                                    }
-
+                            int test_delta = anchor_points [i + 3 * u] - widget_points [j + 3 * u];
+                            if (threshold > (test_delta - current_delta [u]).abs ()) {
+                                if (test_delta.abs () < aligned_delta [u].abs ()) {
                                     aligned [u] = true;
+                                    aligned_delta [u] = test_delta;
+                                    if (i == 0 && j != i) {
+                                        aligned_delta [u] -= 1;
+                                    } else if (j == 0 && i != j) {
+                                        aligned_delta [u] += 1;
+                                    }
                                 }
                             }
                         }
@@ -343,10 +338,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
         
         if (aligned [0]) {
-            source_display_widget.delta_x = delta_aligned [0];
+            display_widget.delta_x = aligned_delta [0];
         }
         if (aligned [1]) {
-            source_display_widget.delta_y = delta_aligned [1];
+            display_widget.delta_y = aligned_delta [1];
         }
     }
 
@@ -421,7 +416,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     Gee.HashSet<DisplayWidget> checked_display_widgets = new Gee.HashSet<DisplayWidget> ();
     public void check_intersects (DisplayWidget source_display_widget, int level = 0) {
         if (level > 20) {
-            debug ("MAX level of recursion! Could not fix intersects!");
+            warning ("MAX level of recursion! Could not fix intersects!");
             return;
         }
 
@@ -477,168 +472,131 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         snap_widget (display_widget, anchors);
     }
 
-   /******************************************************************************************
-    *   Widget snaping is done by trying to snap a child to other widgets called Anchors.    *
-    *   It first calculates the distance between each anchor and the child, and afterwards   *
-    *   snaps the child to the closest edge                                                  *
-    *                                                                                        *
-    *   Cases:          C = child, A = current anchor                                        *
-    *                                                                                        *
-    *   1.        2.        3.        4.                                                     *
-    *     A C       C A        A         C                                                   *
-    *                          C         A                                                   *
-    *                                                                                        *
-    *   If the widget cannot be snaped to an edge it is snaped diagonally                    *
-    *   to the nearest corner.                                                               *
-    ******************************************************************************************/
+    /**
+     * Widget snaping is done by trying to snap the current widget to other widgets called anchors.
+     * 
+     * I) At first it is checked if it is possible to snap a widget using only horizontal or 
+     * only veritcal translation. This condition can checked be calculating the intersection of 
+     * a test_rect and the current anchor_rect. If the two rectangles intersect the the distance
+     * to the closest edge gets calculated. Afterwards the widgets snaps to the closest anchor.
+     * 
+     * Cases:           W = widget, A = current anchor
+     * 
+     *   0.        1.        2.        3.
+     *     A W       W A        W         A
+     *                          A         W
+     * 
+     * II) If it is not possible to snap the widget horizontally or vertically to any edge,
+     * the widget is snaped diagonally to the nearest corner.
+     */
 
-    private void snap_widget (Display.DisplayWidget child, List<Display.DisplayWidget> anchors) {
+    private void snap_widget (Display.DisplayWidget widget, List<Display.DisplayWidget> anchors) {
         if (anchors.length () == 0) {
             return;
         }
 
-        int child_x, child_y, child_width, child_height;
-        child.get_geometry (out child_x, out child_y, out child_width, out child_height);
-        child_x += child.delta_x; 
-        child_y += child.delta_y; 
+        int widget_x, widget_y, widget_width, widget_height;
+        widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
+        widget_x += widget.delta_x; 
+        widget_y += widget.delta_y; 
 
         int distance = int.MAX;
         int test_distance;
+        var snap_mode = -1; // -1: could not snap to edge, 0: snap left, 1: snap right, 2: snap top, 3: snap bottom
 
-        // Try to snap horizontally or vertically
-        // -1: could not snap to edge, 0: snap left , 1: snap right, 2: snap top, 3: snap bottom
-        var snap_mode = -1; 
-        Gdk.Rectangle anchor_rect, test_rect, intersection;
+        // I) Try to snap to edge horizontally or vertically
+        Gdk.Rectangle anchor_rect, intersection;
+        Gdk.Rectangle test_rects[4];
+        test_rects [0] = {0, widget_y, widget_x, widget_height};
+        test_rects [1] = {widget_x + widget_width, widget_y, int.MAX - (widget_x + widget_width + 1), widget_height};
+        test_rects [2] = {widget_x, 0, widget_width, widget_y};
+        test_rects [3] = {widget_x, widget_y + widget_height, widget_width, int.MAX - (widget_y + widget_height + 1)};
 
         foreach (var anchor in anchors) {
             int anchor_x, anchor_y, anchor_width, anchor_height;
             anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
             anchor_rect = {anchor_x, anchor_y, anchor_width, anchor_height};
 
-            // check if possible to snap left
-            test_rect = {0, child_y, child_x, child_height};
-            if (test_rect.intersect (anchor_rect, out intersection)) {
-                test_distance = intersection.x + intersection.width - child_x;
-                if (test_distance.abs () < distance.abs ()) {
-                    distance = test_distance;
-                    snap_mode = 0;
-                }
-            }
+            for (var i = 0; i < 4; i++) {
+                // Check if it is possible to snap to ...
+                if (test_rects [i].intersect (anchor_rect, out intersection)) {
+                    switch (i) {
+                        case 0: // ... left
+                            test_distance = intersection.x + intersection.width - widget_x;
+                            break;
+                        case 1: // ... right
+                            test_distance = intersection.x - 1 - (widget_x + widget_width - 1);
+                            break;
+                        case 2: // ... top
+                            test_distance = intersection.y + intersection.height - widget_y;
+                            break;
+                        default: // ... bottom
+                            test_distance = intersection.y - 1 - (widget_y + widget_height - 1);
+                            break;
+                    }
 
-            // check if possible to snap right
-            test_rect = {child_x + child_width, child_y, int.MAX - (child_x + child_width + 1), child_height};
-            if (test_rect.intersect (anchor_rect, out intersection)) {
-                test_distance = intersection.x - 1 - (child_x + child_width - 1);
-                if (test_distance.abs () < distance.abs ()) {
-                    distance = test_distance;
-                    snap_mode = 1;
-                }
-            }
-
-            // check if possible to snap top
-            test_rect = {child_x, 0, child_width, child_y};
-            if (test_rect.intersect (anchor_rect, out intersection)) {
-                test_distance = intersection.y + intersection.height - child_y;
-                if (test_distance.abs () < distance.abs ()) {
-                    distance = test_distance;
-                    snap_mode = 2;
-                }
-            }
-
-            // check if possible to snap bottom
-            test_rect = {child_x, child_y + child_height, child_width, int.MAX - (child_y + child_height + 1)};
-            if (test_rect.intersect (anchor_rect, out intersection)) {
-                test_distance = intersection.y - 1 - (child_y + child_height - 1);
-                if (test_distance.abs () < distance.abs ()) {
-                    distance = test_distance;
-                    snap_mode = 3;
-                }
-            }
-
-        }
-
-        var distance_x = 0;
-        var distance_y = 0;
-
-        switch (snap_mode) {
-            case -1:
-                debug ("Snap to corner!");
-                break;
-            case 0:
-                debug ("Snap to Left!");
-                distance_x = distance;
-                break;
-            case 1:
-                debug ("Snap to Right!");
-                distance_x = distance;
-                break;
-            case 2:
-                debug ("Snap to Top!");
-                distance_y = distance;
-                break;
-            case 3:
-                debug ("Snap to Bottom!");
-                distance_y = distance;
-                break;
-        }
-
-        if (snap_mode != -1) {
-            if (child.holding) {
-                child.delta_x += distance_x;
-                child.delta_y += distance_y;
-            } else {
-                child.set_geometry (child_x + distance_x, child_y + distance_y, child_width, child_height);
-            }
-
-            return;
-        }
-
-        // Could not snap widget to any edge
-        // --> snap widget to corner
-        distance = int.MAX;
-
-        int[4] child_points = {child_x, child_x + child_width, child_y, child_y + child_height};
-        int[4] anchor_points;
-        int i_snapped = 0;
-        int j_snapped = 0;
-
-        foreach (var anchor in anchors) {
-            int anchor_x, anchor_y, anchor_width, anchor_height;
-            anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
-            anchor_points = {anchor_x, anchor_x + anchor_width, anchor_y, anchor_y + anchor_height};
-
-            for (var i = 0; i < 2; i++) {
-                for (var j = 0; j < 2; j++) {
-                    var diff_x = anchor_points [i] - child_points [1 - i];
-                    var diff_y = anchor_points [2 + j] - child_points [3 - j];
-                    test_distance = (int) Math.sqrt (Math.pow (diff_x, 2) + Math.pow (diff_y, 2));
-                    if (test_distance < distance) {
+                    if (test_distance.abs () < distance.abs ()) {
                         distance = test_distance;
-                        distance_x = diff_x;
-                        distance_y = diff_y;
-                        i_snapped = i;
-                        j_snapped = j;
+                        snap_mode = i;
                     }
                 }
             }
         }
 
-        int multiplier_x = 0;
-        int multiplier_y = 0;
-        if (distance_x.abs () >= distance_y.abs ()) {
-            multiplier_y = j_snapped == 0 ? 1 : -1;
-        } else {
-            multiplier_x = i_snapped == 0 ? 1 : -1;
+
+        int distance_x = 0;
+        int distance_y = 0;
+
+        if (snap_mode != -1) { // I) Snap widget to edge
+            if (snap_mode < 2) {
+                distance_x = distance;
+            } else {
+                distance_y = distance;
+            }
+        } else { // II) Could not snap widget to any edge --> snap widget diagonally to nearest corner
+            distance = int.MAX;
+
+            int[4] widget_points = {widget_x, widget_x + widget_width, widget_y, widget_y + widget_height};
+            int[4] anchor_points;
+            int i_snapped = 0;
+            int j_snapped = 0;
+
+            foreach (var anchor in anchors) {
+                int anchor_x, anchor_y, anchor_width, anchor_height;
+                anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
+                anchor_points = {anchor_x, anchor_x + anchor_width, anchor_y, anchor_y + anchor_height};
+
+                for (var i = 0; i < 2; i++) {
+                    for (var j = 0; j < 2; j++) {
+                        var diff_x = anchor_points [i] - widget_points [1 - i];
+                        var diff_y = anchor_points [2 + j] - widget_points [3 - j];
+                        test_distance = (int) Math.sqrt (Math.pow (diff_x, 2) + Math.pow (diff_y, 2));
+                        if (test_distance < distance) {
+                            distance = test_distance;
+                            distance_x = diff_x;
+                            distance_y = diff_y;
+                            i_snapped = i;
+                            j_snapped = j;
+                        }
+                    }
+                }
+            }
+
+            // As diagonal monitors are not allowed offset by 5% of width/height
+            var margin = int.min (widget_width, widget_height) / 20;
+            if (distance_x.abs () >= distance_y.abs ()) {
+                distance_y += (j_snapped == 0 ? 1 : -1) * margin;
+            } else {
+                distance_x += (i_snapped == 0 ? 1 : -1) * margin;
+            }
         }
 
-        var margin = int.min (child_width, child_height) / 20;
-        if (child.holding) {
-            child.delta_x += distance_x + multiplier_x * margin;
-            child.delta_y += distance_y + multiplier_y * margin;
+        // Snap widget
+        if (widget.holding) {
+            widget.delta_x += distance_x;
+            widget.delta_y += distance_y;
         } else {
-            var new_x = child_x + child.delta_x + distance_x + multiplier_x * margin;
-            var new_y = child_y + child.delta_y + distance_y + multiplier_y * margin;
-            child.set_geometry (new_x, new_y, child_width, child_height);
+            widget.set_geometry (widget_x + distance_x, widget_y + distance_y, widget_width, widget_height);
         }
     }
 }
