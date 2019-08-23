@@ -517,7 +517,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         // I) Try to snap to edge
         Gdk.Rectangle anchor_rect, intersection;
-        Gdk.Rectangle test_rects[4]; 
+        Gdk.Rectangle test_rects[4];
         test_rects [0] = { 0, widget_y, widget_x, widget_height }; // area to left of the widget
         test_rects [1] = { widget_x + widget_width, widget_y, int.MAX - (widget_x + widget_width + 1), widget_height }; // area to right of the widget
         test_rects [2] = { widget_x, 0, widget_width, widget_y }; // area at the top of the widget
