@@ -486,11 +486,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     /**
      * Widget snaping is done by trying to snap the current widget to other widgets called anchors.
-     *
      * I) At first it is checked if it is possible to snap a widget using only horizontal or
-     * only veritcal translation. This condition can checked be calculating the intersection of
-     * a test_rect and the current anchor_rect. If the two rectangles intersect the the distance
-     * to the closest edge gets calculated. Afterwards the widgets snaps to the closest anchor.
+     * only veritcal translation. This can be done by using four different test_rects which occupy
+     * the area to the left, to the right, at the top and at the bottom of the widget, respectively.
+     * If a test_rect intersects with one of the other anchor_rects the distance to the closest edge
+     * of the anchor get calculated. Afterwards the widgets snaps to the closest anchor.
      *
      * Cases:           W = widget, A = current anchor
      *
@@ -499,7 +499,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
      *                          A         W
      *
      * II) If it is not possible to snap the widget horizontally or vertically to any edge,
-     * the widget is snaped diagonally to the nearest corner.
+     * the widget is snaped diagonally to the nearest corner of an anchor.
      */
 
     private void snap_widget (Display.DisplayWidget widget, List<Display.DisplayWidget> anchors) {
@@ -603,7 +603,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
         }
 
-        // Snap widget
         if (widget.holding) {
             widget.delta_x += distance_x;
             widget.delta_y += distance_y;
