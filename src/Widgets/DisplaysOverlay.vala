@@ -400,7 +400,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         });
 
         if (min_x == 0 && min_y == 0)
-          return;
+            return;
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
@@ -513,15 +513,15 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         int distance = int.MAX;
         int test_distance;
-        var snap_mode = -1; // -1: could not snap to edge, 0: snap left, 1: snap right, 2: snap top, 3: snap bottom
+        var snap_mode = -1; // -1: snap to corner, 0: snap left, 1: snap right, 2: snap top, 3: snap bottom
 
-        // I) Try to snap to edge horizontally or vertically
+        // I) Try to snap to edge
         Gdk.Rectangle anchor_rect, intersection;
-        Gdk.Rectangle test_rects[4];
-        test_rects [0] = {0, widget_y, widget_x, widget_height};
-        test_rects [1] = {widget_x + widget_width, widget_y, int.MAX - (widget_x + widget_width + 1), widget_height};
-        test_rects [2] = {widget_x, 0, widget_width, widget_y};
-        test_rects [3] = {widget_x, widget_y + widget_height, widget_width, int.MAX - (widget_y + widget_height + 1)};
+        Gdk.Rectangle test_rects[4]; 
+        test_rects [0] = { 0, widget_y, widget_x, widget_height }; // area to left of the widget
+        test_rects [1] = { widget_x + widget_width, widget_y, int.MAX - (widget_x + widget_width + 1), widget_height }; // area to right of the widget
+        test_rects [2] = { widget_x, 0, widget_width, widget_y }; // area at the top of the widget
+        test_rects [3] = { widget_x, widget_y + widget_height, widget_width, int.MAX - (widget_y + widget_height + 1) }; // area at the bottom the widget
 
         foreach (var anchor in anchors) {
             int anchor_x, anchor_y, anchor_width, anchor_height;
@@ -533,16 +533,16 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 if (test_rects [i].intersect (anchor_rect, out intersection)) {
                     switch (i) {
                         case 0: // ... left
-                            test_distance = intersection.x + intersection.width - widget_x;
+                            test_distance = intersection.x - widget_x + intersection.width;
                             break;
                         case 1: // ... right
-                            test_distance = intersection.x - 1 - (widget_x + widget_width - 1);
+                            test_distance = intersection.x - widget_x - widget_width;
                             break;
                         case 2: // ... top
-                            test_distance = intersection.y + intersection.height - widget_y;
+                            test_distance = intersection.y - widget_y + intersection.height;
                             break;
                         default: // ... bottom
-                            test_distance = intersection.y - 1 - (widget_y + widget_height - 1);
+                            test_distance = intersection.y - widget_y - widget_height;
                             break;
                     }
 
