@@ -289,19 +289,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         int widget_x, widget_y, widget_width, widget_height;
         display_widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
 
-        int anchor_points[6];
         int widget_points[6];
-        widget_points [0] = widget_x;
-        widget_points [1] = widget_x + widget_width / 2 - 1;
-        widget_points [2] = widget_x + widget_width - 1;
-        widget_points [3] = widget_y;
-        widget_points [4] = widget_y + widget_height / 2 - 1;
-        widget_points [5] = widget_y + widget_height - 1;
+        widget_points [0] = widget_x;                           // x_start
+        widget_points [1] = widget_x + widget_width / 2 - 1;    // x_center
+        widget_points [2] = widget_x + widget_width - 1;        // x_end
+        widget_points [3] = widget_y;                           // y_start
+        widget_points [4] = widget_y + widget_height / 2 - 1;   // y_center
+        widget_points [5] = widget_y + widget_height - 1;       // y_end
 
         bool aligned[2] = { false, false };
         int aligned_delta[2] = { int.MAX, int.MAX };
         int current_delta[2] = { display_widget.delta_x, display_widget.delta_y };
-        var threshold = int.min ( widget_width / 10, widget_height / 10 );
 
         foreach (var child in get_children ()) {
             if (child is DisplayWidget && child != display_widget) {
@@ -309,14 +307,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
                 int x, y, width, height;
                 anchor.get_geometry (out x, out y, out width, out height);
-                anchor_points [0] = x;
-                anchor_points [1] = x + width / 2 - 1;
-                anchor_points [2] = x + width - 1;
-                anchor_points [3] = y;
-                anchor_points [4] = y + height / 2 - 1;
-                anchor_points [5] = y + height - 1;
 
-                for (var u = 0; u < 2; u++) {
+                int anchor_points[6];
+                anchor_points [0] = x;                          // x_start
+                anchor_points [1] = x + width / 2 - 1;          // x_center
+                anchor_points [2] = x + width - 1;              // x_end
+                anchor_points [3] = y;                          // y_start
+                anchor_points [4] = y + height / 2 - 1;         // y_center
+                anchor_points [5] = y + height - 1;             // y_end
+
+                int threshold = int.min (width, height) / 10;
+                for (var u = 0; u < 2; u++) { // 0: X, 1: Y
                     for (var i = 0; i < 3; i++) {
                         for (var j = 0; j < 3; j++) {
                             int test_delta = anchor_points [i + 3 * u] - widget_points [j + 3 * u];
@@ -351,7 +352,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             if (child is DisplayWidget) {
                 display_widgets.append ((DisplayWidget) child);
             }
-        } 
+        }
 
         foreach (var display_widget in display_widgets) {
             if (!is_connected (display_widget, display_widgets)) {
