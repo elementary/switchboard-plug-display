@@ -286,11 +286,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void align_edges (DisplayWidget display_widget) {
-        int widget_x, widget_y, widget_width, widget_height; 
+        int widget_x, widget_y, widget_width, widget_height;
         display_widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
 
         int anchor_points[6];
-        int widget_points[6]; 
+        int widget_points[6];
         widget_points [0] = widget_x;
         widget_points [1] = widget_x + widget_width / 2 - 1;
         widget_points [2] = widget_x + widget_width - 1;
@@ -307,7 +307,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             if (child is DisplayWidget && child != display_widget) {
                 var anchor = (DisplayWidget) child;
 
-                int x, y, width, height; 
+                int x, y, width, height;
                 anchor.get_geometry (out x, out y, out width, out height);
                 anchor_points [0] = x;
                 anchor_points [1] = x + width / 2 - 1;
@@ -336,7 +336,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 }
             }
         }
-        
+
         if (aligned [0]) {
             display_widget.delta_x = aligned_delta [0];
         }
@@ -360,7 +360,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
     }
 
-    // to check if a display_widget is connected (has no gaps) one can check if 
+    // to check if a display_widget is connected (has no gaps) one can check if
     // a 1px larger rectangle intersects with any of other display_widgets
     private bool is_connected (DisplayWidget display_widget, List<DisplayWidget> other_display_widgets) {
         int x, y, width, height;
@@ -485,18 +485,18 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     /**
      * Widget snaping is done by trying to snap the current widget to other widgets called anchors.
-     * 
-     * I) At first it is checked if it is possible to snap a widget using only horizontal or 
-     * only veritcal translation. This condition can checked be calculating the intersection of 
+     *
+     * I) At first it is checked if it is possible to snap a widget using only horizontal or
+     * only veritcal translation. This condition can checked be calculating the intersection of
      * a test_rect and the current anchor_rect. If the two rectangles intersect the the distance
      * to the closest edge gets calculated. Afterwards the widgets snaps to the closest anchor.
-     * 
+     *
      * Cases:           W = widget, A = current anchor
-     * 
+     *
      *   0.        1.        2.        3.
      *     A W       W A        W         A
      *                          A         W
-     * 
+     *
      * II) If it is not possible to snap the widget horizontally or vertically to any edge,
      * the widget is snaped diagonally to the nearest corner.
      */
@@ -508,8 +508,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         int widget_x, widget_y, widget_width, widget_height;
         widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
-        widget_x += widget.delta_x; 
-        widget_y += widget.delta_y; 
+        widget_x += widget.delta_x;
+        widget_y += widget.delta_y;
 
         int distance = int.MAX;
         int test_distance;

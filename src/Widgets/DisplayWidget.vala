@@ -329,8 +329,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     string update_geometry_label () {
         return @"x: $(virtual_monitor.x + delta_x) y: $(virtual_monitor.y + delta_y) w: $real_width h: $real_height";
-
     }
+
     private void populate_refresh_rates () {
         refresh_list_store.clear ();
 
