@@ -446,14 +446,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     distances [2] = src_y - y - height;
                     distances [3] = src_y - y + src_height;
 
+                    // if distance to upper egde == distance lower edge, move horizontally
+                    int end_i = distances [2] == -distances [3] ? 2 : 4;
                     int best_i = 0;
-                    for (var i = 1; i < 4; i++) {
+                    for (var i = 1; i < end_i; i++) {
                         if (distances [i].abs () < distances [best_i].abs ()) {
-                            if (distances [i].abs () == distances [i + 1].abs ()) {
-                                i++;
-                                continue;
-                            }
-
                             best_i = i;
                         }
                     }
