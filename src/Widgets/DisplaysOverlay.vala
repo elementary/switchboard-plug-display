@@ -413,48 +413,62 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     // If widget is intersects with any other widgets -> move other widgets to fix intersection
-    Gee.HashSet<DisplayWidget> checked_display_widgets = new Gee.HashSet<DisplayWidget> ();
-    public void check_intersects (DisplayWidget source_display_widget, int level = 0) {
-        if (level > 20) {
+    public void check_intersects (DisplayWidget source_display_widget, int level = 0, int distance_x = 0, int distance_y = 0) {
+        if (level > 10) {
             warning ("MAX level of recursion! Could not fix intersects!");
             return;
         }
 
-        checked_display_widgets.add (source_display_widget);
-        
-        int orig_x, orig_y, src_x, src_y, src_width, src_height;
-        source_display_widget.get_geometry (out orig_x, out orig_y, out src_width, out src_height);
-        src_x = orig_x + source_display_widget.delta_x;
-        src_y = orig_y + source_display_widget.delta_y;
+        int src_x, src_y, src_width, src_height;
+        source_display_widget.get_geometry (out src_x, out src_y, out src_width, out src_height);
+        src_x += source_display_widget.delta_x;
+        src_y += source_display_widget.delta_y;
         Gdk.Rectangle src_rect = {src_x, src_y, src_width, src_height};
-        Gdk.Rectangle intersection;
 
         foreach (var child in get_children ()) {
-            if (child is DisplayWidget) {
-                var display_widget = (DisplayWidget) child;
-                if (!checked_display_widgets.contains (display_widget)) {
-                    int x, y, width, height;
-                    display_widget.get_geometry (out x, out y, out width, out height);
-                    Gdk.Rectangle test_rect = {x + display_widget.delta_x, y + display_widget.delta_y, width, height};
-                    if (src_rect.intersect (test_rect, out intersection)) {
-                        var distance_x = 0;
-                        var distance_y = 0;
-                        if ((intersection.width < intersection.height && intersection.width != src_width) || intersection.height == src_height) {
-                            distance_x = intersection.x <= x ? -intersection.width : intersection.width;
-                        } else {
-                            distance_y = intersection.y <= y ? -intersection.height : intersection.height;
-                        }
+            if (!(child is DisplayWidget)) {
+                continue;
+            }
 
-                        display_widget.set_geometry (x - distance_x, y - distance_y, width, height);
-                        display_widget.queue_resize_no_redraw ();
-                        check_intersects (display_widget, level + 1);
+            var display_widget = (DisplayWidget) child;
+            if (display_widget == source_display_widget) {
+                continue;
+            }
+
+            int x, y, width, height;
+            display_widget.get_geometry (out x, out y, out width, out height);
+            Gdk.Rectangle test_rect = {x + display_widget.delta_x, y + display_widget.delta_y, width, height};
+            if (src_rect.intersect (test_rect, null)) {
+                if (level == 0) {
+                    int distances[4];
+                    distances [0] = src_x - x - width;
+                    distances [1] = src_x - x + src_width;
+                    distances [2] = src_y - y - height;
+                    distances [3] = src_y - y + src_height;
+
+                    int best_i = 0;
+                    for (var i = 1; i < 4; i++) {
+                        if (distances [i].abs () < distances [best_i].abs ()) {
+                            if (distances [i].abs () == distances [i + 1].abs ()) {
+                                i++;
+                                continue;
+                            }
+
+                            best_i = i;
+                        }
+                    }
+
+                    if (best_i < 2) {
+                        distance_x = distances [best_i];
+                    } else {
+                        distance_y = distances [best_i];
                     }
                 }
-            }
-        }
 
-        if (level == 0) {
-            checked_display_widgets.clear ();
+                display_widget.set_geometry (x + distance_x, y + distance_y, width, height);
+                display_widget.queue_resize_no_redraw ();
+                check_intersects (display_widget, level + 1, distance_x, distance_y);
+            }
         }
     }
 
