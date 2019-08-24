@@ -283,6 +283,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         if ((Gdk.ModifierType.SHIFT_MASK in event.state)) {
             snap_edges (display_widget);
         }
+
+        display_widget.queue_resize_no_redraw ();
     }
 
     private void align_edges (DisplayWidget display_widget) {

@@ -49,8 +49,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private Gtk.ComboBox refresh_combobox;
     private Gtk.ListStore refresh_list_store;
 
-    Gtk.Label geometry_label;
-
     private int real_width = 0;
     private int real_height = 0;
 
@@ -98,10 +96,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         label.halign = Gtk.Align.CENTER;
         label.valign = Gtk.Align.CENTER;
         label.expand = true;
-        geometry_label = new Gtk.Label (update_geometry_label ());
-        geometry_label.halign = Gtk.Align.CENTER;
-        geometry_label.valign = Gtk.Align.CENTER;
-        geometry_label.expand = true;
 
         var use_label = new Gtk.Label (_("Use This Display:"));
         use_label.halign = Gtk.Align.END;
@@ -202,8 +196,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var grid = new Gtk.Grid ();
         grid.attach (primary_image, 0, 0);
         grid.attach (toggle_settings, 2, 0);
-        grid.attach (label, 0, 1, 3, 2);
-        grid.attach (geometry_label, 0, 3, 3, 1);
+        grid.attach (label, 0, 0, 3, 2);
 
         add (grid);
 
@@ -327,10 +320,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         check_position ();
     }
 
-    string update_geometry_label () {
-        return @"x: $(virtual_monitor.x + delta_x) y: $(virtual_monitor.y + delta_y) w: $real_width h: $real_height";
-    }
-
     private void populate_refresh_rates () {
         refresh_list_store.clear ();
 
@@ -444,7 +433,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public override bool motion_notify_event (Gdk.EventMotion event) {
         if (holding && !only_display) {
             move_display (event.x_root - start_x, event.y_root - start_y, event);
-            geometry_label.label = update_geometry_label ();
+            queue_resize_no_redraw ();
         }
 
         return false;
@@ -482,7 +471,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         virtual_monitor.y = y;
         real_width = width;
         real_height = height;
-        geometry_label.label = update_geometry_label ();
     }
 
     public bool equals (DisplayWidget sibling) {
