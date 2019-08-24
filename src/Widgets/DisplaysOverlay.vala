@@ -507,92 +507,59 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             return;
         }
 
-        int widget_x, widget_y, widget_width, widget_height;
-        widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
-        widget_x += widget.delta_x;
-        widget_y += widget.delta_y;
+        int widget_points[4];
+        widget.get_geometry (out widget_points [0], out widget_points [1], out widget_points [2], out widget_points [3]);
+        widget_points [0] += widget.delta_x;
+        widget_points [1] += widget.delta_y;
 
         int distance = int.MAX;
-        int test_distance;
-        var snap_mode = 0; // 0: snap to corner, 1: snap X, 2: snap Y
-
-        // I) Try to snap to edge
-        Gdk.Rectangle anchor_rect;
-        Gdk.Rectangle test_rects[4];
-        test_rects [0] = { 0, widget_y, widget_x, widget_height }; // area to left of the widget
-        test_rects [1] = { widget_x + widget_width, widget_y, int.MAX - (widget_x + widget_width + 1), widget_height }; // area to right of the widget
-        test_rects [2] = { widget_x, 0, widget_width, widget_y }; // area at the top of the widget
-        test_rects [3] = { widget_x, widget_y + widget_height, widget_width, int.MAX - (widget_y + widget_height + 1) }; // area at the bottom the widget
-
+        int test_distance = int.MAX;
+        int distance_x = 0, distance_y = 0;
+        int test_distance_u[2];
+        bool diagonally = true;
+        bool diagonal_mode[2] = {false, false};
         foreach (var anchor in anchors) {
-            int anchor_x, anchor_y, anchor_width, anchor_height;
-            anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
-            anchor_rect = {anchor_x, anchor_y, anchor_width, anchor_height};
-
-            for (var i = 0; i < 4; i++) {
-                // Check if it is possible to snap to ...
-                if (test_rects [i].intersect (anchor_rect, null)) {
-                    switch (i) {
-                        case 0: // ... left
-                            test_distance = anchor_x - widget_x + anchor_width;
-                            break;
-                        case 1: // ... right
-                            test_distance = anchor_x - widget_x - widget_width;
-                            break;
-                        case 2: // ... top
-                            test_distance = anchor_y - widget_y + anchor_height;
-                            break;
-                        default: // ... bottom
-                            test_distance = anchor_y - widget_y - widget_height;
-                            break;
-                    }
-
-                    if (test_distance.abs () < distance.abs ()) {
-                        distance = test_distance;
-                        snap_mode = i < 2 ? 1 : 2;
-                    }
-                }
-            }
-        }
-
-        int distance_x = snap_mode == 1 ? distance : 0;
-        int distance_y = snap_mode == 2 ? distance : 0;
-        debug ("distance from edge snapping !, %d", distance);
-
-        // II) Snap widget diagonally to nearest corner
-        int[4] widget_points = {widget_x, widget_x + widget_width, widget_y, widget_y + widget_height};
-        int[4] anchor_points;
-        int i_snapped = 0;
-        int j_snapped = 0;
-
-        foreach (var anchor in anchors) {
-            int anchor_x, anchor_y, anchor_width, anchor_height;
-            anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
-            anchor_points = {anchor_x, anchor_x + anchor_width, anchor_y, anchor_y + anchor_height};
+            int anchor_points[4];
+            anchor.get_geometry (out anchor_points [0], out anchor_points [1], out anchor_points [2], out anchor_points [3]);
+            var test_diagonally = true;
+            bool test_diagonal_mode[2];
 
             for (var i = 0; i < 2; i++) {
-                for (var j = 0; j < 2; j++) {
-                    var diff_x = anchor_points [i] - widget_points [1 - i];
-                    var diff_y = anchor_points [2 + j] - widget_points [3 - j];
-                    test_distance = (int) Math.sqrt (Math.pow (diff_x, 2) + Math.pow (diff_y, 2));
-                    if (test_distance.abs () < distance.abs ()) {
-                        distance = test_distance;
-                        distance_x = diff_x;
-                        distance_y = diff_y;
-                        i_snapped = i;
-                        j_snapped = j;
-                        snap_mode = 0;
-                    }
+                var diff = anchor_points [i] - widget_points [i];
+                test_diagonal_mode [i] = diff > 0;
+                var distance_negative = diff + anchor_points [i + 2];
+                var distance_positive = diff - widget_points [i + 2];
+                test_distance_u[i] = distance_positive > -distance_negative ? distance_positive : distance_negative;
+                if (anchor_points [1 - i] < widget_points [1 - i] + widget_points [3 - i] &&
+                    anchor_points [1 - i] + anchor_points [3 - i] > widget_points [1 - i]) {
+                    test_distance_u [1 - i] = 0;
+                    test_diagonally = false;
+                    break;
                 }
+            }
+
+            test_distance = test_distance_u [0] * test_distance_u [0] + test_distance_u [1] * test_distance_u [1];
+            if (test_diagonally) {
+                test_distance++;
+            }
+
+            if (test_distance < distance) {
+                distance_x = test_distance_u [0];
+                distance_y = test_distance_u [1];
+                distance = test_distance;
+                diagonally = test_diagonally;
+                diagonal_mode [0] = test_diagonal_mode [0];
+                diagonal_mode [1] = test_diagonal_mode [1];
             }
         }
 
-        if (snap_mode == 0) { // As diagonal monitors are not allowed offset by 5% of width/height
-            var margin = int.min (widget_width, widget_height) / 20;
-            if (distance_x.abs () < distance_y.abs ()) {
-                distance_y += (j_snapped == 0 ? 1 : -1) * margin;
+        // As diagonal monitors are not allowed offset by 5% of width/height
+        if (diagonally) {
+            var margin = int.min (widget_points [2], widget_points [3]) / 20;
+            if (distance_x.abs () >= distance_y.abs ()) {
+                distance_x += (diagonal_mode [0] ? 1 : -1) * margin;
             } else {
-                distance_x += (i_snapped == 0 ? 1 : -1) * margin;
+                distance_y += (diagonal_mode [1] ? 1 : -1) * margin;
             }
         }
 
@@ -600,7 +567,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             widget.delta_x += distance_x;
             widget.delta_y += distance_y;
         } else {
-            widget.set_geometry (widget_x + distance_x, widget_y + distance_y, widget_width, widget_height);
+            widget.set_geometry (widget_points [0] + distance_x, widget_points [1] + distance_y, widget_points [2], widget_points [3]);
         }
     }
 }
