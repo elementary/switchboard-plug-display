@@ -507,59 +507,43 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             return;
         }
 
-        int widget_points[4];
-        widget.get_geometry (out widget_points [0], out widget_points [1], out widget_points [2], out widget_points [3]);
-        widget_points [0] += widget.delta_x;
-        widget_points [1] += widget.delta_y;
+        int widget_x, widget_y, widget_width, widget_height;
+        widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
+        widget_x += widget.delta_x;
+        widget_y += widget.delta_y;
 
-        int distance = int.MAX;
-        int test_distance = int.MAX;
-        int distance_x = 0, distance_y = 0;
-        int test_distance_u[2];
-        bool diagonally = true;
-        bool diagonal_mode[2] = {false, false};
+        int distance = int.MAX, distance_x = 0, distance_y = 0;
         foreach (var anchor in anchors) {
-            int anchor_points[4];
-            anchor.get_geometry (out anchor_points [0], out anchor_points [1], out anchor_points [2], out anchor_points [3]);
-            var test_diagonally = true;
-            bool test_diagonal_mode[2];
+            int anchor_x, anchor_y, anchor_width, anchor_height;
+            anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
 
-            for (var i = 0; i < 2; i++) {
-                var diff = anchor_points [i] - widget_points [i];
-                test_diagonal_mode [i] = diff > 0;
-                var distance_negative = diff + anchor_points [i + 2];
-                var distance_positive = diff - widget_points [i + 2];
-                test_distance_u[i] = distance_positive > -distance_negative ? distance_positive : distance_negative;
-                if (anchor_points [1 - i] < widget_points [1 - i] + widget_points [3 - i] &&
-                    anchor_points [1 - i] + anchor_points [3 - i] > widget_points [1 - i]) {
-                    test_distance_u [1 - i] = 0;
-                    test_diagonally = false;
-                    break;
+            var diff_x = anchor_x - widget_x;
+            var diff_y = anchor_y - widget_y;
+            var distance_negative_x = diff_x + anchor_width;
+            var distance_positive_x = diff_x - widget_width;
+            var distance_negative_y = diff_y + anchor_height;
+            var distance_positive_y = diff_y - widget_height;
+            var test_distance_x = distance_positive_x > -distance_negative_x ? distance_positive_x : distance_negative_x;
+            var test_distance_y = distance_positive_y > -distance_negative_y ? distance_positive_y : distance_negative_y;
+
+            if (distance_positive_y < 0 && distance_negative_y > 0) {
+                test_distance_y = 0;
+            } else if (distance_positive_x < 0 && distance_negative_x > 0) {
+                test_distance_x = 0;
+            } else {
+                // As diagonal monitors are not allowed offset by 50px
+                if (test_distance_x.abs () >= test_distance_y.abs ()) {
+                    test_distance_x += diff_x > 0 ? 50 : -50;
+                } else {
+                    test_distance_y += diff_y > 0 ? 50 : -50;
                 }
             }
 
-            test_distance = test_distance_u [0] * test_distance_u [0] + test_distance_u [1] * test_distance_u [1];
-            if (test_diagonally) {
-                test_distance++;
-            }
-
+            var test_distance = test_distance_x * test_distance_x + test_distance_y * test_distance_y;
             if (test_distance < distance) {
-                distance_x = test_distance_u [0];
-                distance_y = test_distance_u [1];
+                distance_x = test_distance_x;
+                distance_y = test_distance_y;
                 distance = test_distance;
-                diagonally = test_diagonally;
-                diagonal_mode [0] = test_diagonal_mode [0];
-                diagonal_mode [1] = test_diagonal_mode [1];
-            }
-        }
-
-        // As diagonal monitors are not allowed offset by 5% of width/height
-        if (diagonally) {
-            var margin = int.min (widget_points [2], widget_points [3]) / 20;
-            if (distance_x.abs () >= distance_y.abs ()) {
-                distance_x += (diagonal_mode [0] ? 1 : -1) * margin;
-            } else {
-                distance_y += (diagonal_mode [1] ? 1 : -1) * margin;
             }
         }
 
@@ -567,7 +551,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             widget.delta_x += distance_x;
             widget.delta_y += distance_y;
         } else {
-            widget.set_geometry (widget_points [0] + distance_x, widget_points [1] + distance_y, widget_points [2], widget_points [3]);
+            widget.set_geometry (widget_x + distance_x, widget_y + distance_y, widget_width, widget_height);
         }
     }
 }
