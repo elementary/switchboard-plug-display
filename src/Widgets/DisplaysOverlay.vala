@@ -486,23 +486,18 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         snap_widget (display_widget, anchors);
     }
 
-    /**
-     * Widget snaping is done by trying to snap the current widget to other widgets called anchors.
-     * I) At first it is checked if it is possible to snap a widget using only horizontal or
-     * only veritcal translation. This can be done by using four different test_rects which occupy
-     * the area to the left, to the right, at the top and at the bottom of the widget, respectively.
-     * If a test_rect intersects with one of the other anchor_rects the distance to the closest edge
-     * of the anchor get calculated. Afterwards the widgets snaps to the closest anchor.
-     *
-     * Cases:           W = widget, A = current anchor
-     *
-     *   0.        1.        2.        3.
-     *     A W       W A        W         A
-     *                          A         W
-     *
-     * II) If it is not possible to snap the widget horizontally or vertically to any edge,
-     * the widget is snaped diagonally to the nearest corner of an anchor.
-     */
+   /******************************************************************************************
+    *   Widget snaping is done by trying to snap a widget to other widgets called Anchors.   *
+    *   It first calculates the distance between each anchor and the widget, and afterwards  *
+    *   snaps the widget to the closest edge/corner                                          *
+    *                                                                                        *
+    *   Cases:          W = widget, A = current anchor                                       *
+    *                                                                                        *
+    *   1.        2.        3.        4.        5.        6.        7.         8.            *
+    *     A W       W A        A         W         W          W         A         W          *
+    *                          W         A          A        A           W       A           *
+    *                                                                                        *
+    ******************************************************************************************/
 
     private void snap_widget (Display.DisplayWidget widget, List<Display.DisplayWidget> anchors) {
         if (anchors.length () == 0) {
