@@ -216,6 +216,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.check_position.connect (() => {
             check_intersects (display_widget);
             close_gaps ();
+            display_widget.queue_resize_no_redraw ();
         });
         display_widget.move_display.connect ((diff_x, diff_y, event) => move_display (display_widget, diff_x, diff_y, event));
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
