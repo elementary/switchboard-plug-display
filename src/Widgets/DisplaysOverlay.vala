@@ -213,7 +213,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
-        display_widget.check_position.connect (() => check_intersects (display_widget));
+        display_widget.check_position.connect (() => {
+            check_intersects (display_widget);
+            close_gaps ();
+        });
         display_widget.move_display.connect ((diff_x, diff_y, event) => move_display (display_widget, diff_x, diff_y, event));
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
@@ -239,6 +242,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             check_configuration_changed ();
             check_intersects (display_widget);
             snap_edges (display_widget);
+            close_gaps ();
             verify_global_positions ();
             calculate_ratio ();
         });
@@ -273,6 +277,47 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
         check_intersects (display_widget);
+    }
+
+    private void close_gaps () {
+        var display_widgets = new List<DisplayWidget>();
+        foreach (var child in get_children ()) {
+            if (child is DisplayWidget) {
+                display_widgets.append ((DisplayWidget) child);
+            }
+        }
+
+        foreach (var display_widget in display_widgets) {
+            if (!is_connected (display_widget, display_widgets)) {
+                snap_edges (display_widget);
+            }
+        }
+    }
+
+    // to check if a display_widget is connected (has no gaps) one can check if
+    // a 1px larger rectangle intersects with any of other display_widgets
+    private bool is_connected (DisplayWidget display_widget, List<DisplayWidget> other_display_widgets) {
+        int x, y, width, height;
+        display_widget.get_geometry (out x, out y, out width, out height);
+        Gdk.Rectangle rect = {x - 1, y - 1, width + 2, height + 2};
+
+        foreach (var other_display_widget in other_display_widgets) {
+            if (other_display_widget == display_widget) {
+                continue;
+            }
+
+            int other_x, other_y, other_width, other_height;
+            other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
+
+            Gdk.Rectangle other_rect = {other_x, other_y, other_width, other_height};
+            Gdk.Rectangle intersection;
+            var is_connected = rect.intersect (other_rect, out intersection);
+            var is_diagonal = intersection.height == 1 && intersection.width == 1;
+            if (is_connected && !is_diagonal) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void verify_global_positions () {
