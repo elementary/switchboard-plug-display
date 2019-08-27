@@ -21,7 +21,8 @@
 
 public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
-    public signal void move_display (int delta_x, int delta_y);
+    public signal void move_display (double diff_x, double diff_y, Gdk.EventMotion event);
+    public signal void end_grab (int delta_x, int delta_y);
     public signal void check_position ();
     public signal void configuration_changed ();
     public signal void active_changed ();
@@ -416,6 +417,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public override bool button_release_event (Gdk.EventButton event) {
+        holding = false;
         if ((delta_x == 0 && delta_y == 0) || only_display) {
             return false;
         }
@@ -424,16 +426,13 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var old_delta_y = delta_y;
         delta_x = 0;
         delta_y = 0;
-        move_display (old_delta_x, old_delta_y);
-        holding = false;
+        end_grab (old_delta_x, old_delta_y);
         return false;
     }
 
     public override bool motion_notify_event (Gdk.EventMotion event) {
         if (holding && !only_display) {
-            delta_x = (int)(event.x_root - start_x);
-            delta_y = (int)(event.y_root - start_y);
-            check_position ();
+            move_display (event.x_root - start_x, event.y_root - start_y, event);
         }
 
         return false;
