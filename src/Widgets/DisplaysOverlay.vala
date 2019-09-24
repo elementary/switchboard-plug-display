@@ -373,7 +373,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         snap_widget (last_moved, anchors);
 
-        /*/ FIXME: Re-Snaping with 3 or more displays is broken
+        /*/ FIXME: Re-Snapping with 3 or more displays is broken
         // This is used to make sure all displays are connected
         anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
@@ -384,7 +384,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
    /******************************************************************************************
-    *   Widget snaping is done by trying to snap a widget to other widgets called Anchors.   *
+    *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.   *
     *   It first calculates the distance between each anchor and the widget, and afterwards  *
     *   snaps the widget to the closest edge/corner                                          *
     *                                                                                        *
