@@ -373,7 +373,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             int other_x, other_y, other_width, other_height;
             other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
 
-            Gdk.Rectangle other_rect = { other_x, other_y, other_width, other_height };
+            Gdk.Rectangle other_rect = {other_x, other_y, other_width, other_height};
             Gdk.Rectangle intersection;
             var is_connected = rect.intersect (other_rect, out intersection);
             var is_diagonal = intersection.height == 1 && intersection.width == 1;
