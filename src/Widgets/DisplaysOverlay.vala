@@ -214,7 +214,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
         display_widget.check_position.connect (() => check_intersects (display_widget));
-        display_widget.move_display.connect ((diff_x, diff_y, event) => move_display (display_widget, diff_x, diff_y, event));
+        display_widget.move_display.connect ((diff_x, diff_y) => move_display (display_widget, diff_x, diff_y));
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
@@ -268,7 +268,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         check_configuration_changed ();
     }
 
-    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y, Gdk.EventMotion event) {
+    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y) {
         reorder_overlay (display_widget, -1);
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
