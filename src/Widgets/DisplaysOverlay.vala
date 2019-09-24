@@ -277,7 +277,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         reorder_overlay (display_widget, -1);
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
-        if (!(Gdk.ModifierType.CONTROL_MASK in event.state)) {
+        Gdk.ModifierType state;
+        Gtk.get_current_event_state (out state);
+        if (!(Gdk.ModifierType.CONTROL_MASK in state)) {
             align_edges (display_widget);
         }
 
