@@ -217,7 +217,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             check_intersects (display_widget);
             close_gaps ();
         });
-        display_widget.move_display.connect ((diff_x, diff_y, event) => move_display (display_widget, diff_x, diff_y, event));
+        display_widget.move_display.connect (move_display);
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
@@ -272,7 +272,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         check_configuration_changed ();
     }
 
-    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y, Gdk.EventMotion event) {
+    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y) {
         reorder_overlay (display_widget, -1);
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
@@ -418,7 +418,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         snap_widget (last_moved, anchors);
 
-        /*/ FIXME: Re-Snaping with 3 or more displays is broken
+        /*/ FIXME: Re-Snapping with 3 or more displays is broken
         // This is used to make sure all displays are connected
         anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
@@ -429,7 +429,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
    /******************************************************************************************
-    *   Widget snaping is done by trying to snap a widget to other widgets called Anchors.   *
+    *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.   *
     *   It first calculates the distance between each anchor and the widget, and afterwards  *
     *   snaps the widget to the closest edge/corner                                          *
     *                                                                                        *
