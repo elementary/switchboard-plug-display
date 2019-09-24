@@ -1,3 +1,9 @@
+switchboard-plug-display (2.1.9) bionic; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <codygarver@gmail.com>  Tue, 24 Sep 2019 10:20:51 -0500
+
 switchboard-plug-display (2.1.8) bionic; urgency=medium
 
   * New upstream release.
