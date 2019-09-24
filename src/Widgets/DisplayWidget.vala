@@ -21,7 +21,7 @@
 
 public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
-    public signal void move_display (double diff_x, double diff_y, Gdk.EventMotion event);
+    public signal void move_display (double diff_x, double diff_y);
     public signal void end_grab (int delta_x, int delta_y);
     public signal void check_position ();
     public signal void configuration_changed ();
@@ -432,7 +432,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     public override bool motion_notify_event (Gdk.EventMotion event) {
         if (holding && !only_display) {
-            move_display (event.x_root - start_x, event.y_root - start_y, event);
+            move_display (event.x_root - start_x, event.y_root - start_y);
         }
 
         return false;
