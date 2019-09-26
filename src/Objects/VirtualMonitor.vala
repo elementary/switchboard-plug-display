@@ -22,6 +22,8 @@
 public class Display.VirtualMonitor : GLib.Object {
     public int x { get; set; }
     public int y { get; set; }
+    public int current_x { get; set; }
+    public int current_y { get; set; }
     public double scale { get; set; }
     public DisplayTransform transform { get; set; }
     public bool primary { get; set; }
