@@ -81,8 +81,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             allocation = Gdk.Rectangle ();
             allocation.width = (int)(width * current_ratio);
             allocation.height = (int)(height * current_ratio);
-            allocation.x = default_x_margin + (int)(x * current_ratio) + display_widget.delta_x;
-            allocation.y = default_y_margin + (int)(y * current_ratio) + display_widget.delta_y;
+            allocation.x = default_x_margin + (int) ((x +  display_widget.delta_x) * current_ratio);
+            allocation.y = default_y_margin + (int) ((y +  display_widget.delta_y) * current_ratio);
             return true;
         }
 
@@ -168,7 +168,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
-        current_ratio = double.min ((double)(get_allocated_width () -24) / (double) added_width, (double)(get_allocated_height ()-24) / (double) added_height);
+        current_ratio = double.min ((double) (get_allocated_width () - 24) / (double) added_width, (double) (get_allocated_height () - 24) / (double) added_height);
         default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
         default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
@@ -214,6 +214,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
         display_widget.check_position.connect (() => check_intersects (display_widget));
+        display_widget.move_display.connect (move_display);
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
@@ -226,16 +227,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.display_window.show_all ();
         }
 
-        display_widget.move_display.connect ((delta_x, delta_y) => {
+        display_widget.end_grab.connect ((delta_x, delta_y) => {
             if (delta_x == 0 && delta_y == 0) {
                 return;
             }
 
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
-            display_widget.set_geometry ((int)(delta_x / current_ratio) + x, (int)(delta_y / current_ratio) + y, width, height);
+            display_widget.set_geometry (delta_x + x, delta_y + y, width, height);
             display_widget.queue_resize_no_redraw ();
             check_configuration_changed ();
+            check_intersects (display_widget);
             snap_edges (display_widget);
             verify_global_positions ();
             calculate_ratio ();
@@ -246,7 +248,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         var old_delta_y = display_widget.delta_y;
         display_widget.delta_x = 0;
         display_widget.delta_y = 0;
-        display_widget.move_display (old_delta_x, old_delta_y);
+        display_widget.end_grab (old_delta_x, old_delta_y);
     }
 
     private void set_as_primary (Display.VirtualMonitor new_primary) {
@@ -264,6 +266,13 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         check_configuration_changed ();
+    }
+
+    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y) {
+        reorder_overlay (display_widget, -1);
+        display_widget.delta_x = (int) (diff_x / current_ratio);
+        display_widget.delta_y = (int) (diff_y / current_ratio);
+        check_intersects (display_widget);
     }
 
     private void verify_global_positions () {
@@ -295,8 +304,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     public void check_intersects (DisplayWidget source_display_widget) {
         int orig_x, orig_y, src_x, src_y, src_width, src_height;
         source_display_widget.get_geometry (out orig_x, out orig_y, out src_width, out src_height);
-        src_x = orig_x + (int)(source_display_widget.delta_x/current_ratio);
-        src_y = orig_y + (int)(source_display_widget.delta_y/current_ratio);
+        src_x = orig_x + source_display_widget.delta_x;
+        src_y = orig_y + source_display_widget.delta_y;
         Gdk.Rectangle src_rect = {src_x, src_y, src_width, src_height};
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
@@ -313,35 +322,35 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     if (intersection.height == src_height) {
                         // on the left side
                         if (intersection.x <= x + width/2) {
-                            source_display_widget.delta_x = (int) ((x - (orig_x + src_width)) * current_ratio);
+                            source_display_widget.delta_x = x - (orig_x + src_width);
                         // on the right side
                         } else {
-                            source_display_widget.delta_x = (int) ((x - orig_x + width) * current_ratio);
+                            source_display_widget.delta_x = x - orig_x + width;
                         }
                     } else if (intersection.width == src_width) {
                         // on the bottom side
                         if (intersection.y <= y + height/2) {
-                            source_display_widget.delta_y = (int) ((y - (orig_y + src_height)) * current_ratio);
+                            source_display_widget.delta_y = y - (orig_y + src_height);
                         } else {
                         // on the upper side
-                            source_display_widget.delta_y = (int) ((y - orig_y + height) * current_ratio);
+                            source_display_widget.delta_y = y - orig_y + height;
                         }
                     } else {
                         if (intersection.width < intersection.height) {
                             // on the left side
                             if (intersection.x <= x + width/2) {
-                                source_display_widget.delta_x = (int) ((x - (orig_x + src_width)) * current_ratio);
+                                source_display_widget.delta_x = x - (orig_x + src_width);
                             // on the right side
                             } else {
-                                source_display_widget.delta_x = (int) ((x - orig_x + width) * current_ratio);
+                                source_display_widget.delta_x = x - orig_x + width;
                             }
                         } else {
                             // on the bottom side
                             if (intersection.y <= y + height/2) {
-                                source_display_widget.delta_y = (int) ((y - (orig_y + src_height)) * current_ratio);
+                                source_display_widget.delta_y = y - (orig_y + src_height);
                             } else {
                             // on the upper side
-                                source_display_widget.delta_y = (int) ((y - orig_y + height) * current_ratio);
+                                source_display_widget.delta_y = y - orig_y + height;
                             }
                         }
                     }

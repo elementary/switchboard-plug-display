@@ -185,6 +185,8 @@ public class Display.MonitorManager : GLib.Object {
 
             virtual_monitor.x = mutter_logical_monitor.x;
             virtual_monitor.y = mutter_logical_monitor.y;
+            virtual_monitor.current_x = mutter_logical_monitor.x;
+            virtual_monitor.current_y = mutter_logical_monitor.y;
             virtual_monitor.scale = mutter_logical_monitor.scale;
             virtual_monitor.transform = mutter_logical_monitor.transform;
             virtual_monitor.primary = mutter_logical_monitor.primary;
