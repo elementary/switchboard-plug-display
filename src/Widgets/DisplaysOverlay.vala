@@ -21,6 +21,7 @@
 
 public class Display.DisplaysOverlay : Gtk.Overlay {
     private const int SNAP_LIMIT = int.MAX - 1;
+    private const int MINIMUM_WIDGET_OFFSET = 50;
 
     public signal void configuration_changed (bool changed);
 
@@ -426,9 +427,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 test_distance_y = 0;
             } else { // As diagonal monitors are not allowed, offset by 50px
                 if (test_distance_x.abs () >= test_distance_y.abs ()) {
-                    test_distance_x += distance_widget_anchor_x > 0 ? 50 : -50;
+                    test_distance_x += (distance_widget_anchor_x > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
                 } else {
-                    test_distance_y += distance_widget_anchor_y > 0 ? 50 : -50;
+                    test_distance_y += (distance_widget_anchor_y > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
                 }
             }
 
