@@ -21,6 +21,7 @@
 
 public class Display.DisplaysOverlay : Gtk.Overlay {
     private const int SNAP_LIMIT = int.MAX - 1;
+    private const int MINIMUM_WIDGET_OFFSET = 50;
 
     public signal void configuration_changed (bool changed);
 
@@ -432,7 +433,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
    /******************************************************************************************
-    *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.   *
+    *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.  *
     *   It first calculates the distance between each anchor and the widget, and afterwards  *
     *   snaps the widget to the closest edge/corner                                          *
     *                                                                                        *
@@ -459,12 +460,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             int anchor_x, anchor_y, anchor_width, anchor_height;
             anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
 
-            var diff_x = anchor_x - widget_x;
-            var diff_y = anchor_y - widget_y;
-            var distance_left   = diff_x + anchor_width;
-            var distance_right  = diff_x - widget_width;
-            var distance_top    = diff_y + anchor_height;
-            var distance_bottom = diff_y - widget_height;
+            var distance_widget_anchor_x = anchor_x - widget_x;
+            var distance_widget_anchor_y = anchor_y - widget_y;
+            var distance_left   = distance_widget_anchor_x + anchor_width;
+            var distance_right  = distance_widget_anchor_x - widget_width;
+            var distance_top    = distance_widget_anchor_y + anchor_height;
+            var distance_bottom = distance_widget_anchor_y - widget_height;
             var test_distance_x = distance_right > -distance_left ? distance_right : distance_left;
             var test_distance_y = distance_bottom > -distance_top ? distance_bottom : distance_top;
 
@@ -474,9 +475,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 test_distance_y = 0;
             } else { // As diagonal monitors are not allowed, offset by 50px
                 if (test_distance_x.abs () >= test_distance_y.abs ()) {
-                    test_distance_x += diff_x > 0 ? 50 : -50;
+                    test_distance_x += (distance_widget_anchor_x > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
                 } else {
-                    test_distance_y += diff_y > 0 ? 50 : -50;
+                    test_distance_y += (distance_widget_anchor_y > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
                 }
             }
 
