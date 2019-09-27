@@ -213,6 +213,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
+
         display_widget.check_position.connect (() => {
             check_intersects (display_widget);
             close_gaps ();
