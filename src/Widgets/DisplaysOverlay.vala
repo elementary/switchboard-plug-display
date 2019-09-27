@@ -318,6 +318,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 return true;
             }
         }
+
         return false;
     }
 
