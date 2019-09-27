@@ -385,7 +385,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
    /******************************************************************************************
-    *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.   *
+    *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.  *
     *   It first calculates the distance between each anchor and the widget, and afterwards  *
     *   snaps the widget to the closest edge/corner                                          *
     *                                                                                        *
