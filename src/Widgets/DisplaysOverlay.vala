@@ -407,40 +407,43 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         widget_x += widget.delta_x;
         widget_y += widget.delta_y;
 
-        int distance = int.MAX, distance_x = 0, distance_y = 0;
+        int shortest_distance = int.MAX, shortest_distance_x = 0, shortest_distance_y = 0;
         foreach (var anchor in anchors) {
             int anchor_x, anchor_y, anchor_width, anchor_height;
             anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
 
-            var distance_widget_anchor_x = anchor_x - widget_x;
-            var distance_widget_anchor_y = anchor_y - widget_y;
-            var distance_left   = distance_widget_anchor_x + anchor_width;
-            var distance_right  = distance_widget_anchor_x - widget_width;
-            var distance_top    = distance_widget_anchor_y + anchor_height;
-            var distance_bottom = distance_widget_anchor_y - widget_height;
-            var test_distance_x = distance_right > -distance_left ? distance_right : distance_left;
-            var test_distance_y = distance_bottom > -distance_top ? distance_bottom : distance_top;
+            var distance_origin_x = anchor_x - widget_x;
+            var distance_origin_y = anchor_y - widget_y;
+            var distance_left   = distance_origin_x + anchor_width;
+            var distance_right  = distance_origin_x - widget_width;
+            var distance_top    = distance_origin_y + anchor_height;
+            var distance_bottom = distance_origin_y - widget_height;
+            var distance_widget_anchor_x = distance_right > -distance_left ? distance_right : distance_left;
+            var distance_widget_anchor_y = distance_bottom > -distance_top ? distance_bottom : distance_top;
 
+            // widget is between left and right edges of anchor, no horizontal movement needed
             if (distance_left > 0 && distance_right < 0) {
-                test_distance_x = 0;
+                distance_widget_anchor_x = 0;
+            // widget is between top and bottom edges of anchor, no vertical movement needed
             } else if (distance_top > 0 && distance_bottom < 0) {
-                test_distance_y = 0;
-            } else { // As diagonal monitors are not allowed, offset by 50px
-                if (test_distance_x.abs () >= test_distance_y.abs ()) {
-                    test_distance_x += (distance_widget_anchor_x > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
+                distance_widget_anchor_y = 0;
+            // widget is diagonal to anchor, as diagonal monitors are not allowed, offset by 50px (MINIMUM_WIDGET_OFFSET)
+            } else {
+                if (distance_widget_anchor_x.abs () >= distance_widget_anchor_y.abs ()) {
+                    distance_widget_anchor_x += (distance_origin_x > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
                 } else {
-                    test_distance_y += (distance_widget_anchor_y > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
+                    distance_widget_anchor_y += (distance_origin_y > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
                 }
             }
 
-            var test_distance = test_distance_x * test_distance_x + test_distance_y * test_distance_y;
-            if (test_distance < distance) {
-                distance_x = test_distance_x;
-                distance_y = test_distance_y;
-                distance = test_distance;
+            var shortest_distance_candidate = distance_widget_anchor_x * distance_widget_anchor_x + distance_widget_anchor_y * distance_widget_anchor_y;
+            if (shortest_distance_candidate < shortest_distance) {
+                shortest_distance = shortest_distance_candidate;
+                shortest_distance_x = distance_widget_anchor_x;
+                shortest_distance_y = distance_widget_anchor_y;
             }
         }
 
-        widget.set_geometry (widget_x + distance_x, widget_y + distance_y, widget_width, widget_height);
+        widget.set_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
     }
 }
