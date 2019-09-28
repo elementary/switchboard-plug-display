@@ -283,8 +283,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void close_gaps () {
-        var display_widgets = new List<DisplayWidget>();
-
+        var display_widgets = new List<DisplayWidget> ();
         foreach (var child in get_children ()) {
             if (child is DisplayWidget) {
                 display_widgets.append ((DisplayWidget) child);
