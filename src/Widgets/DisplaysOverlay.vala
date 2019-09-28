@@ -462,9 +462,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
             var distance_origin_x = anchor_x - widget_x;
             var distance_origin_y = anchor_y - widget_y;
-            var distance_left   = distance_origin_x + anchor_width;
-            var distance_right  = distance_origin_x - widget_width;
-            var distance_top    = distance_origin_y + anchor_height;
+            var distance_left = distance_origin_x + anchor_width;
+            var distance_right = distance_origin_x - widget_width;
+            var distance_top = distance_origin_y + anchor_height;
             var distance_bottom = distance_origin_y - widget_height;
             var distance_widget_anchor_x = distance_right > -distance_left ? distance_right : distance_left;
             var distance_widget_anchor_y = distance_bottom > -distance_top ? distance_bottom : distance_top;
@@ -484,7 +484,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 }
             }
 
-            var shortest_distance_candidate = distance_widget_anchor_x * distance_widget_anchor_x + distance_widget_anchor_y * distance_widget_anchor_y;
+            var shortest_distance_candidate = distance_widget_anchor_x * distance_widget_anchor_x
+                                            + distance_widget_anchor_y * distance_widget_anchor_y;
             if (shortest_distance_candidate < shortest_distance) {
                 shortest_distance = shortest_distance_candidate;
                 shortest_distance_x = distance_widget_anchor_x;
