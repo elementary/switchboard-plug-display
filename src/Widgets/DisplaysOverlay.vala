@@ -324,6 +324,48 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         return false;
     }
 
+    private void close_gaps () {
+        var display_widgets = new List<DisplayWidget> ();
+        foreach (var child in get_children ()) {
+            if (child is DisplayWidget) {
+                display_widgets.append ((DisplayWidget) child);
+            }
+        }
+
+        foreach (var display_widget in display_widgets) {
+            if (!is_connected (display_widget, display_widgets)) {
+                snap_edges (display_widget);
+            }
+        }
+    }
+
+    // to check if a display_widget is connected (has no gaps) one can check if
+    // a 1px larger rectangle intersects with any of other display_widgets
+    private bool is_connected (DisplayWidget display_widget, List<DisplayWidget> other_display_widgets) {
+        int x, y, width, height;
+        display_widget.get_geometry (out x, out y, out width, out height);
+        Gdk.Rectangle rect = {x - 1, y - 1, width + 2, height + 2};
+
+        foreach (var other_display_widget in other_display_widgets) {
+            if (other_display_widget == display_widget) {
+                continue;
+            }
+
+            int other_x, other_y, other_width, other_height;
+            other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
+
+            Gdk.Rectangle other_rect = { other_x, other_y, other_width, other_height };
+            Gdk.Rectangle intersection;
+            var is_connected = rect.intersect (other_rect, out intersection);
+            var is_diagonal = intersection.height == 1 && intersection.width == 1;
+            if (is_connected && !is_diagonal) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void verify_global_positions () {
         int min_x = int.MAX;
         int min_y = int.MAX;
