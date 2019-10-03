@@ -21,6 +21,7 @@
 
 public class Display.DisplaysOverlay : Gtk.Overlay {
     private const int SNAP_LIMIT = int.MAX - 1;
+    private const int MINIMUM_WIDGET_OFFSET = 50;
 
     public signal void configuration_changed (bool changed);
 
@@ -213,7 +214,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
-        display_widget.check_position.connect (() => check_intersects (display_widget));
+
+        display_widget.check_position.connect (() => {
+            check_intersects (display_widget);
+            close_gaps ();
+        });
+
         display_widget.move_display.connect (move_display);
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
@@ -239,6 +245,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             check_configuration_changed ();
             check_intersects (display_widget);
             snap_edges (display_widget);
+            close_gaps ();
             verify_global_positions ();
             calculate_ratio ();
         });
@@ -273,6 +280,48 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
         check_intersects (display_widget);
+    }
+
+    private void close_gaps () {
+        var display_widgets = new List<DisplayWidget> ();
+        foreach (var child in get_children ()) {
+            if (child is DisplayWidget) {
+                display_widgets.append ((DisplayWidget) child);
+            }
+        }
+
+        foreach (var display_widget in display_widgets) {
+            if (!is_connected (display_widget, display_widgets)) {
+                snap_edges (display_widget);
+            }
+        }
+    }
+
+    // to check if a display_widget is connected (has no gaps) one can check if
+    // a 1px larger rectangle intersects with any of other display_widgets
+    private bool is_connected (DisplayWidget display_widget, List<DisplayWidget> other_display_widgets) {
+        int x, y, width, height;
+        display_widget.get_geometry (out x, out y, out width, out height);
+        Gdk.Rectangle rect = {x - 1, y - 1, width + 2, height + 2};
+
+        foreach (var other_display_widget in other_display_widgets) {
+            if (other_display_widget == display_widget) {
+                continue;
+            }
+
+            int other_x, other_y, other_width, other_height;
+            other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
+
+            Gdk.Rectangle other_rect = { other_x, other_y, other_width, other_height };
+            Gdk.Rectangle intersection;
+            var is_connected = rect.intersect (other_rect, out intersection);
+            var is_diagonal = intersection.height == 1 && intersection.width == 1;
+            if (is_connected && !is_diagonal) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void verify_global_positions () {
@@ -373,7 +422,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         snap_widget (last_moved, anchors);
 
-        /*/ FIXME: Re-Snaping with 3 or more displays is broken
+        /*/ FIXME: Re-Snapping with 3 or more displays is broken
         // This is used to make sure all displays are connected
         anchors = new List<DisplayWidget>();
         get_children ().foreach ((child) => {
@@ -384,116 +433,66 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
    /******************************************************************************************
-    *   Widget snaping is done by trying to snap a child to other widgets called Anchors.    *
-    *   It first calculates the distance between each anchor and the child, and afterwards   *
-    *   snaps the child to the closest edge                                                  *
+    *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.  *
+    *   It first calculates the distance between each anchor and the widget, and afterwards  *
+    *   snaps the widget to the closest edge/corner                                          *
     *                                                                                        *
-    *   Cases:          C = child, A = current anchor                                        *
+    *   Cases:          W = widget, A = current anchor                                       *
     *                                                                                        *
-    *   1.        2.        3.        4.                                                     *
-    *     A C       C A        A         C                                                   *
-    *                          C         A                                                   *
+    *   1.        2.        3.        4.        5.        6.        7.         8.            *
+    *     A W       W A        A         W         W          W         A         A          *
+    *                          W         A          A        A           W       W           *
     *                                                                                        *
     ******************************************************************************************/
-    private void snap_widget (Display.DisplayWidget child, List<Display.DisplayWidget> anchors) {
-        if (anchors.length () == 0) return;
-        int child_x, child_y, child_width, child_height;
-        child.get_geometry (out child_x, out child_y, out child_width, out child_height);
-        debug ("Child: %d %d %d %d\n", child_x, child_y, child_width, child_height);
 
-        bool snap_y = false, snap_x = false, move = false, diagonally = false;
-        int case_1 = int.MAX, case_2 = int.MAX, case_3 = int.MAX, case_4 = int.MAX;
+    private void snap_widget (Display.DisplayWidget widget, List<Display.DisplayWidget> anchors) {
+        if (anchors.length () == 0) {
+            return;
+        }
 
+        int widget_x, widget_y, widget_width, widget_height;
+        widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
+        widget_x += widget.delta_x;
+        widget_y += widget.delta_y;
+
+        int shortest_distance = int.MAX, shortest_distance_x = 0, shortest_distance_y = 0;
         foreach (var anchor in anchors) {
-            if (child.equals (anchor)) continue;
-
             int anchor_x, anchor_y, anchor_width, anchor_height;
             anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
-            debug ("Anchor: %d %d %d %d\n", anchor_x, anchor_y, anchor_width, anchor_height);
 
-            int case_1_t = child_x - anchor_x - anchor_width;
-            int case_2_t = child_x - anchor_x + child_width;
-            int case_3_t = child_y - anchor_y - anchor_height;
-            int case_4_t = child_height + child_y - anchor_y;
+            var distance_origin_x = anchor_x - widget_x;
+            var distance_origin_y = anchor_y - widget_y;
+            var distance_left = distance_origin_x + anchor_width;
+            var distance_right = distance_origin_x - widget_width;
+            var distance_top = distance_origin_y + anchor_height;
+            var distance_bottom = distance_origin_y - widget_height;
+            var distance_widget_anchor_x = distance_right > -distance_left ? distance_right : distance_left;
+            var distance_widget_anchor_y = distance_bottom > -distance_top ? distance_bottom : distance_top;
 
-            // Check projections
-            if (is_projected (child_y, child_height, anchor_y, anchor_height)) {
-                debug ("Child is on the X axis of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
-                case_1 = is_x_smaller_absolute (case_1, case_1_t) && !diagonally ? case_1 : case_1_t;
-                case_2 = is_x_smaller_absolute (case_2, case_2_t) && !diagonally ? case_2 : case_2_t;
-                snap_x = true;
-                move = true;
-            } else if (is_projected (child_x, child_width, anchor_x, anchor_width)) {
-                debug ("Child is on the Y axis of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
-                case_3 = is_x_smaller_absolute (case_3, case_3_t) && !diagonally ? case_3 : case_3_t;
-                case_4 = is_x_smaller_absolute (case_4, case_4_t) && !diagonally ? case_4 : case_4_t;
-                snap_y = true;
-                move = true;
+            // widget is between left and right edges of anchor, no horizontal movement needed
+            if (distance_left > 0 && distance_right < 0) {
+                distance_widget_anchor_x = 0;
+            // widget is between top and bottom edges of anchor, no vertical movement needed
+            } else if (distance_top > 0 && distance_bottom < 0) {
+                distance_widget_anchor_y = 0;
+            // widget is diagonal to anchor, as diagonal monitors are not allowed, offset by 50px (MINIMUM_WIDGET_OFFSET)
             } else {
-                debug ("Child is diagonally of Anchor %s\n", anchor.virtual_monitor.get_display_name ());
-                if (!move) {
-                    diagonally = true;
-                    case_1 = is_x_smaller_absolute (case_1, case_1_t) ? case_1 : case_1_t;
-                    case_2 = is_x_smaller_absolute (case_2, case_2_t) ? case_2 : case_2_t;
-                    case_3 = is_x_smaller_absolute (case_3, case_3_t) ? case_3 : case_3_t;
-                    case_4 = is_x_smaller_absolute (case_4, case_4_t) ? case_4 : case_4_t;
+                if (distance_widget_anchor_x.abs () >= distance_widget_anchor_y.abs ()) {
+                    distance_widget_anchor_x += (distance_origin_x > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
+                } else {
+                    distance_widget_anchor_y += (distance_origin_y > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
                 }
             }
-        }
 
-        int shortest_x = is_x_smaller_absolute (case_1, case_2) ? case_1 : case_2;
-        int shortest_y = is_x_smaller_absolute (case_3, case_4) ? case_3 : case_4;
-
-        // X Snapping
-        if (!snap_y || is_x_smaller_absolute (shortest_x, shortest_y)) {
-            if (snap_x & move) {
-                debug ("moving child %d on X\n", shortest_x);
-                if (shortest_x < SNAP_LIMIT) ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y , child_width, child_height);
+            var shortest_distance_candidate = distance_widget_anchor_x * distance_widget_anchor_x
+                                            + distance_widget_anchor_y * distance_widget_anchor_y;
+            if (shortest_distance_candidate < shortest_distance) {
+                shortest_distance = shortest_distance_candidate;
+                shortest_distance_x = distance_widget_anchor_x;
+                shortest_distance_y = distance_widget_anchor_y;
             }
         }
 
-        // Y Snapping
-        if (!snap_x || is_x_smaller_absolute (shortest_y, shortest_x)) {
-            if (snap_y & move) {
-                debug ("moving child %d on Y\n", shortest_y);
-                if (shortest_y < SNAP_LIMIT) ((DisplayWidget) child).set_geometry (child_x , child_y - shortest_y, child_width, child_height);
-            }
-        }
-
-        // X & Y Snapping
-        if (!snap_x && !snap_y) {
-            if (shortest_x < SNAP_LIMIT && shortest_y < SNAP_LIMIT) {
-                ((DisplayWidget) child).set_geometry (child_x - shortest_x, child_y - shortest_y , child_width, child_height);
-                debug ("moving child %d on X & %d on Y\n", shortest_x, shortest_y);
-            } else {
-                debug ("too large");
-            }
-        }
-    }
-
-    static bool equals = false;
-    private bool is_projected (int child_x, int child_length, int anchor_x, int anchor_length) {
-        var numberline = new List<int> ();
-
-        equals = false;
-        CompareFunc<int> intcmp = (a, b) => {
-            if (a == b) equals = true;
-            return (int) (a > b) - (int) (a < b);
-        };
-
-        var child_x2 = child_x + child_length;
-        var anchor_x2 = anchor_x + anchor_length;
-
-        numberline.insert_sorted (child_x, intcmp);
-        numberline.insert_sorted (child_x2, intcmp);
-        numberline.insert_sorted (anchor_x, intcmp);
-        numberline.insert_sorted (anchor_x2, intcmp);
-
-        if (equals) return false;
-        return !((numberline.index (child_x) - numberline.index (child_x2)).abs () == 1 && (numberline.index (anchor_x) - numberline.index (anchor_x2)).abs () == 1);
-    }
-
-    private bool is_x_smaller_absolute (int x, int y) {
-        return x.abs () < y.abs ();
+        widget.set_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
     }
 }
