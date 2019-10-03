@@ -17,6 +17,9 @@ jobs:
         apt update
         apt install -y meson libgranite-dev libswitchboard-2.0-dev valac
     - name: Build
+      env:
+        DESTDIR: out
       run: |
         meson build
         ninja -C build
+        ninja -C build install
