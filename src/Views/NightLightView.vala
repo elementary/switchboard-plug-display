@@ -190,4 +190,3 @@ public class Display.NightLightView : Gtk.Grid {
         return date_time;
     }
 }
-
