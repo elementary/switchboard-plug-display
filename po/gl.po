@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:45+0200\n"
-"PO-Revision-Date: 2019-09-19 18:28+0000\n"
+"PO-Revision-Date: 2019-10-07 15:23+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Galician <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/gl/>\n"
@@ -26,7 +26,7 @@ msgstr "Pantallas"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "Configure a resolución e a posición de monitores e proxectores"
+msgstr "Configurar a resolución e a posición de monitores e proxectores"
 
 #: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
 #: src/DisplayPlug.vala:118
