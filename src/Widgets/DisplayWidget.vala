@@ -252,7 +252,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             virtual_monitor.transform = transform;
 
             switch (transform) {
-            	case DisplayTransform.NORMAL:
+                case DisplayTransform.NORMAL:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 0;
                     label.label = virtual_monitor_name;
@@ -275,22 +275,22 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 case DisplayTransform.FLIPPED:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 0;
-                    label.label = virtual_monitor_name.reverse(); //mirroring simulation, because we can't really mirror the text
+                    label.label = virtual_monitor_name.reverse (); //mirroring simulation, because we can't really mirror the text
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_90:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
                     label.angle = 270;
-                    label.label = virtual_monitor_name.reverse();
+                    label.label = virtual_monitor_name.reverse ();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_180:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
                     label.angle = 180;
-                    label.label = virtual_monitor_name.reverse();
+                    label.label = virtual_monitor_name.reverse ();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_270:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
                     label.angle = 90;
-                    label.label = virtual_monitor_name.reverse();
+                    label.label = virtual_monitor_name.reverse ();
                     break;
             }
 
