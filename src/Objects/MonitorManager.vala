@@ -343,7 +343,7 @@ public class Display.MonitorManager : GLib.Object {
             new_virtual_monitors.add (single_virtual_monitor);
         }
 
-        new_virtual_monitors.get(0).primary = true;
+        new_virtual_monitors.get (0).primary = true;
         virtual_monitors.clear ();
         virtual_monitors.add_all (new_virtual_monitors);
 

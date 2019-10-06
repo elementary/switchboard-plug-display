@@ -81,7 +81,7 @@ public struct MutterReadMonitorInfo {
     public string serial;
     public uint hash {
         get {
-            return (connector+vendor+product+serial).hash ();
+            return (connector + vendor + product + serial).hash ();
         }
     }
 }
@@ -174,4 +174,3 @@ public struct MutterReadDisplayMode {
     public double frequency;
     public uint flags;
 }
-
