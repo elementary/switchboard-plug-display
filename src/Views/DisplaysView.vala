@@ -37,17 +37,14 @@ public class Display.DisplaysView : Gtk.Grid {
             mirror_grid.add (mirror_label);
             mirror_grid.add (mirror_switch);
 
-            var dpi_label = new Gtk.Label (_("Scaling factor:"));
-
-            dpi_combo = new Gtk.ComboBoxText ();
-            dpi_combo.append_text (_("LoDPI"));
-            dpi_combo.append_text (_("Pixel Doubled"));
+            var dpi_label = new Gtk.Label (_("Pixel Doubled:"));
+            var dpi_switch = new Gtk.Switch ();
 
             var dpi_grid = new Gtk.Grid ();
-            dpi_grid.column_spacing = 6;
             dpi_grid.margin = 12;
+            dpi_grid.column_spacing = 6;
             dpi_grid.add (dpi_label);
-            dpi_grid.add (dpi_combo);
+            dpi_grid.add (dpi_switch);
 
             var detect_button = new Gtk.Button.with_label (_("Detect Displays"));
 
@@ -116,10 +113,8 @@ public class Display.DisplaysView : Gtk.Grid {
                 apply_button.sensitive = false;
             });
 
-            dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
-
-            dpi_combo.changed.connect (() => {
-                monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+			dpi_switch.notify["active"].connect (() => {
+					monitor_manager.set_scale_on_all_monitors ((double)(dpi_switch.active)+1.0);
             });
 
             mirror_switch.active = monitor_manager.is_mirrored;
