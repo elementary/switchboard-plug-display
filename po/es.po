@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:45+0200\n"
-"PO-Revision-Date: 2019-10-07 15:23+0000\n"
+"PO-Revision-Date: 2019-10-09 17:23+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/es/>\n"
@@ -50,9 +50,8 @@ msgid "Screen mirroring"
 msgstr "Duplicar pantalla"
 
 #: src/DisplayPlug.vala:114
-#, fuzzy
 msgid "Scaling factor"
-msgstr "Factor de escala:"
+msgstr "Factor de escala"
 
 #: src/DisplayPlug.vala:115
 #, fuzzy
@@ -186,14 +185,12 @@ msgid "Resolution:"
 msgstr "Resolución:"
 
 #: src/Widgets/DisplayWidget.vala:116
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "Rotacion de pantalla"
+msgstr "Rotación de pantalla:"
 
 #: src/Widgets/DisplayWidget.vala:125
-#, fuzzy
 msgid "Refresh Rate:"
-msgstr "Frecuencia de actualización:"
+msgstr "Frecuencia de refresco:"
 
 #: src/Widgets/DisplayWidget.vala:192
 msgid "Configure display"
@@ -202,7 +199,7 @@ msgstr "Configurar pantalla"
 #: src/Widgets/DisplayWidget.vala:358
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g Hz"
 
 #: src/Widgets/DisplayWidget.vala:445
 msgid "Is the primary display"
