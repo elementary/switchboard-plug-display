@@ -26,7 +26,7 @@ public class Display.Monitor : GLib.Object {
     public string serial { get; set; }
     public uint hash {
         get {
-            return (connector+vendor+product+serial).hash ();
+            return (connector + vendor + product + serial).hash ();
         }
     }
 

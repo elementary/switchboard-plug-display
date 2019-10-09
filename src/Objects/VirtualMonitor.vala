@@ -72,18 +72,13 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
-    public VirtualMonitor () {
-        
-    }
-
     construct {
         monitors = new Gee.LinkedList<Display.Monitor> ();
-    } 
+    }
 
-    public const string mirrored_monitor = N_("Mirrored Display");
     public unowned string get_display_name () {
         if (is_mirror) {
-            return _(mirrored_monitor);
+            return _("Mirrored Display");
         } else {
             return monitor.display_name;
         }
