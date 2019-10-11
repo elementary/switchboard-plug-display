@@ -224,9 +224,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.configuration_changed.connect (() => check_configuration_changed ());
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
+            if (!virtual_monitor.is_active && virtual_monitor.primary) {
+                pick_new_primary();
+            }
+            display_widget.queue_resize_no_redraw ();
+            check_intersects (display_widget);
+            snap_edges (display_widget);
+            close_gaps ();
+            verify_global_positions();
+            calculate_ratio ();
             change_active_displays_sensitivity ();
             check_configuration_changed ();
-            calculate_ratio ();
         });
 
         if (!monitor_manager.is_mirrored && virtual_monitor.is_active) {
@@ -258,7 +266,19 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.end_grab (old_delta_x, old_delta_y);
     }
 
+    private void pick_new_primary() {
+        foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
+            if (virtual_monitor.is_active) {
+                set_as_primary(virtual_monitor);
+                return;
+            }
+        }
+    }
+    
     private void set_as_primary (Display.VirtualMonitor new_primary) {
+        if (!new_primary.is_active) {
+            return;
+        }
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 var display_widget = child as DisplayWidget;
@@ -330,10 +350,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
-                int x, y, width, height;
-                display_widget.get_geometry (out x, out y, out width, out height);
-                min_x = int.min (min_x, x);
-                min_y = int.min (min_y, y);
+                if (display_widget.virtual_monitor.is_active) {
+                    int x, y, width, height;
+                    display_widget.get_geometry (out x, out y, out width, out height);
+                    min_x = int.min (min_x, x);
+                    min_y = int.min (min_y, y);
+                }
             }
         });
 

@@ -41,7 +41,7 @@ public class Display.MonitorManager : GLib.Object {
 
     public bool is_mirrored {
         get {
-            return virtual_monitors.size == 1 && monitors.size > 1;
+            return virtual_monitors.size == 1 && virtual_monitors.get(0).monitors.size > 1;
         }
     }
 
@@ -174,7 +174,7 @@ public class Display.MonitorManager : GLib.Object {
                 }
             }
         }
-
+        double max_scale = Utils.get_min_compatible_scale (monitors);
         foreach (var mutter_logical_monitor in mutter_logical_monitors) {
             string monitors_id = VirtualMonitor.generate_id_from_monitors (mutter_logical_monitor.monitors);
             var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
@@ -188,6 +188,7 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.current_x = mutter_logical_monitor.x;
             virtual_monitor.current_y = mutter_logical_monitor.y;
             virtual_monitor.scale = mutter_logical_monitor.scale;
+            max_scale = virtual_monitor.scale;
             virtual_monitor.transform = mutter_logical_monitor.transform;
             virtual_monitor.primary = mutter_logical_monitor.primary;
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
@@ -203,12 +204,18 @@ public class Display.MonitorManager : GLib.Object {
                 }
             }
         }
+        if (virtual_monitor_number != monitor_number) {
+            // Create Inactive VirtualMonitors for each disabled monitor.
+            virtual_monitors.add_all(create_missing_virtual_monitors(false, max_scale));
+        }
     }
 
     public void set_monitor_config () {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
+            if (virtual_monitor.is_active) {
             logical_monitors += get_mutter_logical_monitor (virtual_monitor);
+            }
         }
 
         var properties = new GLib.HashTable<string, GLib.Variant> (str_hash, str_equal);
@@ -308,22 +315,34 @@ public class Display.MonitorManager : GLib.Object {
         set_monitor_config ();
     }
 
-    public void disable_clone_mode () {
-        double max_scale = Utils.get_min_compatible_scale (monitors);
+    public Gee.LinkedList<Display.VirtualMonitor> create_missing_virtual_monitors(
+        bool new_monitors_active, double new_monitors_scale) {
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
+
         foreach (var monitor in monitors) {
+            var skip_monitor = false;
+            foreach (var virtual_monitor in virtual_monitors ) {
+                if (monitor in virtual_monitor.monitors) {
+                    skip_monitor = true;
+                    continue;
+                } 
+            }   
+            if (skip_monitor) {
+                continue;
+            }
             var single_virtual_monitor = new Display.VirtualMonitor ();
+            single_virtual_monitor.set_active(new_monitors_active);
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
             if (global_scale_required) {
-                single_virtual_monitor.scale = max_scale;
-                if (max_scale in preferred_mode.supported_scales) {
+                single_virtual_monitor.scale = new_monitors_scale;
+                if (new_monitors_scale in preferred_mode.supported_scales) {
                     current_mode.is_current = false;
                     preferred_mode.is_current = true;
-                } else if (!(max_scale in current_mode.supported_scales)) {
+                } else if (!(new_monitors_scale in current_mode.supported_scales)) {
                     Display.MonitorMode? largest_mode = null;
                     foreach (var mode in monitor.modes) {
-                        if (max_scale in mode.supported_scales) {
+                        if (new_monitors_scale in mode.supported_scales) {
                             if (largest_mode == null || mode.width > largest_mode.width) {
                                 largest_mode = mode;
                             }
@@ -342,9 +361,17 @@ public class Display.MonitorManager : GLib.Object {
             single_virtual_monitor.monitors.add (monitor);
             new_virtual_monitors.add (single_virtual_monitor);
         }
+        return new_virtual_monitors;
+    }
+
+    public void disable_clone_mode () {
+        // In clone mode, a single VirtualMonitor represents N physical monitors. When leaving Clone mode, we reset and create N active VirtualMonitors
+        virtual_monitors.clear ();
+        var new_monitors_active = true;
+        double max_scale = Utils.get_min_compatible_scale (monitors);
+        var new_virtual_monitors = create_missing_virtual_monitors(new_monitors_active, max_scale);
 
         new_virtual_monitors.get (0).primary = true;
-        virtual_monitors.clear ();
         virtual_monitors.add_all (new_virtual_monitors);
 
         notify_property ("virtual-monitor-number");
