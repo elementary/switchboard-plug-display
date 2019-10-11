@@ -205,7 +205,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
         destroy.connect (() => display_window.destroy ());
 
         use_switch.notify["active"].connect (() => {
-            //output_info.set_active (use_switch.active);
+            if (!virtual_monitor.set_active(use_switch.active)) {
+                return;
+            };
             resolution_combobox.sensitive = use_switch.active;
             rotation_combobox.sensitive = use_switch.active;
             refresh_combobox.sensitive = use_switch.active;
@@ -219,8 +221,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
             } else {
                 get_style_context ().add_class ("disabled");
             }
-
-            configuration_changed ();
             active_changed ();
         });
 
