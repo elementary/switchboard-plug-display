@@ -82,8 +82,15 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             allocation = Gdk.Rectangle ();
             allocation.width = (int)(width * current_ratio);
             allocation.height = (int)(height * current_ratio);
-            allocation.x = default_x_margin + (int) ((x +  display_widget.delta_x) * current_ratio);
-            allocation.y = default_y_margin + (int) ((y +  display_widget.delta_y) * current_ratio);
+            debug(@"allocation.width = $(allocation.width), $(width * current_ratio)");
+            //  debug(@"allocation.height = $(allocation.height)");
+            //  debug(@"default_x_margin = $default_x_margin");
+            //  debug(@"default_y_margin = $default_y_margin");
+            debug(@"current_ration = $current_ratio");
+            debug(@"x = $x");
+            debug(@"x_position = $((int) ((x +  display_widget.delta_x) * current_ratio)), $(((x +  display_widget.delta_x) * current_ratio))");
+            allocation.x = (int) ((x +  display_widget.delta_x) * current_ratio);
+            allocation.y = (int) ((y +  display_widget.delta_y) * current_ratio);
             return true;
         }
 
