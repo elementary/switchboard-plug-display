@@ -17,7 +17,7 @@
  * Boston, MA 02110-1301, USA.
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
- *              Felix Andreas <>
+ *              Felix Andreas <fandreas@physik.hu-berlin.de>
  */
 
 public class Display.DisplaysOverlay : Gtk.Overlay {
