@@ -79,18 +79,22 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
+            x += display_widget.delta_x;
+            y += display_widget.delta_y;
+            var x_start = (int) Math.round(x * current_ratio);
+            var y_start = (int) Math.round(y * current_ratio);
+            var x_end = (int) Math.round((x + width) * current_ratio);
+            var y_end = (int) Math.round((y + height) * current_ratio);
             allocation = Gdk.Rectangle ();
-            allocation.width = (int)(width * current_ratio);
-            allocation.height = (int)(height * current_ratio);
-            debug(@"allocation.width = $(allocation.width), $(width * current_ratio)");
-            //  debug(@"allocation.height = $(allocation.height)");
-            //  debug(@"default_x_margin = $default_x_margin");
-            //  debug(@"default_y_margin = $default_y_margin");
-            debug(@"current_ration = $current_ratio");
-            debug(@"x = $x");
-            debug(@"x_position = $((int) ((x +  display_widget.delta_x) * current_ratio)), $(((x +  display_widget.delta_x) * current_ratio))");
-            allocation.x = (int) ((x +  display_widget.delta_x) * current_ratio);
-            allocation.y = (int) ((y +  display_widget.delta_y) * current_ratio);
+            allocation.x = default_x_margin + x_start;
+            allocation.y = default_y_margin + y_start;
+            allocation.width = x_end - x_start;
+            allocation.height = y_end - y_start;
+
+            // DEBUG
+            debug(@"Monitor real x = $x");
+            debug(@"  x_position = $(allocation.x - default_x_margin), $((x +  display_widget.delta_x) * current_ratio)");
+            debug(@"  allocation.width = $(allocation.width), $(width * current_ratio)");
             return true;
         }
 
