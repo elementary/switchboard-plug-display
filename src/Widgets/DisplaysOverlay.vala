@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2018 elementary LLC.
+ * Copyright (c) 2014-2019 elementary, Inc. (https://elementary.io)
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,6 +17,7 @@
  * Boston, MA 02110-1301, USA.
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
+ *              Felix Andreas <fandreas@physik.hu-berlin.de>
  */
 
 public class Display.DisplaysOverlay : Gtk.Overlay {
