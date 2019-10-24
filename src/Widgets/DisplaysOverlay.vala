@@ -91,11 +91,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             allocation.y = default_y_margin + y_start;
             allocation.width = x_end - x_start;
             allocation.height = y_end - y_start;
-
-            // DEBUG
-            debug(@"Monitor real x = $x");
-            debug(@"  x_position = $(allocation.x - default_x_margin), $((x +  display_widget.delta_x) * current_ratio)");
-            debug(@"  allocation.width = $(allocation.width), $(width * current_ratio)");
             return true;
         }
 
