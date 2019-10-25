@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2018 elementary LLC.
+ * Copyright (c) 2014-2019 elementary, Inc. (https://elementary.io)
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,6 +17,7 @@
  * Boston, MA 02110-1301, USA.
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
+ *              Felix Andreas <fandreas@physik.hu-berlin.de>
  */
 
 public class Display.DisplaysOverlay : Gtk.Overlay {
@@ -299,7 +300,70 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         reorder_overlay (display_widget, -1);
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
+        Gdk.ModifierType state;
+        Gtk.get_current_event_state (out state);
+        if (!(Gdk.ModifierType.CONTROL_MASK in state)) {
+            align_edges (display_widget);
+        }
+
         display_widget.queue_resize_no_redraw ();
+    }
+
+    private void align_edges (DisplayWidget display_widget) {
+        int aligned_delta[2] = { int.MAX, int.MAX };
+        int current_delta[2] = { display_widget.delta_x, display_widget.delta_y };
+
+        int x, y, width, height;
+        display_widget.get_geometry (out x, out y, out width, out height);
+
+        int widget_points[6], anchor_points[6];
+        widget_points [0] = x;                       // x_start
+        widget_points [1] = x + width / 2 - 1;       // x_center
+        widget_points [2] = x + width - 1;           // x_end
+        widget_points [3] = y;                       // y_start
+        widget_points [4] = y + height / 2 - 1;      // y_center
+        widget_points [5] = y + height - 1;          // y_end
+
+        foreach (var child in get_children ()) {
+            if (!(child is DisplayWidget) || (DisplayWidget) child == display_widget) {
+                continue;
+            }
+
+            var anchor = (DisplayWidget) child;
+            anchor.get_geometry (out x, out y, out width, out height);
+            anchor_points [0] = x;                   // x_start
+            anchor_points [1] = x + width / 2 - 1;   // x_center
+            anchor_points [2] = x + width - 1;       // x_end
+            anchor_points [3] = y;                   // y_start
+            anchor_points [4] = y + height / 2 - 1;  // y_center
+            anchor_points [5] = y + height - 1;      // y_end
+
+            int threshold = int.min (width, height) / 10;
+            for (var u = 0; u < 2; u++) { // 0: X, 1: Y
+                for (var i = 0; i < 3; i++) {
+                    for (var j = 0; j < 3; j++) {
+                        int test_delta = anchor_points [i + 3 * u] - widget_points [j + 3 * u];
+                        if (threshold > (test_delta - current_delta [u]).abs ()) {
+                            if (test_delta.abs () < aligned_delta [u].abs ()) {
+                                aligned_delta [u] = test_delta;
+                                if (i == 0 && j != i) {
+                                    aligned_delta [u] -= 1;
+                                } else if (j == 0 && i != j) {
+                                    aligned_delta [u] += 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (aligned_delta [0] != int.MAX) {
+            display_widget.delta_x = aligned_delta [0];
+        }
+        if (aligned_delta [1] != int.MAX) {
+            display_widget.delta_y = aligned_delta [1];
+        }
     }
 
     private void close_gaps () {
