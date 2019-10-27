@@ -24,7 +24,7 @@ public class Display.VirtualMonitor : GLib.Object {
     public int y { get; set; }
     public int current_x { get; set; }
     public int current_y { get; set; }
-    public bool is_active {get; set; }
+    public bool is_active {get; private set; }
     public double scale { get; set; }
     public DisplayTransform transform { get; set; }
     public bool primary { get; set; }
@@ -80,7 +80,7 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
-    public bool set_active(bool active) {
+    public bool set_active (bool active) {
         // In mirror mode, a single VirtualMonitor represents multiple physical monitors.
         // Surely we don't want to allow the user to de-activate all physical monitors, so we don't allow the operation.
         if (is_mirror && !active) {
@@ -91,10 +91,7 @@ public class Display.VirtualMonitor : GLib.Object {
     }
 
     public void get_current_mode_size (out int width, out int height) {
-        if (!is_active) {
-            width = 1280;
-            height = 720;
-        } else if (is_mirror) {
+        if (is_mirror) {
             var current_mode = monitors[0].current_mode;
             width = current_mode.width;
             height = current_mode.height;

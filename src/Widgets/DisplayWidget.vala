@@ -205,7 +205,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         destroy.connect (() => display_window.destroy ());
 
         use_switch.notify["active"].connect (() => {
-            if (!virtual_monitor.set_active(use_switch.active)) {
+            if (!virtual_monitor.set_active (use_switch.active)) {
                 return;
             };
             resolution_combobox.sensitive = use_switch.active;

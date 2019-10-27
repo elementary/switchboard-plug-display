@@ -66,8 +66,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         add (grid);
 
         monitor_manager = Display.MonitorManager.get_default ();
-        monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
-        rescan_displays ();
+        monitor_manager.notify["virtual-monitor-number"].connect (() => redraw_displays (false));
+        redraw_displays (false);
     }
 
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
@@ -91,13 +91,22 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         return false;
     }
 
-    public void rescan_displays () {
+    public void redraw_displays (bool rescan_monitors) {
+        if (scanning) {
+            return;
+        }
         scanning = true;
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 child.destroy ();
             }
         });
+
+        if (rescan_monitors) {
+            monitor_manager.rescan_monitors ();
+            // By rescanning monitors we've reset to the current configuration currently in use.
+            configuration_changed (false);
+        }
 
         active_displays = 0;
         foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
@@ -226,13 +235,13 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
             if (!virtual_monitor.is_active && virtual_monitor.primary) {
-                pick_new_primary();
+                pick_new_primary ();
             }
             display_widget.queue_resize_no_redraw ();
             check_intersects (display_widget);
             snap_edges (display_widget);
             close_gaps ();
-            verify_global_positions();
+            verify_global_positions ();
             calculate_ratio ();
             change_active_displays_sensitivity ();
             check_configuration_changed ();
@@ -267,15 +276,15 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.end_grab (old_delta_x, old_delta_y);
     }
 
-    private void pick_new_primary() {
+    private void pick_new_primary () {
         foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
             if (virtual_monitor.is_active) {
-                set_as_primary(virtual_monitor);
+                set_as_primary (virtual_monitor);
                 return;
             }
         }
     }
-    
+
     private void set_as_primary (Display.VirtualMonitor new_primary) {
         if (!new_primary.is_active) {
             return;

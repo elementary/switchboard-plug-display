@@ -20,13 +20,13 @@
  */
 
 public class Display.MonitorManager : GLib.Object {
-    public Gee.LinkedList<Display.VirtualMonitor> virtual_monitors { get; construct; }
-    public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
-
+    public Gee.LinkedList<Display.VirtualMonitor> virtual_monitors { get; set; }
+    public Gee.LinkedList<Display.Monitor> monitors { get; set; }
     public bool global_scale_required { get; private set; }
     public bool mirroring_supported { get; private set; }
     public int max_width { get; private set; }
     public int max_height { get; private set; }
+    public signal void monitors_changed ();
     public int monitor_number {
         get {
             return monitors.size;
@@ -41,7 +41,7 @@ public class Display.MonitorManager : GLib.Object {
 
     public bool is_mirrored {
         get {
-            return virtual_monitors.size == 1 && virtual_monitors.get(0).monitors.size > 1;
+            return virtual_monitors.size == 1 && virtual_monitors.get (0).is_mirror;
         }
     }
 
@@ -66,10 +66,20 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         try {
             iface = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.Mutter.DisplayConfig", "/org/gnome/Mutter/DisplayConfig");
-            iface.monitors_changed.connect (get_monitor_config);
+            iface.monitors_changed.connect (on_monitors_changed);
         } catch (Error e) {
             critical (e.message);
         }
+    }
+
+    public void rescan_monitors () {
+        monitors.clear ();
+        virtual_monitors.clear ();
+        get_monitor_config ();
+    }
+
+    public void on_monitors_changed () {
+        monitors_changed ();
     }
 
     public void get_monitor_config () {
@@ -206,13 +216,19 @@ public class Display.MonitorManager : GLib.Object {
         }
         if (virtual_monitor_number != monitor_number) {
             // Create Inactive VirtualMonitors for each disabled monitor.
-            virtual_monitors.add_all(create_missing_virtual_monitors(false, max_scale));
+            virtual_monitors.add_all (create_missing_virtual_monitors (false, max_scale));
         }
     }
 
     public void set_monitor_config () {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
+            debug (@"set config with: active: $(virtual_monitor.is_active)
+                                     x: $(virtual_monitor.x),
+                                     y: $(virtual_monitor.y),
+                                     scale: $(virtual_monitor.scale),
+                                     transform: $(virtual_monitor.transform),
+                                     primary: $(virtual_monitor.primary)");
             if (virtual_monitor.is_active) {
             logical_monitors += get_mutter_logical_monitor (virtual_monitor);
             }
@@ -315,7 +331,7 @@ public class Display.MonitorManager : GLib.Object {
         set_monitor_config ();
     }
 
-    public Gee.LinkedList<Display.VirtualMonitor> create_missing_virtual_monitors(
+    public Gee.LinkedList<Display.VirtualMonitor> create_missing_virtual_monitors (
         bool new_monitors_active, double new_monitors_scale) {
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
 
@@ -325,13 +341,13 @@ public class Display.MonitorManager : GLib.Object {
                 if (monitor in virtual_monitor.monitors) {
                     skip_monitor = true;
                     continue;
-                } 
-            }   
+                }
+            }
             if (skip_monitor) {
                 continue;
             }
             var single_virtual_monitor = new Display.VirtualMonitor ();
-            single_virtual_monitor.set_active(new_monitors_active);
+            single_virtual_monitor.set_active (new_monitors_active);
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
             if (global_scale_required) {
@@ -369,7 +385,7 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors.clear ();
         var new_monitors_active = true;
         double max_scale = Utils.get_min_compatible_scale (monitors);
-        var new_virtual_monitors = create_missing_virtual_monitors(new_monitors_active, max_scale);
+        var new_virtual_monitors = create_missing_virtual_monitors (new_monitors_active, max_scale);
 
         new_virtual_monitors.get (0).primary = true;
         virtual_monitors.add_all (new_virtual_monitors);
