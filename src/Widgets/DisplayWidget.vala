@@ -166,6 +166,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         populate_refresh_rates ();
 
+        rotation_combobox.set_active ((int) virtual_monitor.transform);
+
         var popover_grid = new Gtk.Grid ();
         popover_grid.column_spacing = 12;
         popover_grid.row_spacing = 6;
@@ -308,7 +310,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
             check_position ();
         });
 
-        rotation_combobox.set_active ((int) virtual_monitor.transform);
         on_vm_transform_changed ();
 
         virtual_monitor.modes_changed.connect (on_monitor_modes_changed);
@@ -365,9 +366,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
         }
 
-        //if (virtual_monitor.is_active) {
+        if (virtual_monitor.is_active) {
             refresh_combobox.sensitive = added > 1;
-        //}
+        }
     }
 
     private void on_monitor_modes_changed () {
