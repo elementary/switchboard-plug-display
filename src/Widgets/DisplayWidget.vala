@@ -203,11 +203,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
         display_window.attached_to = this;
 
         destroy.connect (() => display_window.destroy ());
-
+        virtual_monitor.bind_property ("is_mirror", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
         use_switch.notify["active"].connect (() => {
-            if (!virtual_monitor.set_active (use_switch.active)) {
-                return;
-            };
+            virtual_monitor.is_active = use_switch.active;
             resolution_combobox.sensitive = use_switch.active;
             rotation_combobox.sensitive = use_switch.active;
             refresh_combobox.sensitive = use_switch.active;

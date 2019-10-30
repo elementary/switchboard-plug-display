@@ -347,7 +347,7 @@ public class Display.MonitorManager : GLib.Object {
                 continue;
             }
             var single_virtual_monitor = new Display.VirtualMonitor ();
-            single_virtual_monitor.set_active (new_monitors_active);
+            single_virtual_monitor.is_active = new_monitors_active;
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
             if (global_scale_required) {
