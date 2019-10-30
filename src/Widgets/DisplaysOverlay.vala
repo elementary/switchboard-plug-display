@@ -82,10 +82,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.get_geometry (out x, out y, out width, out height);
             x += display_widget.delta_x;
             y += display_widget.delta_y;
-            var x_start = (int) Math.round(x * current_ratio);
-            var y_start = (int) Math.round(y * current_ratio);
-            var x_end = (int) Math.round((x + width) * current_ratio);
-            var y_end = (int) Math.round((y + height) * current_ratio);
+            var x_start = (int) Math.round (x * current_ratio);
+            var y_start = (int) Math.round (y * current_ratio);
+            var x_end = (int) Math.round ((x + width) * current_ratio);
+            var y_end = (int) Math.round ((y + height) * current_ratio);
             allocation = Gdk.Rectangle ();
             allocation.x = default_x_margin + x_start;
             allocation.y = default_y_margin + y_start;
