@@ -83,8 +83,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             allocation = Gdk.Rectangle ();
             allocation.width = (int)(width * current_ratio);
             allocation.height = (int)(height * current_ratio);
-            allocation.x = default_x_margin + (int) ((x +  display_widget.delta_x) * current_ratio);
-            allocation.y = default_y_margin + (int) ((y +  display_widget.delta_y) * current_ratio);
+            allocation.x = default_x_margin + (int) ((x + display_widget.delta_x) * current_ratio);
+            allocation.y = default_y_margin + (int) ((y + display_widget.delta_y) * current_ratio);
             return true;
         }
 
@@ -191,7 +191,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         add_overlay (display_widget);
         var provider = new Gtk.CssProvider ();
         try {
-            var color_number = (get_children ().length ()-2)%7;
+            var color_number = (get_children ().length () - 2) % 7;
 
             var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
             provider.load_from_data (colored_css, colored_css.length);
@@ -467,11 +467,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             Gdk.Rectangle test_rect = { other_x, other_y, other_width, other_height };
             if (src_rect.intersect (test_rect, null)) {
                 if (level == 0) {
-                    var distance_left   = source_x - other_x - other_width;
-                    var distance_right  = source_x - other_x + source_width;
-                    var distance_top    = source_y - other_y - other_height;
+                    var distance_left = source_x - other_x - other_width;
+                    var distance_right = source_x - other_x + source_width;
+                    var distance_top = source_y - other_y - other_height;
                     var distance_bottom = source_y - other_y + source_height;
-                    var test_distance_x = distance_right  < -distance_left ? distance_right : distance_left;
+                    var test_distance_x = distance_right < -distance_left ? distance_right : distance_left;
                     var test_distance_y = distance_bottom < -distance_top ? distance_bottom : distance_top;
 
                     // if distance to upper egde == distance lower edge, move horizontally
@@ -493,7 +493,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         if (scanning) return;
         // Snap last_moved
         debug ("Snapping displays");
-        var anchors = new List<DisplayWidget>();
+        var anchors = new List<DisplayWidget> ();
         get_children ().foreach ((child) => {
             if (!(child is DisplayWidget) || last_moved.equals ((DisplayWidget)child)) return;
             anchors.append ((DisplayWidget) child);
