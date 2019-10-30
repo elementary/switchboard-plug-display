@@ -206,9 +206,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
         virtual_monitor.bind_property ("is_mirror", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
         use_switch.notify["active"].connect (() => {
             virtual_monitor.is_active = use_switch.active;
-            resolution_combobox.sensitive = use_switch.active;
-            rotation_combobox.sensitive = use_switch.active;
-            refresh_combobox.sensitive = use_switch.active;
+            resolution_combobox.sensitive = virtual_monitor.is_active;
+            rotation_combobox.sensitive = virtual_monitor.is_active;
+            refresh_combobox.sensitive = virtual_monitor.is_active;
 
             if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
@@ -365,7 +365,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
         }
 
-        refresh_combobox.sensitive = added > 1;
+        //if (virtual_monitor.is_active) {
+            refresh_combobox.sensitive = added > 1;
+        //}
     }
 
     private void on_monitor_modes_changed () {
