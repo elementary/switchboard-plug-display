@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:45+0200\n"
+"POT-Creation-Date: 2019-10-31 10:47-0700\n"
 "PO-Revision-Date: 2018-06-06 00:09+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian <https://weblate.elementary.io/projects/switchboard/"
@@ -177,37 +177,37 @@ msgstr "Alkalmazás"
 msgid "Rotation Lock:"
 msgstr "Forgatás zár:"
 
-#: src/Widgets/DisplayWidget.vala:99
+#: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
 msgstr "Használja ezt a kijelzőt:"
 
-#: src/Widgets/DisplayWidget.vala:106
+#: src/Widgets/DisplayWidget.vala:107
 msgid "Resolution:"
 msgstr "Felbontás:"
 
-#: src/Widgets/DisplayWidget.vala:116
+#: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 msgid "Screen Rotation:"
 msgstr "Képernyő elforgatása"
 
-#: src/Widgets/DisplayWidget.vala:125
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:192
+#: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
 msgstr "Kijelző beállítások"
 
-#: src/Widgets/DisplayWidget.vala:358
+#: src/Widgets/DisplayWidget.vala:359
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:445
+#: src/Widgets/DisplayWidget.vala:444
 msgid "Is the primary display"
 msgstr "Ez az elsődleges kijelző"
 
-#: src/Widgets/DisplayWidget.vala:448
+#: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "Beállítás elsődleges kijelzőnek"
 

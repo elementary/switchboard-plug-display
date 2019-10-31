@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:45+0200\n"
+"POT-Creation-Date: 2019-10-31 10:47-0700\n"
 "PO-Revision-Date: 2018-05-29 12:21+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/switchboard/"
@@ -170,37 +170,37 @@ msgstr "Aplică"
 msgid "Rotation Lock:"
 msgstr "Blocare rotație:"
 
-#: src/Widgets/DisplayWidget.vala:99
+#: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
 msgstr "Utilizați acest afișaj:"
 
-#: src/Widgets/DisplayWidget.vala:106
+#: src/Widgets/DisplayWidget.vala:107
 msgid "Resolution:"
 msgstr "Rezoluţie:"
 
-#: src/Widgets/DisplayWidget.vala:116
+#: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 msgid "Screen Rotation:"
 msgstr "Rotația ecranului"
 
-#: src/Widgets/DisplayWidget.vala:125
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:192
+#: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
 msgstr "Configurați afișarea"
 
-#: src/Widgets/DisplayWidget.vala:358
+#: src/Widgets/DisplayWidget.vala:359
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:445
+#: src/Widgets/DisplayWidget.vala:444
 msgid "Is the primary display"
 msgstr "Este afișajul principal"
 
-#: src/Widgets/DisplayWidget.vala:448
+#: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "Setați ca afișaj principal"
 

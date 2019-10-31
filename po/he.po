@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:45+0200\n"
+"POT-Creation-Date: 2019-10-31 10:47-0700\n"
 "PO-Revision-Date: 2018-12-15 13:05+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://weblate.elementary.io/projects/switchboard/"
@@ -172,36 +172,36 @@ msgstr "החלה"
 msgid "Rotation Lock:"
 msgstr "נעילת סיבוב:"
 
-#: src/Widgets/DisplayWidget.vala:99
+#: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
 msgstr "שימוש בתצוגה זו:"
 
-#: src/Widgets/DisplayWidget.vala:106
+#: src/Widgets/DisplayWidget.vala:107
 msgid "Resolution:"
 msgstr "רזולוציה:"
 
-#: src/Widgets/DisplayWidget.vala:116
+#: src/Widgets/DisplayWidget.vala:117
 msgid "Screen Rotation:"
 msgstr "סיבוב המסך:"
 
-#: src/Widgets/DisplayWidget.vala:125
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"
 msgstr "קצב רענון:"
 
-#: src/Widgets/DisplayWidget.vala:192
+#: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
 msgstr "הגדרת התצוגה"
 
-#: src/Widgets/DisplayWidget.vala:358
+#: src/Widgets/DisplayWidget.vala:359
 #, c-format
 msgid "%g Hz"
 msgstr "%g הרץ"
 
-#: src/Widgets/DisplayWidget.vala:445
+#: src/Widgets/DisplayWidget.vala:444
 msgid "Is the primary display"
 msgstr "התצוגה הראשית"
 
-#: src/Widgets/DisplayWidget.vala:448
+#: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "הגדרה כתצוגה הראשית"
 

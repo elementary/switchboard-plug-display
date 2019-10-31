@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:45+0200\n"
+"POT-Creation-Date: 2019-10-31 10:48-0700\n"
 "PO-Revision-Date: 2019-10-07 15:23+0000\n"
 "Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
@@ -19,10 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.7.1\n"
 
-#: data/io.elementary.switchboard.display.appdata.xml.in:5
+#: data/display.appdata.xml.in:5
 msgid "Display Settings"
 msgstr "Configuración de visualización"
 
-#: data/io.elementary.switchboard.display.appdata.xml.in:6
+#: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configurar la resolución y la posición de monitores y proyectores"
+
+#: data/display.appdata.xml.in:11
+msgid "Improved multi-display layouts with better snapping and aligning"
+msgstr ""
+
+#: data/display.appdata.xml.in:12
+msgid "Fixed the placement of display name tags"
+msgstr ""
+
+#: data/display.appdata.xml.in:13
+msgid "Updated translations"
+msgstr ""
