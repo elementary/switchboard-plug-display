@@ -205,12 +205,17 @@ public class Display.DisplayWidget : Gtk.EventBox {
         display_window.attached_to = this;
 
         destroy.connect (() => display_window.destroy ());
-        virtual_monitor.bind_property ("is_mirror", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
+
+        // Make some of the UI elements for the monitor unclickable if the monitor isn't active, or if the operation
+        // would result in a bad state.
+        virtual_monitor.bind_property ("is-mirror", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
+        virtual_monitor.bind_property ("is-active", resolution_combobox, "sensitive", GLib.BindingFlags.SYNC_CREATE);
+        virtual_monitor.bind_property ("is-active", rotation_combobox, "sensitive");
+        virtual_monitor.bind_property ("is-active", refresh_combobox, "sensitive");
+        virtual_monitor.bind_property ("is-active", primary_image, "sensitive");
+
         use_switch.notify["active"].connect (() => {
             virtual_monitor.is_active = use_switch.active;
-            resolution_combobox.sensitive = virtual_monitor.is_active;
-            rotation_combobox.sensitive = virtual_monitor.is_active;
-            refresh_combobox.sensitive = virtual_monitor.is_active;
 
             if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);

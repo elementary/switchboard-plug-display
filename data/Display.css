@@ -29,6 +29,11 @@ widget.colored {
     color: @SLATE_700;
 }
 
+.colored.disabled button {
+    background-color: @SLATE_100;
+    color: @SLATE_700;
+}
+
 .colored.disabled button:focus {
     background: alpha (@SLATE_700, 0.25);
 }
