@@ -1,6 +1,6 @@
 # Switchboard Display Plug
 [![Packaging status](https://repology.org/badge/tiny-repos/switchboard-plug-display.svg)](https://repology.org/metapackage/switchboard-plug-display)
-[![l10n](https://l10n.elementary.io/widgets/switchboard/switchboard-plug-display/svg-badge.svg)](https://l10n.elementary.io/projects/switchboard/switchboard-plug-display)
+[![Translation status](https://l10n.elementary.io/widgets/switchboard/-/switchboard-plug-display/svg-badge.svg)](https://l10n.elementary.io/engage/switchboard/?utm_source=widget)
 
 Extension for [Switchboard](https://github.com/elementary/switchboard) to manage multiple monitor setups.
 

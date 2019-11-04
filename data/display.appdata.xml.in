@@ -4,10 +4,21 @@
   <extends>io.elementary.switchboard</extends>
   <name>Display Settings</name>
   <summary>Configure resolution and position of monitors and projectors</summary>
+  <releases>
+    <release version="2.2.0" date="2019-10-29" urgency="medium">
+      <description>
+        <ul>
+          <li>Improved multi-display layouts with better snapping and aligning</li>
+          <li>Fixed the placement of display name tags</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
   <screenshots>
-      <screenshot type="default">
-          <image>https://raw.githubusercontent.com/elementary/switchboard-plug-display/master/data/screenshot.png</image>
-      </screenshot>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/elementary/switchboard-plug-display/master/data/screenshot.png</image>
+    </screenshot>
   </screenshots>
   <url type="homepage">https://elementary.io</url>
   <url type="bugtracker">https://github.com/elementary/switchboard-plug-display/issues</url>

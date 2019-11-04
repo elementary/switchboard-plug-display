@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:45+0200\n"
+"POT-Creation-Date: 2019-10-31 10:47-0700\n"
 "PO-Revision-Date: 2019-04-21 03:53+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
@@ -173,36 +173,36 @@ msgstr "適用"
 msgid "Rotation Lock:"
 msgstr "回転をロック:"
 
-#: src/Widgets/DisplayWidget.vala:99
+#: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
 msgstr "このディスプレイを使う:"
 
-#: src/Widgets/DisplayWidget.vala:106
+#: src/Widgets/DisplayWidget.vala:107
 msgid "Resolution:"
 msgstr "解像度:"
 
-#: src/Widgets/DisplayWidget.vala:116
+#: src/Widgets/DisplayWidget.vala:117
 msgid "Screen Rotation:"
 msgstr "画面の回転:"
 
-#: src/Widgets/DisplayWidget.vala:125
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"
 msgstr "リフレッシュレート:"
 
-#: src/Widgets/DisplayWidget.vala:192
+#: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
 msgstr "ディスプレイを設定します"
 
-#: src/Widgets/DisplayWidget.vala:358
+#: src/Widgets/DisplayWidget.vala:359
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:445
+#: src/Widgets/DisplayWidget.vala:444
 msgid "Is the primary display"
 msgstr "プライマリーディスプレイ"
 
-#: src/Widgets/DisplayWidget.vala:448
+#: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "プライマリーディスプレイとして設定します"
 
