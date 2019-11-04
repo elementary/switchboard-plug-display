@@ -123,14 +123,13 @@ public class Display.DisplaysView : Gtk.Grid {
             });
 
             mirror_switch.active = monitor_manager.is_mirrored;
-            mirror_switch.notify["active"].connect (() => {
-                if (mirror_switch.active) {
-                    monitor_manager.enable_clone_mode ();
-                } else {
-                    monitor_manager.disable_clone_mode ();
-                }
+            monitor_manager.notify["is-mirrored"].connect (() => {
+                mirror_switch.active = monitor_manager.is_mirrored;
+            });
 
-                apply_button.sensitive = true;
+            mirror_switch.notify["active"].connect (() => {
+                apply_button.sensitive = mirror_switch.active && monitor_manager.enable_clone_mode () ||
+                                         !mirror_switch.active && monitor_manager.disable_clone_mode ();
             });
     }
 }

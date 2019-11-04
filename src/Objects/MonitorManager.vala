@@ -73,6 +73,9 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     public void get_monitor_config () {
+        monitors.clear ();
+        virtual_monitors.clear ();
+
         MutterReadMonitor[] mutter_monitors;
         MutterReadLogicalMonitor[] mutter_logical_monitors;
         GLib.HashTable<string, GLib.Variant> properties;
@@ -117,18 +120,14 @@ public class Display.MonitorManager : GLib.Object {
 
         var monitors_with_changed_modes = new Gee.LinkedList<Display.Monitor> ();
         foreach (var mutter_monitor in mutter_monitors) {
-            var monitor = get_monitor_by_hash (mutter_monitor.monitor.hash);
-            if (monitor == null) {
-                monitor = new Display.Monitor ();
-                monitors.add (monitor);
-            } else {
-                monitors_with_changed_modes.add (monitor);
-            }
+            var monitor = new Display.Monitor ();
 
+            monitors.add (monitor);
             monitor.connector = mutter_monitor.monitor.connector;
             monitor.vendor = mutter_monitor.monitor.vendor;
             monitor.product = mutter_monitor.monitor.product;
             monitor.serial = mutter_monitor.monitor.serial;
+
             var display_name_variant = mutter_monitor.properties.lookup ("display-name");
             if (display_name_variant != null) {
                 monitor.display_name = display_name_variant.get_string ();
@@ -147,11 +146,7 @@ public class Display.MonitorManager : GLib.Object {
             }
 
             foreach (var mutter_mode in mutter_monitor.modes) {
-                var mode = monitor.get_mode_by_id (mutter_mode.id);
-                if (mode == null) {
-                    mode = new Display.MonitorMode ();
-                    monitor.modes.add (mode);
-                }
+                var  mode = new Display.MonitorMode ();
 
                 mode.id = mutter_mode.id;
                 mode.width = mutter_mode.width;
@@ -172,16 +167,15 @@ public class Display.MonitorManager : GLib.Object {
                 } else {
                     mode.is_current = false;
                 }
+
+                monitor.modes.add (mode);
             }
         }
 
         foreach (var mutter_logical_monitor in mutter_logical_monitors) {
             string monitors_id = VirtualMonitor.generate_id_from_monitors (mutter_logical_monitor.monitors);
-            var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
-            if (virtual_monitor == null) {
-                virtual_monitor = new VirtualMonitor ();
-                add_virtual_monitor (virtual_monitor);
-            }
+            var  virtual_monitor = new VirtualMonitor ();
+
 
             virtual_monitor.x = mutter_logical_monitor.x;
             virtual_monitor.y = mutter_logical_monitor.y;
@@ -202,7 +196,14 @@ public class Display.MonitorManager : GLib.Object {
                     }
                 }
             }
+
+            add_virtual_monitor (virtual_monitor);
         }
+
+
+        notify_property ("virtual-monitor-number");
+        notify_property ("monitor-number");
+        notify_property ("is-mirrored");
     }
 
     public void set_monitor_config () {
@@ -245,7 +246,11 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     //TODO: check for compatibility of displays in the same virtualmonitor.
-    public void enable_clone_mode () {
+    public bool enable_clone_mode () {
+        if (is_mirrored) {
+            return false;
+        }
+
         var clone_virtual_monitor = new Display.VirtualMonitor ();
         clone_virtual_monitor.primary = true;
         clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
@@ -289,6 +294,7 @@ public class Display.MonitorManager : GLib.Object {
 
         notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");
+        return true;
     }
 
     public void set_scale_on_all_monitors (double new_scale) {
@@ -308,7 +314,11 @@ public class Display.MonitorManager : GLib.Object {
         set_monitor_config ();
     }
 
-    public void disable_clone_mode () {
+    public bool disable_clone_mode () {
+        if (!is_mirrored) {
+            return false;
+        }
+
         double max_scale = Utils.get_min_compatible_scale (monitors);
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         foreach (var monitor in monitors) {
@@ -349,6 +359,8 @@ public class Display.MonitorManager : GLib.Object {
 
         notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");
+
+        return true;
     }
 
     private void add_virtual_monitor (Display.VirtualMonitor virtual_monitor) {
