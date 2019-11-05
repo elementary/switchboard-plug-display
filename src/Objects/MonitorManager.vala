@@ -320,46 +320,27 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     public bool disable_clone_mode () {
-        double max_scale = Utils.get_max_compatible_scale (monitors);
         var clone_virtual_monitor = virtual_monitors[0];
-        var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
-
+        virtual_monitors.clear ();
         foreach (var monitor in clone_virtual_monitor.monitors) {
             var single_virtual_monitor = new Display.VirtualMonitor ();
 
-            var preferred_mode = monitor.preferred_mode;
-            var current_mode = monitor.current_mode;
             if (global_scale_required) {
-                single_virtual_monitor.scale = max_scale;
-                if (max_scale in preferred_mode.supported_scales) {
-                    current_mode.is_current = false;
-                    preferred_mode.is_current = true;
-                } else if (!(max_scale in current_mode.supported_scales)) {
-                    Display.MonitorMode? largest_mode = null;
-                    foreach (var mode in monitor.modes) {
-                        if (max_scale in mode.supported_scales) {
-                            if (largest_mode == null || mode.width > largest_mode.width) {
-                                largest_mode = mode;
-                            }
-                        }
-                    }
-
-                    current_mode.is_current = false;
-                    largest_mode.is_current = true;
-                }
+                single_virtual_monitor.scale = clone_virtual_monitor.scale;
             } else {
-                current_mode.is_current = false;
-                preferred_mode.is_current = true;
-                single_virtual_monitor.scale = preferred_mode.preferred_scale;
+                single_virtual_monitor.scale = monitor.preferred_mode.preferred_scale;
             }
 
-            single_virtual_monitor.monitors.add (monitor);
-            new_virtual_monitors.add (single_virtual_monitor);
-        }
+            monitor.current_mode.is_current = false;
+            monitor.preferred_mode.is_current = true;
 
-        new_virtual_monitors.get (0).primary = true;
-        virtual_monitors.clear ();
-        virtual_monitors.add_all (new_virtual_monitors);
+            single_virtual_monitor.monitors.add (monitor);
+            if (monitor.is_builtin) {
+                single_virtual_monitor.primary = true;
+            }
+
+            virtual_monitors.add (single_virtual_monitor);
+        }
 
         notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");
