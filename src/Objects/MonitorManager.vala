@@ -250,15 +250,22 @@ public class Display.MonitorManager : GLib.Object {
 
         var clone_virtual_monitor = new Display.VirtualMonitor ();
         clone_virtual_monitor.primary = true;
-        clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
+
+        var max_compatible_scale = Utils.get_max_compatible_scale (monitors);
+        /* Reduce actual scale to smallest one in use (for X will only be one anyway? ) */
+        foreach (var vmon in virtual_monitors) {
+            max_compatible_scale = double.min (max_compatible_scale, vmon.scale);
+        }
+
+        clone_virtual_monitor.scale = max_compatible_scale;
         clone_virtual_monitor.monitors.add_all (monitors);
+
         var modes = clone_virtual_monitor.get_available_modes ();
         /*
          * Two choices here:
          *  - Use the largest resolution already in use.
          *  - Fallback to the largest resultion available.
          */
-
         Display.MonitorMode? largest_mode_in_use = null;
         Display.MonitorMode largest_mode = modes.get (0);
         foreach (var mode in modes) {
@@ -280,17 +287,18 @@ public class Display.MonitorManager : GLib.Object {
             }
         }
 
-        if (largest_mode_in_use != null) {
-            clone_virtual_monitor.set_current_mode (largest_mode_in_use);
-        } else {
-            clone_virtual_monitor.set_current_mode (largest_mode);
-        }
+        var mode_to_set = largest_mode_in_use ?? largest_mode;
+        clone_virtual_monitor.set_current_mode (mode_to_set);
+
+        warning ("Set virtual clone monitor mode to %s and scale to %f", mode_to_set.get_resolution (), max_compatible_scale);
 
         virtual_monitors.clear ();
         virtual_monitors.add (clone_virtual_monitor);
 
         notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");
+
+
         return true;
     }
 
@@ -299,7 +307,7 @@ public class Display.MonitorManager : GLib.Object {
             return;
         }
 
-        double max_scale = Utils.get_min_compatible_scale (monitors);
+        double max_scale = Utils.get_max_compatible_scale (monitors);
         if (new_scale > max_scale) {
             return;
         }
@@ -316,7 +324,7 @@ public class Display.MonitorManager : GLib.Object {
             return false;
         }
 
-        double max_scale = Utils.get_min_compatible_scale (monitors);
+        double max_scale = Utils.get_max_compatible_scale (monitors);
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         foreach (var monitor in monitors) {
             var single_virtual_monitor = new Display.VirtualMonitor ();

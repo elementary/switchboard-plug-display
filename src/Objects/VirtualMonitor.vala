@@ -85,7 +85,7 @@ public class Display.VirtualMonitor : GLib.Object {
     }
 
     public void get_current_mode_size (out int width, out int height) {
-        if (!is_active || monitor == null) {
+        if (!is_active) {
             width = 1280;
             height = 720;
         } else if (is_mirror) {
@@ -108,10 +108,6 @@ public class Display.VirtualMonitor : GLib.Object {
     }
 
     public void set_current_mode (Display.MonitorMode current_mode) {
-        if (monitor == null) {
-            return;
-        }
-
         if (is_mirror) {
             monitors.foreach ((_monitor) => {
                 bool mode_found = false;

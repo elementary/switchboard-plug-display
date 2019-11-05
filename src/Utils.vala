@@ -36,15 +36,13 @@ namespace Display.Utils {
     }
 
     public static Gee.LinkedList<Display.MonitorMode> get_common_monitor_modes (Gee.LinkedList<Display.Monitor> monitors) {
+        /* Only get common modes - there is another function to determine compatible scales*/
         var common_modes = new Gee.LinkedList<Display.MonitorMode> ();
-        double min_scale = get_min_compatible_scale (monitors);
         bool first_monitor = true;
         foreach (var monitor in monitors) {
             if (first_monitor) {
                 foreach (var mode in monitor.modes) {
-                    if (min_scale in mode.supported_scales) {
-                        common_modes.add (mode);
-                    }
+                    common_modes.add (mode);
                 }
 
                 first_monitor = false;
@@ -72,12 +70,12 @@ namespace Display.Utils {
         return common_modes;
     }
 
-    public static double get_min_compatible_scale (Gee.LinkedList<Display.Monitor> monitors) {
-        double min_scale = double.MAX;
+    public static double get_max_compatible_scale (Gee.LinkedList<Display.Monitor> monitors) {
+        double max_scale = double.MAX;
         foreach (var monitor in monitors) {
-            min_scale = double.min (min_scale, monitor.get_max_scale ());
+            max_scale = double.min (max_scale, monitor.get_max_scale ());
         }
 
-        return min_scale;
+        return max_scale;
     }
 }
