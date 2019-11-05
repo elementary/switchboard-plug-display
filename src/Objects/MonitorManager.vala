@@ -146,7 +146,7 @@ public class Display.MonitorManager : GLib.Object {
             }
 
             foreach (var mutter_mode in mutter_monitor.modes) {
-                var  mode = new Display.MonitorMode ();
+                var mode = new Display.MonitorMode ();
 
                 mode.id = mutter_mode.id;
                 mode.width = mutter_mode.width;
@@ -173,9 +173,7 @@ public class Display.MonitorManager : GLib.Object {
         }
 
         foreach (var mutter_logical_monitor in mutter_logical_monitors) {
-            string monitors_id = VirtualMonitor.generate_id_from_monitors (mutter_logical_monitor.monitors);
-            var  virtual_monitor = new VirtualMonitor ();
-
+            var virtual_monitor = new VirtualMonitor ();
 
             virtual_monitor.x = mutter_logical_monitor.x;
             virtual_monitor.y = mutter_logical_monitor.y;
@@ -199,7 +197,6 @@ public class Display.MonitorManager : GLib.Object {
 
             add_virtual_monitor (virtual_monitor);
         }
-
 
         notify_property ("virtual-monitor-number");
         notify_property ("monitor-number");
@@ -368,30 +365,10 @@ public class Display.MonitorManager : GLib.Object {
         notify_property ("virtual-monitor-number");
     }
 
-    private VirtualMonitor? get_virtual_monitor_by_id (string id) {
-        foreach (var vm in virtual_monitors) {
-            if (vm.id == id) {
-                return vm;
-            }
-        }
-
-        return null;
-    }
-
     private static bool compare_monitor_with_mutter_info (Display.Monitor monitor, MutterReadMonitorInfo mutter_info) {
         return monitor.connector == mutter_info.connector
                && monitor.vendor == mutter_info.vendor
                && monitor.product == mutter_info.product
                && monitor.serial == mutter_info.serial;
-    }
-
-    private Display.Monitor? get_monitor_by_hash (uint hash) {
-        foreach (var monitor in monitors) {
-            if (monitor.hash == hash) {
-                return monitor;
-            }
-        }
-
-        return null;
     }
 }
