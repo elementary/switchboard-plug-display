@@ -251,8 +251,6 @@ public class Display.MonitorManager : GLib.Object {
         var clone_virtual_monitor = new Display.VirtualMonitor ();
         clone_virtual_monitor.primary = true;
         clone_virtual_monitor.scale = Utils.get_max_compatible_scale (monitors);
-//        clone_virtual_monitor.x = 0;
-//        clone_virtual_monitor.y = 0;
         clone_virtual_monitor.monitors.add_all (monitors);
         var modes = clone_virtual_monitor.get_available_modes ();
         /*
