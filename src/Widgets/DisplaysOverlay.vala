@@ -433,6 +433,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             var other_display_widget = (DisplayWidget) child;
             int other_x, other_y, other_width, other_height;
             other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
+
+            if (other_x == source_x && other_y == source_y) {
+                other_x += 10;
+            }
+
             Gdk.Rectangle test_rect = { other_x, other_y, other_width, other_height };
             if (src_rect.intersect (test_rect, null)) {
                 if (level == 0) {
@@ -442,7 +447,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     var distance_bottom = source_y - other_y + source_height;
                     var test_distance_x = distance_right < -distance_left ? distance_right : distance_left;
                     var test_distance_y = distance_bottom < -distance_top ? distance_bottom : distance_top;
-
                     // if distance to upper egde == distance lower edge, move horizontally
                     if (test_distance_x.abs () <= test_distance_y.abs () || distance_top == -distance_bottom) {
                         distance_x = test_distance_x;
@@ -450,7 +454,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                         distance_y = test_distance_y;
                     }
                 }
-
                 other_display_widget.set_geometry (other_x + distance_x, other_y + distance_y, other_width, other_height);
                 other_display_widget.queue_resize_no_redraw ();
                 check_intersects (other_display_widget, level + 1, distance_x, distance_y);

@@ -250,7 +250,9 @@ public class Display.MonitorManager : GLib.Object {
 
         var clone_virtual_monitor = new Display.VirtualMonitor ();
         clone_virtual_monitor.primary = true;
-        clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
+        clone_virtual_monitor.scale = Utils.get_max_compatible_scale (monitors);
+//        clone_virtual_monitor.x = 0;
+//        clone_virtual_monitor.y = 0;
         clone_virtual_monitor.monitors.add_all (monitors);
         var modes = clone_virtual_monitor.get_available_modes ();
         /*
@@ -299,7 +301,7 @@ public class Display.MonitorManager : GLib.Object {
             return;
         }
 
-        double max_scale = Utils.get_min_compatible_scale (monitors);
+        double max_scale = Utils.get_max_compatible_scale (monitors);
         if (new_scale > max_scale) {
             return;
         }
@@ -312,14 +314,14 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     public bool disable_clone_mode () {
-        if (!is_mirrored) {
-            return false;
-        }
+        double max_scale = Utils.get_max_compatible_scale (monitors);
+        var clone_virtual_monitor = virtual_monitors[0];
 
-        double max_scale = Utils.get_min_compatible_scale (monitors);
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
-        foreach (var monitor in monitors) {
+
+        foreach (var monitor in clone_virtual_monitor.monitors) {
             var single_virtual_monitor = new Display.VirtualMonitor ();
+
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
             if (global_scale_required) {
