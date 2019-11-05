@@ -320,14 +320,13 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     public bool disable_clone_mode () {
-        if (!is_mirrored) {
-            return false;
-        }
-
         double max_scale = Utils.get_max_compatible_scale (monitors);
+        var clone_virtual_monitor = virtual_monitors[0];
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
-        foreach (var monitor in monitors) {
+
+        foreach (var monitor in clone_virtual_monitor.monitors) {
             var single_virtual_monitor = new Display.VirtualMonitor ();
+
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
             if (global_scale_required) {

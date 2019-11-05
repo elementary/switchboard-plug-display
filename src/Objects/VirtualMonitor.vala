@@ -20,10 +20,10 @@
  */
 
 public class Display.VirtualMonitor : GLib.Object {
-    public int x { get; set; }
-    public int y { get; set; }
-    public int current_x { get; set; }
-    public int current_y { get; set; }
+    public int x { get; set; default = 0;}
+    public int y { get; set; default = 0;}
+    public int current_x { get; set; default = 0;}
+    public int current_y { get; set; default = 0;}
     public double scale { get; set; }
     public DisplayTransform transform { get; set; }
     public bool primary { get; set; }
@@ -65,7 +65,7 @@ public class Display.VirtualMonitor : GLib.Object {
     public Display.Monitor? monitor {
         owned get {
             if (is_mirror) {
-                critical ("Do not use Display.VirtualMonitor.monitor in a mirror context!");
+                debug ("Do not use Display.VirtualMonitor.monitor in a mirror context!");
             }
 
             return monitors.size > 0 ? monitors[0] : null;
