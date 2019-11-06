@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:45+0200\n"
-"PO-Revision-Date: 2019-05-18 06:14+0000\n"
+"POT-Creation-Date: 2019-10-31 10:48-0700\n"
+"PO-Revision-Date: 2019-11-04 14:24+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ja/>\n"
@@ -17,12 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7.1\n"
 
-#: data/io.elementary.switchboard.display.appdata.xml.in:5
+#: data/display.appdata.xml.in:5
 msgid "Display Settings"
 msgstr "ディスプレイの設定"
 
-#: data/io.elementary.switchboard.display.appdata.xml.in:6
+#: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "モニターとプロジェクターの解像度と位置を設定します"
+
+#: data/display.appdata.xml.in:11
+msgid "Improved multi-display layouts with better snapping and aligning"
+msgstr "スナップや整列の精度の向上など、マルチディスプレイのレイアウトを改善"
+
+#: data/display.appdata.xml.in:12
+msgid "Fixed the placement of display name tags"
+msgstr "ディスプレイ名タグの配置を修正"
+
+#: data/display.appdata.xml.in:13
+msgid "Updated translations"
+msgstr "翻訳の更新"
