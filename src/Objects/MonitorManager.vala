@@ -20,8 +20,8 @@
  */
 
 public class Display.MonitorManager : GLib.Object {
-    public Gee.LinkedList<Display.VirtualMonitor> virtual_monitors { get; set; }
-    public Gee.LinkedList<Display.Monitor> monitors { get; set; }
+    public Gee.LinkedList<Display.VirtualMonitor> virtual_monitors { get; construct; }
+    public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
     public bool global_scale_required { get; private set; }
     public bool mirroring_supported { get; private set; }
     public int max_width { get; private set; }
@@ -66,7 +66,7 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         try {
             iface = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.Mutter.DisplayConfig", "/org/gnome/Mutter/DisplayConfig");
-            iface.monitors_changed.connect (on_monitors_changed);
+            iface.monitors_changed.connect (on_iface_monitors_changed);
         } catch (Error e) {
             critical (e.message);
         }
@@ -78,7 +78,7 @@ public class Display.MonitorManager : GLib.Object {
         get_monitor_config ();
     }
 
-    public void on_monitors_changed () {
+    public void on_iface_monitors_changed () {
         monitors_changed ();
     }
 
