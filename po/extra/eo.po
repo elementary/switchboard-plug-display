@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:48-0700\n"
-"PO-Revision-Date: 2019-07-13 07:46+0000\n"
+"PO-Revision-Date: 2019-11-07 10:24+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/eo/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -30,11 +30,12 @@ msgstr "Agordi ekrandistingivon kaj pozicion inter ekranoj kaj projekciiloj"
 #: data/display.appdata.xml.in:11
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
+"Plibonigita plur-ekrana aranĝo, per pli bona fenestra algluo kaj ĝisrandigo"
 
 #: data/display.appdata.xml.in:12
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Estis riparita la lokado de la ekranaj nomaj etikedoj"
 
 #: data/display.appdata.xml.in:13
 msgid "Updated translations"
-msgstr ""
+msgstr "Ĝisdatigitaj tradukoj"
