@@ -1,3 +1,28 @@
+switchboard-plug-display (2.2.0) bionic; urgency=medium
+
+  * Release 2.2.0 (#210)
+  * Add Gettext Updates to Actions
+  * Update translation files
+  * AppData: Add releases info (#206)
+  * Split Debian packaging into its own branch
+  * Add Release to Actions
+  * Add Lint to CI (#191)
+  * DisplaysOverlay: fix linting errors (#204)
+  * DisplaysOverlay: Update copyright header (#199)
+  * (5/5) Multiple Issues: Introduce magnetic edge center (#184)
+  * (4/5) Multiple Issues: Fix intersections after mouse button release
+    (#183)
+  * Fix code style in all by DisplaysOverlay (#194)
+  * run installation in CI (#193)
+  * (3/5) Multiple Issues: Close gaps after mouse button release (#182)
+  * (2/5) Multiple Issues: Snap monitors after mouse button release
+    (#181)
+  * (1/5) Multiple issues: Prep (#180)
+  * fix misplaced monitor labels after detecting displays (#176)
+  * Build with GitHub CI (#190)
+
+ -- elementary OS Team <builds@elementary.io>  Fri, 15 Nov 2019 23:05:51 +0000
+
 switchboard-plug-display (2.1.9) bionic; urgency=medium
 
   * New upstream release.
