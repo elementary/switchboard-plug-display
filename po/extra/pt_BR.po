@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:48-0700\n"
-"PO-Revision-Date: 2019-05-28 14:29+0000\n"
+"PO-Revision-Date: 2019-11-22 03:25+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "switchboard/display-plug-extra/pt_BR/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -30,11 +30,12 @@ msgstr "Configurar a resolução e a posição dos monitores e projetores"
 #: data/display.appdata.xml.in:11
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
+"Layouts aprimorados para vários monitores com melhor encaixe e alinhamento"
 
 #: data/display.appdata.xml.in:12
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Corrigido o posicionamento das tags de nome para exibição"
 
 #: data/display.appdata.xml.in:13
 msgid "Updated translations"
-msgstr ""
+msgstr "Traduções atualizadas"
