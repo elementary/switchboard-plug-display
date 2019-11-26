@@ -5,7 +5,7 @@
   <name>Display Settings</name>
   <summary>Configure resolution and position of monitors and projectors</summary>
   <releases>
-    <release version="2.2.0" date="2019-10-29" urgency="medium">
+    <release version="2.2.0" date="2019-11-15" urgency="medium">
       <description>
         <ul>
           <li>Improved multi-display layouts with better snapping and aligning</li>
