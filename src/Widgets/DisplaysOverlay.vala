@@ -223,14 +223,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.check_position.connect (() => {
             check_intersects (display_widget);
             close_gaps ();
-        });
-
-        display_widget.move_display.connect (move_display);
-        display_widget.configuration_changed.connect (() => {
-            check_configuration_changed ();
             verify_global_positions ();
             calculate_ratio ();
         });
+
+        display_widget.move_display.connect (move_display);
+        display_widget.configuration_changed.connect (check_configuration_changed);
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
             change_active_displays_sensitivity ();
