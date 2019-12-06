@@ -49,8 +49,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private Gtk.ComboBox refresh_combobox;
     private Gtk.ListStore refresh_list_store;
 
-    private int real_width = 0;
-    private int real_height = 0;
+    public int real_width = 0;
+    public int real_height = 0;
 
     struct Resolution {
         uint width;

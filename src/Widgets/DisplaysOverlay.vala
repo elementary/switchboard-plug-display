@@ -159,7 +159,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 int x, y, width, height;
                 x = display_widget.virtual_monitor.x;
                 y = display_widget.virtual_monitor.y;
-                display_widget.virtual_monitor.get_current_mode_size (out width, out height);
+                width = display_widget.real_width;
+                height = display_widget.real_height;
 
                 added_width += width;
                 added_height += height;
@@ -170,7 +171,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
-        current_ratio = double.min ((double) (get_allocated_width () - 24) / (double) added_width, (double) (get_allocated_height () - 24) / (double) added_height);
+        current_ratio = double.min (
+            (double) (get_allocated_width () - 24) / (double) added_width, 
+            (double) (get_allocated_height () - 24) / (double) added_height
+        );
         default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
         default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
