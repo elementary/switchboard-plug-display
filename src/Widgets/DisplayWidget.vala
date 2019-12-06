@@ -49,8 +49,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private Gtk.ComboBox refresh_combobox;
     private Gtk.ListStore refresh_list_store;
 
-    public int real_width = 0;
-    public int real_height = 0;
+    public int real_width { get; private set; default = 0; }
+    public int real_height { get; private set; default = 0; }
 
     struct Resolution {
         uint width;
@@ -81,7 +81,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         events |= Gdk.EventMask.BUTTON_PRESS_MASK;
         events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
         events |= Gdk.EventMask.POINTER_MOTION_MASK;
-        virtual_monitor.get_current_mode_size (out real_width, out real_height);
+        virtual_monitor.get_current_mode_size (out _real_width, out _real_height);
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
         primary_image.margin = 6;
@@ -253,42 +253,42 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
             switch (transform) {
                 case DisplayTransform.NORMAL:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    virtual_monitor.get_current_mode_size (out _real_width, out _real_height);
                     label.angle = 0;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                    virtual_monitor.get_current_mode_size (out _real_height, out _real_width);
                     label.angle = 270;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_180:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    virtual_monitor.get_current_mode_size (out _real_width, out _real_height);
                     label.angle = 180;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                    virtual_monitor.get_current_mode_size (out _real_height, out _real_width);
                     label.angle = 90;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.FLIPPED:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    virtual_monitor.get_current_mode_size (out _real_width, out _real_height);
                     label.angle = 0;
                     label.label = virtual_monitor_name.reverse (); //mirroring simulation, because we can't really mirror the text
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                    virtual_monitor.get_current_mode_size (out _real_height, out _real_width);
                     label.angle = 270;
                     label.label = virtual_monitor_name.reverse ();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_180:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                    virtual_monitor.get_current_mode_size (out _real_width, out _real_height);
                     label.angle = 180;
                     label.label = virtual_monitor_name.reverse ();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                    virtual_monitor.get_current_mode_size (out _real_height, out _real_width);
                     label.angle = 90;
                     label.label = virtual_monitor_name.reverse ();
                     break;
