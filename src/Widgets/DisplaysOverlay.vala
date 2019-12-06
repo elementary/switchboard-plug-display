@@ -228,6 +228,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.move_display.connect (move_display);
         display_widget.configuration_changed.connect (() => {
             check_configuration_changed ();
+            verify_global_positions ();
             calculate_ratio ();
         });
         display_widget.active_changed.connect (() => {
