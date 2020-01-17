@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:47-0700\n"
-"PO-Revision-Date: 2020-01-01 23:08+0000\n"
+"PO-Revision-Date: 2020-01-05 17:07+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/nl/>\n"
@@ -131,7 +131,7 @@ msgstr "Van:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr "Aan:"
+msgstr "Tot:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"

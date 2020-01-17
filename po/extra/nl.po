@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:48-0700\n"
-"PO-Revision-Date: 2020-01-01 23:08+0000\n"
+"PO-Revision-Date: 2020-01-06 21:07+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/nl/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr ""
+msgstr "Beeldscherm instellingen"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
@@ -29,11 +29,11 @@ msgstr "Configureer resolutie en positie van beeldschermen en projectors"
 
 #: data/display.appdata.xml.in:11
 msgid "Improved multi-display layouts with better snapping and aligning"
-msgstr ""
+msgstr "Betere multi-display lay-outs met betere afbakening en positionering"
 
 #: data/display.appdata.xml.in:12
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Probleem opgelost met de plaatsing van de display naamlabels"
 
 #: data/display.appdata.xml.in:13
 msgid "Updated translations"
