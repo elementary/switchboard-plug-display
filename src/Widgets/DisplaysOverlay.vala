@@ -163,10 +163,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
                 int x, y, width, height;
-                x = display_widget.virtual_monitor.x;
-                y = display_widget.virtual_monitor.y;
-                width = display_widget.real_width;
-                height = display_widget.real_height;
+                display_widget.get_geometry (out x, out y, out width, out height);
 
                 added_width += width;
                 added_height += height;
@@ -413,8 +410,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
         });
 
-        if (min_x == 0 && min_y == 0)
-          return;
+        if (min_x == 0 && min_y == 0){
+            return;
+        }
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
