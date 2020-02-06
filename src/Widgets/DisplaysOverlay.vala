@@ -80,11 +80,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
+            x += display_widget.delta_x;
+            y += display_widget.delta_y;
+            var x_start = (int) Math.round (x * current_ratio);
+            var y_start = (int) Math.round (y * current_ratio);
+            var x_end = (int) Math.round ((x + width) * current_ratio);
+            var y_end = (int) Math.round ((y + height) * current_ratio);
             allocation = Gdk.Rectangle ();
-            allocation.width = (int)(width * current_ratio);
-            allocation.height = (int)(height * current_ratio);
-            allocation.x = default_x_margin + (int) ((x + display_widget.delta_x) * current_ratio);
-            allocation.y = default_y_margin + (int) ((y + display_widget.delta_y) * current_ratio);
+            allocation.x = default_x_margin + x_start;
+            allocation.y = default_y_margin + y_start;
+            allocation.width = x_end - x_start;
+            allocation.height = y_end - y_start;
             return true;
         }
 
@@ -157,9 +163,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
                 int x, y, width, height;
-                x = display_widget.virtual_monitor.x;
-                y = display_widget.virtual_monitor.y;
-                display_widget.virtual_monitor.get_current_mode_size (out width, out height);
+                display_widget.get_geometry (out x, out y, out width, out height);
 
                 added_width += width;
                 added_height += height;
@@ -170,7 +174,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
-        current_ratio = double.min ((double) (get_allocated_width () - 24) / (double) added_width, (double) (get_allocated_height () - 24) / (double) added_height);
+        current_ratio = double.min (
+            (double) (get_allocated_width () - 24) / (double) added_width,
+            (double) (get_allocated_height () - 24) / (double) added_height
+        );
         default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
         default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
@@ -219,10 +226,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.check_position.connect (() => {
             check_intersects (display_widget);
             close_gaps ();
+            verify_global_positions ();
+            calculate_ratio ();
         });
 
         display_widget.move_display.connect (move_display);
-        display_widget.configuration_changed.connect (() => check_configuration_changed ());
+        display_widget.configuration_changed.connect (check_configuration_changed);
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
             change_active_displays_sensitivity ();
@@ -401,8 +410,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
         });
 
-        if (min_x == 0 && min_y == 0)
-          return;
+        if (min_x == 0 && min_y == 0) {
+            return;
+        }
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
