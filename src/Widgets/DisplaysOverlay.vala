@@ -35,6 +35,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     private unowned Display.MonitorManager monitor_manager;
     public int active_displays { get; set; default = 0; }
+    private Gtk.ButtonBox inactive_displays;
+    private Gtk.Revealer inactive_displays_revealer;
     private static string[] colors = {
         "@BLUEBERRY_100",
         "@STRAWBERRY_100",
@@ -65,6 +67,13 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         grid.expand = true;
         add (grid);
 
+        inactive_displays = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        inactive_displays_revealer = new Gtk.Revealer ();
+        inactive_displays_revealer.add (inactive_displays);
+        inactive_displays_revealer.reveal_child = false;
+
+        grid.add (inactive_displays_revealer);
+
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.notify["virtual-monitor-number"].connect (() => redraw_displays (false));
         redraw_displays (false);
@@ -77,13 +86,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         if (widget is DisplayWidget) {
             var display_widget = (DisplayWidget) widget;
-
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
             x += display_widget.delta_x;
             y += display_widget.delta_y;
             var x_start = (int) Math.round (x * current_ratio);
-            var y_start = (int) Math.round (y * current_ratio);
+            var y_start = (int) Math.round (y * current_ratio) + inactive_displays_revealer.get_allocated_height ();
             var x_end = (int) Math.round ((x + width) * current_ratio);
             var y_end = (int) Math.round ((y + height) * current_ratio);
             allocation = Gdk.Rectangle ();
@@ -108,6 +116,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
         });
 
+        inactive_displays.get_children ().foreach ((child) => {
+            if (child is Gtk.Button) {
+                child.destroy ();
+            }
+        });
+
         if (rescan_monitors) {
             monitor_manager.rescan_monitors ();
             // By rescanning monitors we've reset to the current configuration currently in use.
@@ -115,9 +129,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         active_displays = 0;
+        int color_number = 0;
         foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
+
             active_displays += virtual_monitor.is_active ? 1 : 0;
-            add_output (virtual_monitor);
+            if (virtual_monitor.is_active) {
+                add_output (virtual_monitor, color_number);
+            } else {
+                add_reactivate_button (virtual_monitor, color_number);
+            }
+
+            color_number = (++color_number) % 7;
         }
 
         change_active_displays_sensitivity ();
@@ -132,9 +154,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
-                if (((DisplayWidget) child).virtual_monitor.is_active) {
+//                if (((DisplayWidget) child).virtual_monitor.is_active) {
                     ((DisplayWidget) child).display_window.show_all ();
-                }
+//                }
             }
         });
     }
@@ -150,9 +172,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private void change_active_displays_sensitivity () {
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
-                if (((DisplayWidget) child).virtual_monitor.is_active) {
+//                if (((DisplayWidget) child).virtual_monitor.is_active) {
                     ((DisplayWidget) child).only_display = (active_displays == 1);
-                }
+//                }
             }
         });
     }
@@ -191,14 +213,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
 
-    private void add_output (Display.VirtualMonitor virtual_monitor) {
+    private void add_output (Display.VirtualMonitor virtual_monitor, int color_number) {
+        if (!virtual_monitor.is_active) {
+            critical ("DisplaysOverlay:add_ouput () - Should not add inactive monitor as output");
+        }
+
         var display_widget = new DisplayWidget (virtual_monitor);
         current_allocated_width = 0;
         current_allocated_height = 0;
         add_overlay (display_widget);
         var provider = new Gtk.CssProvider ();
         try {
-            var color_number = (get_children ().length () - 2) % 7;
 
             var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
             provider.load_from_data (colored_css, colored_css.length);
@@ -242,10 +267,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.move_display.connect (move_display);
         display_widget.configuration_changed.connect (check_configuration_changed);
         display_widget.active_changed.connect (() => {
-            active_displays += virtual_monitor.is_active ? 1 : -1;
-            if (!virtual_monitor.is_active && virtual_monitor.primary) {
+            var vm = display_widget.virtual_monitor;
+            active_displays += vm.is_active ? 1 : -1;
+            if (!vm.is_active && vm.primary) {
                 pick_new_primary ();
             }
+
             display_widget.queue_resize_no_redraw ();
             check_intersects (display_widget);
             snap_edges (display_widget);
@@ -583,5 +610,51 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         widget.set_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
+    }
+
+    private void add_reactivate_button (Display.VirtualMonitor vm, int color_number) {
+warning ("add reactivate button");
+        var button = new InactiveDisplayButton (vm);
+
+        try {
+            var provider = new Gtk.CssProvider ();
+            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
+            provider.load_from_data (colored_css, colored_css.length);
+
+            var display_provider = new Gtk.CssProvider ();
+            display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
+
+
+            button.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            button.get_style_context ().add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            button.get_style_context ().add_class ("colored");
+        } catch (Error e) {
+            critical (e.message);
+        }
+
+        inactive_displays.add (button);
+        inactive_displays.show_all ();
+        inactive_displays_revealer.reveal_child = true;
+
+        button.clicked.connect (() => {
+            button.vm.is_active = true;
+            redraw_displays (false);
+            Idle.add (() => {
+                check_configuration_changed ();
+                return Source.REMOVE;
+            });
+        });
+
+//        check_configuration_changed ();
+    }
+
+    private class InactiveDisplayButton : Gtk.Button {
+        public Display.VirtualMonitor vm { get; construct; }
+
+        public InactiveDisplayButton (Display.VirtualMonitor _vm) {
+            Object (vm : _vm);
+
+            label = vm.monitor.display_name;
+        }
     }
 }

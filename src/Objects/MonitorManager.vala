@@ -223,14 +223,14 @@ public class Display.MonitorManager : GLib.Object {
     public void set_monitor_config () {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
-            debug (@"set config with: active: $(virtual_monitor.is_active)
+            warning (@"set config with: active: $(virtual_monitor.is_active)
                                      x: $(virtual_monitor.x),
                                      y: $(virtual_monitor.y),
                                      scale: $(virtual_monitor.scale),
                                      transform: $(virtual_monitor.transform),
                                      primary: $(virtual_monitor.primary)");
             if (virtual_monitor.is_active) {
-            logical_monitors += get_mutter_logical_monitor (virtual_monitor);
+                logical_monitors += get_mutter_logical_monitor (virtual_monitor);
             }
         }
 

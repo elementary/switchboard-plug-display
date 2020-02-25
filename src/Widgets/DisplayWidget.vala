@@ -226,6 +226,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             } else {
                 get_style_context ().add_class ("disabled");
             }
+
             active_changed ();
         });
 
