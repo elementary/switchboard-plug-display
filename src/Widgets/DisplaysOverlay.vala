@@ -143,6 +143,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         change_active_displays_sensitivity ();
+        close_gaps ();
         calculate_ratio ();
         scanning = false;
     }
@@ -154,9 +155,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
-//                if (((DisplayWidget) child).virtual_monitor.is_active) {
-                    ((DisplayWidget) child).display_window.show_all ();
-//                }
+                ((DisplayWidget) child).display_window.show_all ();
             }
         });
     }
@@ -172,9 +171,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private void change_active_displays_sensitivity () {
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
-//                if (((DisplayWidget) child).virtual_monitor.is_active) {
-                    ((DisplayWidget) child).only_display = (active_displays == 1);
-//                }
+                ((DisplayWidget) child).only_display = (active_displays == 1);
             }
         });
     }
@@ -189,6 +186,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         int added_height = 0;
         int max_width = int.MIN;
         int max_height = int.MIN;
+
+        verify_global_positions ();
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
@@ -209,6 +208,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             (double) (get_allocated_width () - 24) / (double) added_width,
             (double) (get_allocated_height () - 24) / (double) added_height
         );
+
         default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
         default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
@@ -269,16 +269,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.active_changed.connect (() => {
             var vm = display_widget.virtual_monitor;
             active_displays += vm.is_active ? 1 : -1;
-            if (!vm.is_active && vm.primary) {
-                pick_new_primary ();
+            if (!vm.is_active) {
+                if (vm.primary) {
+                    pick_new_primary ();
+                }
+
+                add_reactivate_button (display_widget.virtual_monitor, 0);
+                display_widget.display_window.hide ();
+                redraw_displays (false);
+
             }
 
-            display_widget.queue_resize_no_redraw ();
-            check_intersects (display_widget);
-            snap_edges (display_widget);
-            close_gaps ();
-            verify_global_positions ();
-            calculate_ratio ();
             change_active_displays_sensitivity ();
             check_configuration_changed ();
         });
@@ -296,20 +297,15 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.get_geometry (out x, out y, out width, out height);
             display_widget.set_geometry (delta_x + x, delta_y + y, width, height);
             display_widget.queue_resize_no_redraw ();
-            check_configuration_changed ();
             check_intersects (display_widget);
             snap_edges (display_widget);
             close_gaps ();
-            verify_global_positions ();
             calculate_ratio ();
+
+            check_configuration_changed ();
         });
 
         check_intersects (display_widget);
-        var old_delta_x = display_widget.delta_x;
-        var old_delta_y = display_widget.delta_y;
-        display_widget.delta_x = 0;
-        display_widget.delta_y = 0;
-        display_widget.end_grab (old_delta_x, old_delta_y);
     }
 
     private void pick_new_primary () {
@@ -613,7 +609,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void add_reactivate_button (Display.VirtualMonitor vm, int color_number) {
-warning ("add reactivate button");
         var button = new InactiveDisplayButton (vm);
 
         try {
@@ -644,8 +639,6 @@ warning ("add reactivate button");
                 return Source.REMOVE;
             });
         });
-
-//        check_configuration_changed ();
     }
 
     private class InactiveDisplayButton : Gtk.Button {
