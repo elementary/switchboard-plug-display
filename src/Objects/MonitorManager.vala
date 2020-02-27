@@ -86,6 +86,7 @@ public class Display.MonitorManager : GLib.Object {
         MutterReadMonitor[] mutter_monitors;
         MutterReadLogicalMonitor[] mutter_logical_monitors;
         GLib.HashTable<string, GLib.Variant> properties;
+
         try {
             iface.get_current_state (out current_serial, out mutter_monitors, out mutter_logical_monitors, out properties);
         } catch (Error e) {
@@ -184,6 +185,7 @@ public class Display.MonitorManager : GLib.Object {
                 }
             }
         }
+
         double max_scale = Utils.get_min_compatible_scale (monitors);
         foreach (var mutter_logical_monitor in mutter_logical_monitors) {
             string monitors_id = VirtualMonitor.generate_id_from_monitors (mutter_logical_monitor.monitors);
@@ -214,6 +216,7 @@ public class Display.MonitorManager : GLib.Object {
                 }
             }
         }
+
         if (virtual_monitor_number != monitor_number) {
             // Create Inactive VirtualMonitors for each disabled monitor.
             virtual_monitors.add_all (create_missing_virtual_monitors (false, max_scale));
@@ -223,7 +226,7 @@ public class Display.MonitorManager : GLib.Object {
     public void set_monitor_config () {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
-            warning (@"set config with: active: $(virtual_monitor.is_active)
+            warning (@"set $(virtual_monitor.monitor.display_name) config with: active: $(virtual_monitor.is_active)
                                      x: $(virtual_monitor.x),
                                      y: $(virtual_monitor.y),
                                      scale: $(virtual_monitor.scale),
@@ -377,6 +380,7 @@ public class Display.MonitorManager : GLib.Object {
             single_virtual_monitor.monitors.add (monitor);
             new_virtual_monitors.add (single_virtual_monitor);
         }
+
         return new_virtual_monitors;
     }
 

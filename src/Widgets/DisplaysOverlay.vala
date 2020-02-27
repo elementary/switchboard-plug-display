@@ -44,7 +44,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         "@BANANA_100",
         "@LIME_100",
         "@GRAPE_100",
-        "@COCOA_100"
+        "@COCOA_100",
+        "@SLATE_100"
     };
     private static string[] text_colors = {
         "@BLUEBERRY_900",
@@ -53,7 +54,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         "@BANANA_900",
         "@LIME_900",
         "@GRAPE_900",
-        "@COCOA_900"
+        "@COCOA_900",
+        "@SLATE_900"
     };
 
     const string COLORED_STYLE_CSS = """
@@ -105,47 +107,78 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         return false;
     }
 
+    private bool redrawing = false;
     public void redraw_displays (bool rescan_monitors) {
-        if (scanning) {
+        if (redrawing) {
             return;
         }
-        scanning = true;
+
+        redrawing = true;
+
+        if (rescan_monitors) {
+            hide ();
+            monitor_manager.rescan_monitors ();
+            // By rescanning monitors we've reset to the current configuration currently in use.
+            configuration_changed (false);
+            Idle.add (() => {show_all (); return Source.REMOVE;});
+        }
+
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 child.destroy ();
             }
         });
 
+        foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
+            // Find any virtual monitor that was previously inactive
+            if (virtual_monitor.is_active) {
+                inactive_displays.get_children ().foreach ((child) => {
+                    if (child is InactiveDisplayButton) {
+                        var button = (InactiveDisplayButton)child;
+
+                        if (button.vm.id == virtual_monitor.id) {
+                            virtual_monitor.x = 10000; //Ensure previously inactive monitors added on the right.
+                            virtual_monitor.y = 0;
+                            warning ("restored position %i, %i", virtual_monitor.x, virtual_monitor.y);
+                            button.destroy ();
+                        }
+                    }
+                });
+            }
+        }
+
         inactive_displays.get_children ().foreach ((child) => {
-            if (child is Gtk.Button) {
+            if (child is InactiveDisplayButton) {
                 child.destroy ();
             }
         });
 
-        if (rescan_monitors) {
-            monitor_manager.rescan_monitors ();
-            // By rescanning monitors we've reset to the current configuration currently in use.
-            configuration_changed (false);
-        }
-
         active_displays = 0;
         int color_number = 0;
-        foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
 
+        foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
             active_displays += virtual_monitor.is_active ? 1 : 0;
+
             if (virtual_monitor.is_active) {
                 add_output (virtual_monitor, color_number);
+                color_number = (++color_number) % 7;
             } else {
-                add_reactivate_button (virtual_monitor, color_number);
+                add_reactivate_button (virtual_monitor);
             }
-
-            color_number = (++color_number) % 7;
         }
 
+
         change_active_displays_sensitivity ();
+
+        get_children ().foreach ((child) => {
+            if (child is DisplayWidget) {
+                check_intersects ((DisplayWidget)child);
+            }
+        });
+
         close_gaps ();
         calculate_ratio ();
-        scanning = false;
+        redrawing = false;
     }
 
     public void show_windows () {
@@ -224,7 +257,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         add_overlay (display_widget);
         var provider = new Gtk.CssProvider ();
         try {
-
             var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
             provider.load_from_data (colored_css, colored_css.length);
 
@@ -255,16 +287,13 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         display_widget.show_all ();
+        display_widget.move_display.connect (move_display);
+
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
 
-        display_widget.check_position.connect (() => {
-            check_intersects (display_widget);
-            close_gaps ();
-            verify_global_positions ();
-            calculate_ratio ();
-        });
+        display_widget.check_position.connect (on_display_widget_check_position);
 
-        display_widget.move_display.connect (move_display);
+
         display_widget.configuration_changed.connect (check_configuration_changed);
         display_widget.active_changed.connect (() => {
             var vm = display_widget.virtual_monitor;
@@ -274,10 +303,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     pick_new_primary ();
                 }
 
-                add_reactivate_button (display_widget.virtual_monitor, 0);
+                add_reactivate_button (display_widget.virtual_monitor);
                 display_widget.display_window.hide ();
                 redraw_displays (false);
 
+            } else {
+assert_not_reached ();
             }
 
             change_active_displays_sensitivity ();
@@ -301,11 +332,16 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             snap_edges (display_widget);
             close_gaps ();
             calculate_ratio ();
-
             check_configuration_changed ();
         });
+    }
 
+    private void on_display_widget_check_position (Display.DisplayWidget display_widget) {
+        display_widget.queue_resize_no_redraw ();
         check_intersects (display_widget);
+        close_gaps ();
+        verify_global_positions ();
+        calculate_ratio ();
     }
 
     private void pick_new_primary () {
@@ -450,8 +486,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void verify_global_positions () {
-        int min_x = int.MAX;
-        int min_y = int.MAX;
+        var min_x = int.MAX;
+        var min_y = int.MAX;
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
@@ -608,12 +644,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         widget.set_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
     }
 
-    private void add_reactivate_button (Display.VirtualMonitor vm, int color_number) {
+    private void add_reactivate_button (Display.VirtualMonitor vm) {
         var button = new InactiveDisplayButton (vm);
 
         try {
             var provider = new Gtk.CssProvider ();
-            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
+            var colored_css = COLORED_STYLE_CSS.printf (colors[colors.length - 1], text_colors[text_colors.length - 1]);
             provider.load_from_data (colored_css, colored_css.length);
 
             var display_provider = new Gtk.CssProvider ();
@@ -631,10 +667,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         inactive_displays.show_all ();
         inactive_displays_revealer.reveal_child = true;
 
-        button.clicked.connect (() => {
-            button.vm.is_active = true;
-            redraw_displays (false);
+        button.clicked.connect_after (() => {
             Idle.add (() => {
+                redraw_displays (false);
                 check_configuration_changed ();
                 return Source.REMOVE;
             });
@@ -644,10 +679,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private class InactiveDisplayButton : Gtk.Button {
         public Display.VirtualMonitor vm { get; construct; }
 
+        construct {
+            clicked.connect (() => {
+                vm.is_active = true;
+            });
+        }
+
         public InactiveDisplayButton (Display.VirtualMonitor _vm) {
             Object (vm : _vm);
 
             label = vm.monitor.display_name;
+
         }
     }
 }

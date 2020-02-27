@@ -76,6 +76,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
+
         this.virtual_monitor = virtual_monitor;
         display_window = new DisplayWindow (virtual_monitor);
         events |= Gdk.EventMask.BUTTON_PRESS_MASK;
@@ -101,7 +102,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         use_label.halign = Gtk.Align.END;
         var use_switch = new Gtk.Switch ();
         use_switch.halign = Gtk.Align.START;
-        use_switch.active = virtual_monitor.is_active;
+        use_switch.active = virtual_monitor.is_active; // Should always be true on construct
         this.bind_property ("only-display", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
 
         var resolution_label = new Gtk.Label (_("Resolution:"));
@@ -322,7 +323,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         virtual_monitor.notify["transform"].connect (on_vm_transform_changed);
 
         configuration_changed ();
-        check_position ();
+        // check_position signal will not be connected yet!
     }
 
     private void populate_refresh_rates () {
