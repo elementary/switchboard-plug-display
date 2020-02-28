@@ -32,7 +32,7 @@ public class Display.VirtualMonitor : GLib.Object {
 
     public signal void modes_changed ();
 
-    /* 
+    /*
      * Used to distinguish two VirtualMonitors from each other.
      * We make up and ID by sum all hashes of
      * monitors that a VirtualMonitor has.
@@ -54,7 +54,7 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
-    /* 
+    /*
      * Get the first monitor of the list, handy in non-mirror context.
      */
     public Display.Monitor monitor {

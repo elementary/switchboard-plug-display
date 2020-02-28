@@ -77,7 +77,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         grid.add (inactive_displays_revealer);
 
         monitor_manager = Display.MonitorManager.get_default ();
-        monitor_manager.notify["virtual-monitor-number"].connect (() => redraw_displays (false));
+        monitor_manager.monitors_changed.connect (() => redraw_displays (true));
+        monitor_manager.notify["is-mirrored"].connect (() => redraw_displays (false));
         redraw_displays (false);
     }
 
@@ -307,8 +308,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 display_widget.display_window.hide ();
                 redraw_displays (false);
 
-            } else {
-assert_not_reached ();
             }
 
             change_active_displays_sensitivity ();

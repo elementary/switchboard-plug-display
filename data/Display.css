@@ -23,21 +23,3 @@ widget.colored {
     background: alpha (@TEXT_COLOR, 0.5);
     border-color: transparent;
 }
-
-.colored.disabled {
-    background-color: @SLATE_100;
-    color: @SLATE_700;
-}
-
-.colored.disabled button {
-    background-color: @SLATE_100;
-    color: @SLATE_700;
-}
-
-.colored.disabled button:focus {
-    background: alpha (@SLATE_700, 0.25);
-}
-
-.colored.disabled button:checked {
-    background: alpha (@SLATE_700, 0.5);
-}

@@ -27,17 +27,6 @@ public class Display.MonitorManager : GLib.Object {
     public int max_width { get; private set; }
     public int max_height { get; private set; }
     public signal void monitors_changed ();
-    public int monitor_number {
-        get {
-            return monitors.size;
-        }
-    }
-
-    public int virtual_monitor_number {
-        get {
-            return virtual_monitors.size;
-        }
-    }
 
     public bool is_mirrored {
         get {
@@ -72,6 +61,7 @@ public class Display.MonitorManager : GLib.Object {
         }
     }
 
+    // Needs to run *after* DisplayOverlay has destroyed its widgets
     public void rescan_monitors () {
         monitors.clear ();
         virtual_monitors.clear ();
@@ -82,7 +72,7 @@ public class Display.MonitorManager : GLib.Object {
         monitors_changed ();
     }
 
-    public void get_monitor_config () {
+    private void get_monitor_config () {
         MutterReadMonitor[] mutter_monitors;
         MutterReadLogicalMonitor[] mutter_logical_monitors;
         GLib.HashTable<string, GLib.Variant> properties;
@@ -217,7 +207,7 @@ public class Display.MonitorManager : GLib.Object {
             }
         }
 
-        if (virtual_monitor_number != monitor_number) {
+        if (virtual_monitors.size != monitors.size) {
             // Create Inactive VirtualMonitors for each disabled monitor.
             virtual_monitors.add_all (create_missing_virtual_monitors (false, max_scale));
         }
@@ -313,7 +303,6 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors.clear ();
         virtual_monitors.add (clone_virtual_monitor);
 
-        notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");
     }
 
@@ -394,13 +383,11 @@ public class Display.MonitorManager : GLib.Object {
         new_virtual_monitors.get (0).primary = true;
         virtual_monitors.add_all (new_virtual_monitors);
 
-        notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");
     }
 
     private void add_virtual_monitor (Display.VirtualMonitor virtual_monitor) {
         virtual_monitors.add (virtual_monitor);
-        notify_property ("virtual-monitor-number");
     }
 
     private VirtualMonitor? get_virtual_monitor_by_id (string id) {

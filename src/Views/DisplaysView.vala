@@ -106,7 +106,7 @@ public class Display.DisplaysView : Gtk.Grid {
 
             unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_grid.sensitive = monitor_manager.monitors.size > 1;
-            monitor_manager.notify["monitor-number"].connect (() => {
+            monitor_manager.monitors_changed.connect (() => {
                 mirror_grid.sensitive = monitor_manager.monitors.size > 1;
             });
 
@@ -114,10 +114,8 @@ public class Display.DisplaysView : Gtk.Grid {
                 displays_overlay.redraw_displays (true);
             });
 
-            monitor_manager.monitors_changed.connect (()=> displays_overlay.redraw_displays (true));
             apply_button.clicked.connect (() => {
                 monitor_manager.set_monitor_config ();
-
                 apply_button.sensitive = false;
             });
 
