@@ -79,10 +79,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.monitors_changed.connect (() => redraw_displays (true));
         monitor_manager.notify["is-mirrored"].connect (() => redraw_displays (false));
+
         redraw_displays (false);
     }
 
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
+
         if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
             calculate_ratio ();
         }
@@ -121,7 +123,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             monitor_manager.rescan_monitors ();
             // By rescanning monitors we've reset to the current configuration currently in use.
             configuration_changed (false);
-            Idle.add (() => {show_all (); return Source.REMOVE;});
         }
 
         get_children ().foreach ((child) => {
@@ -168,8 +169,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
         }
 
+        Idle.add (() => {show_all (); return Source.REMOVE;});
 
         change_active_displays_sensitivity ();
+        calculate_ratio ();
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
@@ -178,7 +181,17 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         });
 
         close_gaps ();
-        calculate_ratio ();
+
+        verify_global_positions ();
+        foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
+            debug (@"DRAW $(virtual_monitor.monitor.display_name) config with: active: $(virtual_monitor.is_active)
+                                     x: $(virtual_monitor.x),
+                                     y: $(virtual_monitor.y),
+                                     scale: $(virtual_monitor.scale),
+                                     transform: $(virtual_monitor.transform),
+                                     primary: $(virtual_monitor.primary)");
+        }
+
         redrawing = false;
     }
 
@@ -220,8 +233,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         int added_height = 0;
         int max_width = int.MIN;
         int max_height = int.MIN;
-
-        verify_global_positions ();
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
@@ -331,6 +342,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             snap_edges (display_widget);
             close_gaps ();
             calculate_ratio ();
+            verify_global_positions ();
             check_configuration_changed ();
         });
     }
@@ -339,7 +351,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.queue_resize_no_redraw ();
         check_intersects (display_widget);
         close_gaps ();
-        verify_global_positions ();
         calculate_ratio ();
     }
 

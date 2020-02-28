@@ -111,7 +111,7 @@ public class Display.DisplaysView : Gtk.Grid {
             });
 
             detect_button.clicked.connect (() => {
-                displays_overlay.redraw_displays (true);
+                monitor_manager.on_iface_monitors_changed ();
             });
 
             apply_button.clicked.connect (() => {

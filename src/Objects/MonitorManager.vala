@@ -211,12 +211,21 @@ public class Display.MonitorManager : GLib.Object {
             // Create Inactive VirtualMonitors for each disabled monitor.
             virtual_monitors.add_all (create_missing_virtual_monitors (false, max_scale));
         }
+
+        foreach (var virtual_monitor in virtual_monitors) {
+            debug (@"GOT $(virtual_monitor.monitor.display_name) config with: active: $(virtual_monitor.is_active)
+                                     x: $(virtual_monitor.x),
+                                     y: $(virtual_monitor.y),
+                                     scale: $(virtual_monitor.scale),
+                                     transform: $(virtual_monitor.transform),
+                                     primary: $(virtual_monitor.primary)");
+        }
     }
 
     public void set_monitor_config () {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
-            warning (@"set $(virtual_monitor.monitor.display_name) config with: active: $(virtual_monitor.is_active)
+            debug (@"set $(virtual_monitor.monitor.display_name) config with: active: $(virtual_monitor.is_active)
                                      x: $(virtual_monitor.x),
                                      y: $(virtual_monitor.y),
                                      scale: $(virtual_monitor.scale),

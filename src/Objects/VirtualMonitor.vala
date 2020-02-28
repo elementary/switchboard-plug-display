@@ -81,6 +81,8 @@ public class Display.VirtualMonitor : GLib.Object {
     }
 
     public void get_current_mode_size (out int width, out int height) {
+        assert (is_active);
+
         if (is_mirror) {
             var current_mode = monitors[0].current_mode;
             width = current_mode.width;
@@ -93,6 +95,8 @@ public class Display.VirtualMonitor : GLib.Object {
     }
 
     public Gee.LinkedList<Display.MonitorMode> get_available_modes () {
+        assert (is_active);
+
         if (is_mirror) {
             return Utils.get_common_monitor_modes (monitors);
         } else {
@@ -101,6 +105,8 @@ public class Display.VirtualMonitor : GLib.Object {
     }
 
     public void set_current_mode (Display.MonitorMode current_mode) {
+        assert (is_active);
+
         if (is_mirror) {
             monitors.foreach ((_monitor) => {
                 bool mode_found = false;
