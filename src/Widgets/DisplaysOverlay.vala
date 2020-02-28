@@ -519,7 +519,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     display_widget.set_geometry (x - min_x, y - min_y, width, height);
                 }
 
-                if ((int) Math.round ((x - min_x + width) * current_ratio)  - current_allocated_width  > 0) {
+                if ((int) Math.round ((x - min_x + width) * current_ratio) - current_allocated_width > 0) {
                     need_ratio_recalc = true;
                 }
 
