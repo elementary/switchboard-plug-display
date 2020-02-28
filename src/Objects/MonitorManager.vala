@@ -342,7 +342,7 @@ public class Display.MonitorManager : GLib.Object {
             single_virtual_monitor.is_active = new_monitors_active;
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
-            if (global_scale_required) {
+            if (single_virtual_monitor.is_active && global_scale_required) {
                 single_virtual_monitor.scale = new_monitors_scale;
                 if (new_monitors_scale in preferred_mode.supported_scales) {
                     current_mode.is_current = false;
