@@ -222,18 +222,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
             if (refresh_combobox.active == -1) refresh_combobox.set_active (0);
 
-            if (use_switch.active) {
-                get_style_context ().remove_class ("disabled");
-            } else {
-                get_style_context ().add_class ("disabled");
-            }
-
             active_changed ();
         });
-
-        if (!virtual_monitor.is_active) {
-            get_style_context ().add_class ("disabled");
-        }
 
         resolution_combobox.changed.connect (() => {
             Value val;
