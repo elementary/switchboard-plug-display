@@ -8,30 +8,33 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:48-0700\n"
-"PO-Revision-Date: 2018-12-10 10:41-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-03-01 14:09+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
+"switchboard/display-plug-extra/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr ""
+msgstr "顯示器設定"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "調整解析度與螢幕、投影機位置等設定"
 
 #: data/display.appdata.xml.in:11
 msgid "Improved multi-display layouts with better snapping and aligning"
-msgstr ""
+msgstr "改善多顯示器配置與更好的貼附和對齊特性"
 
 #: data/display.appdata.xml.in:12
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "修正顯示器名稱標籤的位置"
 
 #: data/display.appdata.xml.in:13
 msgid "Updated translations"
-msgstr ""
+msgstr "翻譯更新"
