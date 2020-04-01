@@ -5,6 +5,15 @@
   <name>Display Settings</name>
   <summary>Configure resolution and position of monitors and projectors</summary>
   <releases>
+    <release version="2.2.1" date="2020-03-31" urgency="medium">
+      <description>
+        <ul>
+          <li>Fix 1px gaps between displays</li>
+          <li>Properly center rotated displays</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.2.0" date="2019-11-15" urgency="medium">
       <description>
         <ul>
