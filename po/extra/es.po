@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-01 21:41+0000\n"
-"PO-Revision-Date: 2019-11-16 17:24+0000\n"
-"Last-Translator: Daniel R. <riesp@pm.me>\n"
+"PO-Revision-Date: 2020-04-03 05:23+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/es/>\n"
 "Language: es\n"
@@ -17,23 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr "Configuración de visualización"
+msgstr "Configuración de pantalla"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "Configurar la resolución y la posición de monitores y proyectores"
+msgstr "Configure la resolución y la posición de monitores y proyectores"
 
 #: data/display.appdata.xml.in:11
 msgid "Fix 1px gaps between displays"
-msgstr ""
+msgstr "Se corrigieron unos huecos de 1 píxel que había entre las pantallas"
 
 #: data/display.appdata.xml.in:12
 msgid "Properly center rotated displays"
-msgstr ""
+msgstr "Se centran adecuadamente las pantallas giradas"
 
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
 msgid "Updated translations"
