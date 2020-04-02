@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-01 21:41+0000\n"
-"PO-Revision-Date: 2019-11-05 11:15+0000\n"
+"PO-Revision-Date: 2020-04-03 05:23+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -29,11 +29,11 @@ msgstr "Configurer la résolution et la position des écrans et projecteurs"
 
 #: data/display.appdata.xml.in:11
 msgid "Fix 1px gaps between displays"
-msgstr ""
+msgstr "Correction de l'écart d'1px entre les écrans"
 
 #: data/display.appdata.xml.in:12
 msgid "Properly center rotated displays"
-msgstr ""
+msgstr "Les écrans retournés sont désormais correctement centrés"
 
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
 msgid "Updated translations"
