@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:47-0700\n"
-"PO-Revision-Date: 2019-10-09 17:23+0000\n"
-"Last-Translator: Rodrigo Lledó Milanca <rodhos92@gmail.com>\n"
+"PO-Revision-Date: 2020-04-03 05:23+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
@@ -26,7 +26,7 @@ msgstr "Monitores"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "Configurar la resolución y la posición de monitores y proyectores"
+msgstr "Configure la resolución y la posición de monitores y proyectores"
 
 #: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
 #: src/DisplayPlug.vala:118
@@ -39,7 +39,7 @@ msgstr "Resolución de la pantalla"
 
 #: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
-msgstr "Rotacion de pantalla"
+msgstr "Giro de pantalla"
 
 #: src/DisplayPlug.vala:112
 msgid "Primary display"
@@ -55,7 +55,7 @@ msgstr "Factor de escala"
 
 #: src/DisplayPlug.vala:115
 msgid "Rotation lock"
-msgstr "Bloqueo de rotación"
+msgstr "Bloqueo de giro"
 
 #: src/DisplayPlug.vala:117
 msgid "Schedule"
@@ -75,15 +75,15 @@ msgstr "Al revés"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
-msgstr "Sentido anti-horario"
+msgstr "Sentido antihorario"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
-msgstr "Invertido"
+msgstr "Volteado"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Clockwise"
-msgstr "Sentido horario"
+msgstr "Volteado en sentido horario"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
@@ -91,7 +91,7 @@ msgstr "Volteado al revés"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "Flipped Counterclockwise"
-msgstr "Sentido anti-horario"
+msgstr "Volteado en sentido antihorario"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
@@ -155,11 +155,11 @@ msgstr "Factor de escala:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "LoDPI"
-msgstr "LoDPI"
+msgstr "PPP bajos"
 
 #: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
-msgstr "Pixel duplicado"
+msgstr "Píxel duplicado"
 
 #: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
@@ -171,7 +171,7 @@ msgstr "Aplicar"
 
 #: src/Views/DisplaysView.vala:77
 msgid "Rotation Lock:"
-msgstr "Bloqueo de rotación:"
+msgstr "Bloqueo de giro:"
 
 #: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
@@ -183,11 +183,11 @@ msgstr "Resolución:"
 
 #: src/Widgets/DisplayWidget.vala:117
 msgid "Screen Rotation:"
-msgstr "Rotación de pantalla:"
+msgstr "Giro de pantalla:"
 
 #: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"
-msgstr "Frecuencia de refresco:"
+msgstr "Frecuencia de actualización:"
 
 #: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
