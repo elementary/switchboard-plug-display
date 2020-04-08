@@ -5,7 +5,7 @@
   <name>Display Settings</name>
   <summary>Configure resolution and position of monitors and projectors</summary>
   <releases>
-    <release version="2.2.1" date="2020-04-07" urgency="medium">
+    <release version="2.2.1" date="2020-04-08" urgency="medium">
       <description>
         <ul>
           <li>Fix 1px gaps between displays</li>
