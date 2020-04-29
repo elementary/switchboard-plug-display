@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-01 21:41+0000\n"
-"PO-Revision-Date: 2020-04-08 20:14+0000\n"
+"PO-Revision-Date: 2020-04-30 16:10+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/pt/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr "Definições de ecrã"
+msgstr "Definições do Ecrã"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
@@ -33,7 +33,7 @@ msgstr "Corrige espaços de 1px entre ecrãs"
 
 #: data/display.appdata.xml.in:12
 msgid "Properly center rotated displays"
-msgstr "Centraliza correctamente os ecrãs rotativos"
+msgstr "Centraliza corretamente os ecrãs rotativos"
 
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
 msgid "Updated translations"
@@ -45,4 +45,4 @@ msgstr "Disposições multi-ecrã melhoradas com melhor encaixe e alinhamento"
 
 #: data/display.appdata.xml.in:21
 msgid "Fixed the placement of display name tags"
-msgstr "Corrigida a colocação de etiquetas de nome de exibição"
+msgstr "Corrigida a colocação de etiquetas de nome de apresentação"
