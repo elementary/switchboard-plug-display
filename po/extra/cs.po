@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-01 21:41+0000\n"
-"PO-Revision-Date: 2020-05-08 14:10+0000\n"
+"PO-Revision-Date: 2020-05-12 15:10+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/cs/>\n"
@@ -21,19 +21,19 @@ msgstr ""
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr ""
+msgstr "Nastavení displeje"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Nastavit rozlišení a pozici monitorů nebo projektorů"
 
 #: data/display.appdata.xml.in:11
 msgid "Fix 1px gaps between displays"
-msgstr ""
+msgstr "Oprava mezery (1 obrazový bod) mezi displeji"
 
 #: data/display.appdata.xml.in:12
 msgid "Properly center rotated displays"
-msgstr ""
+msgstr "Správné vystředění otočených displejů"
 
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
 msgid "Updated translations"
@@ -42,7 +42,8 @@ msgstr "Aktualizované překlady"
 #: data/display.appdata.xml.in:20
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
+"Vylepšení rozvržení s vícero monitory s lepším přichytáváním a zarovnáváním"
 
 #: data/display.appdata.xml.in:21
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Oprava umístění štítků s názvem displeje"
