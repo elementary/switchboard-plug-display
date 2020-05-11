@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-01 21:41+0000\n"
-"PO-Revision-Date: 2020-04-30 16:10+0000\n"
+"PO-Revision-Date: 2020-05-12 15:10+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/pt/>\n"
@@ -41,7 +41,8 @@ msgstr "Traduções atualizadas"
 
 #: data/display.appdata.xml.in:20
 msgid "Improved multi-display layouts with better snapping and aligning"
-msgstr "Disposições multi-ecrã melhoradas com melhor encaixe e alinhamento"
+msgstr ""
+"Melhorias na disposição de vários ecrãs com melhor encaixe e alinhamento"
 
 #: data/display.appdata.xml.in:21
 msgid "Fixed the placement of display name tags"
