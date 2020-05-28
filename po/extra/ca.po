@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 21:41+0000\n"
+"POT-Creation-Date: 2020-05-28 23:41+0000\n"
 "PO-Revision-Date: 2020-04-03 05:23+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/switchboard/"
@@ -27,24 +27,25 @@ msgstr "Paràmetres de la pantalla"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configureu la resolució i la posició de monitors i projectors."
 
-#: data/display.appdata.xml.in:11
-msgid "Fix 1px gaps between displays"
-msgstr "Correcció d'espais d'1 px entre pantalles"
-
-#: data/display.appdata.xml.in:12
-msgid "Properly center rotated displays"
-msgstr "Centrat correcte de pantalles girades"
-
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
+#: data/display.appdata.xml.in:31
 msgid "Updated translations"
 msgstr "Traduccions actualitzades"
 
 #: data/display.appdata.xml.in:20
+msgid "Fix 1px gaps between displays"
+msgstr "Correcció d'espais d'1 px entre pantalles"
+
+#: data/display.appdata.xml.in:21
+msgid "Properly center rotated displays"
+msgstr "Centrat correcte de pantalles girades"
+
+#: data/display.appdata.xml.in:29
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 "Disposicions de multivisualització millorades amb millor ajustament i "
 "alineació"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:30
 msgid "Fixed the placement of display name tags"
 msgstr "S'ha corregit la ubicació de les etiquetes de nom de la pantalla."

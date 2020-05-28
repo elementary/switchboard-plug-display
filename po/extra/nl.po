@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 21:41+0000\n"
+"POT-Creation-Date: 2020-05-28 23:41+0000\n"
 "PO-Revision-Date: 2020-01-06 21:07+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
@@ -27,22 +27,23 @@ msgstr "Beeldscherm instellingen"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configureer resolutie en positie van beeldschermen en projectors"
 
-#: data/display.appdata.xml.in:11
-msgid "Fix 1px gaps between displays"
-msgstr ""
-
-#: data/display.appdata.xml.in:12
-msgid "Properly center rotated displays"
-msgstr ""
-
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
+#: data/display.appdata.xml.in:31
 msgid "Updated translations"
 msgstr "Bijgewerkte vertalingen"
 
 #: data/display.appdata.xml.in:20
+msgid "Fix 1px gaps between displays"
+msgstr ""
+
+#: data/display.appdata.xml.in:21
+msgid "Properly center rotated displays"
+msgstr ""
+
+#: data/display.appdata.xml.in:29
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr "Betere multi-display lay-outs met betere afbakening en positionering"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:30
 msgid "Fixed the placement of display name tags"
 msgstr "Probleem opgelost met de plaatsing van de display naamlabels"
