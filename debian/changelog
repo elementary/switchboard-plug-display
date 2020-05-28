@@ -1,3 +1,10 @@
+switchboard-plug-display (2.2.2) bionic; urgency=medium
+
+  * Release 2.2.2 (#246)
+  * AppData: Add Icon & Gettext domain (#236)
+
+ -- elementary OS Team <builds@elementary.io>  Thu, 28 May 2020 23:41:41 +0000
+
 switchboard-plug-display (2.2.1) bionic; urgency=medium
 
   * Release 2.2.1 (#233)
