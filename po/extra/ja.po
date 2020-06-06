@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-28 23:41+0000\n"
-"PO-Revision-Date: 2020-04-03 05:23+0000\n"
+"PO-Revision-Date: 2020-06-07 13:11+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ja/>\n"
@@ -34,7 +34,7 @@ msgstr "翻訳の更新"
 
 #: data/display.appdata.xml.in:20
 msgid "Fix 1px gaps between displays"
-msgstr "ディスプレイ間に 1px のずれがあった問題を修正"
+msgstr "ディスプレイ間に 1px のずれがあった不具合を修正"
 
 #: data/display.appdata.xml.in:21
 msgid "Properly center rotated displays"
