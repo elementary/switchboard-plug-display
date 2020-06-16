@@ -4,7 +4,16 @@
   <extends>io.elementary.switchboard</extends>
   <name>Display Settings</name>
   <summary>Configure resolution and position of monitors and projectors</summary>
+  <icon type="stock">preferences-desktop-display</icon>
+  <translation type="gettext">display-plug</translation>
   <releases>
+    <release version="2.2.2" date="2020-05-28" urgency="medium">
+      <description>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.2.1" date="2020-04-08" urgency="medium">
       <description>
         <ul>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 21:41+0000\n"
+"POT-Creation-Date: 2020-05-28 23:41+0000\n"
 "PO-Revision-Date: 2020-04-08 20:14+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
@@ -27,23 +27,24 @@ msgstr "Configurações de Tela"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configurar a resolução e a posição dos monitores e projetores"
 
-#: data/display.appdata.xml.in:11
-msgid "Fix 1px gaps between displays"
-msgstr "Corrigir espaços de 1px entre os monitores"
-
-#: data/display.appdata.xml.in:12
-msgid "Properly center rotated displays"
-msgstr "Centralize adequadamente as telas rotativas"
-
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
+#: data/display.appdata.xml.in:31
 msgid "Updated translations"
 msgstr "Traduções atualizadas"
 
 #: data/display.appdata.xml.in:20
+msgid "Fix 1px gaps between displays"
+msgstr "Corrigir espaços de 1px entre os monitores"
+
+#: data/display.appdata.xml.in:21
+msgid "Properly center rotated displays"
+msgstr "Centralize adequadamente as telas rotativas"
+
+#: data/display.appdata.xml.in:29
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 "Layouts aprimorados para vários monitores com melhor encaixe e alinhamento"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:30
 msgid "Fixed the placement of display name tags"
 msgstr "Corrigido o posicionamento das tags de nome para exibição"

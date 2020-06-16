@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 21:41+0000\n"
+"POT-Creation-Date: 2020-05-28 23:41+0000\n"
 "PO-Revision-Date: 2019-12-20 16:09+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -27,22 +27,23 @@ msgstr ""
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "调整分辨率、配置显示器和投影仪的位置"
 
-#: data/display.appdata.xml.in:11
-msgid "Fix 1px gaps between displays"
-msgstr ""
-
-#: data/display.appdata.xml.in:12
-msgid "Properly center rotated displays"
-msgstr ""
-
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
+#: data/display.appdata.xml.in:31
 msgid "Updated translations"
 msgstr "翻译更新"
 
 #: data/display.appdata.xml.in:20
-msgid "Improved multi-display layouts with better snapping and aligning"
+msgid "Fix 1px gaps between displays"
 msgstr ""
 
 #: data/display.appdata.xml.in:21
+msgid "Properly center rotated displays"
+msgstr ""
+
+#: data/display.appdata.xml.in:29
+msgid "Improved multi-display layouts with better snapping and aligning"
+msgstr ""
+
+#: data/display.appdata.xml.in:30
 msgid "Fixed the placement of display name tags"
 msgstr ""

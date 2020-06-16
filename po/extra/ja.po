@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 21:41+0000\n"
-"PO-Revision-Date: 2020-04-03 05:23+0000\n"
+"POT-Creation-Date: 2020-05-28 23:41+0000\n"
+"PO-Revision-Date: 2020-06-07 13:11+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ja/>\n"
@@ -27,22 +27,23 @@ msgstr "ディスプレイの設定"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "モニターとプロジェクターの解像度と位置を設定します"
 
-#: data/display.appdata.xml.in:11
-msgid "Fix 1px gaps between displays"
-msgstr "ディスプレイ間に 1px のずれがあった問題を修正"
-
-#: data/display.appdata.xml.in:12
-msgid "Properly center rotated displays"
-msgstr "回転したディスプレイを正確に中央に表示するように修正"
-
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
+#: data/display.appdata.xml.in:31
 msgid "Updated translations"
 msgstr "翻訳の更新"
 
 #: data/display.appdata.xml.in:20
+msgid "Fix 1px gaps between displays"
+msgstr "ディスプレイ間に 1px のずれがあった不具合を修正"
+
+#: data/display.appdata.xml.in:21
+msgid "Properly center rotated displays"
+msgstr "回転したディスプレイを正確に中央に表示するように修正"
+
+#: data/display.appdata.xml.in:29
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr "スナップや整列の精度の向上など、マルチディスプレイのレイアウトを改善"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:30
 msgid "Fixed the placement of display name tags"
 msgstr "ディスプレイ名タグの配置を修正"
