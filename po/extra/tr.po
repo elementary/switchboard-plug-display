@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-28 23:41+0000\n"
-"PO-Revision-Date: 2019-12-19 13:07+0000\n"
-"Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
+"PO-Revision-Date: 2020-07-28 10:12+0000\n"
+"Last-Translator: Sinan Decron <intenfinitia@gmail.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/tr/>\n"
 "Language: tr\n"
@@ -34,16 +34,16 @@ msgstr "Çeviriler güncellendi"
 
 #: data/display.appdata.xml.in:20
 msgid "Fix 1px gaps between displays"
-msgstr ""
+msgstr "Ekranlar arasındaki 1px boşluk düzeltildi"
 
 #: data/display.appdata.xml.in:21
 msgid "Properly center rotated displays"
-msgstr ""
+msgstr "Döndürülen ekranlar düzgün bir şekilde ortalanıyor"
 
 #: data/display.appdata.xml.in:29
 msgid "Improved multi-display layouts with better snapping and aligning"
-msgstr ""
+msgstr "Daha iyi yapışma ve hizalama ile geliştirilmiş çoklu ekran düzenleri"
 
 #: data/display.appdata.xml.in:30
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Ekran adı etiketlerinin yerleşimi düzeltildi"
