@@ -42,8 +42,9 @@ public class Display.DisplaysView : Gtk.Grid {
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
             dpi_combo = new Gtk.ComboBoxText ();
-            dpi_combo.append_text (_("LoDPI"));
-            dpi_combo.append_text (_("Pixel Doubled"));
+            dpi_combo.append_text (_("LoDPI") + " (1×)");
+            dpi_combo.append_text (_("HiDPI") + " (2×)");
+            dpi_combo.append_text (_("HiDPI") + " (3×)");
 
             var dpi_grid = new Gtk.Grid () {
                 column_spacing = 6,
