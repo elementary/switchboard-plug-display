@@ -26,6 +26,8 @@ public class Display.DisplaysView : Gtk.Grid {
     private Gtk.ComboBoxText dpi_combo;
 
     construct {
+            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
+
             displays_overlay = new DisplaysOverlay ();
 
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
@@ -43,8 +45,10 @@ public class Display.DisplaysView : Gtk.Grid {
 
             dpi_combo = new Gtk.ComboBoxText ();
             dpi_combo.append_text (_("LoDPI") + " (1×)");
-            dpi_combo.append_text (_("HiDPI") + " (2×)");
-            dpi_combo.append_text (_("HiDPI") + " (3×)");
+            int max_scale = (int)monitor_manager.virtual_monitors[0].monitor.get_max_scale ();
+            for (int i = 2; i <= max_scale; i++) {
+                dpi_combo.append_text (_("HiDPI") + " (%d×)".printf (i));
+            }
 
             var dpi_grid = new Gtk.Grid () {
                 column_spacing = 6,
@@ -110,7 +114,6 @@ public class Display.DisplaysView : Gtk.Grid {
                 apply_button.sensitive = changed;
             });
 
-            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_grid.sensitive = monitor_manager.monitors.size > 1;
             monitor_manager.notify["monitor-number"].connect (() => {
                 mirror_grid.sensitive = monitor_manager.monitors.size > 1;
