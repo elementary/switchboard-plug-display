@@ -50,6 +50,10 @@ public class Display.DisplaysView : Gtk.Grid {
                 dpi_combo.append_text (_("HiDPI") + " (%d×)".printf (i));
             }
 
+            if (max_scale < 2) {
+                dpi_combo.sensitive = false;
+            }
+
             var dpi_grid = new Gtk.Grid () {
                 column_spacing = 6,
                 margin = 6
