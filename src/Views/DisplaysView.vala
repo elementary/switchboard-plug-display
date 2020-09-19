@@ -45,7 +45,7 @@ public class Display.DisplaysView : Gtk.Grid {
 
             dpi_combo = new Gtk.ComboBoxText ();
             dpi_combo.append_text (_("LoDPI") + " (1×)");
-            int max_scale = (int)monitor_manager.virtual_monitors[0].monitor.get_max_scale ();
+            int max_scale = (int)monitor_manager.virtual_monitors[0].monitor.get_max_scale () - 1;
             for (int i = 2; i <= max_scale; i++) {
                 dpi_combo.append_text (_("HiDPI") + " (%d×)".printf (i));
             }
