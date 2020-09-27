@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-28 23:41+0000\n"
-"PO-Revision-Date: 2020-09-17 00:14+0000\n"
+"PO-Revision-Date: 2020-09-24 16:44+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/uk/>\n"
@@ -22,11 +22,11 @@ msgstr ""
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr ""
+msgstr "Параметри екрана"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Налаштування роздільної здатності, положення екранів та проєкторів"
 
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
 #: data/display.appdata.xml.in:31
@@ -35,16 +35,18 @@ msgstr "Оновлено переклади"
 
 #: data/display.appdata.xml.in:20
 msgid "Fix 1px gaps between displays"
-msgstr ""
+msgstr "Виправлено пробіли в 1 піксель між екранами"
 
 #: data/display.appdata.xml.in:21
 msgid "Properly center rotated displays"
-msgstr ""
+msgstr "Правильне центрування обертаних екранів"
 
 #: data/display.appdata.xml.in:29
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
+"Поліпшено переміщення вікон з кількома екранами з кращим прив'язуванням та "
+"вирівнюванням"
 
 #: data/display.appdata.xml.in:30
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Виправлено розміщення міток назв екранів"
