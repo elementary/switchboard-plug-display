@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:47-0700\n"
-"PO-Revision-Date: 2020-09-30 20:58+0000\n"
+"PO-Revision-Date: 2020-10-01 21:14+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/uk/>\n"
@@ -124,7 +124,7 @@ msgstr "Від заходу до світанку"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr "Посібник"
+msgstr "Власноруч"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
@@ -136,61 +136,59 @@ msgstr "До:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Колірна температура:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Тепліша"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Холодніша"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "Відзеркалити екран:"
+msgstr "Віддзеркалити екран:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Фактор масштабування:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "LoDPI"
-msgstr ""
+msgstr "Низьке DPI"
 
 #: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Подвоєні пікселі"
 
 #: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
-msgstr "Знайти екрани"
+msgstr "Виявити екрани"
 
 #: src/Views/DisplaysView.vala:54
 msgid "Apply"
 msgstr "Застосувати"
 
 #: src/Views/DisplaysView.vala:77
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Поворот:"
+msgstr "Блокувати обертання:"
 
 #: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
-msgstr "Використовувати цей дисплея:"
+msgstr "Використовувати цей екран:"
 
 #: src/Widgets/DisplayWidget.vala:107
 msgid "Resolution:"
 msgstr "Роздільна здатність:"
 
 #: src/Widgets/DisplayWidget.vala:117
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "Поворот:"
+msgstr "Обертання екрана:"
 
 #: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"
-msgstr ""
+msgstr "Частота оновлення:"
 
 #: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
@@ -199,11 +197,11 @@ msgstr "Налаштувати екран"
 #: src/Widgets/DisplayWidget.vala:359
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g Гц"
 
 #: src/Widgets/DisplayWidget.vala:444
 msgid "Is the primary display"
-msgstr "Є основним дисплеєм"
+msgstr "Є основним екраном"
 
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
