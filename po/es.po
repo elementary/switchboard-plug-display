@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:47-0700\n"
-"PO-Revision-Date: 2020-04-03 05:23+0000\n"
+"PO-Revision-Date: 2020-10-15 09:14+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/es/>\n"
@@ -35,7 +35,7 @@ msgstr "Luz nocturna"
 
 #: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
-msgstr "Resolución de la pantalla"
+msgstr "Resolución de pantalla"
 
 #: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
@@ -63,7 +63,7 @@ msgstr "Horario"
 
 #: src/DisplayPlug.vala:118
 msgid "Color temperature"
-msgstr "Temperatura del color"
+msgstr "Temperatura de colores"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -115,7 +115,7 @@ msgstr ""
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr "Fijar el horario:"
+msgstr "Programación:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
@@ -139,15 +139,15 @@ msgstr "Temperatura del color:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr "Más cálido"
+msgstr "Más cálida"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr "Menos cálido"
+msgstr "Menos cálida"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "Pantalla duplicada:"
+msgstr "Duplicar pantalla:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
