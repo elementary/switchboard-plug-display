@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:47-0700\n"
-"PO-Revision-Date: 2014-08-01 01:08+0000\n"
-"Last-Translator: Khaleel Jageer <jskcse4@gmail.com>\n"
-"Language-Team: Tamil <ta@li.org>\n"
+"PO-Revision-Date: 2020-10-01 21:15+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
+"Language-Team: Tamil <https://l10n.elementary.io/projects/switchboard/"
+"switchboard-plug-display/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
 msgid "Displays"
@@ -123,11 +125,11 @@ msgstr ""
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "அனுப்புநர்:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "பெறுநர்:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"

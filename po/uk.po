@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:47-0700\n"
-"PO-Revision-Date: 2020-09-26 20:14+0000\n"
+"PO-Revision-Date: 2020-10-01 21:14+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/uk/>\n"
@@ -32,43 +32,39 @@ msgstr "Налаштування роздільної здатності, пол
 #: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
 #: src/DisplayPlug.vala:118
 msgid "Night Light"
-msgstr ""
+msgstr "Нічне світло"
 
 #: src/DisplayPlug.vala:110
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Роздільна здатність:"
+msgstr "Роздільна здатність"
 
 #: src/DisplayPlug.vala:111
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Поворот:"
+msgstr "Обертання екрана"
 
 #: src/DisplayPlug.vala:112
-#, fuzzy
 msgid "Primary display"
 msgstr "Основний екран"
 
 #: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Віддзеркалювати екран"
 
 #: src/DisplayPlug.vala:114
 msgid "Scaling factor"
-msgstr ""
+msgstr "Фактор масштабування"
 
 #: src/DisplayPlug.vala:115
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Поворот:"
+msgstr "Блокувати обертання"
 
 #: src/DisplayPlug.vala:117
 msgid "Schedule"
-msgstr ""
+msgstr "Розклад"
 
 #: src/DisplayPlug.vala:118
 msgid "Color temperature"
-msgstr ""
+msgstr "Колірна температура"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -76,7 +72,7 @@ msgstr "За годинниковою стрілкою"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Догори ногами"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
@@ -84,52 +80,51 @@ msgstr "Проти годинникової стрілки"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
-msgstr "Перевернутий"
+msgstr "Віддзеркалено"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "За годинниковою стрілкою"
+msgstr "Віддзеркалено за годинниковою стрілкою"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Віддзеркалено і догори ногами"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Проти годинникової стрілки"
+msgstr "Віддзеркалено проти годинникової стрілки"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Немає"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Відзеркалені екрани"
+msgstr "Віддзеркалений екран"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Нічне світло:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Нічне світло робить кольори екрана теплішими. Це може допомогти запобігти "
+"перенапруженню очей і безсонню."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Розклад:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Від заходу до світанку"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Власноруч"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
@@ -141,61 +136,59 @@ msgstr "До:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Колірна температура:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Тепліша"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Холодніша"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
-msgstr "Відзеркалити екран:"
+msgstr "Віддзеркалити екран:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Фактор масштабування:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "LoDPI"
-msgstr ""
+msgstr "Низьке DPI"
 
 #: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Подвоєні пікселі"
 
 #: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
-msgstr "Знайти екрани"
+msgstr "Виявити екрани"
 
 #: src/Views/DisplaysView.vala:54
 msgid "Apply"
 msgstr "Застосувати"
 
 #: src/Views/DisplaysView.vala:77
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Поворот:"
+msgstr "Блокувати обертання:"
 
 #: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
-msgstr "Використовувати цей дисплея:"
+msgstr "Використовувати цей екран:"
 
 #: src/Widgets/DisplayWidget.vala:107
 msgid "Resolution:"
 msgstr "Роздільна здатність:"
 
 #: src/Widgets/DisplayWidget.vala:117
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "Поворот:"
+msgstr "Обертання екрана:"
 
 #: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"
-msgstr ""
+msgstr "Частота оновлення:"
 
 #: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
@@ -204,11 +197,11 @@ msgstr "Налаштувати екран"
 #: src/Widgets/DisplayWidget.vala:359
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g Гц"
 
 #: src/Widgets/DisplayWidget.vala:444
 msgid "Is the primary display"
-msgstr "Є основним дисплеєм"
+msgstr "Є основним екраном"
 
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
