@@ -31,9 +31,11 @@ public class Display.DisplaysView : Gtk.Grid {
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
             var mirror_switch = new Gtk.Switch ();
 
-            var mirror_grid = new Gtk.Grid ();
-            mirror_grid.margin = 12;
-            mirror_grid.column_spacing = 6;
+            var mirror_grid = new Gtk.Grid () {
+                column_spacing = 6,
+                margin = 6,
+                valign = Gtk.Align.CENTER
+            };
             mirror_grid.add (mirror_label);
             mirror_grid.add (mirror_switch);
 
@@ -43,9 +45,10 @@ public class Display.DisplaysView : Gtk.Grid {
             dpi_combo.append_text (_("LoDPI"));
             dpi_combo.append_text (_("Pixel Doubled"));
 
-            var dpi_grid = new Gtk.Grid ();
-            dpi_grid.column_spacing = 6;
-            dpi_grid.margin = 12;
+            var dpi_grid = new Gtk.Grid () {
+                column_spacing = 6,
+                margin = 6
+            };
             dpi_grid.add (dpi_label);
             dpi_grid.add (dpi_combo);
 
@@ -55,16 +58,17 @@ public class Display.DisplaysView : Gtk.Grid {
             apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             apply_button.sensitive = false;
 
-            var button_grid = new Gtk.Grid ();
-            button_grid.margin = 12;
-            button_grid.column_homogeneous = true;
-            button_grid.column_spacing = 6;
-            button_grid.orientation = Gtk.Orientation.HORIZONTAL;
+            var button_grid = new Gtk.Grid () {
+                column_homogeneous = true,
+                column_spacing = 6,
+                margin = 6,
+                valign = Gtk.Align.CENTER
+            };
             button_grid.add (detect_button);
             button_grid.add (apply_button);
 
             var action_bar = new Gtk.ActionBar ();
-            action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
+            action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
             action_bar.pack_start (dpi_grid);
             action_bar.pack_start (mirror_grid);
 
@@ -77,10 +81,11 @@ public class Display.DisplaysView : Gtk.Grid {
                     var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
                     var rotation_lock_switch = new Gtk.Switch ();
 
-                    var rotation_lock_grid = new Gtk.Grid ();
-                    rotation_lock_grid.margin = 12;
-                    rotation_lock_grid.column_spacing = 6;
-                    rotation_lock_grid.orientation = Gtk.Orientation.HORIZONTAL;
+                    var rotation_lock_grid = new Gtk.Grid () {
+                        column_spacing = 6,
+                        margin = 6,
+                        valign = Gtk.Align.CENTER
+                    };
                     rotation_lock_grid.add (rotation_lock_label);
                     rotation_lock_grid.add (rotation_lock_switch);
 

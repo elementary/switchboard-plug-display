@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-28 23:41+0000\n"
-"PO-Revision-Date: 2019-07-02 13:46+0000\n"
+"PO-Revision-Date: 2020-10-24 12:15+0000\n"
 "Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
 "Language-Team: Italian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/it/>\n"
@@ -17,33 +17,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr "Impostazioni del monitor"
+msgstr "Impostazioni dello schermo"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "Configura la risoluzione e la posizione di monitor e proiettori"
+msgstr "Configura la risoluzione e la posizione di schermi e proiettori"
 
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
 #: data/display.appdata.xml.in:31
 msgid "Updated translations"
-msgstr ""
+msgstr "Traduzioni aggiornate"
 
 #: data/display.appdata.xml.in:20
 msgid "Fix 1px gaps between displays"
-msgstr ""
+msgstr "Risolve lo spazio di 1 pixel tra gli schermi"
 
 #: data/display.appdata.xml.in:21
 msgid "Properly center rotated displays"
-msgstr ""
+msgstr "Centra adeguatamente gli schermi ruotati"
 
 #: data/display.appdata.xml.in:29
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
+"Migliorata la dispozione multi-schermo tramite un miglior aggancio e "
+"allineamento"
 
 #: data/display.appdata.xml.in:30
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Corretto il posizionamento delle etichette con il nome degli schermi"
