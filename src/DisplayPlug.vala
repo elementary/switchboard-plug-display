@@ -48,7 +48,16 @@ public class Display.Plug : Switchboard.Plug {
 
             var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", true);
             if (interface_settings_schema != null && interface_settings_schema.has_key ("night-light-enabled")) {
-                var nightlight_view = new NightLightView ();
+                Gtk.Widget nightlight_view;
+                if (Utils.is_night_light_supported ()) {
+                    nightlight_view = new NightLightView ();
+                } else {
+                    nightlight_view = new Granite.Widgets.AlertView (
+                        _("Night Light is not supported"),
+                        _("Your hardware does not support Night Light"),
+                        "weather-clear-night"
+                    );
+                }
 
                 stack = new Gtk.Stack ();
                 stack.add_titled (displays_view, "displays", _("Displays"));

@@ -80,4 +80,23 @@ namespace Display.Utils {
 
         return min_scale;
     }
+
+    public static bool is_night_light_supported () {
+        try {
+            string standard_output;
+            int exit_status;
+            Process.spawn_command_line_sync ("/usr/bin/uname -p",
+                                                out standard_output,
+                                                null,
+                                                out exit_status);
+
+            if (exit_status == 0 && standard_output.strip () == "x86_64") {
+                return true;
+            }
+        } catch (SpawnError e) {
+            warning (e.message);
+        }
+
+        return false;
+    }
 }
