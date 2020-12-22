@@ -710,9 +710,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         public InactiveDisplayButton (Display.VirtualMonitor _vm) {
             Object (vm : _vm);
-
-            label = vm.monitor.display_name;
-
+            ///TRANSLATORS: The %s placeholder is replaced by the name of an inactive display
+            label = _("%s (Not Used)").printf (vm.monitor.display_name);
+            tooltip_text = _("Click to use this display");
         }
     }
 }
