@@ -60,6 +60,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private enum ResolutionColumns {
         NAME,
         MODE,
+        PIXELS,
         TOTAL
     }
 
@@ -107,7 +108,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         var resolution_label = new Gtk.Label (_("Resolution:"));
         resolution_label.halign = Gtk.Align.END;
 
-        resolution_list_store = new Gtk.ListStore (ResolutionColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
+        resolution_list_store = new Gtk.ListStore (ResolutionColumns.TOTAL, typeof (string), typeof (Display.MonitorMode), typeof (int));
+        resolution_list_store.set_sort_column_id (ResolutionColumns.PIXELS, Gtk.SortType.DESCENDING);
         resolution_combobox = new Gtk.ComboBox.with_model (resolution_list_store);
         resolution_combobox.sensitive = use_switch.active;
         var text_renderer = new Gtk.CellRendererText ();
@@ -153,7 +155,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
             Gtk.TreeIter iter;
             resolution_list_store.append (out iter);
-            resolution_list_store.set (iter, ResolutionColumns.NAME, mode.get_resolution (), ResolutionColumns.MODE, mode);
+            resolution_list_store.set (iter, ResolutionColumns.NAME, mode.get_resolution (), ResolutionColumns.MODE, mode, ResolutionColumns.PIXELS, mode.width * mode.height);
             if (mode.is_current) {
                 resolution_combobox.set_active_iter (iter);
                 resolution_set = true;
