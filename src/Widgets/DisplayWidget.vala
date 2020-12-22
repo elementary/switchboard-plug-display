@@ -145,7 +145,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         foreach (var mode in virtual_monitor.get_available_modes ()) {
             var mode_width = mode.width;
             var mode_height = mode.height;
-            if (mode_width < 1024 || mode.height <768) { // minimum recommended for elementaryos
+            if (mode_width < 1024 || mode.height < 768) { // minimum recommended for elementaryos
                 continue;
             }
 
