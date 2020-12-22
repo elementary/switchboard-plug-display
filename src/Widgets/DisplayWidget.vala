@@ -52,7 +52,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private int real_width = 0;
     private int real_height = 0;
 
-    struct Resolution {
+    private struct Resolution {
         uint width;
         uint height;
     }
