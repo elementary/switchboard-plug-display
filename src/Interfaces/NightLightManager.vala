@@ -18,12 +18,12 @@
 */
 
 [DBus (name="org.gnome.SettingsDaemon.Color")]
-public interface Display.NightLightInterface : Object {
+public interface Display.NightLightInterface : DBusProxy {
     public abstract bool disabled_until_tomorrow { get; set; }
 }
 
 public class Display.NightLightManager : Object {
-    private NightLightInterface interface;
+    private NightLightInterface night_light_interface;
 
     private bool snooze_cache;
     public bool snoozed {
@@ -32,7 +32,7 @@ public class Display.NightLightManager : Object {
         } set {
             if (value != snooze_cache) {
                 snooze_cache = value;
-                interface.disabled_until_tomorrow = value;
+                night_light_interface.disabled_until_tomorrow = value;
             }
         }
     }
@@ -50,10 +50,15 @@ public class Display.NightLightManager : Object {
 
     construct {
         try {
-            interface = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon.Color", "/org/gnome/SettingsDaemon/Color", DBusProxyFlags.NONE);
-            snooze_cache = interface.disabled_until_tomorrow;
+            night_light_interface = Bus.get_proxy_sync (
+                BusType.SESSION,
+                "org.gnome.SettingsDaemon.Color",
+                "/org/gnome/SettingsDaemon/Color",
+                DBusProxyFlags.NONE
+            );
+            snooze_cache = night_light_interface.disabled_until_tomorrow;
 
-            (interface as DBusProxy).g_properties_changed.connect ((changed, invalid) => {
+            night_light_interface.g_properties_changed.connect ((changed, invalid) => {
                 var snooze = changed.lookup_value ("DisabledUntilTomorrow", new VariantType ("b"));
 
                 if (snooze != null) {
