@@ -23,13 +23,7 @@ namespace Display.Utils {
     public static bool has_touchscreen () {
         weak Gdk.Display? display = Gdk.Display.get_default ();
         if (display != null) {
-            var manager = display.get_device_manager ();
-            GLib.List<weak Gdk.Device> devices = manager.list_devices (Gdk.DeviceType.SLAVE);
-            foreach (weak Gdk.Device device in devices) {
-                if (device.input_source == Gdk.InputSource.TOUCHSCREEN) {
-                    return true;
-                }
-            }
+            return Gdk.SeatCapabilities.TOUCH in display.get_default_seat ().get_capabilities ();
         }
 
         return false;

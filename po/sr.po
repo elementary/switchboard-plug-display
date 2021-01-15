@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-31 10:47-0700\n"
-"PO-Revision-Date: 2020-10-01 21:15+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-12-22 19:00+0000\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/sr/>\n"
 "Language: sr\n"
@@ -27,48 +27,44 @@ msgstr "Екрани"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "Подесите резолуцију и места екрана и пројектора"
+msgstr "Подесите резолуцију и положај монитора и пројектора"
 
 #: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
 #: src/DisplayPlug.vala:118
 msgid "Night Light"
-msgstr ""
+msgstr "Ноћно светло"
 
 #: src/DisplayPlug.vala:110
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Резолуција:"
+msgstr "Резолуција екрана"
 
 #: src/DisplayPlug.vala:111
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Окренутост:"
+msgstr "Окренутост екрана"
 
 #: src/DisplayPlug.vala:112
-#, fuzzy
 msgid "Primary display"
-msgstr "Је примарни екран"
+msgstr "Је главни екран"
 
 #: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Пресликавање екрана"
 
 #: src/DisplayPlug.vala:114
 msgid "Scaling factor"
-msgstr ""
+msgstr "Чинилац промене величине"
 
 #: src/DisplayPlug.vala:115
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Окренутост:"
+msgstr "Закључаност окренутости"
 
 #: src/DisplayPlug.vala:117
 msgid "Schedule"
-msgstr ""
+msgstr "Распоред"
 
 #: src/DisplayPlug.vala:118
 msgid "Color temperature"
-msgstr ""
+msgstr "Температура боје"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -76,7 +72,7 @@ msgstr "На десно"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Наглавачке"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
@@ -84,48 +80,47 @@ msgstr "На лево"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
-msgstr "Изврнуто"
+msgstr "Изврнут"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "На десно"
+msgstr "Изврнут на десно"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Изврнут наглавачке"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "На лево"
+msgstr "Изврнут на лево"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Ништа"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Екрани у огледалу"
+msgstr "Екран у огледалу"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Ноћно светло:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Ноћно светло чини боје вашег екрана топлијим. И тиме помаже у спречавању "
+"замора очију и поспаности."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Закажи:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "сутона до свитања"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
@@ -141,15 +136,15 @@ msgstr "До:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Температура боје:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Топлије"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Хладније"
 
 #: src/Views/DisplaysView.vala:31
 msgid "Mirror Display:"
@@ -157,28 +152,27 @@ msgstr "Екран у огледалу:"
 
 #: src/Views/DisplaysView.vala:40
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Чинилац промене величине:"
 
 #: src/Views/DisplaysView.vala:43
 msgid "LoDPI"
-msgstr ""
+msgstr "НиТПИ"
 
 #: src/Views/DisplaysView.vala:44
 msgid "Pixel Doubled"
-msgstr ""
+msgstr "Двострука слика"
 
 #: src/Views/DisplaysView.vala:52
 msgid "Detect Displays"
-msgstr "Откријте екране"
+msgstr "Откриј екране"
 
 #: src/Views/DisplaysView.vala:54
 msgid "Apply"
 msgstr "Примени"
 
 #: src/Views/DisplaysView.vala:77
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Окренутост:"
+msgstr "Закључаност окренутости:"
 
 #: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
@@ -189,13 +183,12 @@ msgid "Resolution:"
 msgstr "Резолуција:"
 
 #: src/Widgets/DisplayWidget.vala:117
-#, fuzzy
 msgid "Screen Rotation:"
 msgstr "Окренутост:"
 
 #: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"
-msgstr ""
+msgstr "Учесталост освежавања:"
 
 #: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
@@ -204,7 +197,7 @@ msgstr "Подеси екран"
 #: src/Widgets/DisplayWidget.vala:359
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g Hz"
 
 #: src/Widgets/DisplayWidget.vala:444
 msgid "Is the primary display"
