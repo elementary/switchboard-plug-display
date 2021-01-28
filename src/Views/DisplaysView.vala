@@ -46,9 +46,12 @@ public class Display.DisplaysView : Gtk.Grid {
 
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
+            int width, height;
+            monitor_manager.virtual_monitors[0].get_current_mode_size (out width, out height);
+
             dpi_combo = new Gtk.ComboBoxText ();
             dpi_combo.append_text (_("LoDPI") + " (1×)");
-            int max_scale = (int)monitor_manager.virtual_monitors[0].monitor.get_max_scale () - 1;
+            int max_scale = height / 768;
             for (int i = 2; i <= max_scale; i++) {
                 dpi_combo.append_text (_("HiDPI") + " (%d×)".printf (i));
             }
