@@ -89,6 +89,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
+        allocation = Gdk.Rectangle ();
         if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
             calculate_ratio ();
         }
@@ -103,7 +104,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             var y_start = (int) Math.round (y * current_ratio) + inactive_displays_revealer.get_allocated_height ();
             var x_end = (int) Math.round ((x + width) * current_ratio);
             var y_end = (int) Math.round ((y + height) * current_ratio);
-            allocation = Gdk.Rectangle ();
             allocation.x = default_x_margin + x_start;
             allocation.y = default_y_margin + y_start;
             allocation.width = x_end - x_start;

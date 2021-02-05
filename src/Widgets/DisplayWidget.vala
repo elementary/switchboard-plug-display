@@ -19,6 +19,11 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
+public struct Display.Resolution {
+    uint width;
+    uint height;
+}
+
 public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
     public signal void move_display (double diff_x, double diff_y);
@@ -51,11 +56,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     private int real_width = 0;
     private int real_height = 0;
-
-    struct Resolution {
-        uint width;
-        uint height;
-    }
 
     private enum ResolutionColumns {
         NAME,
