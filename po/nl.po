@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-31 10:47-0700\n"
+"POT-Creation-Date: 2021-02-10 21:27+0000\n"
 "PO-Revision-Date: 2020-01-17 22:07+0000\n"
 "Last-Translator: Ruben Sibon <rubenjs@webricolage.nl>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
@@ -145,31 +145,31 @@ msgstr "Warmer"
 msgid "Less Warm"
 msgstr "Kouder"
 
-#: src/Views/DisplaysView.vala:31
+#: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
 msgstr "Spiegel beeldscherm:"
 
-#: src/Views/DisplaysView.vala:40
+#: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
 msgstr "Schaalfactor:"
 
-#: src/Views/DisplaysView.vala:43
+#: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
 msgstr "Laag DPI"
 
-#: src/Views/DisplaysView.vala:44
-msgid "Pixel Doubled"
-msgstr "Dubbele pixels"
+#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+msgid "HiDPI"
+msgstr ""
 
-#: src/Views/DisplaysView.vala:52
+#: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
 msgstr "Detecteer beeldschermen"
 
-#: src/Views/DisplaysView.vala:54
+#: src/Views/DisplaysView.vala:61
 msgid "Apply"
 msgstr "Toepassen"
 
-#: src/Views/DisplaysView.vala:77
+#: src/Views/DisplaysView.vala:150
 msgid "Rotation Lock:"
 msgstr "Rotatievergrendeling:"
 
@@ -205,6 +205,9 @@ msgstr "Is het primair beeldscherm"
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "Kies als primair beeldscherm"
+
+#~ msgid "Pixel Doubled"
+#~ msgstr "Dubbele pixels"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotatie:"
