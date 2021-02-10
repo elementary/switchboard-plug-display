@@ -29,8 +29,6 @@ public class Display.DisplaysView : Gtk.Grid {
     private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
 
     construct {
-            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
-
             displays_overlay = new DisplaysOverlay ();
 
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
@@ -46,19 +44,10 @@ public class Display.DisplaysView : Gtk.Grid {
 
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
-            int width, height;
-            monitor_manager.virtual_monitors[0].get_current_mode_size (out width, out height);
-
             dpi_combo = new Gtk.ComboBoxText ();
             dpi_combo.append_text (_("LoDPI") + " (1×)");
-            int max_scale = height / 768;
-            for (int i = 2; i <= max_scale; i++) {
-                dpi_combo.append_text (_("HiDPI") + " (%d×)".printf (i));
-            }
-
-            if (max_scale < 2) {
-                dpi_combo.sensitive = false;
-            }
+            dpi_combo.append_text (_("HiDPI") + " (2×)");
+            dpi_combo.append_text (_("HiDPI") + " (3×)");
 
             var dpi_grid = new Gtk.Grid () {
                 column_spacing = 6,
@@ -115,6 +104,7 @@ public class Display.DisplaysView : Gtk.Grid {
                 apply_button.sensitive = changed;
             });
 
+            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_grid.sensitive = monitor_manager.monitors.size > 1;
             monitor_manager.notify["monitor-number"].connect (() => {
                 mirror_grid.sensitive = monitor_manager.monitors.size > 1;
