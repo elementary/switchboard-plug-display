@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-31 10:47-0700\n"
+"POT-Creation-Date: 2021-02-10 21:27+0000\n"
 "PO-Revision-Date: 2020-05-22 11:11+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -143,31 +143,31 @@ msgstr "较暖"
 msgid "Less Warm"
 msgstr "较冷"
 
-#: src/Views/DisplaysView.vala:31
+#: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
 msgstr "镜像显示："
 
-#: src/Views/DisplaysView.vala:40
+#: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
 msgstr "比例系数："
 
-#: src/Views/DisplaysView.vala:43
+#: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
 msgstr "LoDPI"
 
-#: src/Views/DisplaysView.vala:44
-msgid "Pixel Doubled"
-msgstr "双倍像素"
+#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+msgid "HiDPI"
+msgstr ""
 
-#: src/Views/DisplaysView.vala:52
+#: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
 msgstr "检测显示器"
 
-#: src/Views/DisplaysView.vala:54
+#: src/Views/DisplaysView.vala:61
 msgid "Apply"
 msgstr "应用"
 
-#: src/Views/DisplaysView.vala:77
+#: src/Views/DisplaysView.vala:150
 msgid "Rotation Lock:"
 msgstr "旋转锁："
 
@@ -203,6 +203,9 @@ msgstr "主显示器"
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "设为主显示器"
+
+#~ msgid "Pixel Doubled"
+#~ msgstr "双倍像素"
 
 #~ msgid ""
 #~ "Scaling factor changes will not take effect until this device is restarted"

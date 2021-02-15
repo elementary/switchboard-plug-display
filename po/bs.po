@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-31 10:47-0700\n"
+"POT-Creation-Date: 2021-02-10 21:27+0000\n"
 "PO-Revision-Date: 2018-11-17 09:22+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/switchboard/"
@@ -146,31 +146,31 @@ msgstr "Toplije"
 msgid "Less Warm"
 msgstr "Manje toplo"
 
-#: src/Views/DisplaysView.vala:31
+#: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
 msgstr "Dupliciraj displej:"
 
-#: src/Views/DisplaysView.vala:40
+#: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
 msgstr "Faktor skaliranja:"
 
-#: src/Views/DisplaysView.vala:43
+#: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
 msgstr "LoDPI"
 
-#: src/Views/DisplaysView.vala:44
-msgid "Pixel Doubled"
-msgstr "Dvostruki pikseli"
+#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+msgid "HiDPI"
+msgstr ""
 
-#: src/Views/DisplaysView.vala:52
+#: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
 msgstr "Detektuj displeje"
 
-#: src/Views/DisplaysView.vala:54
+#: src/Views/DisplaysView.vala:61
 msgid "Apply"
 msgstr "Primijeni"
 
-#: src/Views/DisplaysView.vala:77
+#: src/Views/DisplaysView.vala:150
 msgid "Rotation Lock:"
 msgstr "Zaključavanje rotacije:"
 
@@ -207,6 +207,9 @@ msgstr "Ovo je glavni ekran"
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "Postavi kao primarni displej"
+
+#~ msgid "Pixel Doubled"
+#~ msgstr "Dvostruki pikseli"
 
 #~ msgid ""
 #~ "Scaling factor changes will not take effect until this device is restarted"

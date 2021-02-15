@@ -20,15 +20,6 @@
  */
 
 namespace Display.Utils {
-    public static bool has_touchscreen () {
-        weak Gdk.Display? display = Gdk.Display.get_default ();
-        if (display != null) {
-            return Gdk.SeatCapabilities.TOUCH in display.get_default_seat ().get_capabilities ();
-        }
-
-        return false;
-    }
-
     public static Gee.LinkedList<Display.MonitorMode> get_common_monitor_modes (Gee.LinkedList<Display.Monitor> monitors) {
         var common_modes = new Gee.LinkedList<Display.MonitorMode> ();
         double min_scale = get_min_compatible_scale (monitors);
