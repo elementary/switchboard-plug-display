@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2021-02-15 21:09+0000\n"
+"PO-Revision-Date: 2021-02-24 23:37+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/de/>\n"
@@ -110,8 +110,8 @@ msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
-"Der Nachtmodus macht die Farben Ihres Displays wärmer. Dies kann helfen, "
-"Augenbelastung und Schlaflosigkeit zu vermeiden."
+"Im Nachtmodus erfolgt die Bildschirmdarstellung in wärmeren Farben. Dies "
+"kann helfen, Augenbelastung und Schlafstörungen zu vermeiden."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
@@ -123,7 +123,7 @@ msgstr "Sonnenuntergang bis Sonnenaufgang"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr "Benutzerdefiniert"
+msgstr "Manuell"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
