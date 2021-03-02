@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2019-01-02 19:36+0000\n"
-"Last-Translator: Jörg Arnold <j.ar@mailbox.org>\n"
-"Language-Team: German <https://weblate.elementary.io/projects/switchboard/"
+"PO-Revision-Date: 2021-02-24 23:37+0000\n"
+"Last-Translator: Uwe S <saabisto@gmx.de>\n"
+"Language-Team: German <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
@@ -110,8 +110,8 @@ msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
-"Der Nachtmodus macht die Farben Ihres Displays wärmer. Dies kann helfen, "
-"Augenbelastung und Schlaflosigkeit zu vermeiden."
+"Im Nachtmodus erfolgt die Bildschirmdarstellung in wärmeren Farben. Dies "
+"kann helfen, Augenbelastung und Schlafstörungen zu vermeiden."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
@@ -123,7 +123,7 @@ msgstr "Sonnenuntergang bis Sonnenaufgang"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr "Benutzerdefiniert"
+msgstr "Manuell"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
@@ -159,7 +159,7 @@ msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
 msgid "HiDPI"
-msgstr ""
+msgstr "HiDPI"
 
 #: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
