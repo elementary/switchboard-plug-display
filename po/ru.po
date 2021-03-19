@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2021-03-18 02:32+0000\n"
+"PO-Revision-Date: 2021-03-19 12:52+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ru/>\n"
@@ -40,7 +40,7 @@ msgstr "Разрешение"
 
 #: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
-msgstr "Поворот"
+msgstr "Поворот экрана"
 
 #: src/DisplayPlug.vala:112
 msgid "Primary display"
