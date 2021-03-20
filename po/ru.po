@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2020-04-12 11:10+0000\n"
-"Last-Translator: Stas <SedovSG@yandex.ru>\n"
+"PO-Revision-Date: 2021-03-19 12:52+0000\n"
+"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
@@ -40,7 +40,7 @@ msgstr "Разрешение"
 
 #: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
-msgstr "Поворот"
+msgstr "Поворот экрана"
 
 #: src/DisplayPlug.vala:112
 msgid "Primary display"
@@ -160,7 +160,7 @@ msgstr "LoDPI"
 
 #: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
 msgid "HiDPI"
-msgstr ""
+msgstr "HiDPI"
 
 #: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
@@ -183,9 +183,8 @@ msgid "Resolution:"
 msgstr "Разрешение:"
 
 #: src/Widgets/DisplayWidget.vala:117
-#, fuzzy
 msgid "Screen Rotation:"
-msgstr "Поворот"
+msgstr "Поворот экрана:"
 
 #: src/Widgets/DisplayWidget.vala:126
 msgid "Refresh Rate:"

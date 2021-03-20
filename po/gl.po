@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2020-10-01 21:15+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2021-02-24 10:30+0000\n"
+"Last-Translator: david <dcardelleg@gmail.com>\n"
 "Language-Team: Galician <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/gl/>\n"
 "Language: gl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
@@ -34,40 +34,36 @@ msgid "Night Light"
 msgstr ""
 
 #: src/DisplayPlug.vala:110
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "Resolución:"
+msgstr "Resolución de pantalla:"
 
 #: src/DisplayPlug.vala:111
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "Rotación:"
+msgstr "Rotación da pantalla"
 
 #: src/DisplayPlug.vala:112
-#, fuzzy
 msgid "Primary display"
-msgstr "É a pantalla principal"
+msgstr "Pantalla principal"
 
 #: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
-msgstr ""
+msgstr "Duplicar pantalla"
 
 #: src/DisplayPlug.vala:114
 msgid "Scaling factor"
-msgstr ""
+msgstr "Factor de escala"
 
 #: src/DisplayPlug.vala:115
-#, fuzzy
 msgid "Rotation lock"
-msgstr "Rotación:"
+msgstr "Bloqueo de xiro"
 
 #: src/DisplayPlug.vala:117
 msgid "Schedule"
-msgstr ""
+msgstr "Calendario"
 
 #: src/DisplayPlug.vala:118
 msgid "Color temperature"
-msgstr ""
+msgstr "Temperatura da cor"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -86,9 +82,8 @@ msgid "Flipped"
 msgstr "Invertido"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "Á dereita"
+msgstr "Virado no sentido horario"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
@@ -104,13 +99,12 @@ msgid "None"
 msgstr "Ningún"
 
 #: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "Pantallas en espello"
+msgstr "Pantallas duplicadas"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Luz nocturna:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
@@ -120,7 +114,7 @@ msgstr ""
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Calendario:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
@@ -128,7 +122,7 @@ msgstr ""
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
@@ -140,11 +134,11 @@ msgstr "Ata:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Temperatura da cor:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Máis cálida"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
