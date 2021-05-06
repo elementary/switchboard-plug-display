@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2021-03-03 11:48+0000\n"
+"PO-Revision-Date: 2021-05-06 14:05+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fi/>\n"
@@ -139,11 +139,11 @@ msgstr "Värilämpötila:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr "Lämpimämpi"
+msgstr "Enemmän lämpöä"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr "Vähemmän lämpimämpi"
+msgstr "Vähemmän lämpöä"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
