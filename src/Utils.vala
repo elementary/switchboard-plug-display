@@ -20,21 +20,6 @@
  */
 
 namespace Display.Utils {
-    public static bool has_touchscreen () {
-        weak Gdk.Display? display = Gdk.Display.get_default ();
-        if (display != null) {
-            var manager = display.get_device_manager ();
-            GLib.List<weak Gdk.Device> devices = manager.list_devices (Gdk.DeviceType.SLAVE);
-            foreach (weak Gdk.Device device in devices) {
-                if (device.input_source == Gdk.InputSource.TOUCHSCREEN) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
     public static Gee.LinkedList<Display.MonitorMode> get_common_monitor_modes (Gee.LinkedList<Display.Monitor> monitors) {
         var common_modes = new Gee.LinkedList<Display.MonitorMode> ();
         double min_scale = get_min_compatible_scale (monitors);

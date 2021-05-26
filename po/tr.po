@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-31 10:47-0700\n"
-"PO-Revision-Date: 2019-08-23 00:22+0000\n"
+"POT-Creation-Date: 2021-02-10 21:27+0000\n"
+"PO-Revision-Date: 2021-02-14 20:47+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
@@ -123,7 +123,7 @@ msgstr "Otomatik"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr "Elle"
+msgstr "El ile"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
@@ -145,31 +145,31 @@ msgstr "Daha Sıcak"
 msgid "Less Warm"
 msgstr "Daha Soğuk"
 
-#: src/Views/DisplaysView.vala:31
+#: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
 msgstr "Ekranı Yansıt:"
 
-#: src/Views/DisplaysView.vala:40
+#: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
 msgstr "Ölçekleme oranı:"
 
-#: src/Views/DisplaysView.vala:43
+#: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
 msgstr "LoDPI"
 
-#: src/Views/DisplaysView.vala:44
-msgid "Pixel Doubled"
-msgstr "Pixel Doubled"
+#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+msgid "HiDPI"
+msgstr "HiDPI"
 
-#: src/Views/DisplaysView.vala:52
+#: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
 msgstr "Ekranları Algıla"
 
-#: src/Views/DisplaysView.vala:54
+#: src/Views/DisplaysView.vala:61
 msgid "Apply"
 msgstr "Uygula"
 
-#: src/Views/DisplaysView.vala:77
+#: src/Views/DisplaysView.vala:150
 msgid "Rotation Lock:"
 msgstr "Döndürme Kilidi:"
 
@@ -205,6 +205,9 @@ msgstr "Birincil ekran"
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "Birincil ekran olarak ayarla"
+
+#~ msgid "Pixel Doubled"
+#~ msgstr "Pixel Doubled"
 
 #~ msgid ""
 #~ "Scaling factor changes will not take effect until this device is restarted"
