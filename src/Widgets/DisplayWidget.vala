@@ -30,7 +30,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public signal void end_grab (int delta_x, int delta_y);
     public signal void check_position ();
     public signal void configuration_changed ();
-    public signal void active_changed ();
+    // public signal void active_changed ();
 
     public Display.VirtualMonitor virtual_monitor;
     public DisplayWindow display_window;
@@ -97,19 +97,19 @@ public class Display.DisplayWidget : Gtk.EventBox {
         label.valign = Gtk.Align.CENTER;
         label.expand = true;
 
-        var use_label = new Gtk.Label (_("Use This Display:"));
-        use_label.halign = Gtk.Align.END;
-        var use_switch = new Gtk.Switch ();
-        use_switch.halign = Gtk.Align.START;
-        use_switch.active = virtual_monitor.is_active;
-        this.bind_property ("only-display", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
+        // var use_label = new Gtk.Label (_("Use This Display:"));
+        // use_label.halign = Gtk.Align.END;
+        // var use_switch = new Gtk.Switch ();
+        // use_switch.halign = Gtk.Align.START;
+        // use_switch.active = virtual_monitor.is_active;
+        // this.bind_property ("only-display", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
 
         var resolution_label = new Gtk.Label (_("Resolution:"));
         resolution_label.halign = Gtk.Align.END;
 
         resolution_list_store = new Gtk.ListStore (ResolutionColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
         resolution_combobox = new Gtk.ComboBox.with_model (resolution_list_store);
-        resolution_combobox.sensitive = use_switch.active;
+        // resolution_combobox.sensitive = use_switch.active;
         var text_renderer = new Gtk.CellRendererText ();
         resolution_combobox.pack_start (text_renderer, true);
         resolution_combobox.add_attribute (text_renderer, "text", ResolutionColumns.NAME);
@@ -118,7 +118,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         rotation_label.halign = Gtk.Align.END;
         rotation_list_store = new Gtk.ListStore (RotationColumns.TOTAL, typeof (string), typeof (int));
         rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store);
-        rotation_combobox.sensitive = use_switch.active;
+        // rotation_combobox.sensitive = use_switch.active;
         text_renderer = new Gtk.CellRendererText ();
         rotation_combobox.pack_start (text_renderer, true);
         rotation_combobox.add_attribute (text_renderer, "text", RotationColumns.NAME);
@@ -127,7 +127,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         refresh_label.halign = Gtk.Align.END;
         refresh_list_store = new Gtk.ListStore (RefreshColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
         refresh_combobox = new Gtk.ComboBox.with_model (refresh_list_store);
-        refresh_combobox.sensitive = use_switch.active;
+        // refresh_combobox.sensitive = use_switch.active;
         text_renderer = new Gtk.CellRendererText ();
         refresh_combobox.pack_start (text_renderer, true);
         refresh_combobox.add_attribute (text_renderer, "text", RefreshColumns.NAME);
@@ -170,8 +170,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         popover_grid.column_spacing = 12;
         popover_grid.row_spacing = 6;
         popover_grid.margin = 12;
-        popover_grid.attach (use_label, 0, 0);
-        popover_grid.attach (use_switch, 1, 0);
+        // popover_grid.attach (use_label, 0, 0);
+        // popover_grid.attach (use_switch, 1, 0);
         popover_grid.attach (resolution_label, 0, 1);
         popover_grid.attach (resolution_combobox, 1, 1);
         popover_grid.attach (rotation_label, 0, 2);
@@ -204,25 +204,29 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         destroy.connect (() => display_window.destroy ());
 
-        use_switch.notify["active"].connect (() => {
-            //output_info.set_active (use_switch.active);
-            resolution_combobox.sensitive = use_switch.active;
-            rotation_combobox.sensitive = use_switch.active;
-            refresh_combobox.sensitive = use_switch.active;
+        virtual_monitor.notify ["is-active"].connect (() => {
 
-            if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
-            if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
-            if (refresh_combobox.active == -1) refresh_combobox.set_active (0);
-
-            if (use_switch.active) {
-                get_style_context ().remove_class ("disabled");
-            } else {
-                get_style_context ().add_class ("disabled");
-            }
-
-            configuration_changed ();
-            active_changed ();
         });
+
+        // use_switch.notify["active"].connect (() => {
+        //     //output_info.set_active (use_switch.active);
+        //     resolution_combobox.sensitive = use_switch.active;
+        //     rotation_combobox.sensitive = use_switch.active;
+        //     refresh_combobox.sensitive = use_switch.active;
+
+        //     if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
+        //     if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
+        //     if (refresh_combobox.active == -1) refresh_combobox.set_active (0);
+
+        //     if (use_switch.active) {
+        //         get_style_context ().remove_class ("disabled");
+        //     } else {
+        //         get_style_context ().add_class ("disabled");
+        //     }
+
+        //     configuration_changed ();
+        //     active_changed ();
+        // });
 
         if (!virtual_monitor.is_active) {
             get_style_context ().add_class ("disabled");

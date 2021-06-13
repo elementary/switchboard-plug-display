@@ -53,11 +53,7 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
-    public bool is_active {
-        get {
-            return true;
-        }
-    }
+    public bool is_active { get; set; default = true; }
 
     /* 
      * Get the first monitor of the list, handy in non-mirror context.

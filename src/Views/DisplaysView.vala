@@ -22,7 +22,7 @@
 
 public class Display.DisplaysView : Gtk.Grid {
     public DisplaysOverlay displays_overlay;
-
+    public MonitorsList monitors_list;
     private Gtk.ComboBoxText dpi_combo;
     private Gtk.Grid rotation_lock_grid;
 
@@ -30,7 +30,16 @@ public class Display.DisplaysView : Gtk.Grid {
 
     construct {
             displays_overlay = new DisplaysOverlay ();
+            monitors_list = new MonitorsList ();
 
+            var displays_paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
+                position = 200
+            };
+
+            displays_paned.add1 (monitors_list);
+            displays_paned.add2 (displays_overlay);
+
+            displays_paned.show_all ();
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
             var mirror_switch = new Gtk.Switch ();
 
@@ -96,7 +105,7 @@ public class Display.DisplaysView : Gtk.Grid {
 
             orientation = Gtk.Orientation.VERTICAL;
             add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-            add (displays_overlay);
+            add (displays_paned);
             add (action_bar);
             show_all ();
 
@@ -110,7 +119,11 @@ public class Display.DisplaysView : Gtk.Grid {
                 mirror_grid.sensitive = monitor_manager.monitors.size > 1;
             });
 
-            detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
+            detect_button.clicked.connect (() => {
+                monitor_manager.get_monitor_config ();
+                displays_overlay.rescan_displays ();
+            });
+
             apply_button.clicked.connect (() => {
                 monitor_manager.set_monitor_config ();
                 apply_button.sensitive = false;

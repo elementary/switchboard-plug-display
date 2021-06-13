@@ -13,6 +13,8 @@ plug_files = files(
     'Widgets/DisplayWindow.vala',
     'Widgets/DisplayWidget.vala',
     'Widgets/DisplaysOverlay.vala',
+    'Widgets/MonitorsList.vala',
+    'Widgets/MonitorsListWidget.vala',
 )
 
 switchboard_dep = dependency('switchboard-2.0')
