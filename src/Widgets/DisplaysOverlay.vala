@@ -212,10 +212,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
 
-            context = display_widget.toggle_settings.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
+            // context = display_widget.toggle_settings.get_style_context ();
+            // context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            // context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            // context.add_class ("colored");
         } catch (GLib.Error e) {
             critical (e.message);
         }

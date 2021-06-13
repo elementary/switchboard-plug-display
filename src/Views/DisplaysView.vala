@@ -36,8 +36,8 @@ public class Display.DisplaysView : Gtk.Grid {
                 position = 200
             };
 
-            displays_paned.add1 (monitors_list);
-            displays_paned.add2 (displays_overlay);
+            displays_paned.pack1 (monitors_list, false, false);
+            displays_paned.pack2 (displays_overlay, true, true);
 
             displays_paned.show_all ();
             var mirror_label = new Gtk.Label (_("Mirror Display:"));

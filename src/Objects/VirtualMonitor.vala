@@ -25,7 +25,7 @@ public class Display.VirtualMonitor : GLib.Object {
     public int current_x { get; set; }
     public int current_y { get; set; }
     public double scale { get; set; }
-    public DisplayTransform transform { get; set; }
+    public DisplayTransform transform { get; set; default = DisplayTransform.NORMAL;}
     public bool primary { get; set; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
