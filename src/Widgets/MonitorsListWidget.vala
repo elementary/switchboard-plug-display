@@ -88,63 +88,28 @@ public class Display.MonitorsListWidget : Gtk.Grid {
         var text_renderer = new Gtk.CellRendererText ();
         resolution_combobox.pack_start (text_renderer, true);
         resolution_combobox.add_attribute (text_renderer, "text", ResolutionColumns.NAME);
+        populate_resolutions ();
 
         var rotation_label = new Gtk.Label (_("Screen Rotation:")) {
             halign = Gtk.Align.START
         };
         rotation_list_store = new Gtk.ListStore (RotationColumns.TOTAL, typeof (string), typeof (int));
-        for (int i = 0; i <= DisplayTransform.FLIPPED_ROTATION_270; i++) {
-            Gtk.TreeIter iter;
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, RotationColumns.NAME, ((DisplayTransform) i).to_string (), RotationColumns.VALUE, i);
-        }
         rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store);
         rotation_combobox.sensitive = use_switch.active;
         text_renderer = new Gtk.CellRendererText ();
         rotation_combobox.pack_start (text_renderer, true);
         rotation_combobox.add_attribute (text_renderer, "text", RotationColumns.NAME);
-        rotation_combobox.set_active ((int) monitor.transform);
-        // on_vm_transform_changed ();
+        populate_rotations ();
 
         var refresh_label = new Gtk.Label (_("Refresh Rate:")) {
             halign = Gtk.Align.START
         };
-
         refresh_list_store = new Gtk.ListStore (RefreshColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
         refresh_combobox = new Gtk.ComboBox.with_model (refresh_list_store);
         refresh_combobox.sensitive = use_switch.active;
         text_renderer = new Gtk.CellRendererText ();
         refresh_combobox.pack_start (text_renderer, true);
         refresh_combobox.add_attribute (text_renderer, "text", RefreshColumns.NAME);
-
-
-
-        Resolution[] resolutions = {};
-        bool resolution_set = false;
-        foreach (var mode in monitor.get_available_modes ()) {
-            var mode_width = mode.width;
-            var mode_height = mode.height;
-
-            Resolution res = {mode_width, mode_height};
-            if (res in resolutions) {
-                continue;
-            }
-
-            resolutions += res;
-
-            Gtk.TreeIter iter;
-            resolution_list_store.append (out iter);
-            resolution_list_store.set (iter, ResolutionColumns.NAME, mode.get_resolution (), ResolutionColumns.MODE, mode);
-            if (mode.is_current) {
-                resolution_combobox.set_active_iter (iter);
-                resolution_set = true;
-            }
-        }
-
-        if (!resolution_set) {
-            resolution_combobox.set_active (0);
-        }
-
         populate_refresh_rates ();
 
         attach (name_label, 0, 0);
@@ -164,9 +129,45 @@ public class Display.MonitorsListWidget : Gtk.Grid {
         monitors_list.notify ["active-displays"].connect (() => {
             use_switch.sensitive = monitors_list.active_displays > 1;
         });
+
+        monitor.modes_changed.connect (() => {
+            foreach (var mode in monitor.get_available_modes ()) {
+                if (!mode.is_current) {
+                    continue;
+                }
+
+                resolution_list_store.@foreach ((model, path, iter) => {
+                    Value val;
+                    resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
+                    if (((Display.MonitorMode)val).id == mode.id) {
+                        resolution_combobox.set_active_iter (iter);
+                        return true;
+                    }
+
+                    return false;
+                });
+            }
+        });
+
+        monitor.notify["transform"].connect (() => {
+            var transform = monitor.transform;
+            rotation_list_store.@foreach ((model, path, iter) => {
+                Value val;
+                rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
+
+                var iter_transform = (DisplayTransform)((int)val);
+                if (iter_transform == transform) {
+                    rotation_combobox.set_active_iter (iter);
+                    return true;
+                }
+
+                return false;
+            });
+        });
     }
 
     private void populate_refresh_rates () {
+        bool refresh_set = false;
         refresh_list_store.clear ();
 
         Gtk.TreeIter iter;
@@ -178,7 +179,6 @@ public class Display.MonitorsListWidget : Gtk.Grid {
             var height = ((Display.MonitorMode)val).height;
 
             double[] frequencies = {};
-            bool refresh_set = false;
             foreach (var mode in monitor.get_available_modes ()) {
                 if (mode.width != width || mode.height != height) {
                     continue;
@@ -213,22 +213,48 @@ public class Display.MonitorsListWidget : Gtk.Grid {
             }
         }
 
+        if (!refresh_set) {
+            refresh_combobox.set_active (0);
+        }
+
         refresh_combobox.sensitive = added > 1;
     }
 
-    private void on_vm_transform_changed () {
-        var transform = monitor.transform;
-        rotation_list_store.@foreach ((model, path, iter) => {
-            Value val;
-            rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
+    private void populate_resolutions () {
+        Resolution[] resolutions = {};
+        bool resolution_set = false;
+        foreach (var mode in monitor.get_available_modes ()) {
+            var mode_width = mode.width;
+            var mode_height = mode.height;
 
-            var iter_transform = (DisplayTransform)((int)val);
-            if (iter_transform == transform) {
-                rotation_combobox.set_active_iter (iter);
-                return true;
+            Resolution res = {mode_width, mode_height};
+            if (res in resolutions) {
+                continue;
             }
 
-            return false;
-        });
+            resolutions += res;
+
+            Gtk.TreeIter iter;
+            resolution_list_store.append (out iter);
+            resolution_list_store.set (iter, ResolutionColumns.NAME, mode.get_resolution (), ResolutionColumns.MODE, mode);
+            if (mode.is_current) {
+                resolution_combobox.set_active_iter (iter);
+                resolution_set = true;
+            }
+        }
+
+        if (!resolution_set) {
+            resolution_combobox.set_active (0);
+        }
+    }
+
+    private void populate_rotations () {
+        for (int i = 0; i <= DisplayTransform.FLIPPED_ROTATION_270; i++) {
+            Gtk.TreeIter iter;
+            rotation_list_store.append (out iter);
+            rotation_list_store.set (iter, RotationColumns.NAME, ((DisplayTransform) i).to_string (), RotationColumns.VALUE, i);
+        }
+
+        rotation_combobox.set_active ((int) monitor.transform);
     }
 }
