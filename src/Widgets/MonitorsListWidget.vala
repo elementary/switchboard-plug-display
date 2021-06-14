@@ -124,6 +124,30 @@ public class Display.MonitorsListWidget : Gtk.Grid {
         use_switch.notify ["active"].connect (() => {
             monitor.is_active = use_switch.active;
             monitors_list.active_displays += use_switch.active ? 1 : -1;
+            monitors_list.active_changed (monitor);
+        });
+
+        resolution_combobox.changed.connect (() => {
+            Value val;
+            Gtk.TreeIter iter;
+            resolution_combobox.get_active_iter (out iter);
+            resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
+            Display.MonitorMode new_mode = (Display.MonitorMode) val;
+            monitor.set_current_mode (new_mode);
+            rotation_combobox.set_active (0);
+            populate_refresh_rates ();
+            monitors_list.resolution_changed (monitor);
+        });
+
+        rotation_combobox.changed.connect (() => {
+            Value val;
+            Gtk.TreeIter iter;
+            rotation_combobox.get_active_iter (out iter);
+            rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
+
+            var transform = (DisplayTransform)((int)val);
+            monitor.transform = transform;
+            monitors_list.rotation_changed (monitor);
         });
 
         monitors_list.notify ["active-displays"].connect (() => {

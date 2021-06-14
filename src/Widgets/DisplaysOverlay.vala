@@ -24,7 +24,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private const int SNAP_LIMIT = int.MAX - 1;
     private const int MINIMUM_WIDGET_OFFSET = 50;
 
-    public signal void configuration_changed (bool changed);
+    public signal void configuration_changed ();
 
     private bool scanning = false;
     private double current_ratio = 1.0f;
@@ -107,12 +107,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         active_displays = 0;
         foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
-            active_displays += virtual_monitor.is_active ? 1 : 0;
-            add_output (virtual_monitor);
+            if (virtual_monitor.is_active) {
+                add_output (virtual_monitor);
+            }
         }
 
-        change_active_displays_sensitivity ();
-        calculate_ratio ();
         scanning = false;
     }
 
@@ -123,9 +122,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
-                if (((DisplayWidget) child).virtual_monitor.is_active) {
-                    ((DisplayWidget) child).display_window.show_all ();
-                }
+                ((DisplayWidget) child).display_window.show_all ();
             }
         });
     }
@@ -136,21 +133,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 ((DisplayWidget) child).display_window.hide ();
             }
         });
-    }
-
-    private void change_active_displays_sensitivity () {
-        get_children ().foreach ((child) => {
-            if (child is DisplayWidget) {
-                if (((DisplayWidget) child).virtual_monitor.is_active) {
-                    ((DisplayWidget) child).only_display = (active_displays == 1);
-                }
-            }
-        });
-    }
-
-    private void check_configuration_changed () {
-        // TODO check if it actually has changed
-        configuration_changed (true);
     }
 
     private void calculate_ratio () {
@@ -212,34 +194,21 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
 
-            // context = display_widget.toggle_settings.get_style_context ();
-            // context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            // context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            // context.add_class ("colored");
         } catch (GLib.Error e) {
             critical (e.message);
         }
 
         display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
-
-        display_widget.check_position.connect (() => {
-            check_intersects (display_widget);
-            close_gaps ();
-            verify_global_positions ();
-            calculate_ratio ();
-        });
-
         display_widget.move_display.connect (move_display);
-        display_widget.configuration_changed.connect (check_configuration_changed);
         display_widget.virtual_monitor.notify ["is-active"].connect (() => {
-            // active_displays += virtual_monitor.is_active ? 1 : -1;
-            // change_active_displays_sensitivity ();
-            check_configuration_changed ();
-            calculate_ratio ();
+            Idle.add (() => {
+                rescan_displays ();
+                return Source.REMOVE;
+            });
         });
 
-        if (!monitor_manager.is_mirrored && virtual_monitor.is_active) {
+        if (!monitor_manager.is_mirrored) {
             display_widget.display_window.show_all ();
         }
 
@@ -252,12 +221,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.get_geometry (out x, out y, out width, out height);
             display_widget.set_geometry (delta_x + x, delta_y + y, width, height);
             display_widget.queue_resize_no_redraw ();
-            check_configuration_changed ();
-            check_intersects (display_widget);
-            snap_edges (display_widget);
-            close_gaps ();
-            verify_global_positions ();
-            calculate_ratio ();
+            update_layout (display_widget);
+            configuration_changed ();
         });
 
         check_intersects (display_widget);
@@ -282,7 +247,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             virtual_monitor.primary = virtual_monitor == new_primary;
         }
 
-        check_configuration_changed ();
+        configuration_changed ();
     }
 
     private void move_display (DisplayWidget display_widget, double diff_x, double diff_y) {
@@ -395,6 +360,48 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         return false;
+    }
+
+    public void on_monitor_dimensions_changed (Display.VirtualMonitor monitor) {
+        var display_widget = get_display_widget_for_monitor (monitor);
+
+        if (display_widget != null) {
+            int width, height;
+            monitor.get_current_mode_size (out width, out height);
+            display_widget.set_geometry (monitor.x, monitor.y, width, height);
+            update_layout (display_widget);
+        }
+    }
+
+    public void on_monitor_rotation_changed (Display.VirtualMonitor monitor) {
+        var display_widget = get_display_widget_for_monitor (monitor);
+
+        if (display_widget != null) {
+            display_widget.set_rotation (monitor.transform);
+            update_layout (display_widget);
+        }
+    }
+
+    public void on_monitor_active_changed (Display.VirtualMonitor monitor) {
+        var display_widget = get_display_widget_for_monitor (monitor);
+
+        if (display_widget != null) {
+            if (monitor.is_active) {
+                display_widget.get_style_context ().remove_class ("disabled");
+            } else {
+                display_widget.get_style_context ().add_class ("disabled");
+            }
+        }
+    }
+
+    private void update_layout (Display.DisplayWidget display_widget) {
+        current_allocated_width = 0;
+        current_allocated_height = 0;
+        check_intersects (display_widget);
+        snap_edges (display_widget);
+        close_gaps ();
+        verify_global_positions ();
+        calculate_ratio ();
     }
 
     private void verify_global_positions () {
@@ -552,5 +559,21 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         widget.set_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
+    }
+
+    private Display.DisplayWidget? get_display_widget_for_monitor (Display.VirtualMonitor monitor) {
+        foreach (var child in get_children ()) {
+            if (!(child is DisplayWidget)) {
+                continue;
+            }
+
+            var display_widget = (DisplayWidget)child;
+
+            if (display_widget.virtual_monitor == monitor) {
+                return display_widget;
+            }
+        }
+
+        return null;
     }
 }

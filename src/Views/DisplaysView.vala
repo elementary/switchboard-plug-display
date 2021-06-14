@@ -109,8 +109,23 @@ public class Display.DisplaysView : Gtk.Grid {
             add (action_bar);
             show_all ();
 
-            displays_overlay.configuration_changed.connect ((changed) => {
-                apply_button.sensitive = changed;
+            displays_overlay.configuration_changed.connect (() => {
+                apply_button.sensitive = true;
+            });
+
+            monitors_list.active_changed.connect ((monitor) => {
+                displays_overlay.on_monitor_active_changed (monitor);
+                apply_button.sensitive = true;
+            });
+
+            monitors_list.resolution_changed.connect ((monitor) => {
+                displays_overlay.on_monitor_dimensions_changed (monitor);
+                apply_button.sensitive = true;
+            });
+
+            monitors_list.rotation_changed.connect ((monitor) => {
+                displays_overlay.on_monitor_rotation_changed (monitor);
+                apply_button.sensitive = true;
             });
 
             unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();

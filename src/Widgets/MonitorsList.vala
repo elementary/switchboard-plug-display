@@ -20,6 +20,10 @@
  */
 
 public class Display.MonitorsList : Gtk.ListBox {
+    public signal void active_changed (Display.VirtualMonitor monitor);
+    public signal void resolution_changed (Display.VirtualMonitor monitor);
+    public signal void rotation_changed (Display.VirtualMonitor monitor);
+
     private Display.MonitorManager monitor_manager;
     private GLib.ListStore monitor_store;
     public int active_displays { get; set; }
