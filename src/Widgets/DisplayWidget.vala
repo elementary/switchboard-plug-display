@@ -36,7 +36,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public int delta_x { get; set; default = 0; }
     public int delta_y { get; set; default = 0; }
     public bool only_display { get; set; default = false; }
-    private Gtk.Label monitor_name_label;
+    public Gtk.Label monitor_name_label;
     private double start_x = 0;
     private double start_y = 0;
     private bool holding = false;
@@ -77,8 +77,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
         display_window.attached_to = this;
 
         destroy.connect (() => display_window.destroy ());
+    }
 
-        virtual_monitor.bind_property ("is-active", this, "visible", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+    ~DisplayWidget () {
+        debug ("DESTRUCT display widget");
     }
 
     public override bool button_press_event (Gdk.EventButton event) {

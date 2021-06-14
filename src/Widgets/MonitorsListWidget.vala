@@ -39,7 +39,7 @@ public class Display.MonitorsListWidget : Gtk.Grid {
         TOTAL
     }
 
-    public Display.VirtualMonitor monitor { get; construct; }
+
     private Gtk.MenuButton toggle_settings { get; private set; }
 
     private Gtk.ComboBox resolution_combobox;
@@ -50,18 +50,25 @@ public class Display.MonitorsListWidget : Gtk.Grid {
 
     private Gtk.ComboBox refresh_combobox;
     private Gtk.ListStore refresh_list_store;
-    unowned MonitorsList monitors_list;
+    private Gtk.Switch use_switch;
+    public weak MonitorsList? monitors_list { get; construct; }
+    public weak Display.VirtualMonitor? monitor { get; construct; }
+
     public MonitorsListWidget (Display.VirtualMonitor _monitor, MonitorsList _monitors_list) {
         Object (
-            monitor: _monitor
+            monitor: _monitor,
+            monitors_list: _monitors_list
         );
+    }
 
-        monitors_list = _monitors_list;
+    ~MonitorsListWidget () {
+        debug ("DESTRUCT MonitorsListWidget %s", monitor.get_display_name ());
     }
 
     construct {
         margin_start = 6;
         margin_top = 12;
+        margin_end = 6;
         row_spacing = 3;
         column_spacing = 3;
 
@@ -71,7 +78,7 @@ public class Display.MonitorsListWidget : Gtk.Grid {
             valign = Gtk.Align.CENTER
         };
         name_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
-        var use_switch = new Gtk.Switch () {
+        use_switch = new Gtk.Switch () {
             active = monitor.is_active,
             halign = Gtk.Align.END,
             valign = Gtk.Align.CENTER,
@@ -150,9 +157,9 @@ public class Display.MonitorsListWidget : Gtk.Grid {
             monitors_list.rotation_changed (monitor);
         });
 
-        monitors_list.notify ["active-displays"].connect (() => {
-            use_switch.sensitive = monitors_list.active_displays > 1;
-        });
+        // Make a weak signal connection else it is not disconnected when widget is destroyed.
+        weak MonitorsListWidget weak_this = this;
+        monitors_list.notify ["active-displays"].connect (weak_this.set_use_switch_sensitive);
 
         monitor.modes_changed.connect (() => {
             foreach (var mode in monitor.get_available_modes ()) {
@@ -188,6 +195,12 @@ public class Display.MonitorsListWidget : Gtk.Grid {
                 return false;
             });
         });
+
+        show_all ();
+    }
+
+    private void set_use_switch_sensitive () {
+        use_switch.sensitive = monitors_list.active_displays > 1 || !use_switch.active;
     }
 
     private void populate_refresh_rates () {

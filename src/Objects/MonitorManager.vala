@@ -20,6 +20,7 @@
  */
 
 public class Display.MonitorManager : GLib.Object {
+    public signal void config_updated ();
     public Gee.LinkedList<Display.VirtualMonitor> virtual_monitors { get; construct; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
@@ -203,6 +204,8 @@ public class Display.MonitorManager : GLib.Object {
                 }
             }
         }
+
+        config_updated ();
     }
 
     public void set_monitor_config () {
@@ -286,9 +289,7 @@ public class Display.MonitorManager : GLib.Object {
 
         virtual_monitors.clear ();
         virtual_monitors.add (clone_virtual_monitor);
-
-        notify_property ("virtual-monitor-number");
-        notify_property ("is-mirrored");
+        config_updated ();
     }
 
     public void set_scale_on_all_monitors (double new_scale) {

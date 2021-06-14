@@ -31,10 +31,9 @@ public class Display.MonitorsList : Gtk.ListBox {
     construct {
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_store = new GLib.ListStore (typeof (Display.VirtualMonitor));
-
         this.bind_model (monitor_store, widget_from_monitor);
-        monitor_manager.notify["monitor-number"].connect (() => rescan_monitors ());
         rescan_monitors ();
+        monitor_manager.notify["monitor-number"].connect (() => rescan_monitors ());
     }
 
     private Gtk.Widget widget_from_monitor (Object object) {
@@ -47,9 +46,13 @@ public class Display.MonitorsList : Gtk.ListBox {
     }
 
     public void rescan_monitors () {
-        active_displays = 0;
         monitor_store.remove_all ();
+        active_displays = 0;
         foreach (VirtualMonitor monitor in monitor_manager.virtual_monitors) {
+            if (monitor.is_active) {
+                active_displays ++;
+            }
+
             monitor_store.append (monitor);
         }
     }

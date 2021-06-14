@@ -136,12 +136,16 @@ public class Display.DisplaysView : Gtk.Grid {
 
             detect_button.clicked.connect (() => {
                 monitor_manager.get_monitor_config ();
-                displays_overlay.rescan_displays ();
+                refresh_view ();
             });
 
             apply_button.clicked.connect (() => {
                 monitor_manager.set_monitor_config ();
                 apply_button.sensitive = false;
+            });
+
+            monitor_manager.config_updated.connect (() => {
+                refresh_view ();
             });
 
             dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
@@ -160,6 +164,11 @@ public class Display.DisplaysView : Gtk.Grid {
 
                 apply_button.sensitive = true;
             });
+    }
+
+    private void refresh_view () {
+        displays_overlay.rescan_displays ();
+        monitors_list.rescan_monitors ();
     }
 
     private async void detect_accelerometer () {
