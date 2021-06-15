@@ -28,10 +28,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
     public signal void move_display (double diff_x, double diff_y);
     public signal void end_grab (int delta_x, int delta_y);
-    public signal void check_position ();
     public signal void configuration_changed ();
 
-    public Display.VirtualMonitor virtual_monitor;
+    public weak Display.VirtualMonitor virtual_monitor;
     public DisplayWindow display_window;
     public double window_ratio = 1.0;
     public int delta_x { get; set; default = 0; }
@@ -77,6 +76,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
         this.virtual_monitor = virtual_monitor;
+        virtual_monitor.x = virtual_monitor.current_x;
+        virtual_monitor.y = virtual_monitor.current_y;
+
         display_window = new DisplayWindow (virtual_monitor);
         events |= Gdk.EventMask.BUTTON_PRESS_MASK;
         events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
@@ -195,83 +197,86 @@ public class Display.DisplayWidget : Gtk.EventBox {
         resolution_combobox.changed.connect (() => {
             Value val;
             Gtk.TreeIter iter;
-            resolution_combobox.get_active_iter (out iter);
-            resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
-            Display.MonitorMode new_mode = (Display.MonitorMode) val;
-            set_geometry (virtual_monitor.x, virtual_monitor.y, (int)new_mode.width, (int)new_mode.height);
-            virtual_monitor.set_current_mode (new_mode);
-            rotation_combobox.set_active (0);
-            populate_refresh_rates ();
-            configuration_changed ();
-            check_position ();
+            if (resolution_combobox.get_active_iter (out iter)) {
+                resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
+                Display.MonitorMode new_mode = (Display.MonitorMode) val;
+                set_geometry (virtual_monitor.x, virtual_monitor.y, (int)new_mode.width, (int)new_mode.height);
+                virtual_monitor.set_current_mode (new_mode);
+                rotation_combobox.set_active (0);
+                populate_refresh_rates ();
+                Idle.add (() => {
+                    configuration_changed ();
+                    return Source.REMOVE;
+                });
+            }
         });
 
         rotation_combobox.changed.connect (() => {
             Value val;
             Gtk.TreeIter iter;
-            rotation_combobox.get_active_iter (out iter);
-            rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
+            if (rotation_combobox.get_active_iter (out iter)) {
+                rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
 
-            var transform = (DisplayTransform)((int)val);
-            virtual_monitor.transform = transform;
+                var transform = (DisplayTransform)((int)val);
+                virtual_monitor.transform = transform;
 
-            switch (transform) {
-                case DisplayTransform.NORMAL:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    monitor_name_label.angle = 0;
-                    monitor_name_label.label = virtual_monitor.get_display_name ();
-                    break;
-                case DisplayTransform.ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    monitor_name_label.angle = 270;
-                    monitor_name_label.label = virtual_monitor.get_display_name ();
-                    break;
-                case DisplayTransform.ROTATION_180:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    monitor_name_label.angle = 180;
-                    monitor_name_label.label = virtual_monitor.get_display_name ();
-                    break;
-                case DisplayTransform.ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    monitor_name_label.angle = 90;
-                    monitor_name_label.label = virtual_monitor.get_display_name ();
-                    break;
-                case DisplayTransform.FLIPPED:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    monitor_name_label.angle = 0;
-                    monitor_name_label.label = virtual_monitor.get_display_name ().reverse (); //mirroring simulation, because we can't really mirror the text
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    monitor_name_label.angle = 270;
-                    monitor_name_label.label = virtual_monitor.get_display_name ().reverse ();
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_180:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    monitor_name_label.angle = 180;
-                    monitor_name_label.label = virtual_monitor.get_display_name ().reverse ();
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    monitor_name_label.angle = 90;
-                    monitor_name_label.label = virtual_monitor.get_display_name ().reverse ();
-                    break;
+                switch (transform) {
+                    case DisplayTransform.NORMAL:
+                        virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                        monitor_name_label.angle = 0;
+                        monitor_name_label.label = virtual_monitor.get_display_name ();
+                        break;
+                    case DisplayTransform.ROTATION_90:
+                        virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                        monitor_name_label.angle = 270;
+                        monitor_name_label.label = virtual_monitor.get_display_name ();
+                        break;
+                    case DisplayTransform.ROTATION_180:
+                        virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                        monitor_name_label.angle = 180;
+                        monitor_name_label.label = virtual_monitor.get_display_name ();
+                        break;
+                    case DisplayTransform.ROTATION_270:
+                        virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                        monitor_name_label.angle = 90;
+                        monitor_name_label.label = virtual_monitor.get_display_name ();
+                        break;
+                    case DisplayTransform.FLIPPED:
+                        virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                        monitor_name_label.angle = 0;
+                        monitor_name_label.label = virtual_monitor.get_display_name ().reverse (); //mirroring simulation, because we can't really mirror the text
+                        break;
+                    case DisplayTransform.FLIPPED_ROTATION_90:
+                        virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                        monitor_name_label.angle = 270;
+                        monitor_name_label.label = virtual_monitor.get_display_name ().reverse ();
+                        break;
+                    case DisplayTransform.FLIPPED_ROTATION_180:
+                        virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                        monitor_name_label.angle = 180;
+                        monitor_name_label.label = virtual_monitor.get_display_name ().reverse ();
+                        break;
+                    case DisplayTransform.FLIPPED_ROTATION_270:
+                        virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                        monitor_name_label.angle = 90;
+                        monitor_name_label.label = virtual_monitor.get_display_name ().reverse ();
+                        break;
+                }
+
+                configuration_changed ();
             }
-
-            configuration_changed ();
-            check_position ();
         });
 
         refresh_combobox.changed.connect (() => {
             Value val;
             Gtk.TreeIter iter;
-            refresh_combobox.get_active_iter (out iter);
-            refresh_list_store.get_value (iter, ResolutionColumns.MODE, out val);
-            Display.MonitorMode new_mode = (Display.MonitorMode) val;
-            virtual_monitor.set_current_mode (new_mode);
-            rotation_combobox.set_active (0);
-            configuration_changed ();
-            check_position ();
+            if (refresh_combobox.get_active_iter (out iter) ) {
+                refresh_list_store.get_value (iter, ResolutionColumns.MODE, out val);
+                Display.MonitorMode new_mode = (Display.MonitorMode) val;
+                virtual_monitor.set_current_mode (new_mode);
+                rotation_combobox.set_active (0);
+                configuration_changed ();
+            }
         });
 
         rotation_combobox.set_active ((int) virtual_monitor.transform);
@@ -281,11 +286,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
         virtual_monitor.notify["transform"].connect (on_vm_transform_changed);
 
         configuration_changed ();
-        check_position ();
     }
 
     ~DisplayWidget () {
-        debug ("DESTRUCT display widget");
+        critical ("DESTRUCT display widget");
     }
 
     private void populate_refresh_rates () {
@@ -432,7 +436,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         virtual_monitor.y = y;
         real_width = width;
         real_height = height;
-        configuration_changed ();
     }
 
     public bool equals (DisplayWidget sibling) {

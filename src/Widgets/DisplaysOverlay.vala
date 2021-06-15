@@ -34,7 +34,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private int default_y_margin = 0;
 
     private unowned Display.MonitorManager monitor_manager;
-    public int active_displays { get; set; default = 0; }
     private static string[] colors = {
         "@BLUEBERRY_100",
         "@STRAWBERRY_100",
@@ -62,11 +61,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     public DisplaysOverlay () {
         var grid = new Gtk.Grid ();
         grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-        grid.expand = true;
         add (grid);
 
         monitor_manager = Display.MonitorManager.get_default ();
-        monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
         rescan_displays ();
     }
 
@@ -98,14 +95,18 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     public void rescan_displays () {
-        scanning = true;
+        if (scanning) {
+            return;
+        } else {
+            scanning = true;
+        }
+
         get_children ().foreach ((child) => {
             if (child is DisplayWidget) {
                 child.destroy ();
             }
         });
 
-        active_displays = 0;
         foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
             if (virtual_monitor.is_active) {
                 add_output (virtual_monitor);
@@ -202,16 +203,14 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         display_widget.configuration_changed.connect (() => {
             update_layout (display_widget);
+            configuration_changed ();
         });
 
-        display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
-        display_widget.move_display.connect (move_display);
-        display_widget.virtual_monitor.notify ["is-active"].connect (() => {
-            Idle.add (() => {
-                rescan_displays ();
-                return Source.REMOVE;
-            });
+        display_widget.set_as_primary.connect (() => {
+            set_as_primary (display_widget.virtual_monitor);
         });
+
+        display_widget.move_display.connect (move_display);
 
         if (!monitor_manager.is_mirrored) {
             display_widget.display_window.show_all ();
@@ -230,12 +229,13 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             configuration_changed ();
         });
 
-        check_intersects (display_widget);
         var old_delta_x = display_widget.delta_x;
         var old_delta_y = display_widget.delta_y;
         display_widget.delta_x = 0;
         display_widget.delta_y = 0;
         display_widget.end_grab (old_delta_x, old_delta_y);
+
+        update_layout (display_widget);
     }
 
     private void set_as_primary (Display.VirtualMonitor new_primary) {
@@ -367,25 +367,13 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         return false;
     }
 
-    public void on_monitor_active_changed (Display.VirtualMonitor monitor) {
-        var display_widget = get_display_widget_for_monitor (monitor);
-
-        if (display_widget != null) {
-            if (monitor.is_active) {
-                display_widget.get_style_context ().remove_class ("disabled");
-            } else {
-                display_widget.get_style_context ().add_class ("disabled");
-            }
-        }
-    }
-
-    private void update_layout (Display.DisplayWidget display_widget) {
+    private void update_layout (Display.DisplayWidget? display_widget) {
         current_allocated_width = 0;
         current_allocated_height = 0;
+        verify_global_positions ();
         check_intersects (display_widget);
         snap_edges (display_widget);
         close_gaps ();
-        verify_global_positions ();
         calculate_ratio ();
     }
 
@@ -544,21 +532,5 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         widget.set_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
-    }
-
-    private Display.DisplayWidget? get_display_widget_for_monitor (Display.VirtualMonitor monitor) {
-        foreach (var child in get_children ()) {
-            if (!(child is DisplayWidget)) {
-                continue;
-            }
-
-            var display_widget = (DisplayWidget)child;
-
-            if (display_widget.virtual_monitor == monitor) {
-                return display_widget;
-            }
-        }
-
-        return null;
     }
 }

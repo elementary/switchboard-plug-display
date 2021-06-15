@@ -62,6 +62,13 @@ public class Display.MonitorsListWidget : Gtk.Grid {
         // Make a weak signal connection else it is not disconnected when widget is destroyed.
         weak MonitorsListWidget weak_this = this;
         monitors_list.notify ["active-displays"].connect (weak_this.set_use_switch_sensitive);
+
+        use_switch.notify ["active"].connect (() => {
+            monitor.is_active = use_switch.active;
+            monitors_list.active_displays += use_switch.active ? 1 : -1;
+            monitors_list.active_changed (monitor);
+        });
+
         show_all ();
     }
 

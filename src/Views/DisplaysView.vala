@@ -114,7 +114,7 @@ public class Display.DisplaysView : Gtk.Grid {
             });
 
             monitors_list.active_changed.connect ((monitor) => {
-                displays_overlay.on_monitor_active_changed (monitor);
+                displays_overlay.rescan_displays ();
                 apply_button.sensitive = true;
             });
 
@@ -135,6 +135,10 @@ public class Display.DisplaysView : Gtk.Grid {
             });
 
             monitor_manager.config_updated.connect (() => {
+                refresh_view ();
+            });
+
+            monitor_manager.notify["virtual-monitor-number"].connect (() => {
                 refresh_view ();
             });
 
