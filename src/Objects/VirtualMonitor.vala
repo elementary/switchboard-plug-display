@@ -24,6 +24,7 @@ public class Display.VirtualMonitor : GLib.Object {
     public int y { get; set; }
     public int current_x { get; set; }
     public int current_y { get; set; }
+    public MonitorMode actual_mode { get; set; }
     public double scale { get; set; }
     public DisplayTransform transform { get; set; default = DisplayTransform.NORMAL;}
     public bool primary { get; set; }

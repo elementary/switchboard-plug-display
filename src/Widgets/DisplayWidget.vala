@@ -78,6 +78,13 @@ public class Display.DisplayWidget : Gtk.EventBox {
         this.virtual_monitor = virtual_monitor;
         virtual_monitor.x = virtual_monitor.current_x;
         virtual_monitor.y = virtual_monitor.current_y;
+        foreach (var mode in virtual_monitor.get_available_modes ()) {
+            if (mode.id == virtual_monitor.actual_mode.id) {
+                mode.is_current = true;
+            } else {
+                mode.is_current = false;
+            }
+        }
 
         display_window = new DisplayWindow (virtual_monitor);
         events |= Gdk.EventMask.BUTTON_PRESS_MASK;
@@ -204,10 +211,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 virtual_monitor.set_current_mode (new_mode);
                 rotation_combobox.set_active (0);
                 populate_refresh_rates ();
-                Idle.add (() => {
-                    configuration_changed ();
-                    return Source.REMOVE;
-                });
+                configuration_changed ();
             }
         });
 
@@ -279,13 +283,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
         });
 
-        rotation_combobox.set_active ((int) virtual_monitor.transform);
-        on_vm_transform_changed ();
-
+        on_monitor_modes_changed ();
         virtual_monitor.modes_changed.connect (on_monitor_modes_changed);
-        virtual_monitor.notify["transform"].connect (on_vm_transform_changed);
 
-        configuration_changed ();
+        on_vm_transform_changed ();
+        virtual_monitor.notify["transform"].connect (on_vm_transform_changed);
     }
 
     ~DisplayWidget () {
@@ -347,6 +349,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             if (!mode.is_current) {
                 continue;
             }
+
+            virtual_monitor.actual_mode = mode;
 
             resolution_list_store.@foreach ((model, path, iter) => {
                 Value val;
@@ -436,6 +440,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         virtual_monitor.y = y;
         real_width = width;
         real_height = height;
+        queue_resize_no_redraw ();
     }
 
     public bool equals (DisplayWidget sibling) {
