@@ -118,16 +118,6 @@ public class Display.DisplaysView : Gtk.Grid {
                 apply_button.sensitive = true;
             });
 
-            monitors_list.resolution_changed.connect ((monitor) => {
-                displays_overlay.on_monitor_dimensions_changed (monitor);
-                apply_button.sensitive = true;
-            });
-
-            monitors_list.rotation_changed.connect ((monitor) => {
-                displays_overlay.on_monitor_rotation_changed (monitor);
-                apply_button.sensitive = true;
-            });
-
             unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_grid.sensitive = monitor_manager.monitors.size > 1;
             monitor_manager.notify["monitor-number"].connect (() => {

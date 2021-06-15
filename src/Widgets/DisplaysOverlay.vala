@@ -199,6 +199,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         display_widget.show_all ();
+
+        display_widget.configuration_changed.connect (() => {
+            update_layout (display_widget);
+        });
+
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
         display_widget.move_display.connect (move_display);
         display_widget.virtual_monitor.notify ["is-active"].connect (() => {
@@ -360,26 +365,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         return false;
-    }
-
-    public void on_monitor_dimensions_changed (Display.VirtualMonitor monitor) {
-        var display_widget = get_display_widget_for_monitor (monitor);
-
-        if (display_widget != null) {
-            int width, height;
-            monitor.get_current_mode_size (out width, out height);
-            display_widget.set_geometry (monitor.x, monitor.y, width, height);
-            update_layout (display_widget);
-        }
-    }
-
-    public void on_monitor_rotation_changed (Display.VirtualMonitor monitor) {
-        var display_widget = get_display_widget_for_monitor (monitor);
-
-        if (display_widget != null) {
-            display_widget.set_rotation (monitor.transform);
-            update_layout (display_widget);
-        }
     }
 
     public void on_monitor_active_changed (Display.VirtualMonitor monitor) {
