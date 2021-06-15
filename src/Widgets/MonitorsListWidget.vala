@@ -48,13 +48,16 @@ public class Display.MonitorsListWidget : Gtk.Grid {
             halign = Gtk.Align.START,
             valign = Gtk.Align.CENTER
         };
-        name_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
+        name_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
         use_switch = new Gtk.Switch () {
             active = monitor.is_active,
             halign = Gtk.Align.END,
             valign = Gtk.Align.CENTER,
             sensitive = monitors_list.active_displays > 1
         };
+
+        attach (name_label, 0, 0);
+        attach (use_switch, 1, 0);
 
         // Make a weak signal connection else it is not disconnected when widget is destroyed.
         weak MonitorsListWidget weak_this = this;
