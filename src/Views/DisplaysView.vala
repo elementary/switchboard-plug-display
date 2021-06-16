@@ -25,13 +25,16 @@ public class Display.DisplaysView : Gtk.Grid {
     public MonitorsList monitors_list;
     private Gtk.ComboBoxText dpi_combo;
     private Gtk.Grid rotation_lock_grid;
+    private Gtk.Switch mirror_switch;
+    private Gtk.Button apply_button;
+    private unowned Display.MonitorManager monitor_manager;
 
     private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
 
     construct {
             displays_overlay = new DisplaysOverlay ();
             monitors_list = new MonitorsList ();
-
+            monitor_manager = Display.MonitorManager.get_default ();
             var displays_paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
                 position = 200
             };
@@ -41,7 +44,7 @@ public class Display.DisplaysView : Gtk.Grid {
 
             displays_paned.show_all ();
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
-            var mirror_switch = new Gtk.Switch ();
+            mirror_switch = new Gtk.Switch ();
 
             var mirror_grid = new Gtk.Grid () {
                 column_spacing = 6,
@@ -67,7 +70,7 @@ public class Display.DisplaysView : Gtk.Grid {
 
             var detect_button = new Gtk.Button.with_label (_("Detect Displays"));
 
-            var apply_button = new Gtk.Button.with_label (_("Apply"));
+            apply_button = new Gtk.Button.with_label (_("Apply"));
             apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             apply_button.sensitive = false;
 
@@ -118,7 +121,6 @@ public class Display.DisplaysView : Gtk.Grid {
                 apply_button.sensitive = true;
             });
 
-            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_grid.sensitive = monitor_manager.monitors.size > 1;
             monitor_manager.notify["monitor-number"].connect (() => {
                 mirror_grid.sensitive = monitor_manager.monitors.size > 1;
@@ -126,7 +128,6 @@ public class Display.DisplaysView : Gtk.Grid {
 
             detect_button.clicked.connect (() => {
                 monitor_manager.get_monitor_config ();
-                refresh_view ();
             });
 
             apply_button.clicked.connect (() => {
@@ -134,35 +135,48 @@ public class Display.DisplaysView : Gtk.Grid {
                 apply_button.sensitive = false;
             });
 
-            monitor_manager.config_updated.connect (() => {
-                refresh_view ();
-            });
-
-            monitor_manager.notify["virtual-monitor-number"].connect (() => {
-                refresh_view ();
-            });
+            monitor_manager.config_updated.connect (refresh_view);
 
             dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
 
             dpi_combo.changed.connect (() => {
-                monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+                if (!refreshing) {
+                    monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+                }
             });
 
             mirror_switch.active = monitor_manager.is_mirrored;
             mirror_switch.notify["active"].connect (() => {
-                if (mirror_switch.active) {
-                    monitor_manager.enable_clone_mode ((double)(dpi_combo.active + 1));
-                } else {
-                    monitor_manager.disable_clone_mode ((double)(dpi_combo.active + 1));
-                }
+                if (!refreshing) {
+                    if (mirror_switch.active) {
+                        monitor_manager.enable_clone_mode ((double)(dpi_combo.active + 1));
+                    } else {
+                        monitor_manager.disable_clone_mode ((double)(dpi_combo.active + 1));
+                    }
 
-                apply_button.sensitive = true;
+                    refresh_view ();
+                    apply_button.sensitive = true;
+                }
             });
     }
 
+    bool refreshing = false;
     private void refresh_view () {
+        if (refreshing) {
+            return;
+        } else {
+            refreshing = true;
+        }
+
         displays_overlay.rescan_displays ();
         monitors_list.rescan_monitors ();
+
+        Idle.add (() => {
+            mirror_switch.active = monitor_manager.is_mirrored;
+            dpi_combo.active = dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
+            refreshing = false;
+            return Source.REMOVE;
+        });
     }
 
     private async void detect_accelerometer () {

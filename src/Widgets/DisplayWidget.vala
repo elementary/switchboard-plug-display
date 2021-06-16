@@ -75,7 +75,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
-        assert (virtual_monitor.actual_mode != null);
         this.virtual_monitor = virtual_monitor;
         virtual_monitor.x = virtual_monitor.current_x;
         virtual_monitor.y = virtual_monitor.current_y;

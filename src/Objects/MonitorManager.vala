@@ -67,13 +67,19 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         try {
             iface = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.Mutter.DisplayConfig", "/org/gnome/Mutter/DisplayConfig");
-            iface.monitors_changed.connect (get_monitor_config);
+            iface.monitors_changed.connect (() => { get_monitor_config (true); });
         } catch (Error e) {
             critical (e.message);
         }
     }
 
-    public void get_monitor_config () {
+    public void get_monitor_config (bool clear = true) {
+        if (clear) {
+            // Ensure plug matches actual hardware
+            monitors.clear ();
+            virtual_monitors.clear ();
+        }
+
         MutterReadMonitor[] mutter_monitors;
         MutterReadLogicalMonitor[] mutter_logical_monitors;
         GLib.HashTable<string, GLib.Variant> properties;
@@ -177,12 +183,7 @@ public class Display.MonitorManager : GLib.Object {
         }
 
         foreach (var mutter_logical_monitor in mutter_logical_monitors) {
-            string monitors_id = VirtualMonitor.generate_id_from_monitors (mutter_logical_monitor.monitors);
-            var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
-            if (virtual_monitor == null) {
-                virtual_monitor = new VirtualMonitor ();
-                add_virtual_monitor (virtual_monitor);
-            }
+            var virtual_monitor = new VirtualMonitor ();
 
             virtual_monitor.is_active = true; // reset exist virtual monitors to active
             virtual_monitor.x = mutter_logical_monitor.x;
@@ -211,6 +212,8 @@ public class Display.MonitorManager : GLib.Object {
                     virtual_monitor.actual_mode = mode;
                 }
             }
+
+            add_virtual_monitor (virtual_monitor);
         }
 
         config_updated ();
@@ -382,17 +385,6 @@ public class Display.MonitorManager : GLib.Object {
 
     private void add_virtual_monitor (Display.VirtualMonitor virtual_monitor) {
         virtual_monitors.add (virtual_monitor);
-        notify_property ("virtual-monitor-number");
-    }
-
-    private VirtualMonitor? get_virtual_monitor_by_id (string id) {
-        foreach (var vm in virtual_monitors) {
-            if (vm.id == id) {
-                return vm;
-            }
-        }
-
-        return null;
     }
 
     private static bool compare_monitor_with_mutter_info (Display.Monitor monitor, MutterReadMonitorInfo mutter_info) {
