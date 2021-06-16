@@ -217,16 +217,29 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     public void set_monitor_config () {
-        MutterWriteLogicalMonitor[] logical_monitors = {};
+        MutterWriteLogicalMonitor[] mutter_logical_monitors = {};
+
         foreach (var virtual_monitor in virtual_monitors) {
             if (virtual_monitor.is_active) {
-                logical_monitors += get_mutter_logical_monitor (virtual_monitor);
+                mutter_logical_monitors += get_mutter_logical_monitor (virtual_monitor);
             }
+        }
+
+        bool found_primary = false;
+        foreach (var mutter_logical_monitor in mutter_logical_monitors) {
+            if (mutter_logical_monitor.primary) {
+                found_primary = true;
+                break;
+            }
+        }
+
+        if (!found_primary) {
+            mutter_logical_monitors[0].primary = true;
         }
 
         var properties = new GLib.HashTable<string, GLib.Variant> (str_hash, str_equal);
         try {
-            iface.apply_monitors_config (current_serial, MutterApplyMethod.PERSISTENT, logical_monitors, properties);
+            iface.apply_monitors_config (current_serial, MutterApplyMethod.PERSISTENT, mutter_logical_monitors, properties);
         } catch (Error e) {
             critical (e.message);
         }
@@ -258,10 +271,10 @@ public class Display.MonitorManager : GLib.Object {
     }
 
     //TODO: check for compatibility of displays in the same virtualmonitor.
-    public void enable_clone_mode () {
+    public void enable_clone_mode (double scale) {
         var clone_virtual_monitor = new VirtualMonitor ();
         clone_virtual_monitor.primary = true;
-        clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
+        clone_virtual_monitor.scale = double.min (Utils.get_max_compatible_scale (monitors), scale);
         clone_virtual_monitor.monitors.add_all (monitors);
         var modes = clone_virtual_monitor.get_available_modes ();
         /*
@@ -309,7 +322,7 @@ public class Display.MonitorManager : GLib.Object {
             return;
         }
 
-        double max_scale = Utils.get_min_compatible_scale (monitors);
+        double max_scale = Utils.get_max_compatible_scale (monitors);
         if (new_scale > max_scale) {
             return;
         }
@@ -321,23 +334,23 @@ public class Display.MonitorManager : GLib.Object {
         set_monitor_config ();
     }
 
-    public void disable_clone_mode () {
-        double max_scale = Utils.get_min_compatible_scale (monitors);
+    public void disable_clone_mode (double scale) {
+        scale = double.min (Utils.get_max_compatible_scale (monitors), scale);
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         foreach (var monitor in monitors) {
             var single_virtual_monitor = new VirtualMonitor ();
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
             if (global_scale_required) {
-                single_virtual_monitor.scale = max_scale;
-                if (max_scale in preferred_mode.supported_scales) {
+                single_virtual_monitor.scale = scale;
+                if (scale in preferred_mode.supported_scales) {
                     current_mode.is_current = false;
                     preferred_mode.is_current = true;
                     single_virtual_monitor.actual_mode = preferred_mode;
-                } else if (!(max_scale in current_mode.supported_scales)) {
+                } else if (!(scale in current_mode.supported_scales)) {
                     Display.MonitorMode? largest_mode = null;
                     foreach (var mode in monitor.modes) {
-                        if (max_scale in mode.supported_scales) {
+                        if (scale in mode.supported_scales) {
                             if (largest_mode == null || mode.width > largest_mode.width) {
                                 largest_mode = mode;
                             }
