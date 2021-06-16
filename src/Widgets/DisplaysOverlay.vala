@@ -370,10 +370,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private void update_layout (Display.DisplayWidget? display_widget) {
         current_allocated_width = 0;
         current_allocated_height = 0;
-        verify_global_positions ();
         check_intersects (display_widget);
         snap_edges (display_widget);
         close_gaps ();
+        verify_global_positions ();
         calculate_ratio ();
     }
 
