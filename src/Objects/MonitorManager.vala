@@ -184,6 +184,7 @@ public class Display.MonitorManager : GLib.Object {
                 add_virtual_monitor (virtual_monitor);
             }
 
+            virtual_monitor.is_active = true; // reset exist virtual monitors to active
             virtual_monitor.x = mutter_logical_monitor.x;
             virtual_monitor.y = mutter_logical_monitor.y;
             virtual_monitor.current_x = mutter_logical_monitor.x;
@@ -191,6 +192,7 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.scale = mutter_logical_monitor.scale;
             virtual_monitor.transform = mutter_logical_monitor.transform;
             virtual_monitor.primary = mutter_logical_monitor.primary;
+
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
                 foreach (var monitor in monitors) {
                     if (compare_monitor_with_mutter_info (monitor, mutter_info) && !(monitor in virtual_monitor.monitors)) {
@@ -203,6 +205,12 @@ public class Display.MonitorManager : GLib.Object {
                     }
                 }
             }
+
+            foreach (var mode in virtual_monitor.get_available_modes ()) {
+                if (mode.is_current) {
+                    virtual_monitor.actual_mode = mode;
+                }
+            }
         }
 
         config_updated ();
@@ -211,7 +219,9 @@ public class Display.MonitorManager : GLib.Object {
     public void set_monitor_config () {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
-            logical_monitors += get_mutter_logical_monitor (virtual_monitor);
+            if (virtual_monitor.is_active) {
+                logical_monitors += get_mutter_logical_monitor (virtual_monitor);
+            }
         }
 
         var properties = new GLib.HashTable<string, GLib.Variant> (str_hash, str_equal);
@@ -249,7 +259,7 @@ public class Display.MonitorManager : GLib.Object {
 
     //TODO: check for compatibility of displays in the same virtualmonitor.
     public void enable_clone_mode () {
-        var clone_virtual_monitor = new Display.VirtualMonitor ();
+        var clone_virtual_monitor = new VirtualMonitor ();
         clone_virtual_monitor.primary = true;
         clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
         clone_virtual_monitor.monitors.add_all (monitors);
@@ -283,8 +293,10 @@ public class Display.MonitorManager : GLib.Object {
 
         if (largest_mode_in_use != null) {
             clone_virtual_monitor.set_current_mode (largest_mode_in_use);
+            clone_virtual_monitor.actual_mode = largest_mode_in_use;
         } else {
             clone_virtual_monitor.set_current_mode (largest_mode);
+            clone_virtual_monitor.actual_mode = largest_mode;
         }
 
         virtual_monitors.clear ();
@@ -313,7 +325,7 @@ public class Display.MonitorManager : GLib.Object {
         double max_scale = Utils.get_min_compatible_scale (monitors);
         var new_virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         foreach (var monitor in monitors) {
-            var single_virtual_monitor = new Display.VirtualMonitor ();
+            var single_virtual_monitor = new VirtualMonitor ();
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
             if (global_scale_required) {
@@ -321,6 +333,7 @@ public class Display.MonitorManager : GLib.Object {
                 if (max_scale in preferred_mode.supported_scales) {
                     current_mode.is_current = false;
                     preferred_mode.is_current = true;
+                    single_virtual_monitor.actual_mode = preferred_mode;
                 } else if (!(max_scale in current_mode.supported_scales)) {
                     Display.MonitorMode? largest_mode = null;
                     foreach (var mode in monitor.modes) {
@@ -333,10 +346,12 @@ public class Display.MonitorManager : GLib.Object {
 
                     current_mode.is_current = false;
                     largest_mode.is_current = true;
+                    single_virtual_monitor.actual_mode = largest_mode;
                 }
             } else {
                 current_mode.is_current = false;
                 preferred_mode.is_current = true;
+                single_virtual_monitor.actual_mode = preferred_mode;
                 single_virtual_monitor.scale = preferred_mode.preferred_scale;
             }
 

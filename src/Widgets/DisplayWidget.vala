@@ -75,6 +75,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
+        assert (virtual_monitor.actual_mode != null);
         this.virtual_monitor = virtual_monitor;
         virtual_monitor.x = virtual_monitor.current_x;
         virtual_monitor.y = virtual_monitor.current_y;
@@ -291,7 +292,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     ~DisplayWidget () {
-        critical ("DESTRUCT display widget");
+        debug ("DESTRUCT display widget");
     }
 
     private void populate_refresh_rates () {
@@ -349,8 +350,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
             if (!mode.is_current) {
                 continue;
             }
-
-            virtual_monitor.actual_mode = mode;
 
             resolution_list_store.@foreach ((model, path, iter) => {
                 Value val;

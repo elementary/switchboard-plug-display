@@ -33,7 +33,7 @@ public class Display.MonitorsListWidget : Gtk.Grid {
     }
 
     ~MonitorsListWidget () {
-        debug ("DESTRUCT MonitorsListWidget %s", monitor.get_display_name ());
+        debug ("DESTRUCT MonitorsListWidget");
     }
 
     construct {
