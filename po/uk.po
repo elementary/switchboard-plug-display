@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2021-02-11 05:40+0000\n"
+"PO-Revision-Date: 2021-07-05 13:54+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/uk/>\n"
@@ -192,7 +192,7 @@ msgstr "Частота оновлення:"
 
 #: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
-msgstr "Налаштувати екран"
+msgstr "Налаштування екрана"
 
 #: src/Widgets/DisplayWidget.vala:359
 #, c-format
