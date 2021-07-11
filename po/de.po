@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2021-02-24 23:37+0000\n"
+"PO-Revision-Date: 2021-07-11 02:42+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/de/>\n"
@@ -43,7 +43,7 @@ msgstr "Bildschirmausrichtung"
 
 #: src/DisplayPlug.vala:112
 msgid "Primary display"
-msgstr "Primäre Anzeige"
+msgstr "Primärer Bildschirm"
 
 #: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
