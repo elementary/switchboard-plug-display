@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2021-03-14 14:49+0000\n"
+"PO-Revision-Date: 2021-07-11 02:42+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/de/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Auflösung und Anordnung von Bildschirmen und Projektoren einrichten"
 
 #: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
 #: data/display.appdata.xml.in:31
