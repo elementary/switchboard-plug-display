@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2021-07-03 16:14+0000\n"
+"PO-Revision-Date: 2021-07-15 01:01+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/uk/>\n"
@@ -30,23 +30,23 @@ msgstr "Налаштування роздільної здатності, пол
 
 #: data/display.appdata.xml.in:12
 msgid "New features:"
-msgstr ""
+msgstr "Нові можливості:"
 
 #: data/display.appdata.xml.in:14
 msgid "Support 3× scaling"
-msgstr ""
+msgstr "Підтримка 3× збільшення"
 
 #: data/display.appdata.xml.in:16
 msgid "Fixes:"
-msgstr ""
+msgstr "Виправлення:"
 
 #: data/display.appdata.xml.in:18
 msgid "Reliably detect accelerometers"
-msgstr ""
+msgstr "Надійно виявляти акселерометри"
 
 #: data/display.appdata.xml.in:20
 msgid "Minor updates:"
-msgstr ""
+msgstr "Незначні оновлення:"
 
 #: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
 #: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
