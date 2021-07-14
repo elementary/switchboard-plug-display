@@ -1,3 +1,21 @@
+switchboard-plug-display (2.3.0) bionic; urgency=medium
+
+  * Release 2.3.0 (#300)
+  * Update translation files
+  * Update translation template
+  * Add 3× scaling setting (#262)
+  * Use SensorProxy to detect accelerometer (#284)
+  * LINGUAS: sort, remove en_US
+  * Define Display.Resolution outside class to avoid "not used" warning
+    for members
+  * Do not use array as property
+  * Insert missing private scope; fix uninitialised out parameter
+  * Avoid unsafe cast; avoid use keyword as name; fix long line
+  * Replace deprecated Gdk.Display.get_device_manager ()
+  * DisplaysView: Fix actionbar padding and alignment (#261)
+
+ -- elementary OS Team <builds@elementary.io>  Wed, 14 Jul 2021 21:46:00 +0000
+
 switchboard-plug-display (2.2.2) bionic; urgency=medium
 
   * Release 2.2.2 (#246)
