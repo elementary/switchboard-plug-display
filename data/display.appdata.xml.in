@@ -9,9 +9,16 @@
   <releases>
     <release version="2.3.0" date="2021-07-14" urgency="medium">
       <description>
+        <p>New features:</p>
+        <ul>
+          <li>Support 3× scaling</li>
+        </ul>
+        <p>Fixes:</p>
         <ul>
           <li>Reliably detect accelerometers</li>
-          <li>Support 3× scaling </li>
+        </ul>
+        <p>Minor updates:</p>
+        <ul>
           <li>Updated translations</li>
         </ul>
       </description>
