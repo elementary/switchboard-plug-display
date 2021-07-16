@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2021-07-15 13:41+0000\n"
+"PO-Revision-Date: 2021-07-16 09:57+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/he/>\n"
@@ -29,19 +29,19 @@ msgstr "הגדרת הרזולוציה ומיקומם של מסכים ומקרנ�
 
 #: data/display.appdata.xml.in:12
 msgid "New features:"
-msgstr ""
+msgstr "יכולות חדשות:"
 
 #: data/display.appdata.xml.in:14
 msgid "Support 3× scaling"
-msgstr ""
+msgstr "תמיכה בהתאמת גודל פי 3"
 
 #: data/display.appdata.xml.in:16
 msgid "Fixes:"
-msgstr ""
+msgstr "תיקונים:"
 
 #: data/display.appdata.xml.in:18
 msgid "Reliably detect accelerometers"
-msgstr ""
+msgstr "זיהוי אמין של חיישני תאוצה"
 
 #: data/display.appdata.xml.in:20
 msgid "Minor updates:"
