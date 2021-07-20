@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 21:27+0000\n"
-"PO-Revision-Date: 2021-07-03 16:14+0000\n"
+"POT-Creation-Date: 2021-07-14 21:46+0000\n"
+"PO-Revision-Date: 2021-07-15 01:01+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/uk/>\n"
@@ -28,25 +28,45 @@ msgstr "Налаштування екрана"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Налаштування роздільної здатності, положення екранів та проєкторів"
 
-#: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
-#: data/display.appdata.xml.in:31
+#: data/display.appdata.xml.in:12
+msgid "New features:"
+msgstr "Нові можливості:"
+
+#: data/display.appdata.xml.in:14
+msgid "Support 3× scaling"
+msgstr "Підтримка 3× збільшення"
+
+#: data/display.appdata.xml.in:16
+msgid "Fixes:"
+msgstr "Виправлення:"
+
+#: data/display.appdata.xml.in:18
+msgid "Reliably detect accelerometers"
+msgstr "Надійно виявляти акселерометри"
+
+#: data/display.appdata.xml.in:20
+msgid "Minor updates:"
+msgstr "Незначні оновлення:"
+
+#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
 msgid "Updated translations"
 msgstr "Оновлено переклади"
 
-#: data/display.appdata.xml.in:20
+#: data/display.appdata.xml.in:36
 msgid "Fix 1px gaps between displays"
 msgstr "Виправлено пробіли в 1 піксель між екранами"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:37
 msgid "Properly center rotated displays"
 msgstr "Правильне центрування обертаних екранів"
 
-#: data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:45
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 "Поліпшено переміщення вікон з кількома екранами з кращим прив'язуванням та "
 "вирівнюванням"
 
-#: data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:46
 msgid "Fixed the placement of display name tags"
 msgstr "Виправлено розміщення міток назв екранів"
