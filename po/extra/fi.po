@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2021-07-24 17:19+0000\n"
+"PO-Revision-Date: 2021-07-25 12:43+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fi/>\n"
@@ -29,7 +29,7 @@ msgstr "Määritä näytön tarkkuus ja näyttöjen sijainnit"
 
 #: data/display.appdata.xml.in:12
 msgid "New features:"
-msgstr ""
+msgstr "Uudet ominaisuudet:"
 
 #: data/display.appdata.xml.in:14
 msgid "Support 3× scaling"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:16
 msgid "Fixes:"
-msgstr ""
+msgstr "Korjaukset:"
 
 #: data/display.appdata.xml.in:18
 msgid "Reliably detect accelerometers"
