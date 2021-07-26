@@ -148,6 +148,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         var native_ratio = max_width * 10 / max_height;
 
+        // Put less recommended resolutions into a submenu
         foreach (var resolution in resolutions) {
             string? detailed_action = Action.print_detailed_name ("resolution", new Variant ("(ii)", resolution.width, resolution.height));
             var menu_item = new MenuItem (MonitorMode.get_resolution_string (resolution.width, resolution.height), detailed_action);
@@ -163,8 +164,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         resolution_menu.append_submenu (_("Other…"), resolution_submenu);
 
-        string? action_namespace = "app";
-        resolution_popover.bind_model (resolution_menu, action_namespace);
+        resolution_popover.bind_model (resolution_menu, "app");
 
         resolution_popover.show_all ();
         resolution_menubutton.set_popover (resolution_popover);
