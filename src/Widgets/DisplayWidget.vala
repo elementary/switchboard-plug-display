@@ -367,8 +367,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     // Set as active the frequency nearest to the current frequency
     private void populate_refresh_rates () {
         double current_frequency = virtual_monitor.monitor.current_mode.frequency;
-        double current_diff = double.MAX;
-        double nearest = current_frequency;
         refresh_list_store.clear ();
 
         Gtk.TreeIter iter;
@@ -397,18 +395,12 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
 
             frequencies += mode.frequency;
-            var diff = (current_frequency - mode.frequency).abs ();
-            if (diff < current_diff) {
-                current_diff = diff;
-                nearest = mode.frequency;
-            }
-
             var freq_name = _("%g Hz").printf (Math.roundf ((float)mode.frequency));
             refresh_list_store.append (out iter);
             refresh_list_store.set (iter, RefreshColumns.NAME, freq_name, RefreshColumns.MODE, mode);
             added++;
 
-            if (mode.frequency == nearest) {
+            if (mode.frequency == current_frequency) {
                 refresh_combobox.set_active_iter (iter);
             }
         }

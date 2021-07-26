@@ -113,7 +113,7 @@ public class Display.DisplaysView : Gtk.Grid {
             detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
             apply_button.clicked.connect (() => {
                 monitor_manager.set_monitor_config ();
-                apply_button.sensitive = false;
+                apply_button.sensitive = false; //FIXME How can we know whether the change was accepted?
             });
 
             dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
