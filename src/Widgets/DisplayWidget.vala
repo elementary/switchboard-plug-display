@@ -110,6 +110,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         };
 
         selected_resolution_label = new Gtk.Label (virtual_monitor.monitor.current_mode.get_resolution ());
+        selected_width = real_width;
+        selected_height = real_height;
 
         var resolution_menubutton = new Gtk.MenuButton ();
         var resolution_popover = new Gtk.Popover (resolution_menubutton);
@@ -308,13 +310,15 @@ public class Display.DisplayWidget : Gtk.EventBox {
         refresh_combobox.changed.connect (() => {
             Value val;
             Gtk.TreeIter iter;
-            refresh_combobox.get_active_iter (out iter);
-            refresh_list_store.get_value (iter, RefreshColumns.MODE, out val);
-            Display.MonitorMode new_mode = (Display.MonitorMode) val;
-            virtual_monitor.set_current_mode (new_mode);
-            rotation_combobox.set_active (0);
-            configuration_changed ();
-            check_position ();
+
+            if (refresh_combobox.get_active_iter (out iter)) {
+                refresh_list_store.get_value (iter, RefreshColumns.MODE, out val);
+                Display.MonitorMode new_mode = (Display.MonitorMode) val;
+                virtual_monitor.set_current_mode (new_mode);
+                rotation_combobox.set_active (0);
+                configuration_changed ();
+                check_position ();
+            }
         });
 
         rotation_combobox.set_active ((int) virtual_monitor.transform);
@@ -331,10 +335,14 @@ public class Display.DisplayWidget : Gtk.EventBox {
         if (param != null) {
             int width, height;
             param.@get ("(ii)", out width, out height);
-            if (width > 0 && height > 0) {
+            if ((width > 0 && height > 0) &&
+                 selected_width != width || selected_height != height) {
+
                 selected_width = width;
                 selected_height = height;
                 selected_resolution_label.label = MonitorMode.get_resolution_string (selected_width, selected_height);
+                configuration_changed ();
+                populate_refresh_rates ();
             }
         }
     }
