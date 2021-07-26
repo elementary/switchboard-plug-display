@@ -176,7 +176,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             resolution_menu.append_submenu (_("Other…"), resolution_submenu);
         }
 
-        if (usable_resolutions > 0) {
+        if (usable_resolutions > 1) { // Only need menu if there is a choice
             resolution_popover.bind_model (resolution_menu, "app");
             resolution_popover.show_all ();
             resolution_menubutton.set_popover (resolution_popover);
