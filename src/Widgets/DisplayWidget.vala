@@ -347,14 +347,18 @@ public class Display.DisplayWidget : Gtk.EventBox {
         }
     }
 
+    // List the available frequencies for the currently selected screen resolution.
+    // Set as active the frequency nearest to the current frequency
     private void populate_refresh_rates () {
+        double current_frequency = virtual_monitor.monitor.current_mode.frequency;
+        double current_diff = double.MAX;
+        double nearest = current_frequency;
         refresh_list_store.clear ();
 
         Gtk.TreeIter iter;
         int added = 0;
 
         double[] frequencies = {};
-        bool refresh_set = false;
         foreach (var mode in virtual_monitor.get_available_modes ()) {
             if (mode.width != selected_width || mode.height != selected_height) {
                 continue;
@@ -377,15 +381,25 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
 
             frequencies += mode.frequency;
+            var diff = (current_frequency - mode.frequency).abs ();
+            if (diff < current_diff) {
+                current_diff = diff;
+                nearest = mode.frequency;
+            }
 
             var freq_name = _("%g Hz").printf (Math.roundf ((float)mode.frequency));
             refresh_list_store.append (out iter);
             refresh_list_store.set (iter, RefreshColumns.NAME, freq_name, RefreshColumns.MODE, mode);
             added++;
-            if (mode.is_current) {
+
+            if (mode.frequency == nearest) {
                 refresh_combobox.set_active_iter (iter);
-                refresh_set = true;
             }
+        }
+
+        // Ensure there is an active iter
+        if (!refresh_combobox.get_active_iter (out iter)) {
+            refresh_combobox.set_active (0);
         }
 
         refresh_combobox.sensitive = added > 1;
