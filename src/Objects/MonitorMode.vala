@@ -39,12 +39,12 @@ public class Display.MonitorMode : GLib.Object {
         return resolution_cache;
     }
 
-    public static string get_resolution_string (int width, int height) {
+    public static string get_resolution_string (int width, int height, bool include_ratio = true) {
         // string aspect;
         int ratio;
         string? aspect = null;
 
-        if (width > 0 && height > 0) {
+        if (include_ratio && width > 0 && height > 0) {
             if (width > height) {
                 ratio = width * 10 / height;
             } else {

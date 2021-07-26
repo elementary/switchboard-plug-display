@@ -147,17 +147,22 @@ public class Display.DisplayWidget : Gtk.EventBox {
         }
 
         var native_ratio = max_width * 10 / max_height;
-
         // Put less recommended resolutions into a submenu
         foreach (var resolution in resolutions) {
+            // Reject all resolutions incompatible with elementary desktop
+            if (resolution.width < 1024) {
+                continue;
+            }
+
             string? detailed_action = Action.print_detailed_name ("resolution", new Variant ("(ii)", resolution.width, resolution.height));
-            var menu_item = new MenuItem (MonitorMode.get_resolution_string (resolution.width, resolution.height), detailed_action);
 
             if (resolution.aspect == native_ratio && resolution.width >= 1024) {
-                // Recommended
+                // Recommended (native aspect ratio)
+                var menu_item = new MenuItem (MonitorMode.get_resolution_string (resolution.width, resolution.height, false), detailed_action);
                 resolution_menu.append_item (menu_item);
             } else {
                 // Other
+                var menu_item = new MenuItem (MonitorMode.get_resolution_string (resolution.width, resolution.height, true), detailed_action);
                 resolution_submenu.append_item (menu_item);
             }
         }
