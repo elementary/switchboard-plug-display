@@ -33,58 +33,57 @@ public class Display.MonitorMode : GLib.Object {
     private string? resolution_cache = null;
     public unowned string get_resolution () {
         if (resolution_cache == null) {
-            var aspect = make_aspect_string ();
-            if (aspect != null) {
-                resolution_cache = "%u × %u (%s)".printf (width, height, aspect);
-            } else {
-                resolution_cache = "%u × %u".printf (width, height);
-            }
+            resolution_cache = MonitorMode.get_resolution_string (width, height);
         }
 
         return resolution_cache;
     }
 
-    private string? make_aspect_string () {
+    public static string get_resolution_string (int width, int height) {
+        // string aspect;
         int ratio;
         string? aspect = null;
 
-        if (width == 0 || height == 0)
-            return null;
+        if (width > 0 && height > 0) {
+            if (width > height) {
+                ratio = width * 10 / height;
+            } else {
+                ratio = height * 10 / width;
+            }
 
-        if (width > height) {
-            ratio = width * 10 / height;
+            switch (ratio) {
+                case 13:
+                    aspect = "4∶3";
+                    break;
+                case 16:
+                    aspect = "16∶10";
+                    break;
+                case 17:
+                    aspect = "16∶9";
+                    break;
+                case 23:
+                    aspect = "21∶9";
+                    break;
+                case 12:
+                    aspect = "5∶4";
+                    break;
+                    /* This catches 1.5625 as well (1600x1024) when maybe it shouldn't. */
+                case 15:
+                    aspect = "3∶2";
+                    break;
+                case 18:
+                    aspect = "9∶5";
+                    break;
+                case 10:
+                    aspect = "1∶1";
+                    break;
+            }
+        }
+
+        if (aspect != null) {
+            return "%u × %u (%s)".printf (width, height, aspect);
         } else {
-            ratio = height * 10 / width;
+            return "%u × %u".printf (width, height);
         }
-
-        switch (ratio) {
-            case 13:
-                aspect = "4∶3";
-                break;
-            case 16:
-                aspect = "16∶10";
-                break;
-            case 17:
-                aspect = "16∶9";
-                break;
-            case 23:
-                aspect = "21∶9";
-                break;
-            case 12:
-                aspect = "5∶4";
-                break;
-                /* This catches 1.5625 as well (1600x1024) when maybe it shouldn't. */
-            case 15:
-                aspect = "3∶2";
-                break;
-            case 18:
-                aspect = "9∶5";
-                break;
-            case 10:
-                aspect = "1∶1";
-                break;
-        }
-
-        return aspect;
     }
 }
