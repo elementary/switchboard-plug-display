@@ -109,11 +109,16 @@ public class Display.DisplayWidget : Gtk.EventBox {
             halign = Gtk.Align.END
         };
 
-        selected_resolution_label = new Gtk.Label (virtual_monitor.monitor.current_mode.get_resolution ());
+        selected_resolution_label = new Gtk.Label (virtual_monitor.monitor.current_mode.get_resolution ()) {
+            hexpand = true
+        };
         selected_width = real_width;
         selected_height = real_height;
 
-        var resolution_menubutton = new Gtk.MenuButton ();
+        var resolution_menubutton = new Gtk.MenuButton () {
+            hexpand = false,
+            tooltip_text = _("Select a different screen resolution")
+        };
         var resolution_popover = new Gtk.Popover (resolution_menubutton);
         var resolution_menu = new Menu ();
         var resolution_submenu = new Menu ();
@@ -200,9 +205,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
         popover_grid.attach (selected_resolution_label, 1, 1);
         popover_grid.attach (resolution_menubutton, 2, 1);
         popover_grid.attach (rotation_label, 0, 2);
-        popover_grid.attach (rotation_combobox, 1, 2);
+        popover_grid.attach (rotation_combobox, 1, 2, 2, 1);
         popover_grid.attach (refresh_label, 0, 3);
-        popover_grid.attach (refresh_combobox, 1, 3);
+        popover_grid.attach (refresh_combobox, 1, 3, 2, 1);
         popover_grid.show_all ();
 
         var popover = new Gtk.Popover (toggle_settings);
