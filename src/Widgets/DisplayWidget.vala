@@ -152,7 +152,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         // Put less recommended resolutions into a submenu
         foreach (var resolution in resolutions) {
             // Reject all resolutions incompatible with elementary desktop
-            if (resolution.width < 1024) {
+            if (resolution.width < 1024 || resolution.height < 768) {
                 continue;
             }
 
