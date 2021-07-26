@@ -343,11 +343,22 @@ public class Display.DisplayWidget : Gtk.EventBox {
             if ((width > 0 && height > 0) &&
                  selected_width != width || selected_height != height) {
 
-                selected_width = width;
-                selected_height = height;
-                selected_resolution_label.label = MonitorMode.get_resolution_string (selected_width, selected_height);
-                configuration_changed ();
-                populate_refresh_rates ();
+                foreach (var mode in virtual_monitor.get_available_modes ()) {
+                    if (mode.width == width && mode.height == height) {
+                        selected_width = width;
+                        selected_height = height;
+                        selected_resolution_label.label = MonitorMode.get_resolution_string (selected_width, selected_height);
+
+                        set_geometry (virtual_monitor.x, virtual_monitor.y, (int)mode.width, (int)mode.height);
+                        virtual_monitor.set_current_mode (mode);
+                        rotation_combobox.set_active (0);
+
+                        configuration_changed ();
+                        populate_refresh_rates ();
+
+                        break; // The resolution list takes the first available mode for each size
+                    }
+                }
             }
         }
     }
@@ -419,6 +430,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             selected_width = mode.width;
             selected_height = mode.height;
             selected_resolution_label.label = MonitorMode.get_resolution_string (selected_width, selected_height);
+
+            populate_refresh_rates ();
         }
     }
 
