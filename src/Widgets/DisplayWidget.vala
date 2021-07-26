@@ -132,6 +132,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
         int max_width = -1;
         int max_height = -1;
         bool resolution_set = false;
+        uint usable_resolutions = 0;
+        uint other_resolutions = 0;
         foreach (var mode in virtual_monitor.get_available_modes ()) {
             var mode_width = mode.width;
             var mode_height = mode.height;
@@ -164,15 +166,21 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 // Other
                 var menu_item = new MenuItem (MonitorMode.get_resolution_string (resolution.width, resolution.height, true), detailed_action);
                 resolution_submenu.append_item (menu_item);
+                other_resolutions++;
             }
+
+            usable_resolutions++;
         }
 
-        resolution_menu.append_submenu (_("Other…"), resolution_submenu);
+        if (other_resolutions > 0) {
+            resolution_menu.append_submenu (_("Other…"), resolution_submenu);
+        }
 
-        resolution_popover.bind_model (resolution_menu, "app");
-
-        resolution_popover.show_all ();
-        resolution_menubutton.set_popover (resolution_popover);
+        if (usable_resolutions > 0) {
+            resolution_popover.bind_model (resolution_menu, "app");
+            resolution_popover.show_all ();
+            resolution_menubutton.set_popover (resolution_popover);
+        }
 
         var rotation_label = new Gtk.Label (_("Screen Rotation:"));
         rotation_label.halign = Gtk.Align.END;
