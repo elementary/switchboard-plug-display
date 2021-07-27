@@ -216,6 +216,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             resolution_combobox.set_active (0);
         }
 
+        resolution_combobox.sensitive = usable_resolutions > 1;
+
         populate_refresh_rates ();
 
         var popover_grid = new Gtk.Grid ();
