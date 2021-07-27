@@ -119,6 +119,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             hexpand = false,
             tooltip_text = _("Select a different screen resolution")
         };
+
+        resolution_menubutton.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         var resolution_popover = new Gtk.Popover (resolution_menubutton);
         var resolution_menu = new Menu ();
         var resolution_submenu = new Menu ();
