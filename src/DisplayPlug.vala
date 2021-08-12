@@ -27,6 +27,9 @@ public class Display.Plug : Switchboard.Plug {
     private DisplaysView displays_view;
 
     public Plug () {
+        GLib.Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+        GLib.Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
         var settings = new Gee.TreeMap<string, string?> (null, null);
         settings.set ("display", null);
         settings.set ("display/night-light", "night-light");
