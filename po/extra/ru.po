@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2021-08-12 22:06+0000\n"
-"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
+"PO-Revision-Date: 2021-08-13 15:38+0000\n"
+"Last-Translator: DartDeaDia <DartDeaDia@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ru/>\n"
 "Language: ru\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr "Настройки дисплея"
+msgstr "Настройки экрана"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
@@ -55,17 +55,17 @@ msgstr "Обновлены переводы"
 
 #: data/display.appdata.xml.in:36
 msgid "Fix 1px gaps between displays"
-msgstr "Исправить пробелы в 1px между дисплеями"
+msgstr "Исправлены пробелы в 1px между экранами"
 
 #: data/display.appdata.xml.in:37
 msgid "Properly center rotated displays"
-msgstr "Правильно расположенные по центру дисплеи"
+msgstr "Правильное центрирование повернутых экранов"
 
 #: data/display.appdata.xml.in:45
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
-"Улучшенные макеты с несколькими дисплеями с лучшей привязкой и выравниванием"
+"Улучшенные макеты с несколькими экранами с лучшей привязкой и выравниванием"
 
 #: data/display.appdata.xml.in:46
 msgid "Fixed the placement of display name tags"
-msgstr "Исправлено размещение тегов отображаемых имен"
+msgstr "Исправлено размещение тегов названий экранов"
