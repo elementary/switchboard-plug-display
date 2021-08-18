@@ -1,5 +1,6 @@
 /*-
- * Copyright (c) 2014-2018 elementary LLC.
+ * Copyright 2014–2021 elementary, Inc.
+ *           2014–2018 Corentin Noël <corentin@elementary.io>
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -15,8 +16,6 @@
  * License along with this software; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
- *
- * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
 public struct Display.Resolution {
