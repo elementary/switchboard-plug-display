@@ -45,6 +45,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
+    private Gtk.Switch use_switch;
+
     private Gtk.ComboBox resolution_combobox;
     private Gtk.ListStore resolution_list_store;
 
@@ -89,7 +91,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         primary_image.halign = Gtk.Align.START;
         primary_image.valign = Gtk.Align.START;
         primary_image.clicked.connect (() => set_as_primary ());
-        set_primary (virtual_monitor.primary);
 
         var virtual_monitor_name = virtual_monitor.get_display_name ();
         var label = new Gtk.Label (virtual_monitor_name);
@@ -97,12 +98,12 @@ public class Display.DisplayWidget : Gtk.EventBox {
         label.valign = Gtk.Align.CENTER;
         label.expand = true;
 
-        var use_label = new Gtk.Label (_("Use This Display:"));
+        var use_label = new Gtk.Label (_("Use this display:"));
         use_label.halign = Gtk.Align.END;
-        var use_switch = new Gtk.Switch ();
+
+        use_switch = new Gtk.Switch ();
         use_switch.halign = Gtk.Align.START;
         virtual_monitor.bind_property ("is-active", use_switch, "active", GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.BIDIRECTIONAL);
-        this.bind_property ("only-display", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
 
         var resolution_label = new Gtk.Label (_("Resolution:"));
         resolution_label.halign = Gtk.Align.END;
@@ -198,14 +199,13 @@ public class Display.DisplayWidget : Gtk.EventBox {
         grid.attach (toggle_settings, 2, 0);
         grid.attach (label, 0, 0, 3, 2);
 
+        set_primary (virtual_monitor.primary);
         add (grid);
-
         display_window.attached_to = this;
 
         destroy.connect (() => display_window.destroy ());
 
         use_switch.notify["active"].connect (() => {
-            //output_info.set_active (use_switch.active);
             resolution_combobox.sensitive = use_switch.active;
             rotation_combobox.sensitive = use_switch.active;
             refresh_combobox.sensitive = use_switch.active;
@@ -446,6 +446,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             ((Gtk.Image) primary_image.image).icon_name = "non-starred-symbolic";
             primary_image.tooltip_text = _("Set as primary display");
         }
+
+        use_switch.sensitive = !is_primary;
     }
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
