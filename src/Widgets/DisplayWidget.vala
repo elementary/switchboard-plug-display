@@ -101,7 +101,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         use_label.halign = Gtk.Align.END;
         var use_switch = new Gtk.Switch ();
         use_switch.halign = Gtk.Align.START;
-        use_switch.active = virtual_monitor.is_active;
+        virtual_monitor.bind_property ("is-active", use_switch, "active", GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.BIDIRECTIONAL);
         this.bind_property ("only-display", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
 
         var resolution_label = new Gtk.Label (_("Resolution:"));
