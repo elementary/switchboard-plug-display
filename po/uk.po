@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 18:33+0000\n"
-"PO-Revision-Date: 2021-07-05 13:54+0000\n"
+"POT-Creation-Date: 2021-08-20 21:24+0000\n"
+"PO-Revision-Date: 2021-08-20 21:24+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/uk/>\n"
@@ -175,8 +175,6 @@ msgid "Rotation Lock:"
 msgstr "Блокувати обертання:"
 
 #: src/Widgets/DisplayWidget.vala:100
-#, fuzzy
-#| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Використовувати цей екран:"
 

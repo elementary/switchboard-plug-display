@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 18:33+0000\n"
+"POT-Creation-Date: 2021-08-20 21:24+0000\n"
 "PO-Revision-Date: 2021-07-15 02:33+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
@@ -27,45 +27,50 @@ msgstr "ディスプレイの設定"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "モニターとプロジェクターの解像度と位置を設定します"
 
-#: data/display.appdata.xml.in:12
-msgid "New features:"
-msgstr "新機能:"
-
-#: data/display.appdata.xml.in:14
-msgid "Support 3× scaling"
-msgstr "3× スケールに対応"
-
-#: data/display.appdata.xml.in:16
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:28
 msgid "Fixes:"
 msgstr "修正点:"
 
-#: data/display.appdata.xml.in:18
+#: data/display.appdata.xml.in:14
+msgid "Ensure the \"Use this display\" switch works in more circumstances"
+msgstr ""
+
+#: data/display.appdata.xml.in:16 data/display.appdata.xml.in:32
+msgid "Minor updates:"
+msgstr "軽微なアップデート:"
+
+#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:34
+#: data/display.appdata.xml.in:41 data/display.appdata.xml.in:50
+#: data/display.appdata.xml.in:59
+msgid "Updated translations"
+msgstr "翻訳の更新"
+
+#: data/display.appdata.xml.in:24
+msgid "New features:"
+msgstr "新機能:"
+
+#: data/display.appdata.xml.in:26
+msgid "Support 3× scaling"
+msgstr "3× スケールに対応"
+
+#: data/display.appdata.xml.in:30
 msgid "Reliably detect accelerometers"
 msgstr ""
 "加速度センサーの有無をより正確に判断し、適切な場合に回転ロックのオプションを"
 "表示するように修正"
 
-#: data/display.appdata.xml.in:20
-msgid "Minor updates:"
-msgstr "軽微なアップデート:"
-
-#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
-#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
-msgid "Updated translations"
-msgstr "翻訳の更新"
-
-#: data/display.appdata.xml.in:36
+#: data/display.appdata.xml.in:48
 msgid "Fix 1px gaps between displays"
 msgstr "ディスプレイ間に 1px のずれがあった不具合を修正"
 
-#: data/display.appdata.xml.in:37
+#: data/display.appdata.xml.in:49
 msgid "Properly center rotated displays"
 msgstr "回転したディスプレイを正確に中央に表示するように修正"
 
-#: data/display.appdata.xml.in:45
+#: data/display.appdata.xml.in:57
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr "スナップや整列の精度の向上など、マルチディスプレイのレイアウトを改善"
 
-#: data/display.appdata.xml.in:46
+#: data/display.appdata.xml.in:58
 msgid "Fixed the placement of display name tags"
 msgstr "ディスプレイ名タグの配置を修正"
