@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2021-03-19 12:52+0000\n"
-"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
+"PO-Revision-Date: 2021-08-13 15:38+0000\n"
+"Last-Translator: DartDeaDia <DartDeaDia@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ru/>\n"
 "Language: ru\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
 msgid "Displays"
-msgstr "Настройка дисплеев"
+msgstr "Экраны"
 
 #: src/DisplayPlug.vala:36
 msgid "Configure resolution and position of monitors and projectors"
@@ -44,7 +44,7 @@ msgstr "Поворот экрана"
 
 #: src/DisplayPlug.vala:112
 msgid "Primary display"
-msgstr "Главный экран"
+msgstr "Основной экран"
 
 #: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
@@ -100,7 +100,7 @@ msgstr "Отсутствует"
 
 #: src/Objects/VirtualMonitor.vala:81
 msgid "Mirrored Display"
-msgstr "Дублируемый дисплей"
+msgstr "Зеркальный экран"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
@@ -111,7 +111,7 @@ msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
-"Ночной режим делает цвета вашего дисплея более теплыми. Это может помочь "
+"Ночной свет делает цвета вашего экрана более тёплыми. Это может помочь "
 "предотвратить перенапряжение глаз и бессонницу."
 
 #: src/Views/NightLightView.vala:48
@@ -148,7 +148,7 @@ msgstr "Менее теплый"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
-msgstr "Дублируемый дисплей:"
+msgstr "Зеркальный экран:"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
@@ -164,7 +164,7 @@ msgstr "HiDPI"
 
 #: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
-msgstr "Определить дисплеи"
+msgstr "Определить экраны"
 
 #: src/Views/DisplaysView.vala:61
 msgid "Apply"
@@ -176,7 +176,7 @@ msgstr "Блокировка поворота:"
 
 #: src/Widgets/DisplayWidget.vala:100
 msgid "Use This Display:"
-msgstr "Использовать этот дисплей:"
+msgstr "Использовать этот экран:"
 
 #: src/Widgets/DisplayWidget.vala:107
 msgid "Resolution:"
@@ -192,7 +192,7 @@ msgstr "Частота обновления:"
 
 #: src/Widgets/DisplayWidget.vala:193
 msgid "Configure display"
-msgstr "Настроить дисплей"
+msgstr "Настройки экрана"
 
 #: src/Widgets/DisplayWidget.vala:359
 #, c-format
