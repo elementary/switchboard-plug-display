@@ -1,3 +1,15 @@
+switchboard-plug-display (2.3.1) bionic; urgency=medium
+
+  * Release 2.3.1 (#316)
+  * Update translation files
+  * Update translation template
+  * DisplayWidget: Disable use_switch on primary display (#313)
+  * Remove offsets from virtual monitors (#315)
+  * Fix use this display switch (#311)
+  * l10n: Correctly setup the locales (#305)
+
+ -- elementary OS Team <builds@elementary.io>  Fri, 20 Aug 2021 21:34:14 +0000
+
 switchboard-plug-display (2.3.0) bionic; urgency=medium
 
   * Release 2.3.0 (#300)
