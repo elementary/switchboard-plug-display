@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 21:46+0000\n"
+"POT-Creation-Date: 2021-08-20 18:33+0000\n"
 "PO-Revision-Date: 2019-05-15 03:02+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.elementary.io/projects/switchboard/"
@@ -21,48 +21,48 @@ msgstr ""
 "X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
+#: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
 msgid "Displays"
 msgstr "Ekranai"
 
-#: src/DisplayPlug.vala:36
+#: src/DisplayPlug.vala:39
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Konfigūruoti monitorių ir projektorių raišką bei poziciją"
 
-#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:121
 msgid "Night Light"
 msgstr "Naktinis apšvietimas"
 
-#: src/DisplayPlug.vala:110
+#: src/DisplayPlug.vala:113
 msgid "Screen Resolution"
 msgstr "Ekrano raiška"
 
-#: src/DisplayPlug.vala:111
+#: src/DisplayPlug.vala:114
 msgid "Screen Rotation"
 msgstr "Ekrano pasukimas"
 
-#: src/DisplayPlug.vala:112
+#: src/DisplayPlug.vala:115
 msgid "Primary display"
 msgstr "Pirminis ekranas"
 
-#: src/DisplayPlug.vala:113
+#: src/DisplayPlug.vala:116
 msgid "Screen mirroring"
 msgstr "Ekrano dubliavimas"
 
-#: src/DisplayPlug.vala:114
+#: src/DisplayPlug.vala:117
 msgid "Scaling factor"
 msgstr "Mastelio keitimo faktorius"
 
-#: src/DisplayPlug.vala:115
+#: src/DisplayPlug.vala:118
 msgid "Rotation lock"
 msgstr "Pasukimo užraktas"
 
-#: src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:120
 msgid "Schedule"
 msgstr "Tvarkaraštis"
 
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:121
 msgid "Color temperature"
 msgstr "Spalvos temperatūra"
 
@@ -98,7 +98,7 @@ msgstr "Apverstas prieš laikrodžio rodyklę"
 msgid "None"
 msgstr "Nėra"
 
-#: src/Objects/VirtualMonitor.vala:81
+#: src/Objects/VirtualMonitor.vala:77
 msgid "Mirrored Display"
 msgstr "Dubliuotas ekranas"
 
@@ -175,7 +175,9 @@ msgid "Rotation Lock:"
 msgstr "Pasukimo užraktas:"
 
 #: src/Widgets/DisplayWidget.vala:100
-msgid "Use This Display:"
+#, fuzzy
+#| msgid "Use This Display:"
+msgid "Use this display:"
 msgstr "Naudoti šį ekraną:"
 
 #: src/Widgets/DisplayWidget.vala:107
@@ -194,16 +196,16 @@ msgstr "Atnaujinimo dažnis:"
 msgid "Configure display"
 msgstr "Konfigūruoti ekraną"
 
-#: src/Widgets/DisplayWidget.vala:359
+#: src/Widgets/DisplayWidget.vala:358
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:444
+#: src/Widgets/DisplayWidget.vala:443
 msgid "Is the primary display"
 msgstr "Yra pirminis ekranas"
 
-#: src/Widgets/DisplayWidget.vala:447
+#: src/Widgets/DisplayWidget.vala:446
 msgid "Set as primary display"
 msgstr "Nustatyti kaip pirminį ekraną"
 

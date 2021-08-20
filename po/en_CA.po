@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 21:46+0000\n"
+"POT-Creation-Date: 2021-08-20 18:33+0000\n"
 "PO-Revision-Date: 2018-06-22 12:57+0000\n"
 "Last-Translator: Shawn <syst3mfailur3@gmail.com>\n"
 "Language-Team: English (Canada) <https://weblate.elementary.io/projects/"
@@ -20,51 +20,51 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-01-28 06:08+0000\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
+#: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
 msgid "Displays"
 msgstr "Displays"
 
-#: src/DisplayPlug.vala:36
+#: src/DisplayPlug.vala:39
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configure resolution and position of monitors and projectors"
 
-#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:121
 msgid "Night Light"
 msgstr "Night Light"
 
-#: src/DisplayPlug.vala:110
+#: src/DisplayPlug.vala:113
 msgid "Screen Resolution"
 msgstr "Screen Resolution"
 
-#: src/DisplayPlug.vala:111
+#: src/DisplayPlug.vala:114
 msgid "Screen Rotation"
 msgstr "Screen Rotation"
 
-#: src/DisplayPlug.vala:112
+#: src/DisplayPlug.vala:115
 msgid "Primary display"
 msgstr "Primary display"
 
-#: src/DisplayPlug.vala:113
+#: src/DisplayPlug.vala:116
 msgid "Screen mirroring"
 msgstr "Screen mirroring"
 
-#: src/DisplayPlug.vala:114
+#: src/DisplayPlug.vala:117
 #, fuzzy
 msgid "Scaling factor"
 msgstr "Scaling factor:"
 
-#: src/DisplayPlug.vala:115
+#: src/DisplayPlug.vala:118
 #, fuzzy
 msgid "Rotation lock"
 msgstr "Rotation Lock:"
 
-#: src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:120
 #, fuzzy
 msgid "Schedule"
 msgstr "Schedule:"
 
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:121
 #, fuzzy
 msgid "Color temperature"
 msgstr "Colour temperature:"
@@ -101,7 +101,7 @@ msgstr "Flipped Counterclockwise"
 msgid "None"
 msgstr "None"
 
-#: src/Objects/VirtualMonitor.vala:81
+#: src/Objects/VirtualMonitor.vala:77
 msgid "Mirrored Display"
 msgstr "Mirrored Display"
 
@@ -178,7 +178,9 @@ msgid "Rotation Lock:"
 msgstr "Rotation Lock:"
 
 #: src/Widgets/DisplayWidget.vala:100
-msgid "Use This Display:"
+#, fuzzy
+#| msgid "Use This Display:"
+msgid "Use this display:"
 msgstr "Use This Display:"
 
 #: src/Widgets/DisplayWidget.vala:107
@@ -198,16 +200,16 @@ msgstr ""
 msgid "Configure display"
 msgstr "Configure display"
 
-#: src/Widgets/DisplayWidget.vala:359
+#: src/Widgets/DisplayWidget.vala:358
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:444
+#: src/Widgets/DisplayWidget.vala:443
 msgid "Is the primary display"
 msgstr "Is the primary display"
 
-#: src/Widgets/DisplayWidget.vala:447
+#: src/Widgets/DisplayWidget.vala:446
 msgid "Set as primary display"
 msgstr "Set as primary display"
 
