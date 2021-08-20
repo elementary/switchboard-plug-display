@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-31 10:47-0700\n"
+"POT-Creation-Date: 2021-07-14 21:46+0000\n"
 "PO-Revision-Date: 2019-05-15 03:02+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.elementary.io/projects/switchboard/"
@@ -146,31 +146,31 @@ msgstr "Šiltesnė"
 msgid "Less Warm"
 msgstr "Šaltesnė"
 
-#: src/Views/DisplaysView.vala:31
+#: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
 msgstr "Vienodi ekranai:"
 
-#: src/Views/DisplaysView.vala:40
+#: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
 msgstr "Mastelio keitimo faktorius:"
 
-#: src/Views/DisplaysView.vala:43
+#: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
 msgstr "LoDPI"
 
-#: src/Views/DisplaysView.vala:44
-msgid "Pixel Doubled"
-msgstr "Padvigubinti pikseliai"
+#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+msgid "HiDPI"
+msgstr ""
 
-#: src/Views/DisplaysView.vala:52
+#: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
 msgstr "Aptikti ekranus"
 
-#: src/Views/DisplaysView.vala:54
+#: src/Views/DisplaysView.vala:61
 msgid "Apply"
 msgstr "Taikyti"
 
-#: src/Views/DisplaysView.vala:77
+#: src/Views/DisplaysView.vala:150
 msgid "Rotation Lock:"
 msgstr "Pasukimo užraktas:"
 
@@ -206,6 +206,9 @@ msgstr "Yra pirminis ekranas"
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "Nustatyti kaip pirminį ekraną"
+
+#~ msgid "Pixel Doubled"
+#~ msgstr "Padvigubinti pikseliai"
 
 #~ msgid ""
 #~ "Scaling factor changes will not take effect until this device is restarted"

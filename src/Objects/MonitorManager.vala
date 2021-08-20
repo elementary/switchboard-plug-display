@@ -203,12 +203,53 @@ public class Display.MonitorManager : GLib.Object {
                 }
             }
         }
+
+        // Look for any monitors that aren't part of a virtual monitor (hence disabled)
+        // and create a virtual monitor for them so they can be re-enabled
+        foreach (var monitor in monitors) {
+            bool found = false;
+            foreach (var virtual_monitor in virtual_monitors) {
+                if (monitor in virtual_monitor.monitors) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                var virtual_monitor = new VirtualMonitor ();
+                add_virtual_monitor (virtual_monitor);
+                virtual_monitor.is_active = false;
+                virtual_monitor.primary = false;
+                virtual_monitor.scale = virtual_monitors[0].scale;
+                virtual_monitor.monitors.add (monitor);
+            }
+        }
     }
 
     public void set_monitor_config () {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
-            logical_monitors += get_mutter_logical_monitor (virtual_monitor);
+            if (virtual_monitor.is_active) {
+                logical_monitors += get_mutter_logical_monitor (virtual_monitor);
+            }
+        }
+
+        int min_x = int.MAX;
+        int min_y = int.MAX;
+
+        // Make sure the remaining enabled monitors start at 0,0 as required by mutter.
+        // Calculate their offset, and then offset them if necessary
+        foreach (unowned var logical_monitor in logical_monitors) {
+            min_x = int.min (min_x, logical_monitor.x);
+            min_y = int.min (min_y, logical_monitor.y);
+        }
+
+        if (min_x != 0 || min_y != 0) {
+            // Iterate over the items in the array directly here, a `foreach` would return a copy
+            for (int i = 0; i < logical_monitors.length; i++) {
+                logical_monitors[i].x -= min_x;
+                logical_monitors[i].y -= min_y;
+            }
         }
 
         var properties = new GLib.HashTable<string, GLib.Variant> (str_hash, str_equal);

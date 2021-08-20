@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-28 23:41+0000\n"
-"PO-Revision-Date: 2019-12-20 16:09+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"POT-Creation-Date: 2021-07-14 21:46+0000\n"
+"PO-Revision-Date: 2021-05-05 21:17+0000\n"
+"Last-Translator: Chengyu Liu <wer5lcy@live.cn>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "switchboard/display-plug-extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -17,33 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr ""
+msgstr "显示设置"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "调整分辨率、配置显示器和投影仪的位置"
 
-#: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
-#: data/display.appdata.xml.in:31
+#: data/display.appdata.xml.in:12
+msgid "New features:"
+msgstr ""
+
+#: data/display.appdata.xml.in:14
+msgid "Support 3× scaling"
+msgstr ""
+
+#: data/display.appdata.xml.in:16
+msgid "Fixes:"
+msgstr ""
+
+#: data/display.appdata.xml.in:18
+msgid "Reliably detect accelerometers"
+msgstr ""
+
+#: data/display.appdata.xml.in:20
+msgid "Minor updates:"
+msgstr ""
+
+#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
 msgid "Updated translations"
 msgstr "翻译更新"
 
-#: data/display.appdata.xml.in:20
+#: data/display.appdata.xml.in:36
 msgid "Fix 1px gaps between displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:37
 msgid "Properly center rotated displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:45
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 
-#: data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:46
 msgid "Fixed the placement of display name tags"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-28 23:41+0000\n"
+"POT-Creation-Date: 2021-07-14 21:46+0000\n"
 "PO-Revision-Date: 2020-05-28 23:40+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/switchboard/"
@@ -27,24 +27,44 @@ msgstr "Nastavení zobrazení"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Nastavit rozlišení a pozici monitorů nebo projektorů"
 
-#: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
-#: data/display.appdata.xml.in:31
+#: data/display.appdata.xml.in:12
+msgid "New features:"
+msgstr ""
+
+#: data/display.appdata.xml.in:14
+msgid "Support 3× scaling"
+msgstr ""
+
+#: data/display.appdata.xml.in:16
+msgid "Fixes:"
+msgstr ""
+
+#: data/display.appdata.xml.in:18
+msgid "Reliably detect accelerometers"
+msgstr ""
+
+#: data/display.appdata.xml.in:20
+msgid "Minor updates:"
+msgstr ""
+
+#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
 msgid "Updated translations"
 msgstr "Aktualizovány překlady"
 
-#: data/display.appdata.xml.in:20
+#: data/display.appdata.xml.in:36
 msgid "Fix 1px gaps between displays"
 msgstr "Oprava mezery (1 obrazový bod) mezi displeji"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:37
 msgid "Properly center rotated displays"
 msgstr "Správné vystředění otočených displejů"
 
-#: data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:45
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 "Vylepšení rozvržení s vícero monitory s lepším přichytáváním a zarovnáváním"
 
-#: data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:46
 msgid "Fixed the placement of display name tags"
 msgstr "Oprava umístění štítků s názvem displeje"

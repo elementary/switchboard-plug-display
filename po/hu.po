@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-31 10:47-0700\n"
+"POT-Creation-Date: 2021-07-14 21:46+0000\n"
 "PO-Revision-Date: 2018-06-06 00:09+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian <https://weblate.elementary.io/projects/switchboard/"
@@ -149,31 +149,31 @@ msgstr "Melegebb"
 msgid "Less Warm"
 msgstr "Kevésbé meleg"
 
-#: src/Views/DisplaysView.vala:31
+#: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
 msgstr "Tükrözött kijelző:"
 
-#: src/Views/DisplaysView.vala:40
+#: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
 msgstr "Méretezési tényező:"
 
-#: src/Views/DisplaysView.vala:43
+#: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
 msgstr "LoDPI"
 
-#: src/Views/DisplaysView.vala:44
-msgid "Pixel Doubled"
-msgstr "Képpont duplázás"
+#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+msgid "HiDPI"
+msgstr ""
 
-#: src/Views/DisplaysView.vala:52
+#: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
 msgstr "Kijelzők észlelése"
 
-#: src/Views/DisplaysView.vala:54
+#: src/Views/DisplaysView.vala:61
 msgid "Apply"
 msgstr "Alkalmazás"
 
-#: src/Views/DisplaysView.vala:77
+#: src/Views/DisplaysView.vala:150
 msgid "Rotation Lock:"
 msgstr "Forgatás zár:"
 
@@ -210,6 +210,9 @@ msgstr "Ez az elsődleges kijelző"
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "Beállítás elsődleges kijelzőnek"
+
+#~ msgid "Pixel Doubled"
+#~ msgstr "Képpont duplázás"
 
 #~ msgid ""
 #~ "Scaling factor changes will not take effect until this device is restarted"

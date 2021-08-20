@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-31 10:47-0700\n"
+"POT-Creation-Date: 2021-07-14 21:46+0000\n"
 "PO-Revision-Date: 2019-07-15 00:28+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/switchboard/"
@@ -145,31 +145,31 @@ msgstr "Pli varma"
 msgid "Less Warm"
 msgstr "Malpli varma"
 
-#: src/Views/DisplaysView.vala:31
+#: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
 msgstr "Duobligi la ekranon:"
 
-#: src/Views/DisplaysView.vala:40
+#: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
 msgstr "Skalofaktoro:"
 
-#: src/Views/DisplaysView.vala:43
+#: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
 msgstr "Malalta DPI-distingivo"
 
-#: src/Views/DisplaysView.vala:44
-msgid "Pixel Doubled"
-msgstr "Duobligitaj rastrumeroj"
+#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+msgid "HiDPI"
+msgstr ""
 
-#: src/Views/DisplaysView.vala:52
+#: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
 msgstr "Detekti ekranojn"
 
-#: src/Views/DisplaysView.vala:54
+#: src/Views/DisplaysView.vala:61
 msgid "Apply"
 msgstr "Efektivigi"
 
-#: src/Views/DisplaysView.vala:77
+#: src/Views/DisplaysView.vala:150
 msgid "Rotation Lock:"
 msgstr "Turna bloko:"
 
@@ -205,3 +205,6 @@ msgstr "Estas la ĉefa ekrano"
 #: src/Widgets/DisplayWidget.vala:447
 msgid "Set as primary display"
 msgstr "Difini kiel ĉefan ekranon"
+
+#~ msgid "Pixel Doubled"
+#~ msgstr "Duobligitaj rastrumeroj"

@@ -24,6 +24,9 @@ public class Display.DisplaysView : Gtk.Grid {
     public DisplaysOverlay displays_overlay;
 
     private Gtk.ComboBoxText dpi_combo;
+    private Gtk.Grid rotation_lock_grid;
+
+    private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
 
     construct {
             displays_overlay = new DisplaysOverlay ();
@@ -42,8 +45,9 @@ public class Display.DisplaysView : Gtk.Grid {
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
             dpi_combo = new Gtk.ComboBoxText ();
-            dpi_combo.append_text (_("LoDPI"));
-            dpi_combo.append_text (_("Pixel Doubled"));
+            dpi_combo.append_text (_("LoDPI") + " (1×)");
+            dpi_combo.append_text (_("HiDPI") + " (2×)");
+            dpi_combo.append_text (_("HiDPI") + " (3×)");
 
             var dpi_grid = new Gtk.Grid () {
                 column_spacing = 6,
@@ -72,29 +76,20 @@ public class Display.DisplaysView : Gtk.Grid {
             action_bar.pack_start (dpi_grid);
             action_bar.pack_start (mirror_grid);
 
-            if (Utils.has_touchscreen ()) {
-                var schema_source = GLib.SettingsSchemaSource.get_default ();
-                var rotation_lock_schema = schema_source.lookup ("org.gnome.settings-daemon.peripherals.touchscreen", true);
-                if (rotation_lock_schema != null) {
-                    var touchscreen_settings = new GLib.Settings.full (rotation_lock_schema, null, null);
+            var schema_source = GLib.SettingsSchemaSource.get_default ();
+            var rotation_lock_schema = schema_source.lookup (TOUCHSCREEN_SETTINGS_PATH, true);
+            if (rotation_lock_schema != null) {
+                rotation_lock_grid = new Gtk.Grid () {
+                    column_spacing = 6,
+                    margin = 6,
+                    valign = Gtk.Align.CENTER
+                };
 
-                    var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
-                    var rotation_lock_switch = new Gtk.Switch ();
+                action_bar.pack_start (rotation_lock_grid);
 
-                    var rotation_lock_grid = new Gtk.Grid () {
-                        column_spacing = 6,
-                        margin = 6,
-                        valign = Gtk.Align.CENTER
-                    };
-                    rotation_lock_grid.add (rotation_lock_label);
-                    rotation_lock_grid.add (rotation_lock_switch);
-
-                    action_bar.pack_start (rotation_lock_grid);
-
-                    touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", SettingsBindFlags.DEFAULT);
-                } else {
-                    info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
-                }
+                detect_accelerometer.begin ();
+            } else {
+                info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
             }
 
             action_bar.pack_end (button_grid);
@@ -137,5 +132,35 @@ public class Display.DisplaysView : Gtk.Grid {
 
                 apply_button.sensitive = true;
             });
+    }
+
+    private async void detect_accelerometer () {
+        bool has_accelerometer = false;
+
+        try {
+            SensorProxy sensors = yield GLib.Bus.get_proxy (BusType.SYSTEM, "net.hadess.SensorProxy", "/net/hadess/SensorProxy");
+            has_accelerometer = sensors.has_accelerometer;
+        } catch (Error e) {
+            info ("Unable to connect to SensorProxy bus, probably means no accelerometer supported: %s", e.message);
+        }
+
+        if (has_accelerometer) {
+            var touchscreen_settings = new GLib.Settings (TOUCHSCREEN_SETTINGS_PATH);
+
+            var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
+            var rotation_lock_switch = new Gtk.Switch ();
+
+            rotation_lock_grid.add (rotation_lock_label);
+            rotation_lock_grid.add (rotation_lock_switch);
+
+            touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", SettingsBindFlags.DEFAULT);
+
+            rotation_lock_grid.show_all ();
+        }
+    }
+
+    [DBus (name = "net.hadess.SensorProxy")]
+    private interface SensorProxy : GLib.DBusProxy {
+        public abstract bool has_accelerometer { get; }
     }
 }

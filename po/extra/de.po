@@ -7,41 +7,64 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-28 23:41+0000\n"
-"PO-Revision-Date: 2018-12-10 10:41-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2021-07-14 21:46+0000\n"
+"PO-Revision-Date: 2021-07-21 14:31+0000\n"
+"Last-Translator: supaeasy <ismo+github@wolffson.ch>\n"
+"Language-Team: German <https://l10n.elementary.io/projects/switchboard/"
+"display-plug-extra/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr ""
+msgstr "Bildschirmeinstellungen"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "Auflösung und Anordnung von Bildschirmen und Projektoren einrichten"
 
-#: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
-#: data/display.appdata.xml.in:31
-msgid "Updated translations"
-msgstr ""
+#: data/display.appdata.xml.in:12
+msgid "New features:"
+msgstr "Neue Funktionen:"
+
+#: data/display.appdata.xml.in:14
+msgid "Support 3× scaling"
+msgstr "Unterstützung für dreifaches Skalieren"
+
+#: data/display.appdata.xml.in:16
+msgid "Fixes:"
+msgstr "Fehlerbehebungen:"
+
+#: data/display.appdata.xml.in:18
+msgid "Reliably detect accelerometers"
+msgstr "Accelerometer zuverlässiger erkennen"
 
 #: data/display.appdata.xml.in:20
+msgid "Minor updates:"
+msgstr "Kleinere Aktualisierungen:"
+
+#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
+msgid "Updated translations"
+msgstr "Aktualisierte Übersetzungen"
+
+#: data/display.appdata.xml.in:36
 msgid "Fix 1px gaps between displays"
-msgstr ""
+msgstr "1-Pixel Lücke zwischen Displays entfernt"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:37
 msgid "Properly center rotated displays"
-msgstr ""
+msgstr "Zentriere gedrehte Displays korrekt"
 
-#: data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:45
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
+"Verbesserte Mutli-Display Layouts mit verbessertem Einrasten und Ausrichtung"
 
-#: data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:46
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Anzeigeort von Gerätenamen korrigiert"

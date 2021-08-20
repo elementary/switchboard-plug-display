@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-28 23:41+0000\n"
-"PO-Revision-Date: 2020-07-28 10:12+0000\n"
-"Last-Translator: Sinan Decron <intenfinitia@gmail.com>\n"
+"POT-Creation-Date: 2021-07-14 21:46+0000\n"
+"PO-Revision-Date: 2021-07-15 13:41+0000\n"
+"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -27,23 +27,43 @@ msgstr "Görüntü Ayarları"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Projektör ve ekranların, pozisyon ve çözünürlüklerini yapılandırın"
 
-#: data/display.appdata.xml.in:13 data/display.appdata.xml.in:22
-#: data/display.appdata.xml.in:31
+#: data/display.appdata.xml.in:12
+msgid "New features:"
+msgstr "Yeni özellikler:"
+
+#: data/display.appdata.xml.in:14
+msgid "Support 3× scaling"
+msgstr "3× ölçekleme desteği eklendi"
+
+#: data/display.appdata.xml.in:16
+msgid "Fixes:"
+msgstr "Düzeltmeler:"
+
+#: data/display.appdata.xml.in:18
+msgid "Reliably detect accelerometers"
+msgstr "İvmeölçerleri güvenilir bir şekilde tespit edin"
+
+#: data/display.appdata.xml.in:20
+msgid "Minor updates:"
+msgstr "Küçük güncellemeler:"
+
+#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
 msgid "Updated translations"
 msgstr "Çeviriler güncellendi"
 
-#: data/display.appdata.xml.in:20
+#: data/display.appdata.xml.in:36
 msgid "Fix 1px gaps between displays"
 msgstr "Ekranlar arasındaki 1px boşluk düzeltildi"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:37
 msgid "Properly center rotated displays"
 msgstr "Döndürülen ekranlar düzgün bir şekilde ortalanıyor"
 
-#: data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:45
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr "Daha iyi yapışma ve hizalama ile geliştirilmiş çoklu ekran düzenleri"
 
-#: data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:46
 msgid "Fixed the placement of display name tags"
 msgstr "Ekran adı etiketlerinin yerleşimi düzeltildi"
