@@ -239,7 +239,7 @@ public class Display.MonitorManager : GLib.Object {
 
         // Make sure the remaining enabled monitors start at 0,0 as required by mutter.
         // Calculate their offset, and then offset them if necessary
-        foreach (var logical_monitor in logical_monitors) {
+        foreach (unowned var logical_monitor in logical_monitors) {
             min_x = int.min (min_x, logical_monitor.x);
             min_y = int.min (min_y, logical_monitor.y);
         }
