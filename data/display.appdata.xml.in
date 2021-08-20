@@ -7,7 +7,7 @@
   <icon type="stock">preferences-desktop-display</icon>
   <translation type="gettext">display-plug</translation>
   <releases>
-    <release version="2.3.1" date="2021-07-14" urgency="medium">
+    <release version="2.3.1" date="2021-08-20" urgency="medium">
       <description>
         <p>Fixes:</p>
         <ul>
