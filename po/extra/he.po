@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-20 21:24+0000\n"
-"PO-Revision-Date: 2021-07-16 09:57+0000\n"
+"PO-Revision-Date: 2021-08-21 15:25+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/he/>\n"
@@ -33,7 +33,7 @@ msgstr "תיקונים:"
 
 #: data/display.appdata.xml.in:14
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
-msgstr ""
+msgstr "התבצע וידוא שהמתג „להשתמש בתצוגה זו” עובדת בנסיבות נוספות"
 
 #: data/display.appdata.xml.in:16 data/display.appdata.xml.in:32
 msgid "Minor updates:"
