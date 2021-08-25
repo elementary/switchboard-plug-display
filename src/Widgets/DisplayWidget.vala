@@ -150,17 +150,18 @@ public class Display.DisplayWidget : Gtk.EventBox {
         uint usable_resolutions = 0;
         int current_width, current_height;
         virtual_monitor.get_current_mode_size (out current_width, out current_height);
+        var resolution_set = new Gee.TreeSet<Display.MonitorMode> (Display.MonitorMode.resolution_compare_func);
         foreach (var mode in virtual_monitor.get_available_modes ()) {
+            resolution_set.add (mode); // Ensures resolutions unique and sorted
+        }
+
+        foreach (var mode in resolution_set) {
             var mode_width = mode.width;
             var mode_height = mode.height;
             max_width = int.max (max_width, mode_width);
             max_height = int.max (max_height, mode_height);
 
             Resolution res = {mode_width, mode_height, mode_width * 10 / mode_height};
-            if (res in resolutions) {
-                continue;
-            }
-
             resolutions += res;
         }
 

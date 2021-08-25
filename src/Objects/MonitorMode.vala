@@ -20,6 +20,19 @@
  */
 
 public class Display.MonitorMode : GLib.Object {
+    public static int resolution_compare_func (MonitorMode a, MonitorMode b) {
+        if (a.width == b.width) {
+            if (a.height == b.height) {
+                return 0;
+            } else {
+                return a.height > b.height ? -1 : 1;
+            }
+        } else {
+            return a.width > b.width ? -1 : 1;
+        }
+    }
+
+ 
     public string id { get; set; }
     public int width { get; set; }
     public int height { get; set; }
