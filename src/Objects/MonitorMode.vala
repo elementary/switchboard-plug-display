@@ -32,7 +32,6 @@ public class Display.MonitorMode : GLib.Object {
         }
     }
 
- 
     public string id { get; set; }
     public int width { get; set; }
     public int height { get; set; }
