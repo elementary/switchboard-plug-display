@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-20 21:24+0000\n"
-"PO-Revision-Date: 2021-08-24 18:20+0000\n"
+"PO-Revision-Date: 2021-08-28 17:31+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/sk/>\n"
@@ -143,7 +143,7 @@ msgstr "Teplejšia"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr "Chladnejšia"
+msgstr "Menej teplá"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
