@@ -20,6 +20,18 @@
  */
 
 public class Display.MonitorMode : GLib.Object {
+    public static int resolution_compare_func (MonitorMode a, MonitorMode b) {
+        if (a.width == b.width) {
+            if (a.height == b.height) {
+                return 0;
+            } else {
+                return a.height > b.height ? -1 : 1;
+            }
+        } else {
+            return a.width > b.width ? -1 : 1;
+        }
+    }
+
     public string id { get; set; }
     public int width { get; set; }
     public int height { get; set; }
@@ -33,18 +45,24 @@ public class Display.MonitorMode : GLib.Object {
     private string? resolution_cache = null;
     public unowned string get_resolution () {
         if (resolution_cache == null) {
-            var aspect = make_aspect_string ();
-            if (aspect != null) {
-                resolution_cache = "%u × %u (%s)".printf (width, height, aspect);
-            } else {
-                resolution_cache = "%u × %u".printf (width, height);
-            }
+            resolution_cache = get_resolution_string (width, height, true);
         }
 
         return resolution_cache;
     }
 
-    private string? make_aspect_string () {
+    public static string get_resolution_string (int width, int height, bool include_aspect) {
+        if (include_aspect) {
+            var aspect = make_aspect_string (width, height);
+            if (aspect != null) {
+                return "%u × %u (%s)".printf (width, height, aspect);
+            }
+        }
+
+        return "%u × %u".printf (width, height);
+    }
+
+    private static string? make_aspect_string (int width, int height) {
         int ratio;
         string? aspect = null;
 

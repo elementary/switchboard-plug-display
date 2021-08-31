@@ -114,6 +114,16 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
+    public Display.MonitorMode? get_mode_for_resolution (int width, int height) {
+        foreach (var mode in get_available_modes ()) {
+            if (mode.width == width && mode.height == height) {
+                return mode;
+            }
+        }
+
+        return null;
+    }
+
     public void set_current_mode (Display.MonitorMode current_mode) {
         if (is_mirror) {
             monitors.foreach ((_monitor) => {
