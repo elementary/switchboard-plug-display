@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 21:24+0000\n"
+"POT-Creation-Date: 2021-08-31 17:14+0000\n"
 "PO-Revision-Date: 2020-10-01 21:15+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: French (Canada) <https://l10n.elementary.io/projects/"
@@ -176,39 +176,43 @@ msgstr "Appliquer"
 msgid "Rotation Lock:"
 msgstr "Rotation:"
 
-#: src/Widgets/DisplayWidget.vala:100
+#: src/Widgets/DisplayWidget.vala:102
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Utiliser cet écran:"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:109
 msgid "Resolution:"
 msgstr "Résolution:"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:119
 #, fuzzy
 msgid "Screen Rotation:"
 msgstr "Rotation de l'écran"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:128
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:193
+#: src/Widgets/DisplayWidget.vala:201
+msgid "Other…"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:248
 msgid "Configure display"
 msgstr "Configurer l'écran"
 
-#: src/Widgets/DisplayWidget.vala:358
+#: src/Widgets/DisplayWidget.vala:430
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:443
+#: src/Widgets/DisplayWidget.vala:528
 msgid "Is the primary display"
 msgstr "Est le premier écran"
 
-#: src/Widgets/DisplayWidget.vala:446
+#: src/Widgets/DisplayWidget.vala:531
 msgid "Set as primary display"
 msgstr "Définir comme premier écran"
 
