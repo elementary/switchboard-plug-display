@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 17:14+0000\n"
-"PO-Revision-Date: 2021-08-21 05:11+0000\n"
+"PO-Revision-Date: 2021-09-02 16:31+0000\n"
 "Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/tr/>\n"
@@ -191,7 +191,7 @@ msgstr "Yenileme Hızı:"
 
 #: src/Widgets/DisplayWidget.vala:201
 msgid "Other…"
-msgstr ""
+msgstr "Diğer…"
 
 #: src/Widgets/DisplayWidget.vala:248
 msgid "Configure display"
