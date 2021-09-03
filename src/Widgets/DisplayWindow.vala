@@ -19,7 +19,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Display.DisplayWindow : Hdy.ApplicationWindow {
+public class Display.DisplayWindow : Hdy.Window {
     private const int _leftMargin = 15;
     private const int _topMargin = 45;
 
