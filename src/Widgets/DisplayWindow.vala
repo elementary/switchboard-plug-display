@@ -27,7 +27,10 @@ public class Display.DisplayWindow : Hdy.Window {
         label.margin = 12;
         add (label);
         var scale_factor = get_style_context ().get_scale ();
-        move ((int) (virtual_monitor.current_x / scale_factor) + _leftMargin, (int) (virtual_monitor.current_y / scale_factor) + _topMargin);
+        move (
+            (int) (virtual_monitor.current_x / scale_factor) + SPACING,
+            (int) (virtual_monitor.current_y / scale_factor) + SPACING
+        );
     }
 
     construct {
