@@ -20,8 +20,7 @@
  */
 
 public class Display.DisplayWindow : Hdy.Window {
-    private const int _leftMargin = 15;
-    private const int _topMargin = 45;
+    private const int SPACING = 12;
 
     public DisplayWindow (Display.VirtualMonitor virtual_monitor) {
         var label = new Gtk.Label (virtual_monitor.get_display_name ());
