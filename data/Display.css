@@ -1,26 +1,35 @@
+/* For better dark style support */
+@define-color BG_COLOR_ALPHA alpha(@BG_COLOR, 0.75);
+
 .colored {
-    background-color: @BG_COLOR;
+    background-color: @BG_COLOR_ALPHA;
     color: @TEXT_COLOR;
-    text-shadow: 0 1px 1px alpha (#fff, 0.1);
-    -gtk-icon-shadow: 0 1px 1px alpha (#fff, 0.1);
-    -gtk-icon-palette: warning #fff;
+    text-shadow: 0 1px 1px alpha(white, 0.1);
+    -gtk-icon-shadow: 0 1px 1px alpha(white, 0.1);
+    -gtk-icon-palette: warning white;
+}
+
+/* Don't use alpha for the on-screen identifier */
+.colored.background {
+    background-color: @BG_COLOR;
 }
 
 widget.colored {
-    border: 1px solid mix (@BG_COLOR, @TEXT_COLOR, 0.3);
+    border: 1px solid mix(@BG_COLOR_ALPHA, @TEXT_COLOR, 0.3);
 }
 
 .colored button {
+    background: transparent; /* Fix stacking alpha on top of each other */
     border-radius: 50%;
     padding: 6px;
 }
 
 .colored button:focus {
-    background: alpha (@TEXT_COLOR, 0.25);
+    background: alpha(@TEXT_COLOR, 0.25);
 }
 
 .colored button:checked {
-    background: alpha (@TEXT_COLOR, 0.5);
+    background: alpha(@TEXT_COLOR, 0.5);
     border-color: transparent;
 }
 
@@ -30,9 +39,9 @@ widget.colored {
 }
 
 .colored.disabled button:focus {
-    background: alpha (@SLATE_700, 0.25);
+    background: alpha(@SLATE_700, 0.25);
 }
 
 .colored.disabled button:checked {
-    background: alpha (@SLATE_700, 0.5);
+    background: alpha(@SLATE_700, 0.5);
 }
