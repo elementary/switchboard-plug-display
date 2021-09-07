@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2021-03-19 12:52+0000\n"
-"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
+"POT-Creation-Date: 2021-08-31 17:14+0000\n"
+"PO-Revision-Date: 2021-09-04 15:00+0000\n"
+"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ru/>\n"
 "Language: ru\n"
@@ -21,48 +21,48 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
+#: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
 msgid "Displays"
-msgstr "Настройка дисплеев"
+msgstr "Экраны"
 
-#: src/DisplayPlug.vala:36
+#: src/DisplayPlug.vala:39
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Настройка разрешения, положения мониторов и проекторов"
 
-#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:121
 msgid "Night Light"
 msgstr "Ночной режим"
 
-#: src/DisplayPlug.vala:110
+#: src/DisplayPlug.vala:113
 msgid "Screen Resolution"
 msgstr "Разрешение"
 
-#: src/DisplayPlug.vala:111
+#: src/DisplayPlug.vala:114
 msgid "Screen Rotation"
 msgstr "Поворот экрана"
 
-#: src/DisplayPlug.vala:112
+#: src/DisplayPlug.vala:115
 msgid "Primary display"
-msgstr "Главный экран"
+msgstr "Основной экран"
 
-#: src/DisplayPlug.vala:113
+#: src/DisplayPlug.vala:116
 msgid "Screen mirroring"
 msgstr "Дублирование экрана"
 
-#: src/DisplayPlug.vala:114
+#: src/DisplayPlug.vala:117
 msgid "Scaling factor"
 msgstr "Коэффициент масштабирования"
 
-#: src/DisplayPlug.vala:115
+#: src/DisplayPlug.vala:118
 msgid "Rotation lock"
 msgstr "Блокировка поворота"
 
-#: src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:120
 msgid "Schedule"
 msgstr "Расписание"
 
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:121
 msgid "Color temperature"
 msgstr "Цветовая температура"
 
@@ -98,9 +98,9 @@ msgstr "Против часовой стрелки (отраженный)"
 msgid "None"
 msgstr "Отсутствует"
 
-#: src/Objects/VirtualMonitor.vala:81
+#: src/Objects/VirtualMonitor.vala:77
 msgid "Mirrored Display"
-msgstr "Дублируемый дисплей"
+msgstr "Зеркальный экран"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
@@ -111,7 +111,7 @@ msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
-"Ночной режим делает цвета вашего дисплея более теплыми. Это может помочь "
+"Ночной свет делает цвета вашего экрана более тёплыми. Это может помочь "
 "предотвратить перенапряжение глаз и бессонницу."
 
 #: src/Views/NightLightView.vala:48
@@ -148,7 +148,7 @@ msgstr "Менее теплый"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
-msgstr "Дублируемый дисплей:"
+msgstr "Зеркальный экран:"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
@@ -164,7 +164,7 @@ msgstr "HiDPI"
 
 #: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
-msgstr "Определить дисплеи"
+msgstr "Определить экраны"
 
 #: src/Views/DisplaysView.vala:61
 msgid "Apply"
@@ -174,38 +174,42 @@ msgstr "Применить"
 msgid "Rotation Lock:"
 msgstr "Блокировка поворота:"
 
-#: src/Widgets/DisplayWidget.vala:100
-msgid "Use This Display:"
-msgstr "Использовать этот дисплей:"
+#: src/Widgets/DisplayWidget.vala:102
+msgid "Use this display:"
+msgstr "Использовать этот экран:"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:109
 msgid "Resolution:"
 msgstr "Разрешение:"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:119
 msgid "Screen Rotation:"
 msgstr "Поворот экрана:"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:128
 msgid "Refresh Rate:"
 msgstr "Частота обновления:"
 
-#: src/Widgets/DisplayWidget.vala:193
-msgid "Configure display"
-msgstr "Настроить дисплей"
+#: src/Widgets/DisplayWidget.vala:201
+msgid "Other…"
+msgstr "Прочее…"
 
-#: src/Widgets/DisplayWidget.vala:359
+#: src/Widgets/DisplayWidget.vala:248
+msgid "Configure display"
+msgstr "Настройки экрана"
+
+#: src/Widgets/DisplayWidget.vala:430
 #, c-format
 msgid "%g Hz"
 msgstr "%g Гц"
 
-#: src/Widgets/DisplayWidget.vala:444
+#: src/Widgets/DisplayWidget.vala:528
 msgid "Is the primary display"
-msgstr "Основной дисплей"
+msgstr "Основной экран"
 
-#: src/Widgets/DisplayWidget.vala:447
+#: src/Widgets/DisplayWidget.vala:531
 msgid "Set as primary display"
-msgstr "Назначить главным дисплеем"
+msgstr "Назначить основным экраном"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Удвоение пикселей"

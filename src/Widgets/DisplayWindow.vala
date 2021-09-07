@@ -19,13 +19,18 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Display.DisplayWindow : Gtk.Window {
+public class Display.DisplayWindow : Hdy.Window {
+    private const int SPACING = 12;
+
     public DisplayWindow (Display.VirtualMonitor virtual_monitor) {
         var label = new Gtk.Label (virtual_monitor.get_display_name ());
         label.margin = 12;
         add (label);
         var scale_factor = get_style_context ().get_scale ();
-        move ((int) (virtual_monitor.current_x / scale_factor), (int) (virtual_monitor.current_y / scale_factor));
+        move (
+            (int) (virtual_monitor.current_x / scale_factor) + SPACING,
+            (int) (virtual_monitor.current_y / scale_factor) + SPACING
+        );
     }
 
     construct {

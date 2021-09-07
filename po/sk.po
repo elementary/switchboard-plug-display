@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2020-10-01 21:15+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2021-08-31 17:14+0000\n"
+"PO-Revision-Date: 2021-08-28 17:31+0000\n"
+"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/sk/>\n"
 "Language: sk\n"
@@ -17,57 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:35 src/DisplayPlug.vala:54
+#: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
 msgid "Displays"
 msgstr "Obrazovky"
 
-#: src/DisplayPlug.vala:36
+#: src/DisplayPlug.vala:39
 msgid "Configure resolution and position of monitors and projectors"
-msgstr "Konfigurácia rozlíšenia pozície monitorov a projektorov"
+msgstr "Nastavujte rozlíšenie a pozíciu monitorov a projektorov"
 
-#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:121
 msgid "Night Light"
-msgstr ""
-
-#: src/DisplayPlug.vala:110
-#, fuzzy
-msgid "Screen Resolution"
-msgstr "Rozlíšenie:"
-
-#: src/DisplayPlug.vala:111
-#, fuzzy
-msgid "Screen Rotation"
-msgstr "Rotácia:"
-
-#: src/DisplayPlug.vala:112
-#, fuzzy
-msgid "Primary display"
-msgstr "Primárna obrazovka"
+msgstr "Nočné svetlo"
 
 #: src/DisplayPlug.vala:113
-msgid "Screen mirroring"
-msgstr ""
+msgid "Screen Resolution"
+msgstr "Rozlíšenie obrazovky"
 
 #: src/DisplayPlug.vala:114
-msgid "Scaling factor"
-msgstr ""
+msgid "Screen Rotation"
+msgstr "Otočenie obrazovky"
 
 #: src/DisplayPlug.vala:115
-#, fuzzy
-msgid "Rotation lock"
-msgstr "Rotácia:"
+msgid "Primary display"
+msgstr "Hlavná obrazovka"
+
+#: src/DisplayPlug.vala:116
+msgid "Screen mirroring"
+msgstr "Zrkadlenie obrazovky"
 
 #: src/DisplayPlug.vala:117
-msgid "Schedule"
-msgstr ""
+msgid "Scaling factor"
+msgstr "Mierka"
 
 #: src/DisplayPlug.vala:118
+msgid "Rotation lock"
+msgstr "Zámok otáčania"
+
+#: src/DisplayPlug.vala:120
+msgid "Schedule"
+msgstr "Rozvrh"
+
+#: src/DisplayPlug.vala:121
 msgid "Color temperature"
-msgstr ""
+msgstr "Teplota farieb"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -75,7 +71,7 @@ msgstr "V smere hodinových ručičiek"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "Hore nohami"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
@@ -86,49 +82,48 @@ msgid "Flipped"
 msgstr "Prevrátené"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "V smere hodinových ručičiek"
+msgstr "Zrkadlovo v smere hodinových ručičiek"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "Zrkadlovo hore nohami"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "Proti smeru hodinových ručičiek"
+msgstr "Zrkadlovo proti smeru hodinových ručičiek"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "Žiadne"
 
-#: src/Objects/VirtualMonitor.vala:81
-#, fuzzy
+#: src/Objects/VirtualMonitor.vala:77
 msgid "Mirrored Display"
-msgstr "Duplikovať obrazovky"
+msgstr "Zrkadlená obrazovka"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "Nočné svetlo:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"Funkcia Nočné svetlo zmení farby vašej obrazovky na teplejšie, čo môže "
+"pomôcť zabrániť namáhaniu očí a nespavosti."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "Rozvrh:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "Od západu po východ slnka"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr "Ručná"
+msgstr "Ručný"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
@@ -140,31 +135,31 @@ msgstr "Do:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "Teplota farieb:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "Teplejšia"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "Menej teplá"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
-msgstr "Duplikovaná obrazovka"
+msgstr "Zrkadliť obrazovku:"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
-msgstr ""
+msgstr "Mierka:"
 
 #: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
-msgstr ""
+msgstr "Nízke DPI"
 
 #: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
 msgid "HiDPI"
-msgstr ""
+msgstr "Vysoké DPI"
 
 #: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
@@ -175,52 +170,51 @@ msgid "Apply"
 msgstr "Použiť"
 
 #: src/Views/DisplaysView.vala:150
-#, fuzzy
 msgid "Rotation Lock:"
-msgstr "Rotácia:"
+msgstr "Zámok otočenia:"
 
-#: src/Widgets/DisplayWidget.vala:100
-msgid "Use This Display:"
-msgstr ""
+#: src/Widgets/DisplayWidget.vala:102
+msgid "Use this display:"
+msgstr "Použiť túto obrazovku:"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:109
 msgid "Resolution:"
 msgstr "Rozlíšenie:"
 
-#: src/Widgets/DisplayWidget.vala:117
-#, fuzzy
+#: src/Widgets/DisplayWidget.vala:119
 msgid "Screen Rotation:"
-msgstr "Rotácia:"
+msgstr "Otočenie obrazovky:"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:128
 msgid "Refresh Rate:"
+msgstr "Obnovovacia frekvencia:"
+
+#: src/Widgets/DisplayWidget.vala:201
+msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:193
+#: src/Widgets/DisplayWidget.vala:248
 msgid "Configure display"
-msgstr "Konfigurovať display"
+msgstr "Nastaviť obrazovku"
 
-#: src/Widgets/DisplayWidget.vala:359
+#: src/Widgets/DisplayWidget.vala:430
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:444
+#: src/Widgets/DisplayWidget.vala:528
 msgid "Is the primary display"
-msgstr ""
+msgstr "Je hlavná obrazovka"
 
-#: src/Widgets/DisplayWidget.vala:447
+#: src/Widgets/DisplayWidget.vala:531
 msgid "Set as primary display"
-msgstr "Nastaviť ako primárnu obrazovku"
+msgstr "Nastaviť ako hlavnú obrazovku"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotácia:"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Nastavenia nemôžu byť použité: %s"
-
-#~ msgid "Use This Display"
-#~ msgstr "Použiť túto obrazovku"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Zmeniť rozlíšenie a pozíciu obrazovie a projektorov"

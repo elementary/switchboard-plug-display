@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 21:46+0000\n"
+"POT-Creation-Date: 2021-08-31 17:14+0000\n"
 "PO-Revision-Date: 2018-12-10 10:41-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -25,43 +25,48 @@ msgstr "Display Settings"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configure resolution and position of monitors and projectors"
 
-#: data/display.appdata.xml.in:12
-msgid "New features:"
-msgstr ""
-
-#: data/display.appdata.xml.in:14
-msgid "Support 3× scaling"
-msgstr ""
-
-#: data/display.appdata.xml.in:16
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:28
 msgid "Fixes:"
 msgstr ""
 
-#: data/display.appdata.xml.in:18
-msgid "Reliably detect accelerometers"
+#: data/display.appdata.xml.in:14
+msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 
-#: data/display.appdata.xml.in:20
+#: data/display.appdata.xml.in:16 data/display.appdata.xml.in:32
 msgid "Minor updates:"
 msgstr ""
 
-#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
-#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
+#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:34
+#: data/display.appdata.xml.in:41 data/display.appdata.xml.in:50
+#: data/display.appdata.xml.in:59
 msgid "Updated translations"
 msgstr ""
 
-#: data/display.appdata.xml.in:36
+#: data/display.appdata.xml.in:24
+msgid "New features:"
+msgstr ""
+
+#: data/display.appdata.xml.in:26
+msgid "Support 3× scaling"
+msgstr ""
+
+#: data/display.appdata.xml.in:30
+msgid "Reliably detect accelerometers"
+msgstr ""
+
+#: data/display.appdata.xml.in:48
 msgid "Fix 1px gaps between displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:37
+#: data/display.appdata.xml.in:49
 msgid "Properly center rotated displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:45
+#: data/display.appdata.xml.in:57
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 
-#: data/display.appdata.xml.in:46
+#: data/display.appdata.xml.in:58
 msgid "Fixed the placement of display name tags"
 msgstr ""

@@ -31,7 +31,7 @@ public class Display.VirtualMonitor : GLib.Object {
 
     public signal void modes_changed ();
 
-    /* 
+    /*
      * Used to distinguish two VirtualMonitors from each other.
      * We make up and ID by sum all hashes of
      * monitors that a VirtualMonitor has.
@@ -53,13 +53,9 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
-    public bool is_active {
-        get {
-            return true;
-        }
-    }
+    public bool is_active { get; set; default = true; }
 
-    /* 
+    /*
      * Get the first monitor of the list, handy in non-mirror context.
      */
     public Display.Monitor monitor {
@@ -86,6 +82,17 @@ public class Display.VirtualMonitor : GLib.Object {
 
     public void get_current_mode_size (out int width, out int height) {
         if (!is_active) {
+            // If the monitor isn't active, return the preferred mode as this will be the default
+            // mode when the monitor is re-activated
+            foreach (var mode in monitor.modes) {
+                if (mode.is_preferred) {
+                    width = mode.width;
+                    height = mode.height;
+                    return;
+                }
+            }
+
+            // Last resort fallback if no preferred mode
             width = 1280;
             height = 720;
         } else if (is_mirror) {
@@ -105,6 +112,16 @@ public class Display.VirtualMonitor : GLib.Object {
         } else {
             return monitor.modes;
         }
+    }
+
+    public Display.MonitorMode? get_mode_for_resolution (int width, int height) {
+        foreach (var mode in get_available_modes ()) {
+            if (mode.width == width && mode.height == height) {
+                return mode;
+            }
+        }
+
+        return null;
     }
 
     public void set_current_mode (Display.MonitorMode current_mode) {

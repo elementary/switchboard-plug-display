@@ -1,5 +1,6 @@
 /*-
- * Copyright (c) 2014-2018 elementary LLC.
+ * Copyright 2014–2021 elementary, Inc.
+ *           2014–2018 Corentin Noël <corentin@elementary.io>
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -15,13 +16,12 @@
  * License along with this software; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
- *
- * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
 public struct Display.Resolution {
-    uint width;
-    uint height;
+    int width;
+    int height;
+    int aspect;
 }
 
 public class Display.DisplayWidget : Gtk.EventBox {
@@ -45,8 +45,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
+    private Gtk.Switch use_switch;
+
     private Gtk.ComboBox resolution_combobox;
-    private Gtk.ListStore resolution_list_store;
+    private Gtk.TreeStore resolution_tree_store;
 
     private Gtk.ComboBox rotation_combobox;
     private Gtk.ListStore rotation_list_store;
@@ -59,7 +61,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     private enum ResolutionColumns {
         NAME,
-        MODE,
+        WIDTH,
+        HEIGHT,
         TOTAL
     }
 
@@ -89,7 +92,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         primary_image.halign = Gtk.Align.START;
         primary_image.valign = Gtk.Align.START;
         primary_image.clicked.connect (() => set_as_primary ());
-        set_primary (virtual_monitor.primary);
 
         var virtual_monitor_name = virtual_monitor.get_display_name ();
         var label = new Gtk.Label (virtual_monitor_name);
@@ -97,18 +99,18 @@ public class Display.DisplayWidget : Gtk.EventBox {
         label.valign = Gtk.Align.CENTER;
         label.expand = true;
 
-        var use_label = new Gtk.Label (_("Use This Display:"));
+        var use_label = new Gtk.Label (_("Use this display:"));
         use_label.halign = Gtk.Align.END;
-        var use_switch = new Gtk.Switch ();
+
+        use_switch = new Gtk.Switch ();
         use_switch.halign = Gtk.Align.START;
-        use_switch.active = virtual_monitor.is_active;
-        this.bind_property ("only-display", use_switch, "sensitive", GLib.BindingFlags.INVERT_BOOLEAN);
+        virtual_monitor.bind_property ("is-active", use_switch, "active", GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.BIDIRECTIONAL);
 
         var resolution_label = new Gtk.Label (_("Resolution:"));
         resolution_label.halign = Gtk.Align.END;
 
-        resolution_list_store = new Gtk.ListStore (ResolutionColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
-        resolution_combobox = new Gtk.ComboBox.with_model (resolution_list_store);
+        resolution_tree_store = new Gtk.TreeStore (ResolutionColumns.TOTAL, typeof (string), typeof (int), typeof (int));
+        resolution_combobox = new Gtk.ComboBox.with_model (resolution_tree_store);
         resolution_combobox.sensitive = use_switch.active;
         var text_renderer = new Gtk.CellRendererText ();
         resolution_combobox.pack_start (text_renderer, true);
@@ -138,31 +140,84 @@ public class Display.DisplayWidget : Gtk.EventBox {
             rotation_list_store.set (iter, RotationColumns.NAME, ((DisplayTransform) i).to_string (), RotationColumns.VALUE, i);
         }
 
+        // Build resolution menu
+        // First, get list of unique resolutions from available modes.
         Resolution[] resolutions = {};
-        bool resolution_set = false;
+        Resolution[] recommended_resolutions = {};
+        Resolution[] other_resolutions = {};
+        int max_width = -1;
+        int max_height = -1;
+        uint usable_resolutions = 0;
+        int current_width, current_height;
+        virtual_monitor.get_current_mode_size (out current_width, out current_height);
+        var resolution_set = new Gee.TreeSet<Display.MonitorMode> (Display.MonitorMode.resolution_compare_func);
         foreach (var mode in virtual_monitor.get_available_modes ()) {
+            resolution_set.add (mode); // Ensures resolutions unique and sorted
+        }
+
+        foreach (var mode in resolution_set) {
             var mode_width = mode.width;
             var mode_height = mode.height;
+            max_width = int.max (max_width, mode_width);
+            max_height = int.max (max_height, mode_height);
 
-            Resolution res = {mode_width, mode_height};
-            if (res in resolutions) {
+            Resolution res = {mode_width, mode_height, mode_width * 10 / mode_height};
+            resolutions += res;
+        }
+
+        var native_ratio = max_width * 10 / max_height;
+         // Split resolutions into recommended and other
+         foreach (var resolution in resolutions) {
+             // Reject all resolutions incompatible with elementary desktop
+             if (resolution.width < 1024 || resolution.height < 768) {
                 continue;
             }
 
-            resolutions += res;
+            if (resolution.aspect == native_ratio) {
+                // Recommended (native aspect ratio)
+                recommended_resolutions += resolution;
+            } else {
+                // Other
+                other_resolutions += resolution;
+            }
 
+            usable_resolutions++;
+        }
+
+        foreach (var resolution in recommended_resolutions) {
             Gtk.TreeIter iter;
-            resolution_list_store.append (out iter);
-            resolution_list_store.set (iter, ResolutionColumns.NAME, mode.get_resolution (), ResolutionColumns.MODE, mode);
-            if (mode.is_current) {
-                resolution_combobox.set_active_iter (iter);
-                resolution_set = true;
+            resolution_tree_store.append (out iter, null);
+            resolution_tree_store.set (iter,
+                ResolutionColumns.NAME, MonitorMode.get_resolution_string (resolution.width, resolution.height, false),
+                ResolutionColumns.WIDTH, resolution.width,
+                ResolutionColumns.HEIGHT, resolution.height
+            );
+        }
+
+        if (other_resolutions.length > 0) {
+            Gtk.TreeIter iter;
+            Gtk.TreeIter parent_iter;
+            resolution_tree_store.append (out parent_iter, null);
+            resolution_tree_store.set (parent_iter, ResolutionColumns.NAME, _("Other…"),
+                ResolutionColumns.WIDTH, -1,
+                ResolutionColumns.HEIGHT, -1
+            );
+
+            foreach (var resolution in other_resolutions) {
+                resolution_tree_store.append (out iter, parent_iter);
+                resolution_tree_store.set (iter,
+                    ResolutionColumns.NAME, Display.MonitorMode.get_resolution_string (resolution.width, resolution.height, true),
+                    ResolutionColumns.WIDTH, resolution.width,
+                    ResolutionColumns.HEIGHT, resolution.height
+                );
             }
         }
 
-        if (!resolution_set) {
+        if (!set_active_resolution_from_current_mode ()) {
             resolution_combobox.set_active (0);
         }
+
+        resolution_combobox.sensitive = usable_resolutions > 1;
 
         populate_refresh_rates ();
 
@@ -198,14 +253,13 @@ public class Display.DisplayWidget : Gtk.EventBox {
         grid.attach (toggle_settings, 2, 0);
         grid.attach (label, 0, 0, 3, 2);
 
+        set_primary (virtual_monitor.primary);
         add (grid);
-
         display_window.attached_to = this;
 
         destroy.connect (() => display_window.destroy ());
 
         use_switch.notify["active"].connect (() => {
-            //output_info.set_active (use_switch.active);
             resolution_combobox.sensitive = use_switch.active;
             rotation_combobox.sensitive = use_switch.active;
             refresh_combobox.sensitive = use_switch.active;
@@ -229,12 +283,23 @@ public class Display.DisplayWidget : Gtk.EventBox {
         }
 
         resolution_combobox.changed.connect (() => {
-            Value val;
+            int active_width, active_height;
             Gtk.TreeIter iter;
-            resolution_combobox.get_active_iter (out iter);
-            resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
-            Display.MonitorMode new_mode = (Display.MonitorMode) val;
-            set_geometry (virtual_monitor.x, virtual_monitor.y, (int)new_mode.width, (int)new_mode.height);
+            if (resolution_combobox.get_active_iter (out iter)) {
+                resolution_tree_store.get (iter,
+                    ResolutionColumns.WIDTH, out active_width,
+                    ResolutionColumns.HEIGHT, out active_height
+                );
+            } else {
+                return;
+            }
+
+            set_geometry (virtual_monitor.x, virtual_monitor.y, active_width, active_height);
+            var new_mode = virtual_monitor.get_mode_for_resolution (active_width, active_height);
+            if (new_mode == null) {
+                return;
+            }
+
             virtual_monitor.set_current_mode (new_mode);
             rotation_combobox.set_active (0);
             populate_refresh_rates ();
@@ -301,13 +366,14 @@ public class Display.DisplayWidget : Gtk.EventBox {
         refresh_combobox.changed.connect (() => {
             Value val;
             Gtk.TreeIter iter;
-            refresh_combobox.get_active_iter (out iter);
-            refresh_list_store.get_value (iter, ResolutionColumns.MODE, out val);
-            Display.MonitorMode new_mode = (Display.MonitorMode) val;
-            virtual_monitor.set_current_mode (new_mode);
-            rotation_combobox.set_active (0);
-            configuration_changed ();
-            check_position ();
+            if (refresh_combobox.get_active_iter (out iter)) {
+                refresh_list_store.get_value (iter, RefreshColumns.VALUE, out val);
+                Display.MonitorMode new_mode = (Display.MonitorMode) val;
+                virtual_monitor.set_current_mode (new_mode);
+                rotation_combobox.set_active (0);
+                configuration_changed ();
+                check_position ();
+            }
         });
 
         rotation_combobox.set_active ((int) virtual_monitor.transform);
@@ -326,15 +392,20 @@ public class Display.DisplayWidget : Gtk.EventBox {
         Gtk.TreeIter iter;
         int added = 0;
         if (resolution_combobox.get_active_iter (out iter)) {
-            Value val;
-            resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
-            var width = ((Display.MonitorMode)val).width;
-            var height = ((Display.MonitorMode)val).height;
+            int active_width, active_height;
+            if (resolution_combobox.get_active_iter (out iter)) {
+                resolution_tree_store.get (iter,
+                    ResolutionColumns.WIDTH, out active_width,
+                    ResolutionColumns.HEIGHT, out active_height
+                );
+            } else {
+                return;
+            }
 
             double[] frequencies = {};
             bool refresh_set = false;
             foreach (var mode in virtual_monitor.get_available_modes ()) {
-                if (mode.width != width || mode.height != height) {
+                if (mode.width != active_width || mode.height != active_height) {
                     continue;
                 }
 
@@ -358,12 +429,16 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
                 var freq_name = _("%g Hz").printf (Math.roundf ((float)mode.frequency));
                 refresh_list_store.append (out iter);
-                refresh_list_store.set (iter, ResolutionColumns.NAME, freq_name, ResolutionColumns.MODE, mode);
+                refresh_list_store.set (iter, ResolutionColumns.NAME, freq_name, RefreshColumns.VALUE, mode);
                 added++;
                 if (mode.is_current) {
                     refresh_combobox.set_active_iter (iter);
                     refresh_set = true;
                 }
+            }
+
+            if (!refresh_set) {
+                refresh_combobox.set_active (0);
             }
         }
 
@@ -371,15 +446,22 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     private void on_monitor_modes_changed () {
+        set_active_resolution_from_current_mode ();
+    }
+
+    private bool set_active_resolution_from_current_mode () {
         foreach (var mode in virtual_monitor.get_available_modes ()) {
             if (!mode.is_current) {
                 continue;
             }
 
-            resolution_list_store.@foreach ((model, path, iter) => {
-                Value val;
-                resolution_list_store.get_value (iter, ResolutionColumns.MODE, out val);
-                if (((Display.MonitorMode)val).id == mode.id) {
+            resolution_tree_store.@foreach ((model, path, iter) => {
+                int width, height;
+                resolution_tree_store.get (iter,
+                    ResolutionColumns.WIDTH, out width,
+                    ResolutionColumns.HEIGHT, out height
+                );
+                if (mode.width == width && mode.height == height) {
                     resolution_combobox.set_active_iter (iter);
                     return true;
                 }
@@ -387,6 +469,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 return false;
             });
         }
+
+        return false;
     }
 
     private void on_vm_transform_changed () {
@@ -446,6 +530,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
             ((Gtk.Image) primary_image.image).icon_name = "non-starred-symbolic";
             primary_image.tooltip_text = _("Set as primary display");
         }
+
+        use_switch.sensitive = !is_primary;
     }
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2020-04-03 05:23+0000\n"
+"POT-Creation-Date: 2021-08-31 17:14+0000\n"
+"PO-Revision-Date: 2021-08-21 23:21+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -27,45 +27,52 @@ msgstr "Paramètres d'affichage"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configurer la résolution et la position des écrans et projecteurs"
 
-#: data/display.appdata.xml.in:12
-msgid "New features:"
-msgstr ""
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:28
+msgid "Fixes:"
+msgstr "Corrections :"
 
 #: data/display.appdata.xml.in:14
-msgid "Support 3× scaling"
+msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
+"Nous nous sommes assurés que l'option « Utiliser cet écran » fonctionne "
+"correctement dans plus de cas"
 
-#: data/display.appdata.xml.in:16
-msgid "Fixes:"
-msgstr ""
-
-#: data/display.appdata.xml.in:18
-msgid "Reliably detect accelerometers"
-msgstr ""
-
-#: data/display.appdata.xml.in:20
+#: data/display.appdata.xml.in:16 data/display.appdata.xml.in:32
 msgid "Minor updates:"
-msgstr ""
+msgstr "Mises à jour mineures :"
 
-#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
-#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
+#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:34
+#: data/display.appdata.xml.in:41 data/display.appdata.xml.in:50
+#: data/display.appdata.xml.in:59
 msgid "Updated translations"
 msgstr "Mise à jour des traductions"
 
-#: data/display.appdata.xml.in:36
+#: data/display.appdata.xml.in:24
+msgid "New features:"
+msgstr "Nouvelles fonctionnalités :"
+
+#: data/display.appdata.xml.in:26
+msgid "Support 3× scaling"
+msgstr "Prise en charge de la mise à l'échelle x3"
+
+#: data/display.appdata.xml.in:30
+msgid "Reliably detect accelerometers"
+msgstr "Détection fiable des accéléromètres"
+
+#: data/display.appdata.xml.in:48
 msgid "Fix 1px gaps between displays"
 msgstr "Correction de l'écart d'1px entre les écrans"
 
-#: data/display.appdata.xml.in:37
+#: data/display.appdata.xml.in:49
 msgid "Properly center rotated displays"
 msgstr "Les écrans retournés sont désormais correctement centrés"
 
-#: data/display.appdata.xml.in:45
+#: data/display.appdata.xml.in:57
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 "Amélioration des dispositions multi-écrans avec un meilleur accrochage et "
 "alignement"
 
-#: data/display.appdata.xml.in:46
+#: data/display.appdata.xml.in:58
 msgid "Fixed the placement of display name tags"
 msgstr "Correction de l'emplacement des étiquettes de nom d'écran"

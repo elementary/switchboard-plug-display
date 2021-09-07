@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 21:46+0000\n"
-"PO-Revision-Date: 2020-02-22 14:09+0000\n"
+"POT-Creation-Date: 2021-08-31 17:14+0000\n"
+"PO-Revision-Date: 2021-07-25 12:43+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -27,43 +27,48 @@ msgstr "Näytön asetukset"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Määritä näytön tarkkuus ja näyttöjen sijainnit"
 
-#: data/display.appdata.xml.in:12
-msgid "New features:"
-msgstr ""
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:28
+msgid "Fixes:"
+msgstr "Korjaukset:"
 
 #: data/display.appdata.xml.in:14
+msgid "Ensure the \"Use this display\" switch works in more circumstances"
+msgstr ""
+
+#: data/display.appdata.xml.in:16 data/display.appdata.xml.in:32
+msgid "Minor updates:"
+msgstr "Pienet päivitykset:"
+
+#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:34
+#: data/display.appdata.xml.in:41 data/display.appdata.xml.in:50
+#: data/display.appdata.xml.in:59
+msgid "Updated translations"
+msgstr "Päivityksiä kielikäännöksiin"
+
+#: data/display.appdata.xml.in:24
+msgid "New features:"
+msgstr "Uudet ominaisuudet:"
+
+#: data/display.appdata.xml.in:26
 msgid "Support 3× scaling"
 msgstr ""
 
-#: data/display.appdata.xml.in:16
-msgid "Fixes:"
-msgstr ""
-
-#: data/display.appdata.xml.in:18
+#: data/display.appdata.xml.in:30
 msgid "Reliably detect accelerometers"
 msgstr ""
 
-#: data/display.appdata.xml.in:20
-msgid "Minor updates:"
-msgstr ""
-
-#: data/display.appdata.xml.in:22 data/display.appdata.xml.in:29
-#: data/display.appdata.xml.in:38 data/display.appdata.xml.in:47
-msgid "Updated translations"
-msgstr "Päivitetyt käännökset"
-
-#: data/display.appdata.xml.in:36
+#: data/display.appdata.xml.in:48
 msgid "Fix 1px gaps between displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:37
+#: data/display.appdata.xml.in:49
 msgid "Properly center rotated displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:45
+#: data/display.appdata.xml.in:57
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 
-#: data/display.appdata.xml.in:46
+#: data/display.appdata.xml.in:58
 msgid "Fixed the placement of display name tags"
 msgstr ""

@@ -21,6 +21,7 @@ switchboard_plugsdir = switchboard_dep.get_pkgconfig_variable('plugsdir', define
 shared_module(
     meson.project_name(),
     plug_files,
+    config_file,
     asresources,
     dependencies: [
         dependency('glib-2.0'),
@@ -28,6 +29,7 @@ shared_module(
         dependency('gobject-2.0'),
         dependency('granite'),
         dependency('gtk+-3.0'),
+        dependency('libhandy-1', version: '>=0.83.0'),
         meson.get_compiler('vala').find_library('posix'),
         switchboard_dep
     ],
