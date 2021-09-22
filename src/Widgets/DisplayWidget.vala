@@ -85,56 +85,70 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     construct {
-        display_window = new DisplayWindow (virtual_monitor);
         events |= Gdk.EventMask.BUTTON_PRESS_MASK;
         events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
         events |= Gdk.EventMask.POINTER_MOTION_MASK;
+
+        display_window = new DisplayWindow (virtual_monitor) {
+            attached_to = this
+        };
+
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
-        primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU);
-        primary_image.margin = 6;
+        primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU) {
+            halign = Gtk.Align.START,
+            valign = Gtk.Align.START,
+            margin = 6
+        };
         primary_image.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        primary_image.halign = Gtk.Align.START;
-        primary_image.valign = Gtk.Align.START;
         primary_image.clicked.connect (() => set_as_primary ());
 
         var virtual_monitor_name = virtual_monitor.get_display_name ();
-        var label = new Gtk.Label (virtual_monitor_name);
-        label.halign = Gtk.Align.CENTER;
-        label.valign = Gtk.Align.CENTER;
-        label.expand = true;
+        var label = new Gtk.Label (virtual_monitor_name) {
+            halign = Gtk.Align.CENTER,
+            valign = Gtk.Align.CENTER,
+            expand = true
+        };
 
-        var use_label = new Gtk.Label (_("Use this display:"));
-        use_label.halign = Gtk.Align.END;
+        var use_label = new Gtk.Label (_("Use this display:")) {
+            halign = Gtk.Align.END
+        };
 
-        use_switch = new Gtk.Switch ();
-        use_switch.halign = Gtk.Align.START;
+        use_switch = new Gtk.Switch () {
+            halign = Gtk.Align.START
+        };
+
         virtual_monitor.bind_property ("is-active", use_switch, "active", GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.BIDIRECTIONAL);
 
-        var resolution_label = new Gtk.Label (_("Resolution:"));
-        resolution_label.halign = Gtk.Align.END;
+        var resolution_label = new Gtk.Label (_("Resolution:")) {
+            halign = Gtk.Align.END
+        };
 
         resolution_tree_store = new Gtk.TreeStore (ResolutionColumns.TOTAL, typeof (string), typeof (int), typeof (int));
         resolution_combobox = new Gtk.ComboBox.with_model (resolution_tree_store);
-        resolution_combobox.sensitive = use_switch.active;
+
         var text_renderer = new Gtk.CellRendererText ();
         resolution_combobox.pack_start (text_renderer, true);
         resolution_combobox.add_attribute (text_renderer, "text", ResolutionColumns.NAME);
 
-        var rotation_label = new Gtk.Label (_("Screen Rotation:"));
-        rotation_label.halign = Gtk.Align.END;
+        var rotation_label = new Gtk.Label (_("Screen Rotation:")) {
+            halign = Gtk.Align.END
+        };
+
         rotation_list_store = new Gtk.ListStore (RotationColumns.TOTAL, typeof (string), typeof (int));
         rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store);
-        rotation_combobox.sensitive = use_switch.active;
+
         text_renderer = new Gtk.CellRendererText ();
         rotation_combobox.pack_start (text_renderer, true);
         rotation_combobox.add_attribute (text_renderer, "text", RotationColumns.NAME);
 
-        var refresh_label = new Gtk.Label (_("Refresh Rate:"));
-        refresh_label.halign = Gtk.Align.END;
+        var refresh_label = new Gtk.Label (_("Refresh Rate:")) {
+            halign = Gtk.Align.END
+        };
+
         refresh_list_store = new Gtk.ListStore (RefreshColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
         refresh_combobox = new Gtk.ComboBox.with_model (refresh_list_store);
-        refresh_combobox.sensitive = use_switch.active;
+
         text_renderer = new Gtk.CellRendererText ();
         refresh_combobox.pack_start (text_renderer, true);
         refresh_combobox.add_attribute (text_renderer, "text", RefreshColumns.NAME);
@@ -226,10 +240,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         populate_refresh_rates ();
 
-        var popover_grid = new Gtk.Grid ();
-        popover_grid.column_spacing = 12;
-        popover_grid.row_spacing = 6;
-        popover_grid.margin = 12;
+        var popover_grid = new Gtk.Grid () {
+            column_spacing = 12,
+            row_spacing = 6,
+            margin = 12
+        };
         popover_grid.attach (use_label, 0, 0);
         popover_grid.attach (use_switch, 1, 0);
         popover_grid.attach (resolution_label, 0, 1);
@@ -240,17 +255,19 @@ public class Display.DisplayWidget : Gtk.EventBox {
         popover_grid.attach (refresh_combobox, 1, 3);
         popover_grid.show_all ();
 
-        var popover = new Gtk.Popover (toggle_settings);
-        popover.position = Gtk.PositionType.BOTTOM;
+        var popover = new Gtk.Popover (toggle_settings) {
+            position = Gtk.PositionType.BOTTOM
+        };
         popover.add (popover_grid);
 
-        toggle_settings = new Gtk.MenuButton ();
-        toggle_settings.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU);
-        toggle_settings.halign = Gtk.Align.END;
-        toggle_settings.valign = Gtk.Align.START;
-        toggle_settings.margin = 6;
-        toggle_settings.popover = popover;
-        toggle_settings.tooltip_text = _("Configure display");
+        toggle_settings = new Gtk.MenuButton () {
+            halign = Gtk.Align.END,
+            valign = Gtk.Align.START,
+            image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU),
+            margin = 6,
+            popover = popover,
+            tooltip_text = _("Configure display")
+        };
         toggle_settings.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         var grid = new Gtk.Grid ();
@@ -260,15 +277,14 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         set_primary (virtual_monitor.primary);
         add (grid);
-        display_window.attached_to = this;
 
         destroy.connect (() => display_window.destroy ());
 
-        use_switch.notify["active"].connect (() => {
-            resolution_combobox.sensitive = use_switch.active;
-            rotation_combobox.sensitive = use_switch.active;
-            refresh_combobox.sensitive = use_switch.active;
+        use_switch.bind_property ("active", resolution_combobox, "sensitive");
+        use_switch.bind_property ("active", rotation_combobox, "sensitive");
+        use_switch.bind_property ("active", refresh_combobox, "sensitive");
 
+        use_switch.notify["active"].connect (() => {
             if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
             if (refresh_combobox.active == -1) refresh_combobox.set_active (0);
