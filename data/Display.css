@@ -10,7 +10,7 @@
 }
 
 /* Don't use alpha for the on-screen identifier */
-.colored.background {
+window.colored {
     background-color: alpha (@BG_COLOR, 0.8);
 }
 
