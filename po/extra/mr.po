@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-31 17:14+0000\n"
+"POT-Creation-Date: 2021-09-22 20:49+0000\n"
 "PO-Revision-Date: 2020-10-29 18:15+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/switchboard/"
@@ -27,48 +27,62 @@ msgstr "प्रदर्शन सेटिंग्ज"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "मॉनिटर्स आणि प्रोजेक्टर्सची रिझोल्यूशन आणि जागेची स्थिती कॉन्फिगर करा"
 
-#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:28
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:26
+#: data/display.appdata.xml.in:42
 msgid "Fixes:"
 msgstr ""
 
 #: data/display.appdata.xml.in:14
-msgid "Ensure the \"Use this display\" switch works in more circumstances"
+msgid "Show display name on all workspaces"
 msgstr ""
 
-#: data/display.appdata.xml.in:16 data/display.appdata.xml.in:32
+#: data/display.appdata.xml.in:15
+msgid "Move resolutions with a different aspect ratio to a submenu"
+msgstr ""
+
+#: data/display.appdata.xml.in:16
+msgid "Improve brightness in the dark style"
+msgstr ""
+
+#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:46
 msgid "Minor updates:"
 msgstr ""
 
-#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:34
-#: data/display.appdata.xml.in:41 data/display.appdata.xml.in:50
-#: data/display.appdata.xml.in:59
+#: data/display.appdata.xml.in:20 data/display.appdata.xml.in:32
+#: data/display.appdata.xml.in:48 data/display.appdata.xml.in:55
+#: data/display.appdata.xml.in:64 data/display.appdata.xml.in:73
 msgid "Updated translations"
 msgstr "अद्ययावत भाषांतर"
 
-#: data/display.appdata.xml.in:24
+#: data/display.appdata.xml.in:28
+msgid "Ensure the \"Use this display\" switch works in more circumstances"
+msgstr ""
+
+#: data/display.appdata.xml.in:38
 msgid "New features:"
 msgstr ""
 
-#: data/display.appdata.xml.in:26
+#: data/display.appdata.xml.in:40
 msgid "Support 3× scaling"
 msgstr ""
 
-#: data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:44
 msgid "Reliably detect accelerometers"
 msgstr ""
 
-#: data/display.appdata.xml.in:48
+#: data/display.appdata.xml.in:62
 msgid "Fix 1px gaps between displays"
 msgstr "प्रदर्शनात 1px अंतर निश्चित करा"
 
-#: data/display.appdata.xml.in:49
+#: data/display.appdata.xml.in:63
 msgid "Properly center rotated displays"
 msgstr "योग्यरित्या फिरवलेले प्रदर्शन मध्यभागी ठेवा"
 
-#: data/display.appdata.xml.in:57
+#: data/display.appdata.xml.in:71
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr "चांगले स्नॅपिंग आणि संरेखन सह सुधारित मल्टी-डिस्प्ले लेआउट"
 
-#: data/display.appdata.xml.in:58
+#: data/display.appdata.xml.in:72
 msgid "Fixed the placement of display name tags"
 msgstr "प्रदर्शन नाव टॅगचे प्लेसमेंट निश्चित केले"
