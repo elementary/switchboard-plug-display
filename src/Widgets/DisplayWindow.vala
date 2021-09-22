@@ -44,7 +44,6 @@ public class Display.DisplayWindow : Hdy.Window {
         skip_pager_hint = true;
         type_hint = Gdk.WindowTypeHint.TOOLTIP;
         set_keep_above (true);
-        opacity = 0.8;
 
         stick ();
     }

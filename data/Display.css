@@ -11,7 +11,7 @@
 
 /* Don't use alpha for the on-screen identifier */
 .colored.background {
-    background-color: @BG_COLOR;
+    background-color: alpha (@BG_COLOR, 0.8);
 }
 
 widget.colored {
