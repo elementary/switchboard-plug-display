@@ -32,16 +32,18 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public signal void configuration_changed ();
     public signal void active_changed ();
 
-    public Display.VirtualMonitor virtual_monitor;
-    public DisplayWindow display_window;
-    public double window_ratio = 1.0;
+    public Display.VirtualMonitor virtual_monitor { get; construct; }
+
+    public double window_ratio { get; private set; default = 1.0; }
     public int delta_x { get; set; default = 0; }
     public int delta_y { get; set; default = 0; }
     public bool only_display { get; set; default = false; }
+
     private double start_x = 0;
     private double start_y = 0;
     private bool holding = false;
 
+    public DisplayWindow display_window { get; private set; }
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
@@ -79,7 +81,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
-        this.virtual_monitor = virtual_monitor;
+        Object (virtual_monitor: virtual_monitor);
+    }
+
+    construct {
         display_window = new DisplayWindow (virtual_monitor);
         events |= Gdk.EventMask.BUTTON_PRESS_MASK;
         events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
