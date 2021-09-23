@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-31 17:14+0000\n"
+"POT-Creation-Date: 2021-09-22 20:49+0000\n"
 "PO-Revision-Date: 2021-08-21 23:21+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
@@ -27,52 +27,66 @@ msgstr "Paramètres d'affichage"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configurer la résolution et la position des écrans et projecteurs"
 
-#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:28
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:26
+#: data/display.appdata.xml.in:42
 msgid "Fixes:"
 msgstr "Corrections :"
 
 #: data/display.appdata.xml.in:14
+msgid "Show display name on all workspaces"
+msgstr ""
+
+#: data/display.appdata.xml.in:15
+msgid "Move resolutions with a different aspect ratio to a submenu"
+msgstr ""
+
+#: data/display.appdata.xml.in:16
+msgid "Improve brightness in the dark style"
+msgstr ""
+
+#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:46
+msgid "Minor updates:"
+msgstr "Mises à jour mineures :"
+
+#: data/display.appdata.xml.in:20 data/display.appdata.xml.in:32
+#: data/display.appdata.xml.in:48 data/display.appdata.xml.in:55
+#: data/display.appdata.xml.in:64 data/display.appdata.xml.in:73
+msgid "Updated translations"
+msgstr "Mise à jour des traductions"
+
+#: data/display.appdata.xml.in:28
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 "Nous nous sommes assurés que l'option « Utiliser cet écran » fonctionne "
 "correctement dans plus de cas"
 
-#: data/display.appdata.xml.in:16 data/display.appdata.xml.in:32
-msgid "Minor updates:"
-msgstr "Mises à jour mineures :"
-
-#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:34
-#: data/display.appdata.xml.in:41 data/display.appdata.xml.in:50
-#: data/display.appdata.xml.in:59
-msgid "Updated translations"
-msgstr "Mise à jour des traductions"
-
-#: data/display.appdata.xml.in:24
+#: data/display.appdata.xml.in:38
 msgid "New features:"
 msgstr "Nouvelles fonctionnalités :"
 
-#: data/display.appdata.xml.in:26
+#: data/display.appdata.xml.in:40
 msgid "Support 3× scaling"
 msgstr "Prise en charge de la mise à l'échelle x3"
 
-#: data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:44
 msgid "Reliably detect accelerometers"
 msgstr "Détection fiable des accéléromètres"
 
-#: data/display.appdata.xml.in:48
+#: data/display.appdata.xml.in:62
 msgid "Fix 1px gaps between displays"
 msgstr "Correction de l'écart d'1px entre les écrans"
 
-#: data/display.appdata.xml.in:49
+#: data/display.appdata.xml.in:63
 msgid "Properly center rotated displays"
 msgstr "Les écrans retournés sont désormais correctement centrés"
 
-#: data/display.appdata.xml.in:57
+#: data/display.appdata.xml.in:71
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 "Amélioration des dispositions multi-écrans avec un meilleur accrochage et "
 "alignement"
 
-#: data/display.appdata.xml.in:58
+#: data/display.appdata.xml.in:72
 msgid "Fixed the placement of display name tags"
 msgstr "Correction de l'emplacement des étiquettes de nom d'écran"

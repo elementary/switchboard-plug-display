@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2018 elementary LLC.
+ * Copyright 2014-2021 elementary, Inc.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -20,20 +20,21 @@
  */
 
 public class Display.DisplayWindow : Hdy.Window {
+    public Display.VirtualMonitor virtual_monitor { get; construct; }
+
     private const int SPACING = 12;
 
     public DisplayWindow (Display.VirtualMonitor virtual_monitor) {
-        var label = new Gtk.Label (virtual_monitor.get_display_name ());
-        label.margin = 12;
-        add (label);
-        var scale_factor = get_style_context ().get_scale ();
-        move (
-            (int) (virtual_monitor.current_x / scale_factor) + SPACING,
-            (int) (virtual_monitor.current_y / scale_factor) + SPACING
-        );
+        Object (virtual_monitor: virtual_monitor);
     }
 
     construct {
+        var label = new Gtk.Label (virtual_monitor.get_display_name ()) {
+            margin = 12
+        };
+
+        add (label);
+
         input_shape_combine_region (null);
         accept_focus = false;
         decorated = false;
@@ -44,8 +45,13 @@ public class Display.DisplayWindow : Hdy.Window {
         skip_pager_hint = true;
         type_hint = Gdk.WindowTypeHint.TOOLTIP;
         set_keep_above (true);
-        opacity = 0.8;
 
         stick ();
+
+        var scale_factor = get_style_context ().get_scale ();
+        move (
+            (int) (virtual_monitor.current_x / scale_factor) + SPACING,
+            (int) (virtual_monitor.current_y / scale_factor) + SPACING
+        );
     }
 }

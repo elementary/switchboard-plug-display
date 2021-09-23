@@ -35,6 +35,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     private unowned Display.MonitorManager monitor_manager;
     public int active_displays { get; set; default = 0; }
+
+    private static Gtk.CssProvider display_provider;
+
     private static string[] colors = {
         "@BLUEBERRY_100",
         "@STRAWBERRY_100",
@@ -68,6 +71,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
         rescan_displays ();
+    }
+
+    static construct {
+        display_provider = new Gtk.CssProvider ();
+        display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
     }
 
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
@@ -193,9 +201,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
             var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
             provider.load_from_data (colored_css, colored_css.length);
-
-            var display_provider = new Gtk.CssProvider ();
-            display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
 
             var context = display_widget.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
