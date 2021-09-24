@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-22 20:49+0000\n"
-"PO-Revision-Date: 2021-08-21 13:09+0000\n"
+"PO-Revision-Date: 2021-09-24 11:04+0000\n"
 "Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ru/>\n"
@@ -43,7 +43,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:16
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "Улучшенна яркость в темном стиле"
 
 #: data/display.appdata.xml.in:18 data/display.appdata.xml.in:30
 #: data/display.appdata.xml.in:46
