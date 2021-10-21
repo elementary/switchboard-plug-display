@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-09-22 20:49+0000\n"
-"PO-Revision-Date: 2021-08-21 23:21+0000\n"
+"PO-Revision-Date: 2021-10-21 17:32+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fr/>\n"
@@ -34,15 +34,15 @@ msgstr "Corrections :"
 
 #: data/display.appdata.xml.in:14
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "Affichage du nom de l'écran sur tous les espaces de travail"
 
 #: data/display.appdata.xml.in:15
 msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr ""
+msgstr "Déplacement des résolutions avec un ratio différent dans un sous-menu"
 
 #: data/display.appdata.xml.in:16
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "Amélioration de la luminosité avec le thème sombre"
 
 #: data/display.appdata.xml.in:18 data/display.appdata.xml.in:30
 #: data/display.appdata.xml.in:46
