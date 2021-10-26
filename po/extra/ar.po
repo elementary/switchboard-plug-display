@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 20:49+0000\n"
+"POT-Creation-Date: 2021-10-26 17:48+0000\n"
 "PO-Revision-Date: 2021-04-26 17:00+0000\n"
 "Last-Translator: nasserbinlaboun <nasser1990com@gmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/switchboard/"
@@ -28,62 +28,66 @@ msgstr ""
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "خصص الدقة والموقع للشاشات والبروجكترات"
 
-#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:26
-#: data/display.appdata.xml.in:42
-msgid "Fixes:"
+#: data/display.appdata.xml.in:12
+msgid "Improvements:"
 msgstr ""
 
 #: data/display.appdata.xml.in:14
-msgid "Show display name on all workspaces"
-msgstr ""
-
-#: data/display.appdata.xml.in:15
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr ""
 
-#: data/display.appdata.xml.in:16
+#: data/display.appdata.xml.in:15
 msgid "Improve brightness in the dark style"
 msgstr ""
 
-#: data/display.appdata.xml.in:18 data/display.appdata.xml.in:30
-#: data/display.appdata.xml.in:46
+#: data/display.appdata.xml.in:17 data/display.appdata.xml.in:29
+#: data/display.appdata.xml.in:45
+msgid "Fixes:"
+msgstr ""
+
+#: data/display.appdata.xml.in:19
+msgid "Show display name on all workspaces"
+msgstr ""
+
+#: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
+#: data/display.appdata.xml.in:49
 msgid "Minor updates:"
 msgstr ""
 
-#: data/display.appdata.xml.in:20 data/display.appdata.xml.in:32
-#: data/display.appdata.xml.in:48 data/display.appdata.xml.in:55
-#: data/display.appdata.xml.in:64 data/display.appdata.xml.in:73
+#: data/display.appdata.xml.in:23 data/display.appdata.xml.in:35
+#: data/display.appdata.xml.in:51 data/display.appdata.xml.in:58
+#: data/display.appdata.xml.in:67 data/display.appdata.xml.in:76
 msgid "Updated translations"
 msgstr "ترجمات محدثة"
 
-#: data/display.appdata.xml.in:28
+#: data/display.appdata.xml.in:31
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 
-#: data/display.appdata.xml.in:38
+#: data/display.appdata.xml.in:41
 msgid "New features:"
 msgstr ""
 
-#: data/display.appdata.xml.in:40
+#: data/display.appdata.xml.in:43
 msgid "Support 3× scaling"
 msgstr ""
 
-#: data/display.appdata.xml.in:44
+#: data/display.appdata.xml.in:47
 msgid "Reliably detect accelerometers"
 msgstr ""
 
-#: data/display.appdata.xml.in:62
+#: data/display.appdata.xml.in:65
 msgid "Fix 1px gaps between displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:63
+#: data/display.appdata.xml.in:66
 msgid "Properly center rotated displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:71
+#: data/display.appdata.xml.in:74
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 
-#: data/display.appdata.xml.in:72
+#: data/display.appdata.xml.in:75
 msgid "Fixed the placement of display name tags"
 msgstr ""
