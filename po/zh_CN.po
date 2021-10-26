@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 20:49+0000\n"
+"POT-Creation-Date: 2021-10-26 17:48+0000\n"
 "PO-Revision-Date: 2021-05-05 21:17+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -171,42 +171,42 @@ msgstr "应用"
 msgid "Rotation Lock:"
 msgstr "旋转锁："
 
-#: src/Widgets/DisplayWidget.vala:102
+#: src/Widgets/DisplayWidget.vala:113
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "启用屏幕："
 
-#: src/Widgets/DisplayWidget.vala:109
+#: src/Widgets/DisplayWidget.vala:123
 msgid "Resolution:"
 msgstr "分辨率："
 
-#: src/Widgets/DisplayWidget.vala:119
+#: src/Widgets/DisplayWidget.vala:134
 msgid "Screen Rotation:"
 msgstr "屏幕旋转："
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:145
 msgid "Refresh Rate:"
 msgstr "刷新频率："
 
-#: src/Widgets/DisplayWidget.vala:201
+#: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:248
+#: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
 msgstr "显示器设置"
 
-#: src/Widgets/DisplayWidget.vala:430
+#: src/Widgets/DisplayWidget.vala:451
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:528
+#: src/Widgets/DisplayWidget.vala:549
 msgid "Is the primary display"
 msgstr "主显示器"
 
-#: src/Widgets/DisplayWidget.vala:531
+#: src/Widgets/DisplayWidget.vala:552
 msgid "Set as primary display"
 msgstr "设为主显示器"
 

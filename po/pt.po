@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 20:49+0000\n"
+"POT-Creation-Date: 2021-10-26 17:48+0000\n"
 "PO-Revision-Date: 2021-02-11 05:40+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/switchboard/"
@@ -173,42 +173,42 @@ msgstr "Aplicar"
 msgid "Rotation Lock:"
 msgstr "Bloqueio de rotação:"
 
-#: src/Widgets/DisplayWidget.vala:102
+#: src/Widgets/DisplayWidget.vala:113
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Usar este ecrã:"
 
-#: src/Widgets/DisplayWidget.vala:109
+#: src/Widgets/DisplayWidget.vala:123
 msgid "Resolution:"
 msgstr "Resolução:"
 
-#: src/Widgets/DisplayWidget.vala:119
+#: src/Widgets/DisplayWidget.vala:134
 msgid "Screen Rotation:"
 msgstr "Rotação do ecrã:"
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:145
 msgid "Refresh Rate:"
 msgstr "Taxa de atualização:"
 
-#: src/Widgets/DisplayWidget.vala:201
+#: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:248
+#: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
 msgstr "Configurar ecrã"
 
-#: src/Widgets/DisplayWidget.vala:430
+#: src/Widgets/DisplayWidget.vala:451
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:528
+#: src/Widgets/DisplayWidget.vala:549
 msgid "Is the primary display"
 msgstr "É o ecrã principal"
 
-#: src/Widgets/DisplayWidget.vala:531
+#: src/Widgets/DisplayWidget.vala:552
 msgid "Set as primary display"
 msgstr "Definir como ecrã principal"
 

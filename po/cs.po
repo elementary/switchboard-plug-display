@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 20:49+0000\n"
+"POT-Creation-Date: 2021-10-26 17:48+0000\n"
 "PO-Revision-Date: 2020-05-12 15:10+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/switchboard/"
@@ -173,42 +173,42 @@ msgstr "Použít"
 msgid "Rotation Lock:"
 msgstr "Zamknutí otočení:"
 
-#: src/Widgets/DisplayWidget.vala:102
+#: src/Widgets/DisplayWidget.vala:113
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Používat tuto obrazovku:"
 
-#: src/Widgets/DisplayWidget.vala:109
+#: src/Widgets/DisplayWidget.vala:123
 msgid "Resolution:"
 msgstr "Rozlišení:"
 
-#: src/Widgets/DisplayWidget.vala:119
+#: src/Widgets/DisplayWidget.vala:134
 msgid "Screen Rotation:"
 msgstr "Otočení Obrazovky:"
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:145
 msgid "Refresh Rate:"
 msgstr "Obnovovací frekvence:"
 
-#: src/Widgets/DisplayWidget.vala:201
+#: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:248
+#: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
 msgstr "Nastavit displej"
 
-#: src/Widgets/DisplayWidget.vala:430
+#: src/Widgets/DisplayWidget.vala:451
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:528
+#: src/Widgets/DisplayWidget.vala:549
 msgid "Is the primary display"
 msgstr "Je primární displej"
 
-#: src/Widgets/DisplayWidget.vala:531
+#: src/Widgets/DisplayWidget.vala:552
 msgid "Set as primary display"
 msgstr "Nastavit jako primární displej"
 

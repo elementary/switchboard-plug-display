@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 20:49+0000\n"
+"POT-Creation-Date: 2021-10-26 17:48+0000\n"
 "PO-Revision-Date: 2018-10-24 22:10+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/"
@@ -172,43 +172,43 @@ msgstr "Terapkan"
 msgid "Rotation Lock:"
 msgstr "Kunci Rotasi:"
 
-#: src/Widgets/DisplayWidget.vala:102
+#: src/Widgets/DisplayWidget.vala:113
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Gunakan Tampilan Ini:"
 
-#: src/Widgets/DisplayWidget.vala:109
+#: src/Widgets/DisplayWidget.vala:123
 msgid "Resolution:"
 msgstr "Resolusi:"
 
-#: src/Widgets/DisplayWidget.vala:119
+#: src/Widgets/DisplayWidget.vala:134
 #, fuzzy
 msgid "Screen Rotation:"
 msgstr "Rotasi Layar"
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:145
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:201
+#: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:248
+#: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
 msgstr "Konfigurasi tampilan"
 
-#: src/Widgets/DisplayWidget.vala:430
+#: src/Widgets/DisplayWidget.vala:451
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:528
+#: src/Widgets/DisplayWidget.vala:549
 msgid "Is the primary display"
 msgstr "Adalah tampilan utama"
 
-#: src/Widgets/DisplayWidget.vala:531
+#: src/Widgets/DisplayWidget.vala:552
 msgid "Set as primary display"
 msgstr "Atur sebagai tampilan utama"
 

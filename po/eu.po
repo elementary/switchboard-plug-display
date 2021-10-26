@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 20:49+0000\n"
+"POT-Creation-Date: 2021-10-26 17:48+0000\n"
 "PO-Revision-Date: 2020-10-01 21:14+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Basque <https://l10n.elementary.io/projects/switchboard/"
@@ -171,39 +171,39 @@ msgstr ""
 msgid "Rotation Lock:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:102
+#: src/Widgets/DisplayWidget.vala:113
 msgid "Use this display:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:109
+#: src/Widgets/DisplayWidget.vala:123
 msgid "Resolution:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:119
+#: src/Widgets/DisplayWidget.vala:134
 msgid "Screen Rotation:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:128
+#: src/Widgets/DisplayWidget.vala:145
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:201
+#: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:248
+#: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:430
+#: src/Widgets/DisplayWidget.vala:451
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:528
+#: src/Widgets/DisplayWidget.vala:549
 msgid "Is the primary display"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:531
+#: src/Widgets/DisplayWidget.vala:552
 msgid "Set as primary display"
 msgstr ""
