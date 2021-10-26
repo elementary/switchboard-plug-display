@@ -1,3 +1,21 @@
+switchboard-plug-display (2.3.2) bionic; urgency=medium
+
+  * Release 2.3.2 (#329)
+  * DisplayWidget: Code style
+  * DisplayWidget: GObject-style construction
+  * DisplayWindow: Use GObject-style construction
+  * DisplaysOverlay: define display css provider once for class
+  * Set display name alpha in CSS
+  * Update translation files
+  * Update translation template
+  * Appdata: Add notes for 2.3.2 (#322)
+  * DisplayWindow: stick to all workspaces (#321)
+  * Display.css: Improve look with dark style (#266)
+  * Adding rounded corner for display tags (#318)
+  * Reimplement resolution combobox as tree (#302)
+
+ -- elementary OS Team <builds@elementary.io>  Tue, 26 Oct 2021 17:47:41 +0000
+
 switchboard-plug-display (2.3.1) bionic; urgency=medium
 
   * Release 2.3.1 (#316)
