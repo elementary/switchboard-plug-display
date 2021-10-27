@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-10-21 17:32+0000\n"
+"PO-Revision-Date: 2021-10-27 10:33+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fr/>\n"
@@ -29,7 +29,7 @@ msgstr "Configurer la résolution et la position des écrans et projecteurs"
 
 #: data/display.appdata.xml.in:12
 msgid "Improvements:"
-msgstr ""
+msgstr "Améliorations :"
 
 #: data/display.appdata.xml.in:14
 msgid "Move resolutions with a different aspect ratio to a submenu"
