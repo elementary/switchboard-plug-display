@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-05-05 21:17+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"PO-Revision-Date: 2021-11-01 10:01+0000\n"
+"Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "switchboard/switchboard-plug-display/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -172,10 +172,8 @@ msgid "Rotation Lock:"
 msgstr "旋转锁："
 
 #: src/Widgets/DisplayWidget.vala:113
-#, fuzzy
-#| msgid "Use This Display:"
 msgid "Use this display:"
-msgstr "启用屏幕："
+msgstr "使用此显示器："
 
 #: src/Widgets/DisplayWidget.vala:123
 msgid "Resolution:"
@@ -191,7 +189,7 @@ msgstr "刷新频率："
 
 #: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
-msgstr ""
+msgstr "其它…"
 
 #: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
