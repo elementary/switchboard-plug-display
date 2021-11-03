@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2018-12-12 07:52+0000\n"
-"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
-"Language-Team: Polish <https://weblate.elementary.io/projects/switchboard/"
+"PO-Revision-Date: 2021-11-03 06:45+0000\n"
+"Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
+"Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
@@ -175,8 +175,6 @@ msgid "Rotation Lock:"
 msgstr "Blokada obrotu:"
 
 #: src/Widgets/DisplayWidget.vala:113
-#, fuzzy
-#| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Użyj tego monitora:"
 
@@ -194,7 +192,7 @@ msgstr "Częstotliwość odświeżania:"
 
 #: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
-msgstr ""
+msgstr "Inne…"
 
 #: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
