@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-11-08 08:35+0000\n"
+"PO-Revision-Date: 2021-11-08 11:22+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/pl/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
-msgstr ""
+msgstr "Ustawienia wyświetlacza"
 
 #: data/display.appdata.xml.in:6
 msgid "Configure resolution and position of monitors and projectors"
@@ -30,15 +30,15 @@ msgstr "Konfiguruj rozdzielczość i pozycję monitorów i projektorów"
 
 #: data/display.appdata.xml.in:12
 msgid "Improvements:"
-msgstr ""
+msgstr "Ulepszenia:"
 
 #: data/display.appdata.xml.in:14
 msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr ""
+msgstr "Przeniesiono rozdzielczości z innymi proporcjami do podmenu"
 
 #: data/display.appdata.xml.in:15
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "Ulepszono jasność w trybie ciemnym"
 
 #: data/display.appdata.xml.in:17 data/display.appdata.xml.in:29
 #: data/display.appdata.xml.in:45
@@ -47,7 +47,7 @@ msgstr "Poprawki:"
 
 #: data/display.appdata.xml.in:19
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "Pokazuj nazwy wyświetlacza na wszystkich obszarach roboczych"
 
 #: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
 #: data/display.appdata.xml.in:49
@@ -63,6 +63,8 @@ msgstr "Zaktualizowane tłumaczenia"
 #: data/display.appdata.xml.in:31
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
+"Upewniono się, że przełącznik „Użyj tego wyświetlacza” działa w większej "
+"liczbie przypadków"
 
 #: data/display.appdata.xml.in:41
 msgid "New features:"
@@ -70,24 +72,25 @@ msgstr "Nowe funkcje:"
 
 #: data/display.appdata.xml.in:43
 msgid "Support 3× scaling"
-msgstr ""
+msgstr "Wsparcie dla skalowania 3×"
 
 #: data/display.appdata.xml.in:47
 msgid "Reliably detect accelerometers"
-msgstr ""
+msgstr "Skuteczne wykrywanie akcelerometrów"
 
 #: data/display.appdata.xml.in:65
 msgid "Fix 1px gaps between displays"
-msgstr ""
+msgstr "Naprawiono 1px przerwy między wyświetlaczami"
 
 #: data/display.appdata.xml.in:66
 msgid "Properly center rotated displays"
-msgstr ""
+msgstr "Poprawnie centruj obrócone wyświetlacze"
 
 #: data/display.appdata.xml.in:74
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
+"Ulepszone układy wielu wyświetlaczy z lepszym przyleganiem i ustawianiem"
 
 #: data/display.appdata.xml.in:75
 msgid "Fixed the placement of display name tags"
-msgstr ""
+msgstr "Naprawiono ustawienie tagów z nazwą wyświetlacza"
