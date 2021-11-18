@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-10-27 00:31+0000\n"
+"PO-Revision-Date: 2021-11-18 20:03+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/uk/>\n"
@@ -67,7 +67,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:41
 msgid "New features:"
-msgstr "Нові можливості:"
+msgstr "Нові функції:"
 
 #: data/display.appdata.xml.in:43
 msgid "Support 3× scaling"
