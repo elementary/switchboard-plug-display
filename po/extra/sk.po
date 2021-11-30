@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-08-24 18:20+0000\n"
+"PO-Revision-Date: 2021-11-30 16:52+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/sk/>\n"
@@ -29,15 +29,15 @@ msgstr "Nastavujte rozlíšenie a pozíciu monitorov a projektorov"
 
 #: data/display.appdata.xml.in:12
 msgid "Improvements:"
-msgstr ""
+msgstr "Vylepšenia:"
 
 #: data/display.appdata.xml.in:14
 msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr ""
+msgstr "Presunutie rozlíšení s odlišným pomerom strán do samostatného submenu"
 
 #: data/display.appdata.xml.in:15
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "Zlepšenie jasu pri použití tmavého štýlu"
 
 #: data/display.appdata.xml.in:17 data/display.appdata.xml.in:29
 #: data/display.appdata.xml.in:45
@@ -46,7 +46,7 @@ msgstr "Opravy:"
 
 #: data/display.appdata.xml.in:19
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "Zobrazovať názvy obrazoviek na všetkých pracovných plochách"
 
 #: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
 #: data/display.appdata.xml.in:49
