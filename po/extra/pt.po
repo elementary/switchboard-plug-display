@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-11-23 23:34+0000\n"
+"PO-Revision-Date: 2021-12-21 22:04+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/pt/>\n"
@@ -33,11 +33,11 @@ msgstr "Melhoramentos:"
 
 #: data/display.appdata.xml.in:14
 msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr ""
+msgstr "Mover resoluções com uma proporção de aspeto diferente para um submenu"
 
 #: data/display.appdata.xml.in:15
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "Melhora o brilho no estilo escuro"
 
 #: data/display.appdata.xml.in:17 data/display.appdata.xml.in:29
 #: data/display.appdata.xml.in:45
@@ -46,7 +46,7 @@ msgstr "Correções:"
 
 #: data/display.appdata.xml.in:19
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "Mostra o nome do ecrã em todas as áreas de trabalho"
 
 #: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
 #: data/display.appdata.xml.in:49
@@ -62,6 +62,8 @@ msgstr "Traduções atualizadas"
 #: data/display.appdata.xml.in:31
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
+"Assegura que o comutador \"Utilizar este ecrã\" funciona em mais "
+"circunstâncias"
 
 #: data/display.appdata.xml.in:41
 msgid "New features:"
