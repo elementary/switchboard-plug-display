@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-02-11 05:40+0000\n"
+"PO-Revision-Date: 2021-12-22 19:30+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/pt/>\n"
@@ -174,8 +174,6 @@ msgid "Rotation Lock:"
 msgstr "Bloqueio de rotação:"
 
 #: src/Widgets/DisplayWidget.vala:113
-#, fuzzy
-#| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Usar este ecrã:"
 
@@ -193,7 +191,7 @@ msgstr "Taxa de atualização:"
 
 #: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
-msgstr ""
+msgstr "Outra…"
 
 #: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
