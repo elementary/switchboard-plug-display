@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2022-01-10 12:16+0000\n"
+"PO-Revision-Date: 2022-01-10 21:58+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/cs/>\n"
@@ -29,15 +29,15 @@ msgstr "Nastavit rozlišení a pozici monitorů nebo projektorů"
 
 #: data/display.appdata.xml.in:12
 msgid "Improvements:"
-msgstr ""
+msgstr "Vylepšení:"
 
 #: data/display.appdata.xml.in:14
 msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr ""
+msgstr "Rozlišení s odlišnými poměry stran do podnabídky"
 
 #: data/display.appdata.xml.in:15
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "Zlepšen jas při tmavém zobrazení"
 
 #: data/display.appdata.xml.in:17 data/display.appdata.xml.in:29
 #: data/display.appdata.xml.in:45
@@ -46,7 +46,7 @@ msgstr "Opravy:"
 
 #: data/display.appdata.xml.in:19
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "Ukazování zobrazovaného jména na všech pracovních plochách"
 
 #: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
 #: data/display.appdata.xml.in:49
@@ -62,6 +62,7 @@ msgstr "Aktualizovány překlady"
 #: data/display.appdata.xml.in:31
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
+"Zajištěno, že přepínač „Použít tuto obrazovku“ funguje ve více případech"
 
 #: data/display.appdata.xml.in:41
 msgid "New features:"
@@ -69,11 +70,11 @@ msgstr "Nové funkce:"
 
 #: data/display.appdata.xml.in:43
 msgid "Support 3× scaling"
-msgstr ""
+msgstr "Podpora pro trojnásobné zvětšení"
 
 #: data/display.appdata.xml.in:47
 msgid "Reliably detect accelerometers"
-msgstr ""
+msgstr "Spolehlivé zjišťování čidel zrychlení"
 
 #: data/display.appdata.xml.in:65
 msgid "Fix 1px gaps between displays"
