@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
 "PO-Revision-Date: 2022-01-15 13:59+0000\n"
-"Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
+"Last-Translator: Niels Van Laerhoven <niels1995@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/nl/>\n"
 "Language: nl\n"
@@ -159,7 +159,7 @@ msgstr "Laag DPI"
 
 #: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
 msgid "HiDPI"
-msgstr ""
+msgstr "HiDPI"
 
 #: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
