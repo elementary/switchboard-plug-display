@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-11-18 20:03+0000\n"
+"PO-Revision-Date: 2022-05-29 23:10+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/uk/>\n"
@@ -58,7 +58,7 @@ msgstr "Незначні оновлення:"
 #: data/display.appdata.xml.in:51 data/display.appdata.xml.in:58
 #: data/display.appdata.xml.in:67 data/display.appdata.xml.in:76
 msgid "Updated translations"
-msgstr "Оновлено переклади"
+msgstr "Оновлені переклади"
 
 #: data/display.appdata.xml.in:31
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
