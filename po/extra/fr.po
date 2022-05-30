@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-10-27 10:33+0000\n"
+"PO-Revision-Date: 2022-05-30 10:51+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fr/>\n"
@@ -51,7 +51,7 @@ msgstr "Affichage du nom de l'écran sur tous les espaces de travail"
 #: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
 #: data/display.appdata.xml.in:49
 msgid "Minor updates:"
-msgstr "Mises à jour mineures :"
+msgstr "Mises à jour mineures :"
 
 #: data/display.appdata.xml.in:23 data/display.appdata.xml.in:35
 #: data/display.appdata.xml.in:51 data/display.appdata.xml.in:58
