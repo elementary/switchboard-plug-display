@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2022-05-30 10:51+0000\n"
+"PO-Revision-Date: 2022-06-30 10:04+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fr/>\n"
@@ -29,7 +29,7 @@ msgstr "Configurer la résolution et la position des écrans et projecteurs"
 
 #: data/display.appdata.xml.in:12
 msgid "Improvements:"
-msgstr "Améliorations :"
+msgstr "Améliorations :"
 
 #: data/display.appdata.xml.in:14
 msgid "Move resolutions with a different aspect ratio to a submenu"
@@ -42,7 +42,7 @@ msgstr "Amélioration de la luminosité avec le thème sombre"
 #: data/display.appdata.xml.in:17 data/display.appdata.xml.in:29
 #: data/display.appdata.xml.in:45
 msgid "Fixes:"
-msgstr "Corrections :"
+msgstr "Corrections :"
 
 #: data/display.appdata.xml.in:19
 msgid "Show display name on all workspaces"
