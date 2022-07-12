@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-12-25 22:41+0000\n"
+"PO-Revision-Date: 2022-07-12 14:26+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/hu/>\n"
@@ -29,7 +29,7 @@ msgstr "Monitorok és projektorok felbontásának és helyzetének beállítása
 
 #: data/display.appdata.xml.in:12
 msgid "Improvements:"
-msgstr "Javítások:"
+msgstr "Újítások:"
 
 #: data/display.appdata.xml.in:14
 msgid "Move resolutions with a different aspect ratio to a submenu"
