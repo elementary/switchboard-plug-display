@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2019-05-15 03:02+0000\n"
+"PO-Revision-Date: 2022-08-08 08:46+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ko/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -51,13 +51,13 @@ msgstr ""
 #: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
 #: data/display.appdata.xml.in:49
 msgid "Minor updates:"
-msgstr ""
+msgstr "소소한 업데이트:"
 
 #: data/display.appdata.xml.in:23 data/display.appdata.xml.in:35
 #: data/display.appdata.xml.in:51 data/display.appdata.xml.in:58
 #: data/display.appdata.xml.in:67 data/display.appdata.xml.in:76
 msgid "Updated translations"
-msgstr ""
+msgstr "최신 번역"
 
 #: data/display.appdata.xml.in:31
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
@@ -65,7 +65,7 @@ msgstr ""
 
 #: data/display.appdata.xml.in:41
 msgid "New features:"
-msgstr ""
+msgstr "새로운 기능:"
 
 #: data/display.appdata.xml.in:43
 msgid "Support 3× scaling"
