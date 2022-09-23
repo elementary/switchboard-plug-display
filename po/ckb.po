@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2022-09-21 02:54+0000\n"
+"PO-Revision-Date: 2022-09-23 23:35+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/"
 "switchboard/switchboard-plug-display/ckb/>\n"
@@ -22,161 +22,156 @@ msgstr ""
 
 #: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
 msgid "Displays"
-msgstr "نیشاندەر"
+msgstr "ڕوونماکان"
 
 #: src/DisplayPlug.vala:39
 msgid "Configure resolution and position of monitors and projectors"
-msgstr ""
+msgstr "ڕێکخستنی ڕوونی و شوێنی مۆنیتەر و پرۆجێکتەرەکان (داتاشۆو)"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
 #: src/DisplayPlug.vala:121
 msgid "Night Light"
-msgstr ""
+msgstr "ڕووناکی شەو"
 
 #: src/DisplayPlug.vala:113
-#, fuzzy
 msgid "Screen Resolution"
-msgstr "ڕوناکی"
+msgstr "ڕوونی ڕوونما"
 
 #: src/DisplayPlug.vala:114
-#, fuzzy
 msgid "Screen Rotation"
-msgstr "خولانەوه"
+msgstr "شێوەی وەستانی ڕوونما"
 
 #: src/DisplayPlug.vala:115
-#, fuzzy
 msgid "Primary display"
-msgstr "نیشاندان سەرەتاییە ؟"
+msgstr "ڕوونمای سەرەکی"
 
 #: src/DisplayPlug.vala:116
 msgid "Screen mirroring"
-msgstr ""
+msgstr "ئاوێنەکردنی ڕوونما"
 
 #: src/DisplayPlug.vala:117
 msgid "Scaling factor"
-msgstr ""
+msgstr "فاکتەری سکەیلینگ"
 
 #: src/DisplayPlug.vala:118
-#, fuzzy
 msgid "Rotation lock"
-msgstr "خولانەوه"
+msgstr "قوفڵکردنی خولانەوە"
 
 #: src/DisplayPlug.vala:120
 msgid "Schedule"
-msgstr ""
+msgstr "دیاریکردنی کات"
 
 #: src/DisplayPlug.vala:121
 msgid "Color temperature"
-msgstr ""
+msgstr "پلەی گەرمی ڕەنگ"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
-msgstr "لەگەڵ ڕێڕەوی میلی کاژێر"
+msgstr "ئاڕاستەی میلی کاتژمێر"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "سەراوبن"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
-msgstr "بەپێچەوانەی ڕێڕەوی میلی کاژێر"
+msgstr "پێچەوانەی ئاڕاستەی میلی کاتژمێر"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
-msgstr "ناجددی"
+msgstr "وەرگەڕاو"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
-#, fuzzy
 msgid "Flipped Clockwise"
-msgstr "لەگەڵ ڕێڕەوی میلی کاژێر"
+msgstr "وەرگەڕاو بە ئاڕاستەی میلی کاتژمێر"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr ""
+msgstr "وەگەڕاوی سەراوبن"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
-#, fuzzy
 msgid "Flipped Counterclockwise"
-msgstr "بەپێچەوانەی ڕێڕەوی میلی کاژێر"
+msgstr "وەگەڕاو بەپێچەوانەی ئاڕاستەی میلی کاتژمێر"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
 msgstr "هیج"
 
 #: src/Objects/VirtualMonitor.vala:77
-#, fuzzy
 msgid "Mirrored Display"
-msgstr "ئاوینەکردنی پیشاندەر"
+msgstr "ئاوێنەکردنی ڕوونما"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr ""
+msgstr "ڕووناکی شەو:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
 "Night Light makes the colors of your display warmer. This may help prevent "
 "eye strain and sleeplessness."
 msgstr ""
+"ڕووناکی شەو وا دەکات ڕەنگی ڕوونماکەت گەرم بێت. ئەمە یارمەتیت دەدات کە "
+"خەواڵوو نەبێت و زیاد بە چاوت نەگات."
 
 #: src/Views/NightLightView.vala:48
 msgid "Schedule:"
-msgstr ""
+msgstr "دیاریکردنی کات:"
 
 #: src/Views/NightLightView.vala:53
 msgid "Sunset to Sunrise"
-msgstr ""
+msgstr "خۆرهەڵاتن بۆ خۆراوابوون"
 
 #: src/Views/NightLightView.vala:54
 msgid "Manual"
-msgstr ""
+msgstr "دەستی"
 
 #: src/Views/NightLightView.vala:56
 msgid "From:"
-msgstr ""
+msgstr "لە:"
 
 #: src/Views/NightLightView.vala:61
 msgid "To:"
-msgstr ""
+msgstr "بۆ:"
 
 #: src/Views/NightLightView.vala:66
 msgid "Color temperature:"
-msgstr ""
+msgstr "پلەی گەرمی ڕەنگ:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr ""
+msgstr "زیادکردنی گەرمی"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr ""
+msgstr "کەمکردنی گەرمی"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
-msgstr "نیشاندانی ئاوێنەیی :"
+msgstr "ڕوونمای ئاوێنە:"
 
 #: src/Views/DisplaysView.vala:45
 msgid "Scaling factor:"
-msgstr ""
+msgstr "فاکتەری سکەیلینگ:"
 
 #: src/Views/DisplaysView.vala:48
 msgid "LoDPI"
-msgstr ""
+msgstr "DPIی نزم"
 
 #: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
 msgid "HiDPI"
-msgstr ""
+msgstr "DPIی بەرز"
 
 #: src/Views/DisplaysView.vala:59
 msgid "Detect Displays"
-msgstr "دۆزینەوەی پیشاندان"
+msgstr "ڕوونما دەربخە"
 
 #: src/Views/DisplaysView.vala:61
 msgid "Apply"
-msgstr "بەکاربردن"
+msgstr "پاشەکەوتکردن"
 
 #: src/Views/DisplaysView.vala:150
 msgid "Rotation Lock:"
-msgstr "قوفڵکردنی لاکردن:"
+msgstr "قوفڵکردنی خولانەوە:"
 
 #: src/Widgets/DisplayWidget.vala:113
 msgid "Use this display:"
@@ -192,28 +187,28 @@ msgstr "خولانەوەی ڕوونما:"
 
 #: src/Widgets/DisplayWidget.vala:145
 msgid "Refresh Rate:"
-msgstr ""
+msgstr "ڕێژەی نوێبوونەوە:"
 
 #: src/Widgets/DisplayWidget.vala:220
 msgid "Other…"
-msgstr ""
+msgstr "هیتر…"
 
 #: src/Widgets/DisplayWidget.vala:269
 msgid "Configure display"
-msgstr "سازدانی پیشاندەر"
+msgstr "ڕێکخستنی ڕوونما"
 
 #: src/Widgets/DisplayWidget.vala:451
 #, c-format
 msgid "%g Hz"
-msgstr ""
+msgstr "%g هێرتز"
 
 #: src/Widgets/DisplayWidget.vala:549
 msgid "Is the primary display"
-msgstr ""
+msgstr "ڕوونمای سەرەکییە"
 
 #: src/Widgets/DisplayWidget.vala:552
 msgid "Set as primary display"
-msgstr "ڕێکخستن وەکوو نیشاندانی سەرەتایی"
+msgstr "وەکو ڕوونمای سەرەکی دایبنێ"
 
 #~ msgid "Rotation:"
 #~ msgstr "خولانەوه"
