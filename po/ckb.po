@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2022-09-23 23:35+0000\n"
+"PO-Revision-Date: 2022-10-04 19:33+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/"
 "switchboard/switchboard-plug-display/ckb/>\n"
@@ -95,7 +95,7 @@ msgstr "وەگەڕاو بەپێچەوانەی ئاڕاستەی میلی کاتژ
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
-msgstr "هیج"
+msgstr "هیچ"
 
 #: src/Objects/VirtualMonitor.vala:77
 msgid "Mirrored Display"
