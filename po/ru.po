@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-26 17:48+0000\n"
-"PO-Revision-Date: 2021-09-04 15:00+0000\n"
-"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
+"PO-Revision-Date: 2022-10-20 18:45+0000\n"
+"Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ru/>\n"
 "Language: ru\n"
@@ -72,7 +72,7 @@ msgstr "По часовой стрелке"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr "Перевернутый"
+msgstr "Перевёрнутый"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
@@ -84,15 +84,15 @@ msgstr "Отразить"
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Clockwise"
-msgstr "По часовой стрелке (отраженный)"
+msgstr "По часовой стрелке (отражённый)"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
-msgstr "Перевернутый (отраженный)"
+msgstr "Перевёрнутый (отражённый)"
 
 #: src/Interfaces/MutterDisplayConfig.vala:70
 msgid "Flipped Counterclockwise"
-msgstr "Против часовой стрелки (отраженный)"
+msgstr "Против часовой стрелки (отражённый)"
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
@@ -104,7 +104,7 @@ msgstr "Зеркальный экран"
 
 #: src/Views/NightLightView.vala:32
 msgid "Night Light:"
-msgstr "Ночной режим:"
+msgstr "Ночной свет:"
 
 #: src/Views/NightLightView.vala:41
 msgid ""
@@ -140,11 +140,11 @@ msgstr "Цветовая температура:"
 
 #: src/Views/NightLightView.vala:77
 msgid "More Warm"
-msgstr "Более теплый"
+msgstr "Более тёплый"
 
 #: src/Views/NightLightView.vala:79
 msgid "Less Warm"
-msgstr "Менее теплый"
+msgstr "Менее тёплый"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
