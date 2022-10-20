@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-26 17:48+0000\n"
+"POT-Creation-Date: 2022-10-20 18:45+0000\n"
 "PO-Revision-Date: 2022-06-30 10:04+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
@@ -27,70 +27,71 @@ msgstr "Paramètres d'affichage"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configurer la résolution et la position des écrans et projecteurs"
 
-#: data/display.appdata.xml.in:12
-msgid "Improvements:"
-msgstr "Améliorations :"
-
-#: data/display.appdata.xml.in:14
-msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr "Déplacement des résolutions avec un ratio différent dans un sous-menu"
-
-#: data/display.appdata.xml.in:15
-msgid "Improve brightness in the dark style"
-msgstr "Amélioration de la luminosité avec le thème sombre"
-
-#: data/display.appdata.xml.in:17 data/display.appdata.xml.in:29
-#: data/display.appdata.xml.in:45
-msgid "Fixes:"
-msgstr "Corrections :"
-
-#: data/display.appdata.xml.in:19
-msgid "Show display name on all workspaces"
-msgstr "Affichage du nom de l'écran sur tous les espaces de travail"
-
-#: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
-#: data/display.appdata.xml.in:49
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:42 data/display.appdata.xml.in:58
 msgid "Minor updates:"
 msgstr "Mises à jour mineures :"
 
-#: data/display.appdata.xml.in:23 data/display.appdata.xml.in:35
-#: data/display.appdata.xml.in:51 data/display.appdata.xml.in:58
+#: data/display.appdata.xml.in:14 data/display.appdata.xml.in:32
+#: data/display.appdata.xml.in:44 data/display.appdata.xml.in:60
 #: data/display.appdata.xml.in:67 data/display.appdata.xml.in:76
+#: data/display.appdata.xml.in:85
 msgid "Updated translations"
 msgstr "Mise à jour des traductions"
 
-#: data/display.appdata.xml.in:31
+#: data/display.appdata.xml.in:21
+msgid "Improvements:"
+msgstr "Améliorations :"
+
+#: data/display.appdata.xml.in:23
+msgid "Move resolutions with a different aspect ratio to a submenu"
+msgstr "Déplacement des résolutions avec un ratio différent dans un sous-menu"
+
+#: data/display.appdata.xml.in:24
+msgid "Improve brightness in the dark style"
+msgstr "Amélioration de la luminosité avec le thème sombre"
+
+#: data/display.appdata.xml.in:26 data/display.appdata.xml.in:38
+#: data/display.appdata.xml.in:54
+msgid "Fixes:"
+msgstr "Corrections :"
+
+#: data/display.appdata.xml.in:28
+msgid "Show display name on all workspaces"
+msgstr "Affichage du nom de l'écran sur tous les espaces de travail"
+
+#: data/display.appdata.xml.in:40
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 "Nous nous sommes assurés que l'option « Utiliser cet écran » fonctionne "
 "correctement dans plus de cas"
 
-#: data/display.appdata.xml.in:41
+#: data/display.appdata.xml.in:50
 msgid "New features:"
 msgstr "Nouvelles fonctionnalités :"
 
-#: data/display.appdata.xml.in:43
+#: data/display.appdata.xml.in:52
 msgid "Support 3× scaling"
 msgstr "Prise en charge de la mise à l'échelle x3"
 
-#: data/display.appdata.xml.in:47
+#: data/display.appdata.xml.in:56
 msgid "Reliably detect accelerometers"
 msgstr "Détection fiable des accéléromètres"
 
-#: data/display.appdata.xml.in:65
+#: data/display.appdata.xml.in:74
 msgid "Fix 1px gaps between displays"
 msgstr "Correction de l'écart d'1px entre les écrans"
 
-#: data/display.appdata.xml.in:66
+#: data/display.appdata.xml.in:75
 msgid "Properly center rotated displays"
 msgstr "Les écrans retournés sont désormais correctement centrés"
 
-#: data/display.appdata.xml.in:74
+#: data/display.appdata.xml.in:83
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr ""
 "Amélioration des dispositions multi-écrans avec un meilleur accrochage et "
 "alignement"
 
-#: data/display.appdata.xml.in:75
+#: data/display.appdata.xml.in:84
 msgid "Fixed the placement of display name tags"
 msgstr "Correction de l'emplacement des étiquettes de nom d'écran"
