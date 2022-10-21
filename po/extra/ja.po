@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-26 17:48+0000\n"
+"POT-Creation-Date: 2022-10-20 18:45+0000\n"
 "PO-Revision-Date: 2022-04-09 01:40+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
@@ -27,69 +27,70 @@ msgstr "ディスプレイの設定"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "モニターとプロジェクターの解像度と位置を設定します"
 
-#: data/display.appdata.xml.in:12
-msgid "Improvements:"
-msgstr "改善点:"
-
-#: data/display.appdata.xml.in:14
-msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr "アスペクト比が異なる解像度はサブメニューに表示するように修正"
-
-#: data/display.appdata.xml.in:15
-msgid "Improve brightness in the dark style"
-msgstr "ダークスタイルでの輝度を改善"
-
-#: data/display.appdata.xml.in:17 data/display.appdata.xml.in:29
-#: data/display.appdata.xml.in:45
-msgid "Fixes:"
-msgstr "修正点:"
-
-#: data/display.appdata.xml.in:19
-msgid "Show display name on all workspaces"
-msgstr "ディスプレイ名をすべてのワークスペースで表示するように修正"
-
-#: data/display.appdata.xml.in:21 data/display.appdata.xml.in:33
-#: data/display.appdata.xml.in:49
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:30
+#: data/display.appdata.xml.in:42 data/display.appdata.xml.in:58
 msgid "Minor updates:"
 msgstr "そのほかのアップデート:"
 
-#: data/display.appdata.xml.in:23 data/display.appdata.xml.in:35
-#: data/display.appdata.xml.in:51 data/display.appdata.xml.in:58
+#: data/display.appdata.xml.in:14 data/display.appdata.xml.in:32
+#: data/display.appdata.xml.in:44 data/display.appdata.xml.in:60
 #: data/display.appdata.xml.in:67 data/display.appdata.xml.in:76
+#: data/display.appdata.xml.in:85
 msgid "Updated translations"
 msgstr "翻訳の更新"
 
-#: data/display.appdata.xml.in:31
+#: data/display.appdata.xml.in:21
+msgid "Improvements:"
+msgstr "改善点:"
+
+#: data/display.appdata.xml.in:23
+msgid "Move resolutions with a different aspect ratio to a submenu"
+msgstr "アスペクト比が異なる解像度はサブメニューに表示するように修正"
+
+#: data/display.appdata.xml.in:24
+msgid "Improve brightness in the dark style"
+msgstr "ダークスタイルでの輝度を改善"
+
+#: data/display.appdata.xml.in:26 data/display.appdata.xml.in:38
+#: data/display.appdata.xml.in:54
+msgid "Fixes:"
+msgstr "修正点:"
+
+#: data/display.appdata.xml.in:28
+msgid "Show display name on all workspaces"
+msgstr "ディスプレイ名をすべてのワークスペースで表示するように修正"
+
+#: data/display.appdata.xml.in:40
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 "\"このディスプレイを使う\" スイッチがより多くの環境で動作するように修正"
 
-#: data/display.appdata.xml.in:41
+#: data/display.appdata.xml.in:50
 msgid "New features:"
 msgstr "新機能:"
 
-#: data/display.appdata.xml.in:43
+#: data/display.appdata.xml.in:52
 msgid "Support 3× scaling"
 msgstr "3× スケールに対応"
 
-#: data/display.appdata.xml.in:47
+#: data/display.appdata.xml.in:56
 msgid "Reliably detect accelerometers"
 msgstr ""
 "加速度センサーの有無をより正確に判断し、適切な場合に回転ロックのオプションを"
 "表示するように修正"
 
-#: data/display.appdata.xml.in:65
+#: data/display.appdata.xml.in:74
 msgid "Fix 1px gaps between displays"
 msgstr "ディスプレイ間に 1px のずれがあった不具合を修正"
 
-#: data/display.appdata.xml.in:66
+#: data/display.appdata.xml.in:75
 msgid "Properly center rotated displays"
 msgstr "回転したディスプレイを正確に中央に表示するように修正"
 
-#: data/display.appdata.xml.in:74
+#: data/display.appdata.xml.in:83
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr "スナップや整列の精度の向上など、マルチディスプレイのレイアウトを改善"
 
-#: data/display.appdata.xml.in:75
+#: data/display.appdata.xml.in:84
 msgid "Fixed the placement of display name tags"
 msgstr "ディスプレイ名タグの配置を修正"
