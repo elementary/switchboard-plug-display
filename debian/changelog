@@ -1,3 +1,11 @@
+switchboard-plug-display (2.3.3) bionic; urgency=medium
+
+  * Release 2.3.3 (#334)
+  * Update translation files
+  * Update translation template
+
+ -- elementary OS Team <builds@elementary.io>  Wed, 26 Oct 2022 04:42:20 +0000
+
 switchboard-plug-display (2.3.2) bionic; urgency=medium
 
   * Release 2.3.2 (#329)
