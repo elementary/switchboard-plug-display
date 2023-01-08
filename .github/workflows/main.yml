@@ -4,30 +4,28 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
+
     container:
       image: elementary/docker:unstable
-    
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Install Dependencies
-      run: |
-        apt update
-        apt install -y meson libgranite-dev libswitchboard-2.0-dev valac
-    - name: Build
-      env:
-        DESTDIR: out
-      run: |
-        meson build
-        ninja -C build
-        ninja -C build install
+      - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          apt update
+          apt install -y meson libgranite-dev libswitchboard-2.0-dev valac
+      - name: Build
+        env:
+          DESTDIR: out
+        run: |
+          meson build
+          ninja -C build
+          ninja -C build install
 
   lint:
-
     runs-on: ubuntu-latest
-      
+
     steps:
-    - uses: actions/checkout@v1
-    - uses: elementary/actions/vala-lint@master
+      - uses: actions/checkout@v3
+      - uses: elementary/actions/vala-lint@master
