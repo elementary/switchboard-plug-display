@@ -22,6 +22,7 @@ public struct Display.Resolution {
     int width;
     int height;
     int aspect;
+    bool is_preferred;
 }
 
 public class Display.DisplayWidget : Gtk.EventBox {
@@ -174,13 +175,19 @@ public class Display.DisplayWidget : Gtk.EventBox {
             resolution_set.add (mode); // Ensures resolutions unique and sorted
         }
 
+        bool has_preferred = false;
+
         foreach (var mode in resolution_set) {
             var mode_width = mode.width;
             var mode_height = mode.height;
             max_width = int.max (max_width, mode_width);
             max_height = int.max (max_height, mode_height);
 
-            Resolution res = {mode_width, mode_height, mode_width * 10 / mode_height};
+            if (mode.is_preferred) {
+                has_preferred = true;
+            }
+
+            Resolution res = {mode_width, mode_height, mode_width * 10 / mode_height, mode.is_preferred};
             resolutions += res;
         }
 
@@ -192,7 +199,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 continue;
             }
 
-            if (resolution.aspect == native_ratio) {
+            if ((has_preferred && resolution.is_preferred) || (!has_preferred && (resolution.aspect == native_ratio))) {
                 // Recommended (native aspect ratio)
                 recommended_resolutions += resolution;
             } else {
