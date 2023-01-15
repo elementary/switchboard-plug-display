@@ -163,6 +163,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
         // Build resolution menu
         // First, get list of unique resolutions from available modes.
         Resolution[] resolutions = {};
+        Resolution[] preferred_resolutions = {};
         Resolution[] recommended_resolutions = {};
         Resolution[] other_resolutions = {};
         int max_width = -1;
@@ -175,17 +176,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
             resolution_set.add (mode); // Ensures resolutions unique and sorted
         }
 
-        bool has_preferred = false;
-
         foreach (var mode in resolution_set) {
             var mode_width = mode.width;
             var mode_height = mode.height;
             max_width = int.max (max_width, mode_width);
             max_height = int.max (max_height, mode_height);
-
-            if (mode.is_preferred) {
-                has_preferred = true;
-            }
 
             Resolution res = {mode_width, mode_height, mode_width * 10 / mode_height, mode.is_preferred};
             resolutions += res;
@@ -199,7 +194,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 continue;
             }
 
-            if ((has_preferred && resolution.is_preferred) || (!has_preferred && (resolution.aspect == native_ratio))) {
+            if (resolution.is_preferred) {
+                preferred_resolutions += resolution;
+            } else if (resolution.aspect == native_ratio) {
                 // Recommended (native aspect ratio)
                 recommended_resolutions += resolution;
             } else {
@@ -208,6 +205,16 @@ public class Display.DisplayWidget : Gtk.EventBox {
             }
 
             usable_resolutions++;
+        }
+
+        foreach (var resolution in preferred_resolutions) {
+            Gtk.TreeIter iter;
+            resolution_tree_store.append (out iter, null);
+            resolution_tree_store.set (iter,
+                ResolutionColumns.NAME, MonitorMode.get_resolution_string (resolution.width, resolution.height, false),
+                ResolutionColumns.WIDTH, resolution.width,
+                ResolutionColumns.HEIGHT, resolution.height
+            );
         }
 
         foreach (var resolution in recommended_resolutions) {
