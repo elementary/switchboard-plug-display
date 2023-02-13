@@ -23,6 +23,7 @@ public struct Display.Resolution {
     int height;
     int aspect;
     bool is_preferred;
+    bool is_current;
 }
 
 public class Display.DisplayWidget : Gtk.EventBox {
@@ -179,10 +180,12 @@ public class Display.DisplayWidget : Gtk.EventBox {
         foreach (var mode in resolution_set) {
             var mode_width = mode.width;
             var mode_height = mode.height;
-            max_width = int.max (max_width, mode_width);
-            max_height = int.max (max_height, mode_height);
+            if (mode.is_preferred) {
+                max_width = int.max (max_width, mode_width);
+                max_height = int.max (max_height, mode_height);
+            }
 
-            Resolution res = {mode_width, mode_height, mode_width * 10 / mode_height, mode.is_preferred};
+            Resolution res = {mode_width, mode_height, mode_width * 10 / mode_height, mode.is_preferred, mode.is_current};
             resolutions += res;
         }
 
@@ -194,7 +197,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 continue;
             }
 
-            if (resolution.is_preferred) {
+            if (resolution.is_preferred || resolution.is_current) {
                 preferred_resolutions += resolution;
             } else if (resolution.aspect == native_ratio) {
                 // Recommended (native aspect ratio)
@@ -485,6 +488,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     private bool set_active_resolution_from_current_mode () {
+        bool result = false;
         foreach (var mode in virtual_monitor.get_available_modes ()) {
             if (!mode.is_current) {
                 continue;
@@ -498,6 +502,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 );
                 if (mode.width == width && mode.height == height) {
                     resolution_combobox.set_active_iter (iter);
+                    result = true;
                     return true;
                 }
 
@@ -505,7 +510,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
             });
         }
 
-        return false;
+        return result;
     }
 
     private void on_vm_transform_changed () {
