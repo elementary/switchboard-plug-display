@@ -164,7 +164,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         // Build resolution menu
         // First, get list of unique resolutions from available modes.
         Resolution[] resolutions = {};
-        Resolution[] preferred_resolutions = {};
         Resolution[] recommended_resolutions = {};
         Resolution[] other_resolutions = {};
         int max_width = -1;
@@ -197,27 +196,13 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 continue;
             }
 
-            if (resolution.is_preferred || resolution.is_current) {
-                preferred_resolutions += resolution;
-            } else if (resolution.aspect == native_ratio) {
-                // Recommended (native aspect ratio)
+            if (resolution.is_preferred || resolution.is_current || resolution.aspect == native_ratio) {
                 recommended_resolutions += resolution;
             } else {
-                // Other
                 other_resolutions += resolution;
             }
 
             usable_resolutions++;
-        }
-
-        foreach (var resolution in preferred_resolutions) {
-            Gtk.TreeIter iter;
-            resolution_tree_store.append (out iter, null);
-            resolution_tree_store.set (iter,
-                ResolutionColumns.NAME, MonitorMode.get_resolution_string (resolution.width, resolution.height, false),
-                ResolutionColumns.WIDTH, resolution.width,
-                ResolutionColumns.HEIGHT, resolution.height
-            );
         }
 
         foreach (var resolution in recommended_resolutions) {
