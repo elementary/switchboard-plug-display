@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-20 18:45+0000\n"
-"PO-Revision-Date: 2021-04-26 17:00+0000\n"
+"PO-Revision-Date: 2023-02-17 17:25+0000\n"
 "Last-Translator: EpixMan <abdullahgtgt@gmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ar/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
@@ -48,15 +48,15 @@ msgstr ""
 
 #: src/DisplayPlug.vala:116
 msgid "Screen mirroring"
-msgstr ""
+msgstr "عرض الشاشة على الشاشات الاخرى"
 
 #: src/DisplayPlug.vala:117
 msgid "Scaling factor"
-msgstr ""
+msgstr "معامل التحجيم"
 
 #: src/DisplayPlug.vala:118
 msgid "Rotation lock"
-msgstr ""
+msgstr "قفل التدوير"
 
 #: src/DisplayPlug.vala:120
 msgid "Schedule"
@@ -64,19 +64,19 @@ msgstr ""
 
 #: src/DisplayPlug.vala:121
 msgid "Color temperature"
-msgstr ""
+msgstr "حرارة اللون"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
-msgstr ""
+msgstr "اتجاه عقارب الساعة"
 
 #: src/Interfaces/MutterDisplayConfig.vala:60
 msgid "Upside-down"
-msgstr ""
+msgstr "مقلوب"
 
 #: src/Interfaces/MutterDisplayConfig.vala:62
 msgid "Counterclockwise"
-msgstr ""
+msgstr "عكس اتجاه عقارب الساعة"
 
 #: src/Interfaces/MutterDisplayConfig.vala:64
 msgid "Flipped"
@@ -84,7 +84,7 @@ msgstr ""
 
 #: src/Interfaces/MutterDisplayConfig.vala:66
 msgid "Flipped Clockwise"
-msgstr ""
+msgstr "مقلوب باتجاه عقارب الساعة"
 
 #: src/Interfaces/MutterDisplayConfig.vala:68
 msgid "Flipped Upside-down"
@@ -96,7 +96,7 @@ msgstr ""
 
 #: src/Interfaces/MutterDisplayConfig.vala:72
 msgid "None"
-msgstr ""
+msgstr "لا شيء"
 
 #: src/Objects/VirtualMonitor.vala:77
 msgid "Mirrored Display"
