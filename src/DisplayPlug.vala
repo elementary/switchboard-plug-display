@@ -22,8 +22,8 @@
 
 public class Display.Plug : Switchboard.Plug {
     public static Plug plug;
-    private Gtk.Grid grid;
-    private Gtk.Stack? stack;
+    private Gtk.Box box;
+    private Gtk.Stack stack;
     private DisplaysView displays_view;
 
     public Plug () {
@@ -43,48 +43,54 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override Gtk.Widget get_widget () {
-        if (grid == null) {
+        if (box == null) {
             displays_view = new DisplaysView ();
 
-            grid = new Gtk.Grid ();
-            grid.orientation = Gtk.Orientation.VERTICAL;
+            stack = new Gtk.Stack ();
+            stack.add_titled (displays_view, "displays", _("Displays"));
+
+            var stack_switcher = new Gtk.StackSwitcher () {
+                halign = Gtk.Align.CENTER,
+                homogeneous = true,
+                margin_top = 12,
+                margin_end = 12,
+                margin_bottom = 12,
+                margin_start = 12,
+                stack = stack
+            };
+
+            box = new Gtk.Box (VERTICAL, 0);
+            box.add (stack_switcher);
+            box.add (stack);
+
+            stack.notify["visible-child"].connect (() => {
+                if (stack.visible_child == displays_view) {
+                    displays_view.displays_overlay.show_windows ();
+                } else {
+                    displays_view.displays_overlay.hide_windows ();
+                }
+            });
 
             var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", true);
             if (interface_settings_schema != null && interface_settings_schema.has_key ("night-light-enabled")) {
                 var nightlight_view = new NightLightView ();
-
-                stack = new Gtk.Stack ();
-                stack.add_titled (displays_view, "displays", _("Displays"));
                 stack.add_titled (nightlight_view, "night-light", _("Night Light"));
-
-                var stack_switcher = new Gtk.StackSwitcher ();
-                stack_switcher.halign = Gtk.Align.CENTER;
-                stack_switcher.homogeneous = true;
-                stack_switcher.margin = 12;
-                stack_switcher.stack = stack;
-
-                grid.add (stack_switcher);
-                grid.add (stack);
-
-                stack.notify["visible-child"].connect (() => {
-                    if (stack.visible_child == displays_view) {
-                        displays_view.displays_overlay.show_windows ();
-                    } else {
-                        displays_view.displays_overlay.hide_windows ();
-                    }
-                });
-            } else {
-                grid.add (displays_view);
             }
 
-            grid.show_all ();
+            var filters_settings_schema = SettingsSchemaSource.get_default ().lookup ("io.elementary.desktop.wm.accessibility", true);
+            if (filters_settings_schema != null && filters_settings_schema.has_key ("colorblindness-correction-filter")) {
+                var filters_view = new FiltersView ();
+                stack.add_titled (filters_view, "filters", _("Filters"));
+            }
+
+            box.show_all ();
         }
 
-        return grid;
+        return box;
     }
 
     public override void shown () {
-        if (stack != null && stack.visible_child == displays_view) {
+        if (stack.visible_child == displays_view) {
             displays_view.displays_overlay.show_windows ();
         } else {
             displays_view.displays_overlay.hide_windows ();
@@ -96,15 +102,19 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override void search_callback (string location) {
-        if (stack != null) {
-            if (location == "night-light") {
+        switch (location) {
+            case "night-light":
                 stack.visible_child_name = "night-light";
-            } else {
+                break;
+            case "filters":
+                stack.visible_child_name = "filters";
+                break;
+            default:
                 stack.visible_child_name = "displays";
-            }
-
-            stack.show_all ();
+                break;
         }
+
+        stack.show_all ();
     }
 
     // 'search' returns results like ("Keyboard → Behavior → Duration", "keyboard<sep>behavior")
@@ -119,6 +129,8 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s".printf (display_name, _("Night Light")), "night-light");
         search_results.set ("%s → %s → %s".printf (display_name, _("Night Light"), _("Schedule")), "night-light");
         search_results.set ("%s → %s → %s".printf (display_name, _("Night Light"), _("Color temperature")), "night-light");
+        search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Color Blindness")), "filters");
+        search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Monochrome")), "filters");
         return search_results;
     }
 }

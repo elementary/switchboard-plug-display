@@ -9,6 +9,7 @@ src/Objects/MonitorManager.vala
 src/Objects/Monitor.vala
 src/Views/NightLightView.vala
 src/Views/DisplaysView.vala
+src/Views/FiltersView.vala
 src/Widgets/DisplayWindow.vala
 src/Widgets/DisplayWidget.vala
 src/Widgets/DisplaysOverlay.vala

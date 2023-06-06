@@ -1,0 +1,66 @@
+colorswatch {
+    border: 1px solid alpha(black, 0.2);
+    border-radius: 50%;
+    min-height: 1.75em;
+    min-width: 1.75em;
+}
+
+colorswatch {
+    margin-left: 0.5em;
+}
+
+colorswatch.pink {
+    background-color: @BUBBLEGUM_500;
+    box-shadow:
+        inset 0 1px 2px @BUBBLEGUM_700,
+        0 1px 1px @highlight_color;
+}
+
+colorswatch.red {
+    background-color: @STRAWBERRY_500;
+    box-shadow:
+        inset 0 1px 2px @STRAWBERRY_700,
+        0 1px 1px @highlight_color;
+}
+
+colorswatch.orange {
+    background-color: @ORANGE_500;
+    box-shadow:
+        inset 0 1px 2px @ORANGE_700,
+        0 1px 1px @highlight_color;
+}
+
+colorswatch.yellow {
+    background-color: @BANANA_500;
+    box-shadow:
+        inset 0 1px 2px @BANANA_700,
+        0 1px 1px @highlight_color;
+}
+
+colorswatch.green {
+    background-color: @LIME_500;
+    box-shadow:
+        inset 0 1px 2px @LIME_700,
+        0 1px 1px @highlight_color;
+}
+
+colorswatch.teal {
+    background-color: @MINT_500;
+    box-shadow:
+        inset 0 1px 2px @MINT_700,
+        0 1px 1px @highlight_color;
+}
+
+colorswatch.blue {
+    background-color: @BLUEBERRY_500;
+    box-shadow:
+        inset 0 1px 2px @BLUEBERRY_700,
+        0 1px 1px @highlight_color;
+}
+
+colorswatch.purple {
+    background-color: @GRAPE_500;
+    box-shadow:
+        inset 0 1px 2px @GRAPE_700,
+        0 1px 1px @highlight_color;
+}

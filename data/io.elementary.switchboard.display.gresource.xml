@@ -2,5 +2,6 @@
 <gresources>
   <gresource prefix="/io/elementary/switchboard/display">
     <file compressed="true">Display.css</file>
+    <file compressed="true">Filters.css</file>
   </gresource>
 </gresources>
