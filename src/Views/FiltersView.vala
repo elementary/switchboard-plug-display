@@ -125,7 +125,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var grayscale_subtitle = new Gtk.Label (
-            _("Reducing color can help avoid distractions and alleviate screen addiction.")
+            _("Reducing color can help avoid distractions and alleviate screen addiction")
         ) {
             wrap = true,
             xalign = 0
