@@ -37,8 +37,8 @@ public class Display.FiltersView : Gtk.Box {
 
         var protanopia_box = new Gtk.Box (HORIZONTAL, 0);
         protanopia_box.add (protanopia_label);
-        protanopia_box.add (new ColorSwatch ("green") { valign = Gtk.Align.CENTER });
-        protanopia_box.add (new ColorSwatch ("red") { valign = Gtk.Align.CENTER });
+        protanopia_box.add (new ColorSwatch ("green") { valign = CENTER });
+        protanopia_box.add (new ColorSwatch ("red") { valign = CENTER });
 
         var protanopia_radio = new Gtk.RadioButton.from_widget (none_radio) {
             child = protanopia_box
@@ -55,7 +55,7 @@ public class Display.FiltersView : Gtk.Box {
 
         var protanopia_hc_box = new Gtk.Box (HORIZONTAL, 0);
         protanopia_hc_box.add (protanopia_hc_label);
-        protanopia_hc_box.add (new ColorSwatch ("orange") { valign = Gtk.Align.CENTER });
+        protanopia_hc_box.add (new ColorSwatch ("orange") { valign = CENTER });
 
         var protanopia_hc_radio = new Gtk.RadioButton.from_widget (none_radio) {
             child = protanopia_hc_box
@@ -72,8 +72,8 @@ public class Display.FiltersView : Gtk.Box {
 
         var deuteranopia_box = new Gtk.Box (HORIZONTAL, 0);
         deuteranopia_box.add (deuteranopia_label);
-        deuteranopia_box.add (new ColorSwatch ("teal") { valign = Gtk.Align.CENTER });
-        deuteranopia_box.add (new ColorSwatch ("pink") { valign = Gtk.Align.CENTER });
+        deuteranopia_box.add (new ColorSwatch ("teal") { valign = CENTER });
+        deuteranopia_box.add (new ColorSwatch ("pink") { valign = CENTER });
 
         var deuteranopia_radio = new Gtk.RadioButton.from_widget (none_radio) {
             child = deuteranopia_box
@@ -90,7 +90,7 @@ public class Display.FiltersView : Gtk.Box {
 
         var deuteranopia_hc_box = new Gtk.Box (HORIZONTAL, 0);
         deuteranopia_hc_box.add (deuteranopia_hc_label);
-        deuteranopia_hc_box.add (new ColorSwatch ("purple") { valign = Gtk.Align.CENTER });
+        deuteranopia_hc_box.add (new ColorSwatch ("purple") { valign = CENTER });
 
         var deuteranopia_hc_radio = new Gtk.RadioButton.from_widget (none_radio) {
             child = deuteranopia_hc_box
@@ -107,8 +107,8 @@ public class Display.FiltersView : Gtk.Box {
 
         var tritanopia_box = new Gtk.Box (HORIZONTAL, 0);
         tritanopia_box.add (tritanopia_label);
-        tritanopia_box.add (new ColorSwatch ("yellow") { valign = Gtk.Align.CENTER });
-        tritanopia_box.add (new ColorSwatch ("blue") { valign = Gtk.Align.CENTER });
+        tritanopia_box.add (new ColorSwatch ("yellow") { valign = CENTER });
+        tritanopia_box.add (new ColorSwatch ("blue") { valign = CENTER });
 
         var tritanopia_radio = new Gtk.RadioButton.from_widget (none_radio) {
             child = tritanopia_box
