@@ -101,7 +101,6 @@ public class Display.NightLightView : Gtk.Grid {
         attach (status_switch, 1, 0, 1, 1);
         attach (description_label, 1, 1, 1, 1);
         attach (content_grid, 0, 2, 2, 1);
-        show_all ();
 
         var size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
         size_group.add_widget (status_label);

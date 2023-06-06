@@ -5,7 +5,22 @@
 
 public class Display.FiltersView : Gtk.Box {
     construct {
-        var colorblindness_header = new Granite.HeaderLabel (_("Color Blindness Correction"));
+        var colorblindness_header = new Granite.HeaderLabel (_("Color Deficiency Assistance"));
+
+        var colorblindness_subtitle = new Gtk.Label (
+            _("A filter can be applied to the entire display to help differentiate between colors")
+        ) {
+            wrap = true,
+            xalign = 0
+        };
+        colorblindness_subtitle.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+
+        // FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+        var colorblindness_headerbox = new Gtk.Box (VERTICAL, 0) {
+            margin_bottom = 3
+        };
+        colorblindness_headerbox.add (colorblindness_header);
+        colorblindness_headerbox.add (colorblindness_subtitle);
 
         var none_radio = new Gtk.RadioButton.with_label (null, _("None"));
 
@@ -104,11 +119,11 @@ public class Display.FiltersView : Gtk.Box {
             hexpand = true,
             margin_top = 3
         };
-        colorblindness_scale.add_mark (0.15, Gtk.PositionType.BOTTOM, _("Less Correction"));
-        colorblindness_scale.add_mark (1, Gtk.PositionType.BOTTOM, _("More Correction"));
+        colorblindness_scale.add_mark (0.15, Gtk.PositionType.BOTTOM, _("Less Assistance"));
+        colorblindness_scale.add_mark (1, Gtk.PositionType.BOTTOM, _("More Assistance"));
 
         var colorblindness_box = new Gtk.Box (VERTICAL, 6);
-        colorblindness_box.add (colorblindness_header);
+        colorblindness_box.add (colorblindness_headerbox);
         colorblindness_box.add (none_radio);
         colorblindness_box.add (protanopia_radio);
         colorblindness_box.add (protanopia_hc_radio);

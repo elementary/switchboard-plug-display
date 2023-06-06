@@ -98,7 +98,6 @@ public class Display.DisplaysView : Gtk.Grid {
             add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
             add (displays_overlay);
             add (action_bar);
-            show_all ();
 
             displays_overlay.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;
