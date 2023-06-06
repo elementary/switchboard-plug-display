@@ -10,7 +10,7 @@ public class Display.FiltersView : Gtk.Box {
         var none_radio = new Gtk.RadioButton.with_label (null, _("None"));
 
         var protanopia_label = new Gtk.Label (
-            _("Red/Green"+ "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP).printf (_("Protanopia"))
+            _("Red/Green") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Protanopia"))
         ) {
             halign = START,
             hexpand = true,
@@ -28,7 +28,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var protanopia_hc_label = new Gtk.Label (
-            _("Red/Green — High Contrast"+ "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP).printf (_("Protanopia"))
+            _("Red/Green — High Contrast") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Protanopia"))
         ) {
             halign = START,
             hexpand = true,
@@ -45,7 +45,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var deuteranopia_label = new Gtk.Label (
-            _("Green/Red"+ "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP).printf (_("Deuteranopia"))
+            _("Green/Red") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Deuteranopia"))
         ) {
             halign = START,
             hexpand = true,
@@ -63,7 +63,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var deuteranopia_hc_label = new Gtk.Label (
-            _("Green/Red — High Contrast"+ "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP).printf (_("Deuteranopia"))
+            _("Green/Red — High Contrast") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Deuteranopia"))
         ) {
             halign = START,
             hexpand = true,
@@ -80,7 +80,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var tritanopia_label = new Gtk.Label (
-            _("Blue/Yellow"+ "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP).printf (_("Tritanopia"))
+            _("Blue/Yellow") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Tritanopia"))
         ) {
             halign = START,
             hexpand = true,
