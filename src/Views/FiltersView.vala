@@ -121,8 +121,8 @@ public class Display.FiltersView : Gtk.Box {
             hexpand = true,
             margin_top = 3
         };
-        colorblindness_scale.add_mark (0.15, Gtk.PositionType.BOTTOM, _("Less Assistance"));
-        colorblindness_scale.add_mark (1, Gtk.PositionType.BOTTOM, _("More Assistance"));
+        colorblindness_scale.add_mark (0.15, BOTTOM, _("Less Assistance"));
+        colorblindness_scale.add_mark (1, BOTTOM, _("More Assistance"));
 
         var colorblindness_box = new Gtk.Box (VERTICAL, 6);
         colorblindness_box.add (colorblindness_headerbox);
@@ -157,8 +157,8 @@ public class Display.FiltersView : Gtk.Box {
             hexpand = true,
             margin_top = 6
         };
-        grayscale_scale.add_mark (0.15, Gtk.PositionType.BOTTOM, _("More Color"));
-        grayscale_scale.add_mark (1, Gtk.PositionType.BOTTOM, _("Less Color"));
+        grayscale_scale.add_mark (0.15, BOTTOM, _("More Color"));
+        grayscale_scale.add_mark (1, BOTTOM, _("Less Color"));
 
         var grayscale_grid = new Gtk.Grid () {
             column_spacing = 12
