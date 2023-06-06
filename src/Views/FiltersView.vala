@@ -141,6 +141,7 @@ public class Display.FiltersView : Gtk.Box {
             valign = CENTER
         };
 
+        // FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
         var grayscale_subtitle = new Gtk.Label (
             _("Reducing color can help avoid distractions and alleviate screen addiction")
         ) {
