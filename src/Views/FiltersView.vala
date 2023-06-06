@@ -4,6 +4,8 @@
  */
 
 public class Display.FiltersView : Gtk.Box {
+    private const string TEXT_MARKUP = "%s\n<span size='smaller' alpha='75%'>%s</span>";
+
     construct {
         var colorblindness_header = new Granite.HeaderLabel (_("Color Deficiency Assistance"));
 
@@ -25,7 +27,7 @@ public class Display.FiltersView : Gtk.Box {
         var none_radio = new Gtk.RadioButton.with_label (null, _("None"));
 
         var protanopia_label = new Gtk.Label (
-            _("Red/Green") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Protanopia"))
+            TEXT_MARKUP.printf (_("Red/Green"), _("Protanopia"))
         ) {
             halign = START,
             hexpand = true,
@@ -43,7 +45,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var protanopia_hc_label = new Gtk.Label (
-            _("Red/Green — High Contrast") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Protanopia"))
+            TEXT_MARKUP.printf (_("Red/Green — High Contrast"), _("Protanopia"))
         ) {
             halign = START,
             hexpand = true,
@@ -60,7 +62,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var deuteranopia_label = new Gtk.Label (
-            _("Green/Red") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Deuteranopia"))
+            TEXT_MARKUP.printf (_("Green/Red"), _("Deuteranopia"))
         ) {
             halign = START,
             hexpand = true,
@@ -78,7 +80,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var deuteranopia_hc_label = new Gtk.Label (
-            _("Green/Red — High Contrast") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Deuteranopia"))
+            TEXT_MARKUP.printf (_("Green/Red — High Contrast"), _("Deuteranopia"))
         ) {
             halign = START,
             hexpand = true,
@@ -95,7 +97,7 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var tritanopia_label = new Gtk.Label (
-            _("Blue/Yellow") + "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (_("Tritanopia"))
+            TEXT_MARKUP.printf (_("Blue/Yellow"), _("Tritanopia"))
         ) {
             halign = START,
             hexpand = true,
