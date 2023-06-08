@@ -97,6 +97,7 @@ public class Display.NightLightView : Gtk.Box {
         var settings = new Settings ("org.gnome.settings-daemon.plugins.color");
         settings.bind ("night-light-enabled", nightlight_switch, "active", DEFAULT);
         settings.bind ("night-light-enabled", schedule_grid, "sensitive", GET);
+        settings.bind ("night-light-enabled", temp_scale, "sensitive", GET);
         settings.bind ("night-light-schedule-automatic", schedule_sunset_radio, "active", DEFAULT);
         settings.bind ("night-light-schedule-automatic", schedule_manual_radio, "active", INVERT_BOOLEAN);
         settings.bind ("night-light-schedule-automatic", schedule_manual_box, "sensitive", GET | INVERT_BOOLEAN);
