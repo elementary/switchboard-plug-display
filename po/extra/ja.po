@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-13 03:23+0000\n"
-"PO-Revision-Date: 2022-04-09 01:40+0000\n"
+"PO-Revision-Date: 2023-06-15 03:07+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -35,7 +35,7 @@ msgstr "そのほかのアップデート:"
 
 #: data/display.appdata.xml.in:14
 msgid "Redesign Night Light View"
-msgstr ""
+msgstr "“夜間モード”画面のデザインを変更"
 
 #: data/display.appdata.xml.in:15 data/display.appdata.xml.in:27
 #: data/display.appdata.xml.in:45 data/display.appdata.xml.in:57
