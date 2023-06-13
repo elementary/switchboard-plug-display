@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2019-01-25 17:54+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/switchboard/"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Konfigurer opløsning og placering af skærme og projektorer"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Nattelys"
 
@@ -57,7 +57,7 @@ msgstr "Skaleringsfaktor"
 msgid "Rotation lock"
 msgstr "Rotationslås"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Tidsplan"
 
@@ -101,49 +101,38 @@ msgstr "Ingen"
 msgid "Mirrored Display"
 msgstr "Spejlet Skærm"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Nattelys:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "Nattelys gør skærmens farver varmere. Dette kan hjælpe med at forebygge "
 "overanstrengelse af øjnene samt søvnbesvær."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Tidsplan:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "Solnedgang til Solopgang"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Manuel"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Fra:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Til:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Farvetemperatur:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Mere Varm"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Mindre Varm"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "Solnedgang til Solopgang"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Fra:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Til:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -173,44 +162,56 @@ msgstr "Anvend"
 msgid "Rotation Lock:"
 msgstr "Rotationslås:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Brug denne skærm:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Opløsning:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Skærmrotation:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Opdateringshastighed:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Konfigurér skærm"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "Er den primære skærm"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Angiv som primær skærm"
+
+#~ msgid "Night Light:"
+#~ msgstr "Nattelys:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Tidsplan:"
+
+#~ msgid "Manual"
+#~ msgstr "Manuel"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Farvetemperatur:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Pixel Fordoblet"

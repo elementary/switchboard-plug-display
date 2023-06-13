@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2020-03-01 14:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "調整解析度與螢幕、投影機位置等設定"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "夜光"
 
@@ -57,7 +57,7 @@ msgstr "縮放係數"
 msgid "Rotation lock"
 msgstr "旋轉鎖定"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "排程"
 
@@ -101,47 +101,36 @@ msgstr "無"
 msgid "Mirrored Display"
 msgstr "鏡射顯示器"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "夜光："
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr "夜光模式讓您的顯示器看起來更加暖色。這能改善眼睛疲勞和失眠的可能。"
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "排程："
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "日落到日出"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "手動"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "從："
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "到："
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "色溫："
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "更多暖色"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "更少暖色"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "日落到日出"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "從："
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "到："
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -171,44 +160,56 @@ msgstr "套用"
 msgid "Rotation Lock:"
 msgstr "旋轉鎖定："
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "使用這個顯示器："
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "解析度："
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "螢幕旋轉："
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "更新頻率："
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "調整顯示器設定"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "是主要顯示器"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "設為主要顯示器"
+
+#~ msgid "Night Light:"
+#~ msgstr "夜光："
+
+#~ msgid "Schedule:"
+#~ msgstr "排程："
+
+#~ msgid "Manual"
+#~ msgstr "手動"
+
+#~ msgid "Color temperature:"
+#~ msgstr "色溫："
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "雙倍像素"

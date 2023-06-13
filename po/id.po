@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2023-05-23 19:07+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
 "io>\n"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Konfigurasikan resolusi dan posisi dari monitor dan proyektor"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Cahaya Malam"
 
@@ -57,7 +57,7 @@ msgstr "Faktor penskalaan"
 msgid "Rotation lock"
 msgstr "Kunci rotasi"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Jadwal"
 
@@ -101,49 +101,38 @@ msgstr "Nihil"
 msgid "Mirrored Display"
 msgstr "Tampilan Cermin"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Cahaya Malam:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "Cahaya Malam membuat warna tampilan Anda lebih hangat. Ini dapat membantu "
 "mencegah ketegangan mata dan sulit tidur."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Jadwal:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "Matahari terbenam sampai Matahari terbit"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Manual"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Dari:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Sampai:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Temperatur warna:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Lebih Hangat"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Sedikit Hangat"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "Matahari terbenam sampai Matahari terbit"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Dari:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Sampai:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -173,42 +162,54 @@ msgstr "Terapkan"
 msgid "Rotation Lock:"
 msgstr "Kunci Rotasi:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
 msgstr "Gunakan tampilan ini:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Resolusi:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Rotasi Layar:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Kecepatan Refresh:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr "Lainnya…"
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Konfigurasi tampilan"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "Adalah tampilan utama"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Atur sebagai tampilan utama"
+
+#~ msgid "Night Light:"
+#~ msgstr "Cahaya Malam:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Jadwal:"
+
+#~ msgid "Manual"
+#~ msgstr "Manual"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Temperatur warna:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Pixel Digandakan"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2021-09-14 17:29+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/switchboard/"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Nastavujte rozlíšenie a pozíciu monitorov a projektorov"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Nočné svetlo"
 
@@ -57,7 +57,7 @@ msgstr "Mierka"
 msgid "Rotation lock"
 msgstr "Zámok otáčania"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Rozvrh"
 
@@ -101,49 +101,38 @@ msgstr "Žiadne"
 msgid "Mirrored Display"
 msgstr "Zrkadlená obrazovka"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Nočné svetlo:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "Funkcia Nočné svetlo zmení farby vašej obrazovky na teplejšie, čo môže "
 "pomôcť zabrániť namáhaniu očí a nespavosti."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Rozvrh:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "Od západu po východ slnka"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Ručný"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Od:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Do:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Teplota farieb:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Teplejšia"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Menej teplá"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "Od západu po východ slnka"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Od:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Do:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -173,42 +162,54 @@ msgstr "Použiť"
 msgid "Rotation Lock:"
 msgstr "Zámok otočenia:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
 msgstr "Použiť túto obrazovku:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Rozlíšenie:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Otočenie obrazovky:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Obnovovacia frekvencia:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr "Iné…"
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Nastaviť obrazovku"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "Je hlavná obrazovka"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Nastaviť ako hlavnú obrazovku"
+
+#~ msgid "Night Light:"
+#~ msgstr "Nočné svetlo:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Rozvrh:"
+
+#~ msgid "Manual"
+#~ msgstr "Ručný"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Teplota farieb:"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotácia:"

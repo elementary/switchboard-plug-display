@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2020-10-01 21:15+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Kurdish <https://l10n.elementary.io/projects/switchboard/"
@@ -24,7 +24,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr ""
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Rotation lock"
 msgstr "Gere:"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr ""
 
@@ -101,47 +101,32 @@ msgstr "Tu yek"
 msgid "Mirrored Display"
 msgstr "Awêne Nîşane:"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr ""
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr ""
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr ""
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Bi Destan"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Ji:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Ji bo:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr ""
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr ""
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr ""
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr ""
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Ji:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Ji bo:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -172,43 +157,46 @@ msgstr "Bisepîne"
 msgid "Rotation Lock:"
 msgstr "Gere:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Xuyakirin:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 #, fuzzy
 msgid "Screen Rotation:"
 msgstr "Gere:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Nîşan mîheng bike"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr ""
+
+#~ msgid "Manual"
+#~ msgstr "Bi Destan"
 
 #~ msgid "Rotation:"
 #~ msgstr "Gere:"

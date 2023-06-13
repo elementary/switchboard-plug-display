@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2021-09-04 15:00+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/switchboard/"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configureu la resolució i la posició de monitors i projectors."
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Llum de nit"
 
@@ -57,7 +57,7 @@ msgstr "Factor d'escalatge"
 msgid "Rotation lock"
 msgstr "Bloqueig de la rotació"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Planificació"
 
@@ -101,49 +101,38 @@ msgstr "Cap"
 msgid "Mirrored Display"
 msgstr "Pantalla replicada"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Llum de nit:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "La llum de nit fa que els colors de la pantalla siguin més càlids. Això pot "
 "ajudar a prevenir el cansament de la vista i l'insomni."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Planificació:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "De la posta a l'alba"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Manual"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "De:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "A:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Temperatura del color:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Més càlid"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Menys càlid"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "De la posta a l'alba"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "De:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "A:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -173,42 +162,54 @@ msgstr "Aplica-ho"
 msgid "Rotation Lock:"
 msgstr "Bloqueig de la rotació:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
 msgstr "Usa aquesta pantalla:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Resolució:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Rotació de la pantalla:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Freqüència de mostratge:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr "Altres…"
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Configura la pantalla"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "És la pantalla primària"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Estableix com a pantalla primària"
+
+#~ msgid "Night Light:"
+#~ msgstr "Llum de nit:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Planificació:"
+
+#~ msgid "Manual"
+#~ msgstr "Manual"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Temperatura del color:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Píxel doblat"

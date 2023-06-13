@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2021-09-02 16:31+0000\n"
 "Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Projektör ve ekranların, pozisyon ve çözünürlüklerini yapılandırın"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Gece Işığı"
 
@@ -57,7 +57,7 @@ msgstr "Ölçekleme oranı"
 msgid "Rotation lock"
 msgstr "Döndürme kilidi"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Zamanlama"
 
@@ -101,49 +101,38 @@ msgstr "Yok"
 msgid "Mirrored Display"
 msgstr "Yansıtılmış Ekran"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Gece Işığı:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "Gece Işığı, ekranınızın renklerini daha sıcak hale getirir. Bu göz "
 "yorgunluğunu ve uykusuzluğu önlemeye yardımcı olabilir."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Zamanlama:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "Otomatik"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "El ile"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Başlangıç:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Bitiş:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Renk sıcaklığı:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Daha Sıcak"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Daha Soğuk"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "Otomatik"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Başlangıç:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Bitiş:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -173,42 +162,54 @@ msgstr "Uygula"
 msgid "Rotation Lock:"
 msgstr "Döndürme Kilidi:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
 msgstr "Bu ekranı kullan:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Çözünürlük:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Ekran Döndürme:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Yenileme Hızı:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr "Diğer…"
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Ekranı yapılandır"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "Birincil ekran"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Birincil ekran olarak ayarla"
+
+#~ msgid "Night Light:"
+#~ msgstr "Gece Işığı:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Zamanlama:"
+
+#~ msgid "Manual"
+#~ msgstr "El ile"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Renk sıcaklığı:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Pixel Doubled"

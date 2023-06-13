@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2019-05-15 03:02+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.elementary.io/projects/switchboard/"
@@ -30,7 +30,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Konfigūruoti monitorių ir projektorių raišką bei poziciją"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Naktinis apšvietimas"
 
@@ -58,7 +58,7 @@ msgstr "Mastelio keitimo faktorius"
 msgid "Rotation lock"
 msgstr "Pasukimo užraktas"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Tvarkaraštis"
 
@@ -102,49 +102,38 @@ msgstr "Nėra"
 msgid "Mirrored Display"
 msgstr "Dubliuotas ekranas"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Naktinis apšvietimas:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "Naktinis apšvietimas padaro ekrano spalvas šiltesnes. Tai gali padėti "
 "sumažinti akių įtampą ir nemigą."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Tvarkaraštis:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "Nuo saulėlydžio iki saulėtekio"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Rankinis"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Nuo:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Iki:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Spalvos temperatūra:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Šiltesnė"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Šaltesnė"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "Nuo saulėlydžio iki saulėtekio"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Nuo:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Iki:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -174,44 +163,56 @@ msgstr "Taikyti"
 msgid "Rotation Lock:"
 msgstr "Pasukimo užraktas:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Naudoti šį ekraną:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Raiška:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Ekrano pasukimas:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Atnaujinimo dažnis:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Konfigūruoti ekraną"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "Yra pirminis ekranas"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Nustatyti kaip pirminį ekraną"
+
+#~ msgid "Night Light:"
+#~ msgstr "Naktinis apšvietimas:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Tvarkaraštis:"
+
+#~ msgid "Manual"
+#~ msgstr "Rankinis"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Spalvos temperatūra:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Padvigubinti pikseliai"

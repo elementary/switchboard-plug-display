@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2021-09-01 09:30+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Määritä näytön tarkkuus ja näyttöjen sijainnit"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Yövalo"
 
@@ -57,7 +57,7 @@ msgstr "Skaalauskerroin"
 msgid "Rotation lock"
 msgstr "Kiertolukko"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Aikataulu"
 
@@ -101,49 +101,38 @@ msgstr "Ei mitään"
 msgid "Mirrored Display"
 msgstr "Peilattu näyttö"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Yövalo:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "Yövalo tekee näytön väreistä tavallista lämpimämpiä. Se saattaa estää "
 "silmien väsymistä ja unettomuutta."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Aikataulu:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "Auringonlaskusta auringonnousuun"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Manuaalinen"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Alkaa:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Päättyy:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Värilämpötila:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Enemmän lämpöä"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Vähemmän lämpöä"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "Auringonlaskusta auringonnousuun"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Alkaa:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Päättyy:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -173,42 +162,54 @@ msgstr "Toteuta"
 msgid "Rotation Lock:"
 msgstr "Kiertolukko:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
 msgstr "Käytä tätä näyttöä:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Resoluutio:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Näytön kierto:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Päivitystaajuus:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr "Muu…"
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Määritä näytön asetukset"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "On ensisijainen näyttö"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Aseta ensisijaisesi näytöksi"
+
+#~ msgid "Night Light:"
+#~ msgstr "Yövalo:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Aikataulu:"
+
+#~ msgid "Manual"
+#~ msgstr "Manuaalinen"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Värilämpötila:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Pikseli tuplattu"
