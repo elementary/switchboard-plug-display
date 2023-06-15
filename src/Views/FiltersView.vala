@@ -10,7 +10,7 @@ public class Display.FiltersView : Gtk.Box {
         var colorblindness_header = new Granite.HeaderLabel (_("Color Deficiency Assistance"));
 
         var colorblindness_subtitle = new Gtk.Label (
-            _("A filter can be applied to the entire display to help differentiate between colors")
+            _("Each of the circles below should appear as a different color. A filter can be applied to the entire display to help differentiate between colors.")
         ) {
             wrap = true,
             xalign = 0
@@ -38,6 +38,7 @@ public class Display.FiltersView : Gtk.Box {
         var protanopia_box = new Gtk.Box (HORIZONTAL, 0);
         protanopia_box.add (protanopia_label);
         protanopia_box.add (new ColorSwatch ("green"));
+        protanopia_box.add (new ColorSwatch ("orange"));
         protanopia_box.add (new ColorSwatch ("red"));
 
         var protanopia_radio = new Gtk.RadioButton.from_widget (none_radio) {
@@ -55,7 +56,6 @@ public class Display.FiltersView : Gtk.Box {
 
         var protanopia_hc_box = new Gtk.Box (HORIZONTAL, 0);
         protanopia_hc_box.add (protanopia_hc_label);
-        protanopia_hc_box.add (new ColorSwatch ("orange"));
 
         var protanopia_hc_radio = new Gtk.RadioButton.from_widget (none_radio) {
             child = protanopia_hc_box
@@ -73,6 +73,7 @@ public class Display.FiltersView : Gtk.Box {
         var deuteranopia_box = new Gtk.Box (HORIZONTAL, 0);
         deuteranopia_box.add (deuteranopia_label);
         deuteranopia_box.add (new ColorSwatch ("teal"));
+        deuteranopia_box.add (new ColorSwatch ("purple"));
         deuteranopia_box.add (new ColorSwatch ("pink"));
 
         var deuteranopia_radio = new Gtk.RadioButton.from_widget (none_radio) {
@@ -90,7 +91,6 @@ public class Display.FiltersView : Gtk.Box {
 
         var deuteranopia_hc_box = new Gtk.Box (HORIZONTAL, 0);
         deuteranopia_hc_box.add (deuteranopia_hc_label);
-        deuteranopia_hc_box.add (new ColorSwatch ("purple"));
 
         var deuteranopia_hc_radio = new Gtk.RadioButton.from_widget (none_radio) {
             child = deuteranopia_hc_box
@@ -176,7 +176,6 @@ public class Display.FiltersView : Gtk.Box {
         clamp.add (box);
 
         add (clamp);
-        halign = CENTER;
         margin_start = 12;
         margin_end = 12;
         margin_bottom = 12;

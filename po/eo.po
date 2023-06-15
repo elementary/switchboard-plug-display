@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2019-07-15 00:28+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/switchboard/"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Agordi ekrandistingivon kaj pozicion inter ekranoj kaj projekciiloj"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Nokta lumigo"
 
@@ -57,7 +57,7 @@ msgstr "Skalofaktoro"
 msgid "Rotation lock"
 msgstr "Turna bloko"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Tempoplano"
 
@@ -101,49 +101,38 @@ msgstr "Nenio"
 msgid "Mirrored Display"
 msgstr "Duobligi la ekranon"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Nokta lumo:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "Nokta lumigo kolorigas vian ekranon pli varma. Tio povas antaŭmalhelpi "
 "okulan lacigon kaj sendormecon."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Tempoplano:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "De krepusko ĝis aŭroro"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Mana"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "De:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Ĝis:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Kolor-temperaturo:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Pli varma"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Malpli varma"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "De krepusko ĝis aŭroro"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "De:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Ĝis:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -173,44 +162,56 @@ msgstr "Efektivigi"
 msgid "Rotation Lock:"
 msgstr "Turna bloko:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Uzi la ekranon:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Distingivo:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Ekrana turno:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Refreŝiga rendimento:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Agordi ekranon"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "Estas la ĉefa ekrano"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Difini kiel ĉefan ekranon"
+
+#~ msgid "Night Light:"
+#~ msgstr "Nokta lumo:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Tempoplano:"
+
+#~ msgid "Manual"
+#~ msgstr "Mana"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Kolor-temperaturo:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Duobligitaj rastrumeroj"

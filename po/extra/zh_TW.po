@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2020-03-01 14:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -27,67 +27,72 @@ msgstr "顯示器設定"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "調整解析度與螢幕、投影機位置等設定"
 
-#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:30
-#: data/display.appdata.xml.in:42 data/display.appdata.xml.in:58
+#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:25
+#: data/display.appdata.xml.in:43 data/display.appdata.xml.in:55
+#: data/display.appdata.xml.in:71
 msgid "Minor updates:"
 msgstr ""
 
-#: data/display.appdata.xml.in:14 data/display.appdata.xml.in:32
-#: data/display.appdata.xml.in:44 data/display.appdata.xml.in:60
-#: data/display.appdata.xml.in:67 data/display.appdata.xml.in:76
-#: data/display.appdata.xml.in:85
+#: data/display.appdata.xml.in:14
+msgid "Redesign Night Light View"
+msgstr ""
+
+#: data/display.appdata.xml.in:15 data/display.appdata.xml.in:27
+#: data/display.appdata.xml.in:45 data/display.appdata.xml.in:57
+#: data/display.appdata.xml.in:73 data/display.appdata.xml.in:80
+#: data/display.appdata.xml.in:89 data/display.appdata.xml.in:98
 msgid "Updated translations"
 msgstr "翻譯更新"
 
-#: data/display.appdata.xml.in:21
+#: data/display.appdata.xml.in:34
 msgid "Improvements:"
 msgstr ""
 
-#: data/display.appdata.xml.in:23
+#: data/display.appdata.xml.in:36
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr ""
 
-#: data/display.appdata.xml.in:24
+#: data/display.appdata.xml.in:37
 msgid "Improve brightness in the dark style"
 msgstr ""
 
-#: data/display.appdata.xml.in:26 data/display.appdata.xml.in:38
-#: data/display.appdata.xml.in:54
+#: data/display.appdata.xml.in:39 data/display.appdata.xml.in:51
+#: data/display.appdata.xml.in:67
 msgid "Fixes:"
 msgstr ""
 
-#: data/display.appdata.xml.in:28
+#: data/display.appdata.xml.in:41
 msgid "Show display name on all workspaces"
 msgstr ""
 
-#: data/display.appdata.xml.in:40
+#: data/display.appdata.xml.in:53
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 
-#: data/display.appdata.xml.in:50
+#: data/display.appdata.xml.in:63
 msgid "New features:"
 msgstr ""
 
-#: data/display.appdata.xml.in:52
+#: data/display.appdata.xml.in:65
 msgid "Support 3× scaling"
 msgstr ""
 
-#: data/display.appdata.xml.in:56
+#: data/display.appdata.xml.in:69
 msgid "Reliably detect accelerometers"
 msgstr ""
 
-#: data/display.appdata.xml.in:74
+#: data/display.appdata.xml.in:87
 msgid "Fix 1px gaps between displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:75
+#: data/display.appdata.xml.in:88
 msgid "Properly center rotated displays"
 msgstr ""
 
-#: data/display.appdata.xml.in:83
+#: data/display.appdata.xml.in:96
 msgid "Improved multi-display layouts with better snapping and aligning"
 msgstr "改善多顯示器配置與更好的貼附和對齊特性"
 
-#: data/display.appdata.xml.in:84
+#: data/display.appdata.xml.in:97
 msgid "Fixed the placement of display name tags"
 msgstr "修正顯示器名稱標籤的位置"

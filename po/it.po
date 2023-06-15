@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2020-10-24 12:15+0000\n"
 "Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
 "Language-Team: Italian <https://l10n.elementary.io/projects/switchboard/"
@@ -29,7 +29,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configura la risoluzione e la posizione di schermi e proiettori"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Luce Notturna"
 
@@ -57,7 +57,7 @@ msgstr "Fattore di scala"
 msgid "Rotation lock"
 msgstr "Blocco rotazione"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Orario programmato"
 
@@ -101,49 +101,38 @@ msgstr "Nessuna"
 msgid "Mirrored Display"
 msgstr "Schermo duplicato"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Luce Notturna:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "La modalità Luce Notturna rende i colori dello schermo più caldi. Questa "
 "funzione può aiutare a prevenire l'affaticamento della vista e l'insonnia."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Orario programmato:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "Dal tramonto all'alba"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Manuale"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Dalle:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Alle:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Temperatura del colore:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Più caldo"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Meno caldo"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "Dal tramonto all'alba"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Dalle:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Alle:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -173,44 +162,56 @@ msgstr "Applica"
 msgid "Rotation Lock:"
 msgstr "Blocco rotazione:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use this display:"
 msgstr "Utilizza questo schermo:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Risoluzione:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Rotazione dello schermo:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Frequenza di aggiornamento:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Configura schermo"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "È lo schermo principale"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Imposta come schermo principale"
+
+#~ msgid "Night Light:"
+#~ msgstr "Luce Notturna:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Orario programmato:"
+
+#~ msgid "Manual"
+#~ msgstr "Manuale"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Temperatura del colore:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Pixel raddoppiati"

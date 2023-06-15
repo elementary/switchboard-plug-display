@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-20 18:45+0000\n"
+"POT-Creation-Date: 2023-06-13 03:23+0000\n"
 "PO-Revision-Date: 2021-11-03 06:45+0000\n"
 "Last-Translator: DarkKnightComes <darkknightcomes@gmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
@@ -30,7 +30,7 @@ msgid "Configure resolution and position of monitors and projectors"
 msgstr "Konfiguruj rozdzielczość i pozycję monitorów i projektorów"
 
 #: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Światło nocne"
 
@@ -58,7 +58,7 @@ msgstr "Czynnik skalowania"
 msgid "Rotation lock"
 msgstr "Blokada obrotu"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
 msgid "Schedule"
 msgstr "Zaplanowany"
 
@@ -102,49 +102,38 @@ msgstr "Brak"
 msgid "Mirrored Display"
 msgstr "Ekran lustrzanego odbicia"
 
-#: src/Views/NightLightView.vala:32
-msgid "Night Light:"
-msgstr "Światło nocne:"
-
-#: src/Views/NightLightView.vala:41
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/NightLightView.vala:17
+#, fuzzy
+#| msgid ""
+#| "Night Light makes the colors of your display warmer. This may help "
+#| "prevent eye strain and sleeplessness."
 msgid ""
-"Night Light makes the colors of your display warmer. This may help prevent "
-"eye strain and sleeplessness."
+"Making the colors of your display warmer may help prevent eye strain and "
+"sleeplessness"
 msgstr ""
 "Światło nocne dba o regulację ciepłoty kolorów ekranu. Ma ona pomagać w "
 "zapobieganiu zmęczeniu oczu i uczuciu senności."
 
-#: src/Views/NightLightView.vala:48
-msgid "Schedule:"
-msgstr "Zaplanowany:"
-
-#: src/Views/NightLightView.vala:53
-msgid "Sunset to Sunrise"
-msgstr "Od zachodu słońca do wschodu"
-
-#: src/Views/NightLightView.vala:54
-msgid "Manual"
-msgstr "Ręcznie"
-
-#: src/Views/NightLightView.vala:56
-msgid "From:"
-msgstr "Od:"
-
-#: src/Views/NightLightView.vala:61
-msgid "To:"
-msgstr "Do:"
-
-#: src/Views/NightLightView.vala:66
-msgid "Color temperature:"
-msgstr "Temperatura koloru:"
-
-#: src/Views/NightLightView.vala:77
+#: src/Views/NightLightView.vala:32
 msgid "More Warm"
 msgstr "Bardziej ciepłe"
 
-#: src/Views/NightLightView.vala:79
+#: src/Views/NightLightView.vala:34
 msgid "Less Warm"
 msgstr "Mniej ciepłe"
+
+#: src/Views/NightLightView.vala:49
+msgid "Sunset to Sunrise"
+msgstr "Od zachodu słońca do wschodu"
+
+#: src/Views/NightLightView.vala:52
+msgid "From:"
+msgstr "Od:"
+
+#: src/Views/NightLightView.vala:59
+msgid "To:"
+msgstr "Do:"
 
 #: src/Views/DisplaysView.vala:34
 msgid "Mirror Display:"
@@ -174,42 +163,54 @@ msgstr "Zastosuj"
 msgid "Rotation Lock:"
 msgstr "Blokada obrotu:"
 
-#: src/Widgets/DisplayWidget.vala:113
+#: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
 msgstr "Użyj tego monitora:"
 
-#: src/Widgets/DisplayWidget.vala:123
+#: src/Widgets/DisplayWidget.vala:125
 msgid "Resolution:"
 msgstr "Rozdzielczość:"
 
-#: src/Widgets/DisplayWidget.vala:134
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Screen Rotation:"
 msgstr "Obrót ekranu:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate:"
 msgstr "Częstotliwość odświeżania:"
 
-#: src/Widgets/DisplayWidget.vala:220
+#: src/Widgets/DisplayWidget.vala:222
 msgid "Other…"
 msgstr "Inne…"
 
-#: src/Widgets/DisplayWidget.vala:269
+#: src/Widgets/DisplayWidget.vala:271
 msgid "Configure display"
 msgstr "Konfiguracja monitora"
 
-#: src/Widgets/DisplayWidget.vala:451
+#: src/Widgets/DisplayWidget.vala:453
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:549
+#: src/Widgets/DisplayWidget.vala:553
 msgid "Is the primary display"
 msgstr "Jest głównym monitorem"
 
-#: src/Widgets/DisplayWidget.vala:552
+#: src/Widgets/DisplayWidget.vala:556
 msgid "Set as primary display"
 msgstr "Ustaw jako główny monitor"
+
+#~ msgid "Night Light:"
+#~ msgstr "Światło nocne:"
+
+#~ msgid "Schedule:"
+#~ msgstr "Zaplanowany:"
+
+#~ msgid "Manual"
+#~ msgstr "Ręcznie"
+
+#~ msgid "Color temperature:"
+#~ msgstr "Temperatura koloru:"
 
 #~ msgid "Pixel Doubled"
 #~ msgstr "Podwojenie pikseli"
