@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-15 08:09+0000\n"
-"PO-Revision-Date: 2023-06-15 03:07+0000\n"
+"PO-Revision-Date: 2023-06-17 15:07+0000\n"
 "Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "switchboard/switchboard-plug-display/en_GB/>\n"
@@ -36,7 +36,7 @@ msgstr "Night Light"
 #: src/DisplayPlug.vala:61 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
 #: src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
 msgid "Filters"
-msgstr ""
+msgstr "Filters"
 
 #: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
@@ -72,19 +72,19 @@ msgstr "Colour temperature"
 
 #: src/DisplayPlug.vala:119
 msgid "Color Blindness"
-msgstr ""
+msgstr "Colour Blindness"
 
 #: src/DisplayPlug.vala:120
 msgid "Color Vision Deficiency"
-msgstr ""
+msgstr "Colour Vision Deficiency"
 
 #: src/DisplayPlug.vala:121 src/Views/FiltersView.vala:137
 msgid "Grayscale"
-msgstr ""
+msgstr "Greyscale"
 
 #: src/DisplayPlug.vala:122
 msgid "Monochrome"
-msgstr ""
+msgstr "Monochrome"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -181,71 +181,70 @@ msgstr "Rotation Lock:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
-msgstr ""
+msgstr "Colour Deficiency Assistance"
 
 #: src/Views/FiltersView.vala:13
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
 msgstr ""
+"Each of the circles below should appear as a different colour. A filter can "
+"be applied to the entire display to help differentiate between colours."
 
 #: src/Views/FiltersView.vala:30
 msgid "Red/Green"
-msgstr ""
+msgstr "Red/Green"
 
 #: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
 msgid "Protanopia"
-msgstr ""
+msgstr "Protanopia"
 
 #: src/Views/FiltersView.vala:49
 msgid "Red/Green — High Contrast"
-msgstr ""
+msgstr "Red/Green — High Contrast"
 
 #: src/Views/FiltersView.vala:65
 msgid "Green/Red"
-msgstr ""
+msgstr "Green/Red"
 
 #: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
 msgid "Deuteranopia"
-msgstr ""
+msgstr "Deuteranopia"
 
 #: src/Views/FiltersView.vala:84
 msgid "Green/Red — High Contrast"
-msgstr ""
+msgstr "Green/Red — High Contrast"
 
 #: src/Views/FiltersView.vala:100
 msgid "Blue/Yellow"
-msgstr ""
+msgstr "Blue/Yellow"
 
 #: src/Views/FiltersView.vala:100
 msgid "Tritanopia"
-msgstr ""
+msgstr "Tritanopia"
 
 #: src/Views/FiltersView.vala:124
 msgid "Less Assistance"
-msgstr ""
+msgstr "Less Assistance"
 
 #: src/Views/FiltersView.vala:125
 msgid "More Assistance"
-msgstr ""
+msgstr "More Assistance"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/FiltersView.vala:146
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
 msgstr ""
+"Reducing colour can help avoid distractions and alleviate screen addiction"
 
 #: src/Views/FiltersView.vala:160
-#, fuzzy
-#| msgid "More Warm"
 msgid "More Color"
-msgstr "More Warm"
+msgstr "More Colour"
 
 #: src/Views/FiltersView.vala:161
-#, fuzzy
-#| msgid "Less Warm"
 msgid "Less Color"
-msgstr "Less Warm"
+msgstr "Less Colour"
 
 #: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
