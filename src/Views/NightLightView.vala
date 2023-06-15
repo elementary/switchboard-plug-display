@@ -9,6 +9,7 @@ public class Display.NightLightView : Gtk.Box {
 
         var nightlight_switch = new Gtk.Switch () {
             halign = END,
+            hexpand = true,
             valign = CENTER
         };
 
@@ -88,7 +89,6 @@ public class Display.NightLightView : Gtk.Box {
         };
 
         add (clamp);
-        halign = CENTER;
         margin_start = 12;
         margin_end = 12;
         margin_bottom = 12;

@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2014-2016 elementary LLC.
+ * Copyright (c) 2014-2023 elementary, Inc.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -22,8 +22,8 @@
 
 public class Display.Plug : Switchboard.Plug {
     public static Plug plug;
-    private Gtk.Grid grid;
-    private Gtk.Stack? stack;
+    private Gtk.Box box;
+    private Gtk.Stack stack;
     private DisplaysView displays_view;
 
     public Plug () {
@@ -43,48 +43,53 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override Gtk.Widget get_widget () {
-        if (grid == null) {
+        if (box == null) {
             displays_view = new DisplaysView ();
 
-            grid = new Gtk.Grid ();
-            grid.orientation = Gtk.Orientation.VERTICAL;
+            stack = new Gtk.Stack ();
+            stack.add_titled (displays_view, "displays", _("Displays"));
 
             var interface_settings_schema = SettingsSchemaSource.get_default ().lookup ("org.gnome.settings-daemon.plugins.color", true);
             if (interface_settings_schema != null && interface_settings_schema.has_key ("night-light-enabled")) {
                 var nightlight_view = new NightLightView ();
-
-                stack = new Gtk.Stack ();
-                stack.add_titled (displays_view, "displays", _("Displays"));
                 stack.add_titled (nightlight_view, "night-light", _("Night Light"));
-
-                var stack_switcher = new Gtk.StackSwitcher ();
-                stack_switcher.halign = Gtk.Align.CENTER;
-                stack_switcher.homogeneous = true;
-                stack_switcher.margin = 12;
-                stack_switcher.stack = stack;
-
-                grid.add (stack_switcher);
-                grid.add (stack);
-
-                stack.notify["visible-child"].connect (() => {
-                    if (stack.visible_child == displays_view) {
-                        displays_view.displays_overlay.show_windows ();
-                    } else {
-                        displays_view.displays_overlay.hide_windows ();
-                    }
-                });
-            } else {
-                grid.add (displays_view);
             }
 
-            grid.show_all ();
+            var filters_settings_schema = SettingsSchemaSource.get_default ().lookup ("io.elementary.desktop.wm.accessibility", true);
+            if (filters_settings_schema != null && filters_settings_schema.has_key ("colorblindness-correction-filter")) {
+                var filters_view = new FiltersView ();
+                stack.add_titled (filters_view, "filters", _("Filters"));
+            }
+
+            var stack_switcher = new Gtk.StackSwitcher () {
+                halign = Gtk.Align.CENTER,
+                homogeneous = true,
+                margin_top = 12,
+                margin_end = 12,
+                margin_bottom = 12,
+                margin_start = 12,
+                stack = stack
+            };
+
+            box = new Gtk.Box (VERTICAL, 0);
+            box.add (stack_switcher);
+            box.add (stack);
+            box.show_all ();
+
+            stack.notify["visible-child"].connect (() => {
+                if (stack.visible_child == displays_view) {
+                    displays_view.displays_overlay.show_windows ();
+                } else {
+                    displays_view.displays_overlay.hide_windows ();
+                }
+            });
         }
 
-        return grid;
+        return box;
     }
 
     public override void shown () {
-        if (stack != null && stack.visible_child == displays_view) {
+        if (stack.visible_child == displays_view) {
             displays_view.displays_overlay.show_windows ();
         } else {
             displays_view.displays_overlay.hide_windows ();
@@ -96,29 +101,25 @@ public class Display.Plug : Switchboard.Plug {
     }
 
     public override void search_callback (string location) {
-        if (stack != null) {
-            if (location == "night-light") {
-                stack.visible_child_name = "night-light";
-            } else {
-                stack.visible_child_name = "displays";
-            }
-
-            stack.show_all ();
-        }
+        stack.visible_child_name = location;
     }
 
     // 'search' returns results like ("Keyboard → Behavior → Duration", "keyboard<sep>behavior")
     public override async Gee.TreeMap<string, string> search (string search) {
         var search_results = new Gee.TreeMap<string, string> ((GLib.CompareDataFunc<string>)strcmp, (Gee.EqualDataFunc<string>)str_equal);
-        search_results.set ("%s → %s".printf (display_name, _("Screen Resolution")), "");
-        search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "");
-        search_results.set ("%s → %s".printf (display_name, _("Primary display")), "");
-        search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "");
-        search_results.set ("%s → %s".printf (display_name, _("Scaling factor")), "");
-        search_results.set ("%s → %s".printf (display_name, _("Rotation lock")), "");
+        search_results.set ("%s → %s".printf (display_name, _("Screen Resolution")), "displays");
+        search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "displays");
+        search_results.set ("%s → %s".printf (display_name, _("Primary display")), "displays");
+        search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "displays");
+        search_results.set ("%s → %s".printf (display_name, _("Scaling factor")), "displays");
+        search_results.set ("%s → %s".printf (display_name, _("Rotation lock")), "displays");
         search_results.set ("%s → %s".printf (display_name, _("Night Light")), "night-light");
         search_results.set ("%s → %s → %s".printf (display_name, _("Night Light"), _("Schedule")), "night-light");
         search_results.set ("%s → %s → %s".printf (display_name, _("Night Light"), _("Color temperature")), "night-light");
+        search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Color Blindness")), "filters");
+        search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Color Vision Deficiency")), "filters");
+        search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Grayscale")), "filters");
+        search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Monochrome")), "filters");
         return search_results;
     }
 }
