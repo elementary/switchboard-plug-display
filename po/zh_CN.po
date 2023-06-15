@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-13 03:23+0000\n"
+"POT-Creation-Date: 2023-06-15 08:09+0000\n"
 "PO-Revision-Date: 2021-11-01 10:01+0000\n"
 "Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
+#: src/DisplayPlug.vala:38 src/DisplayPlug.vala:50
 msgid "Displays"
 msgstr "显示器"
 
@@ -28,42 +28,63 @@ msgstr "显示器"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "调整分辨率、配置显示器和投影仪的位置"
 
-#: src/DisplayPlug.vala:58 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:118 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "夜灯"
 
-#: src/DisplayPlug.vala:113
+#: src/DisplayPlug.vala:61 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+msgid "Filters"
+msgstr ""
+
+#: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
 msgstr "分辨率"
 
-#: src/DisplayPlug.vala:114
+#: src/DisplayPlug.vala:111
 msgid "Screen Rotation"
 msgstr "屏幕旋转"
 
-#: src/DisplayPlug.vala:115
+#: src/DisplayPlug.vala:112
 msgid "Primary display"
 msgstr "主显示器"
 
-#: src/DisplayPlug.vala:116
+#: src/DisplayPlug.vala:113
 msgid "Screen mirroring"
 msgstr "屏幕镜像"
 
-#: src/DisplayPlug.vala:117
+#: src/DisplayPlug.vala:114
 msgid "Scaling factor"
 msgstr "比例系数"
 
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:115
 msgid "Rotation lock"
 msgstr "旋转锁"
 
-#: src/DisplayPlug.vala:120 src/Views/NightLightView.vala:45
+#: src/DisplayPlug.vala:117 src/Views/NightLightView.vala:46
 msgid "Schedule"
 msgstr "计划"
 
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:118
 msgid "Color temperature"
 msgstr "颜色温度"
+
+#: src/DisplayPlug.vala:119
+msgid "Color Blindness"
+msgstr ""
+
+#: src/DisplayPlug.vala:120
+msgid "Color Vision Deficiency"
+msgstr ""
+
+#: src/DisplayPlug.vala:121 src/Views/FiltersView.vala:137
+msgid "Grayscale"
+msgstr ""
+
+#: src/DisplayPlug.vala:122
+msgid "Monochrome"
+msgstr ""
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -93,7 +114,7 @@ msgstr "上下翻转"
 msgid "Flipped Counterclockwise"
 msgstr "逆时针翻转"
 
-#: src/Interfaces/MutterDisplayConfig.vala:72
+#: src/Interfaces/MutterDisplayConfig.vala:72 src/Views/FiltersView.vala:27
 msgid "None"
 msgstr "无"
 
@@ -102,7 +123,7 @@ msgid "Mirrored Display"
 msgstr "镜像显示"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-#: src/Views/NightLightView.vala:17
+#: src/Views/NightLightView.vala:18
 #, fuzzy
 #| msgid ""
 #| "Night Light makes the colors of your display warmer. This may help "
@@ -112,23 +133,23 @@ msgid ""
 "sleeplessness"
 msgstr "夜灯功能会将屏幕颜色调暖，有助于缓解眼部疲劳、改善睡眠。"
 
-#: src/Views/NightLightView.vala:32
+#: src/Views/NightLightView.vala:33
 msgid "More Warm"
 msgstr "较暖"
 
-#: src/Views/NightLightView.vala:34
+#: src/Views/NightLightView.vala:35
 msgid "Less Warm"
 msgstr "较冷"
 
-#: src/Views/NightLightView.vala:49
+#: src/Views/NightLightView.vala:50
 msgid "Sunset to Sunrise"
 msgstr "日落至日出"
 
-#: src/Views/NightLightView.vala:52
+#: src/Views/NightLightView.vala:53
 msgid "From:"
 msgstr "开始时间："
 
-#: src/Views/NightLightView.vala:59
+#: src/Views/NightLightView.vala:60
 msgid "To:"
 msgstr "结束时间："
 
@@ -156,9 +177,77 @@ msgstr "识别显示器"
 msgid "Apply"
 msgstr "应用"
 
-#: src/Views/DisplaysView.vala:150
+#: src/Views/DisplaysView.vala:149
 msgid "Rotation Lock:"
 msgstr "旋转锁："
+
+#: src/Views/FiltersView.vala:10
+msgid "Color Deficiency Assistance"
+msgstr ""
+
+#: src/Views/FiltersView.vala:13
+msgid ""
+"Each of the circles below should appear as a different color. A filter can "
+"be applied to the entire display to help differentiate between colors."
+msgstr ""
+
+#: src/Views/FiltersView.vala:30
+msgid "Red/Green"
+msgstr ""
+
+#: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
+msgid "Protanopia"
+msgstr ""
+
+#: src/Views/FiltersView.vala:49
+msgid "Red/Green — High Contrast"
+msgstr ""
+
+#: src/Views/FiltersView.vala:65
+msgid "Green/Red"
+msgstr ""
+
+#: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
+msgid "Deuteranopia"
+msgstr ""
+
+#: src/Views/FiltersView.vala:84
+msgid "Green/Red — High Contrast"
+msgstr ""
+
+#: src/Views/FiltersView.vala:100
+msgid "Blue/Yellow"
+msgstr ""
+
+#: src/Views/FiltersView.vala:100
+msgid "Tritanopia"
+msgstr ""
+
+#: src/Views/FiltersView.vala:124
+msgid "Less Assistance"
+msgstr ""
+
+#: src/Views/FiltersView.vala:125
+msgid "More Assistance"
+msgstr ""
+
+#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
+#: src/Views/FiltersView.vala:146
+msgid ""
+"Reducing color can help avoid distractions and alleviate screen addiction"
+msgstr ""
+
+#: src/Views/FiltersView.vala:160
+#, fuzzy
+#| msgid "More Warm"
+msgid "More Color"
+msgstr "较暖"
+
+#: src/Views/FiltersView.vala:161
+#, fuzzy
+#| msgid "Less Warm"
+msgid "Less Color"
+msgstr "较冷"
 
 #: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
