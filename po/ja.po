@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-13 03:23+0000\n"
-"PO-Revision-Date: 2021-09-01 02:28+0000\n"
+"PO-Revision-Date: 2023-06-15 03:07+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-02-15 06:45+0000\n"
 
 #: src/DisplayPlug.vala:38 src/DisplayPlug.vala:57
@@ -103,16 +103,11 @@ msgstr "ミラーリングされたディスプレイ"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/NightLightView.vala:17
-#, fuzzy
-#| msgid ""
-#| "Night Light makes the colors of your display warmer. This may help "
-#| "prevent eye strain and sleeplessness."
 msgid ""
 "Making the colors of your display warmer may help prevent eye strain and "
 "sleeplessness"
-msgstr ""
-"夜間モードはディスプレイの色を暖色にします。これは、目の疲れと不眠の防止に役"
-"立つ可能性があります。"
+msgstr "ディスプレイの色を暖色にすることで、目の疲れと不眠の防止に役立つ可能性があり"
+"ます"
 
 #: src/Views/NightLightView.vala:32
 msgid "More Warm"
