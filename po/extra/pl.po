@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-15 08:09+0000\n"
-"PO-Revision-Date: 2021-11-08 11:22+0000\n"
+"PO-Revision-Date: 2023-06-17 15:07+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/display.appdata.xml.in:5
 msgid "Display Settings"
@@ -36,7 +36,7 @@ msgstr "Mniejsze aktualizacje:"
 
 #: data/display.appdata.xml.in:14
 msgid "Redesign Night Light View"
-msgstr ""
+msgstr "Przeprojektowano widok światła nocnego"
 
 #: data/display.appdata.xml.in:15 data/display.appdata.xml.in:27
 #: data/display.appdata.xml.in:45 data/display.appdata.xml.in:57
