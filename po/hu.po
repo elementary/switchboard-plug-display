@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-15 08:09+0000\n"
-"PO-Revision-Date: 2023-06-15 03:07+0000\n"
+"PO-Revision-Date: 2023-06-19 14:07+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/hu/>\n"
@@ -36,7 +36,7 @@ msgstr "Éjszakai fény"
 #: src/DisplayPlug.vala:61 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
 #: src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
 msgid "Filters"
-msgstr ""
+msgstr "Szűrők"
 
 #: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
@@ -72,19 +72,19 @@ msgstr "Színhőmérséklet"
 
 #: src/DisplayPlug.vala:119
 msgid "Color Blindness"
-msgstr ""
+msgstr "Színvakság"
 
 #: src/DisplayPlug.vala:120
 msgid "Color Vision Deficiency"
-msgstr ""
+msgstr "Színtévesztés"
 
 #: src/DisplayPlug.vala:121 src/Views/FiltersView.vala:137
 msgid "Grayscale"
-msgstr ""
+msgstr "Szürkeárnyalatos"
 
 #: src/DisplayPlug.vala:122
 msgid "Monochrome"
-msgstr ""
+msgstr "Monokróm"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -181,71 +181,71 @@ msgstr "Forgatászár:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
-msgstr ""
+msgstr "Színtévesztési segéd"
 
 #: src/Views/FiltersView.vala:13
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
 msgstr ""
+"A lenti körök mindegyike különböző színűként kell, hogy megjelenjen. "
+"Alkalmazzon egy szűrőt a teljes képernyőre a színek könnyebb "
+"megkülönböztetése érdekében."
 
 #: src/Views/FiltersView.vala:30
 msgid "Red/Green"
-msgstr ""
+msgstr "Piros/Zöld"
 
 #: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
 msgid "Protanopia"
-msgstr ""
+msgstr "Protanopia"
 
 #: src/Views/FiltersView.vala:49
 msgid "Red/Green — High Contrast"
-msgstr ""
+msgstr "Piros/Zöld - magas kontraszt"
 
 #: src/Views/FiltersView.vala:65
 msgid "Green/Red"
-msgstr ""
+msgstr "Zöld/Piros"
 
 #: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
 msgid "Deuteranopia"
-msgstr ""
+msgstr "Deuteranopia"
 
 #: src/Views/FiltersView.vala:84
 msgid "Green/Red — High Contrast"
-msgstr ""
+msgstr "Zöld/Piros - magas kontraszt"
 
 #: src/Views/FiltersView.vala:100
 msgid "Blue/Yellow"
-msgstr ""
+msgstr "Kék/Sárga"
 
 #: src/Views/FiltersView.vala:100
 msgid "Tritanopia"
-msgstr ""
+msgstr "Tritanopia"
 
 #: src/Views/FiltersView.vala:124
 msgid "Less Assistance"
-msgstr ""
+msgstr "Kevesebb segítség"
 
 #: src/Views/FiltersView.vala:125
 msgid "More Assistance"
-msgstr ""
+msgstr "Több segítség"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/FiltersView.vala:146
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
 msgstr ""
+"A színek csökkentése segíthet a fókuszban és enyhítheti a képernyőfüggőséget"
 
 #: src/Views/FiltersView.vala:160
-#, fuzzy
-#| msgid "More Warm"
 msgid "More Color"
-msgstr "Melegebb"
+msgstr "Több szín"
 
 #: src/Views/FiltersView.vala:161
-#, fuzzy
-#| msgid "Less Warm"
 msgid "Less Color"
-msgstr "Kevésbé meleg"
+msgstr "Kevesebb szín"
 
 #: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
