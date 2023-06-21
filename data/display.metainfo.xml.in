@@ -37,6 +37,7 @@
         </ul>
       </description>
       <issues>
+        <issue url="https://github.com/elementary/switchboard-plug-display/issues/291">Provide presets for color-blind people</issue>
         <issue url="https://github.com/elementary/switchboard-plug-display/issues/338">Resolution reported incorrectly</issue>
         <issue url="https://github.com/elementary/switchboard-plug-display/issues/346">Warmer night light (optional)</issue>
       </issues>
