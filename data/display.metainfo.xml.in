@@ -37,6 +37,7 @@
         </ul>
       </description>
       <issues>
+        <issue url="https://github.com/elementary/switchboard-plug-display/issues/338">Resolution reported incorrectly</issue>
         <issue url="https://github.com/elementary/switchboard-plug-display/issues/346">Warmer night light (optional)</issue>
       </issues>
     </release>
@@ -101,4 +102,5 @@
     <release version="2.2.2" date="2020-05-28" urgency="medium" />
     <release version="2.2.1" date="2020-04-08" urgency="medium" />
     <release version="2.2.0" date="2019-11-15" urgency="medium" />
+  </releases>
 </component>
