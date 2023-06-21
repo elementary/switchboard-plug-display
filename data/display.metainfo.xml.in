@@ -2,10 +2,31 @@
 <component type="addon">
   <id>io.elementary.switchboard.display</id>
   <extends>io.elementary.switchboard</extends>
+  <translation type="gettext">display-plug</translation>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+
+
+  <icon type="stock">preferences-desktop-display</icon>
   <name>Display Settings</name>
   <summary>Configure resolution and position of monitors and projectors</summary>
-  <icon type="stock">preferences-desktop-display</icon>
-  <translation type="gettext">display-plug</translation>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/elementary/switchboard-plug-display/master/data/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="bugtracker">https://github.com/elementary/switchboard-plug-display/issues</url>
+  <url type="donation">https://elementary.io/get-involved#funding</url>
+  <url type="help">https://github.com/elementary/switchboard-plug-display/discussions</url>
+  <url type="homepage">https://elementary.io</url>
+  <url type="translate">https://l10n.elementary.io/engage/switchboard/</url>
+
+  <developer_name>elementary, Inc.</developer_name>
+  <project_group>elementary</project_group>
+  <update_contact>contact_at_elementary.io</update_contact>
+
   <releases>
     <release version="2.3.4" date="2023-06-07" urgency="medium">
       <description>
@@ -46,6 +67,7 @@
         </ul>
       </description>
     </release>
+
     <release version="2.3.1" date="2021-08-20" urgency="medium">
       <description>
         <p>Fixes:</p>
@@ -58,6 +80,7 @@
         </ul>
       </description>
     </release>
+
     <release version="2.3.0" date="2021-07-14" urgency="medium">
       <description>
         <p>New features:</p>
@@ -74,39 +97,8 @@
         </ul>
       </description>
     </release>
-    <release version="2.2.2" date="2020-05-28" urgency="medium">
-      <description>
-        <ul>
-          <li>Updated translations</li>
-        </ul>
-      </description>
-    </release>
-    <release version="2.2.1" date="2020-04-08" urgency="medium">
-      <description>
-        <ul>
-          <li>Fix 1px gaps between displays</li>
-          <li>Properly center rotated displays</li>
-          <li>Updated translations</li>
-        </ul>
-      </description>
-    </release>
-    <release version="2.2.0" date="2019-11-15" urgency="medium">
-      <description>
-        <ul>
-          <li>Improved multi-display layouts with better snapping and aligning</li>
-          <li>Fixed the placement of display name tags</li>
-          <li>Updated translations</li>
-        </ul>
-      </description>
-    </release>
-  </releases>
-  <screenshots>
-    <screenshot type="default">
-      <image>https://raw.githubusercontent.com/elementary/switchboard-plug-display/master/data/screenshot.png</image>
-    </screenshot>
-  </screenshots>
-  <url type="homepage">https://elementary.io</url>
-  <url type="bugtracker">https://github.com/elementary/switchboard-plug-display/issues</url>
-  <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
+
+    <release version="2.2.2" date="2020-05-28" urgency="medium" />
+    <release version="2.2.1" date="2020-04-08" urgency="medium" />
+    <release version="2.2.0" date="2019-11-15" urgency="medium" />
 </component>
