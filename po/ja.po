@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 08:09+0000\n"
+"POT-Creation-Date: 2023-06-21 18:39+0000\n"
 "PO-Revision-Date: 2023-06-18 12:47+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
@@ -187,7 +187,8 @@ msgstr "色覚支援"
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
-msgstr "以下の各丸は異なる色をしています。フィルターがディスプレイ全体に適用されるこ"
+msgstr ""
+"以下の各丸は異なる色をしています。フィルターがディスプレイ全体に適用されるこ"
 "とで、色の識別に役立つ可能性があります。"
 
 #: src/Views/FiltersView.vala:30
@@ -234,7 +235,8 @@ msgstr "支援強"
 #: src/Views/FiltersView.vala:146
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
-msgstr "画面の色を減らすことで、気が散るのを防いだり画面の見過ぎを抑えたりするのに役"
+msgstr ""
+"画面の色を減らすことで、気が散るのを防いだり画面の見過ぎを抑えたりするのに役"
 "立つ可能性があります"
 
 #: src/Views/FiltersView.vala:160
