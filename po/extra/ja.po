@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-21 18:39+0000\n"
-"PO-Revision-Date: 2023-06-15 03:07+0000\n"
+"PO-Revision-Date: 2023-06-24 12:07+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ja/>\n"
@@ -29,7 +29,7 @@ msgstr "モニターとプロジェクターの解像度と位置を設定しま
 
 #: data/display.metainfo.xml.in:26
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/display.metainfo.xml.in:33 data/display.metainfo.xml.in:48
 #: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:79
