@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-21 18:39+0000\n"
-"PO-Revision-Date: 2022-01-15 13:59+0000\n"
-"Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
+"PO-Revision-Date: 2023-06-24 12:07+0000\n"
+"Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
@@ -29,7 +29,7 @@ msgstr "Configureer resolutie en positie van beeldschermen en projectors"
 
 #: data/display.metainfo.xml.in:26
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/display.metainfo.xml.in:33 data/display.metainfo.xml.in:48
 #: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:79
@@ -39,7 +39,7 @@ msgstr "Kleine updates:"
 
 #: data/display.metainfo.xml.in:35
 msgid "Redesign Night Light View"
-msgstr ""
+msgstr "Herontwerp nachtlicht weergave"
 
 #: data/display.metainfo.xml.in:36 data/display.metainfo.xml.in:50
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
@@ -49,20 +49,20 @@ msgstr "Bijgewerkte vertalingen"
 
 #: data/display.metainfo.xml.in:57
 msgid "Improvements:"
-msgstr ""
+msgstr "Verbeteringen:"
 
 #: data/display.metainfo.xml.in:59
 msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr ""
+msgstr "Verplaats resoluties met een andere beeldverhouding naar een subment"
 
 #: data/display.metainfo.xml.in:60
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "Verbeter helderheid in de donkere stijl"
 
 #: data/display.metainfo.xml.in:62 data/display.metainfo.xml.in:75
 #: data/display.metainfo.xml.in:92
 msgid "Fixes:"
-msgstr ""
+msgstr "Oplossingen:"
 
 #: data/display.metainfo.xml.in:64
 msgid "Show display name on all workspaces"
