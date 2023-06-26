@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 08:09+0000\n"
+"POT-Creation-Date: 2023-06-21 18:39+0000\n"
 "PO-Revision-Date: 2022-01-10 21:58+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/switchboard/"
@@ -19,82 +19,82 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: data/display.appdata.xml.in:5
+#: data/display.metainfo.xml.in:11
 msgid "Display Settings"
 msgstr "Nastavení zobrazení"
 
-#: data/display.appdata.xml.in:6
+#: data/display.metainfo.xml.in:12
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Nastavit rozlišení a pozici monitorů nebo projektorů"
 
-#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:25
-#: data/display.appdata.xml.in:43 data/display.appdata.xml.in:55
-#: data/display.appdata.xml.in:71
+#: data/display.metainfo.xml.in:26
+msgid "elementary, Inc."
+msgstr ""
+
+#: data/display.metainfo.xml.in:33 data/display.metainfo.xml.in:48
+#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:79
+#: data/display.metainfo.xml.in:96
 msgid "Minor updates:"
 msgstr "Drobné aktualizace:"
 
-#: data/display.appdata.xml.in:14
+#: data/display.metainfo.xml.in:35
 msgid "Redesign Night Light View"
 msgstr ""
 
-#: data/display.appdata.xml.in:15 data/display.appdata.xml.in:27
-#: data/display.appdata.xml.in:45 data/display.appdata.xml.in:57
-#: data/display.appdata.xml.in:73 data/display.appdata.xml.in:80
-#: data/display.appdata.xml.in:89 data/display.appdata.xml.in:98
+#: data/display.metainfo.xml.in:36 data/display.metainfo.xml.in:50
+#: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
+#: data/display.metainfo.xml.in:98
 msgid "Updated translations"
 msgstr "Aktualizovány překlady"
 
-#: data/display.appdata.xml.in:34
+#: data/display.metainfo.xml.in:57
 msgid "Improvements:"
 msgstr "Vylepšení:"
 
-#: data/display.appdata.xml.in:36
+#: data/display.metainfo.xml.in:59
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr "Rozlišení s odlišnými poměry stran do podnabídky"
 
-#: data/display.appdata.xml.in:37
+#: data/display.metainfo.xml.in:60
 msgid "Improve brightness in the dark style"
 msgstr "Zlepšen jas při tmavém zobrazení"
 
-#: data/display.appdata.xml.in:39 data/display.appdata.xml.in:51
-#: data/display.appdata.xml.in:67
+#: data/display.metainfo.xml.in:62 data/display.metainfo.xml.in:75
+#: data/display.metainfo.xml.in:92
 msgid "Fixes:"
 msgstr "Opravy:"
 
-#: data/display.appdata.xml.in:41
+#: data/display.metainfo.xml.in:64
 msgid "Show display name on all workspaces"
 msgstr "Ukazování zobrazovaného jména na všech pracovních plochách"
 
-#: data/display.appdata.xml.in:53
+#: data/display.metainfo.xml.in:77
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 "Zajištěno, že přepínač „Použít tuto obrazovku“ funguje ve více případech"
 
-#: data/display.appdata.xml.in:63
+#: data/display.metainfo.xml.in:88
 msgid "New features:"
 msgstr "Nové funkce:"
 
-#: data/display.appdata.xml.in:65
+#: data/display.metainfo.xml.in:90
 msgid "Support 3× scaling"
 msgstr "Podpora pro trojnásobné zvětšení"
 
-#: data/display.appdata.xml.in:69
+#: data/display.metainfo.xml.in:94
 msgid "Reliably detect accelerometers"
 msgstr "Spolehlivé zjišťování čidel zrychlení"
 
-#: data/display.appdata.xml.in:87
-msgid "Fix 1px gaps between displays"
-msgstr "Oprava mezery (1 obrazový bod) mezi displeji"
+#~ msgid "Fix 1px gaps between displays"
+#~ msgstr "Oprava mezery (1 obrazový bod) mezi displeji"
 
-#: data/display.appdata.xml.in:88
-msgid "Properly center rotated displays"
-msgstr "Správné vystředění otočených displejů"
+#~ msgid "Properly center rotated displays"
+#~ msgstr "Správné vystředění otočených displejů"
 
-#: data/display.appdata.xml.in:96
-msgid "Improved multi-display layouts with better snapping and aligning"
-msgstr ""
-"Vylepšení rozvržení s vícero monitory s lepším přichytáváním a zarovnáváním"
+#~ msgid "Improved multi-display layouts with better snapping and aligning"
+#~ msgstr ""
+#~ "Vylepšení rozvržení s vícero monitory s lepším přichytáváním a "
+#~ "zarovnáváním"
 
-#: data/display.appdata.xml.in:97
-msgid "Fixed the placement of display name tags"
-msgstr "Oprava umístění štítků s názvem displeje"
+#~ msgid "Fixed the placement of display name tags"
+#~ msgstr "Oprava umístění štítků s názvem displeje"

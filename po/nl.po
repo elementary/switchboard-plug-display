@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 08:09+0000\n"
-"PO-Revision-Date: 2022-01-15 13:59+0000\n"
-"Last-Translator: Niels Van Laerhoven <niels1995@gmail.com>\n"
+"POT-Creation-Date: 2023-06-21 18:39+0000\n"
+"PO-Revision-Date: 2023-06-24 12:07+0000\n"
+"Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:38 src/DisplayPlug.vala:50
@@ -36,7 +36,7 @@ msgstr "Nachtlicht"
 #: src/DisplayPlug.vala:61 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
 #: src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
 msgid "Filters"
-msgstr ""
+msgstr "Filters"
 
 #: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
@@ -72,19 +72,19 @@ msgstr "Kleurtemperatuur"
 
 #: src/DisplayPlug.vala:119
 msgid "Color Blindness"
-msgstr ""
+msgstr "Kleurenblindheid"
 
 #: src/DisplayPlug.vala:120
 msgid "Color Vision Deficiency"
-msgstr ""
+msgstr "Kleurwaarnemingstekort"
 
 #: src/DisplayPlug.vala:121 src/Views/FiltersView.vala:137
 msgid "Grayscale"
-msgstr ""
+msgstr "Grijstinten"
 
 #: src/DisplayPlug.vala:122
 msgid "Monochrome"
-msgstr ""
+msgstr "Monochroom"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -124,16 +124,12 @@ msgstr "Gespiegeld beeldscherm"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/NightLightView.vala:18
-#, fuzzy
-#| msgid ""
-#| "Night Light makes the colors of your display warmer. This may help "
-#| "prevent eye strain and sleeplessness."
 msgid ""
 "Making the colors of your display warmer may help prevent eye strain and "
 "sleeplessness"
 msgstr ""
-"Nacht modus maakt de kleuren van uw scherm warmer. Dit kan vermoeide ogen en "
-"slapeloosheid helpen voorkomen."
+"De kleuren van het scherm warmer maken kan vermoeide ogen en slapeloosheid "
+"helpen voorkomen"
 
 #: src/Views/NightLightView.vala:33
 msgid "More Warm"
@@ -185,71 +181,72 @@ msgstr "Rotatievergrendeling:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
-msgstr ""
+msgstr "Kleurgebrek assistentie"
 
 #: src/Views/FiltersView.vala:13
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
 msgstr ""
+"Elk van de cirkels hieronder zouden in een andere kleur moeten verschijnen. "
+"Een filter kan worden aangebracht op het scherm om te helpen met het "
+"onderscheiden van de kleuren."
 
 #: src/Views/FiltersView.vala:30
 msgid "Red/Green"
-msgstr ""
+msgstr "Rood/groen"
 
 #: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
 msgid "Protanopia"
-msgstr ""
+msgstr "Protanopie"
 
 #: src/Views/FiltersView.vala:49
 msgid "Red/Green — High Contrast"
-msgstr ""
+msgstr "Rood/groen — Hoog contrast"
 
 #: src/Views/FiltersView.vala:65
 msgid "Green/Red"
-msgstr ""
+msgstr "Groen/rood"
 
 #: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
 msgid "Deuteranopia"
-msgstr ""
+msgstr "Deuteranopie"
 
 #: src/Views/FiltersView.vala:84
 msgid "Green/Red — High Contrast"
-msgstr ""
+msgstr "Groen/rood — Hoog contrast"
 
 #: src/Views/FiltersView.vala:100
 msgid "Blue/Yellow"
-msgstr ""
+msgstr "Blauw/geel"
 
 #: src/Views/FiltersView.vala:100
 msgid "Tritanopia"
-msgstr ""
+msgstr "Tritanopie"
 
 #: src/Views/FiltersView.vala:124
 msgid "Less Assistance"
-msgstr ""
+msgstr "Minder steun"
 
 #: src/Views/FiltersView.vala:125
 msgid "More Assistance"
-msgstr ""
+msgstr "Meer steun"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/FiltersView.vala:146
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
 msgstr ""
+"Door kleuren te verminderen kan je afleiding verminderen en schermverslaving "
+"verlichten"
 
 #: src/Views/FiltersView.vala:160
-#, fuzzy
-#| msgid "More Warm"
 msgid "More Color"
-msgstr "Warmer"
+msgstr "Meer kleur"
 
 #: src/Views/FiltersView.vala:161
-#, fuzzy
-#| msgid "Less Warm"
 msgid "Less Color"
-msgstr "Kouder"
+msgstr "Minder kleur"
 
 #: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"

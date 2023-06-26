@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 08:09+0000\n"
-"PO-Revision-Date: 2023-06-15 03:07+0000\n"
+"POT-Creation-Date: 2023-06-21 18:39+0000\n"
+"PO-Revision-Date: 2023-06-24 12:07+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ca/>\n"
@@ -19,83 +19,82 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.17\n"
 
-#: data/display.appdata.xml.in:5
+#: data/display.metainfo.xml.in:11
 msgid "Display Settings"
 msgstr "Paràmetres de la pantalla"
 
-#: data/display.appdata.xml.in:6
+#: data/display.metainfo.xml.in:12
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configureu la resolució i la posició de monitors i projectors."
 
-#: data/display.appdata.xml.in:12 data/display.appdata.xml.in:25
-#: data/display.appdata.xml.in:43 data/display.appdata.xml.in:55
-#: data/display.appdata.xml.in:71
+#: data/display.metainfo.xml.in:26
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
+
+#: data/display.metainfo.xml.in:33 data/display.metainfo.xml.in:48
+#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:79
+#: data/display.metainfo.xml.in:96
 msgid "Minor updates:"
 msgstr "Actualitzacions menors:"
 
-#: data/display.appdata.xml.in:14
+#: data/display.metainfo.xml.in:35
 msgid "Redesign Night Light View"
 msgstr "Redisseny de la vista de llum nocturna"
 
-#: data/display.appdata.xml.in:15 data/display.appdata.xml.in:27
-#: data/display.appdata.xml.in:45 data/display.appdata.xml.in:57
-#: data/display.appdata.xml.in:73 data/display.appdata.xml.in:80
-#: data/display.appdata.xml.in:89 data/display.appdata.xml.in:98
+#: data/display.metainfo.xml.in:36 data/display.metainfo.xml.in:50
+#: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
+#: data/display.metainfo.xml.in:98
 msgid "Updated translations"
 msgstr "Traduccions actualitzades"
 
-#: data/display.appdata.xml.in:34
+#: data/display.metainfo.xml.in:57
 msgid "Improvements:"
 msgstr "Millores:"
 
-#: data/display.appdata.xml.in:36
+#: data/display.metainfo.xml.in:59
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr "Moveu resolucions amb una relació d'aspecte diferent a un submenú."
 
-#: data/display.appdata.xml.in:37
+#: data/display.metainfo.xml.in:60
 msgid "Improve brightness in the dark style"
 msgstr "Millora de la brillantor a l’estil fosc"
 
-#: data/display.appdata.xml.in:39 data/display.appdata.xml.in:51
-#: data/display.appdata.xml.in:67
+#: data/display.metainfo.xml.in:62 data/display.metainfo.xml.in:75
+#: data/display.metainfo.xml.in:92
 msgid "Fixes:"
 msgstr "Correccions:"
 
-#: data/display.appdata.xml.in:41
+#: data/display.metainfo.xml.in:64
 msgid "Show display name on all workspaces"
 msgstr "Es mostra el nom de la pantalla en tots els espais de treball."
 
-#: data/display.appdata.xml.in:53
+#: data/display.metainfo.xml.in:77
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 "S'assegura que \"Usa aquesta pantalla\" funciona en més circumstàncies."
 
-#: data/display.appdata.xml.in:63
+#: data/display.metainfo.xml.in:88
 msgid "New features:"
 msgstr "Característiques noves:"
 
-#: data/display.appdata.xml.in:65
+#: data/display.metainfo.xml.in:90
 msgid "Support 3× scaling"
 msgstr "Admet l'escala 3 ×"
 
-#: data/display.appdata.xml.in:69
+#: data/display.metainfo.xml.in:94
 msgid "Reliably detect accelerometers"
 msgstr "Detecció fiable dels acceleròmetres"
 
-#: data/display.appdata.xml.in:87
-msgid "Fix 1px gaps between displays"
-msgstr "Correcció d'espais d'1 px entre pantalles"
+#~ msgid "Fix 1px gaps between displays"
+#~ msgstr "Correcció d'espais d'1 px entre pantalles"
 
-#: data/display.appdata.xml.in:88
-msgid "Properly center rotated displays"
-msgstr "Centrat correcte de pantalles girades"
+#~ msgid "Properly center rotated displays"
+#~ msgstr "Centrat correcte de pantalles girades"
 
-#: data/display.appdata.xml.in:96
-msgid "Improved multi-display layouts with better snapping and aligning"
-msgstr ""
-"Disposicions de multivisualització millorades amb millor ajustament i "
-"alineació"
+#~ msgid "Improved multi-display layouts with better snapping and aligning"
+#~ msgstr ""
+#~ "Disposicions de multivisualització millorades amb millor ajustament i "
+#~ "alineació"
 
-#: data/display.appdata.xml.in:97
-msgid "Fixed the placement of display name tags"
-msgstr "S'ha corregit la ubicació de les etiquetes de nom de la pantalla."
+#~ msgid "Fixed the placement of display name tags"
+#~ msgstr "S'ha corregit la ubicació de les etiquetes de nom de la pantalla."
