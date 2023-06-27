@@ -1,3 +1,9 @@
+switchboard-plug-display (7.0.0) jammy; urgency=medium
+
+  * New upstream release
+
+ -- Danielle Foré <danielle@elementary.io>  Tue, 27 Jun 2023 10:23:22 -0700
+
 switchboard-plug-display (2.3.3) bionic; urgency=medium
 
   * Release 2.3.3 (#334)
