@@ -15,6 +15,7 @@ Homepage: https://github.com/elementary/switchboard-plug-display
 Package: switchboard-plug-display
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: gala (>= 7.1.0), gnome-settings-daemon
 Enhances: switchboard
 Description: Switchboard plug for display settings
  This plug can be used to change display settings like orientation and
