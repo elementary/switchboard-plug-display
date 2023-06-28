@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-21 18:39+0000\n"
-"PO-Revision-Date: 2023-06-17 15:07+0000\n"
+"PO-Revision-Date: 2023-06-29 16:07+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/pl/>\n"
@@ -30,7 +30,7 @@ msgstr "Konfiguruj rozdzielczość i pozycję monitorów i projektorów"
 
 #: data/display.metainfo.xml.in:26
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/display.metainfo.xml.in:33 data/display.metainfo.xml.in:48
 #: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:79
