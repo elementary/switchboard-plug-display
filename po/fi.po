@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-21 18:39+0000\n"
-"PO-Revision-Date: 2021-09-01 09:30+0000\n"
+"PO-Revision-Date: 2023-07-03 13:07+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:38 src/DisplayPlug.vala:50
@@ -36,7 +36,7 @@ msgstr "Yövalo"
 #: src/DisplayPlug.vala:61 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
 #: src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
 msgid "Filters"
-msgstr ""
+msgstr "Suodattimet"
 
 #: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
@@ -72,19 +72,19 @@ msgstr "Värilämpötila"
 
 #: src/DisplayPlug.vala:119
 msgid "Color Blindness"
-msgstr ""
+msgstr "Värisokeus"
 
 #: src/DisplayPlug.vala:120
 msgid "Color Vision Deficiency"
-msgstr ""
+msgstr "Värisokeus"
 
 #: src/DisplayPlug.vala:121 src/Views/FiltersView.vala:137
 msgid "Grayscale"
-msgstr ""
+msgstr "Harmaasävy"
 
 #: src/DisplayPlug.vala:122
 msgid "Monochrome"
-msgstr ""
+msgstr "Mustavalko"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -124,16 +124,12 @@ msgstr "Peilattu näyttö"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/NightLightView.vala:18
-#, fuzzy
-#| msgid ""
-#| "Night Light makes the colors of your display warmer. This may help "
-#| "prevent eye strain and sleeplessness."
 msgid ""
 "Making the colors of your display warmer may help prevent eye strain and "
 "sleeplessness"
 msgstr ""
-"Yövalo tekee näytön väreistä tavallista lämpimämpiä. Se saattaa estää "
-"silmien väsymistä ja unettomuutta."
+"Näytön värien asettaminen tavallista lämpimpään sävyyn saattaa estää silmien "
+"väsymistä ja unettomuutta"
 
 #: src/Views/NightLightView.vala:33
 msgid "More Warm"
@@ -185,17 +181,19 @@ msgstr "Kiertolukko:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
-msgstr ""
+msgstr "Värisokeuden tuki"
 
 #: src/Views/FiltersView.vala:13
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
 msgstr ""
+"Jokaisen alla olevan ympyrän tulisi näkyä eri värillä. Koko näyttöön on "
+"mahdollista asettaa suodatin, joka auttaa erottamaan värejä toisistaan."
 
 #: src/Views/FiltersView.vala:30
 msgid "Red/Green"
-msgstr ""
+msgstr "Punainen/vihreä"
 
 #: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
 msgid "Protanopia"
@@ -203,23 +201,23 @@ msgstr ""
 
 #: src/Views/FiltersView.vala:49
 msgid "Red/Green — High Contrast"
-msgstr ""
+msgstr "Punainen/vihreä — Korkea kontrasti"
 
 #: src/Views/FiltersView.vala:65
 msgid "Green/Red"
-msgstr ""
+msgstr "Vihreä/punainen"
 
 #: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
 msgid "Deuteranopia"
-msgstr ""
+msgstr "Puna-vihersokeus"
 
 #: src/Views/FiltersView.vala:84
 msgid "Green/Red — High Contrast"
-msgstr ""
+msgstr "Vihreä/punainen — Korkea kontrasti"
 
 #: src/Views/FiltersView.vala:100
 msgid "Blue/Yellow"
-msgstr ""
+msgstr "Sininen/keltainen"
 
 #: src/Views/FiltersView.vala:100
 msgid "Tritanopia"
@@ -227,11 +225,11 @@ msgstr ""
 
 #: src/Views/FiltersView.vala:124
 msgid "Less Assistance"
-msgstr ""
+msgstr "Vähemmän tukea"
 
 #: src/Views/FiltersView.vala:125
 msgid "More Assistance"
-msgstr ""
+msgstr "Enemmän tukea"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/FiltersView.vala:146
@@ -240,16 +238,12 @@ msgid ""
 msgstr ""
 
 #: src/Views/FiltersView.vala:160
-#, fuzzy
-#| msgid "More Warm"
 msgid "More Color"
-msgstr "Enemmän lämpöä"
+msgstr "Enemmän väriä"
 
 #: src/Views/FiltersView.vala:161
-#, fuzzy
-#| msgid "Less Warm"
 msgid "Less Color"
-msgstr "Vähemmän lämpöä"
+msgstr "Vähemmän väriä"
 
 #: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
