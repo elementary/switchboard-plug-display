@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-21 18:39+0000\n"
-"PO-Revision-Date: 2023-03-12 15:25+0000\n"
+"PO-Revision-Date: 2023-07-15 05:38+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ka/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:38 src/DisplayPlug.vala:50
@@ -124,16 +124,11 @@ msgstr "სარკისებური ეკრანი"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/NightLightView.vala:18
-#, fuzzy
-#| msgid ""
-#| "Night Light makes the colors of your display warmer. This may help "
-#| "prevent eye strain and sleeplessness."
 msgid ""
 "Making the colors of your display warmer may help prevent eye strain and "
 "sleeplessness"
 msgstr ""
-"ღამის განათება თქვენი ეკრანის ფერებს უფრო თბილს ხდის. ამან შეიძლება თქვენი "
-"თვალების გადაღლას და უძილობას უშველოს."
+"ეკრანის ფერების სითბომ შეიძლება თქვენი თვალების გადაღლას და უძილობას უშველოს"
 
 #: src/Views/NightLightView.vala:33
 msgid "More Warm"
@@ -240,16 +235,12 @@ msgid ""
 msgstr ""
 
 #: src/Views/FiltersView.vala:160
-#, fuzzy
-#| msgid "More Warm"
 msgid "More Color"
-msgstr "უფრო თბილი"
+msgstr "მეტი ფერი"
 
 #: src/Views/FiltersView.vala:161
-#, fuzzy
-#| msgid "Less Warm"
 msgid "Less Color"
-msgstr "ნაკლებად თბილი"
+msgstr "ნაკლები ფერი"
 
 #: src/Widgets/DisplayWidget.vala:115
 msgid "Use this display:"
