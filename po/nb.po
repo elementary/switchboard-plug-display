@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-21 18:39+0000\n"
-"PO-Revision-Date: 2022-12-21 23:25+0000\n"
+"PO-Revision-Date: 2023-07-26 20:07+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/"
 "switchboard/switchboard-plug-display/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:38 src/DisplayPlug.vala:50
@@ -36,7 +36,7 @@ msgstr "Nattlys"
 #: src/DisplayPlug.vala:61 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
 #: src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
 msgid "Filters"
-msgstr ""
+msgstr "Filter"
 
 #: src/DisplayPlug.vala:110
 msgid "Screen Resolution"
@@ -72,19 +72,20 @@ msgstr "Fargetemperatur"
 
 #: src/DisplayPlug.vala:119
 msgid "Color Blindness"
-msgstr ""
+msgstr "Fargeblindhet"
 
 #: src/DisplayPlug.vala:120
+#, fuzzy
 msgid "Color Vision Deficiency"
-msgstr ""
+msgstr "Fargesynssvakhet"
 
 #: src/DisplayPlug.vala:121 src/Views/FiltersView.vala:137
 msgid "Grayscale"
-msgstr ""
+msgstr "Gråskala"
 
 #: src/DisplayPlug.vala:122
 msgid "Monochrome"
-msgstr ""
+msgstr "Ensfarget"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -184,60 +185,67 @@ msgid "Rotation Lock:"
 msgstr "Rotasjonslås:"
 
 #: src/Views/FiltersView.vala:10
+#, fuzzy
 msgid "Color Deficiency Assistance"
-msgstr ""
+msgstr "Hjelp for fargesynssvakhet"
 
 #: src/Views/FiltersView.vala:13
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
 msgstr ""
+"Hver av sirklene nedenfor skal være forskjellig farge. Et filter kan legges "
+"til for skjermen slik at de kan skjelnes fra hverandre."
 
 #: src/Views/FiltersView.vala:30
 msgid "Red/Green"
-msgstr ""
+msgstr "Rød/grønn"
 
 #: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
+#, fuzzy
 msgid "Protanopia"
-msgstr ""
+msgstr "Protanopia"
 
 #: src/Views/FiltersView.vala:49
 msgid "Red/Green — High Contrast"
-msgstr ""
+msgstr "Rød/grønn — høykontrast"
 
 #: src/Views/FiltersView.vala:65
 msgid "Green/Red"
-msgstr ""
+msgstr "Grønn/rød"
 
 #: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
+#, fuzzy
 msgid "Deuteranopia"
-msgstr ""
+msgstr "Deuteranopia"
 
 #: src/Views/FiltersView.vala:84
 msgid "Green/Red — High Contrast"
-msgstr ""
+msgstr "Grønn/rød — høykontrast"
 
 #: src/Views/FiltersView.vala:100
 msgid "Blue/Yellow"
-msgstr ""
+msgstr "Blå/gul"
 
 #: src/Views/FiltersView.vala:100
 msgid "Tritanopia"
-msgstr ""
+msgstr "Tritanopia"
 
 #: src/Views/FiltersView.vala:124
 msgid "Less Assistance"
-msgstr ""
+msgstr "Mindre hjelp"
 
 #: src/Views/FiltersView.vala:125
 msgid "More Assistance"
-msgstr ""
+msgstr "Mer hjelp"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/FiltersView.vala:146
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
 msgstr ""
+"Reduksjon av farge kan hjelpe å unngå forstyrrelser og redusere "
+"skjermavhengighet"
 
 #: src/Views/FiltersView.vala:160
 #, fuzzy
