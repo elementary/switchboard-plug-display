@@ -63,24 +63,23 @@ public class Display.Plug : Switchboard.Plug {
 
             var stack_switcher = new Gtk.StackSwitcher () {
                 halign = Gtk.Align.CENTER,
-                homogeneous = true,
                 margin_top = 12,
                 margin_end = 12,
                 margin_bottom = 12,
                 margin_start = 12,
                 stack = stack
             };
+            ((Gtk.BoxLayout)stack_switcher.layout_manager).homogeneous = true;
 
             box = new Gtk.Box (VERTICAL, 0);
-            box.add (stack_switcher);
-            box.add (stack);
-            box.show_all ();
+            box.append (stack_switcher);
+            box.append (stack);
 
             stack.notify["visible-child"].connect (() => {
                 if (stack.visible_child == displays_view) {
-                    displays_view.displays_overlay.show_windows ();
+                    // displays_view.displays_overlay.show_windows ();
                 } else {
-                    displays_view.displays_overlay.hide_windows ();
+                    // displays_view.displays_overlay.hide_windows ();
                 }
             });
         }
@@ -90,14 +89,14 @@ public class Display.Plug : Switchboard.Plug {
 
     public override void shown () {
         if (stack.visible_child == displays_view) {
-            displays_view.displays_overlay.show_windows ();
+            // displays_view.displays_overlay.show_windows ();
         } else {
-            displays_view.displays_overlay.hide_windows ();
+            // displays_view.displays_overlay.hide_windows ();
         }
     }
 
     public override void hidden () {
-        displays_view.displays_overlay.hide_windows ();
+        // displays_view.displays_overlay.hide_windows ();
     }
 
     public override void search_callback (string location) {

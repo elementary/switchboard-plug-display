@@ -19,7 +19,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Display.DisplayWindow : Hdy.Window {
+public class Display.DisplayWindow : Gtk.Window {
     public Display.VirtualMonitor virtual_monitor { get; construct; }
 
     private const int SPACING = 12;

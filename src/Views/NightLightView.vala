@@ -5,22 +5,15 @@
 
 public class Display.NightLightView : Gtk.Box {
     construct {
-        var nightlight_header = new Granite.HeaderLabel (_("Night Light"));
+        var nightlight_header = new Granite.HeaderLabel (_("Night Light")) {
+            secondary_text = _("Making the colors of your display warmer may help prevent eye strain and sleeplessness")
+        };
 
         var nightlight_switch = new Gtk.Switch () {
             halign = END,
             hexpand = true,
             valign = CENTER
         };
-
-        // FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-        var nightlight_subtitle = new Gtk.Label (
-            _("Making the colors of your display warmer may help prevent eye strain and sleeplessness")
-        ) {
-            wrap = true,
-            xalign = 0
-        };
-        nightlight_subtitle.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
         var temp_adjustment = new Gtk.Adjustment (0, 1500, 6000, 10, 0, 0);
 
@@ -39,37 +32,35 @@ public class Display.NightLightView : Gtk.Box {
             column_spacing = 12
         };
         nightlight_grid.attach (nightlight_header, 0, 0);
-        nightlight_grid.attach (nightlight_subtitle, 0, 1);
         nightlight_grid.attach (nightlight_switch, 1, 0, 1, 2);
         nightlight_grid.attach (temp_scale, 0, 2, 2);
 
         var schedule_header = new Granite.HeaderLabel (_("Schedule"));
 
-        var schedule_sunset_radio = new Gtk.RadioButton.with_label_from_widget (
-            null,
-            _("Sunset to Sunrise")
-        );
+        var schedule_sunset_radio = new Gtk.CheckButton.with_label (_("Sunset to Sunrise"));
 
         var from_label = new Gtk.Label (_("From:"));
 
-        var from_time = new Granite.Widgets.TimePicker () {
+        var from_time = new Granite.TimePicker () {
             hexpand = true,
             margin_end = 6
         };
 
         var to_label = new Gtk.Label (_("To:"));
 
-        var to_time = new Granite.Widgets.TimePicker () {
+        var to_time = new Granite.TimePicker () {
             hexpand = true
         };
 
         var schedule_manual_box = new Gtk.Box (HORIZONTAL, 6);
-        schedule_manual_box.add (from_label);
-        schedule_manual_box.add (from_time);
-        schedule_manual_box.add (to_label);
-        schedule_manual_box.add (to_time);
+        schedule_manual_box.append (from_label);
+        schedule_manual_box.append (from_time);
+        schedule_manual_box.append (to_label);
+        schedule_manual_box.append (to_time);
 
-        var schedule_manual_radio = new Gtk.RadioButton.from_widget (schedule_sunset_radio);
+        var schedule_manual_radio = new Gtk.CheckButton () {
+            group = schedule_sunset_radio
+        };
 
         var schedule_grid = new Gtk.Grid () {
             column_spacing = 7, // Off by one with Gtk.RadioButton
@@ -81,18 +72,17 @@ public class Display.NightLightView : Gtk.Box {
         schedule_grid.attach (schedule_manual_box, 1, 6);
 
         var box = new Gtk.Box (VERTICAL, 24);
-        box.add (nightlight_grid);
-        box.add (schedule_grid);
+        box.append (nightlight_grid);
+        box.append (schedule_grid);
 
-        var clamp = new Hdy.Clamp () {
+        var clamp = new Adw.Clamp () {
             child = box
         };
 
-        add (clamp);
+        append (clamp);
         margin_start = 12;
         margin_end = 12;
         margin_bottom = 12;
-        show_all ();
 
         var settings = new Settings ("org.gnome.settings-daemon.plugins.color");
         settings.bind ("night-light-enabled", nightlight_switch, "active", DEFAULT);

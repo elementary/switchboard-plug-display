@@ -20,27 +20,29 @@
  *              Oleksandr Lynok <oleksandr.lynok@gmail.com>
  */
 
-public class Display.DisplaysView : Gtk.Grid {
-    public DisplaysOverlay displays_overlay;
+public class Display.DisplaysView : Gtk.Box {
+    // public DisplaysOverlay displays_overlay;
 
     private Gtk.ComboBoxText dpi_combo;
-    private Gtk.Grid rotation_lock_grid;
+    private Gtk.Box rotation_lock_box;
 
     private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
 
     construct {
-            displays_overlay = new DisplaysOverlay ();
+            // displays_overlay = new DisplaysOverlay ();
 
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
             var mirror_switch = new Gtk.Switch ();
 
-            var mirror_grid = new Gtk.Grid () {
-                column_spacing = 6,
-                margin = 6,
+            var mirror_box = new Gtk.Box (HORIZONTAL, 6) {
+                margin_top = 6,
+                margin_bottom = 6,
+                margin_start = 6,
+                margin_end = 6,
                 valign = Gtk.Align.CENTER
             };
-            mirror_grid.add (mirror_label);
-            mirror_grid.add (mirror_switch);
+            mirror_box.append (mirror_label);
+            mirror_box.append (mirror_switch);
 
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
@@ -49,67 +51,73 @@ public class Display.DisplaysView : Gtk.Grid {
             dpi_combo.append_text (_("HiDPI") + " (2×)");
             dpi_combo.append_text (_("HiDPI") + " (3×)");
 
-            var dpi_grid = new Gtk.Grid () {
-                column_spacing = 6,
-                margin = 6
+            var dpi_box = new Gtk.Box (HORIZONTAL, 6) {
+                margin_top = 6,
+                margin_bottom = 6,
+                margin_start = 6,
+                margin_end = 6,
             };
-            dpi_grid.add (dpi_label);
-            dpi_grid.add (dpi_combo);
+            dpi_box.append (dpi_label);
+            dpi_box.append (dpi_combo);
 
             var detect_button = new Gtk.Button.with_label (_("Detect Displays"));
 
             var apply_button = new Gtk.Button.with_label (_("Apply"));
-            apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            apply_button.get_style_context ().add_class (Granite.STYLE_CLASS_SUGGESTED_ACTION);
             apply_button.sensitive = false;
 
-            var button_grid = new Gtk.Grid () {
-                column_homogeneous = true,
-                column_spacing = 6,
-                margin = 6,
+            var button_box = new Gtk.Box (HORIZONTAL, 6) {
+                homogeneous = true,
+                margin_top = 6,
+                margin_bottom = 6,
+                margin_start = 6,
+                margin_end = 6,
                 valign = Gtk.Align.CENTER
             };
-            button_grid.add (detect_button);
-            button_grid.add (apply_button);
+            button_box.append (detect_button);
+            button_box.append (apply_button);
 
             var action_bar = new Gtk.ActionBar ();
-            action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-            action_bar.pack_start (dpi_grid);
-            action_bar.pack_start (mirror_grid);
+            action_bar.get_style_context ().add_class (Granite.STYLE_CLASS_FLAT);
+            action_bar.pack_start (dpi_box);
+            action_bar.pack_start (mirror_box);
 
             var schema_source = GLib.SettingsSchemaSource.get_default ();
             var rotation_lock_schema = schema_source.lookup (TOUCHSCREEN_SETTINGS_PATH, true);
             if (rotation_lock_schema != null) {
-                rotation_lock_grid = new Gtk.Grid () {
-                    column_spacing = 6,
-                    margin = 6,
+                rotation_lock_box = new Gtk.Box (HORIZONTAL, 6) {
+                    margin_top = 6,
+                    margin_bottom = 6,
+                    margin_start = 6,
+                    margin_end = 6,
                     valign = Gtk.Align.CENTER
                 };
 
-                action_bar.pack_start (rotation_lock_grid);
+                action_bar.pack_start (rotation_lock_box);
 
                 detect_accelerometer.begin ();
             } else {
                 info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
             }
 
-            action_bar.pack_end (button_grid);
+            action_bar.pack_end (button_box);
 
             orientation = Gtk.Orientation.VERTICAL;
-            add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-            add (displays_overlay);
-            add (action_bar);
+            append (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+            // append (displays_overlay);
+            append (action_bar);
 
-            displays_overlay.configuration_changed.connect ((changed) => {
-                apply_button.sensitive = changed;
-            });
+            // displays_overlay.configuration_changed.connect ((changed) => {
+            //     apply_button.sensitive = changed;
+            // });
 
             unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
-            mirror_grid.sensitive = monitor_manager.monitors.size > 1;
+            mirror_box.sensitive = monitor_manager.monitors.size > 1;
             monitor_manager.notify["monitor-number"].connect (() => {
-                mirror_grid.sensitive = monitor_manager.monitors.size > 1;
+                mirror_box.sensitive = monitor_manager.monitors.size > 1;
             });
 
-            detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
+            // detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
             apply_button.clicked.connect (() => {
                 monitor_manager.set_monitor_config ();
                 apply_button.sensitive = false;
@@ -149,12 +157,10 @@ public class Display.DisplaysView : Gtk.Grid {
             var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
             var rotation_lock_switch = new Gtk.Switch ();
 
-            rotation_lock_grid.add (rotation_lock_label);
-            rotation_lock_grid.add (rotation_lock_switch);
+            rotation_lock_box.append (rotation_lock_label);
+            rotation_lock_box.append (rotation_lock_switch);
 
             touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", SettingsBindFlags.DEFAULT);
-
-            rotation_lock_grid.show_all ();
         }
     }
 
