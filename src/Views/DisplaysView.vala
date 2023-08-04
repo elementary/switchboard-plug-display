@@ -21,7 +21,7 @@
  */
 
 public class Display.DisplaysView : Gtk.Box {
-    // public DisplaysOverlay displays_overlay;
+    public DisplaysOverlay displays_overlay;
 
     private Gtk.ComboBoxText dpi_combo;
     private Gtk.Box rotation_lock_box;
@@ -29,7 +29,7 @@ public class Display.DisplaysView : Gtk.Box {
     private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
 
     construct {
-            // displays_overlay = new DisplaysOverlay ();
+            displays_overlay = new DisplaysOverlay ();
 
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
             var mirror_switch = new Gtk.Switch ();
@@ -104,12 +104,12 @@ public class Display.DisplaysView : Gtk.Box {
 
             orientation = Gtk.Orientation.VERTICAL;
             append (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-            // append (displays_overlay);
+            append (displays_overlay);
             append (action_bar);
 
-            // displays_overlay.configuration_changed.connect ((changed) => {
-            //     apply_button.sensitive = changed;
-            // });
+            displays_overlay.configuration_changed.connect ((changed) => {
+                apply_button.sensitive = changed;
+            });
 
             unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_box.sensitive = monitor_manager.monitors.size > 1;
@@ -117,7 +117,7 @@ public class Display.DisplaysView : Gtk.Box {
                 mirror_box.sensitive = monitor_manager.monitors.size > 1;
             });
 
-            // detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
+            detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
             apply_button.clicked.connect (() => {
                 monitor_manager.set_monitor_config ();
                 apply_button.sensitive = false;

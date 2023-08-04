@@ -30,28 +30,28 @@ public class Display.DisplayWindow : Gtk.Window {
 
     construct {
         var label = new Gtk.Label (virtual_monitor.get_display_name ()) {
-            margin = 12
+            // margin = 12
         };
 
-        add (label);
+        child = label;
 
-        input_shape_combine_region (null);
-        accept_focus = false;
-        decorated = false;
-        resizable = false;
-        deletable = false;
-        can_focus = false;
-        skip_taskbar_hint = true;
-        skip_pager_hint = true;
-        type_hint = Gdk.WindowTypeHint.TOOLTIP;
-        set_keep_above (true);
+        // input_shape_combine_region (null);
+        // accept_focus = false;
+        // decorated = false;
+        // resizable = false;
+        // deletable = false;
+        // can_focus = false;
+        // skip_taskbar_hint = true;
+        // skip_pager_hint = true;
+        // type_hint = Gdk.WindowTypeHint.TOOLTIP;
+        // set_keep_above (true);
 
-        stick ();
+        // stick ();
 
-        var scale_factor = get_style_context ().get_scale ();
-        move (
-            (int) (virtual_monitor.current_x / scale_factor) + SPACING,
-            (int) (virtual_monitor.current_y / scale_factor) + SPACING
-        );
+        // var scale_factor = get_style_context ().get_scale ();
+        // move (
+        //     (int) (virtual_monitor.current_x / scale_factor) + SPACING,
+        //     (int) (virtual_monitor.current_y / scale_factor) + SPACING
+        // );
     }
 }

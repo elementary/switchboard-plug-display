@@ -20,12 +20,13 @@
  *              Felix Andreas <fandreas@physik.hu-berlin.de>
  */
 
-public class Display.DisplaysOverlay : Gtk.Overlay {
+public class Display.DisplaysOverlay : Gtk.Box {
     private const int SNAP_LIMIT = int.MAX - 1;
     private const int MINIMUM_WIDGET_OFFSET = 50;
 
     public signal void configuration_changed (bool changed);
 
+    private Gtk.Overlay overlay;
     private bool scanning = false;
     private double current_ratio = 1.0f;
     private int current_allocated_width = 0;
@@ -63,10 +64,19 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     """;
 
     public DisplaysOverlay () {
-        var grid = new Gtk.Grid ();
-        grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-        grid.expand = true;
-        add (grid);
+        var grid = new Gtk.Grid () {
+            hexpand = true,
+            vexpand = true
+        };
+        grid.get_style_context ().add_class (Granite.STYLE_CLASS_VIEW);
+
+        overlay = new Gtk.Overlay () {
+            child = grid
+        };
+
+        append (overlay);
+
+        overlay.get_child_position.connect (get_child_position);
 
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
@@ -78,7 +88,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
     }
 
-    public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
+    public bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
         allocation = Gdk.Rectangle ();
         if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
             calculate_ratio ();
@@ -107,16 +117,20 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     public void rescan_displays () {
         scanning = true;
-        get_children ().foreach ((child) => {
-            if (child is DisplayWidget) {
-                child.destroy ();
+        var child = overlay.get_first_child ();
+        while (child != null) {
+            var current_child = child;
+            child = child.get_next_sibling ();
+            if (current_child is DisplayWidget) {
+                overlay.remove_overlay (current_child);
             }
-        });
+        }
 
         active_displays = 0;
+        var nth = 0;
         foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
             active_displays += virtual_monitor.is_active ? 1 : 0;
-            add_output (virtual_monitor);
+            add_output (virtual_monitor, nth++);
         }
 
         change_active_displays_sensitivity ();
@@ -129,31 +143,37 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             return;
         }
 
-        get_children ().foreach ((child) => {
+        var child = overlay.get_first_child ();
+        while (child != null) {
             if (child is DisplayWidget) {
                 if (((DisplayWidget) child).virtual_monitor.is_active) {
-                    ((DisplayWidget) child).display_window.show_all ();
+                    ((DisplayWidget) child).display_window.present ();
                 }
             }
-        });
+            child = child.get_next_sibling ();
+        }
     }
 
     public void hide_windows () {
-        get_children ().foreach ((child) => {
+        var child = overlay.get_first_child ();
+        while (child != null) {
             if (child is DisplayWidget) {
                 ((DisplayWidget) child).display_window.hide ();
             }
-        });
+            child = child.get_next_sibling ();
+        }
     }
 
     private void change_active_displays_sensitivity () {
-        get_children ().foreach ((child) => {
+        var child = overlay.get_first_child ();
+        while (child != null) {
             if (child is DisplayWidget) {
                 if (((DisplayWidget) child).virtual_monitor.is_active) {
                     ((DisplayWidget) child).only_display = (active_displays == 1);
                 }
             }
-        });
+            child = child.get_next_sibling ();
+        }
     }
 
     private void check_configuration_changed () {
@@ -167,7 +187,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         int max_width = int.MIN;
         int max_height = int.MIN;
 
-        get_children ().foreach ((child) => {
+        var child = overlay.get_first_child ();
+        while (child != null) {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
                 int x, y, width, height;
@@ -178,7 +199,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 max_width = int.max (max_width, x + width);
                 max_height = int.max (max_height, y + height);
             }
-        });
+            child = child.get_next_sibling ();
+        }
 
         current_allocated_width = get_allocated_width ();
         current_allocated_height = get_allocated_height ();
@@ -190,42 +212,37 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
     }
 
-    private void add_output (Display.VirtualMonitor virtual_monitor) {
+    private void add_output (Display.VirtualMonitor virtual_monitor, int nth) {
         var display_widget = new DisplayWidget (virtual_monitor);
         current_allocated_width = 0;
         current_allocated_height = 0;
-        add_overlay (display_widget);
+        overlay.add_overlay (display_widget);
         var provider = new Gtk.CssProvider ();
-        try {
-            var color_number = (get_children ().length () - 2) % 7;
+        var color_number = (nth) % 7;
 
-            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
-            provider.load_from_data (colored_css, colored_css.length);
+        var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
+        provider.load_from_data ((uint8[])colored_css);
 
-            var context = display_widget.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
+        var context = display_widget.get_style_context ();
+        context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_class ("colored");
 
-            context = display_widget.display_window.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
+        context = display_widget.display_window.get_style_context ();
+        context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_class ("colored");
 
-            context = display_widget.primary_image.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
+        context = display_widget.primary_image.get_style_context ();
+        context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_class ("colored");
 
-            context = display_widget.toggle_settings.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
-        } catch (GLib.Error e) {
-            critical (e.message);
-        }
+        context = display_widget.toggle_settings.get_style_context ();
+        context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_class ("colored");
 
-        display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
 
         display_widget.check_position.connect (() => {
@@ -245,7 +262,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         });
 
         if (!monitor_manager.is_mirrored && virtual_monitor.is_active) {
-            display_widget.display_window.show_all ();
+            display_widget.display_window.present ();
         }
 
         display_widget.end_grab.connect ((delta_x, delta_y) => {
@@ -256,7 +273,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
             display_widget.set_geometry (delta_x + x, delta_y + y, width, height);
-            display_widget.queue_resize_no_redraw ();
+            display_widget.queue_resize ();
             check_configuration_changed ();
             check_intersects (display_widget);
             snap_edges (display_widget);
@@ -274,7 +291,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void set_as_primary (Display.VirtualMonitor new_primary) {
-        get_children ().foreach ((child) => {
+        var child = overlay.get_first_child ();
+        while (child != null) {
             if (child is DisplayWidget) {
                 var display_widget = child as DisplayWidget;
                 var virtual_monitor = display_widget.virtual_monitor;
@@ -282,7 +300,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 display_widget.set_primary (is_primary);
                 virtual_monitor.primary = is_primary;
             }
-        });
+            child = child.get_next_sibling ();
+        }
         foreach (var virtual_monitor in monitor_manager.virtual_monitors) {
             virtual_monitor.primary = virtual_monitor == new_primary;
         }
@@ -290,17 +309,15 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         check_configuration_changed ();
     }
 
-    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y) {
-        reorder_overlay (display_widget, -1);
-        display_widget.delta_x = (int) (diff_x / current_ratio);
-        display_widget.delta_y = (int) (diff_y / current_ratio);
-        Gdk.ModifierType state;
-        Gtk.get_current_event_state (out state);
-        if (!(Gdk.ModifierType.CONTROL_MASK in state)) {
+    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y, bool control_mask) {
+        // reorder_overlay (display_widget, -1);
+        display_widget.delta_x += (int) (diff_x / current_ratio);
+        display_widget.delta_y += (int) (diff_y / current_ratio);
+        if (!control_mask) {
             align_edges (display_widget);
         }
 
-        display_widget.queue_resize_no_redraw ();
+        display_widget.queue_resize ();
     }
 
     private void align_edges (DisplayWidget display_widget) {
@@ -318,38 +335,38 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         widget_points [4] = y + height / 2 - 1;      // y_center
         widget_points [5] = y + height - 1;          // y_end
 
-        foreach (var child in get_children ()) {
-            if (!(child is DisplayWidget) || (DisplayWidget) child == display_widget) {
-                continue;
-            }
+        var child = overlay.get_first_child ();
+        while (child != null) {
+            if (child is DisplayWidget && (DisplayWidget) child != display_widget) {
+                var anchor = (DisplayWidget) child;
+                anchor.get_geometry (out x, out y, out width, out height);
+                anchor_points [0] = x;                   // x_start
+                anchor_points [1] = x + width / 2 - 1;   // x_center
+                anchor_points [2] = x + width - 1;       // x_end
+                anchor_points [3] = y;                   // y_start
+                anchor_points [4] = y + height / 2 - 1;  // y_center
+                anchor_points [5] = y + height - 1;      // y_end
 
-            var anchor = (DisplayWidget) child;
-            anchor.get_geometry (out x, out y, out width, out height);
-            anchor_points [0] = x;                   // x_start
-            anchor_points [1] = x + width / 2 - 1;   // x_center
-            anchor_points [2] = x + width - 1;       // x_end
-            anchor_points [3] = y;                   // y_start
-            anchor_points [4] = y + height / 2 - 1;  // y_center
-            anchor_points [5] = y + height - 1;      // y_end
-
-            int threshold = int.min (width, height) / 10;
-            for (var u = 0; u < 2; u++) { // 0: X, 1: Y
-                for (var i = 0; i < 3; i++) {
-                    for (var j = 0; j < 3; j++) {
-                        int test_delta = anchor_points [i + 3 * u] - widget_points [j + 3 * u];
-                        if (threshold > (test_delta - current_delta [u]).abs ()) {
-                            if (test_delta.abs () < aligned_delta [u].abs ()) {
-                                aligned_delta [u] = test_delta;
-                                if (i == 0 && j != i) {
-                                    aligned_delta [u] -= 1;
-                                } else if (j == 0 && i != j) {
-                                    aligned_delta [u] += 1;
+                int threshold = int.min (width, height) / 10;
+                for (var u = 0; u < 2; u++) { // 0: X, 1: Y
+                    for (var i = 0; i < 3; i++) {
+                        for (var j = 0; j < 3; j++) {
+                            int test_delta = anchor_points [i + 3 * u] - widget_points [j + 3 * u];
+                            if (threshold > (test_delta - current_delta [u]).abs ()) {
+                                if (test_delta.abs () < aligned_delta [u].abs ()) {
+                                    aligned_delta [u] = test_delta;
+                                    if (i == 0 && j != i) {
+                                        aligned_delta [u] -= 1;
+                                    } else if (j == 0 && i != j) {
+                                        aligned_delta [u] += 1;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            child = child.get_next_sibling ();
         }
 
         if (aligned_delta [0] != int.MAX) {
@@ -362,10 +379,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     private void close_gaps () {
         var display_widgets = new List<DisplayWidget> ();
-        foreach (var child in get_children ()) {
+        var child = overlay.get_first_child ();
+        while (child != null) {
             if (child is DisplayWidget) {
-                display_widgets.append ((DisplayWidget) child);
+                display_widgets.append ((DisplayWidget)child);
             }
+            child = child.get_next_sibling ();
         }
 
         foreach (var display_widget in display_widgets) {
@@ -405,7 +424,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private void verify_global_positions () {
         int min_x = int.MAX;
         int min_y = int.MAX;
-        get_children ().foreach ((child) => {
+
+        var child = overlay.get_first_child ();
+        while (child != null) {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
                 int x, y, width, height;
@@ -413,20 +434,23 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 min_x = int.min (min_x, x);
                 min_y = int.min (min_y, y);
             }
-        });
+            child = child.get_next_sibling ();
+        }
 
         if (min_x == 0 && min_y == 0) {
             return;
         }
 
-        get_children ().foreach ((child) => {
+        child = overlay.get_first_child ();
+        while (child != null) {
             if (child is DisplayWidget) {
                 var display_widget = (DisplayWidget) child;
                 int x, y, width, height;
                 display_widget.get_geometry (out x, out y, out width, out height);
                 display_widget.set_geometry (x - min_x, y - min_y, width, height);
             }
-        });
+            child = child.get_next_sibling ();
+        }
     }
 
     // If widget is intersects with any other widgets -> move other widgets to fix intersection
@@ -440,36 +464,36 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         source_display_widget.get_geometry (out source_x, out source_y, out source_width, out source_height);
         Gdk.Rectangle src_rect = { source_x, source_y, source_width, source_height };
 
-        foreach (var child in get_children ()) {
-            if (!(child is DisplayWidget) || (DisplayWidget) child == source_display_widget) {
-                continue;
-            }
+        var child = overlay.get_first_child ();
+        while (child != null) {
+            if (child is DisplayWidget && (DisplayWidget) child != source_display_widget) {
+                var other_display_widget = (DisplayWidget) child;
+                int other_x, other_y, other_width, other_height;
+                other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
+                Gdk.Rectangle test_rect = { other_x, other_y, other_width, other_height };
+                if (src_rect.intersect (test_rect, null)) {
+                    if (level == 0) {
+                        var distance_left = source_x - other_x - other_width;
+                        var distance_right = source_x - other_x + source_width;
+                        var distance_top = source_y - other_y - other_height;
+                        var distance_bottom = source_y - other_y + source_height;
+                        var test_distance_x = distance_right < -distance_left ? distance_right : distance_left;
+                        var test_distance_y = distance_bottom < -distance_top ? distance_bottom : distance_top;
 
-            var other_display_widget = (DisplayWidget) child;
-            int other_x, other_y, other_width, other_height;
-            other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
-            Gdk.Rectangle test_rect = { other_x, other_y, other_width, other_height };
-            if (src_rect.intersect (test_rect, null)) {
-                if (level == 0) {
-                    var distance_left = source_x - other_x - other_width;
-                    var distance_right = source_x - other_x + source_width;
-                    var distance_top = source_y - other_y - other_height;
-                    var distance_bottom = source_y - other_y + source_height;
-                    var test_distance_x = distance_right < -distance_left ? distance_right : distance_left;
-                    var test_distance_y = distance_bottom < -distance_top ? distance_bottom : distance_top;
-
-                    // if distance to upper egde == distance lower edge, move horizontally
-                    if (test_distance_x.abs () <= test_distance_y.abs () || distance_top == -distance_bottom) {
-                        distance_x = test_distance_x;
-                    } else {
-                        distance_y = test_distance_y;
+                        // if distance to upper egde == distance lower edge, move horizontally
+                        if (test_distance_x.abs () <= test_distance_y.abs () || distance_top == -distance_bottom) {
+                            distance_x = test_distance_x;
+                        } else {
+                            distance_y = test_distance_y;
+                        }
                     }
-                }
 
-                other_display_widget.set_geometry (other_x + distance_x, other_y + distance_y, other_width, other_height);
-                other_display_widget.queue_resize_no_redraw ();
-                check_intersects (other_display_widget, level + 1, distance_x, distance_y);
+                    other_display_widget.set_geometry (other_x + distance_x, other_y + distance_y, other_width, other_height);
+                    other_display_widget.queue_resize ();
+                    check_intersects (other_display_widget, level + 1, distance_x, distance_y);
+                }
             }
+            child = child.get_next_sibling ();
         }
     }
 
@@ -478,10 +502,14 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         // Snap last_moved
         debug ("Snapping displays");
         var anchors = new List<DisplayWidget> ();
-        get_children ().foreach ((child) => {
-            if (!(child is DisplayWidget) || last_moved.equals ((DisplayWidget)child)) return;
-            anchors.append ((DisplayWidget) child);
-        });
+
+        var child = overlay.get_first_child ();
+        while (child != null) {
+            if (child is DisplayWidget && !last_moved.equals ((DisplayWidget)child)) {
+                anchors.append ((DisplayWidget) child);
+            }
+            child = child.get_next_sibling ();
+        }
 
         snap_widget (last_moved, anchors);
 

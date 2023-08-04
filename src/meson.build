@@ -11,9 +11,9 @@ plug_files = files(
     'Views/NightLightView.vala',
     'Views/DisplaysView.vala',
     'Views' / 'FiltersView.vala',
-    # 'Widgets/DisplayWindow.vala',
-    # 'Widgets/DisplayWidget.vala',
-    # 'Widgets/DisplaysOverlay.vala',
+    'Widgets/DisplayWindow.vala',
+    'Widgets/DisplayWidget.vala',
+    'Widgets/DisplaysOverlay.vala',
 )
 
 switchboard_dep = dependency('switchboard-3')
