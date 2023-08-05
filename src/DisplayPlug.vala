@@ -31,8 +31,9 @@ public class Display.Plug : Switchboard.Plug {
         GLib.Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 
         var settings = new Gee.TreeMap<string, string?> (null, null);
-        settings.set ("display", null);
+        settings.set ("display", "displays");
         settings.set ("display/night-light", "night-light");
+        settings.set ("display/filters", "filters");
         Object (category: Category.HARDWARE,
                 code_name: "io.elementary.switchboard.display",
                 display_name: _("Displays"),
