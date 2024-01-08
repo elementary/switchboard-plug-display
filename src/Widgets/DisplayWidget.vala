@@ -26,7 +26,7 @@ public struct Display.Resolution {
     bool is_current;
 }
 
-public class Display.DisplayWidget : Gtk.EventBox {
+public class Display.DisplayWidget : Gtk.Fixed {
     public signal void set_as_primary ();
     public signal void move_display (double diff_x, double diff_y);
     public signal void end_grab (int delta_x, int delta_y);
@@ -45,7 +45,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private double start_y = 0;
     private bool holding = false;
 
-    public DisplayWindow display_window { get; private set; }
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
@@ -514,38 +513,38 @@ public class Display.DisplayWidget : Gtk.EventBox {
         });
     }
 
-    public override bool button_press_event (Gdk.EventButton event) {
-        if (only_display) {
-            return false;
-        }
+    // public override bool button_press_event (Gdk.EventButton event) {
+    //     if (only_display) {
+    //         return false;
+    //     }
 
-        start_x = event.x_root;
-        start_y = event.y_root;
-        holding = true;
-        return false;
-    }
+    //     start_x = event.x_root;
+    //     start_y = event.y_root;
+    //     holding = true;
+    //     return false;
+    // }
 
-    public override bool button_release_event (Gdk.EventButton event) {
-        holding = false;
-        if ((delta_x == 0 && delta_y == 0) || only_display) {
-            return false;
-        }
+    // public override bool button_release_event (Gdk.EventButton event) {
+    //     holding = false;
+    //     if ((delta_x == 0 && delta_y == 0) || only_display) {
+    //         return false;
+    //     }
 
-        var old_delta_x = delta_x;
-        var old_delta_y = delta_y;
-        delta_x = 0;
-        delta_y = 0;
-        end_grab (old_delta_x, old_delta_y);
-        return false;
-    }
+    //     var old_delta_x = delta_x;
+    //     var old_delta_y = delta_y;
+    //     delta_x = 0;
+    //     delta_y = 0;
+    //     end_grab (old_delta_x, old_delta_y);
+    //     return false;
+    // }
 
-    public override bool motion_notify_event (Gdk.EventMotion event) {
-        if (holding && !only_display) {
-            move_display (event.x_root - start_x, event.y_root - start_y);
-        }
+    // public override bool motion_notify_event (Gdk.EventMotion event) {
+    //     if (holding && !only_display) {
+    //         move_display (event.x_root - start_x, event.y_root - start_y);
+    //     }
 
-        return false;
-    }
+    //     return false;
+    // }
 
     public void set_primary (bool is_primary) {
         if (is_primary) {
