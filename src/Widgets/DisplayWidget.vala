@@ -540,7 +540,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         start_x = x;
         start_y = y;
         holding = true;
-        return;
     }
 
     private void gesture_release_event (int n_press, double x, double y) {
