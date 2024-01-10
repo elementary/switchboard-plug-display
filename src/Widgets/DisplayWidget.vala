@@ -545,7 +545,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private void gesture_release_event (int n_press, double x, double y) {
         holding = false;
         if ((delta_x == 0 && delta_y == 0) || only_display) {
-            return ;
+            return;
         }
 
         var old_delta_x = delta_x;
