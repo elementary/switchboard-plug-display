@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-21 18:39+0000\n"
+"POT-Creation-Date: 2024-01-10 00:51+0000\n"
 "PO-Revision-Date: 2022-08-06 14:22+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/switchboard/"
@@ -20,69 +20,69 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:38 src/DisplayPlug.vala:50
+#: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
 msgid "Displays"
 msgstr "디스플레이"
 
-#: src/DisplayPlug.vala:39
+#: src/DisplayPlug.vala:40
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "해상도와 모니터 및 프로젝터의 위치를 설정합니다"
 
-#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
-#: src/DisplayPlug.vala:118 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:117 src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:119 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "낮은 색온도"
 
-#: src/DisplayPlug.vala:61 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:120 src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
 msgid "Filters"
 msgstr ""
 
-#: src/DisplayPlug.vala:110
+#: src/DisplayPlug.vala:111
 msgid "Screen Resolution"
 msgstr "화면 해상도"
 
-#: src/DisplayPlug.vala:111
+#: src/DisplayPlug.vala:112 src/Widgets/DisplayWidget.vala:146
 msgid "Screen Rotation"
 msgstr "화면 회전"
 
-#: src/DisplayPlug.vala:112
+#: src/DisplayPlug.vala:113
 msgid "Primary display"
 msgstr "주 디스플레이"
 
-#: src/DisplayPlug.vala:113
+#: src/DisplayPlug.vala:114
 msgid "Screen mirroring"
 msgstr "미러 스크린"
 
-#: src/DisplayPlug.vala:114
+#: src/DisplayPlug.vala:115
 msgid "Scaling factor"
 msgstr "비율 조정"
 
-#: src/DisplayPlug.vala:115
+#: src/DisplayPlug.vala:116
 msgid "Rotation lock"
 msgstr "회전 잠금"
 
-#: src/DisplayPlug.vala:117 src/Views/NightLightView.vala:46
+#: src/DisplayPlug.vala:118 src/Views/NightLightView.vala:46
 msgid "Schedule"
 msgstr "설정"
 
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:119
 msgid "Color temperature"
 msgstr "색 온도"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:120
 msgid "Color Blindness"
 msgstr ""
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:121
 msgid "Color Vision Deficiency"
 msgstr ""
 
-#: src/DisplayPlug.vala:121 src/Views/FiltersView.vala:137
+#: src/DisplayPlug.vala:122 src/Views/FiltersView.vala:137
 msgid "Grayscale"
 msgstr ""
 
-#: src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123
 msgid "Monochrome"
 msgstr ""
 
@@ -251,42 +251,44 @@ msgstr "더 따뜻하게"
 msgid "Less Color"
 msgstr "덜 따뜻하게"
 
-#: src/Widgets/DisplayWidget.vala:115
-msgid "Use this display:"
-msgstr "이 디스플레이 사용:"
-
-#: src/Widgets/DisplayWidget.vala:125
-msgid "Resolution:"
+#: src/Widgets/DisplayWidget.vala:132
+#, fuzzy
+#| msgid "Resolution:"
+msgid "Resolution"
 msgstr "해상도:"
 
-#: src/Widgets/DisplayWidget.vala:136
-msgid "Screen Rotation:"
-msgstr "화면 회전:"
-
-#: src/Widgets/DisplayWidget.vala:147
-msgid "Refresh Rate:"
+#: src/Widgets/DisplayWidget.vala:160
+#, fuzzy
+#| msgid "Refresh Rate:"
+msgid "Refresh Rate"
 msgstr "재생률:"
 
-#: src/Widgets/DisplayWidget.vala:222
+#: src/Widgets/DisplayWidget.vala:232
 msgid "Other…"
 msgstr "기타…"
 
-#: src/Widgets/DisplayWidget.vala:271
+#: src/Widgets/DisplayWidget.vala:282
 msgid "Configure display"
 msgstr "디스플레이 설정"
 
-#: src/Widgets/DisplayWidget.vala:453
+#: src/Widgets/DisplayWidget.vala:471
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:553
+#: src/Widgets/DisplayWidget.vala:567
 msgid "Is the primary display"
 msgstr "주 모니터입니다"
 
-#: src/Widgets/DisplayWidget.vala:556
+#: src/Widgets/DisplayWidget.vala:570
 msgid "Set as primary display"
 msgstr "주 디스플레이로 설정"
+
+#~ msgid "Use this display:"
+#~ msgstr "이 디스플레이 사용:"
+
+#~ msgid "Screen Rotation:"
+#~ msgstr "화면 회전:"
 
 #~ msgid "Night Light:"
 #~ msgstr "낮은 색온도:"

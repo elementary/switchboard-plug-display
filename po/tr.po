@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-21 18:39+0000\n"
+"POT-Creation-Date: 2024-01-10 00:51+0000\n"
 "PO-Revision-Date: 2021-09-02 16:31+0000\n"
 "Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
@@ -20,69 +20,69 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
-#: src/DisplayPlug.vala:38 src/DisplayPlug.vala:50
+#: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
 msgid "Displays"
 msgstr "Ekranlar"
 
-#: src/DisplayPlug.vala:39
+#: src/DisplayPlug.vala:40
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Projektör ve ekranların, pozisyon ve çözünürlüklerini yapılandırın"
 
-#: src/DisplayPlug.vala:55 src/DisplayPlug.vala:116 src/DisplayPlug.vala:117
-#: src/DisplayPlug.vala:118 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:117 src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:119 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Gece Işığı"
 
-#: src/DisplayPlug.vala:61 src/DisplayPlug.vala:119 src/DisplayPlug.vala:120
-#: src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:120 src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
 msgid "Filters"
 msgstr ""
 
-#: src/DisplayPlug.vala:110
+#: src/DisplayPlug.vala:111
 msgid "Screen Resolution"
 msgstr "Ekran Çözünürlüğü"
 
-#: src/DisplayPlug.vala:111
+#: src/DisplayPlug.vala:112 src/Widgets/DisplayWidget.vala:146
 msgid "Screen Rotation"
 msgstr "Ekran Döndürme"
 
-#: src/DisplayPlug.vala:112
+#: src/DisplayPlug.vala:113
 msgid "Primary display"
 msgstr "Birincil ekran"
 
-#: src/DisplayPlug.vala:113
+#: src/DisplayPlug.vala:114
 msgid "Screen mirroring"
 msgstr "Ekran yansıtma"
 
-#: src/DisplayPlug.vala:114
+#: src/DisplayPlug.vala:115
 msgid "Scaling factor"
 msgstr "Ölçekleme oranı"
 
-#: src/DisplayPlug.vala:115
+#: src/DisplayPlug.vala:116
 msgid "Rotation lock"
 msgstr "Döndürme kilidi"
 
-#: src/DisplayPlug.vala:117 src/Views/NightLightView.vala:46
+#: src/DisplayPlug.vala:118 src/Views/NightLightView.vala:46
 msgid "Schedule"
 msgstr "Zamanlama"
 
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:119
 msgid "Color temperature"
 msgstr "Renk sıcaklığı"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:120
 msgid "Color Blindness"
 msgstr ""
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:121
 msgid "Color Vision Deficiency"
 msgstr ""
 
-#: src/DisplayPlug.vala:121 src/Views/FiltersView.vala:137
+#: src/DisplayPlug.vala:122 src/Views/FiltersView.vala:137
 msgid "Grayscale"
 msgstr ""
 
-#: src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123
 msgid "Monochrome"
 msgstr ""
 
@@ -251,42 +251,44 @@ msgstr "Daha Sıcak"
 msgid "Less Color"
 msgstr "Daha Soğuk"
 
-#: src/Widgets/DisplayWidget.vala:115
-msgid "Use this display:"
-msgstr "Bu ekranı kullan:"
-
-#: src/Widgets/DisplayWidget.vala:125
-msgid "Resolution:"
+#: src/Widgets/DisplayWidget.vala:132
+#, fuzzy
+#| msgid "Resolution:"
+msgid "Resolution"
 msgstr "Çözünürlük:"
 
-#: src/Widgets/DisplayWidget.vala:136
-msgid "Screen Rotation:"
-msgstr "Ekran Döndürme:"
-
-#: src/Widgets/DisplayWidget.vala:147
-msgid "Refresh Rate:"
+#: src/Widgets/DisplayWidget.vala:160
+#, fuzzy
+#| msgid "Refresh Rate:"
+msgid "Refresh Rate"
 msgstr "Yenileme Hızı:"
 
-#: src/Widgets/DisplayWidget.vala:222
+#: src/Widgets/DisplayWidget.vala:232
 msgid "Other…"
 msgstr "Diğer…"
 
-#: src/Widgets/DisplayWidget.vala:271
+#: src/Widgets/DisplayWidget.vala:282
 msgid "Configure display"
 msgstr "Ekranı yapılandır"
 
-#: src/Widgets/DisplayWidget.vala:453
+#: src/Widgets/DisplayWidget.vala:471
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:553
+#: src/Widgets/DisplayWidget.vala:567
 msgid "Is the primary display"
 msgstr "Birincil ekran"
 
-#: src/Widgets/DisplayWidget.vala:556
+#: src/Widgets/DisplayWidget.vala:570
 msgid "Set as primary display"
 msgstr "Birincil ekran olarak ayarla"
+
+#~ msgid "Use this display:"
+#~ msgstr "Bu ekranı kullan:"
+
+#~ msgid "Screen Rotation:"
+#~ msgstr "Ekran Döndürme:"
 
 #~ msgid "Night Light:"
 #~ msgstr "Gece Işığı:"

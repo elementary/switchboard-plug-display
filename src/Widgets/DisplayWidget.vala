@@ -48,7 +48,7 @@ public class Display.DisplayWidget : Gtk.Fixed {
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
-    private Gtk.Switch use_switch;
+    private Granite.SwitchModelButton use_switch;
 
     private Gtk.ComboBox resolution_combobox;
     private Gtk.TreeStore resolution_tree_store;
@@ -61,6 +61,9 @@ public class Display.DisplayWidget : Gtk.Fixed {
 
     private int real_width = 0;
     private int real_height = 0;
+
+    private Gtk.EventControllerMotion motion_event_controller;
+    private Gtk.GestureMultiPress click_gesture;
 
     private enum ResolutionColumns {
         NAME,
@@ -96,59 +99,66 @@ public class Display.DisplayWidget : Gtk.Fixed {
 
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
-        primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic", Gtk.IconSize.MENU) {
-            halign = Gtk.Align.START,
-            valign = Gtk.Align.START,
-            margin = 6
+        primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic") {
+            halign = START,
+            valign = START,
+            margin_top = 6,
+            margin_end = 6,
+            margin_bottom = 6,
+            margin_start = 6
         };
         primary_image.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         primary_image.clicked.connect (() => set_as_primary ());
 
         var virtual_monitor_name = virtual_monitor.get_display_name ();
         var label = new Gtk.Label (virtual_monitor_name) {
-            halign = Gtk.Align.CENTER,
-            valign = Gtk.Align.CENTER,
-            expand = true
+            halign = CENTER,
+            valign = CENTER,
+            hexpand = true,
+            vexpand = true
         };
 
-        var use_label = new Gtk.Label (_("Use this display:")) {
-            halign = Gtk.Align.END
-        };
-
-        use_switch = new Gtk.Switch () {
-            halign = Gtk.Align.START
-        };
+        use_switch = new Granite.SwitchModelButton ("Use This Display");
 
         virtual_monitor.bind_property ("is-active", use_switch, "active", GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.BIDIRECTIONAL);
 
-        var resolution_label = new Gtk.Label (_("Resolution:")) {
-            halign = Gtk.Align.END
+        resolution_tree_store = new Gtk.TreeStore (ResolutionColumns.TOTAL, typeof (string), typeof (int), typeof (int));
+        resolution_combobox = new Gtk.ComboBox.with_model (resolution_tree_store) {
+            margin_start = 12,
+            margin_end = 12
         };
 
-        resolution_tree_store = new Gtk.TreeStore (ResolutionColumns.TOTAL, typeof (string), typeof (int), typeof (int));
-        resolution_combobox = new Gtk.ComboBox.with_model (resolution_tree_store);
+        var resolution_label = new Granite.HeaderLabel (_("Resolution")) {
+            mnemonic_widget = resolution_combobox
+        };
 
         var text_renderer = new Gtk.CellRendererText ();
         resolution_combobox.pack_start (text_renderer, true);
         resolution_combobox.add_attribute (text_renderer, "text", ResolutionColumns.NAME);
 
-        var rotation_label = new Gtk.Label (_("Screen Rotation:")) {
-            halign = Gtk.Align.END
+        rotation_list_store = new Gtk.ListStore (RotationColumns.TOTAL, typeof (string), typeof (int));
+        rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store) {
+            margin_start = 12,
+            margin_end = 12
         };
 
-        rotation_list_store = new Gtk.ListStore (RotationColumns.TOTAL, typeof (string), typeof (int));
-        rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store);
+        var rotation_label = new Granite.HeaderLabel (_("Screen Rotation")) {
+            mnemonic_widget = rotation_combobox
+        };
 
         text_renderer = new Gtk.CellRendererText ();
         rotation_combobox.pack_start (text_renderer, true);
         rotation_combobox.add_attribute (text_renderer, "text", RotationColumns.NAME);
 
-        var refresh_label = new Gtk.Label (_("Refresh Rate:")) {
-            halign = Gtk.Align.END
+        refresh_list_store = new Gtk.ListStore (RefreshColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
+        refresh_combobox = new Gtk.ComboBox.with_model (refresh_list_store) {
+            margin_start = 12,
+            margin_end = 12
         };
 
-        refresh_list_store = new Gtk.ListStore (RefreshColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
-        refresh_combobox = new Gtk.ComboBox.with_model (refresh_list_store);
+        var refresh_label = new Granite.HeaderLabel (_("Refresh Rate")) {
+            mnemonic_widget = refresh_combobox
+        };
 
         text_renderer = new Gtk.CellRendererText ();
         refresh_combobox.pack_start (text_renderer, true);
@@ -241,31 +251,32 @@ public class Display.DisplayWidget : Gtk.Fixed {
 
         populate_refresh_rates ();
 
-        var popover_grid = new Gtk.Grid () {
-            column_spacing = 12,
-            row_spacing = 6,
-            margin = 12
+        var popover_box = new Gtk.Box (VERTICAL, 0) {
+            margin_top = 6,
+            margin_bottom = 12
         };
-        popover_grid.attach (use_label, 0, 0);
-        popover_grid.attach (use_switch, 1, 0);
-        popover_grid.attach (resolution_label, 0, 1);
-        popover_grid.attach (resolution_combobox, 1, 1);
-        popover_grid.attach (rotation_label, 0, 2);
-        popover_grid.attach (rotation_combobox, 1, 2);
-        popover_grid.attach (refresh_label, 0, 3);
-        popover_grid.attach (refresh_combobox, 1, 3);
-        popover_grid.show_all ();
+        popover_box.add (use_switch);
+        popover_box.add (resolution_label);
+        popover_box.add (resolution_combobox);
+        popover_box.add (rotation_label);
+        popover_box.add (rotation_combobox);
+        popover_box.add (refresh_label);
+        popover_box.add (refresh_combobox);
+        popover_box.show_all ();
 
         var popover = new Gtk.Popover (toggle_settings) {
-            position = Gtk.PositionType.BOTTOM
+            child = popover_box,
+            position = BOTTOM
         };
-        popover.add (popover_grid);
 
         toggle_settings = new Gtk.MenuButton () {
-            halign = Gtk.Align.END,
-            valign = Gtk.Align.START,
+            halign = END,
+            valign = START,
             image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU),
-            margin = 6,
+            margin_top = 6,
+            margin_end = 6,
+            margin_bottom = 6,
+            margin_start = 6,
             popover = popover,
             tooltip_text = _("Configure display")
         };
@@ -406,6 +417,13 @@ public class Display.DisplayWidget : Gtk.Fixed {
 
         configuration_changed ();
         check_position ();
+
+        click_gesture = new Gtk.GestureMultiPress (this);
+        click_gesture.pressed.connect (gesture_press_event);
+        click_gesture.released.connect (gesture_release_event);
+
+        motion_event_controller = new Gtk.EventControllerMotion (this);
+        motion_event_controller.motion.connect (motion_event);
     }
 
     private void populate_refresh_rates () {
@@ -513,38 +531,34 @@ public class Display.DisplayWidget : Gtk.Fixed {
         });
     }
 
-    // public override bool button_press_event (Gdk.EventButton event) {
-    //     if (only_display) {
-    //         return false;
-    //     }
+    private void gesture_press_event (int n_press, double x, double y) {
+        if (only_display) {
+            return;
+        }
 
-    //     start_x = event.x_root;
-    //     start_y = event.y_root;
-    //     holding = true;
-    //     return false;
-    // }
+        start_x = x;
+        start_y = y;
+        holding = true;
+    }
 
-    // public override bool button_release_event (Gdk.EventButton event) {
-    //     holding = false;
-    //     if ((delta_x == 0 && delta_y == 0) || only_display) {
-    //         return false;
-    //     }
+    private void gesture_release_event (int n_press, double x, double y) {
+        holding = false;
+        if ((delta_x == 0 && delta_y == 0) || only_display) {
+            return;
+        }
 
-    //     var old_delta_x = delta_x;
-    //     var old_delta_y = delta_y;
-    //     delta_x = 0;
-    //     delta_y = 0;
-    //     end_grab (old_delta_x, old_delta_y);
-    //     return false;
-    // }
+        var old_delta_x = delta_x;
+        var old_delta_y = delta_y;
+        delta_x = 0;
+        delta_y = 0;
+        end_grab (old_delta_x, old_delta_y);
+    }
 
-    // public override bool motion_notify_event (Gdk.EventMotion event) {
-    //     if (holding && !only_display) {
-    //         move_display (event.x_root - start_x, event.y_root - start_y);
-    //     }
-
-    //     return false;
-    // }
+    private void motion_event (double event_x, double event_y) {
+        if (holding && !only_display) {
+            move_display (event_x - start_x, event_y - start_y);
+        }
+    }
 
     public void set_primary (bool is_primary) {
         if (is_primary) {
