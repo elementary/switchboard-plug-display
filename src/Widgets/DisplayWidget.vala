@@ -26,7 +26,7 @@ public struct Display.Resolution {
     bool is_current;
 }
 
-public class Display.DisplayWidget : Gtk.Fixed {
+public class Display.DisplayWidget : Gtk.Box {
     public signal void set_as_primary ();
     public signal void move_display (double diff_x, double diff_y);
     public signal void end_grab (int delta_x, int delta_y);
@@ -62,9 +62,6 @@ public class Display.DisplayWidget : Gtk.Fixed {
     private int real_width = 0;
     private int real_height = 0;
 
-    private Gtk.EventControllerMotion motion_event_controller;
-    private Gtk.GestureMultiPress click_gesture;
-
     private enum ResolutionColumns {
         NAME,
         WIDTH,
@@ -89,14 +86,6 @@ public class Display.DisplayWidget : Gtk.Fixed {
     }
 
     construct {
-        events |= Gdk.EventMask.BUTTON_PRESS_MASK;
-        events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
-        events |= Gdk.EventMask.POINTER_MOTION_MASK;
-
-        display_window = new DisplayWindow (virtual_monitor) {
-            attached_to = this
-        };
-
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic") {
@@ -107,7 +96,7 @@ public class Display.DisplayWidget : Gtk.Fixed {
             margin_bottom = 6,
             margin_start = 6
         };
-        primary_image.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        primary_image.add_css_class (Granite.STYLE_CLASS_FLAT);
         primary_image.clicked.connect (() => set_as_primary ());
 
         var virtual_monitor_name = virtual_monitor.get_display_name ();
@@ -255,16 +244,15 @@ public class Display.DisplayWidget : Gtk.Fixed {
             margin_top = 6,
             margin_bottom = 12
         };
-        popover_box.add (use_switch);
-        popover_box.add (resolution_label);
-        popover_box.add (resolution_combobox);
-        popover_box.add (rotation_label);
-        popover_box.add (rotation_combobox);
-        popover_box.add (refresh_label);
-        popover_box.add (refresh_combobox);
-        popover_box.show_all ();
+        popover_box.append (use_switch);
+        popover_box.append (resolution_label);
+        popover_box.append (resolution_combobox);
+        popover_box.append (rotation_label);
+        popover_box.append (rotation_combobox);
+        popover_box.append (refresh_label);
+        popover_box.append (refresh_combobox);
 
-        var popover = new Gtk.Popover (toggle_settings) {
+        var popover = new Gtk.Popover () {
             child = popover_box,
             position = BOTTOM
         };
@@ -272,7 +260,7 @@ public class Display.DisplayWidget : Gtk.Fixed {
         toggle_settings = new Gtk.MenuButton () {
             halign = END,
             valign = START,
-            image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU),
+            icon_name = "open-menu-symbolic",
             margin_top = 6,
             margin_end = 6,
             margin_bottom = 6,
@@ -280,7 +268,7 @@ public class Display.DisplayWidget : Gtk.Fixed {
             popover = popover,
             tooltip_text = _("Configure display")
         };
-        toggle_settings.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        toggle_settings.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         var grid = new Gtk.Grid ();
         grid.attach (primary_image, 0, 0);
@@ -288,9 +276,7 @@ public class Display.DisplayWidget : Gtk.Fixed {
         grid.attach (label, 0, 0, 3, 2);
 
         set_primary (virtual_monitor.primary);
-        add (grid);
-
-        destroy.connect (() => display_window.destroy ());
+        append (grid);
 
         use_switch.bind_property ("active", resolution_combobox, "sensitive");
         use_switch.bind_property ("active", rotation_combobox, "sensitive");
@@ -304,7 +290,7 @@ public class Display.DisplayWidget : Gtk.Fixed {
             if (use_switch.active) {
                 get_style_context ().remove_class ("disabled");
             } else {
-                get_style_context ().add_class ("disabled");
+                add_css_class ("disabled");
             }
 
             configuration_changed ();
@@ -312,7 +298,7 @@ public class Display.DisplayWidget : Gtk.Fixed {
         });
 
         if (!virtual_monitor.is_active) {
-            get_style_context ().add_class ("disabled");
+            add_css_class ("disabled");
         }
 
         resolution_combobox.changed.connect (() => {
@@ -352,42 +338,42 @@ public class Display.DisplayWidget : Gtk.Fixed {
             switch (transform) {
                 case DisplayTransform.NORMAL:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.angle = 0;
+                    // label.angle = 0;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_90:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.angle = 270;
+                    // label.angle = 270;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_180:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.angle = 180;
+                    // label.angle = 180;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_270:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.angle = 90;
+                    // label.angle = 90;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.FLIPPED:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.angle = 0;
+                    // label.angle = 0;
                     label.label = virtual_monitor_name.reverse (); //mirroring simulation, because we can't really mirror the text
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_90:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.angle = 270;
+                    // label.angle = 270;
                     label.label = virtual_monitor_name.reverse ();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_180:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.angle = 180;
+                    // label.angle = 180;
                     label.label = virtual_monitor_name.reverse ();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_270:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.angle = 90;
+                    // label.angle = 90;
                     label.label = virtual_monitor_name.reverse ();
                     break;
             }
@@ -418,12 +404,15 @@ public class Display.DisplayWidget : Gtk.Fixed {
         configuration_changed ();
         check_position ();
 
-        click_gesture = new Gtk.GestureMultiPress (this);
+        var click_gesture = new Gtk.GestureClick ();
         click_gesture.pressed.connect (gesture_press_event);
         click_gesture.released.connect (gesture_release_event);
 
-        motion_event_controller = new Gtk.EventControllerMotion (this);
+        var motion_event_controller = new Gtk.EventControllerMotion ();
         motion_event_controller.motion.connect (motion_event);
+
+        add_controller (motion_event_controller);
+        add_controller (click_gesture);
     }
 
     private void populate_refresh_rates () {
@@ -562,25 +551,25 @@ public class Display.DisplayWidget : Gtk.Fixed {
 
     public void set_primary (bool is_primary) {
         if (is_primary) {
-            ((Gtk.Image) primary_image.image).icon_name = "starred-symbolic";
+            primary_image.icon_name = "starred-symbolic";
             primary_image.tooltip_text = _("Is the primary display");
         } else {
-            ((Gtk.Image) primary_image.image).icon_name = "non-starred-symbolic";
+            primary_image.icon_name = "non-starred-symbolic";
             primary_image.tooltip_text = _("Set as primary display");
         }
 
         use_switch.sensitive = !is_primary;
     }
 
-    public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        minimum_width = (int)(real_width * window_ratio);
-        natural_width = minimum_width;
-    }
+    // public override void get_preferred_width (out int minimum_width, out int natural_width) {
+    //     minimum_width = (int)(real_width * window_ratio);
+    //     natural_width = minimum_width;
+    // }
 
-    public override void get_preferred_height (out int minimum_height, out int natural_height) {
-        minimum_height = (int)(real_height * window_ratio);
-        natural_height = minimum_height;
-    }
+    // public override void get_preferred_height (out int minimum_height, out int natural_height) {
+    //     minimum_height = (int)(real_height * window_ratio);
+    //     natural_height = minimum_height;
+    // }
 
     public void get_geometry (out int x, out int y, out int width, out int height) {
         x = virtual_monitor.x;
