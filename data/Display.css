@@ -45,3 +45,15 @@ widget.colored {
 .colored.disabled button:checked {
     background: alpha(@SLATE_700, 0.5);
 }
+
+label.rotate-90 {
+    transform: rotate(90deg);
+}
+
+label.rotate-180 {
+    transform: rotate(1800deg);
+}
+
+label.rotate-270 {
+    transform: rotate(270deg);
+}

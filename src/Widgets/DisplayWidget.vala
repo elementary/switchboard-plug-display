@@ -48,6 +48,8 @@ public class Display.DisplayWidget : Gtk.Box {
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
+    private static Gtk.CssProvider display_provider;
+
     private Granite.SwitchModelButton use_switch;
 
     private Gtk.ComboBox resolution_combobox;
@@ -85,6 +87,11 @@ public class Display.DisplayWidget : Gtk.Box {
         Object (virtual_monitor: virtual_monitor);
     }
 
+    static construct {
+        display_provider = new Gtk.CssProvider ();
+        display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
+    }
+
     construct {
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
@@ -106,6 +113,7 @@ public class Display.DisplayWidget : Gtk.Box {
             hexpand = true,
             vexpand = true
         };
+        label.get_style_context ().add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         use_switch = new Granite.SwitchModelButton ("Use This Display");
 
@@ -335,45 +343,45 @@ public class Display.DisplayWidget : Gtk.Box {
             var transform = (DisplayTransform)((int)val);
             virtual_monitor.transform = transform;
 
+            label.css_classes = {""};
+
             switch (transform) {
                 case DisplayTransform.NORMAL:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    // label.angle = 0;
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_90:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    // label.angle = 270;
+                    label.add_css_class ("rotate-270");
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_180:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    // label.angle = 180;
+                    label.add_css_class ("rotate-180");
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.ROTATION_270:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    // label.angle = 90;
+                    label.add_css_class ("rotate-90");
                     label.label = virtual_monitor_name;
                     break;
                 case DisplayTransform.FLIPPED:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    // label.angle = 0;
                     label.label = virtual_monitor_name.reverse (); //mirroring simulation, because we can't really mirror the text
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_90:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    // label.angle = 270;
+                    label.add_css_class ("rotate-270");
                     label.label = virtual_monitor_name.reverse ();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_180:
                     virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    // label.angle = 180;
+                    label.add_css_class ("rotate-180");
                     label.label = virtual_monitor_name.reverse ();
                     break;
                 case DisplayTransform.FLIPPED_ROTATION_270:
                     virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    // label.angle = 90;
+                    label.add_css_class ("rotate-90");
                     label.label = virtual_monitor_name.reverse ();
                     break;
             }
