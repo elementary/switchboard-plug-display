@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-10 00:51+0000\n"
-"PO-Revision-Date: 2023-07-15 05:38+0000\n"
+"PO-Revision-Date: 2024-01-15 20:21+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ka/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.0.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -243,16 +243,12 @@ msgid "Less Color"
 msgstr "ნაკლები ფერი"
 
 #: src/Widgets/DisplayWidget.vala:132
-#, fuzzy
-#| msgid "Resolution:"
 msgid "Resolution"
-msgstr "გარჩევადობა:"
+msgstr "გარჩევადობა"
 
 #: src/Widgets/DisplayWidget.vala:160
-#, fuzzy
-#| msgid "Refresh Rate:"
 msgid "Refresh Rate"
-msgstr "განახლების სიხშირე:"
+msgstr "განახლების სიხშირე"
 
 #: src/Widgets/DisplayWidget.vala:232
 msgid "Other…"
