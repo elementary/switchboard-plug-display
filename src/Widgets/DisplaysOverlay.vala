@@ -86,8 +86,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         GLib.Bus.get_proxy.begin<GalaDBus> (
             GLib.BusType.SESSION,
-            "org.pantheon.gala",
-            "/org/pantheon/gala",
+            "org.pantheon.gala.daemon",
+            "/org/pantheon/gala/daemon",
             GLib.DBusProxyFlags.NONE,
             null,
             (obj, res) => {
@@ -157,7 +157,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     monitor = label_infos.length,
                     label = widget.virtual_monitor.get_display_name (),
                     background_color = widget.bg_color,
-                    text_color = widget.text_color
+                    text_color = widget.text_color,
+                    x = widget.virtual_monitor.current_x,
+                    y = widget.virtual_monitor.current_y
                 };
             }
         }
