@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-10 00:51+0000\n"
-"PO-Revision-Date: 2023-03-12 15:25+0000\n"
+"PO-Revision-Date: 2024-01-24 03:34+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ka/>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
-msgstr ""
+msgstr "ეკრანის მორგება"
 
 #: data/display.metainfo.xml.in:12
 msgid "Configure resolution and position of monitors and projectors"
@@ -29,7 +29,7 @@ msgstr "ეკრანებისა და პროექტორები�
 
 #: data/display.metainfo.xml.in:26
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/display.metainfo.xml.in:33 data/display.metainfo.xml.in:48
 #: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:79
@@ -39,7 +39,7 @@ msgstr "უმნიშვნელო განახლებები:"
 
 #: data/display.metainfo.xml.in:35
 msgid "Redesign Night Light View"
-msgstr ""
+msgstr "ღამის სინათლის ხედის დიზაინის გადაკეთება"
 
 #: data/display.metainfo.xml.in:36 data/display.metainfo.xml.in:50
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
@@ -53,11 +53,11 @@ msgstr "გაუმჯობესებები:"
 
 #: data/display.metainfo.xml.in:59
 msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr ""
+msgstr "განსხვავებული ხედის შეფარდების მქონე გაფართოებების ქვემენიუში გადატანა"
 
 #: data/display.metainfo.xml.in:60
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "ბნელი სტილის სიკაშკაშის გაუმჯობესება"
 
 #: data/display.metainfo.xml.in:62 data/display.metainfo.xml.in:75
 #: data/display.metainfo.xml.in:92
@@ -66,11 +66,13 @@ msgstr "შეცდომების გასწორებები:"
 
 #: data/display.metainfo.xml.in:64
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "ეკრანის სახელების ჩვენება ყველა სამუშაო სივრცეზე"
 
 #: data/display.metainfo.xml.in:77
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
+"დარწმუნება, რომ \"ამ ეკრანის გამოყენების\" გადასართველი მეტ შემთხვევაში "
+"მუშაობს"
 
 #: data/display.metainfo.xml.in:88
 msgid "New features:"
@@ -78,8 +80,8 @@ msgstr "ახალი ფუნქციები:"
 
 #: data/display.metainfo.xml.in:90
 msgid "Support 3× scaling"
-msgstr ""
+msgstr "3× გადიდების მხარდაჭერა"
 
 #: data/display.metainfo.xml.in:94
 msgid "Reliably detect accelerometers"
-msgstr ""
+msgstr "აქსელერომეტრების სწორი აღმოჩენა"
