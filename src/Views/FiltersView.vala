@@ -7,22 +7,9 @@ public class Display.FiltersView : Gtk.Box {
     private const string TEXT_MARKUP = "%s\n<span size='smaller' alpha='75%'>%s</span>";
 
     construct {
-        var colorblindness_header = new Granite.HeaderLabel (_("Color Deficiency Assistance"));
-
-        var colorblindness_subtitle = new Gtk.Label (
-            _("Each of the circles below should appear as a different color. A filter can be applied to the entire display to help differentiate between colors.")
-        ) {
-            wrap = true,
-            xalign = 0
+        var colorblindness_header = new Granite.HeaderLabel (_("Color Deficiency Assistance")) {
+            secondary_text = _("Each of the circles below should appear as a different color. A filter can be applied to the entire display to help differentiate between colors.")
         };
-        colorblindness_subtitle.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
-
-        // FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-        var colorblindness_headerbox = new Gtk.Box (VERTICAL, 0) {
-            margin_bottom = 3
-        };
-        colorblindness_headerbox.append (colorblindness_header);
-        colorblindness_headerbox.append (colorblindness_subtitle);
 
         var none_radio = new Gtk.CheckButton.with_label (_("None"));
 
@@ -130,7 +117,7 @@ public class Display.FiltersView : Gtk.Box {
         colorblindness_scale.add_mark (1, BOTTOM, _("More Assistance"));
 
         var colorblindness_box = new Gtk.Box (VERTICAL, 6);
-        colorblindness_box.append (colorblindness_headerbox);
+        colorblindness_box.append (colorblindness_header);
         colorblindness_box.append (none_radio);
         colorblindness_box.append (protanopia_radio);
         colorblindness_box.append (protanopia_hc_radio);
@@ -139,21 +126,14 @@ public class Display.FiltersView : Gtk.Box {
         colorblindness_box.append (tritanopia_radio);
         colorblindness_box.append (colorblindness_scale);
 
-        var grayscale_header = new Granite.HeaderLabel (_("Grayscale"));
+        var grayscale_header = new Granite.HeaderLabel (_("Grayscale")) {
+            secondary_text = _("Reducing color can help avoid distractions and alleviate screen addiction")
+        };
 
         var grayscale_switch = new Gtk.Switch () {
             halign = END,
             valign = CENTER
         };
-
-        // FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-        var grayscale_subtitle = new Gtk.Label (
-            _("Reducing color can help avoid distractions and alleviate screen addiction")
-        ) {
-            wrap = true,
-            xalign = 0
-        };
-        grayscale_subtitle.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
 
         var grayscale_adjustment = new Gtk.Adjustment (0, 0.15, 1, 0.01, 0, 0);
 
@@ -169,9 +149,8 @@ public class Display.FiltersView : Gtk.Box {
             column_spacing = 12
         };
         grayscale_grid.attach (grayscale_header, 0, 0);
-        grayscale_grid.attach (grayscale_subtitle, 0, 1);
-        grayscale_grid.attach (grayscale_switch, 1, 0, 1, 2);
-        grayscale_grid.attach (grayscale_scale, 0, 2, 2);
+        grayscale_grid.attach (grayscale_switch, 1, 0);
+        grayscale_grid.attach (grayscale_scale, 0, 1, 2);
 
         var box = new Gtk.Box (VERTICAL, 24);
         box.append (colorblindness_box);
