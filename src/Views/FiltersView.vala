@@ -42,9 +42,9 @@ public class Display.FiltersView : Gtk.Box {
         protanopia_box.append (new ColorSwatch ("red"));
 
         var protanopia_radio = new Gtk.CheckButton () {
-            child = protanopia_box,
             group = none_radio
         };
+        protanopia_box.set_parent (protanopia_radio);
 
         var protanopia_hc_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Red/Green — High Contrast"), _("Protanopia"))
@@ -59,9 +59,9 @@ public class Display.FiltersView : Gtk.Box {
         protanopia_hc_box.append (protanopia_hc_label);
 
         var protanopia_hc_radio = new Gtk.CheckButton () {
-            child = protanopia_hc_box,
             group = none_radio
         };
+        protanopia_hc_box.set_parent (protanopia_hc_radio);
 
         var deuteranopia_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Green/Red"), _("Deuteranopia"))
@@ -79,9 +79,9 @@ public class Display.FiltersView : Gtk.Box {
         deuteranopia_box.append (new ColorSwatch ("pink"));
 
         var deuteranopia_radio = new Gtk.CheckButton () {
-            child = deuteranopia_box,
             group = none_radio
         };
+        deuteranopia_box.set_parent (deuteranopia_radio);
 
         var deuteranopia_hc_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Green/Red — High Contrast"), _("Deuteranopia"))
@@ -96,9 +96,9 @@ public class Display.FiltersView : Gtk.Box {
         deuteranopia_hc_box.append (deuteranopia_hc_label);
 
         var deuteranopia_hc_radio = new Gtk.CheckButton () {
-            child = deuteranopia_hc_box,
             group = none_radio
         };
+        deuteranopia_hc_box.set_parent (deuteranopia_hc_radio);
 
         var tritanopia_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Blue/Yellow"), _("Tritanopia"))
@@ -115,9 +115,9 @@ public class Display.FiltersView : Gtk.Box {
         tritanopia_box.append (new ColorSwatch ("blue"));
 
         var tritanopia_radio = new Gtk.CheckButton () {
-            child = tritanopia_box,
             group = none_radio
         };
+        tritanopia_box.set_parent (tritanopia_radio);
 
         var colorblindness_adjustment = new Gtk.Adjustment (0, 0.15, 1, 0.01, 0, 0);
 
