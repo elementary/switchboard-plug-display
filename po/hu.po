@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-10 00:51+0000\n"
-"PO-Revision-Date: 2023-06-19 14:07+0000\n"
+"PO-Revision-Date: 2024-01-12 00:11+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.0.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -248,16 +248,12 @@ msgid "Less Color"
 msgstr "Kevesebb szín"
 
 #: src/Widgets/DisplayWidget.vala:132
-#, fuzzy
-#| msgid "Resolution:"
 msgid "Resolution"
-msgstr "Felbontás:"
+msgstr "Felbontás"
 
 #: src/Widgets/DisplayWidget.vala:160
-#, fuzzy
-#| msgid "Refresh Rate:"
 msgid "Refresh Rate"
-msgstr "Frissítési gyakoriság:"
+msgstr "Frissítési gyakoriság"
 
 #: src/Widgets/DisplayWidget.vala:232
 msgid "Other…"
