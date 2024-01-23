@@ -20,12 +20,13 @@
  *              Felix Andreas <fandreas@physik.hu-berlin.de>
  */
 
-public class Display.DisplaysOverlay : Gtk.Overlay {
+public class Display.DisplaysOverlay : Gtk.Box {
     private const int SNAP_LIMIT = int.MAX - 1;
     private const int MINIMUM_WIDGET_OFFSET = 50;
 
     public signal void configuration_changed (bool changed);
 
+    private Gtk.Overlay overlay;
     private bool scanning = false;
     private double current_ratio = 1.0f;
     private int current_allocated_width = 0;
@@ -65,12 +66,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     """;
 
     construct {
-        var grid = new Gtk.Grid () {
-            hexpand = true,
-            vexpand = true
-        };
-        grid.add_css_class (Granite.STYLE_CLASS_VIEW);
-        child = grid;
+        add_css_class (Granite.STYLE_CLASS_VIEW);
+
+        overlay = new Gtk.Overlay ();
+        append (overlay);
 
         display_widgets = new List<DisplayWidget> ();
 
@@ -190,7 +189,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         var display_widget = new DisplayWidget (virtual_monitor);
         current_allocated_width = 0;
         current_allocated_height = 0;
-        add_overlay (display_widget);
+        overlay.add_overlay (display_widget);
         display_widgets.append (display_widget);
 
         var provider = new Gtk.CssProvider ();
@@ -345,8 +344,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     }
                 }
             }
-
-            child = child.get_next_sibling ();
         }
 
         if (aligned_delta [0] != int.MAX) {
@@ -454,8 +451,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 // other_display_widget.queue_resize_no_redraw ();
                 check_intersects (other_display_widget, level + 1, distance_x, distance_y);
             }
-
-            child = child.get_next_sibling ();
         }
     }
 
