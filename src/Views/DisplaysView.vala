@@ -1,20 +1,6 @@
-/*-
- * Copyright (c) 2014-2018 elementary LLC.
- *
- * This software is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this software; if not, write to the
- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
- * Boston, MA 02110-1301, USA.
+/*
+ * SPDX-License-Identifier: LGPL-2.0-or-later
+ * SPDX-FileCopyrightText: 2014-2023 elementary, Inc. (https://elementary.io)
  *
  * Authored by: Corentin Noël <corentin@elementary.io>
  *              Oleksandr Lynok <oleksandr.lynok@gmail.com>
@@ -41,6 +27,7 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_start = 6,
                 valign = CENTER
             };
+
             mirror_box.append (mirror_label);
             mirror_box.append (mirror_switch);
 
@@ -57,6 +44,7 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_bottom = 6,
                 margin_start = 6
             };
+
             dpi_box.append (dpi_label);
             dpi_box.append (dpi_combo);
 
@@ -74,6 +62,7 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_start = 6,
                 valign = CENTER
             };
+
             button_box.append (detect_button);
             button_box.append (apply_button);
 
@@ -103,9 +92,10 @@ public class Display.DisplaysView : Gtk.Box {
             action_bar.pack_end (button_box);
 
             orientation = VERTICAL;
-            append (new Gtk.Separator (HORIZONTAL));
-            append (displays_overlay);
-            append (action_bar);
+
+            add (new Gtk.Separator (HORIZONTAL));
+            add (displays_overlay);
+            add (action_bar);
 
             displays_overlay.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;
@@ -161,6 +151,7 @@ public class Display.DisplaysView : Gtk.Box {
             rotation_lock_box.append (rotation_lock_switch);
 
             touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", SettingsBindFlags.DEFAULT);
+
         }
     }
 
