@@ -414,15 +414,12 @@ public class Display.DisplayWidget : Gtk.Widget {
         configuration_changed ();
         check_position ();
 
-        var click_gesture = new Gtk.GestureClick ();
-        click_gesture.pressed.connect (gesture_press_event);
-        click_gesture.released.connect (gesture_release_event);
+        var drag_gesture = new Gtk.GestureDrag  ();
+        drag_gesture.drag_begin.connect (on_drag_begin);
+        drag_gesture.drag_update.connect (on_drag_update);
+        drag_gesture.drag_end.connect (on_drag_end);
 
-        var motion_event_controller = new Gtk.EventControllerMotion ();
-        motion_event_controller.motion.connect (motion_event);
-
-        add_controller (motion_event_controller);
-        add_controller (click_gesture);
+        add_controller (drag_gesture);
     }
 
     private void populate_refresh_rates () {
@@ -534,18 +531,22 @@ public class Display.DisplayWidget : Gtk.Widget {
         });
     }
 
-    private void gesture_press_event (int n_press, double x, double y) {
+    private void on_drag_begin (double x, double y) {
         if (only_display) {
             return;
         }
 
         start_x = x;
         start_y = y;
-        holding = true;
     }
 
-    private void gesture_release_event (int n_press, double x, double y) {
-        holding = false;
+    private void on_drag_update (double offset_x, double offset_y) {
+        if (!only_display) {
+            move_display (offset_x, offset_y);
+        }
+    }
+
+    private void on_drag_end (double x, double y) {
         if ((delta_x == 0 && delta_y == 0) || only_display) {
             return;
         }
@@ -555,12 +556,6 @@ public class Display.DisplayWidget : Gtk.Widget {
         delta_x = 0;
         delta_y = 0;
         end_grab (old_delta_x, old_delta_y);
-    }
-
-    private void motion_event (double event_x, double event_y) {
-        if (holding && !only_display) {
-            move_display (event_x - start_x, event_y - start_y);
-        }
     }
 
     public void set_primary (bool is_primary) {
