@@ -29,7 +29,6 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_start = 6,
                 valign = CENTER
             };
-
             mirror_box.append (mirror_label);
             mirror_box.append (mirror_switch);
 
