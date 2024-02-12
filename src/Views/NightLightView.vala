@@ -61,15 +61,15 @@ public class Display.NightLightView : Gtk.Box {
         var schedule_manual_radio = new Gtk.CheckButton () {
             group = schedule_sunset_radio
         };
+        schedule_manual_box.set_parent (schedule_manual_radio);
 
         var schedule_grid = new Gtk.Grid () {
-            column_spacing = 7, // Off by one with Gtk.CheckButton
+            column_spacing = 6,
             row_spacing = 6
         };
-        schedule_grid.attach (schedule_header, 0, 3, 2);
-        schedule_grid.attach (schedule_sunset_radio, 0, 5, 2);
+        schedule_grid.attach (schedule_header, 0, 3);
+        schedule_grid.attach (schedule_sunset_radio, 0, 5);
         schedule_grid.attach (schedule_manual_radio, 0, 6);
-        schedule_grid.attach (schedule_manual_box, 1, 6);
 
         var box = new Gtk.Box (VERTICAL, 24);
         box.append (nightlight_grid);
