@@ -41,10 +41,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public int delta_y { get; set; default = 0; }
     public bool only_display { get; set; default = false; }
 
-    private double start_x = 0;
-    private double start_y = 0;
-    private bool holding = false;
-
     public DisplayWindow display_window { get; private set; }
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
@@ -63,8 +59,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private int real_width = 0;
     private int real_height = 0;
 
-    private Gtk.EventControllerMotion motion_event_controller;
-    private Gtk.GestureMultiPress click_gesture;
+    private Gtk.GestureDrag drag_gesture;
 
     private enum ResolutionColumns {
         NAME,
@@ -419,12 +414,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
         configuration_changed ();
         check_position ();
 
-        click_gesture = new Gtk.GestureMultiPress (this);
-        click_gesture.pressed.connect (gesture_press_event);
-        click_gesture.released.connect (gesture_release_event);
-
-        motion_event_controller = new Gtk.EventControllerMotion (this);
-        motion_event_controller.motion.connect (motion_event);
+        drag_gesture = new Gtk.GestureDrag (this);
+        drag_gesture.drag_begin.connect (on_drag_begin);
+        drag_gesture.drag_update.connect (on_drag_update);
+        drag_gesture.drag_end.connect (on_drag_end);
     }
 
     private void populate_refresh_rates () {
@@ -532,33 +525,26 @@ public class Display.DisplayWidget : Gtk.EventBox {
         });
     }
 
-    private void gesture_press_event (int n_press, double x, double y) {
+    private void on_drag_begin (double x, double y) {
         if (only_display) {
             return;
         }
-
-        start_x = x;
-        start_y = y;
-        holding = true;
     }
 
-    private void gesture_release_event (int n_press, double x, double y) {
-        holding = false;
+    private void on_drag_update (double x, double y) {
+        if (!only_display) {
+            move_display (x, y);
+        }
+    }
+
+    private void on_drag_end (double x, double y) {
         if ((delta_x == 0 && delta_y == 0) || only_display) {
             return;
         }
 
-        var old_delta_x = delta_x;
-        var old_delta_y = delta_y;
         delta_x = 0;
         delta_y = 0;
-        end_grab (old_delta_x, old_delta_y);
-    }
-
-    private void motion_event (double event_x, double event_y) {
-        if (holding && !only_display) {
-            move_display (event_x - start_x, event_y - start_y);
-        }
+        end_grab ((int) x, (int) y);
     }
 
     public void set_primary (bool is_primary) {
