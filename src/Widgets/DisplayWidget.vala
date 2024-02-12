@@ -542,9 +542,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
             return;
         }
 
+        var old_delta_x = delta_x;
+        var old_delta_y = delta_y;
         delta_x = 0;
         delta_y = 0;
-        end_grab ((int) x, (int) y);
+        end_grab (old_delta_x, old_delta_y);
     }
 
     public void set_primary (bool is_primary) {
