@@ -15,7 +15,9 @@ public class Display.DisplaysView : Gtk.Box {
     private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
 
     construct {
-            displays_overlay = new DisplaysOverlay ();
+            displays_overlay = new DisplaysOverlay () {
+                vexpand = true
+            };
 
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
             var mirror_switch = new Gtk.Switch ();
@@ -93,9 +95,9 @@ public class Display.DisplaysView : Gtk.Box {
 
             orientation = VERTICAL;
 
-            add (new Gtk.Separator (HORIZONTAL));
-            add (displays_overlay);
-            add (action_bar);
+            append (new Gtk.Separator (HORIZONTAL));
+            append (displays_overlay);
+            append (action_bar);
 
             displays_overlay.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;

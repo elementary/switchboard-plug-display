@@ -26,7 +26,7 @@ public struct Display.Resolution {
     bool is_current;
 }
 
-public class Display.DisplayWidget : Gtk.Box {
+public class Display.DisplayWidget : Gtk.Widget {
     public signal void set_as_primary ();
     public signal void move_display (double diff_x, double diff_y);
     public signal void end_grab (int delta_x, int delta_y);
@@ -88,6 +88,8 @@ public class Display.DisplayWidget : Gtk.Box {
     }
 
     static construct {
+        set_layout_manager_type (typeof (Gtk.BinLayout));
+
         display_provider = new Gtk.CssProvider ();
         display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
     }
@@ -282,9 +284,9 @@ public class Display.DisplayWidget : Gtk.Box {
         grid.attach (primary_image, 0, 0);
         grid.attach (toggle_settings, 2, 0);
         grid.attach (label, 0, 0, 3, 2);
+        grid.set_parent (this);
 
         set_primary (virtual_monitor.primary);
-        append (grid);
 
         use_switch.bind_property ("active", resolution_combobox, "sensitive");
         use_switch.bind_property ("active", rotation_combobox, "sensitive");
@@ -482,6 +484,10 @@ public class Display.DisplayWidget : Gtk.Box {
         refresh_combobox.sensitive = added > 1;
     }
 
+    ~DisplayWidget () {
+        get_first_child ().unparent ();
+    }
+
     private void on_monitor_modes_changed () {
         set_active_resolution_from_current_mode ();
     }
@@ -569,15 +575,12 @@ public class Display.DisplayWidget : Gtk.Box {
         use_switch.sensitive = !is_primary;
     }
 
-    // public override void get_preferred_width (out int minimum_width, out int natural_width) {
-    //     minimum_width = (int)(real_width * window_ratio);
-    //     natural_width = minimum_width;
-    // }
+    public void get_preferred_size (out Gtk.Requisition minimum_size, out Gtk.Requisition natural_size) {
+        minimum_size.height = (int)(real_height * window_ratio);
+        minimum_size.width = (int)(real_width * window_ratio);
 
-    // public override void get_preferred_height (out int minimum_height, out int natural_height) {
-    //     minimum_height = (int)(real_height * window_ratio);
-    //     natural_height = minimum_height;
-    // }
+        natural_size = minimum_size;
+    }
 
     public void get_geometry (out int x, out int y, out int width, out int height) {
         x = virtual_monitor.x;

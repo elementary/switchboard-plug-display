@@ -76,6 +76,8 @@ public class Display.DisplaysOverlay : Gtk.Box {
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
         rescan_displays ();
+
+        overlay.get_child_position.connect (on_get_child_position);
     }
 
     static construct {
@@ -83,32 +85,32 @@ public class Display.DisplaysOverlay : Gtk.Box {
         display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
     }
 
-    // public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
-    //     allocation = Gdk.Rectangle ();
-    //     if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
-    //         calculate_ratio ();
-    //     }
+    private bool on_get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
+        allocation = Gdk.Rectangle ();
+        if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
+            calculate_ratio ();
+        }
 
-    //     if (widget is DisplayWidget) {
-    //         var display_widget = (DisplayWidget) widget;
+        if (widget is DisplayWidget) {
+            var display_widget = (DisplayWidget) widget;
 
-    //         int x, y, width, height;
-    //         display_widget.get_geometry (out x, out y, out width, out height);
-    //         x += display_widget.delta_x;
-    //         y += display_widget.delta_y;
-    //         var x_start = (int) Math.round (x * current_ratio);
-    //         var y_start = (int) Math.round (y * current_ratio);
-    //         var x_end = (int) Math.round ((x + width) * current_ratio);
-    //         var y_end = (int) Math.round ((y + height) * current_ratio);
-    //         allocation.x = default_x_margin + x_start;
-    //         allocation.y = default_y_margin + y_start;
-    //         allocation.width = x_end - x_start;
-    //         allocation.height = y_end - y_start;
-    //         return true;
-    //     }
+            int x, y, width, height;
+            display_widget.get_geometry (out x, out y, out width, out height);
+            x += display_widget.delta_x;
+            y += display_widget.delta_y;
+            var x_start = (int) Math.round (x * current_ratio);
+            var y_start = (int) Math.round (y * current_ratio);
+            var x_end = (int) Math.round ((x + width) * current_ratio);
+            var y_end = (int) Math.round ((y + height) * current_ratio);
+            allocation.x = default_x_margin + x_start;
+            allocation.y = default_y_margin + y_start;
+            allocation.width = x_end - x_start;
+            allocation.height = y_end - y_start;
+            return true;
+        }
 
-    //     return false;
-    // }
+        return false;
+    }
 
     public void rescan_displays () {
         scanning = true;
@@ -194,10 +196,10 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
         var provider = new Gtk.CssProvider ();
         try {
-            // var color_number = (get_children ().length () - 2) % 7;
+            var color_number = (display_widgets.length () - 2) % 7;
 
-            // var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
-            // provider.load_from_data (colored_css.data);
+            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
+            provider.load_from_data (colored_css.data);
 
             var context = display_widget.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -285,16 +287,15 @@ public class Display.DisplaysOverlay : Gtk.Box {
     }
 
     private void move_display (DisplayWidget display_widget, double diff_x, double diff_y) {
-        // reorder_overlay (display_widget, -1);
         display_widget.delta_x = (int) (diff_x / current_ratio);
         display_widget.delta_y = (int) (diff_y / current_ratio);
         // Gdk.ModifierType state;
         // Gtk.get_current_event_state (out state);
         // if (!(Gdk.ModifierType.CONTROL_MASK in state)) {
-        //     align_edges (display_widget);
+            align_edges (display_widget);
         // }
 
-        // display_widget.queue_resize_no_redraw ();
+        display_widget.queue_resize ();
     }
 
     private void align_edges (DisplayWidget display_widget) {
