@@ -91,7 +91,6 @@ public class Display.DisplaysView : Gtk.Box {
             action_bar.pack_end (button_box);
 
             orientation = VERTICAL;
-
             append (new Gtk.Separator (HORIZONTAL));
             append (displays_overlay);
             append (action_bar);
@@ -149,7 +148,7 @@ public class Display.DisplaysView : Gtk.Box {
             rotation_lock_box.append (rotation_lock_label);
             rotation_lock_box.append (rotation_lock_switch);
 
-            touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", SettingsBindFlags.DEFAULT);
+            touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", DEFAULT);
 
         }
     }
