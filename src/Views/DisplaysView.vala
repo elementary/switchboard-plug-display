@@ -149,7 +149,6 @@ public class Display.DisplaysView : Gtk.Box {
             rotation_lock_box.append (rotation_lock_switch);
 
             touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", DEFAULT);
-
         }
     }
 
