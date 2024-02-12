@@ -45,7 +45,6 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_bottom = 6,
                 margin_start = 6
             };
-
             dpi_box.append (dpi_label);
             dpi_box.append (dpi_combo);
 
@@ -63,7 +62,6 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_start = 6,
                 valign = CENTER
             };
-
             button_box.append (detect_button);
             button_box.append (apply_button);
 
