@@ -251,7 +251,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
             int x, y, width, height;
             display_widget.get_geometry (out x, out y, out width, out height);
             display_widget.set_geometry (delta_x + x, delta_y + y, width, height);
-            // display_widget.queue_resize_no_redraw ();
+            display_widget.queue_resize ();
             check_configuration_changed ();
             check_intersects (display_widget);
             snap_edges (display_widget);
