@@ -297,7 +297,7 @@ public class Display.DisplayWidget : Gtk.Widget {
             if (refresh_combobox.active == -1) refresh_combobox.set_active (0);
 
             if (use_switch.active) {
-                get_style_context ().remove_class ("disabled");
+                remove_css_class ("disabled");
             } else {
                 add_css_class ("disabled");
             }
@@ -567,9 +567,11 @@ public class Display.DisplayWidget : Gtk.Widget {
         use_switch.sensitive = !is_primary;
     }
 
-    public void get_preferred_size (out Gtk.Requisition minimum_size, out Gtk.Requisition natural_size) {
-        minimum_size.height = (int)(real_height * window_ratio);
-        minimum_size.width = (int)(real_width * window_ratio);
+    public new void get_preferred_size (out Gtk.Requisition minimum_size, out Gtk.Requisition natural_size) {
+        minimum_size = Gtk.Requisition () {
+            height = (int)(real_height * window_ratio),
+            width = (int)(real_width * window_ratio)
+        };
 
         natural_size = minimum_size;
     }

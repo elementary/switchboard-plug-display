@@ -302,9 +302,8 @@ public class Display.FiltersView : Gtk.Box {
         }
 
         construct {
-            var context = get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class (color);
+            get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            add_css_class (color);
 
             valign = CENTER;
         }

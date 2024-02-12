@@ -29,8 +29,8 @@ public class Display.DisplaysOverlay : Gtk.Box {
     private Gtk.Overlay overlay;
     private bool scanning = false;
     private double current_ratio = 1.0f;
-    private int current_allocated_width = 0;
-    private int current_allocated_height = 0;
+    private int current_width = 0;
+    private int current_height = 0;
     private int default_x_margin = 0;
     private int default_y_margin = 0;
 
@@ -87,7 +87,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
     private bool on_get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
         allocation = Gdk.Rectangle ();
-        if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
+        if (current_width != get_width () || current_height != get_height ()) {
             calculate_ratio ();
         }
 
@@ -177,52 +177,49 @@ public class Display.DisplaysOverlay : Gtk.Box {
             max_height = int.max (max_height, y + height);
         }
 
-        current_allocated_width = get_allocated_width ();
-        current_allocated_height = get_allocated_height ();
+        current_width = get_width ();
+        current_height = get_height ();
         current_ratio = double.min (
-            (double) (get_allocated_width () - 24) / (double) added_width,
-            (double) (get_allocated_height () - 24) / (double) added_height
+            (double) (get_width () - 24) / (double) added_width,
+            (double) (get_height () - 24) / (double) added_height
         );
-        default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
-        default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
+        default_x_margin = (int) ((get_width () - max_width * current_ratio) / 2);
+        default_y_margin = (int) ((get_height () - max_height * current_ratio) / 2);
     }
 
     private void add_output (Display.VirtualMonitor virtual_monitor) {
         var display_widget = new DisplayWidget (virtual_monitor);
-        current_allocated_width = 0;
-        current_allocated_height = 0;
+        current_width = 0;
+        current_height = 0;
         overlay.add_overlay (display_widget);
         display_widgets.append (display_widget);
 
+        var color_number = (display_widgets.length () - 2) % 7;
+
+        var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
+
         var provider = new Gtk.CssProvider ();
-        try {
-            var color_number = (display_widgets.length () - 2) % 7;
+        provider.load_from_data (colored_css.data);
 
-            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
-            provider.load_from_data (colored_css.data);
+        var context = display_widget.get_style_context ();
+        context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_class ("colored");
 
-            var context = display_widget.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
+        // context = display_widget.display_window.get_style_context ();
+        // context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        // context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        // context.add_class ("colored");
 
-            // context = display_widget.display_window.get_style_context ();
-            // context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            // context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            // context.add_class ("colored");
+        context = display_widget.primary_image.get_style_context ();
+        context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_class ("colored");
 
-            context = display_widget.primary_image.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
-
-            context = display_widget.toggle_settings.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
-        } catch (GLib.Error e) {
-            critical (e.message);
-        }
+        context = display_widget.toggle_settings.get_style_context ();
+        context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        context.add_class ("colored");
 
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
 
