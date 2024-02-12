@@ -449,7 +449,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
                 }
 
                 other_display_widget.set_geometry (other_x + distance_x, other_y + distance_y, other_width, other_height);
-                // other_display_widget.queue_resize_no_redraw ();
+                other_display_widget.queue_resize ();
                 check_intersects (other_display_widget, level + 1, distance_x, distance_y);
             }
         }
