@@ -43,7 +43,6 @@ public class Display.DisplayWidget : Gtk.Widget {
 
     private double start_x = 0;
     private double start_y = 0;
-    private bool holding = false;
 
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
@@ -540,9 +539,9 @@ public class Display.DisplayWidget : Gtk.Widget {
         start_y = y;
     }
 
-    private void on_drag_update (double offset_x, double offset_y) {
+    private void on_drag_update (double x, double y) {
         if (!only_display) {
-            move_display (offset_x, offset_y);
+            move_display (x, y);
         }
     }
 
@@ -550,12 +549,10 @@ public class Display.DisplayWidget : Gtk.Widget {
         if ((delta_x == 0 && delta_y == 0) || only_display) {
             return;
         }
-
-        var old_delta_x = delta_x;
-        var old_delta_y = delta_y;
         delta_x = 0;
         delta_y = 0;
-        end_grab (old_delta_x, old_delta_y);
+
+        end_grab ((int) x, (int) y);
     }
 
     public void set_primary (bool is_primary) {
