@@ -37,6 +37,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     public int active_displays { get; set; default = 0; }
 
     private List<DisplayWidget> display_widgets;
+    private DisplayWidget? dragging_display = null;
+    public bool only_display {
+        get {
+            return active_displays <= 1;
+        }
+    }
 
     private static Gtk.CssProvider display_provider;
 
@@ -64,6 +70,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         @define-color TEXT_COLOR %s;
     """;
 
+    private Gtk.GestureDrag drag_gesture;
+
     construct {
         var grid = new Gtk.Grid () {
             hexpand = true,
@@ -73,6 +81,11 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         child = grid;
 
         display_widgets = new List<DisplayWidget> ();
+
+        drag_gesture = new Gtk.GestureDrag (this);
+        drag_gesture.drag_begin.connect (on_drag_begin);
+        drag_gesture.drag_update.connect (on_drag_update);
+        drag_gesture.drag_end.connect (on_drag_end);
 
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
@@ -84,6 +97,28 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
     }
 
+    private void on_drag_begin (double x, double y) {
+        if (only_display) {
+            return;
+        }
+
+        foreach (var display_widget in display_widgets) {
+            if (display_widget.pointed_at) {
+                dragging_display = display_widget;
+            }
+        }
+
+    }
+
+    private void on_drag_update (double dx, double dy) {
+        if (!only_display) {
+            move_display (dragging_display, dx, dy);
+        }
+    }
+
+    private void on_drag_end (double x, double y) {
+        dragging_display = null;
+    }
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
         allocation = Gdk.Rectangle ();
         if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
@@ -148,11 +183,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void change_active_displays_sensitivity () {
-        foreach (unowned var widget in display_widgets) {
-            if (widget.virtual_monitor.is_active) {
-                widget.only_display = (active_displays == 1);
-            }
-        }
     }
 
     private void check_configuration_changed () {
@@ -233,7 +263,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             calculate_ratio ();
         });
 
-        display_widget.move_display.connect (move_display);
         display_widget.configuration_changed.connect (check_configuration_changed);
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
@@ -246,29 +275,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.display_window.show_all ();
         }
 
-        display_widget.end_grab.connect ((delta_x, delta_y) => {
-            if (delta_x == 0 && delta_y == 0) {
-                return;
-            }
-
-            int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
-            display_widget.set_geometry (delta_x + x, delta_y + y, width, height);
-            display_widget.queue_resize_no_redraw ();
-            check_configuration_changed ();
-            check_intersects (display_widget);
-            snap_edges (display_widget);
-            close_gaps ();
-            verify_global_positions ();
-            calculate_ratio ();
-        });
 
         check_intersects (display_widget);
-        var old_delta_x = display_widget.delta_x;
-        var old_delta_y = display_widget.delta_y;
         display_widget.delta_x = 0;
         display_widget.delta_y = 0;
-        display_widget.end_grab (old_delta_x, old_delta_y);
     }
 
     private void set_as_primary (Display.VirtualMonitor new_primary) {

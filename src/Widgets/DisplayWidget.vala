@@ -28,8 +28,6 @@ public struct Display.Resolution {
 
 public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
-    public signal void move_display (double diff_x, double diff_y);
-    public signal void end_grab (int delta_x, int delta_y);
     public signal void check_position ();
     public signal void configuration_changed ();
     public signal void active_changed ();
@@ -39,7 +37,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public double window_ratio { get; private set; default = 1.0; }
     public int delta_x { get; set; default = 0; }
     public int delta_y { get; set; default = 0; }
-    public bool only_display { get; set; default = false; }
 
     public DisplayWindow display_window { get; private set; }
     public Gtk.Button primary_image { get; private set; }
@@ -59,7 +56,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private int real_width = 0;
     private int real_height = 0;
 
-    private Gtk.GestureDrag drag_gesture;
+    public Gtk.GestureMultiPress button_controller { get; construct; }
+    public bool pointed_at { get; private set; default = false;}
 
     private enum ResolutionColumns {
         NAME,
@@ -85,10 +83,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     construct {
-        events |= Gdk.EventMask.BUTTON_PRESS_MASK;
-        events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
-        events |= Gdk.EventMask.POINTER_MOTION_MASK;
-
+        button_controller = new Gtk.GestureMultiPress (this) {
+            propagation_phase = CAPTURE
+        };
+        button_controller.pressed.connect (() => {warning ("enter"); pointed_at = true;});
+        button_controller.released.connect (() => {warning ("leave"); pointed_at = false;});
         display_window = new DisplayWindow (virtual_monitor) {
             attached_to = this
         };
@@ -414,10 +413,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         configuration_changed ();
         check_position ();
 
-        drag_gesture = new Gtk.GestureDrag (this);
-        drag_gesture.drag_begin.connect (on_drag_begin);
-        drag_gesture.drag_update.connect (on_drag_update);
-        drag_gesture.drag_end.connect (on_drag_end);
     }
 
     private void populate_refresh_rates () {
@@ -525,29 +520,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         });
     }
 
-    private void on_drag_begin (double x, double y) {
-        if (only_display) {
-            return;
-        }
-    }
-
-    private void on_drag_update (double x, double y) {
-        if (!only_display) {
-            move_display (x, y);
-        }
-    }
-
-    private void on_drag_end (double x, double y) {
-        if ((delta_x == 0 && delta_y == 0) || only_display) {
-            return;
-        }
-
-        var old_delta_x = delta_x;
-        var old_delta_y = delta_y;
-        delta_x = 0;
-        delta_y = 0;
-        end_grab (old_delta_x, old_delta_y);
-    }
 
     public void set_primary (bool is_primary) {
         if (is_primary) {
