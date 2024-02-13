@@ -116,9 +116,19 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
     }
 
-    private void on_drag_end (double x, double y) {
+    private void on_drag_end (double delta_x, double delta_y) {
+        if (delta_x == 0 && delta_y == 0) {
+            return;
+        }
+
+        check_intersects (dragging_display);
+        snap_edges (dragging_display);
+        close_gaps ();
+        verify_global_positions ();
+        calculate_ratio ();
         dragging_display = null;
     }
+
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
         allocation = Gdk.Rectangle ();
         if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
