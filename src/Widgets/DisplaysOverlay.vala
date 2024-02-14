@@ -155,12 +155,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         dragging_display.queue_resize_no_redraw ();
 
         check_configuration_changed ();
-        check_intersects (dragging_display);
-        snap_edges (dragging_display);
-        close_gaps ();
-        verify_global_positions ();
-        calculate_ratio ();
+        verify_layout (dragging_display);
         dragging_display = null;
+
     }
 
     // Determine the position in the overlay of a display widget based on its
@@ -305,10 +302,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
 
         display_widget.check_position.connect (() => {
-            check_intersects (display_widget);
-            close_gaps ();
-            verify_global_positions ();
-            calculate_ratio ();
+            verify_layout (display_widget);
         });
 
         display_widget.configuration_changed.connect (check_configuration_changed);
@@ -323,8 +317,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             display_widget.display_window.show_all ();
         }
 
-
-        check_intersects (display_widget);
         display_widget.delta_x = 0;
         display_widget.delta_y = 0;
     }
@@ -344,6 +336,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         check_configuration_changed ();
     }
 
+    private void verify_layout (DisplayWidget display_widget) {
+        check_intersects (display_widget);
+        close_gaps ();
+        verify_global_positions ();
+        calculate_ratio ();
+    }
 
     private void align_edges (DisplayWidget display_widget) {
         int aligned_delta[2] = { int.MAX, int.MAX };
