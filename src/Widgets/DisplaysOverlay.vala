@@ -110,9 +110,21 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     }
 
+    // dx & dy are screen offsets from the start of dragging
     private void on_drag_update (double dx, double dy) {
         if (!only_display) {
             move_display (dragging_display, dx, dy);
+
+            reorder_overlay (display_widget, -1);
+            display_widget.delta_x = (int) (dx / current_ratio);
+            display_widget.delta_y = (int) (dy / current_ratio);
+            Gdk.ModifierType state;
+            Gtk.get_current_event_state (out state);
+            if (!(Gdk.ModifierType.CONTROL_MASK in state)) {
+                align_edges (display_widget);
+            }
+
+            display_widget.queue_resize_no_redraw ();
         }
     }
 
@@ -306,18 +318,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         check_configuration_changed ();
     }
 
-    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y) {
-        reorder_overlay (display_widget, -1);
-        display_widget.delta_x = (int) (diff_x / current_ratio);
-        display_widget.delta_y = (int) (diff_y / current_ratio);
-        Gdk.ModifierType state;
-        Gtk.get_current_event_state (out state);
-        if (!(Gdk.ModifierType.CONTROL_MASK in state)) {
-            align_edges (display_widget);
-        }
-
-        display_widget.queue_resize_no_redraw ();
-    }
 
     private void align_edges (DisplayWidget display_widget) {
         int aligned_delta[2] = { int.MAX, int.MAX };
