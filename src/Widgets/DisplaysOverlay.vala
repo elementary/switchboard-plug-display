@@ -539,30 +539,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
     }
 
-    public void snap_edges (DisplayWidget last_moved) {
-        if (scanning) return;
-        // Snap last_moved
-        debug ("Snapping displays");
-        var anchors = new List<DisplayWidget> ();
 
-        foreach (unowned var widget in display_widgets) {
-            if (last_moved.equals (widget)) {
-                return;
-            }
-            anchors.append (widget);
-        }
-
-        snap_widget (last_moved, anchors);
-
-        /*/ FIXME: Re-Snapping with 3 or more displays is broken
-        // This is used to make sure all displays are connected
-        anchors = new List<DisplayWidget>();
-        get_children ().foreach ((child) => {
-            if (!(child is DisplayWidget)) return;
-            snap_widget ((DisplayWidget) child, anchors);
-            anchors.append ((DisplayWidget) child);
-        });*/
-    }
 
    /******************************************************************************************
     *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.  *
