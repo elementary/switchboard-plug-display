@@ -159,7 +159,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             var display_widget = (DisplayWidget) widget;
 
             int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
+            display_widget.get_virtual_monitor_geometry (out x, out y, out width, out height);
             x += display_widget.delta_x;
             y += display_widget.delta_y;
             var x_start = (int) Math.round (x * current_ratio);
@@ -228,7 +228,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         foreach (unowned var display_widget in display_widgets) {
             int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
+            display_widget.get_virtual_monitor_geometry (out x, out y, out width, out height);
 
             added_width += width;
             added_height += height;
@@ -332,7 +332,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         int current_delta[2] = { display_widget.delta_x, display_widget.delta_y };
 
         int x, y, width, height;
-        display_widget.get_geometry (out x, out y, out width, out height);
+        display_widget.get_virtual_monitor_geometry (out x, out y, out width, out height);
 
         int widget_points[6], anchor_points[6];
         widget_points [0] = x;                       // x_start
@@ -348,7 +348,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
 
             var anchor = widget;
-            anchor.get_geometry (out x, out y, out width, out height);
+            anchor.get_virtual_monitor_geometry (out x, out y, out width, out height);
             anchor_points [0] = x;                   // x_start
             anchor_points [1] = x + width / 2 - 1;   // x_center
             anchor_points [2] = x + width - 1;       // x_end
@@ -396,7 +396,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     // a 1px larger rectangle intersects with any of other display_widgets
     private bool is_connected (DisplayWidget display_widget, List<DisplayWidget> other_display_widgets) {
         int x, y, width, height;
-        display_widget.get_geometry (out x, out y, out width, out height);
+        display_widget.get_virtual_monitor_geometry (out x, out y, out width, out height);
         Gdk.Rectangle rect = {x - 1, y - 1, width + 2, height + 2};
 
         foreach (var other_display_widget in other_display_widgets) {
@@ -405,7 +405,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
 
             int other_x, other_y, other_width, other_height;
-            other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
+            other_display_widget.get_virtual_monitor_geometry (out other_x, out other_y, out other_width, out other_height);
 
             Gdk.Rectangle other_rect = { other_x, other_y, other_width, other_height };
             Gdk.Rectangle intersection;
@@ -425,7 +425,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         foreach (unowned var display_widget in display_widgets) {
             int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
+            display_widget.get_virtual_monitor_geometry (out x, out y, out width, out height);
             min_x = int.min (min_x, x);
             min_y = int.min (min_y, y);
         }
@@ -436,8 +436,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
         foreach (unowned var display_widget in display_widgets) {
             int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
-            display_widget.set_geometry (x - min_x, y - min_y, width, height);
+            display_widget.get_virtual_monitor_geometry (out x, out y, out width, out height);
+            display_widget.set_virtual_monitor_geometry (x - min_x, y - min_y, width, height);
         }
     }
 
@@ -449,7 +449,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         int source_x, source_y, source_width, source_height;
-        source_display_widget.get_geometry (out source_x, out source_y, out source_width, out source_height);
+        source_display_widget.get_virtual_monitor_geometry (out source_x, out source_y, out source_width, out source_height);
         Gdk.Rectangle src_rect = { source_x, source_y, source_width, source_height };
 
         foreach (unowned var other_display_widget in display_widgets) {
@@ -458,7 +458,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
 
             int other_x, other_y, other_width, other_height;
-            other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
+            other_display_widget.get_virtual_monitor_geometry (out other_x, out other_y, out other_width, out other_height);
             Gdk.Rectangle test_rect = { other_x, other_y, other_width, other_height };
             if (src_rect.intersect (test_rect, null)) {
                 if (level == 0) {
@@ -477,7 +477,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                     }
                 }
 
-                other_display_widget.set_geometry (other_x + distance_x, other_y + distance_y, other_width, other_height);
+                other_display_widget.set_virtual_monitor_geometry (other_x + distance_x, other_y + distance_y, other_width, other_height);
                 other_display_widget.queue_resize_no_redraw ();
                 check_intersects (other_display_widget, level + 1, distance_x, distance_y);
             }
@@ -528,14 +528,14 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
 
         int widget_x, widget_y, widget_width, widget_height;
-        widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
+        widget.get_virtual_monitor_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
         widget_x += widget.delta_x;
         widget_y += widget.delta_y;
 
         int shortest_distance = int.MAX, shortest_distance_x = 0, shortest_distance_y = 0;
         foreach (var anchor in anchors) {
             int anchor_x, anchor_y, anchor_width, anchor_height;
-            anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
+            anchor.get_virtual_monitor_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
 
             var distance_origin_x = anchor_x - widget_x;
             var distance_origin_y = anchor_y - widget_y;
@@ -570,6 +570,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             }
         }
 
-        widget.set_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
+warning ("shortest distance x %i, shortest distance y %i", shortest_distance_x, shortest_distance_y);
+        widget.set_virtual_monitor_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
     }
 }

@@ -322,7 +322,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 return;
             }
 
-            set_geometry (virtual_monitor.x, virtual_monitor.y, active_width, active_height);
+            set_virtual_monitor_geometry (virtual_monitor.x, virtual_monitor.y, active_width, active_height);
             var new_mode = virtual_monitor.get_mode_for_resolution (active_width, active_height);
             if (new_mode == null) {
                 return;
@@ -543,14 +543,14 @@ public class Display.DisplayWidget : Gtk.EventBox {
         natural_height = minimum_height;
     }
 
-    public void get_geometry (out int x, out int y, out int width, out int height) {
+    public void get_virtual_monitor_geometry (out int x, out int y, out int width, out int height) {
         x = virtual_monitor.x;
         y = virtual_monitor.y;
         width = real_width;
         height = real_height;
     }
 
-    public void set_geometry (int x, int y, int width, int height) {
+    public void set_virtual_monitor_geometry (int x, int y, int width, int height) {
         virtual_monitor.x = x;
         virtual_monitor.y = y;
         real_width = width;
