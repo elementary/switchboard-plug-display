@@ -128,11 +128,19 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
     }
 
+    private void on_drag_end () {
+        if (dragging_display.delta_x == 0 && dragging_widget.delta_y == 0) {
     private void on_drag_end (double delta_x, double delta_y) {
         if (delta_x == 0 && delta_y == 0) {
             return;
         }
 
+        int x, y, width, height;
+        dragging_display.get_virtual_monitor_geometry (out x, out y, out width, out height);
+        dragging_display.set_virtual_monitor_geometry (x + (int) dragging_widget.delta_x, y + (int) dragging_widget.delta_x, width, height);
+        dragging_display.queue_resize_no_redraw ();
+
+        check_configuration_changed ();
         check_intersects (dragging_display);
         snap_edges (dragging_display);
         close_gaps ();
