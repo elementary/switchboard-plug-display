@@ -543,8 +543,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
    /******************************************************************************************
     *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.  *
-    *   It first calculates the distance between each anchor and the widget, and afterwards  *
-    *   snaps the widget to the closest edge/corner                                          *
+    *   It first calculates the distance between each anchor vertex and each widget vertex,  *
+    *   and afterwards snaps to the closest edge                                             *
     *                                                                                        *
     *   Cases:          W = widget, A = current anchor                                       *
     *                                                                                        *
@@ -554,57 +554,74 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     *                                                                                        *
     ******************************************************************************************/
 
+    // Requires that displays do not overlap
     private void snap_widget (Display.DisplayWidget widget, List<Display.DisplayWidget> anchors) {
         if (anchors.length () == 0) {
             return;
         }
 
+        var shortest_distance_x = int.MAX;
+        var shortest_distance_y = int.MAX;
+
         int widget_x, widget_y, widget_width, widget_height;
         widget.get_virtual_monitor_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
-        widget_x += widget.delta_x;
-        widget_y += widget.delta_y;
 
-        int shortest_distance = int.MAX, shortest_distance_x = 0, shortest_distance_y = 0;
         foreach (var anchor in anchors) {
             int anchor_x, anchor_y, anchor_width, anchor_height;
             anchor.get_virtual_monitor_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
+            int min_x, min_y;
+            Gdk.Point nearest = compare_rect (
+                {widget_x, widget_y, widget_width, widget_height},
+                {anchor_x, anchor_y, anchor_width, anchor_height}
+            );
 
-            var distance_origin_x = anchor_x - widget_x;
-            var distance_origin_y = anchor_y - widget_y;
-            var distance_left = distance_origin_x + anchor_width;
-            var distance_right = distance_origin_x - widget_width;
-            var distance_top = distance_origin_y + anchor_height;
-            var distance_bottom = distance_origin_y - widget_height;
-            var distance_widget_anchor_x = distance_right > -distance_left ? distance_right : distance_left;
-            var distance_widget_anchor_y = distance_bottom > -distance_top ? distance_bottom : distance_top;
-
-            // widget is between left and right edges of anchor, no horizontal movement needed
-            if (distance_left > 0 && distance_right < 0) {
-                distance_widget_anchor_x = 0;
-            // widget is between top and bottom edges of anchor, no vertical movement needed
-            } else if (distance_top > 0 && distance_bottom < 0) {
-                distance_widget_anchor_y = 0;
-            // widget is diagonal to anchor, as diagonal monitors are not allowed, offset by 50px (MINIMUM_WIDGET_OFFSET)
-            } else {
-                if (distance_widget_anchor_x.abs () >= distance_widget_anchor_y.abs ()) {
-                    distance_widget_anchor_x += (distance_origin_x > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
-                } else {
-                    distance_widget_anchor_y += (distance_origin_y > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
-                }
+            if (nearest.x.abs () > 0 && nearest.x.abs () < shortest_distance_x.abs ()) {
+                shortest_distance_x = nearest.x;
             }
-
-            var shortest_distance_candidate = distance_widget_anchor_x * distance_widget_anchor_x
-                                            + distance_widget_anchor_y * distance_widget_anchor_y;
-
-            if (shortest_distance_candidate < shortest_distance) {
-                shortest_distance = shortest_distance_candidate;
-                shortest_distance_x = distance_widget_anchor_x;
-                shortest_distance_y = distance_widget_anchor_y;
+            if (nearest.y.abs () > 0 && nearest.y.abs () < shortest_distance_y.abs ()) {
+                shortest_distance_y = nearest.y;
             }
         }
 
-warning ("shortest distance x %i, shortest distance y %i", shortest_distance_x, shortest_distance_y);
-        widget.set_virtual_monitor_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
+        if (shortest_distance_x.abs () < shortest_distance_y.abs ()) {
+            widget.set_virtual_monitor_geometry (
+                widget_x - shortest_distance_x,
+                widget_y,
+                widget_width,
+                widget_height
+            );
+        } else {
+            widget.set_virtual_monitor_geometry (
+                widget_x,
+                widget_y - shortest_distance_y,
+                widget_width,
+                widget_height
+            );
+        }
+
         widget.queue_draw ();
+    }
+
+    private Gdk.Point compare_rect (Gdk.Rectangle a, Gdk.Rectangle b) {
+        var min_x = int.MAX;
+        var min_y = int.MAX;
+        foreach (Gdk.Point pa in vertices (a)) {
+            foreach (Gdk.Point pb in vertices (b)) {
+                var dx = pa.x - pb.x;
+                var dy = pa.y - pb.y;
+                if (dx.abs () > 1 && dx.abs () < min_x.abs ()) {
+                    min_x = dx;
+                }
+                if (dy.abs () > 1 && dy.abs () < min_y.abs ()) {
+                    min_y = dy;
+                }
+            }
+        }
+
+        return {min_x, min_y};
+    }
+
+    private Gdk.Point[] vertices (Gdk.Rectangle a) {
+        return {{a.x, a.y}, {a.x + a.width, a.y}, {a.x, a.y + a.height}, {a.x + a.width, a.y + a.height}};
     }
 }
