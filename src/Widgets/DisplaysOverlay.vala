@@ -403,7 +403,27 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private void close_gaps () {
         foreach (unowned var widget in display_widgets) {
             if (!is_connected (widget, display_widgets)) {
-                snap_edges (widget);
+                //Snap edges together
+                var anchors = new List<DisplayWidget> ();
+
+                foreach (unowned var other_widget in display_widgets) {
+                    if (widget.equals (other_widget)) {
+                        break;
+                    }
+
+                    anchors.append (other_widget);
+                }
+
+                snap_widget (widget, anchors);
+
+                /*/ FIXME: Re-Snapping with 3 or more displays is broken
+                // This is used to make sure all displays are connected
+                anchors = new List<DisplayWidget>();
+                get_children ().foreach ((child) => {
+                    if (!(child is DisplayWidget)) return;
+                    snap_widget ((DisplayWidget) child, anchors);
+                    anchors.append ((DisplayWidget) child);
+                });*/
             }
         }
     }
