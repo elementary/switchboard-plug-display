@@ -35,6 +35,9 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public Display.VirtualMonitor virtual_monitor { get; construct; }
 
     public double window_ratio { get; private set; default = 1.0; }
+
+    // The intended offsets of the virtual monitor from its current position in
+    // real coordinates when dragging.
     public int delta_x { get; set; default = 0; }
     public int delta_y { get; set; default = 0; }
 
@@ -55,9 +58,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     private int real_width = 0;
     private int real_height = 0;
-
-    public Gtk.GestureMultiPress button_controller { get; construct; }
-    public bool pointed_at { get; private set; default = false;}
 
     private enum ResolutionColumns {
         NAME,
@@ -83,11 +83,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     construct {
-        button_controller = new Gtk.GestureMultiPress (this) {
-            propagation_phase = CAPTURE
-        };
-        button_controller.pressed.connect (() => {warning ("enter"); pointed_at = true;});
-        button_controller.released.connect (() => {warning ("leave"); pointed_at = false;});
         display_window = new DisplayWindow (virtual_monitor) {
             attached_to = this
         };

@@ -27,7 +27,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     public signal void configuration_changed (bool changed);
 
     private bool scanning = false;
+    // The ratio between the real dimensions of the virtual monitor(s) and the
+    // allocated size of the overlay (min). Used for scaling movement of the
+    // display widgets to changes in real monitor position and ensuring display widgets
+    // fit inside overlay after dragging.
     private double current_ratio = 1.0f;
+
     private int current_allocated_width = 0;
     private int current_allocated_height = 0;
     private int default_x_margin = 0;
@@ -102,42 +107,41 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             return;
         }
 
+        Gdk.Rectangle start_rect = {(int) x, (int) y, 1, 1};
+        Gtk.Allocation alloc;
         foreach (var display_widget in display_widgets) {
-            if (display_widget.pointed_at) {
+            get_child_position (display_widget, out alloc);
+            if (start_rect.intersect (alloc, null)) {
                 dragging_display = display_widget;
+                break;
             }
         }
-
     }
 
     // dx & dy are screen offsets from the start of dragging
     private void on_drag_update (double dx, double dy) {
-        if (!only_display) {
-            move_display (dragging_display, dx, dy);
-
-            reorder_overlay (display_widget, -1);
-            display_widget.delta_x = (int) (dx / current_ratio);
-            display_widget.delta_y = (int) (dy / current_ratio);
+        if (!only_display && dragging_display != null) {
+            reorder_overlay (dragging_display, -1);
+            dragging_display.delta_x = (int) (dx / current_ratio);
+            dragging_display.delta_y = (int) (dy / current_ratio);
             Gdk.ModifierType state;
             Gtk.get_current_event_state (out state);
             if (!(Gdk.ModifierType.CONTROL_MASK in state)) {
-                align_edges (display_widget);
+                align_edges (dragging_display);
             }
 
-            display_widget.queue_resize_no_redraw ();
+            dragging_display.queue_resize_no_redraw ();
         }
     }
 
     private void on_drag_end () {
-        if (dragging_display.delta_x == 0 && dragging_widget.delta_y == 0) {
-    private void on_drag_end (double delta_x, double delta_y) {
-        if (delta_x == 0 && delta_y == 0) {
+        if (dragging_display.delta_x == 0 && dragging_display.delta_y == 0) {
             return;
         }
 
         int x, y, width, height;
         dragging_display.get_virtual_monitor_geometry (out x, out y, out width, out height);
-        dragging_display.set_virtual_monitor_geometry (x + (int) dragging_widget.delta_x, y + (int) dragging_widget.delta_x, width, height);
+        dragging_display.set_virtual_monitor_geometry (x + (int) dragging_display.delta_x, y + (int) dragging_display.delta_x, width, height);
         dragging_display.queue_resize_no_redraw ();
 
         check_configuration_changed ();
@@ -149,6 +153,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         dragging_display = null;
     }
 
+    // Determine the position in the overlay of a display widget based on its
+    // virtual monitor geometry and any offsets when dragging.
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
         allocation = Gdk.Rectangle ();
         if (current_allocated_width != get_allocated_width () || current_allocated_height != get_allocated_height ()) {
@@ -220,6 +226,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         configuration_changed (true);
     }
 
+    // Calculate the required scaling required to fit the current monitor
+    // configuration into the overlay
     private void calculate_ratio () {
         int added_width = 0;
         int added_height = 0;
@@ -563,6 +571,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
             var shortest_distance_candidate = distance_widget_anchor_x * distance_widget_anchor_x
                                             + distance_widget_anchor_y * distance_widget_anchor_y;
+
             if (shortest_distance_candidate < shortest_distance) {
                 shortest_distance = shortest_distance_candidate;
                 shortest_distance_x = distance_widget_anchor_x;
@@ -572,5 +581,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
 warning ("shortest distance x %i, shortest distance y %i", shortest_distance_x, shortest_distance_y);
         widget.set_virtual_monitor_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
+        widget.queue_draw ();
     }
 }
