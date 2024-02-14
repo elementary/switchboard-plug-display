@@ -459,8 +459,12 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         }
     }
 
-    // If widget is intersects with any other widgets -> move other widgets to fix intersection
-    public void check_intersects (DisplayWidget source_display_widget, int level = 0, int distance_x = 0, int distance_y = 0) {
+    // If widget is not contiguous with any other widgets -> move other widgets to fix
+    private void check_intersects (DisplayWidget source_display_widget, int level = 0, int distance_x = 0, int distance_y = 0) {
+        if (only_display) {
+            return;
+        }
+
         if (level > 10) {
             warning ("Maximum level of recursion reached! Could not fix intersects!");
             return;
@@ -478,25 +482,40 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             int other_x, other_y, other_width, other_height;
             other_display_widget.get_virtual_monitor_geometry (out other_x, out other_y, out other_width, out other_height);
             Gdk.Rectangle test_rect = { other_x, other_y, other_width, other_height };
-            if (src_rect.intersect (test_rect, null)) {
+            Gdk.Rectangle overlap;
+            if (src_rect.intersect (test_rect, out overlap)) {
                 if (level == 0) {
-                    var distance_left = source_x - other_x - other_width;
-                    var distance_right = source_x - other_x + source_width;
-                    var distance_top = source_y - other_y - other_height;
-                    var distance_bottom = source_y - other_y + source_height;
-                    var test_distance_x = distance_right < -distance_left ? distance_right : distance_left;
-                    var test_distance_y = distance_bottom < -distance_top ? distance_bottom : distance_top;
+                    var test_x = 0;
+                    var test_y = 0;
+                    if (overlap.x == other_x) { //source is to the left of other
+                        test_x = overlap.width;
+                    } else if (overlap.x + overlap.width == other_x + other_width) { // source to the right
+                        test_x = -overlap.width;
+                    }
 
-                    // if distance to upper egde == distance lower edge, move horizontally
-                    if (test_distance_x.abs () <= test_distance_y.abs () || distance_top == -distance_bottom) {
-                        distance_x = test_distance_x;
+                    if (overlap.y == other_y) { //source is above other
+                        test_y = overlap.height;
+                    } else if (overlap.y + overlap.height == other_y + other_height) { // source below other
+                        test_y = -overlap.height;
+                    }
+
+                    // Move smallest distance possible to remove intersect
+                    if (test_x.abs () < test_y.abs ()) {
+                        distance_x = test_x;
                     } else {
-                        distance_y = test_distance_y;
+                        distance_y = test_y;
                     }
                 }
 
-                other_display_widget.set_virtual_monitor_geometry (other_x + distance_x, other_y + distance_y, other_width, other_height);
+                other_display_widget.set_virtual_monitor_geometry (
+                    other_x + distance_x, 
+                    other_y + distance_y,
+                    other_width, 
+                    other_height
+                );
+
                 other_display_widget.queue_resize_no_redraw ();
+                //Move other widgets by same amount
                 check_intersects (other_display_widget, level + 1, distance_x, distance_y);
             }
         }
