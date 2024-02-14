@@ -139,9 +139,19 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
             return;
         }
 
+        var final_delta_x = (int) dragging_display.delta_x;
+        var final_delta_y = (int) dragging_display.delta_y;
+        dragging_display.delta_x = 0;
+        dragging_display.delta_y = 0;
+
         int x, y, width, height;
         dragging_display.get_virtual_monitor_geometry (out x, out y, out width, out height);
-        dragging_display.set_virtual_monitor_geometry (x + (int) dragging_display.delta_x, y + (int) dragging_display.delta_x, width, height);
+        dragging_display.set_virtual_monitor_geometry (
+            x + final_delta_x,
+            y + final_delta_y,
+            width,
+            height
+        );
         dragging_display.queue_resize_no_redraw ();
 
         check_configuration_changed ();
