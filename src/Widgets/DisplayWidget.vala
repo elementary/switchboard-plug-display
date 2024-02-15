@@ -36,10 +36,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     public double window_ratio { get; private set; default = 1.0; }
 
-    // The intended offsets of the virtual monitor from its current position in
-    // real coordinates when dragging.
-    public int delta_x { get; set; default = 0; }
-    public int delta_y { get; set; default = 0; }
 
     public DisplayWindow display_window { get; private set; }
     public Gtk.Button primary_image { get; private set; }
@@ -550,6 +546,20 @@ public class Display.DisplayWidget : Gtk.EventBox {
         virtual_monitor.y = y;
         real_width = width;
         real_height = height;
+
+        queue_resize_no_redraw ();
+    }
+
+    public void move_x (int dx) {
+    warning ("move x %i", dx);
+        virtual_monitor.x += dx;
+        queue_resize_no_redraw ();
+    }
+
+    public void move_y (int dy) {
+    warning ("move y %i", dy);
+        virtual_monitor.y += dy;
+        queue_resize_no_redraw ();
     }
 
     public bool equals (DisplayWidget sibling) {
