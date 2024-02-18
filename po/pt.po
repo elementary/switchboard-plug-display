@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-10 00:51+0000\n"
-"PO-Revision-Date: 2021-12-22 19:30+0000\n"
+"PO-Revision-Date: 2024-02-08 16:11+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/pt/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.0.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -36,7 +36,7 @@ msgstr "Luz noturna"
 #: src/DisplayPlug.vala:62 src/DisplayPlug.vala:120 src/DisplayPlug.vala:121
 #: src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
 msgid "Filters"
-msgstr ""
+msgstr "Filtros"
 
 #: src/DisplayPlug.vala:111
 msgid "Screen Resolution"
@@ -72,19 +72,19 @@ msgstr "Temperatura da cor"
 
 #: src/DisplayPlug.vala:120
 msgid "Color Blindness"
-msgstr ""
+msgstr "Daltonismo"
 
 #: src/DisplayPlug.vala:121
 msgid "Color Vision Deficiency"
-msgstr ""
+msgstr "Deficiência de visão a cores"
 
 #: src/DisplayPlug.vala:122 src/Views/FiltersView.vala:137
 msgid "Grayscale"
-msgstr ""
+msgstr "Escala de cinzentos"
 
 #: src/DisplayPlug.vala:123
 msgid "Monochrome"
-msgstr ""
+msgstr "Monocromático"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -124,16 +124,12 @@ msgstr "Ecrãs Espelhados"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/NightLightView.vala:18
-#, fuzzy
-#| msgid ""
-#| "Night Light makes the colors of your display warmer. This may help "
-#| "prevent eye strain and sleeplessness."
 msgid ""
 "Making the colors of your display warmer may help prevent eye strain and "
 "sleeplessness"
 msgstr ""
-"A luz noturna deixa as cores do ecrã mais quentes. Isso pode ajudar a evitar "
-"o cansaço visual e insónias."
+"Tornar as cores do seu ecrã mais quentes pode ajudar a evitar o cansaço "
+"visual e a insónia"
 
 #: src/Views/NightLightView.vala:33
 msgid "More Warm"
@@ -185,83 +181,79 @@ msgstr "Bloqueio de rotação:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
-msgstr ""
+msgstr "Assistência ao daltonismo"
 
 #: src/Views/FiltersView.vala:13
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
 msgstr ""
+"Cada um dos círculos abaixo deve aparecer com uma cor diferente. Pode ser "
+"aplicado um filtro a todo o ecrã para ajudar a diferenciar as cores."
 
 #: src/Views/FiltersView.vala:30
 msgid "Red/Green"
-msgstr ""
+msgstr "Vermelho/Verde"
 
 #: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
 msgid "Protanopia"
-msgstr ""
+msgstr "Protanopia"
 
 #: src/Views/FiltersView.vala:49
 msgid "Red/Green — High Contrast"
-msgstr ""
+msgstr "Vermelho/Verde — Alto contraste"
 
 #: src/Views/FiltersView.vala:65
 msgid "Green/Red"
-msgstr ""
+msgstr "Verde/Vermelho"
 
 #: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
 msgid "Deuteranopia"
-msgstr ""
+msgstr "Deuteranopia"
 
 #: src/Views/FiltersView.vala:84
 msgid "Green/Red — High Contrast"
-msgstr ""
+msgstr "Verde/Vermelho — Alto contraste"
 
 #: src/Views/FiltersView.vala:100
 msgid "Blue/Yellow"
-msgstr ""
+msgstr "Azul/Amarelo"
 
 #: src/Views/FiltersView.vala:100
 msgid "Tritanopia"
-msgstr ""
+msgstr "Tritanopia"
 
 #: src/Views/FiltersView.vala:124
 msgid "Less Assistance"
-msgstr ""
+msgstr "Menor assistência"
 
 #: src/Views/FiltersView.vala:125
 msgid "More Assistance"
-msgstr ""
+msgstr "Maior assistência"
 
 #. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
 #: src/Views/FiltersView.vala:146
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
 msgstr ""
+"A redução da cor pode ajudar a evitar distrações e a aliviar a dependência "
+"do ecrã"
 
 #: src/Views/FiltersView.vala:160
-#, fuzzy
-#| msgid "More Warm"
 msgid "More Color"
-msgstr "Mais quente"
+msgstr "Mais cor"
 
 #: src/Views/FiltersView.vala:161
-#, fuzzy
-#| msgid "Less Warm"
 msgid "Less Color"
-msgstr "Menos Quente"
+msgstr "Menos cor"
 
 #: src/Widgets/DisplayWidget.vala:132
-#, fuzzy
-#| msgid "Resolution:"
 msgid "Resolution"
-msgstr "Resolução:"
+msgstr "Resolução"
 
 #: src/Widgets/DisplayWidget.vala:160
-#, fuzzy
-#| msgid "Refresh Rate:"
 msgid "Refresh Rate"
-msgstr "Taxa de atualização:"
+msgstr "Taxa de atualização"
 
 #: src/Widgets/DisplayWidget.vala:232
 msgid "Other…"
