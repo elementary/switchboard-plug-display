@@ -9,11 +9,6 @@
     -gtk-icon-palette: warning white;
 }
 
-/* Don't use alpha for the on-screen identifier */
-window.colored {
-    background-color: alpha(@BG_COLOR, 0.8);
-}
-
 widget.colored {
     border: 1px solid mix(@BG_COLOR_ALPHA, @TEXT_COLOR, 0.3);
 }

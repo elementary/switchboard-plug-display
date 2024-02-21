@@ -2,6 +2,7 @@ plug_files = files(
     'Utils.vala',
     'SettingsDaemon.vala',
     'DisplayPlug.vala',
+    'Interfaces/GalaDBus.vala',
     'Interfaces/NightLightManager.vala',
     'Interfaces/MutterDisplayConfig.vala',
     'Objects/VirtualMonitor.vala',

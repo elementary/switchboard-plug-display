@@ -1,5 +1,5 @@
 /*-
- * Copyright 2014–2021 elementary, Inc.
+ * Copyright 2014–2024 elementary, Inc.
  *           2014–2018 Corentin Noël <corentin@elementary.io>
  *
  * This software is free software; you can redistribute it and/or
@@ -35,6 +35,8 @@ public class Display.DisplayWidget : Gtk.Widget {
     public signal void active_changed ();
 
     public Display.VirtualMonitor virtual_monitor { get; construct; }
+    public string bg_color { get; construct; }
+    public string text_color { get; construct; }
 
     public double window_ratio { get; private set; default = 1.0; }
     public int delta_x { get; set; default = 0; }
@@ -82,8 +84,12 @@ public class Display.DisplayWidget : Gtk.Widget {
         TOTAL
     }
 
-    public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
-        Object (virtual_monitor: virtual_monitor);
+    public DisplayWidget (Display.VirtualMonitor virtual_monitor, string bg_color, string text_color) {
+        Object (
+            virtual_monitor: virtual_monitor,
+            bg_color: bg_color,
+            text_color: text_color
+        );
     }
 
     static construct {
