@@ -34,6 +34,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private int default_y_margin = 0;
 
     private unowned Display.MonitorManager monitor_manager;
+    private static GalaDBus gala_dbus = null;
     public int active_displays { get; set; default = 0; }
 
     private List<DisplayWidget> display_widgets;
@@ -82,6 +83,20 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     static construct {
         display_provider = new Gtk.CssProvider ();
         display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
+
+        GLib.Bus.get_proxy.begin<GalaDBus> (
+            GLib.BusType.SESSION,
+            "org.pantheon.gala.daemon",
+            "/org/pantheon/gala/daemon",
+            GLib.DBusProxyFlags.NONE,
+            null,
+            (obj, res) => {
+            try {
+                gala_dbus = GLib.Bus.get_proxy.end (res);
+            } catch (GLib.Error e) {
+                critical (e.message);
+            }
+        });
     }
 
     public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
@@ -129,22 +144,39 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         scanning = false;
     }
 
-    public void show_windows () {
+    public void show_windows () requires (gala_dbus != null) {
         if (monitor_manager.is_mirrored) {
             return;
         }
 
+        MonitorLabelInfo[] label_infos = {};
+
         foreach (unowned var widget in display_widgets) {
             if (widget.virtual_monitor.is_active) {
-                widget.display_window.show_all ();
+                label_infos += MonitorLabelInfo () {
+                    monitor = label_infos.length,
+                    label = widget.virtual_monitor.get_display_name (),
+                    background_color = widget.bg_color,
+                    text_color = widget.text_color,
+                    x = widget.virtual_monitor.current_x,
+                    y = widget.virtual_monitor.current_y
+                };
             }
+        }
+
+        try {
+            gala_dbus.show_monitor_labels (label_infos);
+        } catch (Error e) {
+            warning ("Couldn't show monitor labels: %s", e.message);
         }
     }
 
-    public void hide_windows () {
-        foreach (unowned var widget in display_widgets) {
-            widget.display_window.hide ();
-        };
+    public void hide_windows () requires (gala_dbus != null) {
+        try {
+            gala_dbus.hide_monitor_labels ();
+        } catch (Error e) {
+            warning ("Couldn't hide monitor labels: %s", e.message);
+        }
     }
 
     private void change_active_displays_sensitivity () {
@@ -187,25 +219,20 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void add_output (Display.VirtualMonitor virtual_monitor) {
-        var display_widget = new DisplayWidget (virtual_monitor);
         current_allocated_width = 0;
         current_allocated_height = 0;
+
+        var color_number = (get_children ().length () - 2) % 7;
+        var display_widget = new DisplayWidget (virtual_monitor, colors[color_number], text_colors[color_number]);
         add_overlay (display_widget);
         display_widgets.append (display_widget);
 
         var provider = new Gtk.CssProvider ();
         try {
-            var color_number = (get_children ().length () - 2) % 7;
-
             var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
             provider.load_from_data (colored_css, colored_css.length);
 
             var context = display_widget.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
-
-            context = display_widget.display_window.get_style_context ();
             context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             context.add_class ("colored");
@@ -243,7 +270,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         });
 
         if (!monitor_manager.is_mirrored && virtual_monitor.is_active) {
-            display_widget.display_window.show_all ();
+            show_windows ();
         }
 
         display_widget.end_grab.connect ((delta_x, delta_y) => {

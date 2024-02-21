@@ -1,5 +1,5 @@
 /*-
- * Copyright 2014–2021 elementary, Inc.
+ * Copyright 2014–2024 elementary, Inc.
  *           2014–2018 Corentin Noël <corentin@elementary.io>
  *
  * This software is free software; you can redistribute it and/or
@@ -35,6 +35,8 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public signal void active_changed ();
 
     public Display.VirtualMonitor virtual_monitor { get; construct; }
+    public string bg_color { get; construct; }
+    public string text_color { get; construct; }
 
     public double window_ratio { get; private set; default = 1.0; }
     public int delta_x { get; set; default = 0; }
@@ -45,7 +47,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     private double start_y = 0;
     private bool holding = false;
 
-    public DisplayWindow display_window { get; private set; }
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
@@ -85,18 +86,18 @@ public class Display.DisplayWidget : Gtk.EventBox {
         TOTAL
     }
 
-    public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
-        Object (virtual_monitor: virtual_monitor);
+    public DisplayWidget (Display.VirtualMonitor virtual_monitor, string bg_color, string text_color) {
+        Object (
+            virtual_monitor: virtual_monitor,
+            bg_color: bg_color,
+            text_color: text_color
+        );
     }
 
     construct {
         events |= Gdk.EventMask.BUTTON_PRESS_MASK;
         events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
         events |= Gdk.EventMask.POINTER_MOTION_MASK;
-
-        display_window = new DisplayWindow (virtual_monitor) {
-            attached_to = this
-        };
 
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
@@ -290,8 +291,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         set_primary (virtual_monitor.primary);
         add (grid);
-
-        destroy.connect (() => display_window.destroy ());
 
         use_switch.bind_property ("active", resolution_combobox, "sensitive");
         use_switch.bind_property ("active", rotation_combobox, "sensitive");
