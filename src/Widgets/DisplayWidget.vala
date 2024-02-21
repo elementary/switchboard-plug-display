@@ -419,7 +419,7 @@ public class Display.DisplayWidget : Gtk.Widget {
         configuration_changed ();
         check_position ();
 
-        var drag_gesture = new Gtk.GestureDrag  ();
+        var drag_gesture = new Gtk.GestureDrag ();
         drag_gesture.drag_begin.connect (on_drag_begin);
         drag_gesture.drag_update.connect (on_drag_update);
         drag_gesture.drag_end.connect (on_drag_end);
