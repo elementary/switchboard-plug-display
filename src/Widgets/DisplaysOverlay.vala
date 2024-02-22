@@ -359,6 +359,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private void verify_layout (DisplayWidget changed_widget) {
         bool success = false;
         uint iteration = 0;
+        // Continues iterating while at least one widget gets moved (or too many iterations)
         while (iteration < 10 &&
               (check_intersects (changed_widget) ||
               align_edges (changed_widget))
@@ -380,7 +381,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     ) {
         int x, y, width, height;
         Gdk.Rectangle overlap;
-        var can_connect = false;
         foreach (unowned var other_display_widget in display_widgets) {
             if (other_display_widget == changed_widget) {
                 continue;
@@ -418,8 +418,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 } else if (dx_right.abs () < MINIMUM_WIDGET_OFFSET) {
                     dx = -dx_right;
                 }
-
-                can_connect = true;
             } else if (source_rect.intersect (rect_bottom, out overlap)) {
                 dy = other_y + other_height - y;
                 if (dx_left.abs () < MINIMUM_WIDGET_OFFSET) {
@@ -427,8 +425,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 } else if (dx_right.abs () < MINIMUM_WIDGET_OFFSET) {
                     dx = -dx_right;
                 }
-
-                can_connect = true;
             } else if (source_rect.intersect (rect_left, out overlap)) {
                 dx = other_x - (x + width);
                 if (dy_top.abs () < MINIMUM_WIDGET_OFFSET) {
@@ -436,8 +432,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 } else if (dy_bottom.abs () < MINIMUM_WIDGET_OFFSET) {
                     dy = -dy_bottom;
                 }
-
-                can_connect = true;
             } else if (source_rect.intersect (rect_right, out overlap)) {
                 dx = (other_x + other_width) - x;
                 if (dy_top.abs () < MINIMUM_WIDGET_OFFSET) {
@@ -445,8 +439,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 } else if (dy_bottom.abs () < MINIMUM_WIDGET_OFFSET) {
                     dy = -dy_bottom;
                 }
-
-                can_connect = true;
             }
 
             other_display_widget.move_x (-dx);
