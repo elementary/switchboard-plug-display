@@ -20,12 +20,13 @@
  *              Felix Andreas <fandreas@physik.hu-berlin.de>
  */
 
-public class Display.DisplaysOverlay : Gtk.Overlay {
+public class Display.DisplaysOverlay : Gtk.Box {
     private const int SNAP_LIMIT = int.MAX - 1;
     private const int MINIMUM_WIDGET_OFFSET = 50;
 
     public signal void configuration_changed (bool changed);
 
+    private Gtk.Overlay overlay;
     private bool scanning = false;
     // The ratio between the real dimensions of the virtual monitor(s) and the
     // allocated size of the overlay (min). Used for scaling movement of the
@@ -79,12 +80,10 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     private Gtk.GestureDrag drag_gesture;
 
     construct {
-        var grid = new Gtk.Grid () {
-            hexpand = true,
-            vexpand = true
-        };
-        grid.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-        child = grid;
+        get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
+
+        overlay = new Gtk.Overlay ();
+        add (overlay);
 
         display_widgets = new List<DisplayWidget> ();
 
@@ -96,6 +95,8 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
         rescan_displays ();
+
+        overlay.get_child_position.connect (get_child_position);
     }
 
     static construct {
@@ -135,8 +136,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
                 break;
             }
         }
-
-        reorder_overlay (dragging_display, -1);
     }
 
     // dx & dy are screen offsets from the start of dragging
@@ -158,7 +157,7 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
 
     // Determine the position in the overlay of a display widget based on its
     // virtual monitor geometry and any offsets when dragging.
-    public override bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
+    private bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
         allocation = Gdk.Rectangle ();
         if (current_allocated_width != get_allocated_width () ||
             current_allocated_height != get_allocated_height ()) {
@@ -320,9 +319,9 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
         current_allocated_width = 0;
         current_allocated_height = 0;
 
-        var color_number = (get_children ().length () - 2) % 7;
+        var color_number = (display_widgets.length () - 1) % 7;
         var display_widget = new DisplayWidget (virtual_monitor, colors[color_number], text_colors[color_number]);
-        add_overlay (display_widget);
+        overlay.add_overlay (display_widget);
         display_widgets.append (display_widget);
 
         var provider = new Gtk.CssProvider ();
