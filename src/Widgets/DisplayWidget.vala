@@ -28,8 +28,6 @@ public struct Display.Resolution {
 
 public class Display.DisplayWidget : Gtk.Widget {
     public signal void set_as_primary ();
-    public signal void move_display (double diff_x, double diff_y);
-    public signal void end_grab (int delta_x, int delta_y);
     public signal void check_position ();
     public signal void configuration_changed ();
     public signal void active_changed ();
@@ -37,14 +35,10 @@ public class Display.DisplayWidget : Gtk.Widget {
     public Display.VirtualMonitor virtual_monitor { get; construct; }
     public string bg_color { get; construct; }
     public string text_color { get; construct; }
+    public string display_name { get {return virtual_monitor.get_display_name (); }}
 
     public double window_ratio { get; private set; default = 1.0; }
-    public int delta_x { get; set; default = 0; }
-    public int delta_y { get; set; default = 0; }
-    public bool only_display { get; set; default = false; }
-
-    private double start_x = 0;
-    private double start_y = 0;
+    public bool connected { get; set; }
 
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
@@ -328,7 +322,7 @@ public class Display.DisplayWidget : Gtk.Widget {
                 return;
             }
 
-            set_geometry (virtual_monitor.x, virtual_monitor.y, active_width, active_height);
+            set_virtual_monitor_geometry (virtual_monitor.x, virtual_monitor.y, active_width, active_height);
             var new_mode = virtual_monitor.get_mode_for_resolution (active_width, active_height);
             if (new_mode == null) {
                 return;
@@ -418,13 +412,6 @@ public class Display.DisplayWidget : Gtk.Widget {
 
         configuration_changed ();
         check_position ();
-
-        var drag_gesture = new Gtk.GestureDrag ();
-        drag_gesture.drag_begin.connect (on_drag_begin);
-        drag_gesture.drag_update.connect (on_drag_update);
-        drag_gesture.drag_end.connect (on_drag_end);
-
-        add_controller (drag_gesture);
     }
 
     private void populate_refresh_rates () {
@@ -536,31 +523,6 @@ public class Display.DisplayWidget : Gtk.Widget {
         });
     }
 
-    private void on_drag_begin (double x, double y) {
-        if (only_display) {
-            return;
-        }
-
-        start_x = x;
-        start_y = y;
-    }
-
-    private void on_drag_update (double x, double y) {
-        if (!only_display) {
-            move_display (x, y);
-        }
-    }
-
-    private void on_drag_end (double x, double y) {
-        if ((delta_x == 0 && delta_y == 0) || only_display) {
-            return;
-        }
-        delta_x = 0;
-        delta_y = 0;
-
-        end_grab ((int) x, (int) y);
-    }
-
     public void set_primary (bool is_primary) {
         if (is_primary) {
             primary_image.icon_name = "starred-symbolic";
@@ -582,18 +544,30 @@ public class Display.DisplayWidget : Gtk.Widget {
         natural_size = minimum_size;
     }
 
-    public void get_geometry (out int x, out int y, out int width, out int height) {
+    public void get_virtual_monitor_geometry (out int x, out int y, out int width, out int height) {
         x = virtual_monitor.x;
         y = virtual_monitor.y;
         width = real_width;
         height = real_height;
     }
 
-    public void set_geometry (int x, int y, int width, int height) {
+    public void set_virtual_monitor_geometry (int x, int y, int width, int height) {
         virtual_monitor.x = x;
         virtual_monitor.y = y;
         real_width = width;
         real_height = height;
+
+        queue_resize ();
+    }
+
+    public void move_x (int dx) {
+        virtual_monitor.x += dx;
+        queue_resize ();
+    }
+
+    public void move_y (int dy) {
+        virtual_monitor.y += dy;
+        queue_resize ();
     }
 
     public bool equals (DisplayWidget sibling) {

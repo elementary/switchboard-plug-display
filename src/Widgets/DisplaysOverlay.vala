@@ -28,6 +28,10 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
     private Gtk.Overlay overlay;
     private bool scanning = false;
+    // The ratio between the real dimensions of the virtual monitor(s) and the
+    // allocated size of the overlay (min). Used for scaling movement of the
+    // display widgets to changes in real monitor position and ensuring display widgets
+    // fit inside overlay after dragging.
     private double current_ratio = 1.0f;
     private int current_width = 0;
     private int current_height = 0;
@@ -39,6 +43,12 @@ public class Display.DisplaysOverlay : Gtk.Box {
     public int active_displays { get; set; default = 0; }
 
     private List<DisplayWidget> display_widgets;
+    private DisplayWidget? dragging_display = null;
+    public bool only_display {
+        get {
+            return active_displays <= 1;
+        }
+    }
 
     private static Gtk.CssProvider display_provider;
 
@@ -66,6 +76,8 @@ public class Display.DisplaysOverlay : Gtk.Box {
         @define-color TEXT_COLOR %s;
     """;
 
+    private Gtk.GestureDrag drag_gesture;
+
     construct {
         add_css_class (Granite.STYLE_CLASS_VIEW);
 
@@ -74,11 +86,18 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
         display_widgets = new List<DisplayWidget> ();
 
+        drag_gesture = new Gtk.GestureDrag ();
+        drag_gesture.drag_begin.connect (on_drag_begin);
+        drag_gesture.drag_update.connect (on_drag_update);
+        drag_gesture.drag_end.connect (on_drag_end);
+
+        add_controller (drag_gesture);
+
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
         rescan_displays ();
 
-        overlay.get_child_position.connect (on_get_child_position);
+        overlay.get_child_position.connect (get_child_position);
     }
 
     static construct {
@@ -100,9 +119,50 @@ public class Display.DisplaysOverlay : Gtk.Box {
         });
     }
 
-    private bool on_get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
+    private double prev_dx = 0;
+    private double prev_dy = 0;
+    private void on_drag_begin (double x, double y) {
+        if (only_display) {
+            return;
+        }
+
+        Gdk.Rectangle start_rect = {(int) x, (int) y, 1, 1};
+        Gtk.Allocation alloc;
+        prev_dx = 0;
+        prev_dy = 0;
+        foreach (var display_widget in display_widgets) {
+            get_child_position (display_widget, out alloc);
+            if (start_rect.intersect (alloc, null)) {
+                dragging_display = display_widget;
+                break;
+            }
+        }
+    }
+
+    // dx & dy are screen offsets from the start of dragging
+    private void on_drag_update (double dx, double dy) {
+        if (!only_display && dragging_display != null) {
+            dragging_display.move_x ((int) ((dx - prev_dx) / current_ratio));
+            dragging_display.move_y ((int) ((dy - prev_dy) / current_ratio));
+            prev_dx = dx;
+            prev_dy = dy;
+        }
+    }
+
+    private void on_drag_end () {
+        if (dragging_display != null) {
+            verify_layout (dragging_display);
+            dragging_display = null;
+        }
+    }
+
+    // Determine the position in the overlay of a display widget based on its
+    // virtual monitor geometry and any offsets when dragging.
+    private bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
         allocation = Gdk.Rectangle ();
-        if (current_width != get_width () || current_height != get_height ()) {
+        if (current_width != get_width () ||
+            current_height != get_height ()) {
+
             calculate_ratio ();
         }
 
@@ -110,9 +170,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
             var display_widget = (DisplayWidget) widget;
 
             int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
-            x += display_widget.delta_x;
-            y += display_widget.delta_y;
+            display_widget.get_virtual_monitor_geometry (out x, out y, out width, out height);
             var x_start = (int) Math.round (x * current_ratio);
             var y_start = (int) Math.round (y * current_ratio);
             var x_end = (int) Math.round ((x + width) * current_ratio);
@@ -181,18 +239,57 @@ public class Display.DisplaysOverlay : Gtk.Box {
     }
 
     private void change_active_displays_sensitivity () {
-        foreach (unowned var widget in display_widgets) {
-            if (widget.virtual_monitor.is_active) {
-                widget.only_display = (active_displays == 1);
+    }
+
+    private void check_configuration_change () {
+        // check if valid (connected)
+        var result = true;
+        foreach (unowned var dw in display_widgets) {
+            dw.connected = false;
+        }
+
+        foreach (unowned var dw1 in display_widgets) {
+            foreach (unowned var dw2 in display_widgets) {
+                if (dw2 == dw1) {
+                    warning ("Skip %s", dw2.display_name);
+                    continue;
+                } else if (dw1.connected) {
+                    warning ("%s already connected", dw1.display_name);
+                    break;
+                }
+
+                dw1.connected = is_connected (dw1, dw2);
+                if (dw1.connected) {
+                    dw2.connected = true;
+                }
             }
         }
+
+        foreach (unowned var dw in display_widgets) {
+            if (!dw.connected) {
+                result = false;
+                break;
+            }
+        }
+
+        configuration_changed (result);
     }
 
-    private void check_configuration_changed () {
-        // TODO check if it actually has changed
-        configuration_changed (true);
+    // Determine whether two displays adjoin but do not overlap
+    private bool is_connected (DisplayWidget dw1, DisplayWidget dw2) {
+        int x1, y1, width1, height1;
+        dw1.get_virtual_monitor_geometry (out x1, out y1, out width1, out height1);
+        int x2, y2, width2, height2;
+        dw2.get_virtual_monitor_geometry (out x2, out y2, out width2, out height2);
+        Gdk.Rectangle rect1 = {x1, y1, width1, height1};
+        Gdk.Rectangle rect2 = {x2 - 1, y2 - 1, width2 + 2, height2 + 2};
+        Gdk.Rectangle intersection;
+        return rect1.intersect (rect2, out intersection) &&
+               (intersection.width == 1 || intersection.height == 1);
     }
 
+    // Calculate the required scaling required to fit the current monitor
+    // configuration into the overlay
     private void calculate_ratio () {
         int added_width = 0;
         int added_height = 0;
@@ -201,7 +298,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
         foreach (unowned var display_widget in display_widgets) {
             int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
+            display_widget.get_virtual_monitor_geometry (out x, out y, out width, out height);
 
             added_width += width;
             added_height += height;
@@ -251,48 +348,20 @@ public class Display.DisplaysOverlay : Gtk.Box {
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
 
         display_widget.check_position.connect (() => {
-            check_intersects (display_widget);
-            close_gaps ();
-            verify_global_positions ();
-            calculate_ratio ();
+            verify_layout (display_widget);
         });
 
-        display_widget.move_display.connect (move_display);
-        display_widget.configuration_changed.connect (check_configuration_changed);
+        display_widget.configuration_changed.connect (check_configuration_change);
         display_widget.active_changed.connect (() => {
             active_displays += virtual_monitor.is_active ? 1 : -1;
             change_active_displays_sensitivity ();
-            check_configuration_changed ();
+            check_configuration_change ();
             calculate_ratio ();
         });
 
         if (!monitor_manager.is_mirrored && virtual_monitor.is_active) {
             show_windows ();
         }
-
-        display_widget.end_grab.connect ((delta_x, delta_y) => {
-            if (delta_x == 0 && delta_y == 0) {
-                return;
-            }
-
-            int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
-            display_widget.set_geometry (delta_x + x, delta_y + y, width, height);
-            display_widget.queue_resize ();
-            check_configuration_changed ();
-            check_intersects (display_widget);
-            snap_edges (display_widget);
-            close_gaps ();
-            verify_global_positions ();
-            calculate_ratio ();
-        });
-
-        check_intersects (display_widget);
-        var old_delta_x = display_widget.delta_x;
-        var old_delta_y = display_widget.delta_y;
-        display_widget.delta_x = 0;
-        display_widget.delta_y = 0;
-        display_widget.end_grab (old_delta_x, old_delta_y);
     }
 
     private void set_as_primary (Display.VirtualMonitor new_primary) {
@@ -307,120 +376,118 @@ public class Display.DisplaysOverlay : Gtk.Box {
             virtual_monitor.primary = virtual_monitor == new_primary;
         }
 
-        check_configuration_changed ();
+        check_configuration_change ();
     }
 
-    private void move_display (DisplayWidget display_widget, double diff_x, double diff_y) {
-        display_widget.delta_x = (int) (diff_x / current_ratio);
-        display_widget.delta_y = (int) (diff_y / current_ratio);
-        // Gdk.ModifierType state;
-        // Gtk.get_current_event_state (out state);
-        // if (!(Gdk.ModifierType.CONTROL_MASK in state)) {
-            align_edges (display_widget);
-        // }
+    private void verify_layout (DisplayWidget changed_widget) {
+        uint iteration = 0;
+        // Continues iterating while at least one widget gets moved (or too many iterations)
+        while (iteration < 10 &&
+              (check_intersects (changed_widget) ||
+              align_edges (changed_widget))
+        ) {
+            iteration++;
+        }
 
-        display_widget.queue_resize ();
+        set_origin_zero ();
+        calculate_ratio ();
+
+        check_configuration_change ();
     }
 
-    private void align_edges (DisplayWidget display_widget) {
-        int aligned_delta[2] = { int.MAX, int.MAX };
-        int current_delta[2] = { display_widget.delta_x, display_widget.delta_y };
-
+    // Return true if a display moved
+    private bool align_edges (
+        DisplayWidget changed_widget,
+        bool moved = false,
+        uint level = 0
+    ) {
         int x, y, width, height;
-        display_widget.get_geometry (out x, out y, out width, out height);
-
-        int widget_points[6], anchor_points[6];
-        widget_points [0] = x;                       // x_start
-        widget_points [1] = x + width / 2 - 1;       // x_center
-        widget_points [2] = x + width - 1;           // x_end
-        widget_points [3] = y;                       // y_start
-        widget_points [4] = y + height / 2 - 1;      // y_center
-        widget_points [5] = y + height - 1;          // y_end
-
-        foreach (unowned var widget in display_widgets) {
-            if (widget == display_widget) {
+        Gdk.Rectangle overlap;
+        foreach (unowned var other_display_widget in display_widgets) {
+            if (other_display_widget == changed_widget) {
                 continue;
             }
 
-            var anchor = widget;
-            anchor.get_geometry (out x, out y, out width, out height);
-            anchor_points [0] = x;                   // x_start
-            anchor_points [1] = x + width / 2 - 1;   // x_center
-            anchor_points [2] = x + width - 1;       // x_end
-            anchor_points [3] = y;                   // y_start
-            anchor_points [4] = y + height / 2 - 1;  // y_center
-            anchor_points [5] = y + height - 1;      // y_end
+            changed_widget.get_virtual_monitor_geometry (
+                out x,
+                out y,
+                out width,
+                out height
+            );
+            Gdk.Rectangle source_rect = {x, y, width, height};
+            int dx = 0, dy = 0;
+            int other_x, other_y, other_width, other_height;
+            other_display_widget.get_virtual_monitor_geometry (
+                out other_x,
+                out other_y,
+                out other_width,
+                out other_height
+            );
 
-            int threshold = int.min (width, height) / 10;
-            for (var u = 0; u < 2; u++) { // 0: X, 1: Y
-                for (var i = 0; i < 3; i++) {
-                    for (var j = 0; j < 3; j++) {
-                        int test_delta = anchor_points [i + 3 * u] - widget_points [j + 3 * u];
-                        if (threshold > (test_delta - current_delta [u]).abs ()) {
-                            if (test_delta.abs () < aligned_delta [u].abs ()) {
-                                aligned_delta [u] = test_delta;
-                                if (i == 0 && j != i) {
-                                    aligned_delta [u] -= 1;
-                                } else if (j == 0 && i != j) {
-                                    aligned_delta [u] += 1;
-                                }
-                            }
-                        }
-                    }
+            int dx_left = x - other_x;
+            int dx_right = (x + width) - (other_x + other_width);
+            int dy_top = y - other_y;
+            int dy_bottom = (y + height) - (other_y + other_height);
+
+            Gdk.Rectangle rect_top = {other_x, other_y - other_height, other_width, height};
+            Gdk.Rectangle rect_bottom = {other_x, other_y + other_height, other_width, height};
+            Gdk.Rectangle rect_left = {other_x - width, other_y, width, other_height};
+            Gdk.Rectangle rect_right = {other_x + other_width, other_y, width, other_height};
+            if (source_rect.intersect (rect_top, out overlap)) { // Move down
+                dy = other_y - (y + height);
+                if (dx_left.abs () < MINIMUM_WIDGET_OFFSET) {
+                    dx = -dx_left;
+                } else if (dx_right.abs () < MINIMUM_WIDGET_OFFSET) {
+                    dx = -dx_right;
+                }
+            } else if (source_rect.intersect (rect_bottom, out overlap)) {
+                dy = other_y + other_height - y;
+                if (dx_left.abs () < MINIMUM_WIDGET_OFFSET) {
+                    dx = -dx_left;
+                } else if (dx_right.abs () < MINIMUM_WIDGET_OFFSET) {
+                    dx = -dx_right;
+                }
+            } else if (source_rect.intersect (rect_left, out overlap)) {
+                dx = other_x - (x + width);
+                if (dy_top.abs () < MINIMUM_WIDGET_OFFSET) {
+                    dy = -dy_top;
+                } else if (dy_bottom.abs () < MINIMUM_WIDGET_OFFSET) {
+                    dy = -dy_bottom;
+                }
+            } else if (source_rect.intersect (rect_right, out overlap)) {
+                dx = (other_x + other_width) - x;
+                if (dy_top.abs () < MINIMUM_WIDGET_OFFSET) {
+                    dy = -dy_top;
+                } else if (dy_bottom.abs () < MINIMUM_WIDGET_OFFSET) {
+                    dy = -dy_bottom;
                 }
             }
-        }
 
-        if (aligned_delta [0] != int.MAX) {
-            display_widget.delta_x = aligned_delta [0];
-        }
-        if (aligned_delta [1] != int.MAX) {
-            display_widget.delta_y = aligned_delta [1];
-        }
-    }
-
-    private void close_gaps () {
-        foreach (unowned var widget in display_widgets) {
-            if (!is_connected (widget, display_widgets)) {
-                snap_edges (widget);
-            }
-        }
-    }
-
-    // to check if a display_widget is connected (has no gaps) one can check if
-    // a 1px larger rectangle intersects with any of other display_widgets
-    private bool is_connected (DisplayWidget display_widget, List<DisplayWidget> other_display_widgets) {
-        int x, y, width, height;
-        display_widget.get_geometry (out x, out y, out width, out height);
-        Gdk.Rectangle rect = {x - 1, y - 1, width + 2, height + 2};
-
-        foreach (var other_display_widget in other_display_widgets) {
-            if (other_display_widget == display_widget) {
-                continue;
-            }
-
-            int other_x, other_y, other_width, other_height;
-            other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
-
-            Gdk.Rectangle other_rect = { other_x, other_y, other_width, other_height };
-            Gdk.Rectangle intersection;
-            var is_connected = rect.intersect (other_rect, out intersection);
-            var is_diagonal = intersection.height == 1 && intersection.width == 1;
-            if (is_connected && !is_diagonal) {
-                return true;
+            other_display_widget.move_x (-dx);
+            other_display_widget.move_y (-dy);
+            moved = moved || dx != 0 || dy != 0;
+            if (dx != 0 || dy != 0) {
+                align_edges (other_display_widget, moved, ++level);
             }
         }
 
-        return false;
+        return moved;
     }
 
-    private void verify_global_positions () {
+    // Ensure real monitor coords have origin of {0, 0}
+    private void set_origin_zero () {
         int min_x = int.MAX;
         int min_y = int.MAX;
 
         foreach (unowned var display_widget in display_widgets) {
             int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
+            // assert (display_widget.delta_x == 0 && display_widget.delta_y == 0);
+            display_widget.get_virtual_monitor_geometry (
+                out x,
+                out y,
+                out width,
+                out height
+            );
             min_x = int.min (min_x, x);
             min_y = int.min (min_y, y);
         }
@@ -431,140 +498,103 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
         foreach (unowned var display_widget in display_widgets) {
             int x, y, width, height;
-            display_widget.get_geometry (out x, out y, out width, out height);
-            display_widget.set_geometry (x - min_x, y - min_y, width, height);
+            display_widget.get_virtual_monitor_geometry (
+                out x,
+                out y,
+                out width,
+                out height
+            );
+            display_widget.set_virtual_monitor_geometry (
+                x - min_x,
+                y - min_y,
+                width,
+                height
+            );
         }
+
+        return;
     }
 
-    // If widget is intersects with any other widgets -> move other widgets to fix intersection
-    public void check_intersects (DisplayWidget source_display_widget, int level = 0, int distance_x = 0, int distance_y = 0) {
-        if (level > 10) {
-            warning ("Maximum level of recursion reached! Could not fix intersects!");
-            return;
+    // If widget is not contiguous with any other widgets -> move other widgets to fix
+    // Return true if a display moved
+    private bool check_intersects (
+        DisplayWidget changed_widget,
+        bool moved = false,
+        uint level = 0
+    ) {
+        if (only_display) {
+            return false;
         }
 
-        int source_x, source_y, source_width, source_height;
-        source_display_widget.get_geometry (out source_x, out source_y, out source_width, out source_height);
-        Gdk.Rectangle src_rect = { source_x, source_y, source_width, source_height };
+        if (level > 10) {
+            warning ("Depth of recursion exceeds limit (10)");
+            return moved;
+        }
 
+        int x, y, width, height;
+        changed_widget.get_virtual_monitor_geometry (
+            out x,
+            out y,
+            out width,
+            out height
+        );
+
+        Gdk.Rectangle src_rect = { x, y, width, height };
         foreach (unowned var other_display_widget in display_widgets) {
-            if (other_display_widget == source_display_widget) {
+            int distance_x = 0;
+            int distance_y = 0;
+            if (other_display_widget == changed_widget) {
                 continue;
             }
 
             int other_x, other_y, other_width, other_height;
-            other_display_widget.get_geometry (out other_x, out other_y, out other_width, out other_height);
-            Gdk.Rectangle test_rect = { other_x, other_y, other_width, other_height };
-            if (src_rect.intersect (test_rect, null)) {
-                if (level == 0) {
-                    var distance_left = source_x - other_x - other_width;
-                    var distance_right = source_x - other_x + source_width;
-                    var distance_top = source_y - other_y - other_height;
-                    var distance_bottom = source_y - other_y + source_height;
-                    var test_distance_x = distance_right < -distance_left ? distance_right : distance_left;
-                    var test_distance_y = distance_bottom < -distance_top ? distance_bottom : distance_top;
-
-                    // if distance to upper egde == distance lower edge, move horizontally
-                    if (test_distance_x.abs () <= test_distance_y.abs () || distance_top == -distance_bottom) {
-                        distance_x = test_distance_x;
+            other_display_widget.get_virtual_monitor_geometry (
+                out other_x,
+                out other_y,
+                out other_width,
+                out other_height
+            );
+            Gdk.Rectangle overlap;
+            Gdk.Rectangle other_rect = { other_x, other_y, other_width, other_height };
+            if (src_rect.intersect (other_rect, out overlap)) {
+                // delta to align on left of other
+                var dx_left = ((x + width) - other_x).abs ();
+                //delta to align on right of other
+                var dx_right = ((other_x + other_width) - x).abs ();
+                // delta to align on top of other
+                var dy_top = ((y + height) - other_y).abs ();
+                //delta to align on bottom of other
+                int dy_bottom = ((other_y + other_height) - y).abs ();
+                if (x < other_x) {
+                    if (y < other_y) {
+                        //Align on top/left of other
+                        distance_x = overlap.width > overlap.height ? 0 : dx_left;
+                        distance_y = overlap.width > overlap.height ? dy_top : 0;
                     } else {
-                        distance_y = test_distance_y;
+                        //Align on bottom/left of other
+                        distance_x = overlap.width > overlap.height ? 0 : dx_left;
+                        distance_y = overlap.width > overlap.height ? -dy_bottom : 0;
                     }
-                }
-
-                other_display_widget.set_geometry (other_x + distance_x, other_y + distance_y, other_width, other_height);
-                other_display_widget.queue_resize ();
-                check_intersects (other_display_widget, level + 1, distance_x, distance_y);
-            }
-        }
-    }
-
-    public void snap_edges (DisplayWidget last_moved) {
-        if (scanning) return;
-        // Snap last_moved
-        debug ("Snapping displays");
-        var anchors = new List<DisplayWidget> ();
-
-        foreach (unowned var widget in display_widgets) {
-            if (last_moved.equals (widget)) {
-                return;
-            }
-            anchors.append (widget);
-        }
-
-        snap_widget (last_moved, anchors);
-
-        /*/ FIXME: Re-Snapping with 3 or more displays is broken
-        // This is used to make sure all displays are connected
-        anchors = new List<DisplayWidget>();
-        get_children ().foreach ((child) => {
-            if (!(child is DisplayWidget)) return;
-            snap_widget ((DisplayWidget) child, anchors);
-            anchors.append ((DisplayWidget) child);
-        });*/
-    }
-
-   /******************************************************************************************
-    *   Widget snapping is done by trying to snap a widget to other widgets called Anchors.  *
-    *   It first calculates the distance between each anchor and the widget, and afterwards  *
-    *   snaps the widget to the closest edge/corner                                          *
-    *                                                                                        *
-    *   Cases:          W = widget, A = current anchor                                       *
-    *                                                                                        *
-    *   1.        2.        3.        4.        5.        6.        7.         8.            *
-    *     A W       W A        A         W         W          W         A         A          *
-    *                          W         A          A        A           W       W           *
-    *                                                                                        *
-    ******************************************************************************************/
-
-    private void snap_widget (Display.DisplayWidget widget, List<Display.DisplayWidget> anchors) {
-        if (anchors.length () == 0) {
-            return;
-        }
-
-        int widget_x, widget_y, widget_width, widget_height;
-        widget.get_geometry (out widget_x, out widget_y, out widget_width, out widget_height);
-        widget_x += widget.delta_x;
-        widget_y += widget.delta_y;
-
-        int shortest_distance = int.MAX, shortest_distance_x = 0, shortest_distance_y = 0;
-        foreach (var anchor in anchors) {
-            int anchor_x, anchor_y, anchor_width, anchor_height;
-            anchor.get_geometry (out anchor_x, out anchor_y, out anchor_width, out anchor_height);
-
-            var distance_origin_x = anchor_x - widget_x;
-            var distance_origin_y = anchor_y - widget_y;
-            var distance_left = distance_origin_x + anchor_width;
-            var distance_right = distance_origin_x - widget_width;
-            var distance_top = distance_origin_y + anchor_height;
-            var distance_bottom = distance_origin_y - widget_height;
-            var distance_widget_anchor_x = distance_right > -distance_left ? distance_right : distance_left;
-            var distance_widget_anchor_y = distance_bottom > -distance_top ? distance_bottom : distance_top;
-
-            // widget is between left and right edges of anchor, no horizontal movement needed
-            if (distance_left > 0 && distance_right < 0) {
-                distance_widget_anchor_x = 0;
-            // widget is between top and bottom edges of anchor, no vertical movement needed
-            } else if (distance_top > 0 && distance_bottom < 0) {
-                distance_widget_anchor_y = 0;
-            // widget is diagonal to anchor, as diagonal monitors are not allowed, offset by 50px (MINIMUM_WIDGET_OFFSET)
-            } else {
-                if (distance_widget_anchor_x.abs () >= distance_widget_anchor_y.abs ()) {
-                    distance_widget_anchor_x += (distance_origin_x > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
                 } else {
-                    distance_widget_anchor_y += (distance_origin_y > 0 ? 1 : -1) * MINIMUM_WIDGET_OFFSET;
+                   if (y < other_y) {
+                       //Align on top/right of other
+                        distance_x = overlap.width > overlap.height ? 0 : -dx_right;
+                        distance_y = overlap.width > overlap.height ? dy_top : 0;
+                   } else {
+                       //Align on bottom/right of other
+                        distance_x = overlap.width > overlap.height ? 0 : -dx_right;
+                        distance_y = overlap.width > overlap.height ? -dy_bottom : 0;
+                   }
                 }
+
+                other_display_widget.move_x (distance_x);
+                other_display_widget.move_y (distance_y);
+                check_intersects (other_display_widget, moved, ++level);
             }
 
-            var shortest_distance_candidate = distance_widget_anchor_x * distance_widget_anchor_x
-                                            + distance_widget_anchor_y * distance_widget_anchor_y;
-            if (shortest_distance_candidate < shortest_distance) {
-                shortest_distance = shortest_distance_candidate;
-                shortest_distance_x = distance_widget_anchor_x;
-                shortest_distance_y = distance_widget_anchor_y;
-            }
+            moved = moved || distance_x != 0 || distance_y != 0;
         }
 
-        widget.set_geometry (widget_x + shortest_distance_x, widget_y + shortest_distance_y, widget_width, widget_height);
+        return moved;
     }
 }
