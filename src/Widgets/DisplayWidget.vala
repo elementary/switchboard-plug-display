@@ -84,6 +84,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
         );
     }
 
+    class construct {
+        set_css_name ("display-widget");
+    }
+
     construct {
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
