@@ -1,5 +1,5 @@
 /*-
- * Copyright 2014–2021 elementary, Inc.
+ * Copyright 2014–2024 elementary, Inc.
  *           2014–2018 Corentin Noël <corentin@elementary.io>
  *
  * This software is free software; you can redistribute it and/or
@@ -38,6 +38,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public double window_ratio { get; private set; default = 1.0; }
     public DisplayWindow display_window { get; private set; }
     public bool connected { get; set; }
+
+    public string bg_color { get; construct; }
+    public string text_color { get; construct; }
+
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
@@ -74,15 +78,15 @@ public class Display.DisplayWidget : Gtk.EventBox {
         TOTAL
     }
 
-    public DisplayWidget (Display.VirtualMonitor virtual_monitor) {
-        Object (virtual_monitor: virtual_monitor);
+    public DisplayWidget (Display.VirtualMonitor virtual_monitor, string bg_color, string text_color) {
+        Object (
+            virtual_monitor: virtual_monitor,
+            bg_color: bg_color,
+            text_color: text_color
+        );
     }
 
     construct {
-        display_window = new DisplayWindow (virtual_monitor) {
-            attached_to = this
-        };
-
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic") {
@@ -275,8 +279,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
         set_primary (virtual_monitor.primary);
         add (grid);
-
-        destroy.connect (() => display_window.destroy ());
 
         use_switch.bind_property ("active", resolution_combobox, "sensitive");
         use_switch.bind_property ("active", rotation_combobox, "sensitive");
