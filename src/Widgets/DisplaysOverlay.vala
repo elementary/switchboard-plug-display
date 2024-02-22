@@ -384,7 +384,6 @@ public class Display.DisplaysOverlay : Gtk.Overlay {
     }
 
     private void verify_layout (DisplayWidget changed_widget) {
-        bool success = false;
         uint iteration = 0;
         // Continues iterating while at least one widget gets moved (or too many iterations)
         while (iteration < 10 &&

@@ -38,7 +38,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public string display_name { get {return virtual_monitor.get_display_name (); }}
 
     public double window_ratio { get; private set; default = 1.0; }
-    public DisplayWindow display_window { get; private set; }
     public bool connected { get; set; }
 
     public Gtk.Button primary_image { get; private set; }
