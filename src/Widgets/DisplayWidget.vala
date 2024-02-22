@@ -28,8 +28,6 @@ public struct Display.Resolution {
 
 public class Display.DisplayWidget : Gtk.EventBox {
     public signal void set_as_primary ();
-    public signal void move_display (double diff_x, double diff_y);
-    public signal void end_grab (int delta_x, int delta_y);
     public signal void check_position ();
     public signal void configuration_changed ();
     public signal void active_changed ();
@@ -37,15 +35,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public Display.VirtualMonitor virtual_monitor { get; construct; }
     public string bg_color { get; construct; }
     public string text_color { get; construct; }
+    public string display_name { get {return virtual_monitor.get_display_name (); }}
 
     public double window_ratio { get; private set; default = 1.0; }
-    public int delta_x { get; set; default = 0; }
-    public int delta_y { get; set; default = 0; }
-    public bool only_display { get; set; default = false; }
-
-    private double start_x = 0;
-    private double start_y = 0;
-    private bool holding = false;
+    public bool connected { get; set; }
 
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
@@ -63,9 +56,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
 
     private int real_width = 0;
     private int real_height = 0;
-
-    private Gtk.EventControllerMotion motion_event_controller;
-    private Gtk.GestureMultiPress click_gesture;
 
     private enum ResolutionColumns {
         NAME,
@@ -95,10 +85,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     construct {
-        events |= Gdk.EventMask.BUTTON_PRESS_MASK;
-        events |= Gdk.EventMask.BUTTON_RELEASE_MASK;
-        events |= Gdk.EventMask.POINTER_MOTION_MASK;
-
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic") {
@@ -327,7 +313,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
                 return;
             }
 
-            set_geometry (virtual_monitor.x, virtual_monitor.y, active_width, active_height);
+            set_virtual_monitor_geometry (virtual_monitor.x, virtual_monitor.y, active_width, active_height);
             var new_mode = virtual_monitor.get_mode_for_resolution (active_width, active_height);
             if (new_mode == null) {
                 return;
@@ -418,12 +404,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         configuration_changed ();
         check_position ();
 
-        click_gesture = new Gtk.GestureMultiPress (this);
-        click_gesture.pressed.connect (gesture_press_event);
-        click_gesture.released.connect (gesture_release_event);
-
-        motion_event_controller = new Gtk.EventControllerMotion (this);
-        motion_event_controller.motion.connect (motion_event);
     }
 
     private void populate_refresh_rates () {
@@ -531,34 +511,6 @@ public class Display.DisplayWidget : Gtk.EventBox {
         });
     }
 
-    private void gesture_press_event (int n_press, double x, double y) {
-        if (only_display) {
-            return;
-        }
-
-        start_x = x;
-        start_y = y;
-        holding = true;
-    }
-
-    private void gesture_release_event (int n_press, double x, double y) {
-        holding = false;
-        if ((delta_x == 0 && delta_y == 0) || only_display) {
-            return;
-        }
-
-        var old_delta_x = delta_x;
-        var old_delta_y = delta_y;
-        delta_x = 0;
-        delta_y = 0;
-        end_grab (old_delta_x, old_delta_y);
-    }
-
-    private void motion_event (double event_x, double event_y) {
-        if (holding && !only_display) {
-            move_display (event_x - start_x, event_y - start_y);
-        }
-    }
 
     public void set_primary (bool is_primary) {
         if (is_primary) {
@@ -582,18 +534,30 @@ public class Display.DisplayWidget : Gtk.EventBox {
         natural_height = minimum_height;
     }
 
-    public void get_geometry (out int x, out int y, out int width, out int height) {
+    public void get_virtual_monitor_geometry (out int x, out int y, out int width, out int height) {
         x = virtual_monitor.x;
         y = virtual_monitor.y;
         width = real_width;
         height = real_height;
     }
 
-    public void set_geometry (int x, int y, int width, int height) {
+    public void set_virtual_monitor_geometry (int x, int y, int width, int height) {
         virtual_monitor.x = x;
         virtual_monitor.y = y;
         real_width = width;
         real_height = height;
+
+        queue_resize_no_redraw ();
+    }
+
+    public void move_x (int dx) {
+        virtual_monitor.x += dx;
+        queue_resize_no_redraw ();
+    }
+
+    public void move_y (int dy) {
+        virtual_monitor.y += dy;
+        queue_resize_no_redraw ();
     }
 
     public bool equals (DisplayWidget sibling) {
