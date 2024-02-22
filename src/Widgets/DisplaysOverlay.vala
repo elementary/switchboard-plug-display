@@ -333,17 +333,14 @@ public class Display.DisplaysOverlay : Gtk.Box {
         var context = display_widget.get_style_context ();
         context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-        context.add_class ("colored");
 
         context = display_widget.primary_image.get_style_context ();
         context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-        context.add_class ("colored");
 
         context = display_widget.toggle_settings.get_style_context ();
         context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-        context.add_class ("colored");
 
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
 

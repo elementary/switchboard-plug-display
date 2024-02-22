@@ -1,43 +1,40 @@
 /* For better dark style support */
 @define-color BG_COLOR_ALPHA alpha(@BG_COLOR, 0.75);
 
-.colored {
+display-widget {
     background-color: @BG_COLOR_ALPHA;
+    border: 1px solid mix(@BG_COLOR_ALPHA, @TEXT_COLOR, 0.3);
     color: @TEXT_COLOR;
     text-shadow: 0 1px 1px alpha(white, 0.1);
     -gtk-icon-shadow: 0 1px 1px alpha(white, 0.1);
     -gtk-icon-palette: warning white;
 }
 
-widget.colored {
-    border: 1px solid mix(@BG_COLOR_ALPHA, @TEXT_COLOR, 0.3);
-}
-
-.colored button {
+display-widget button {
     background: transparent; /* Fix stacking alpha on top of each other */
     border-radius: 50%;
     padding: 6px;
 }
 
-.colored button:focus {
+display-widget button:focus {
     background: alpha(@TEXT_COLOR, 0.25);
 }
 
-.colored button:checked {
+display-widget button:checked {
     background: alpha(@TEXT_COLOR, 0.5);
     border-color: transparent;
 }
 
-.colored.disabled {
+display-widget.disabled {
     background-color: @SLATE_100;
     color: @SLATE_700;
 }
 
-.colored.disabled button:focus {
+display-widget.disabled button:focus {
     background: alpha(@SLATE_700, 0.25);
 }
 
-.colored.disabled button:checked {
+display-widget.disabled button:checked {
     background: alpha(@SLATE_700, 0.5);
 }
 
@@ -46,7 +43,7 @@ label.rotate-90 {
 }
 
 label.rotate-180 {
-    transform: rotate(1800deg);
+    transform: rotate(180deg);
 }
 
 label.rotate-270 {

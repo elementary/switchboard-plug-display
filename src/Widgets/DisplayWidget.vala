@@ -26,7 +26,7 @@ public struct Display.Resolution {
     bool is_current;
 }
 
-public class Display.DisplayWidget : Gtk.Widget {
+public class Display.DisplayWidget : Gtk.Box {
     public signal void set_as_primary ();
     public signal void check_position ();
     public signal void configuration_changed ();
@@ -87,10 +87,12 @@ public class Display.DisplayWidget : Gtk.Widget {
     }
 
     static construct {
-        set_layout_manager_type (typeof (Gtk.BinLayout));
-
         display_provider = new Gtk.CssProvider ();
         display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
+    }
+
+    class construct {
+        set_css_name ("display-widget");
     }
 
     construct {
@@ -283,7 +285,8 @@ public class Display.DisplayWidget : Gtk.Widget {
         grid.attach (primary_image, 0, 0);
         grid.attach (toggle_settings, 2, 0);
         grid.attach (label, 0, 0, 3, 2);
-        grid.set_parent (this);
+
+        append (grid);
 
         set_primary (virtual_monitor.primary);
 
@@ -471,10 +474,6 @@ public class Display.DisplayWidget : Gtk.Widget {
         }
 
         refresh_combobox.sensitive = added > 1;
-    }
-
-    ~DisplayWidget () {
-        get_first_child ().unparent ();
     }
 
     private void on_monitor_modes_changed () {
