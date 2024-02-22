@@ -33,11 +33,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public signal void active_changed ();
 
     public Display.VirtualMonitor virtual_monitor { get; construct; }
+    public string display_name { get {return virtual_monitor.get_display_name (); }}
 
     public double window_ratio { get; private set; default = 1.0; }
-
-
     public DisplayWindow display_window { get; private set; }
+    public bool connected { get; set; }
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
 
@@ -551,13 +551,11 @@ public class Display.DisplayWidget : Gtk.EventBox {
     }
 
     public void move_x (int dx) {
-    warning ("move x %i", dx);
         virtual_monitor.x += dx;
         queue_resize_no_redraw ();
     }
 
     public void move_y (int dy) {
-    warning ("move y %i", dy);
         virtual_monitor.y += dy;
         queue_resize_no_redraw ();
     }
