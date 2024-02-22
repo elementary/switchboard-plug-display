@@ -33,14 +33,13 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public signal void active_changed ();
 
     public Display.VirtualMonitor virtual_monitor { get; construct; }
+    public string bg_color { get; construct; }
+    public string text_color { get; construct; }
     public string display_name { get {return virtual_monitor.get_display_name (); }}
 
     public double window_ratio { get; private set; default = 1.0; }
     public DisplayWindow display_window { get; private set; }
     public bool connected { get; set; }
-
-    public string bg_color { get; construct; }
-    public string text_color { get; construct; }
 
     public Gtk.Button primary_image { get; private set; }
     public Gtk.MenuButton toggle_settings { get; private set; }
