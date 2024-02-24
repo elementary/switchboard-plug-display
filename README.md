@@ -2,7 +2,7 @@
 [![Packaging status](https://repology.org/badge/tiny-repos/switchboard-plug-display.svg)](https://repology.org/metapackage/switchboard-plug-display)
 [![Translation status](https://l10n.elementary.io/widgets/switchboard/-/switchboard-plug-display/svg-badge.svg)](https://l10n.elementary.io/engage/switchboard/?utm_source=widget)
 
-Extension for [Ssstem Settings](https://github.com/elementary/switchboard) to manage multiple monitor setups.
+Extension for [System Settings](https://github.com/elementary/switchboard) to manage multiple monitor setups.
 
 ![screenshot](data/screenshot.png?raw=true)
 
