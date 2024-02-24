@@ -35,7 +35,7 @@ public class Display.Plug : Switchboard.Plug {
         settings.set ("display/night-light", "night-light");
         settings.set ("display/filters", "filters");
         Object (category: Category.HARDWARE,
-                code_name: "io.elementary.switchboard.display",
+                code_name: "io.elementary.settings.display",
                 display_name: _("Displays"),
                 description: _("Configure resolution and position of monitors and projectors"),
                 icon: "preferences-desktop-display",

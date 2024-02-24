@@ -298,7 +298,7 @@ public class Display.FiltersView : Gtk.Box {
 
         static construct {
             provider = new Gtk.CssProvider ();
-            provider.load_from_resource ("io/elementary/switchboard/display/Filters.css");
+            provider.load_from_resource ("io/elementary/settings/display/Filters.css");
         }
 
         construct {

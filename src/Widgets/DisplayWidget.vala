@@ -88,7 +88,7 @@ public class Display.DisplayWidget : Gtk.Box {
 
     static construct {
         display_provider = new Gtk.CssProvider ();
-        display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
+        display_provider.load_from_resource ("io/elementary/settings/display/Display.css");
     }
 
     class construct {

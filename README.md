@@ -1,8 +1,8 @@
-# Switchboard Display Plug
+# Display Settings
 [![Packaging status](https://repology.org/badge/tiny-repos/switchboard-plug-display.svg)](https://repology.org/metapackage/switchboard-plug-display)
 [![Translation status](https://l10n.elementary.io/widgets/switchboard/-/switchboard-plug-display/svg-badge.svg)](https://l10n.elementary.io/engage/switchboard/?utm_source=widget)
 
-Extension for [Switchboard](https://github.com/elementary/switchboard) to manage multiple monitor setups.
+Extension for [Ssstem Settings](https://github.com/elementary/switchboard) to manage multiple monitor setups.
 
 ![screenshot](data/screenshot.png?raw=true)
 
@@ -10,9 +10,9 @@ Extension for [Switchboard](https://github.com/elementary/switchboard) to manage
 
 You'll need the following dependencies:
 
-* libgranite-dev
-* libgtk-3-dev
-* libswitchboard-2.0-dev
+* libgranite-7-dev
+* libgtk-4-dev
+* libswitchboard-3-dev
 * meson
 * valac
 
@@ -24,4 +24,4 @@ Run `meson` to configure the build environment and then `ninja` to build
 
 To install, use `ninja install`
 
-    sudo ninja install
+    ninja install
