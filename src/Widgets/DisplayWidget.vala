@@ -100,11 +100,7 @@ public class Display.DisplayWidget : Gtk.Box {
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic") {
             halign = START,
-            valign = START,
-            margin_top = 6,
-            margin_end = 6,
-            margin_bottom = 6,
-            margin_start = 6
+            valign = START
         };
         primary_image.add_css_class (Granite.STYLE_CLASS_FLAT);
         primary_image.clicked.connect (() => set_as_primary ());
@@ -269,17 +265,13 @@ public class Display.DisplayWidget : Gtk.Box {
         };
 
         toggle_settings = new Gtk.MenuButton () {
+            has_frame = false,
             halign = END,
             valign = START,
             icon_name = "open-menu-symbolic",
-            margin_top = 6,
-            margin_end = 6,
-            margin_bottom = 6,
-            margin_start = 6,
             popover = popover,
             tooltip_text = _("Configure display")
         };
-        toggle_settings.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         var grid = new Gtk.Grid ();
         grid.attach (primary_image, 0, 0);
@@ -314,6 +306,9 @@ public class Display.DisplayWidget : Gtk.Box {
         }
 
         resolution_combobox.changed.connect (() => {
+            // Prevent breaking autohide by closing popover
+            popover.popdown ();
+
             int active_width, active_height;
             Gtk.TreeIter iter;
             if (resolution_combobox.get_active_iter (out iter)) {
@@ -339,6 +334,9 @@ public class Display.DisplayWidget : Gtk.Box {
         });
 
         rotation_combobox.changed.connect (() => {
+            // Prevent breaking autohide by closing popover
+            popover.popdown ();
+
             Value val;
             Gtk.TreeIter iter;
             rotation_combobox.get_active_iter (out iter);
@@ -395,6 +393,9 @@ public class Display.DisplayWidget : Gtk.Box {
         });
 
         refresh_combobox.changed.connect (() => {
+            // Prevent breaking autohide by closing popover
+            popover.popdown ();
+
             Value val;
             Gtk.TreeIter iter;
             if (refresh_combobox.get_active_iter (out iter)) {

@@ -5,6 +5,7 @@ display-widget {
     background-color: @BG_COLOR_ALPHA;
     border: 1px solid mix(@BG_COLOR_ALPHA, @TEXT_COLOR, 0.3);
     color: @TEXT_COLOR;
+    padding: 6px;
     text-shadow: 0 1px 1px alpha(white, 0.1);
     -gtk-icon-shadow: 0 1px 1px alpha(white, 0.1);
     -gtk-icon-palette: warning white;
