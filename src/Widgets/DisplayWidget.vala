@@ -90,10 +90,10 @@ public class Display.DisplayWidget : Gtk.Box {
         virtual_monitor.get_current_mode_size (out real_width, out real_height);
 
         primary_image = new Gtk.Button.from_icon_name ("non-starred-symbolic") {
+            has_frame = false,
             halign = START,
             valign = START
         };
-        primary_image.add_css_class (Granite.STYLE_CLASS_FLAT);
         primary_image.clicked.connect (() => set_as_primary ());
 
         var virtual_monitor_name = virtual_monitor.get_display_name ();
