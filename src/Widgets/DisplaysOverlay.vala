@@ -51,8 +51,6 @@ public class Display.DisplaysOverlay : Gtk.Box {
         }
     }
 
-    private static Gtk.CssProvider display_provider;
-
     private static string[] colors = {
         "@BLUEBERRY_100",
         "@STRAWBERRY_100",
@@ -71,11 +69,6 @@ public class Display.DisplaysOverlay : Gtk.Box {
         "@GRAPE_900",
         "@COCOA_900"
     };
-
-    const string COLORED_STYLE_CSS = """
-        @define-color BG_COLOR %s;
-        @define-color TEXT_COLOR %s;
-    """;
 
     private Gtk.GestureDrag drag_gesture;
 
@@ -100,8 +93,14 @@ public class Display.DisplaysOverlay : Gtk.Box {
     }
 
     static construct {
-        display_provider = new Gtk.CssProvider ();
+        var display_provider = new Gtk.CssProvider ();
         display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
+
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (),
+            display_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
 
         GLib.Bus.get_proxy.begin<GalaDBus> (
             GLib.BusType.SESSION,
@@ -321,31 +320,10 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
         var color_number = (display_widgets.length () - 1) % 7;
         var display_widget = new DisplayWidget (virtual_monitor, colors[color_number], text_colors[color_number]);
+        display_widget.get_style_context ().add_class ("color-%u".printf (color_number));
+
         overlay.add_overlay (display_widget);
         display_widgets.append (display_widget);
-
-        var provider = new Gtk.CssProvider ();
-        try {
-            var colored_css = COLORED_STYLE_CSS.printf (colors[color_number], text_colors[color_number]);
-            provider.load_from_data (colored_css, colored_css.length);
-
-            var context = display_widget.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
-
-            context = display_widget.primary_image.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
-
-            context = display_widget.toggle_settings.get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class ("colored");
-        } catch (GLib.Error e) {
-            critical (e.message);
-        }
 
         display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));

@@ -1,42 +1,131 @@
-/* For better dark style support */
-@define-color BG_COLOR_ALPHA alpha(@BG_COLOR, 0.75);
-
-.colored {
-    background-color: @BG_COLOR_ALPHA;
-    color: @TEXT_COLOR;
+display-widget {
+    border-radius: 3px;
     text-shadow: 0 1px 1px alpha(white, 0.1);
     -gtk-icon-shadow: 0 1px 1px alpha(white, 0.1);
-    -gtk-icon-palette: warning white;
 }
 
-widget.colored {
-    border: 1px solid mix(@BG_COLOR_ALPHA, @TEXT_COLOR, 0.3);
+display-widget > grid > label {
+    font-weight: 600;
 }
 
-.colored button {
-    background: transparent; /* Fix stacking alpha on top of each other */
+display-widget button {
     border-radius: 50%;
+    color: inherit;
     padding: 6px;
 }
 
-.colored button:focus {
-    background: alpha(@TEXT_COLOR, 0.25);
+/*Clear icon palette*/
+display-widget image {
+    -gtk-icon-palette: success @text_color;
 }
 
-.colored button:checked {
-    background: alpha(@TEXT_COLOR, 0.5);
-    border-color: transparent;
-}
-
-.colored.disabled {
+display-widget.disabled {
     background-color: @SLATE_100;
     color: @SLATE_700;
 }
 
-.colored.disabled button:focus {
+display-widget.disabled button:focus {
     background: alpha(@SLATE_700, 0.25);
 }
 
-.colored.disabled button:checked {
+display-widget.disabled button:checked {
     background: alpha(@SLATE_700, 0.5);
+}
+
+display-widget.color-0 {
+    background-color: alpha(@BLUEBERRY_100, 0.75);
+    border: 1px solid alpha(@BLUEBERRY_500, 0.75);
+    color: @BLUEBERRY_900;
+}
+
+display-widget.color-0 button:focus {
+    background: @BLUEBERRY_300;
+}
+
+display-widget.color-0 button:checked {
+    background: alpha(@BLUEBERRY_500, 0.75);
+}
+
+display-widget.color-1 {
+    background-color: alpha(@STRAWBERRY_100, 0.75);
+    border: 1px solid alpha(@STRAWBERRY_500, 0.75);
+    color: @STRAWBERRY_900;
+}
+
+display-widget.color-1 button:focus {
+    background: @STRAWBERRY_300;
+}
+
+display-widget.color-1 button:checked {
+    background: alpha(@STRAWBERRY_500, 0.75);
+}
+
+display-widget.color-2 {
+    background-color: alpha(@ORANGE_100, 0.75);
+    border: 1px solid alpha(@ORANGE_500, 0.75);
+    color: @ORANGE_900;
+}
+
+display-widget.color-2 button:focus {
+    background: @ORANGE_300;
+}
+
+display-widget.color-2 button:checked {
+    background: alpha(@ORANGE_500, 0.75);
+}
+
+display-widget.color-3 {
+    background-color: alpha(@BANANA_100, 0.75);
+    border: 1px solid alpha(@BANANA_500, 0.75);
+    color: @BANANA_900;
+}
+
+display-widget.color-3 button:focus {
+    background: @BANANA_300;
+}
+
+display-widget.color-3 button:checked {
+    background: alpha(@BANANA_500, 0.75);
+}
+
+display-widget.color-4 {
+    background-color: alpha(@LIME_100, 0.75);
+    border: 1px solid alpha(@LIME_500, 0.75);
+    color: @LIME_900;
+}
+
+display-widget.color-4 button:focus {
+    background: @LIME_300;
+}
+
+display-widget.color-4 button:checked {
+    background: alpha(@LIME_500, 0.75);
+}
+
+display-widget.color-5 {
+    background-color: alpha(@GRAPE_100, 0.75);
+    border: 1px solid alpha(@GRAPE_500, 0.75);
+    color: @GRAPE_900;
+}
+
+display-widget.color-5 button:focus {
+    background: @GRAPE_300;
+}
+
+display-widget.color-5 button:checked {
+    background: alpha(@GRAPE_500, 0.75);
+}
+
+display-widget.color-6 {
+    background-color: alpha(@COCOA_100, 0.75);
+    border: 1px solid alpha(@COCOA_500, 0.75);
+    color: @COCOA_900;
+}
+
+display-widget.color-6 button:focus {
+    background: @COCOA_300;
+}
+
+display-widget.color-6 button:checked {
+    background: alpha(@COCOA_500, 0.75);
 }

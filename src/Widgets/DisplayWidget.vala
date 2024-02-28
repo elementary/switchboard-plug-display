@@ -40,9 +40,7 @@ public class Display.DisplayWidget : Gtk.EventBox {
     public double window_ratio { get; private set; default = 1.0; }
     public bool connected { get; set; }
 
-    public Gtk.Button primary_image { get; private set; }
-    public Gtk.MenuButton toggle_settings { get; private set; }
-
+    private Gtk.Button primary_image;
     private Granite.SwitchModelButton use_switch;
 
     private Gtk.ComboBox resolution_combobox;
@@ -82,6 +80,10 @@ public class Display.DisplayWidget : Gtk.EventBox {
             bg_color: bg_color,
             text_color: text_color
         );
+    }
+
+    class construct {
+        set_css_name ("display-widget");
     }
 
     construct {
@@ -252,12 +254,12 @@ public class Display.DisplayWidget : Gtk.EventBox {
         popover_box.add (refresh_combobox);
         popover_box.show_all ();
 
-        var popover = new Gtk.Popover (toggle_settings) {
+        var popover = new Gtk.Popover (null) {
             child = popover_box,
             position = BOTTOM
         };
 
-        toggle_settings = new Gtk.MenuButton () {
+        var toggle_settings = new Gtk.MenuButton () {
             halign = END,
             valign = START,
             image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU),
