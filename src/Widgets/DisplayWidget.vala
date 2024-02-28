@@ -40,11 +40,7 @@ public class Display.DisplayWidget : Gtk.Box {
     public double window_ratio { get; private set; default = 1.0; }
     public bool connected { get; set; }
 
-    public Gtk.Button primary_image { get; private set; }
-    public Gtk.MenuButton toggle_settings { get; private set; }
-
-    private static Gtk.CssProvider display_provider;
-
+    private Gtk.Button primary_image;
     private Granite.SwitchModelButton use_switch;
 
     private Gtk.ComboBox resolution_combobox;
@@ -86,11 +82,6 @@ public class Display.DisplayWidget : Gtk.Box {
         );
     }
 
-    static construct {
-        display_provider = new Gtk.CssProvider ();
-        display_provider.load_from_resource ("io/elementary/settings/display/Display.css");
-    }
-
     class construct {
         set_css_name ("display-widget");
     }
@@ -112,7 +103,6 @@ public class Display.DisplayWidget : Gtk.Box {
             hexpand = true,
             vexpand = true
         };
-        label.get_style_context ().add_provider (display_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         use_switch = new Granite.SwitchModelButton ("Use This Display");
 
@@ -264,7 +254,7 @@ public class Display.DisplayWidget : Gtk.Box {
             position = BOTTOM
         };
 
-        toggle_settings = new Gtk.MenuButton () {
+        var toggle_settings = new Gtk.MenuButton () {
             has_frame = false,
             halign = END,
             valign = START,
