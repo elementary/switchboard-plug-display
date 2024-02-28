@@ -32,20 +32,6 @@ display-widget label.rotate-270 {
     transform: rotate(270deg);
 }
 
-display-widget.disabled {
-    background-color: alpha(@SLATE_100, 0.75);
-    border: 1px solid alpha(@SLATE_500, 0.75);
-    color: @SLATE_700;
-}
-
-display-widget.disabled button.flat.image-button:focus {
-    background: alpha(@SLATE_700, 0.25);
-}
-
-display-widget.disabled button.flat.image-button:checked {
-    background: alpha(@SLATE_700, 0.5);
-}
-
 display-widget.color-0 {
     background-color: alpha(@BLUEBERRY_100, 0.75);
     border: 1px solid alpha(@BLUEBERRY_500, 0.75);
@@ -142,4 +128,18 @@ display-widget.color-6 button.flat.image-button:focus {
 
 display-widget.color-6 button.flat.image-button:checked {
     background: alpha(@COCOA_500, 0.75);
+}
+
+display-widget.disabled {
+    background-color: alpha(@SLATE_100, 0.75);
+    border: 1px solid alpha(@SLATE_500, 0.75);
+    color: @SLATE_700;
+}
+
+display-widget.disabled button.flat.image-button:focus {
+    background: alpha(@SLATE_700, 0.25);
+}
+
+display-widget.disabled button.flat.image-button:checked {
+    background: alpha(@SLATE_700, 0.5);
 }
