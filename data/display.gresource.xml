@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/io/elementary/switchboard/display">
+  <gresource prefix="/io/elementary/settings/display">
     <file compressed="true">Display.css</file>
     <file compressed="true">Filters.css</file>
   </gresource>

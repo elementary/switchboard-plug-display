@@ -33,9 +33,8 @@ public class Display.DisplaysOverlay : Gtk.Box {
     // display widgets to changes in real monitor position and ensuring display widgets
     // fit inside overlay after dragging.
     private double current_ratio = 1.0f;
-
-    private int current_allocated_width = 0;
-    private int current_allocated_height = 0;
+    private int current_width = 0;
+    private int current_height = 0;
     private int default_x_margin = 0;
     private int default_y_margin = 0;
 
@@ -73,17 +72,19 @@ public class Display.DisplaysOverlay : Gtk.Box {
     private Gtk.GestureDrag drag_gesture;
 
     construct {
-        get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
+        add_css_class (Granite.STYLE_CLASS_VIEW);
 
         overlay = new Gtk.Overlay ();
-        add (overlay);
+        append (overlay);
 
         display_widgets = new List<DisplayWidget> ();
 
-        drag_gesture = new Gtk.GestureDrag (this);
+        drag_gesture = new Gtk.GestureDrag ();
         drag_gesture.drag_begin.connect (on_drag_begin);
         drag_gesture.drag_update.connect (on_drag_update);
         drag_gesture.drag_end.connect (on_drag_end);
+
+        add_controller (drag_gesture);
 
         monitor_manager = Display.MonitorManager.get_default ();
         monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
@@ -94,10 +95,10 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
     static construct {
         var display_provider = new Gtk.CssProvider ();
-        display_provider.load_from_resource ("io/elementary/switchboard/display/Display.css");
+        display_provider.load_from_resource ("io/elementary/settings/display/Display.css");
 
-        Gtk.StyleContext.add_provider_for_screen (
-            Gdk.Screen.get_default (),
+        Gtk.StyleContext.add_provider_for_display (
+            Gdk.Display.get_default (),
             display_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
@@ -158,8 +159,8 @@ public class Display.DisplaysOverlay : Gtk.Box {
     // virtual monitor geometry and any offsets when dragging.
     private bool get_child_position (Gtk.Widget widget, out Gdk.Rectangle allocation) {
         allocation = Gdk.Rectangle ();
-        if (current_allocated_width != get_allocated_width () ||
-            current_allocated_height != get_allocated_height ()) {
+        if (current_width != get_width () ||
+            current_height != get_height ()) {
 
             calculate_ratio ();
         }
@@ -304,28 +305,27 @@ public class Display.DisplaysOverlay : Gtk.Box {
             max_height = int.max (max_height, y + height);
         }
 
-        current_allocated_width = get_allocated_width ();
-        current_allocated_height = get_allocated_height ();
+        current_width = get_width ();
+        current_height = get_height ();
         current_ratio = double.min (
-            (double) (get_allocated_width () - 24) / (double) added_width,
-            (double) (get_allocated_height () - 24) / (double) added_height
+            (double) (get_width () - 24) / (double) added_width,
+            (double) (get_height () - 24) / (double) added_height
         );
-        default_x_margin = (int) ((get_allocated_width () - max_width * current_ratio) / 2);
-        default_y_margin = (int) ((get_allocated_height () - max_height * current_ratio) / 2);
+        default_x_margin = (int) ((get_width () - max_width * current_ratio) / 2);
+        default_y_margin = (int) ((get_height () - max_height * current_ratio) / 2);
     }
 
     private void add_output (Display.VirtualMonitor virtual_monitor) {
-        current_allocated_width = 0;
-        current_allocated_height = 0;
+        current_width = 0;
+        current_height = 0;
 
         var color_number = (display_widgets.length () - 1) % 7;
         var display_widget = new DisplayWidget (virtual_monitor, colors[color_number], text_colors[color_number]);
-        display_widget.get_style_context ().add_class ("color-%u".printf (color_number));
+        display_widget.add_css_class ("color-%u".printf (color_number));
 
         overlay.add_overlay (display_widget);
         display_widgets.append (display_widget);
 
-        display_widget.show_all ();
         display_widget.set_as_primary.connect (() => set_as_primary (display_widget.virtual_monitor));
 
         display_widget.check_position.connect (() => {

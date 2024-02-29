@@ -15,7 +15,9 @@ public class Display.DisplaysView : Gtk.Box {
     private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
 
     construct {
-            displays_overlay = new DisplaysOverlay ();
+            displays_overlay = new DisplaysOverlay () {
+                vexpand = true
+            };
 
             var mirror_label = new Gtk.Label (_("Mirror Display:"));
             var mirror_switch = new Gtk.Switch ();
@@ -27,8 +29,8 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_start = 6,
                 valign = CENTER
             };
-           mirror_box.add (mirror_label);
-           mirror_box.add (mirror_switch);
+            mirror_box.append (mirror_label);
+            mirror_box.append (mirror_switch);
 
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
@@ -43,13 +45,13 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_bottom = 6,
                 margin_start = 6
             };
-            dpi_box.add (dpi_label);
-            dpi_box.add (dpi_combo);
+            dpi_box.append (dpi_label);
+            dpi_box.append (dpi_combo);
 
             var detect_button = new Gtk.Button.with_label (_("Detect Displays"));
 
             var apply_button = new Gtk.Button.with_label (_("Apply"));
-            apply_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            apply_button.add_css_class (Granite.STYLE_CLASS_SUGGESTED_ACTION);
             apply_button.sensitive = false;
 
             var button_box = new Gtk.Box (HORIZONTAL, 6) {
@@ -60,11 +62,11 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_start = 6,
                 valign = CENTER
             };
-            button_box.add (detect_button);
-            button_box.add (apply_button);
+            button_box.append (detect_button);
+            button_box.append (apply_button);
 
             var action_bar = new Gtk.ActionBar ();
-            action_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+            action_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
             action_bar.pack_start (dpi_box);
             action_bar.pack_start (mirror_box);
 
@@ -89,9 +91,9 @@ public class Display.DisplaysView : Gtk.Box {
             action_bar.pack_end (button_box);
 
             orientation = VERTICAL;
-            add (new Gtk.Separator (HORIZONTAL));
-            add (displays_overlay);
-            add (action_bar);
+            append (new Gtk.Separator (HORIZONTAL));
+            append (displays_overlay);
+            append (action_bar);
 
             displays_overlay.configuration_changed.connect ((changed) => {
                 apply_button.sensitive = changed;
@@ -143,9 +145,8 @@ public class Display.DisplaysView : Gtk.Box {
             var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
             var rotation_lock_switch = new Gtk.Switch ();
 
-            rotation_lock_box.add (rotation_lock_label);
-            rotation_lock_box.add (rotation_lock_switch);
-            rotation_lock_box.show_all ();
+            rotation_lock_box.append (rotation_lock_label);
+            rotation_lock_box.append (rotation_lock_switch);
 
             touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", DEFAULT);
         }

@@ -1,5 +1,6 @@
 display-widget {
     border-radius: 3px;
+    padding: 6px;
     text-shadow: 0 1px 1px alpha(white, 0.1);
     -gtk-icon-shadow: 0 1px 1px alpha(white, 0.1);
 }
@@ -8,7 +9,7 @@ display-widget > grid > label {
     font-weight: 600;
 }
 
-display-widget button {
+display-widget button.flat.image-button {
     border-radius: 50%;
     color: inherit;
     padding: 6px;
@@ -19,17 +20,16 @@ display-widget image {
     -gtk-icon-palette: success @text_color;
 }
 
-display-widget.disabled {
-    background-color: @SLATE_100;
-    color: @SLATE_700;
+display-widget label.rotate-90 {
+    transform: rotate(90deg);
 }
 
-display-widget.disabled button:focus {
-    background: alpha(@SLATE_700, 0.25);
+display-widget label.rotate-180 {
+    transform: rotate(180deg);
 }
 
-display-widget.disabled button:checked {
-    background: alpha(@SLATE_700, 0.5);
+display-widget label.rotate-270 {
+    transform: rotate(270deg);
 }
 
 display-widget.color-0 {
@@ -38,11 +38,11 @@ display-widget.color-0 {
     color: @BLUEBERRY_900;
 }
 
-display-widget.color-0 button:focus {
+display-widget.color-0 button.flat.image-button:focus {
     background: @BLUEBERRY_300;
 }
 
-display-widget.color-0 button:checked {
+display-widget.color-0 button.flat.image-button:checked {
     background: alpha(@BLUEBERRY_500, 0.75);
 }
 
@@ -52,11 +52,11 @@ display-widget.color-1 {
     color: @STRAWBERRY_900;
 }
 
-display-widget.color-1 button:focus {
+display-widget.color-1 button.flat.image-button:focus {
     background: @STRAWBERRY_300;
 }
 
-display-widget.color-1 button:checked {
+display-widget.color-1 button.flat.image-button:checked {
     background: alpha(@STRAWBERRY_500, 0.75);
 }
 
@@ -66,11 +66,11 @@ display-widget.color-2 {
     color: @ORANGE_900;
 }
 
-display-widget.color-2 button:focus {
+display-widget.color-2 button.flat.image-button:focus {
     background: @ORANGE_300;
 }
 
-display-widget.color-2 button:checked {
+display-widget.color-2 button.flat.image-button:checked {
     background: alpha(@ORANGE_500, 0.75);
 }
 
@@ -80,11 +80,11 @@ display-widget.color-3 {
     color: @BANANA_900;
 }
 
-display-widget.color-3 button:focus {
+display-widget.color-3 button.flat.image-button:focus {
     background: @BANANA_300;
 }
 
-display-widget.color-3 button:checked {
+display-widget.color-3 button.flat.image-button:checked {
     background: alpha(@BANANA_500, 0.75);
 }
 
@@ -94,11 +94,11 @@ display-widget.color-4 {
     color: @LIME_900;
 }
 
-display-widget.color-4 button:focus {
+display-widget.color-4 button.flat.image-button:focus {
     background: @LIME_300;
 }
 
-display-widget.color-4 button:checked {
+display-widget.color-4 button.flat.image-button:checked {
     background: alpha(@LIME_500, 0.75);
 }
 
@@ -108,11 +108,11 @@ display-widget.color-5 {
     color: @GRAPE_900;
 }
 
-display-widget.color-5 button:focus {
+display-widget.color-5 button.flat.image-button:focus {
     background: @GRAPE_300;
 }
 
-display-widget.color-5 button:checked {
+display-widget.color-5 button.flat.image-button:checked {
     background: alpha(@GRAPE_500, 0.75);
 }
 
@@ -122,10 +122,24 @@ display-widget.color-6 {
     color: @COCOA_900;
 }
 
-display-widget.color-6 button:focus {
+display-widget.color-6 button.flat.image-button:focus {
     background: @COCOA_300;
 }
 
-display-widget.color-6 button:checked {
+display-widget.color-6 button.flat.image-button:checked {
     background: alpha(@COCOA_500, 0.75);
+}
+
+display-widget.disabled {
+    background-color: alpha(@SLATE_100, 0.75);
+    border: 1px solid alpha(@SLATE_500, 0.75);
+    color: @SLATE_700;
+}
+
+display-widget.disabled button.flat.image-button:focus {
+    background: alpha(@SLATE_700, 0.25);
+}
+
+display-widget.disabled button.flat.image-button:checked {
+    background: alpha(@SLATE_700, 0.5);
 }

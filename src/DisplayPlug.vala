@@ -35,7 +35,7 @@ public class Display.Plug : Switchboard.Plug {
         settings.set ("display/night-light", "night-light");
         settings.set ("display/filters", "filters");
         Object (category: Category.HARDWARE,
-                code_name: "io.elementary.switchboard.display",
+                code_name: "io.elementary.settings.display",
                 display_name: _("Displays"),
                 description: _("Configure resolution and position of monitors and projectors"),
                 icon: "preferences-desktop-display",
@@ -64,7 +64,6 @@ public class Display.Plug : Switchboard.Plug {
 
             var stack_switcher = new Gtk.StackSwitcher () {
                 halign = Gtk.Align.CENTER,
-                homogeneous = true,
                 margin_top = 12,
                 margin_end = 12,
                 margin_bottom = 12,
@@ -72,10 +71,16 @@ public class Display.Plug : Switchboard.Plug {
                 stack = stack
             };
 
+            var switcher_sizegroup = new Gtk.SizeGroup (HORIZONTAL);
+            unowned var switcher_child =stack_switcher.get_first_child ();
+            while (switcher_child != null) {
+                switcher_sizegroup.add_widget (switcher_child);
+                switcher_child = switcher_child.get_next_sibling ();
+            }
+
             box = new Gtk.Box (VERTICAL, 0);
-            box.add (stack_switcher);
-            box.add (stack);
-            box.show_all ();
+            box.append (stack_switcher);
+            box.append (stack);
 
             stack.notify["visible-child"].connect (() => {
                 if (stack.visible_child == displays_view) {

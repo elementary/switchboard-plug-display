@@ -7,24 +7,11 @@ public class Display.FiltersView : Gtk.Box {
     private const string TEXT_MARKUP = "%s\n<span size='smaller' alpha='75%'>%s</span>";
 
     construct {
-        var colorblindness_header = new Granite.HeaderLabel (_("Color Deficiency Assistance"));
-
-        var colorblindness_subtitle = new Gtk.Label (
-            _("Each of the circles below should appear as a different color. A filter can be applied to the entire display to help differentiate between colors.")
-        ) {
-            wrap = true,
-            xalign = 0
+        var colorblindness_header = new Granite.HeaderLabel (_("Color Deficiency Assistance")) {
+            secondary_text = _("Each of the circles below should appear as a different color. A filter can be applied to the entire display to help differentiate between colors.")
         };
-        colorblindness_subtitle.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
-        // FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-        var colorblindness_headerbox = new Gtk.Box (VERTICAL, 0) {
-            margin_bottom = 3
-        };
-        colorblindness_headerbox.add (colorblindness_header);
-        colorblindness_headerbox.add (colorblindness_subtitle);
-
-        var none_radio = new Gtk.RadioButton.with_label (null, _("None"));
+        var none_radio = new Gtk.CheckButton.with_label (_("None"));
 
         var protanopia_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Red/Green"), _("Protanopia"))
@@ -36,14 +23,15 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var protanopia_box = new Gtk.Box (HORIZONTAL, 0);
-        protanopia_box.add (protanopia_label);
-        protanopia_box.add (new ColorSwatch ("green"));
-        protanopia_box.add (new ColorSwatch ("orange"));
-        protanopia_box.add (new ColorSwatch ("red"));
+        protanopia_box.append (protanopia_label);
+        protanopia_box.append (new ColorSwatch ("green"));
+        protanopia_box.append (new ColorSwatch ("orange"));
+        protanopia_box.append (new ColorSwatch ("red"));
 
-        var protanopia_radio = new Gtk.RadioButton.from_widget (none_radio) {
-            child = protanopia_box
+        var protanopia_radio = new Gtk.CheckButton () {
+            group = none_radio
         };
+        protanopia_box.set_parent (protanopia_radio);
 
         var protanopia_hc_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Red/Green — High Contrast"), _("Protanopia"))
@@ -55,11 +43,12 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var protanopia_hc_box = new Gtk.Box (HORIZONTAL, 0);
-        protanopia_hc_box.add (protanopia_hc_label);
+        protanopia_hc_box.append (protanopia_hc_label);
 
-        var protanopia_hc_radio = new Gtk.RadioButton.from_widget (none_radio) {
-            child = protanopia_hc_box
+        var protanopia_hc_radio = new Gtk.CheckButton () {
+            group = none_radio
         };
+        protanopia_hc_box.set_parent (protanopia_hc_radio);
 
         var deuteranopia_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Green/Red"), _("Deuteranopia"))
@@ -71,14 +60,15 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var deuteranopia_box = new Gtk.Box (HORIZONTAL, 0);
-        deuteranopia_box.add (deuteranopia_label);
-        deuteranopia_box.add (new ColorSwatch ("teal"));
-        deuteranopia_box.add (new ColorSwatch ("purple"));
-        deuteranopia_box.add (new ColorSwatch ("pink"));
+        deuteranopia_box.append (deuteranopia_label);
+        deuteranopia_box.append (new ColorSwatch ("teal"));
+        deuteranopia_box.append (new ColorSwatch ("purple"));
+        deuteranopia_box.append (new ColorSwatch ("pink"));
 
-        var deuteranopia_radio = new Gtk.RadioButton.from_widget (none_radio) {
-            child = deuteranopia_box
+        var deuteranopia_radio = new Gtk.CheckButton () {
+            group = none_radio
         };
+        deuteranopia_box.set_parent (deuteranopia_radio);
 
         var deuteranopia_hc_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Green/Red — High Contrast"), _("Deuteranopia"))
@@ -90,11 +80,12 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var deuteranopia_hc_box = new Gtk.Box (HORIZONTAL, 0);
-        deuteranopia_hc_box.add (deuteranopia_hc_label);
+        deuteranopia_hc_box.append (deuteranopia_hc_label);
 
-        var deuteranopia_hc_radio = new Gtk.RadioButton.from_widget (none_radio) {
-            child = deuteranopia_hc_box
+        var deuteranopia_hc_radio = new Gtk.CheckButton () {
+            group = none_radio
         };
+        deuteranopia_hc_box.set_parent (deuteranopia_hc_radio);
 
         var tritanopia_label = new Gtk.Label (
             TEXT_MARKUP.printf (_("Blue/Yellow"), _("Tritanopia"))
@@ -106,13 +97,14 @@ public class Display.FiltersView : Gtk.Box {
         };
 
         var tritanopia_box = new Gtk.Box (HORIZONTAL, 0);
-        tritanopia_box.add (tritanopia_label);
-        tritanopia_box.add (new ColorSwatch ("yellow"));
-        tritanopia_box.add (new ColorSwatch ("blue"));
+        tritanopia_box.append (tritanopia_label);
+        tritanopia_box.append (new ColorSwatch ("yellow"));
+        tritanopia_box.append (new ColorSwatch ("blue"));
 
-        var tritanopia_radio = new Gtk.RadioButton.from_widget (none_radio) {
-            child = tritanopia_box
+        var tritanopia_radio = new Gtk.CheckButton () {
+            group = none_radio
         };
+        tritanopia_box.set_parent (tritanopia_radio);
 
         var colorblindness_adjustment = new Gtk.Adjustment (0, 0.15, 1, 0.01, 0, 0);
 
@@ -125,30 +117,23 @@ public class Display.FiltersView : Gtk.Box {
         colorblindness_scale.add_mark (1, BOTTOM, _("More Assistance"));
 
         var colorblindness_box = new Gtk.Box (VERTICAL, 6);
-        colorblindness_box.add (colorblindness_headerbox);
-        colorblindness_box.add (none_radio);
-        colorblindness_box.add (protanopia_radio);
-        colorblindness_box.add (protanopia_hc_radio);
-        colorblindness_box.add (deuteranopia_radio);
-        colorblindness_box.add (deuteranopia_hc_radio);
-        colorblindness_box.add (tritanopia_radio);
-        colorblindness_box.add (colorblindness_scale);
+        colorblindness_box.append (colorblindness_header);
+        colorblindness_box.append (none_radio);
+        colorblindness_box.append (protanopia_radio);
+        colorblindness_box.append (protanopia_hc_radio);
+        colorblindness_box.append (deuteranopia_radio);
+        colorblindness_box.append (deuteranopia_hc_radio);
+        colorblindness_box.append (tritanopia_radio);
+        colorblindness_box.append (colorblindness_scale);
 
-        var grayscale_header = new Granite.HeaderLabel (_("Grayscale"));
+        var grayscale_header = new Granite.HeaderLabel (_("Grayscale")) {
+            secondary_text = _("Reducing color can help avoid distractions and alleviate screen addiction")
+        };
 
         var grayscale_switch = new Gtk.Switch () {
             halign = END,
             valign = CENTER
         };
-
-        // FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-        var grayscale_subtitle = new Gtk.Label (
-            _("Reducing color can help avoid distractions and alleviate screen addiction")
-        ) {
-            wrap = true,
-            xalign = 0
-        };
-        grayscale_subtitle.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
         var grayscale_adjustment = new Gtk.Adjustment (0, 0.15, 1, 0.01, 0, 0);
 
@@ -164,18 +149,18 @@ public class Display.FiltersView : Gtk.Box {
             column_spacing = 12
         };
         grayscale_grid.attach (grayscale_header, 0, 0);
-        grayscale_grid.attach (grayscale_subtitle, 0, 1);
-        grayscale_grid.attach (grayscale_switch, 1, 0, 1, 2);
-        grayscale_grid.attach (grayscale_scale, 0, 2, 2);
+        grayscale_grid.attach (grayscale_switch, 1, 0);
+        grayscale_grid.attach (grayscale_scale, 0, 1, 2);
 
         var box = new Gtk.Box (VERTICAL, 24);
-        box.add (colorblindness_box);
-        box.add (grayscale_grid);
+        box.append (colorblindness_box);
+        box.append (grayscale_grid);
 
-        var clamp = new Hdy.Clamp ();
-        clamp.add (box);
+        var clamp = new Adw.Clamp () {
+            child = box
+        };
 
-        add (clamp);
+        append (clamp);
         margin_start = 12;
         margin_end = 12;
         margin_bottom = 12;
@@ -313,13 +298,12 @@ public class Display.FiltersView : Gtk.Box {
 
         static construct {
             provider = new Gtk.CssProvider ();
-            provider.load_from_resource ("io/elementary/switchboard/display/Filters.css");
+            provider.load_from_resource ("io/elementary/settings/display/Filters.css");
         }
 
         construct {
-            var context = get_style_context ();
-            context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            context.add_class (color);
+            get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            add_css_class (color);
 
             valign = CENTER;
         }
