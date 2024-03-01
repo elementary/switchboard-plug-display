@@ -78,7 +78,6 @@ public class Display.Plug : Switchboard.Plug {
             };
             headerbar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-
             box = new Gtk.Box (VERTICAL, 0);
             box.append (headerbar);
             box.append (stack);
