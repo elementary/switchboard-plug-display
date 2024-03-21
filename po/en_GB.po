@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 00:51+0000\n"
+"POT-Creation-Date: 2024-02-29 10:58-0800\n"
 "PO-Revision-Date: 2024-01-15 20:21+0000\n"
 "Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
@@ -28,61 +28,61 @@ msgstr "Displays"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configure resolution and position of monitors and projectors"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:117 src/DisplayPlug.vala:118
-#: src/DisplayPlug.vala:119 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Night Light"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:120 src/DisplayPlug.vala:121
-#: src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
 msgid "Filters"
 msgstr "Filters"
 
-#: src/DisplayPlug.vala:111
+#: src/DisplayPlug.vala:116
 msgid "Screen Resolution"
 msgstr "Screen Resolution"
 
-#: src/DisplayPlug.vala:112 src/Widgets/DisplayWidget.vala:146
+#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
 msgid "Screen Rotation"
 msgstr "Screen Rotation"
 
-#: src/DisplayPlug.vala:113
+#: src/DisplayPlug.vala:118
 msgid "Primary display"
 msgstr "Primary display"
 
-#: src/DisplayPlug.vala:114
+#: src/DisplayPlug.vala:119
 msgid "Screen mirroring"
 msgstr "Screen mirroring"
 
-#: src/DisplayPlug.vala:115
+#: src/DisplayPlug.vala:120
 msgid "Scaling factor"
 msgstr "Scaling factor"
 
-#: src/DisplayPlug.vala:116
+#: src/DisplayPlug.vala:121
 msgid "Rotation lock"
 msgstr "Rotation Lock"
 
-#: src/DisplayPlug.vala:118 src/Views/NightLightView.vala:46
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr "Schedule"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:124
 msgid "Color temperature"
 msgstr "Colour temperature"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:125
 msgid "Color Blindness"
 msgstr "Colour Blindness"
 
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:126
 msgid "Color Vision Deficiency"
 msgstr "Colour Vision Deficiency"
 
-#: src/DisplayPlug.vala:122 src/Views/FiltersView.vala:137
+#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr "Greyscale"
 
-#: src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:128
 msgid "Monochrome"
 msgstr "Monochrome"
 
@@ -114,7 +114,7 @@ msgstr "Flipped Upside-down"
 msgid "Flipped Counterclockwise"
 msgstr "Flipped Counterclockwise"
 
-#: src/Interfaces/MutterDisplayConfig.vala:72 src/Views/FiltersView.vala:27
+#: src/Interfaces/MutterDisplayConfig.vala:72 src/Views/FiltersView.vala:14
 msgid "None"
 msgstr "None"
 
@@ -122,8 +122,7 @@ msgstr "None"
 msgid "Mirrored Display"
 msgstr "Mirrored Display"
 
-#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-#: src/Views/NightLightView.vala:18
+#: src/Views/NightLightView.vala:9
 msgid ""
 "Making the colors of your display warmer may help prevent eye strain and "
 "sleeplessness"
@@ -131,51 +130,51 @@ msgstr ""
 "Making the colours of your display warmer may help prevent eye strain and "
 "sleeplessness"
 
-#: src/Views/NightLightView.vala:33
+#: src/Views/NightLightView.vala:26
 msgid "More Warm"
 msgstr "More Warm"
 
-#: src/Views/NightLightView.vala:35
+#: src/Views/NightLightView.vala:28
 msgid "Less Warm"
 msgstr "Less Warm"
 
-#: src/Views/NightLightView.vala:50
+#: src/Views/NightLightView.vala:40
 msgid "Sunset to Sunrise"
 msgstr "Sunset to Sunrise"
 
-#: src/Views/NightLightView.vala:53
+#: src/Views/NightLightView.vala:42
 msgid "From:"
 msgstr "From:"
 
-#: src/Views/NightLightView.vala:60
+#: src/Views/NightLightView.vala:49
 msgid "To:"
 msgstr "To:"
 
-#: src/Views/DisplaysView.vala:34
+#: src/Views/DisplaysView.vala:22
 msgid "Mirror Display:"
 msgstr "Mirror Display:"
 
-#: src/Views/DisplaysView.vala:45
+#: src/Views/DisplaysView.vala:35
 msgid "Scaling factor:"
 msgstr "Scaling factor:"
 
-#: src/Views/DisplaysView.vala:48
+#: src/Views/DisplaysView.vala:38
 msgid "LoDPI"
 msgstr "LoDPI"
 
-#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+#: src/Views/DisplaysView.vala:39 src/Views/DisplaysView.vala:40
 msgid "HiDPI"
 msgstr "HiDPI"
 
-#: src/Views/DisplaysView.vala:59
+#: src/Views/DisplaysView.vala:51
 msgid "Detect Displays"
 msgstr "Detect Displays"
 
-#: src/Views/DisplaysView.vala:61
+#: src/Views/DisplaysView.vala:53
 msgid "Apply"
 msgstr "Apply"
 
-#: src/Views/DisplaysView.vala:149
+#: src/Views/DisplaysView.vala:145
 msgid "Rotation Lock:"
 msgstr "Rotation Lock:"
 
@@ -183,7 +182,7 @@ msgstr "Rotation Lock:"
 msgid "Color Deficiency Assistance"
 msgstr "Colour Deficiency Assistance"
 
-#: src/Views/FiltersView.vala:13
+#: src/Views/FiltersView.vala:11
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
@@ -191,87 +190,86 @@ msgstr ""
 "Each of the circles below should appear as a different colour. A filter can "
 "be applied to the entire display to help differentiate between colours."
 
-#: src/Views/FiltersView.vala:30
+#: src/Views/FiltersView.vala:17
 msgid "Red/Green"
 msgstr "Red/Green"
 
-#: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
+#: src/Views/FiltersView.vala:17 src/Views/FiltersView.vala:37
 msgid "Protanopia"
 msgstr "Protanopia"
 
-#: src/Views/FiltersView.vala:49
+#: src/Views/FiltersView.vala:37
 msgid "Red/Green — High Contrast"
 msgstr "Red/Green — High Contrast"
 
-#: src/Views/FiltersView.vala:65
+#: src/Views/FiltersView.vala:54
 msgid "Green/Red"
 msgstr "Green/Red"
 
-#: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
+#: src/Views/FiltersView.vala:54 src/Views/FiltersView.vala:74
 msgid "Deuteranopia"
 msgstr "Deuteranopia"
 
-#: src/Views/FiltersView.vala:84
+#: src/Views/FiltersView.vala:74
 msgid "Green/Red — High Contrast"
 msgstr "Green/Red — High Contrast"
 
-#: src/Views/FiltersView.vala:100
+#: src/Views/FiltersView.vala:91
 msgid "Blue/Yellow"
 msgstr "Blue/Yellow"
 
-#: src/Views/FiltersView.vala:100
+#: src/Views/FiltersView.vala:91
 msgid "Tritanopia"
 msgstr "Tritanopia"
 
-#: src/Views/FiltersView.vala:124
+#: src/Views/FiltersView.vala:116
 msgid "Less Assistance"
 msgstr "Less Assistance"
 
-#: src/Views/FiltersView.vala:125
+#: src/Views/FiltersView.vala:117
 msgid "More Assistance"
 msgstr "More Assistance"
 
-#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-#: src/Views/FiltersView.vala:146
+#: src/Views/FiltersView.vala:130
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
 msgstr ""
 "Reducing colour can help avoid distractions and alleviate screen addiction"
 
-#: src/Views/FiltersView.vala:160
+#: src/Views/FiltersView.vala:145
 msgid "More Color"
 msgstr "More Colour"
 
-#: src/Views/FiltersView.vala:161
+#: src/Views/FiltersView.vala:146
 msgid "Less Color"
 msgstr "Less Colour"
 
-#: src/Widgets/DisplayWidget.vala:132
+#: src/Widgets/DisplayWidget.vala:117
 msgid "Resolution"
 msgstr "Resolution"
 
-#: src/Widgets/DisplayWidget.vala:160
+#: src/Widgets/DisplayWidget.vala:145
 msgid "Refresh Rate"
 msgstr "Refresh Rate"
 
-#: src/Widgets/DisplayWidget.vala:232
+#: src/Widgets/DisplayWidget.vala:217
 msgid "Other…"
 msgstr "Other…"
 
-#: src/Widgets/DisplayWidget.vala:282
+#: src/Widgets/DisplayWidget.vala:263
 msgid "Configure display"
 msgstr "Configure display"
 
-#: src/Widgets/DisplayWidget.vala:471
+#: src/Widgets/DisplayWidget.vala:452
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:567
+#: src/Widgets/DisplayWidget.vala:519
 msgid "Is the primary display"
 msgstr "Is the primary display"
 
-#: src/Widgets/DisplayWidget.vala:570
+#: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "Set as primary display"
 

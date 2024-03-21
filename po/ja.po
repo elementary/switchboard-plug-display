@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 00:51+0000\n"
+"POT-Creation-Date: 2024-02-29 10:58-0800\n"
 "PO-Revision-Date: 2024-01-12 00:11+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
@@ -28,61 +28,61 @@ msgstr "ディスプレイ"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "モニターとプロジェクターの解像度と位置を設定します"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:117 src/DisplayPlug.vala:118
-#: src/DisplayPlug.vala:119 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "夜間モード"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:120 src/DisplayPlug.vala:121
-#: src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
 msgid "Filters"
 msgstr "フィルター"
 
-#: src/DisplayPlug.vala:111
+#: src/DisplayPlug.vala:116
 msgid "Screen Resolution"
 msgstr "画面解像度"
 
-#: src/DisplayPlug.vala:112 src/Widgets/DisplayWidget.vala:146
+#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
 msgid "Screen Rotation"
 msgstr "画面の回転"
 
-#: src/DisplayPlug.vala:113
+#: src/DisplayPlug.vala:118
 msgid "Primary display"
 msgstr "プライマリーディスプレイ"
 
-#: src/DisplayPlug.vala:114
+#: src/DisplayPlug.vala:119
 msgid "Screen mirroring"
 msgstr "画面の複製"
 
-#: src/DisplayPlug.vala:115
+#: src/DisplayPlug.vala:120
 msgid "Scaling factor"
 msgstr "スケーリングファクター"
 
-#: src/DisplayPlug.vala:116
+#: src/DisplayPlug.vala:121
 msgid "Rotation lock"
 msgstr "回転をロック"
 
-#: src/DisplayPlug.vala:118 src/Views/NightLightView.vala:46
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr "スケジュール"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:124
 msgid "Color temperature"
 msgstr "色温度"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:125
 msgid "Color Blindness"
 msgstr "色盲"
 
-#: src/DisplayPlug.vala:121
+#: src/DisplayPlug.vala:126
 msgid "Color Vision Deficiency"
 msgstr "色覚異常"
 
-#: src/DisplayPlug.vala:122 src/Views/FiltersView.vala:137
+#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr "グレースケール"
 
-#: src/DisplayPlug.vala:123
+#: src/DisplayPlug.vala:128
 msgid "Monochrome"
 msgstr "モノクロ"
 
@@ -114,7 +114,7 @@ msgstr "左右上下反転"
 msgid "Flipped Counterclockwise"
 msgstr "左右反転、左に 90 度回転"
 
-#: src/Interfaces/MutterDisplayConfig.vala:72 src/Views/FiltersView.vala:27
+#: src/Interfaces/MutterDisplayConfig.vala:72 src/Views/FiltersView.vala:14
 msgid "None"
 msgstr "なし"
 
@@ -122,8 +122,7 @@ msgstr "なし"
 msgid "Mirrored Display"
 msgstr "ミラーリングされたディスプレイ"
 
-#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-#: src/Views/NightLightView.vala:18
+#: src/Views/NightLightView.vala:9
 msgid ""
 "Making the colors of your display warmer may help prevent eye strain and "
 "sleeplessness"
@@ -131,51 +130,51 @@ msgstr ""
 "ディスプレイの色を暖色にすることで、目の疲れと不眠の防止に役立つ可能性があり"
 "ます"
 
-#: src/Views/NightLightView.vala:33
+#: src/Views/NightLightView.vala:26
 msgid "More Warm"
 msgstr "暖かめ"
 
-#: src/Views/NightLightView.vala:35
+#: src/Views/NightLightView.vala:28
 msgid "Less Warm"
 msgstr "冷ため"
 
-#: src/Views/NightLightView.vala:50
+#: src/Views/NightLightView.vala:40
 msgid "Sunset to Sunrise"
 msgstr "日没から日の出まで"
 
-#: src/Views/NightLightView.vala:53
+#: src/Views/NightLightView.vala:42
 msgid "From:"
 msgstr "開始:"
 
-#: src/Views/NightLightView.vala:60
+#: src/Views/NightLightView.vala:49
 msgid "To:"
 msgstr "終了:"
 
-#: src/Views/DisplaysView.vala:34
+#: src/Views/DisplaysView.vala:22
 msgid "Mirror Display:"
 msgstr "ディスプレイをミラーリング:"
 
-#: src/Views/DisplaysView.vala:45
+#: src/Views/DisplaysView.vala:35
 msgid "Scaling factor:"
 msgstr "スケーリングファクター:"
 
-#: src/Views/DisplaysView.vala:48
+#: src/Views/DisplaysView.vala:38
 msgid "LoDPI"
 msgstr "低 DPI"
 
-#: src/Views/DisplaysView.vala:49 src/Views/DisplaysView.vala:50
+#: src/Views/DisplaysView.vala:39 src/Views/DisplaysView.vala:40
 msgid "HiDPI"
 msgstr "高 DPI"
 
-#: src/Views/DisplaysView.vala:59
+#: src/Views/DisplaysView.vala:51
 msgid "Detect Displays"
 msgstr "ディスプレイを検出"
 
-#: src/Views/DisplaysView.vala:61
+#: src/Views/DisplaysView.vala:53
 msgid "Apply"
 msgstr "適用"
 
-#: src/Views/DisplaysView.vala:149
+#: src/Views/DisplaysView.vala:145
 msgid "Rotation Lock:"
 msgstr "回転をロック:"
 
@@ -183,7 +182,7 @@ msgstr "回転をロック:"
 msgid "Color Deficiency Assistance"
 msgstr "色覚支援"
 
-#: src/Views/FiltersView.vala:13
+#: src/Views/FiltersView.vala:11
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
@@ -191,88 +190,87 @@ msgstr ""
 "以下の各丸は異なる色をしています。フィルターがディスプレイ全体に適用されるこ"
 "とで、色の識別に役立つ可能性があります。"
 
-#: src/Views/FiltersView.vala:30
+#: src/Views/FiltersView.vala:17
 msgid "Red/Green"
 msgstr "赤/緑"
 
-#: src/Views/FiltersView.vala:30 src/Views/FiltersView.vala:49
+#: src/Views/FiltersView.vala:17 src/Views/FiltersView.vala:37
 msgid "Protanopia"
 msgstr "1型色覚"
 
-#: src/Views/FiltersView.vala:49
+#: src/Views/FiltersView.vala:37
 msgid "Red/Green — High Contrast"
 msgstr "赤/緑 — ハイコントラスト"
 
-#: src/Views/FiltersView.vala:65
+#: src/Views/FiltersView.vala:54
 msgid "Green/Red"
 msgstr "緑/赤"
 
-#: src/Views/FiltersView.vala:65 src/Views/FiltersView.vala:84
+#: src/Views/FiltersView.vala:54 src/Views/FiltersView.vala:74
 msgid "Deuteranopia"
 msgstr "2型色覚"
 
-#: src/Views/FiltersView.vala:84
+#: src/Views/FiltersView.vala:74
 msgid "Green/Red — High Contrast"
 msgstr "緑/赤 — ハイコントラスト"
 
-#: src/Views/FiltersView.vala:100
+#: src/Views/FiltersView.vala:91
 msgid "Blue/Yellow"
 msgstr "青/黄"
 
-#: src/Views/FiltersView.vala:100
+#: src/Views/FiltersView.vala:91
 msgid "Tritanopia"
 msgstr "3型色覚"
 
-#: src/Views/FiltersView.vala:124
+#: src/Views/FiltersView.vala:116
 msgid "Less Assistance"
 msgstr "支援弱"
 
-#: src/Views/FiltersView.vala:125
+#: src/Views/FiltersView.vala:117
 msgid "More Assistance"
 msgstr "支援強"
 
-#. FIXME: Replace with Granite.HeaderLabel secondary_text in Gtk4
-#: src/Views/FiltersView.vala:146
+#: src/Views/FiltersView.vala:130
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
 msgstr ""
 "画面の色を減らすことで、気が散るのを防いだり画面の見過ぎを抑えたりするのに役"
 "立つ可能性があります"
 
-#: src/Views/FiltersView.vala:160
+#: src/Views/FiltersView.vala:145
 msgid "More Color"
 msgstr "高彩度"
 
-#: src/Views/FiltersView.vala:161
+#: src/Views/FiltersView.vala:146
 msgid "Less Color"
 msgstr "低彩度"
 
-#: src/Widgets/DisplayWidget.vala:132
+#: src/Widgets/DisplayWidget.vala:117
 msgid "Resolution"
 msgstr "解像度"
 
-#: src/Widgets/DisplayWidget.vala:160
+#: src/Widgets/DisplayWidget.vala:145
 msgid "Refresh Rate"
 msgstr "リフレッシュレート"
 
-#: src/Widgets/DisplayWidget.vala:232
+#: src/Widgets/DisplayWidget.vala:217
 msgid "Other…"
 msgstr "そのほかの解像度…"
 
-#: src/Widgets/DisplayWidget.vala:282
+#: src/Widgets/DisplayWidget.vala:263
 msgid "Configure display"
 msgstr "ディスプレイを設定します"
 
-#: src/Widgets/DisplayWidget.vala:471
+#: src/Widgets/DisplayWidget.vala:452
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:567
+#: src/Widgets/DisplayWidget.vala:519
 msgid "Is the primary display"
 msgstr "プライマリーディスプレイ"
 
-#: src/Widgets/DisplayWidget.vala:570
+#: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "プライマリーディスプレイとして設定します"
 
