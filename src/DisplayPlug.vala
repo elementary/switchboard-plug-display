@@ -63,11 +63,6 @@ public class Display.Plug : Switchboard.Plug {
             }
 
             var stack_switcher = new Gtk.StackSwitcher () {
-                halign = Gtk.Align.CENTER,
-                margin_top = 12,
-                margin_end = 12,
-                margin_bottom = 12,
-                margin_start = 12,
                 stack = stack
             };
 
@@ -78,8 +73,13 @@ public class Display.Plug : Switchboard.Plug {
                 switcher_child = switcher_child.get_next_sibling ();
             }
 
+            var headerbar = new Adw.HeaderBar () {
+                title_widget = stack_switcher
+            };
+            headerbar.add_css_class (Granite.STYLE_CLASS_FLAT);
+
             box = new Gtk.Box (VERTICAL, 0);
-            box.append (stack_switcher);
+            box.append (headerbar);
             box.append (stack);
 
             stack.notify["visible-child"].connect (() => {
