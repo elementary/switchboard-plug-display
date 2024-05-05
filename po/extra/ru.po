@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 00:51+0000\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2023-06-24 12:07+0000\n"
 "Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.17\n"
 
 #: data/display.metainfo.xml.in:11
@@ -28,62 +28,62 @@ msgstr "Настройки экрана"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Настройка разрешения, положения мониторов и проекторов"
 
-#: data/display.metainfo.xml.in:26
+#: data/display.metainfo.xml.in:27
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/display.metainfo.xml.in:33 data/display.metainfo.xml.in:48
-#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:79
-#: data/display.metainfo.xml.in:96
+#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:50
+#: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
+#: data/display.metainfo.xml.in:98
 msgid "Minor updates:"
 msgstr "Незначительные обновления:"
 
-#: data/display.metainfo.xml.in:35
+#: data/display.metainfo.xml.in:37
 msgid "Redesign Night Light View"
 msgstr "Редизайн экрана ночного света"
 
-#: data/display.metainfo.xml.in:36 data/display.metainfo.xml.in:50
-#: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
-#: data/display.metainfo.xml.in:98
+#: data/display.metainfo.xml.in:38 data/display.metainfo.xml.in:52
+#: data/display.metainfo.xml.in:70 data/display.metainfo.xml.in:83
+#: data/display.metainfo.xml.in:100
 msgid "Updated translations"
 msgstr "Обновлены переводы"
 
-#: data/display.metainfo.xml.in:57
+#: data/display.metainfo.xml.in:59
 msgid "Improvements:"
 msgstr "Улучшения:"
 
-#: data/display.metainfo.xml.in:59
+#: data/display.metainfo.xml.in:61
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr "Расширения с отличающимся соотношением сторон перемещены в подменю"
 
-#: data/display.metainfo.xml.in:60
+#: data/display.metainfo.xml.in:62
 msgid "Improve brightness in the dark style"
 msgstr "Улучшенна яркость в темном стиле"
 
-#: data/display.metainfo.xml.in:62 data/display.metainfo.xml.in:75
-#: data/display.metainfo.xml.in:92
+#: data/display.metainfo.xml.in:64 data/display.metainfo.xml.in:77
+#: data/display.metainfo.xml.in:94
 msgid "Fixes:"
 msgstr "Исправления:"
 
-#: data/display.metainfo.xml.in:64
+#: data/display.metainfo.xml.in:66
 msgid "Show display name on all workspaces"
 msgstr "Отображение название дисплея на всех рабочих столах"
 
-#: data/display.metainfo.xml.in:77
+#: data/display.metainfo.xml.in:79
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 "Теперь переключатель «Использовать этот экран» работает при любых "
 "обстоятельствах"
 
-#: data/display.metainfo.xml.in:88
+#: data/display.metainfo.xml.in:90
 msgid "New features:"
 msgstr "Новые возможности:"
 
-#: data/display.metainfo.xml.in:90
+#: data/display.metainfo.xml.in:92
 msgid "Support 3× scaling"
 msgstr "Поддержка трехкратного увеличения"
 
-#: data/display.metainfo.xml.in:94
+#: data/display.metainfo.xml.in:96
 msgid "Reliably detect accelerometers"
 msgstr "Надежное обнаружение акселерометров"
 
