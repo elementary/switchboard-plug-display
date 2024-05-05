@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2024-01-15 20:21+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/switchboard/"
@@ -240,6 +240,12 @@ msgstr "მეტი ფერი"
 msgid "Less Color"
 msgstr "ნაკლები ფერი"
 
+#: src/Widgets/DisplayWidget.vala:107
+#, fuzzy
+#| msgid "Use this display:"
+msgid "Use This Display"
+msgstr "ამ ეკრანის გამოყენება:"
+
 #: src/Widgets/DisplayWidget.vala:117
 msgid "Resolution"
 msgstr "გარჩევადობა"
@@ -268,9 +274,6 @@ msgstr "ძირითადი ეკრანია"
 #: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "მთავარი ეკრანის დაყენება"
-
-#~ msgid "Use this display:"
-#~ msgstr "ამ ეკრანის გამოყენება:"
 
 #~ msgid "Screen Rotation:"
 #~ msgstr "ეკრანის ტრიალი:"

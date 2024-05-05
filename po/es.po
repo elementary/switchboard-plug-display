@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2021-02-17 12:37+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
@@ -249,6 +249,10 @@ msgstr "Más cálida"
 msgid "Less Color"
 msgstr "Menos cálida"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "Utilizar esta pantalla"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -319,9 +323,6 @@ msgstr "Establecer como pantalla principal"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Cambiar la resolución y posición de los monitores y proyectores"
-
-#~ msgid "Use This Display"
-#~ msgstr "Utilizar esta pantalla"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "No se puede aplicar la configuración: %s"

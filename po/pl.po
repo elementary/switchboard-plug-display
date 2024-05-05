@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2024-01-15 20:21+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
@@ -246,6 +246,10 @@ msgstr "Więcej koloru"
 msgid "Less Color"
 msgstr "Mniej koloru"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "Użyj tego monitora"
+
 #: src/Widgets/DisplayWidget.vala:117
 msgid "Resolution"
 msgstr "Rozdzielczość"
@@ -310,9 +314,6 @@ msgstr "Ustaw jako główny monitor"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Nie można użyć ustawień: %s"
-
-#~ msgid "Use This Display"
-#~ msgstr "Użyj tego monitora"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Zmień rozdzielczości i położenia monitorów oraz projektorów"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2020-03-01 14:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -247,6 +247,10 @@ msgstr "更多暖色"
 msgid "Less Color"
 msgstr "更少暖色"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "使用此顯示器"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -305,9 +309,6 @@ msgstr "設為主要顯示器"
 
 #~ msgid "Rotation:"
 #~ msgstr "旋轉："
-
-#~ msgid "Use This Display"
-#~ msgstr "使用此顯示器"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "無法套用設定值：%s"

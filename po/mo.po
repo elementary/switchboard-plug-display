@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2018-05-29 12:21+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/switchboard/"
@@ -246,6 +246,12 @@ msgstr "Mai cald"
 msgid "Less Color"
 msgstr "Mai puțin cald"
 
+#: src/Widgets/DisplayWidget.vala:107
+#, fuzzy
+#| msgid "Use This Display:"
+msgid "Use This Display"
+msgstr "Utilizați acest afișaj:"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -276,11 +282,6 @@ msgstr "Este afișajul principal"
 #: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "Setați ca afișaj principal"
-
-#, fuzzy
-#~| msgid "Use This Display:"
-#~ msgid "Use this display:"
-#~ msgstr "Utilizați acest afișaj:"
 
 #, fuzzy
 #~ msgid "Screen Rotation:"

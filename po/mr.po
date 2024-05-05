@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2019-05-15 03:03+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/switchboard/"
@@ -249,6 +249,12 @@ msgstr "अधिक उष्ण"
 msgid "Less Color"
 msgstr "कमी उष्ण"
 
+#: src/Widgets/DisplayWidget.vala:107
+#, fuzzy
+#| msgid "Use This Display:"
+msgid "Use This Display"
+msgstr "हे प्रदर्शन वापरा:"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -281,11 +287,6 @@ msgstr "हे प्राथमिक प्रदर्शन आहे"
 #: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "प्राथमिक प्रदर्शन म्हणून सेट करा"
-
-#, fuzzy
-#~| msgid "Use This Display:"
-#~ msgid "Use this display:"
-#~ msgstr "हे प्रदर्शन वापरा:"
 
 #~ msgid "Screen Rotation:"
 #~ msgstr "स्क्रीन रोटेशन:"

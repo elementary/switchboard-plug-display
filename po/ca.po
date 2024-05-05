@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2024-01-12 00:11+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/switchboard/"
@@ -245,6 +245,10 @@ msgstr "Més color"
 msgid "Less Color"
 msgstr "Menys color"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "Utilitza aquesta pantalla"
+
 #: src/Widgets/DisplayWidget.vala:117
 msgid "Resolution"
 msgstr "Resolució"
@@ -306,9 +310,6 @@ msgstr "Estableix com a pantalla primària"
 
 #~ msgid "Rotation:"
 #~ msgstr "Rotació:"
-
-#~ msgid "Use This Display"
-#~ msgstr "Utilitza aquesta pantalla"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "No és possible aplicar els paràmetres: %s"

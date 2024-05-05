@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2019-05-28 14:29+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
@@ -249,6 +249,10 @@ msgstr "Mais Quente"
 msgid "Less Color"
 msgstr "Menos Quente"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "Usar esta tela"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -319,9 +323,6 @@ msgstr "Definir como tela principal"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "As seguintes configurações não puderam ser aplicadas: %s"
-
-#~ msgid "Use This Display"
-#~ msgstr "Usar esta tela"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Alterar resolução e posição dos monitores e projetores"

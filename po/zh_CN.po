@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2021-11-01 10:01+0000\n"
 "Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -247,6 +247,10 @@ msgstr "较暖"
 msgid "Less Color"
 msgstr "较冷"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "使用此显示器"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -316,6 +320,3 @@ msgstr "设为主显示器"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "更改显示器和投影仪的分辨率和位置"
-
-#~ msgid "Use This Display"
-#~ msgstr "使用此显示器"

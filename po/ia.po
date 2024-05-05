@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2015-04-19 16:49+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,6 +230,10 @@ msgstr ""
 
 #: src/Views/FiltersView.vala:146
 msgid "Less Color"
+msgstr ""
+
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
 msgstr ""
 
 #: src/Widgets/DisplayWidget.vala:117

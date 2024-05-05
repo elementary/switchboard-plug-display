@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2020-10-01 21:14+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://l10n.elementary.io/projects/switchboard/"
@@ -247,6 +247,10 @@ msgstr ""
 msgid "Less Color"
 msgstr ""
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "Kasuta seda ekraani"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -295,9 +299,6 @@ msgstr "Määra põhiliseks ekraaniks"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Seadeid polnud võimalik rakendada: %s"
-
-#~ msgid "Use This Display"
-#~ msgstr "Kasuta seda ekraani"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr ""

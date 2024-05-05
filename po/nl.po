@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2023-06-24 12:07+0000\n"
 "Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
@@ -246,6 +246,10 @@ msgstr "Meer kleur"
 msgid "Less Color"
 msgstr "Minder kleur"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "Gebruik dit beeldscherm"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -305,9 +309,6 @@ msgstr "Kies als primair beeldscherm"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Wijzig resolutie en positie van schermen en projectoren"
-
-#~ msgid "Use This Display"
-#~ msgstr "Gebruik dit beeldscherm"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Instellingen kunnen niet worden toegepast: %s"

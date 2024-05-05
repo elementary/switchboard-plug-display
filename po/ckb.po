@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2022-10-04 19:33+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/"
@@ -249,6 +249,12 @@ msgstr "زیادکردنی گەرمی"
 msgid "Less Color"
 msgstr "کەمکردنی گەرمی"
 
+#: src/Widgets/DisplayWidget.vala:107
+#, fuzzy
+#| msgid "Use this display:"
+msgid "Use This Display"
+msgstr "ئەم ڕوونمایە بەکاربهێنە:"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -281,9 +287,6 @@ msgstr "ڕوونمای سەرەکییە"
 #: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "وەکو ڕوونمای سەرەکی دایبنێ"
-
-#~ msgid "Use this display:"
-#~ msgstr "ئەم ڕوونمایە بەکاربهێنە:"
 
 #~ msgid "Screen Rotation:"
 #~ msgstr "خولانەوەی ڕوونما:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2020-10-01 21:15+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: French (Canada) <https://l10n.elementary.io/projects/"
@@ -244,6 +244,12 @@ msgstr ""
 msgid "Less Color"
 msgstr ""
 
+#: src/Widgets/DisplayWidget.vala:107
+#, fuzzy
+#| msgid "Use This Display:"
+msgid "Use This Display"
+msgstr "Utiliser cet écran:"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -274,11 +280,6 @@ msgstr "Est le premier écran"
 #: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "Définir comme premier écran"
-
-#, fuzzy
-#~| msgid "Use This Display:"
-#~ msgid "Use this display:"
-#~ msgstr "Utiliser cet écran:"
 
 #, fuzzy
 #~ msgid "Screen Rotation:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2022-08-06 14:22+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/switchboard/"
@@ -249,6 +249,10 @@ msgstr "더 따뜻하게"
 msgid "Less Color"
 msgstr "덜 따뜻하게"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "이 디스플레이 사용"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -315,9 +319,6 @@ msgstr "주 디스플레이로 설정"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "설정을 적용할 수 없습니다: %s"
-
-#~ msgid "Use This Display"
-#~ msgstr "이 디스플레이 사용"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "모니터 및 프로젝터의 해상도와 위치를 바꿉니다"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2020-10-01 21:14+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Amharic <https://l10n.elementary.io/projects/switchboard/"
@@ -245,6 +245,12 @@ msgstr ""
 msgid "Less Color"
 msgstr ""
 
+#: src/Widgets/DisplayWidget.vala:107
+#, fuzzy
+#| msgid "Use This Display"
+msgid "Use This Display"
+msgstr "ይህን መመልከቻ ተጠቀም"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Rotation:"
@@ -275,11 +281,6 @@ msgstr ""
 #: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "እንደ ቀዳሚ መመልከቻ ማሰናጃ"
-
-#, fuzzy
-#~| msgid "Use This Display"
-#~ msgid "Use this display:"
-#~ msgstr "ይህን መመልከቻ ተጠቀም"
 
 #, fuzzy
 #~ msgid "Screen Rotation:"

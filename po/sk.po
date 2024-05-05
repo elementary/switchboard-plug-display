@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2021-09-14 17:29+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/switchboard/"
@@ -249,6 +249,12 @@ msgstr "Teplejšia"
 msgid "Less Color"
 msgstr "Menej teplá"
 
+#: src/Widgets/DisplayWidget.vala:107
+#, fuzzy
+#| msgid "Use this display:"
+msgid "Use This Display"
+msgstr "Použiť túto obrazovku:"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -281,9 +287,6 @@ msgstr "Je hlavná obrazovka"
 #: src/Widgets/DisplayWidget.vala:522
 msgid "Set as primary display"
 msgstr "Nastaviť ako hlavnú obrazovku"
-
-#~ msgid "Use this display:"
-#~ msgstr "Použiť túto obrazovku:"
 
 #~ msgid "Screen Rotation:"
 #~ msgstr "Otočenie obrazovky:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2023-07-26 20:07+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/"
@@ -257,6 +257,10 @@ msgstr "Mer varm"
 msgid "Less Color"
 msgstr "Mindre varm"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "Bruk denne skjermen"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -335,9 +339,6 @@ msgstr "Bruk som primær skjerm"
 
 #~ msgid "180 Degrees"
 #~ msgstr "180 grader"
-
-#~ msgid "Use This Display"
-#~ msgstr "Bruk denne skjermen"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Klarte ikke å bruke innstillinger: %s"

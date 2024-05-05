@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 10:58-0800\n"
+"POT-Creation-Date: 2024-05-05 14:34+0000\n"
 "PO-Revision-Date: 2018-10-26 19:07+0000\n"
 "Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/switchboard/"
@@ -249,6 +249,10 @@ msgstr "Mer varm"
 msgid "Less Color"
 msgstr "Mindre varm"
 
+#: src/Widgets/DisplayWidget.vala:107
+msgid "Use This Display"
+msgstr "Använd den här bildskärmen"
+
 #: src/Widgets/DisplayWidget.vala:117
 #, fuzzy
 #| msgid "Resolution:"
@@ -318,9 +322,6 @@ msgstr "Använd som primär bildskärm"
 
 #~ msgid "Settings cannot be applied: %s"
 #~ msgstr "Inställningarna kan inte verkställas: %s"
-
-#~ msgid "Use This Display"
-#~ msgstr "Använd den här bildskärmen"
 
 #~ msgid "Change resolution and position of monitors and projectors"
 #~ msgstr "Ändra upplösning och placering för bildskärmar och projektorer"
