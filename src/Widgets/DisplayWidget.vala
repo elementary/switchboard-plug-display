@@ -104,7 +104,7 @@ public class Display.DisplayWidget : Gtk.Box {
             vexpand = true
         };
 
-        use_switch = new Granite.SwitchModelButton ("Use This Display");
+        use_switch = new Granite.SwitchModelButton (_("Use This Display"));
 
         virtual_monitor.bind_property ("is-active", use_switch, "active", GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.BIDIRECTIONAL);
 
