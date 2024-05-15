@@ -241,37 +241,8 @@ public class Display.DisplaysOverlay : Gtk.Box {
     }
 
     private void check_configuration_change () {
-        // check if valid (connected)
-        var result = true;
-        foreach (unowned var dw in display_widgets) {
-            dw.connected = false;
-        }
-
-        foreach (unowned var dw1 in display_widgets) {
-            foreach (unowned var dw2 in display_widgets) {
-                if (dw2 == dw1) {
-                    warning ("Skip %s", dw2.display_name);
-                    continue;
-                } else if (dw1.connected) {
-                    warning ("%s already connected", dw1.display_name);
-                    break;
-                }
-
-                dw1.connected = is_connected (dw1, dw2);
-                if (dw1.connected) {
-                    dw2.connected = true;
-                }
-            }
-        }
-
-        foreach (unowned var dw in display_widgets) {
-            if (!dw.connected) {
-                result = false;
-                break;
-            }
-        }
-
-        configuration_changed (result);
+        // TODO check if it actually has changed
+         configuration_changed (true);
     }
 
     // Determine whether two displays adjoin but do not overlap
