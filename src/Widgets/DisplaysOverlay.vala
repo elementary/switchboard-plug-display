@@ -242,6 +242,18 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
     private void check_configuration_change () {
         // check if valid (connected)
+        int active_display_count = 0;
+        foreach (unowned var dw in display_widgets) {
+            if (dw.virtual_monitor.is_active) {
+                active_display_count++;
+            }
+        }
+
+        if (active_display_count == 1) { // always valid if only one display
+            configuration_changed (true);
+            return;
+        }
+
         var result = true;
         foreach (unowned var dw in display_widgets) {
             dw.connected = false;
@@ -250,10 +262,8 @@ public class Display.DisplaysOverlay : Gtk.Box {
         foreach (unowned var dw1 in display_widgets) {
             foreach (unowned var dw2 in display_widgets) {
                 if (dw2 == dw1) {
-                    warning ("Skip %s", dw2.display_name);
                     continue;
                 } else if (dw1.connected) {
-                    warning ("%s already connected", dw1.display_name);
                     break;
                 }
 
@@ -265,7 +275,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
         }
 
         foreach (unowned var dw in display_widgets) {
-            if (!dw.connected) {
+            if (!dw.connected && dw.virtual_monitor.is_active) {
                 result = false;
                 break;
             }
