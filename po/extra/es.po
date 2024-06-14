@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-05 14:34+0000\n"
-"PO-Revision-Date: 2024-06-13 15:50+0000\n"
+"PO-Revision-Date: 2024-06-15 16:16+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/es/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
-msgstr "Configuración de pantalla"
+msgstr "Configuración de Pantalla"
 
 #: data/display.metainfo.xml.in:12
 msgid "Configure resolution and position of monitors and projectors"
@@ -39,7 +39,7 @@ msgstr "Actualizaciones menores:"
 
 #: data/display.metainfo.xml.in:37
 msgid "Redesign Night Light View"
-msgstr ""
+msgstr "Se rediseñó la vista de Luz nocturna"
 
 #: data/display.metainfo.xml.in:38 data/display.metainfo.xml.in:52
 #: data/display.metainfo.xml.in:70 data/display.metainfo.xml.in:83
@@ -49,15 +49,17 @@ msgstr "Traducciones actualizadas"
 
 #: data/display.metainfo.xml.in:59
 msgid "Improvements:"
-msgstr ""
+msgstr "Mejoras:"
 
 #: data/display.metainfo.xml.in:61
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr ""
+"Las resoluciones con una relación de aspecto diferente se trasladaron a un "
+"submenú"
 
 #: data/display.metainfo.xml.in:62
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "Se mejoró el brillo en el estilo oscuro"
 
 #: data/display.metainfo.xml.in:64 data/display.metainfo.xml.in:77
 #: data/display.metainfo.xml.in:94
@@ -66,11 +68,12 @@ msgstr "Correcciones:"
 
 #: data/display.metainfo.xml.in:66
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "Ahora se muestra el nombre del monitor en todas las áreas de trabajo"
 
 #: data/display.metainfo.xml.in:79
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
+"Se garantiza que aplicar «Usar esta pantalla» funcione en más circunstancias"
 
 #: data/display.metainfo.xml.in:90
 msgid "New features:"
@@ -82,7 +85,7 @@ msgstr "Soporte para escalado ×3"
 
 #: data/display.metainfo.xml.in:96
 msgid "Reliably detect accelerometers"
-msgstr ""
+msgstr "Ahora se detectan acelerómetros de manera confiable"
 
 #~ msgid "Fix 1px gaps between displays"
 #~ msgstr "Se corrigieron unos huecos de 1 píxel que había entre las pantallas"
