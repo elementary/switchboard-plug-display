@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-05 14:34+0000\n"
-"PO-Revision-Date: 2024-06-14 03:33+0000\n"
+"PO-Revision-Date: 2024-06-15 16:16+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/es/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
 msgid "Displays"
-msgstr "Monitores"
+msgstr "Pantallas"
 
 #: src/DisplayPlug.vala:40
 msgid "Configure resolution and position of monitors and projectors"
@@ -36,7 +36,7 @@ msgstr "Luz nocturna"
 #: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
 #: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
 msgid "Filters"
-msgstr ""
+msgstr "Filtros"
 
 #: src/DisplayPlug.vala:116
 msgid "Screen Resolution"
@@ -64,27 +64,27 @@ msgstr "Bloqueo de giro"
 
 #: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
 msgid "Schedule"
-msgstr "Horario"
+msgstr "Programar"
 
 #: src/DisplayPlug.vala:124
 msgid "Color temperature"
-msgstr "Temperatura de colores"
+msgstr "Temperatura del color"
 
 #: src/DisplayPlug.vala:125
 msgid "Color Blindness"
-msgstr ""
+msgstr "Daltonismo"
 
 #: src/DisplayPlug.vala:126
 msgid "Color Vision Deficiency"
-msgstr ""
+msgstr "Deficiencia de visión cromática"
 
 #: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
 msgid "Grayscale"
-msgstr ""
+msgstr "Escala de grises"
 
 #: src/DisplayPlug.vala:128
 msgid "Monochrome"
-msgstr ""
+msgstr "Monocromático"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -123,28 +123,24 @@ msgid "Mirrored Display"
 msgstr "Pantallas duplicadas"
 
 #: src/Views/NightLightView.vala:9
-#, fuzzy
-#| msgid ""
-#| "Night Light makes the colors of your display warmer. This may help "
-#| "prevent eye strain and sleeplessness."
 msgid ""
 "Making the colors of your display warmer may help prevent eye strain and "
 "sleeplessness"
 msgstr ""
-"La luz nocturna hace que los colores de su pantalla sean más cálidos. Esto "
-"puede ayudar a prevenir la fatiga visual y el insomnio."
+"Hacer que los colores de su pantalla sean más cálidos puede ayudar a "
+"prevenir la fatiga visual y el insomnio"
 
 #: src/Views/NightLightView.vala:26
 msgid "More Warm"
-msgstr "Más cálida"
+msgstr "Más cálido"
 
 #: src/Views/NightLightView.vala:28
 msgid "Less Warm"
-msgstr "Menos cálida"
+msgstr "Menos cálido"
 
 #: src/Views/NightLightView.vala:40
 msgid "Sunset to Sunrise"
-msgstr "Desde el atardecer hasta el amanecer"
+msgstr "Del atardecer al amanecer"
 
 #: src/Views/NightLightView.vala:42
 msgid "From:"
@@ -184,90 +180,87 @@ msgstr "Bloqueo de giro:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
-msgstr ""
+msgstr "Asistente de deficiencia de color"
 
 #: src/Views/FiltersView.vala:11
 msgid ""
 "Each of the circles below should appear as a different color. A filter can "
 "be applied to the entire display to help differentiate between colors."
 msgstr ""
+"Cada uno de los círculos desplegados a continuación deberían percibirse con "
+"un color distinto. Se puede aplicar un filtro a toda la pantalla para ayudar "
+"a diferenciar entre colores."
 
 #: src/Views/FiltersView.vala:17
 msgid "Red/Green"
-msgstr ""
+msgstr "Rojo/Verde"
 
 #: src/Views/FiltersView.vala:17 src/Views/FiltersView.vala:37
 msgid "Protanopia"
-msgstr ""
+msgstr "Protanopía"
 
 #: src/Views/FiltersView.vala:37
 msgid "Red/Green — High Contrast"
-msgstr ""
+msgstr "Rojo/Verde — Alto contraste"
 
 #: src/Views/FiltersView.vala:54
 msgid "Green/Red"
-msgstr ""
+msgstr "Verde/Rojo"
 
 #: src/Views/FiltersView.vala:54 src/Views/FiltersView.vala:74
 msgid "Deuteranopia"
-msgstr ""
+msgstr "Deuteranopía"
 
 #: src/Views/FiltersView.vala:74
 msgid "Green/Red — High Contrast"
-msgstr ""
+msgstr "Verde/Rojo — Alto contraste"
 
 #: src/Views/FiltersView.vala:91
 msgid "Blue/Yellow"
-msgstr ""
+msgstr "Azul/Amarillo"
 
 #: src/Views/FiltersView.vala:91
 msgid "Tritanopia"
-msgstr ""
+msgstr "Tritanopía"
 
 #: src/Views/FiltersView.vala:116
 msgid "Less Assistance"
-msgstr ""
+msgstr "Menos asistencia"
 
 #: src/Views/FiltersView.vala:117
 msgid "More Assistance"
-msgstr ""
+msgstr "Más asistencia"
 
 #: src/Views/FiltersView.vala:130
 msgid ""
 "Reducing color can help avoid distractions and alleviate screen addiction"
 msgstr ""
+"Reducir el color puede ayudar a evitar distracciones y aliviar adicciones a "
+"las pantallas"
 
 #: src/Views/FiltersView.vala:145
-#, fuzzy
-#| msgid "More Warm"
 msgid "More Color"
-msgstr "Más cálida"
+msgstr "Más color"
 
 #: src/Views/FiltersView.vala:146
-#, fuzzy
-#| msgid "Less Warm"
 msgid "Less Color"
-msgstr "Menos cálida"
+msgstr "Menos color"
 
 #: src/Widgets/DisplayWidget.vala:107
 msgid "Use This Display"
 msgstr "Utilizar esta pantalla"
 
 #: src/Widgets/DisplayWidget.vala:117
-#, fuzzy
-#| msgid "Resolution:"
 msgid "Resolution"
-msgstr "Resolución:"
+msgstr "Resolución"
 
 #: src/Widgets/DisplayWidget.vala:145
-#, fuzzy
-#| msgid "Refresh Rate:"
 msgid "Refresh Rate"
-msgstr "Frecuencia de actualización:"
+msgstr "Frecuencia de actualización"
 
 #: src/Widgets/DisplayWidget.vala:217
 msgid "Other…"
-msgstr ""
+msgstr "Otros…"
 
 #: src/Widgets/DisplayWidget.vala:263
 msgid "Configure display"
