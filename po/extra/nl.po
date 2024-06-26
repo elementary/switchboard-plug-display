@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-05 14:34+0000\n"
-"PO-Revision-Date: 2023-06-24 12:07+0000\n"
+"PO-Revision-Date: 2024-06-27 19:16+0000\n"
 "Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.5.5\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
@@ -74,7 +74,7 @@ msgstr ""
 
 #: data/display.metainfo.xml.in:90
 msgid "New features:"
-msgstr "Nieuwe functionaliteit:"
+msgstr "Nieuwe functies:"
 
 #: data/display.metainfo.xml.in:92
 msgid "Support 3× scaling"
