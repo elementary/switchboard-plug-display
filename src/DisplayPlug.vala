@@ -114,7 +114,6 @@ public class Display.Plug : Switchboard.Plug {
     public override async Gee.TreeMap<string, string> search (string search) {
         var search_results = new Gee.TreeMap<string, string> ((GLib.CompareDataFunc<string>)strcmp, (Gee.EqualDataFunc<string>)str_equal);
         search_results.set ("%s → %s".printf (display_name, _("Screen Resolution")), "displays");
-        search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "displays");
         search_results.set ("%s → %s".printf (display_name, _("Primary display")), "displays");
         search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "displays");
         search_results.set ("%s → %s".printf (display_name, _("Scaling factor")), "displays");
@@ -126,6 +125,11 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Color Vision Deficiency")), "filters");
         search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Grayscale")), "filters");
         search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Monochrome")), "filters");
+
+        if (SensorManager.get_default ().has_accelerometer) {
+            search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "displays");
+        }
+
         return search_results;
     }
 }
