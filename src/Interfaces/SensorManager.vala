@@ -19,18 +19,11 @@ public class Display.SensorManager : Object {
     private class SensorManager () { }
 
     construct {
-        setup_sensor_proxy.begin ((obj, res) => {
-            var sensor_proxy = setup_sensor_proxy.end (res);
-            has_accelerometer = sensor_proxy.has_accelerometer;
-        });
-    }
-
-    private async SensorProxy? setup_sensor_proxy () {
         try {
-            return yield Bus.get_proxy (BusType.SYSTEM, "net.hadess.SensorProxy", "/net/hadess/SensorProxy");
+            SensorProxy sensor_proxy = Bus.get_proxy_sync (BusType.SYSTEM, "net.hadess.SensorProxy", "/net/hadess/SensorProxy");
+            has_accelerometer = sensor_proxy.has_accelerometer;
         } catch (Error e) {
             info ("Unable to connect to SensorProxy bus, probably means no accelerometer supported: %s", e.message);
-            return null;
         }
     }
 }
