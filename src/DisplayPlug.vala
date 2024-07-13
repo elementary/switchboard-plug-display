@@ -116,8 +116,8 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s".printf (display_name, _("Screen Resolution")), "displays");
         search_results.set ("%s → %s".printf (display_name, _("Primary display")), "displays");
         search_results.set ("%s → %s".printf (display_name, _("Screen mirroring")), "displays");
+        search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "displays");
         search_results.set ("%s → %s".printf (display_name, _("Scaling factor")), "displays");
-        search_results.set ("%s → %s".printf (display_name, _("Rotation lock")), "displays");
         search_results.set ("%s → %s".printf (display_name, _("Night Light")), "night-light");
         search_results.set ("%s → %s → %s".printf (display_name, _("Night Light"), _("Schedule")), "night-light");
         search_results.set ("%s → %s → %s".printf (display_name, _("Night Light"), _("Color temperature")), "night-light");
@@ -127,7 +127,7 @@ public class Display.Plug : Switchboard.Plug {
         search_results.set ("%s → %s → %s".printf (display_name, _("Filters"), _("Monochrome")), "filters");
 
         if (SensorManager.get_default ().has_accelerometer) {
-            search_results.set ("%s → %s".printf (display_name, _("Screen Rotation")), "displays");
+            search_results.set ("%s → %s".printf (display_name, _("Rotation lock")), "displays");
         }
 
         return search_results;
