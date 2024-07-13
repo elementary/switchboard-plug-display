@@ -4,7 +4,7 @@
  */
 
 [DBus (name = "net.hadess.SensorProxy")]
-public interface  Display.SensorProxy : GLib.DBusProxy {
+public interface Display.SensorProxy : GLib.DBusProxy {
     public abstract bool has_accelerometer { get; }
 }
 
@@ -20,6 +20,7 @@ public class Display.SensorManager : Object {
 
     construct {
         try {
+            // Synchronous otherwise search might be false negative
             SensorProxy sensor_proxy = Bus.get_proxy_sync (BusType.SYSTEM, "net.hadess.SensorProxy", "/net/hadess/SensorProxy");
             has_accelerometer = sensor_proxy.has_accelerometer;
         } catch (Error e) {
