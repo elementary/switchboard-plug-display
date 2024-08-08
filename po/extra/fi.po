@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-05 14:34+0000\n"
-"PO-Revision-Date: 2021-07-25 12:43+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2024-08-07 18:16+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fi/>\n"
 "Language: fi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
@@ -29,7 +29,7 @@ msgstr "Määritä näytön tarkkuus ja näyttöjen sijainnit"
 
 #: data/display.metainfo.xml.in:27
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:50
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
@@ -49,7 +49,7 @@ msgstr "Päivityksiä kielikäännöksiin"
 
 #: data/display.metainfo.xml.in:59
 msgid "Improvements:"
-msgstr ""
+msgstr "Parannukset:"
 
 #: data/display.metainfo.xml.in:61
 msgid "Move resolutions with a different aspect ratio to a submenu"

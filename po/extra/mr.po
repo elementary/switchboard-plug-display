@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-05 14:34+0000\n"
-"PO-Revision-Date: 2023-03-21 18:59+0000\n"
-"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"PO-Revision-Date: 2024-08-07 18:16+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/mr/>\n"
 "Language: mr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
@@ -29,7 +29,7 @@ msgstr "मॉनिटर्स आणि प्रोजेक्टर्स�
 
 #: data/display.metainfo.xml.in:27
 msgid "elementary, Inc."
-msgstr ""
+msgstr "एलिमेंटरी, Inc ."
 
 #: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:50
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
@@ -74,7 +74,7 @@ msgstr ""
 
 #: data/display.metainfo.xml.in:90
 msgid "New features:"
-msgstr ""
+msgstr "नवीन वैशिष्ट्ये:"
 
 #: data/display.metainfo.xml.in:92
 msgid "Support 3× scaling"
