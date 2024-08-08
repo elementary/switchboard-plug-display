@@ -5,6 +5,7 @@ plug_files = files(
     'Interfaces/GalaDBus.vala',
     'Interfaces/NightLightManager.vala',
     'Interfaces/MutterDisplayConfig.vala',
+    'Interfaces/SensorManager.vala',
     'Objects/VirtualMonitor.vala',
     'Objects/MonitorMode.vala',
     'Objects/MonitorManager.vala',
