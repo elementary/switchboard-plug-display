@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 14:34+0000\n"
+"POT-Creation-Date: 2024-08-14 14:14+0000\n"
 "PO-Revision-Date: 2024-08-07 18:16+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
@@ -31,56 +31,64 @@ msgstr "Projektör ve ekranların, pozisyon ve çözünürlüklerini yapılandı
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:50
-#: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:81
-#: data/display.metainfo.xml.in:98
+#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:49
+#: data/display.metainfo.xml.in:64 data/display.metainfo.xml.in:82
+#: data/display.metainfo.xml.in:95 data/display.metainfo.xml.in:112
 msgid "Minor updates:"
 msgstr "Küçük güncellemeler:"
 
 #: data/display.metainfo.xml.in:37
-msgid "Redesign Night Light View"
+msgid "Fix missing settings URI handlers"
 msgstr ""
 
-#: data/display.metainfo.xml.in:38 data/display.metainfo.xml.in:52
-#: data/display.metainfo.xml.in:70 data/display.metainfo.xml.in:83
-#: data/display.metainfo.xml.in:100
+#: data/display.metainfo.xml.in:38
+msgid "Dragging displays is now smoother"
+msgstr ""
+
+#: data/display.metainfo.xml.in:39 data/display.metainfo.xml.in:52
+#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:84
+#: data/display.metainfo.xml.in:97 data/display.metainfo.xml.in:114
 msgid "Updated translations"
 msgstr "Çeviriler güncellendi"
 
-#: data/display.metainfo.xml.in:59
+#: data/display.metainfo.xml.in:51
+msgid "Redesign Night Light View"
+msgstr ""
+
+#: data/display.metainfo.xml.in:73
 msgid "Improvements:"
 msgstr "İyileştirmeler:"
 
-#: data/display.metainfo.xml.in:61
+#: data/display.metainfo.xml.in:75
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr ""
 
-#: data/display.metainfo.xml.in:62
+#: data/display.metainfo.xml.in:76
 msgid "Improve brightness in the dark style"
 msgstr ""
 
-#: data/display.metainfo.xml.in:64 data/display.metainfo.xml.in:77
-#: data/display.metainfo.xml.in:94
+#: data/display.metainfo.xml.in:78 data/display.metainfo.xml.in:91
+#: data/display.metainfo.xml.in:108
 msgid "Fixes:"
 msgstr "Düzeltmeler:"
 
-#: data/display.metainfo.xml.in:66
+#: data/display.metainfo.xml.in:80
 msgid "Show display name on all workspaces"
 msgstr ""
 
-#: data/display.metainfo.xml.in:79
+#: data/display.metainfo.xml.in:93
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 
-#: data/display.metainfo.xml.in:90
+#: data/display.metainfo.xml.in:104
 msgid "New features:"
 msgstr "Yeni özellikler:"
 
-#: data/display.metainfo.xml.in:92
+#: data/display.metainfo.xml.in:106
 msgid "Support 3× scaling"
 msgstr "3× ölçekleme desteği eklendi"
 
-#: data/display.metainfo.xml.in:96
+#: data/display.metainfo.xml.in:110
 msgid "Reliably detect accelerometers"
 msgstr "İvmeölçerleri güvenilir bir şekilde tespit edin"
 
