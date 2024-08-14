@@ -192,8 +192,11 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.primary = mutter_logical_monitor.primary;
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
                 foreach (var monitor in monitors) {
-                    if (compare_monitor_with_mutter_info (monitor, mutter_info) && !(monitor in virtual_monitor.monitors)) {
-                        virtual_monitor.monitors.add (monitor);
+                    if (compare_monitor_with_mutter_info (monitor, mutter_info)) {
+                        if (!(monitor in virtual_monitor.monitors)) {
+                            virtual_monitor.monitors.add (monitor);
+                        }
+
                         if (monitor in monitors_with_changed_modes) {
                             virtual_monitor.modes_changed ();
                         }
