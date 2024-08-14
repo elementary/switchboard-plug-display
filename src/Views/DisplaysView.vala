@@ -98,7 +98,7 @@ public class Display.DisplaysView : Gtk.Box {
                     action_bar.pack_start (rotation_lock_box);
 
                     var touchscreen_settings = new GLib.Settings (TOUCHSCREEN_SETTINGS_PATH);
-                    touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", DEFAULT);
+                    touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "active", DEFAULT);
                 } else {
                     info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
                 }
