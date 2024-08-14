@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 14:34+0000\n"
+"POT-Creation-Date: 2024-08-14 19:01+0000\n"
 "PO-Revision-Date: 2014-08-01 01:07+0000\n"
 "Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu <te@li.org>\n"
@@ -170,7 +170,15 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:142
+msgid "Failed to apply display settings"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:143
+msgid "This can be caused by an invalid configuration."
+msgstr ""
+
+#: src/Views/DisplaysView.vala:164
 msgid "Rotation Lock:"
 msgstr ""
 

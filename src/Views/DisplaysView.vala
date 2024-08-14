@@ -67,7 +67,12 @@ public class Display.DisplaysView : Gtk.Box {
 
             var action_bar = new Gtk.ActionBar ();
             action_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
-            action_bar.pack_start (dpi_box);
+
+            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
+            if (monitor_manager.global_scale_required) {
+                action_bar.pack_start (dpi_box);
+            }
+
             action_bar.pack_start (mirror_box);
 
             if (SensorManager.get_default ().has_accelerometer) {
@@ -110,7 +115,6 @@ public class Display.DisplaysView : Gtk.Box {
                 apply_button.sensitive = changed;
             });
 
-            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_box.sensitive = monitor_manager.monitors.size > 1;
             monitor_manager.notify["monitor-number"].connect (() => {
                 mirror_box.sensitive = monitor_manager.monitors.size > 1;
@@ -118,14 +122,22 @@ public class Display.DisplaysView : Gtk.Box {
 
             detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
             apply_button.clicked.connect (() => {
-                monitor_manager.set_monitor_config ();
+                try {
+                    monitor_manager.set_monitor_config ();
+                } catch (Error e) {
+                    show_error_dialog (e.message);
+                }
                 apply_button.sensitive = false;
             });
 
             dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
 
             dpi_combo.changed.connect (() => {
-                monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+                try {
+                    monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+                } catch (Error e) {
+                    show_error_dialog (e.message);
+                }
             });
 
             mirror_switch.active = monitor_manager.is_mirrored;
@@ -138,5 +150,16 @@ public class Display.DisplaysView : Gtk.Box {
 
                 apply_button.sensitive = true;
             });
+    }
+
+    private void show_error_dialog (string details) {
+        var error_dialog = new Granite.MessageDialog.with_image_from_icon_name (
+            _("Failed to apply display settings"),
+            _("This can be caused by an invalid configuration."),
+            "dialog-error"
+        );
+        error_dialog.show_error_details (details);
+        error_dialog.response.connect (error_dialog.destroy);
+        error_dialog.present ();
     }
 }
