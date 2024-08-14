@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
+"POT-Creation-Date: 2024-08-14 19:01+0000\n"
 "PO-Revision-Date: 2021-11-01 10:01+0000\n"
 "Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -176,7 +176,15 @@ msgstr "识别显示器"
 msgid "Apply"
 msgstr "应用"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:142
+msgid "Failed to apply display settings"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:143
+msgid "This can be caused by an invalid configuration."
+msgstr ""
+
+#: src/Views/DisplaysView.vala:164
 msgid "Rotation Lock:"
 msgstr "旋转锁："
 

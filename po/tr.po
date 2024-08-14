@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
+"POT-Creation-Date: 2024-08-14 19:01+0000\n"
 "PO-Revision-Date: 2021-09-02 16:31+0000\n"
 "Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
@@ -178,7 +178,15 @@ msgstr "Ekranları Algıla"
 msgid "Apply"
 msgstr "Uygula"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:142
+msgid "Failed to apply display settings"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:143
+msgid "This can be caused by an invalid configuration."
+msgstr ""
+
+#: src/Views/DisplaysView.vala:164
 msgid "Rotation Lock:"
 msgstr "Döndürme Kilidi:"
 

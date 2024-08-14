@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
+"POT-Creation-Date: 2024-08-14 19:01+0000\n"
 "PO-Revision-Date: 2024-02-08 16:11+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/switchboard/"
@@ -174,7 +174,15 @@ msgstr "Detetar Ecrãs"
 msgid "Apply"
 msgstr "Aplicar"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:142
+msgid "Failed to apply display settings"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:143
+msgid "This can be caused by an invalid configuration."
+msgstr ""
+
+#: src/Views/DisplaysView.vala:164
 msgid "Rotation Lock:"
 msgstr "Bloqueio de rotação:"
 
