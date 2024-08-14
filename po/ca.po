@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:34+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
 "PO-Revision-Date: 2024-01-12 00:11+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/switchboard/"
@@ -28,13 +28,13 @@ msgstr "Pantalles"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configureu la resolució i la posició de monitors i projectors."
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Llum de nit"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr "Filtres"
 
@@ -42,49 +42,49 @@ msgstr "Filtres"
 msgid "Screen Resolution"
 msgstr "Resolució de la pantalla"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
-msgid "Screen Rotation"
-msgstr "Rotació de la pantalla"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 msgid "Primary display"
 msgstr "Pantalla primària"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr "Rèplica de pantalla"
+
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+msgid "Screen Rotation"
+msgstr "Rotació de la pantalla"
 
 #: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "Factor d'escalatge"
 
-#: src/DisplayPlug.vala:121
-msgid "Rotation lock"
-msgstr "Bloqueig de la rotació"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr "Planificació"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 msgid "Color temperature"
 msgstr "Temperatura del color"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr "Daltonisme"
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr "Deficiència de visió del color"
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr "Escala de grisos"
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr "Monocrom"
+
+#: src/DisplayPlug.vala:130
+msgid "Rotation lock"
+msgstr "Bloqueig de la rotació"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -174,17 +174,17 @@ msgstr "Detecta les pantalles"
 msgid "Apply"
 msgstr "Aplica-ho"
 
-#: src/Views/DisplaysView.vala:146
+#: src/Views/DisplaysView.vala:84
+msgid "Rotation Lock:"
+msgstr "Bloqueig de la rotació:"
+
+#: src/Views/DisplaysView.vala:157
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:147
+#: src/Views/DisplaysView.vala:158
 msgid "This can be caused by an invalid configuration."
 msgstr ""
-
-#: src/Views/DisplaysView.vala:168
-msgid "Rotation Lock:"
-msgstr "Bloqueig de la rotació:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"

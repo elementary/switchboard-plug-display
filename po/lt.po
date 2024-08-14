@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:34+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
 "PO-Revision-Date: 2019-05-15 03:02+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.elementary.io/projects/switchboard/"
@@ -29,13 +29,13 @@ msgstr "Ekranai"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Konfigūruoti monitorių ir projektorių raišką bei poziciją"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Naktinis apšvietimas"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr ""
 
@@ -43,49 +43,49 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "Ekrano raiška"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
-msgid "Screen Rotation"
-msgstr "Ekrano pasukimas"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 msgid "Primary display"
 msgstr "Pirminis ekranas"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr "Ekrano dubliavimas"
+
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+msgid "Screen Rotation"
+msgstr "Ekrano pasukimas"
 
 #: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "Mastelio keitimo faktorius"
 
-#: src/DisplayPlug.vala:121
-msgid "Rotation lock"
-msgstr "Pasukimo užraktas"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr "Tvarkaraštis"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 msgid "Color temperature"
 msgstr "Spalvos temperatūra"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr ""
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr ""
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr ""
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr ""
+
+#: src/DisplayPlug.vala:130
+msgid "Rotation lock"
+msgstr "Pasukimo užraktas"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -179,17 +179,17 @@ msgstr "Aptikti ekranus"
 msgid "Apply"
 msgstr "Taikyti"
 
-#: src/Views/DisplaysView.vala:146
+#: src/Views/DisplaysView.vala:84
+msgid "Rotation Lock:"
+msgstr "Pasukimo užraktas:"
+
+#: src/Views/DisplaysView.vala:157
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:147
+#: src/Views/DisplaysView.vala:158
 msgid "This can be caused by an invalid configuration."
 msgstr ""
-
-#: src/Views/DisplaysView.vala:168
-msgid "Rotation Lock:"
-msgstr "Pasukimo užraktas:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:34+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
 "PO-Revision-Date: 2018-05-29 12:21+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/switchboard/"
@@ -21,13 +21,13 @@ msgstr "Monitoare"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configurați rezoluția și poziția monitoarelor și proiectoarelor"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Lumină de noapte"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr ""
 
@@ -35,53 +35,53 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "Rezolutia ecranului"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
-msgid "Screen Rotation"
-msgstr "Rotația ecranului"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 msgid "Primary display"
 msgstr "Afișaj primar"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr "Dublar ecranul"
+
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+msgid "Screen Rotation"
+msgstr "Rotația ecranului"
 
 #: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 #, fuzzy
 msgid "Scaling factor"
 msgstr "Factorul de scalare:"
 
-#: src/DisplayPlug.vala:121
-#, fuzzy
-msgid "Rotation lock"
-msgstr "Blocare rotație:"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 #, fuzzy
 msgid "Schedule"
 msgstr "Planifică:"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 #, fuzzy
 msgid "Color temperature"
 msgstr "Temperatura de culoare:"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr ""
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr ""
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr ""
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr ""
+
+#: src/DisplayPlug.vala:130
+#, fuzzy
+msgid "Rotation lock"
+msgstr "Blocare rotație:"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -175,17 +175,17 @@ msgstr "Detectați monitoare"
 msgid "Apply"
 msgstr "Aplică"
 
-#: src/Views/DisplaysView.vala:146
+#: src/Views/DisplaysView.vala:84
+msgid "Rotation Lock:"
+msgstr "Blocare rotație:"
+
+#: src/Views/DisplaysView.vala:157
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:147
+#: src/Views/DisplaysView.vala:158
 msgid "This can be caused by an invalid configuration."
 msgstr ""
-
-#: src/Views/DisplaysView.vala:168
-msgid "Rotation Lock:"
-msgstr "Blocare rotație:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"

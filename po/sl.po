@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:34+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
 "PO-Revision-Date: 2020-04-27 12:10+0000\n"
 "Last-Translator: Jernej Virag <jernej@virag.si>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/switchboard/"
@@ -29,13 +29,13 @@ msgstr "Zasloni"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Nastavitve ločljivosti in položaja zaslonov"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Nočna luč"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr ""
 
@@ -43,49 +43,49 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "Ločljivost"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
-msgid "Screen Rotation"
-msgstr "Vrtenje"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 msgid "Primary display"
 msgstr "Primarni zaslon"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr "Zrcali zaslon"
+
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+msgid "Screen Rotation"
+msgstr "Vrtenje"
 
 #: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "Faktor povečave"
 
-#: src/DisplayPlug.vala:121
-msgid "Rotation lock"
-msgstr "Zaklep vrtenja"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr "Urnik"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 msgid "Color temperature"
 msgstr "Barvna temperatura"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr ""
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr ""
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr ""
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr ""
+
+#: src/DisplayPlug.vala:130
+msgid "Rotation lock"
+msgstr "Zaklep vrtenja"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -179,17 +179,17 @@ msgstr "Zaznaj zaslone"
 msgid "Apply"
 msgstr "Uporabi"
 
-#: src/Views/DisplaysView.vala:146
+#: src/Views/DisplaysView.vala:84
+msgid "Rotation Lock:"
+msgstr "Zaklep vrtenja:"
+
+#: src/Views/DisplaysView.vala:157
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:147
+#: src/Views/DisplaysView.vala:158
 msgid "This can be caused by an invalid configuration."
 msgstr ""
-
-#: src/Views/DisplaysView.vala:168
-msgid "Rotation Lock:"
-msgstr "Zaklep vrtenja:"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
