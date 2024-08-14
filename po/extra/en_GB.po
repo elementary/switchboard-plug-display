@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:01+0000\n"
+"POT-Creation-Date: 2024-08-14 19:34+0000\n"
 "PO-Revision-Date: 2023-06-24 12:07+0000\n"
 "Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
@@ -31,9 +31,9 @@ msgstr "Configure resolution and position of monitors and projectors"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:49
-#: data/display.metainfo.xml.in:64 data/display.metainfo.xml.in:82
-#: data/display.metainfo.xml.in:95 data/display.metainfo.xml.in:112
+#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:51
+#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:84
+#: data/display.metainfo.xml.in:97 data/display.metainfo.xml.in:114
 msgid "Minor updates:"
 msgstr "Minor updates:"
 
@@ -45,50 +45,54 @@ msgstr ""
 msgid "Dragging displays is now smoother"
 msgstr ""
 
-#: data/display.metainfo.xml.in:39 data/display.metainfo.xml.in:52
-#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:84
-#: data/display.metainfo.xml.in:97 data/display.metainfo.xml.in:114
+#: data/display.metainfo.xml.in:39
+msgid "Show an error dialog if errors occur"
+msgstr ""
+
+#: data/display.metainfo.xml.in:40 data/display.metainfo.xml.in:54
+#: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:86
+#: data/display.metainfo.xml.in:99 data/display.metainfo.xml.in:116
 msgid "Updated translations"
 msgstr "Updated translations"
 
-#: data/display.metainfo.xml.in:51
+#: data/display.metainfo.xml.in:53
 msgid "Redesign Night Light View"
 msgstr "Redesign Night Light View"
 
-#: data/display.metainfo.xml.in:73
+#: data/display.metainfo.xml.in:75
 msgid "Improvements:"
 msgstr "Improvements:"
 
-#: data/display.metainfo.xml.in:75
+#: data/display.metainfo.xml.in:77
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr "Move resolutions with a different aspect ratio to a submenu"
 
-#: data/display.metainfo.xml.in:76
+#: data/display.metainfo.xml.in:78
 msgid "Improve brightness in the dark style"
 msgstr "Improve brightness in the dark style"
 
-#: data/display.metainfo.xml.in:78 data/display.metainfo.xml.in:91
-#: data/display.metainfo.xml.in:108
+#: data/display.metainfo.xml.in:80 data/display.metainfo.xml.in:93
+#: data/display.metainfo.xml.in:110
 msgid "Fixes:"
 msgstr "Fixes:"
 
-#: data/display.metainfo.xml.in:80
+#: data/display.metainfo.xml.in:82
 msgid "Show display name on all workspaces"
 msgstr "Show display name on all workspaces"
 
-#: data/display.metainfo.xml.in:93
+#: data/display.metainfo.xml.in:95
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr "Ensure the \"Use this display\" switch works in more circumstances"
 
-#: data/display.metainfo.xml.in:104
+#: data/display.metainfo.xml.in:106
 msgid "New features:"
 msgstr "New features:"
 
-#: data/display.metainfo.xml.in:106
+#: data/display.metainfo.xml.in:108
 msgid "Support 3× scaling"
 msgstr "Support 3× scaling"
 
-#: data/display.metainfo.xml.in:110
+#: data/display.metainfo.xml.in:112
 msgid "Reliably detect accelerometers"
 msgstr "Reliably detect accelerometers"
 

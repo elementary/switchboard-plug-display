@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:01+0000\n"
+"POT-Creation-Date: 2024-08-14 19:34+0000\n"
 "PO-Revision-Date: 2024-06-20 18:16+0000\n"
 "Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/switchboard/"
@@ -32,9 +32,9 @@ msgstr "Настройка разрешения, положения монито
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:49
-#: data/display.metainfo.xml.in:64 data/display.metainfo.xml.in:82
-#: data/display.metainfo.xml.in:95 data/display.metainfo.xml.in:112
+#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:51
+#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:84
+#: data/display.metainfo.xml.in:97 data/display.metainfo.xml.in:114
 msgid "Minor updates:"
 msgstr "Незначительные обновления:"
 
@@ -46,52 +46,56 @@ msgstr ""
 msgid "Dragging displays is now smoother"
 msgstr ""
 
-#: data/display.metainfo.xml.in:39 data/display.metainfo.xml.in:52
-#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:84
-#: data/display.metainfo.xml.in:97 data/display.metainfo.xml.in:114
+#: data/display.metainfo.xml.in:39
+msgid "Show an error dialog if errors occur"
+msgstr ""
+
+#: data/display.metainfo.xml.in:40 data/display.metainfo.xml.in:54
+#: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:86
+#: data/display.metainfo.xml.in:99 data/display.metainfo.xml.in:116
 msgid "Updated translations"
 msgstr "Обновлены переводы"
 
-#: data/display.metainfo.xml.in:51
+#: data/display.metainfo.xml.in:53
 msgid "Redesign Night Light View"
 msgstr "Редизайн экрана ночного света"
 
-#: data/display.metainfo.xml.in:73
+#: data/display.metainfo.xml.in:75
 msgid "Improvements:"
 msgstr "Улучшения:"
 
-#: data/display.metainfo.xml.in:75
+#: data/display.metainfo.xml.in:77
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr "Расширения с отличающимся соотношением сторон перемещены в подменю"
 
-#: data/display.metainfo.xml.in:76
+#: data/display.metainfo.xml.in:78
 msgid "Improve brightness in the dark style"
 msgstr "Улучшенна яркость в темном стиле"
 
-#: data/display.metainfo.xml.in:78 data/display.metainfo.xml.in:91
-#: data/display.metainfo.xml.in:108
+#: data/display.metainfo.xml.in:80 data/display.metainfo.xml.in:93
+#: data/display.metainfo.xml.in:110
 msgid "Fixes:"
 msgstr "Исправления:"
 
-#: data/display.metainfo.xml.in:80
+#: data/display.metainfo.xml.in:82
 msgid "Show display name on all workspaces"
 msgstr "Отображение название дисплея на всех рабочих столах"
 
-#: data/display.metainfo.xml.in:93
+#: data/display.metainfo.xml.in:95
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 "Теперь переключатель «Использовать этот экран» работает при любых "
 "обстоятельствах"
 
-#: data/display.metainfo.xml.in:104
+#: data/display.metainfo.xml.in:106
 msgid "New features:"
 msgstr "Новые возможности:"
 
-#: data/display.metainfo.xml.in:106
+#: data/display.metainfo.xml.in:108
 msgid "Support 3× scaling"
 msgstr "Поддержка трехкратного увеличения"
 
-#: data/display.metainfo.xml.in:110
+#: data/display.metainfo.xml.in:112
 msgid "Reliably detect accelerometers"
 msgstr "Надежное обнаружение акселерометров"
 
