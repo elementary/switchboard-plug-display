@@ -328,7 +328,7 @@ public class Display.MonitorManager : GLib.Object {
         notify_property ("is-mirrored");
     }
 
-    public void set_scale_on_all_monitors (double new_scale) {
+    public void set_scale_on_all_monitors (double new_scale) throws Error {
         if (new_scale <= 0.0) {
             return;
         }
