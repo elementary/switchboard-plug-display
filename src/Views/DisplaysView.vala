@@ -144,7 +144,7 @@ public class Display.DisplaysView : Gtk.Box {
             "dialog-error"
         );
         error_dialog.show_error_details (details);
-        error_dialog.response.connect(error_dialog.destroy);
+        error_dialog.response.connect (error_dialog.destroy);
         error_dialog.present ();
     }
 
