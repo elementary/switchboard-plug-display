@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
+"POT-Creation-Date: 2024-08-14 19:01+0000\n"
 "PO-Revision-Date: 2019-05-15 03:03+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/switchboard/"
@@ -178,7 +178,15 @@ msgstr "डिस्प्ले शोधा"
 msgid "Apply"
 msgstr "लागू करा"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:142
+msgid "Failed to apply display settings"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:143
+msgid "This can be caused by an invalid configuration."
+msgstr ""
+
+#: src/Views/DisplaysView.vala:164
 msgid "Rotation Lock:"
 msgstr "रोटेशन लॉक:"
 

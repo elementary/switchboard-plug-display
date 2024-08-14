@@ -200,8 +200,11 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.primary = mutter_logical_monitor.primary;
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
                 foreach (var monitor in monitors) {
-                    if (compare_monitor_with_mutter_info (monitor, mutter_info) && !(monitor in virtual_monitor.monitors)) {
-                        virtual_monitor.monitors.add (monitor);
+                    if (compare_monitor_with_mutter_info (monitor, mutter_info)) {
+                        if (!(monitor in virtual_monitor.monitors)) {
+                            virtual_monitor.monitors.add (monitor);
+                        }
+
                         if (monitor in monitors_with_changed_modes) {
                             virtual_monitor.modes_changed ();
                         }
@@ -234,7 +237,7 @@ public class Display.MonitorManager : GLib.Object {
         }
     }
 
-    public void set_monitor_config () {
+    public void set_monitor_config () throws Error {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
             if (virtual_monitor.is_active) {
@@ -261,11 +264,7 @@ public class Display.MonitorManager : GLib.Object {
         }
 
         var properties = new GLib.HashTable<string, GLib.Variant> (str_hash, str_equal);
-        try {
-            iface.apply_monitors_config (current_serial, MutterApplyMethod.PERSISTENT, logical_monitors, properties);
-        } catch (Error e) {
-            critical (e.message);
-        }
+        iface.apply_monitors_config (current_serial, MutterApplyMethod.PERSISTENT, logical_monitors, properties);
     }
 
     public static MutterWriteLogicalMonitor get_mutter_logical_monitor (Display.VirtualMonitor virtual_monitor) {
@@ -340,7 +339,7 @@ public class Display.MonitorManager : GLib.Object {
         notify_property ("is-mirrored");
     }
 
-    public void set_scale_on_all_monitors (double new_scale) {
+    public void set_scale_on_all_monitors (double new_scale) throws Error {
         if (new_scale <= 0.0) {
             return;
         }

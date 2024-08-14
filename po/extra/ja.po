@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
-"PO-Revision-Date: 2024-07-15 07:16+0000\n"
+"POT-Creation-Date: 2024-08-14 19:01+0000\n"
+"PO-Revision-Date: 2024-08-14 19:01+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ja/>\n"
@@ -39,11 +39,11 @@ msgstr "そのほかのアップデート:"
 
 #: data/display.metainfo.xml.in:37
 msgid "Fix missing settings URI handlers"
-msgstr ""
+msgstr "設定 URI ハンドラーの不足を修正"
 
 #: data/display.metainfo.xml.in:38
 msgid "Dragging displays is now smoother"
-msgstr ""
+msgstr "ディスプレイのドラッグが、よりなめらかになるように修正"
 
 #: data/display.metainfo.xml.in:39 data/display.metainfo.xml.in:52
 #: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:84
