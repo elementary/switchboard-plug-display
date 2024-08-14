@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:01+0000\n"
+"POT-Creation-Date: 2024-08-14 19:34+0000\n"
 "PO-Revision-Date: 2024-01-12 00:11+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
@@ -43,7 +43,7 @@ msgstr "Фільтри"
 msgid "Screen Resolution"
 msgstr "Роздільна здатність"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
+#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
 msgid "Screen Rotation"
 msgstr "Обертання екрана"
 
@@ -55,7 +55,7 @@ msgstr "Основний екран"
 msgid "Screen mirroring"
 msgstr "Віддзеркалювати екран"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "Фактор масштабування"
 
@@ -175,15 +175,15 @@ msgstr "Виявити екрани"
 msgid "Apply"
 msgstr "Застосувати"
 
-#: src/Views/DisplaysView.vala:142
+#: src/Views/DisplaysView.vala:146
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:143
+#: src/Views/DisplaysView.vala:147
 msgid "This can be caused by an invalid configuration."
 msgstr ""
 
-#: src/Views/DisplaysView.vala:164
+#: src/Views/DisplaysView.vala:168
 msgid "Rotation Lock:"
 msgstr "Блокувати обертання:"
 
@@ -254,36 +254,36 @@ msgstr "Більше кольору"
 msgid "Less Color"
 msgstr "Менше кольору"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Use This Display"
 msgstr "Використовувати цей екран"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Resolution"
 msgstr "Роздільність"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 msgid "Refresh Rate"
 msgstr "Частота оновлення"
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr "Інше…"
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Налаштування екрана"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr "%g Гц"
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "Є основним екраном"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Зробити основним екраном"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:01+0000\n"
+"POT-Creation-Date: 2024-08-14 19:34+0000\n"
 "PO-Revision-Date: 2020-10-01 21:15+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Armenian <https://l10n.elementary.io/projects/switchboard/"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr ""
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
+#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
 msgid "Screen Rotation"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgstr "Հիմնական էկրան է"
 msgid "Screen mirroring"
 msgstr ""
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr ""
 
@@ -176,15 +176,15 @@ msgstr "Հայտնաբերել էկրաններ"
 msgid "Apply"
 msgstr "Կիրառել"
 
-#: src/Views/DisplaysView.vala:142
+#: src/Views/DisplaysView.vala:146
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:143
+#: src/Views/DisplaysView.vala:147
 msgid "This can be caused by an invalid configuration."
 msgstr ""
 
-#: src/Views/DisplaysView.vala:164
+#: src/Views/DisplaysView.vala:168
 msgid "Rotation Lock:"
 msgstr ""
 
@@ -251,37 +251,37 @@ msgstr ""
 msgid "Less Color"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 #, fuzzy
 #| msgid "Use This Display"
 msgid "Use This Display"
 msgstr "Օգտագործել այս էկրանը"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Resolution"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 msgid "Refresh Rate"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Կարգավորել էկրանը"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Նշել որպես հիմնական էկրան"

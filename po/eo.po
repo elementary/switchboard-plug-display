@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:01+0000\n"
+"POT-Creation-Date: 2024-08-14 19:34+0000\n"
 "PO-Revision-Date: 2019-07-15 00:28+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/switchboard/"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "Ekrana distingivo"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
+#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
 msgid "Screen Rotation"
 msgstr "Ekrana turno"
 
@@ -54,7 +54,7 @@ msgstr "Ĉefa ekrano"
 msgid "Screen mirroring"
 msgstr "Ekrana duobligo"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "Skalofaktoro"
 
@@ -178,15 +178,15 @@ msgstr "Detekti ekranojn"
 msgid "Apply"
 msgstr "Efektivigi"
 
-#: src/Views/DisplaysView.vala:142
+#: src/Views/DisplaysView.vala:146
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:143
+#: src/Views/DisplaysView.vala:147
 msgid "This can be caused by an invalid configuration."
 msgstr ""
 
-#: src/Views/DisplaysView.vala:164
+#: src/Views/DisplaysView.vala:168
 msgid "Rotation Lock:"
 msgstr "Turna bloko:"
 
@@ -257,42 +257,42 @@ msgstr "Pli varma"
 msgid "Less Color"
 msgstr "Malpli varma"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use This Display"
 msgstr "Uzi la ekranon:"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "Distingivo:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 #, fuzzy
 #| msgid "Refresh Rate:"
 msgid "Refresh Rate"
 msgstr "Refreŝiga rendimento:"
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Agordi ekranon"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "Estas la ĉefa ekrano"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Difini kiel ĉefan ekranon"
 

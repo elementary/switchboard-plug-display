@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:01+0000\n"
+"POT-Creation-Date: 2024-08-14 19:34+0000\n"
 "PO-Revision-Date: 2022-10-04 19:33+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "ڕوونی ڕوونما"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
+#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
 msgid "Screen Rotation"
 msgstr "شێوەی وەستانی ڕوونما"
 
@@ -54,7 +54,7 @@ msgstr "ڕوونمای سەرەکی"
 msgid "Screen mirroring"
 msgstr "ئاوێنەکردنی ڕوونما"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "فاکتەری سکەیلینگ"
 
@@ -178,15 +178,15 @@ msgstr "ڕوونما دەربخە"
 msgid "Apply"
 msgstr "پاشەکەوتکردن"
 
-#: src/Views/DisplaysView.vala:142
+#: src/Views/DisplaysView.vala:146
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:143
+#: src/Views/DisplaysView.vala:147
 msgid "This can be caused by an invalid configuration."
 msgstr ""
 
-#: src/Views/DisplaysView.vala:164
+#: src/Views/DisplaysView.vala:168
 msgid "Rotation Lock:"
 msgstr "قوفڵکردنی خولانەوە:"
 
@@ -257,42 +257,42 @@ msgstr "زیادکردنی گەرمی"
 msgid "Less Color"
 msgstr "کەمکردنی گەرمی"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 #, fuzzy
 #| msgid "Use this display:"
 msgid "Use This Display"
 msgstr "ئەم ڕوونمایە بەکاربهێنە:"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "ڕوونی:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 #, fuzzy
 #| msgid "Refresh Rate:"
 msgid "Refresh Rate"
 msgstr "ڕێژەی نوێبوونەوە:"
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr "هیتر…"
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "ڕێکخستنی ڕوونما"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr "%g هێرتز"
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "ڕوونمای سەرەکییە"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "وەکو ڕوونمای سەرەکی دایبنێ"
 

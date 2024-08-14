@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 19:01+0000\n"
+"POT-Creation-Date: 2024-08-14 19:34+0000\n"
 "PO-Revision-Date: 2018-05-29 12:21+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/switchboard/"
@@ -35,7 +35,7 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "Rezolutia ecranului"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
+#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:150
 msgid "Screen Rotation"
 msgstr "Rotația ecranului"
 
@@ -47,7 +47,7 @@ msgstr "Afișaj primar"
 msgid "Screen mirroring"
 msgstr "Dublar ecranul"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 #, fuzzy
 msgid "Scaling factor"
 msgstr "Factorul de scalare:"
@@ -175,15 +175,15 @@ msgstr "Detectați monitoare"
 msgid "Apply"
 msgstr "Aplică"
 
-#: src/Views/DisplaysView.vala:142
+#: src/Views/DisplaysView.vala:146
 msgid "Failed to apply display settings"
 msgstr ""
 
-#: src/Views/DisplaysView.vala:143
+#: src/Views/DisplaysView.vala:147
 msgid "This can be caused by an invalid configuration."
 msgstr ""
 
-#: src/Views/DisplaysView.vala:164
+#: src/Views/DisplaysView.vala:168
 msgid "Rotation Lock:"
 msgstr "Blocare rotație:"
 
@@ -254,40 +254,40 @@ msgstr "Mai cald"
 msgid "Less Color"
 msgstr "Mai puțin cald"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 #, fuzzy
 #| msgid "Use This Display:"
 msgid "Use This Display"
 msgstr "Utilizați acest afișaj:"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "Rezoluţie:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 msgid "Refresh Rate"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Configurați afișarea"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "Este afișajul principal"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Setați ca afișaj principal"
 
