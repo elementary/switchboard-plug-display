@@ -23,6 +23,7 @@ public class Display.MonitorManager : GLib.Object {
     public Gee.LinkedList<Display.VirtualMonitor> virtual_monitors { get; construct; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
+    public bool fractional_scale_enabled { get; private set; }
     public bool global_scale_required { get; private set; }
     public bool mirroring_supported { get; private set; }
     public int max_width { get; private set; }
@@ -102,6 +103,13 @@ public class Display.MonitorManager : GLib.Object {
              */
             global_scale_required = false;
         }
+
+        uint layout_mode = 1; // Absence of "layout-mode" means logical (= 1) according to the documentation.
+        var layout_mode_variant = properties.lookup ("layout-mode");
+        if (layout_mode_variant != null) {
+            layout_mode = layout_mode_variant.get_uint32 ();
+        }
+        fractional_scale_enabled = layout_mode == 1;
 
         var max_screen_size_variant = properties.lookup ("max-screen-size");
         if (max_screen_size_variant != null) {

@@ -67,7 +67,12 @@ public class Display.DisplaysView : Gtk.Box {
 
             var action_bar = new Gtk.ActionBar ();
             action_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
-            action_bar.pack_start (dpi_box);
+
+            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
+            if (monitor_manager.global_scale_required) {
+                action_bar.pack_start (dpi_box);
+            }
+
             action_bar.pack_start (mirror_box);
 
             var schema_source = GLib.SettingsSchemaSource.get_default ();
@@ -99,7 +104,6 @@ public class Display.DisplaysView : Gtk.Box {
                 apply_button.sensitive = changed;
             });
 
-            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_box.sensitive = monitor_manager.monitors.size > 1;
             monitor_manager.notify["monitor-number"].connect (() => {
                 mirror_box.sensitive = monitor_manager.monitors.size > 1;
