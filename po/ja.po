@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-05-06 15:13+0000\n"
+"PO-Revision-Date: 2024-08-15 22:16+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-02-15 06:45+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -180,11 +180,11 @@ msgstr "回転をロック:"
 
 #: src/Views/DisplaysView.vala:157
 msgid "Failed to apply display settings"
-msgstr ""
+msgstr "ディスプレイ設定を適用できませんでした"
 
 #: src/Views/DisplaysView.vala:158
 msgid "This can be caused by an invalid configuration."
-msgstr ""
+msgstr "これは無効な設定により発生した可能性があります。"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
