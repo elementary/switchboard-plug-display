@@ -226,7 +226,7 @@ public class Display.MonitorManager : GLib.Object {
         }
     }
 
-    public void set_monitor_config () {
+    public void set_monitor_config () throws Error {
         MutterWriteLogicalMonitor[] logical_monitors = {};
         foreach (var virtual_monitor in virtual_monitors) {
             if (virtual_monitor.is_active) {
@@ -253,11 +253,7 @@ public class Display.MonitorManager : GLib.Object {
         }
 
         var properties = new GLib.HashTable<string, GLib.Variant> (str_hash, str_equal);
-        try {
-            iface.apply_monitors_config (current_serial, MutterApplyMethod.PERSISTENT, logical_monitors, properties);
-        } catch (Error e) {
-            critical (e.message);
-        }
+        iface.apply_monitors_config (current_serial, MutterApplyMethod.PERSISTENT, logical_monitors, properties);
     }
 
     public static MutterWriteLogicalMonitor get_mutter_logical_monitor (Display.VirtualMonitor virtual_monitor) {
