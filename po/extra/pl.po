@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2023-06-29 16:07+0000\n"
-"Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
+"PO-Revision-Date: 2024-08-17 10:16+0000\n"
+"Last-Translator: Marcin Serwin <marcin@serwin.dev>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/pl/>\n"
 "Language: pl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
@@ -40,15 +40,15 @@ msgstr "Mniejsze aktualizacje:"
 
 #: data/display.metainfo.xml.in:37
 msgid "Fix missing settings URI handlers"
-msgstr ""
+msgstr "Naprawiono brakujące odnośniki URI"
 
 #: data/display.metainfo.xml.in:38
 msgid "Dragging displays is now smoother"
-msgstr ""
+msgstr "Przeciąganie wyświetlaczy jest teraz płynniejsze"
 
 #: data/display.metainfo.xml.in:39
 msgid "Show an error dialog if errors occur"
-msgstr ""
+msgstr "Przy wystąpieniu błędu pokazywany jest dialog"
 
 #: data/display.metainfo.xml.in:40 data/display.metainfo.xml.in:54
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:86
