@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-06-27 19:16+0000\n"
+"PO-Revision-Date: 2024-08-17 10:16+0000\n"
 "Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
@@ -39,15 +39,15 @@ msgstr "Kleine updates:"
 
 #: data/display.metainfo.xml.in:37
 msgid "Fix missing settings URI handlers"
-msgstr ""
+msgstr "Fix missende instellingen URI handlers"
 
 #: data/display.metainfo.xml.in:38
 msgid "Dragging displays is now smoother"
-msgstr ""
+msgstr "Schermen slepen is nu vloeiender"
 
 #: data/display.metainfo.xml.in:39
 msgid "Show an error dialog if errors occur"
-msgstr ""
+msgstr "Geef een foutdialoog weer als er een fout optreedt"
 
 #: data/display.metainfo.xml.in:40 data/display.metainfo.xml.in:54
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:86
@@ -78,23 +78,23 @@ msgstr "Oplossingen:"
 
 #: data/display.metainfo.xml.in:82
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "Geef display-naam op alle werkruimtes"
 
 #: data/display.metainfo.xml.in:95
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
-msgstr ""
+msgstr "Zorg dat de \"gebruik dit scherm\" switch werkt in meer omstandigheden"
 
 #: data/display.metainfo.xml.in:106
 msgid "New features:"
-msgstr "Nieuwe functies:"
+msgstr "Nieuwe functionaliteit:"
 
 #: data/display.metainfo.xml.in:108
 msgid "Support 3× scaling"
-msgstr ""
+msgstr "Ondersteun 3x schalen"
 
 #: data/display.metainfo.xml.in:112
 msgid "Reliably detect accelerometers"
-msgstr ""
+msgstr "Detecteer versnellingsmeters betrouwbaarder"
 
 #~ msgid "Fix 1px gaps between displays"
 #~ msgstr "Een probleem opgelost met 1 pixel tussenruimte tussen beeldschermen"
