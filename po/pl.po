@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-01-15 20:21+0000\n"
-"Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
+"PO-Revision-Date: 2024-08-17 10:16+0000\n"
+"Last-Translator: Marcin Serwin <marcin@serwin.dev>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/pl/>\n"
 "Language: pl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -181,11 +181,11 @@ msgstr "Blokada obrotu:"
 
 #: src/Views/DisplaysView.vala:157
 msgid "Failed to apply display settings"
-msgstr ""
+msgstr "Nie udało się zaaplikować ustawień wyświetlacza"
 
 #: src/Views/DisplaysView.vala:158
 msgid "This can be caused by an invalid configuration."
-msgstr ""
+msgstr "Może to być spowodowane nieprawidłową konfiguracją."
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
