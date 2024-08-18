@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-07-23 18:16+0000\n"
+"PO-Revision-Date: 2024-08-18 17:16+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/he/>\n"
@@ -39,15 +39,15 @@ msgstr "עדכונים משניים:"
 
 #: data/display.metainfo.xml.in:37
 msgid "Fix missing settings URI handlers"
-msgstr ""
+msgstr "תוקנו הגדרות חסרות במטפלי כתובות מלאות"
 
 #: data/display.metainfo.xml.in:38
 msgid "Dragging displays is now smoother"
-msgstr ""
+msgstr "גרירת התצוגות חלקה יותר מעכשיו"
 
 #: data/display.metainfo.xml.in:39
 msgid "Show an error dialog if errors occur"
-msgstr ""
+msgstr "תוצג חלונית שגיאה אם מתרחשת שגיאה"
 
 #: data/display.metainfo.xml.in:40 data/display.metainfo.xml.in:54
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:86
