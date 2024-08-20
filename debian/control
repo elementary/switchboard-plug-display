@@ -15,7 +15,7 @@ Homepage: https://github.com/elementary/switchboard-plug-display
 Package: io.elementary.settings.display
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Recommends: gala (>= 7.1.3), gnome-settings-daemon
+Recommends: gala (>= 8.0.0), gnome-settings-daemon
 Enhances: io.elementary.settings
 Description: Settings plugin for display settings
  This plug can be used to change display settings like orientation and
