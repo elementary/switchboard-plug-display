@@ -1,3 +1,9 @@
+io.elementary.settings.display (8.0.0) noble; urgency=medium
+
+  * New upstream release
+
+ -- Danielle Foré <danielle@elementary.io>  Tue, 20 Aug 2024 08:20:29 -0700
+
 io.elementary.settings.display (7.0.0) jammy; urgency=medium
 
   * New upstream release
