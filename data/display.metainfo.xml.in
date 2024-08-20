@@ -13,7 +13,7 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/elementary/switchboard-plug-display/7.0.0/data/screenshot.png</image>
+      <image>https://raw.githubusercontent.com/elementary/switchboard-plug-display/8.0.0/data/screenshot.png</image>
     </screenshot>
   </screenshots>
 
@@ -30,7 +30,7 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
-    <release version="8.0.0" date="2024-08-14" urgency="medium">
+    <release version="8.0.0" date="2024-08-20" urgency="medium">
       <description>
         <p>Minor updates:</p>
         <ul>
