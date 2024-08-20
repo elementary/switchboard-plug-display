@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
 "PO-Revision-Date: 2022-01-10 21:58+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/switchboard/"
@@ -28,13 +28,13 @@ msgstr "Displeje"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Nastavit rozlišení a pozici monitorů nebo projektorů"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Noční světlo"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr ""
 
@@ -42,49 +42,49 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "Rozlišení obrazovky"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
-msgid "Screen Rotation"
-msgstr "Otočení obrazovky"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 msgid "Primary display"
 msgstr "Hlavní displej"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr "Zrcadlení obrazovky"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+msgid "Screen Rotation"
+msgstr "Otočení obrazovky"
+
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "Měřítko"
 
-#: src/DisplayPlug.vala:121
-msgid "Rotation lock"
-msgstr "Zamknutí otáčení"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr "Rozvrh"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 msgid "Color temperature"
 msgstr "Teplota barev"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr ""
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr ""
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr ""
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr ""
+
+#: src/DisplayPlug.vala:130
+msgid "Rotation lock"
+msgstr "Zamknutí otáčení"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -178,9 +178,17 @@ msgstr "Rozpoznat displeje"
 msgid "Apply"
 msgstr "Použít"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:84
 msgid "Rotation Lock:"
 msgstr "Zamknutí otočení:"
+
+#: src/Views/DisplaysView.vala:157
+msgid "Failed to apply display settings"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:158
+msgid "This can be caused by an invalid configuration."
+msgstr ""
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
@@ -249,40 +257,40 @@ msgstr "Teplejší"
 msgid "Less Color"
 msgstr "Méně teplé"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Use This Display"
 msgstr "Použít tento displej"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "Rozlišení:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 #, fuzzy
 #| msgid "Refresh Rate:"
 msgid "Refresh Rate"
 msgstr "Obnovovací frekvence:"
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr "Ostatní…"
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Nastavit displej"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "Je primární displej"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Nastavit jako primární displej"
 

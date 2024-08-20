@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
 "PO-Revision-Date: 2020-10-01 21:15+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Croatian <https://l10n.elementary.io/projects/switchboard/"
@@ -29,13 +29,13 @@ msgstr "Zasloni"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Prilagodite razlučivost i položaj zaslona i projektora"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr ""
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr ""
 
@@ -44,52 +44,52 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "Razlučivost:"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
-#, fuzzy
-msgid "Screen Rotation"
-msgstr "Zakretanje:"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 #, fuzzy
 msgid "Primary display"
 msgstr "Primarni zaslon"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr ""
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+#, fuzzy
+msgid "Screen Rotation"
+msgstr "Zakretanje:"
+
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr ""
 
-#: src/DisplayPlug.vala:121
-#, fuzzy
-msgid "Rotation lock"
-msgstr "Zakretanje:"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr ""
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 msgid "Color temperature"
 msgstr ""
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr ""
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr ""
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr ""
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr ""
+
+#: src/DisplayPlug.vala:130
+#, fuzzy
+msgid "Rotation lock"
+msgstr "Zakretanje:"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -180,10 +180,18 @@ msgstr "Otkrij zaslone"
 msgid "Apply"
 msgstr "Primijeni"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:84
 #, fuzzy
 msgid "Rotation Lock:"
 msgstr "Zakretanje:"
+
+#: src/Views/DisplaysView.vala:157
+msgid "Failed to apply display settings"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:158
+msgid "This can be caused by an invalid configuration."
+msgstr ""
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
@@ -248,38 +256,38 @@ msgstr ""
 msgid "Less Color"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Use This Display"
 msgstr "Koristi ovaj zaslon"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "Razlučivost:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 msgid "Refresh Rate"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Prilagodite zaslon"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "Postavi kao glavni zaslon"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Postavi kao glavni zaslon"
 

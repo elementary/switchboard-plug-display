@@ -36,10 +36,12 @@
         <ul>
           <li>Fix missing settings URI handlers</li>
           <li>Dragging displays is now smoother</li>
+          <li>Show an error dialog if errors occur</li>
           <li>Updated translations</li>
         </ul>
       </description>
       <issues>
+        <issue url="https://github.com/elementary/switchboard-plug-display/issues/117">Add fractional scaling support</issue>
         <issue url="https://github.com/elementary/switchboard-plug-display/issues/352">Display name tags positioned incorrectly under Wayland</issue>
       </issues>
     </release>

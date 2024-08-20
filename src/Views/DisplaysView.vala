@@ -67,25 +67,41 @@ public class Display.DisplaysView : Gtk.Box {
 
             var action_bar = new Gtk.ActionBar ();
             action_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
-            action_bar.pack_start (dpi_box);
+
+            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
+            if (monitor_manager.global_scale_required) {
+                action_bar.pack_start (dpi_box);
+            }
+
             action_bar.pack_start (mirror_box);
 
-            var schema_source = GLib.SettingsSchemaSource.get_default ();
-            var rotation_lock_schema = schema_source.lookup (TOUCHSCREEN_SETTINGS_PATH, true);
-            if (rotation_lock_schema != null) {
-                rotation_lock_box = new Gtk.Box (HORIZONTAL, 6) {
-                    margin_top = 6,
-                    margin_end = 6,
-                    margin_bottom = 6,
-                    margin_start = 6,
-                    valign = CENTER
-                };
+            if (SensorManager.get_default ().has_accelerometer) {
+                var schema_source = GLib.SettingsSchemaSource.get_default ();
+                var rotation_lock_schema = schema_source.lookup (TOUCHSCREEN_SETTINGS_PATH, true);
+                if (rotation_lock_schema != null) {
+                    var rotation_lock_switch = new Gtk.Switch ();
 
-                action_bar.pack_start (rotation_lock_box);
+                    var rotation_lock_label = new Gtk.Label (_("Rotation Lock:")) {
+                        mnemonic_widget = rotation_lock_switch
+                    };
 
-                detect_accelerometer.begin ();
-            } else {
-                info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
+                    rotation_lock_box = new Gtk.Box (HORIZONTAL, 6) {
+                        margin_top = 6,
+                        margin_end = 6,
+                        margin_bottom = 6,
+                        margin_start = 6,
+                        valign = CENTER
+                    };
+                    rotation_lock_box.append (rotation_lock_label);
+                    rotation_lock_box.append (rotation_lock_switch);
+
+                    action_bar.pack_start (rotation_lock_box);
+
+                    var touchscreen_settings = new GLib.Settings (TOUCHSCREEN_SETTINGS_PATH);
+                    touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "active", DEFAULT);
+                } else {
+                    info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
+                }
             }
 
             action_bar.pack_end (button_box);
@@ -99,7 +115,6 @@ public class Display.DisplaysView : Gtk.Box {
                 apply_button.sensitive = changed;
             });
 
-            unowned Display.MonitorManager monitor_manager = Display.MonitorManager.get_default ();
             mirror_box.sensitive = monitor_manager.monitors.size > 1;
             monitor_manager.notify["monitor-number"].connect (() => {
                 mirror_box.sensitive = monitor_manager.monitors.size > 1;
@@ -107,14 +122,22 @@ public class Display.DisplaysView : Gtk.Box {
 
             detect_button.clicked.connect (() => displays_overlay.rescan_displays ());
             apply_button.clicked.connect (() => {
-                monitor_manager.set_monitor_config ();
+                try {
+                    monitor_manager.set_monitor_config ();
+                } catch (Error e) {
+                    show_error_dialog (e.message);
+                }
                 apply_button.sensitive = false;
             });
 
             dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
 
             dpi_combo.changed.connect (() => {
-                monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+                try {
+                    monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+                } catch (Error e) {
+                    show_error_dialog (e.message);
+                }
             });
 
             mirror_switch.active = monitor_manager.is_mirrored;
@@ -129,31 +152,14 @@ public class Display.DisplaysView : Gtk.Box {
             });
     }
 
-    private async void detect_accelerometer () {
-        bool has_accelerometer = false;
-
-        try {
-            SensorProxy sensors = yield GLib.Bus.get_proxy (BusType.SYSTEM, "net.hadess.SensorProxy", "/net/hadess/SensorProxy");
-            has_accelerometer = sensors.has_accelerometer;
-        } catch (Error e) {
-            info ("Unable to connect to SensorProxy bus, probably means no accelerometer supported: %s", e.message);
-        }
-
-        if (has_accelerometer) {
-            var touchscreen_settings = new GLib.Settings (TOUCHSCREEN_SETTINGS_PATH);
-
-            var rotation_lock_label = new Gtk.Label (_("Rotation Lock:"));
-            var rotation_lock_switch = new Gtk.Switch ();
-
-            rotation_lock_box.append (rotation_lock_label);
-            rotation_lock_box.append (rotation_lock_switch);
-
-            touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "state", DEFAULT);
-        }
-    }
-
-    [DBus (name = "net.hadess.SensorProxy")]
-    private interface SensorProxy : GLib.DBusProxy {
-        public abstract bool has_accelerometer { get; }
+    private void show_error_dialog (string details) {
+        var error_dialog = new Granite.MessageDialog.with_image_from_icon_name (
+            _("Failed to apply display settings"),
+            _("This can be caused by an invalid configuration."),
+            "dialog-error"
+        );
+        error_dialog.show_error_details (details);
+        error_dialog.response.connect (error_dialog.destroy);
+        error_dialog.present ();
     }
 }

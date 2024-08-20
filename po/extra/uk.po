@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
-"PO-Revision-Date: 2023-10-16 18:10+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
+"PO-Revision-Date: 2024-08-15 22:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
@@ -32,65 +32,69 @@ msgstr "Налаштування роздільної здатності, пол
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:49
-#: data/display.metainfo.xml.in:64 data/display.metainfo.xml.in:82
-#: data/display.metainfo.xml.in:95 data/display.metainfo.xml.in:112
+#: data/display.metainfo.xml.in:35 data/display.metainfo.xml.in:51
+#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:84
+#: data/display.metainfo.xml.in:97 data/display.metainfo.xml.in:114
 msgid "Minor updates:"
 msgstr "Незначні оновлення:"
 
 #: data/display.metainfo.xml.in:37
 msgid "Fix missing settings URI handlers"
-msgstr ""
+msgstr "Виправлено відсутність налаштувань обробників URI"
 
 #: data/display.metainfo.xml.in:38
 msgid "Dragging displays is now smoother"
-msgstr ""
+msgstr "Перетягування дисплеїв стало плавнішим"
 
-#: data/display.metainfo.xml.in:39 data/display.metainfo.xml.in:52
-#: data/display.metainfo.xml.in:66 data/display.metainfo.xml.in:84
-#: data/display.metainfo.xml.in:97 data/display.metainfo.xml.in:114
+#: data/display.metainfo.xml.in:39
+msgid "Show an error dialog if errors occur"
+msgstr "Показ діалогового вікна з помилками, якщо вони виникають"
+
+#: data/display.metainfo.xml.in:40 data/display.metainfo.xml.in:54
+#: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:86
+#: data/display.metainfo.xml.in:99 data/display.metainfo.xml.in:116
 msgid "Updated translations"
 msgstr "Оновлені переклади"
 
-#: data/display.metainfo.xml.in:51
+#: data/display.metainfo.xml.in:53
 msgid "Redesign Night Light View"
 msgstr "Перероблено подання режиму нічного світла"
 
-#: data/display.metainfo.xml.in:73
+#: data/display.metainfo.xml.in:75
 msgid "Improvements:"
 msgstr "Удосконалення:"
 
-#: data/display.metainfo.xml.in:75
+#: data/display.metainfo.xml.in:77
 msgid "Move resolutions with a different aspect ratio to a submenu"
 msgstr "Меню роздільності з іншим співвідношенням сторін переміщено до підменю"
 
-#: data/display.metainfo.xml.in:76
+#: data/display.metainfo.xml.in:78
 msgid "Improve brightness in the dark style"
 msgstr "Покращено яскравість у темному стилі"
 
-#: data/display.metainfo.xml.in:78 data/display.metainfo.xml.in:91
-#: data/display.metainfo.xml.in:108
+#: data/display.metainfo.xml.in:80 data/display.metainfo.xml.in:93
+#: data/display.metainfo.xml.in:110
 msgid "Fixes:"
 msgstr "Виправлення:"
 
-#: data/display.metainfo.xml.in:80
+#: data/display.metainfo.xml.in:82
 msgid "Show display name on all workspaces"
 msgstr "Показуване ім'я зображено на всіх робочих просторах"
 
-#: data/display.metainfo.xml.in:93
+#: data/display.metainfo.xml.in:95
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
 msgstr ""
 "Відтепер перемикач «Використовувати цей екран» працює за будь-яких обставин"
 
-#: data/display.metainfo.xml.in:104
+#: data/display.metainfo.xml.in:106
 msgid "New features:"
 msgstr "Нові функції:"
 
-#: data/display.metainfo.xml.in:106
+#: data/display.metainfo.xml.in:108
 msgid "Support 3× scaling"
 msgstr "Підтримка 3× збільшення"
 
-#: data/display.metainfo.xml.in:110
+#: data/display.metainfo.xml.in:112
 msgid "Reliably detect accelerometers"
 msgstr "Надійно виявляти акселерометри"
 

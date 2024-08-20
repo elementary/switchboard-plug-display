@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
-"PO-Revision-Date: 2024-01-12 00:11+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
+"PO-Revision-Date: 2024-08-15 22:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -29,13 +29,13 @@ msgstr "Екрани"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Налаштування роздільної здатності, положення екранів та проєкторів"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Нічне світло"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr "Фільтри"
 
@@ -43,49 +43,49 @@ msgstr "Фільтри"
 msgid "Screen Resolution"
 msgstr "Роздільна здатність"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
-msgid "Screen Rotation"
-msgstr "Обертання екрана"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 msgid "Primary display"
 msgstr "Основний екран"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr "Віддзеркалювати екран"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+msgid "Screen Rotation"
+msgstr "Обертання екрана"
+
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "Фактор масштабування"
 
-#: src/DisplayPlug.vala:121
-msgid "Rotation lock"
-msgstr "Блокувати обертання"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr "Розклад"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 msgid "Color temperature"
 msgstr "Колірна температура"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr "Кольорова сліпота"
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr "Порушення кольорового зору"
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr "Відтінки сірого"
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr "Монохромний"
+
+#: src/DisplayPlug.vala:130
+msgid "Rotation lock"
+msgstr "Блокувати обертання"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -175,9 +175,17 @@ msgstr "Виявити екрани"
 msgid "Apply"
 msgstr "Застосувати"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:84
 msgid "Rotation Lock:"
 msgstr "Блокувати обертання:"
+
+#: src/Views/DisplaysView.vala:157
+msgid "Failed to apply display settings"
+msgstr "Не вдалося застосувати налаштування дисплея"
+
+#: src/Views/DisplaysView.vala:158
+msgid "This can be caused by an invalid configuration."
+msgstr "Це може бути спричинено неправильною конфігурацією."
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
@@ -246,36 +254,36 @@ msgstr "Більше кольору"
 msgid "Less Color"
 msgstr "Менше кольору"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Use This Display"
 msgstr "Використовувати цей екран"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Resolution"
 msgstr "Роздільність"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 msgid "Refresh Rate"
 msgstr "Частота оновлення"
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr "Інше…"
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Налаштування екрана"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr "%g Гц"
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "Є основним екраном"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Зробити основним екраном"
 

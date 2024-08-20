@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
 "PO-Revision-Date: 2018-06-22 12:57+0000\n"
 "Last-Translator: Shawn <syst3mfailur3@gmail.com>\n"
 "Language-Team: English (Canada) <https://weblate.elementary.io/projects/"
@@ -28,13 +28,13 @@ msgstr "Displays"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configure resolution and position of monitors and projectors"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Night Light"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr ""
 
@@ -42,53 +42,53 @@ msgstr ""
 msgid "Screen Resolution"
 msgstr "Screen Resolution"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
-msgid "Screen Rotation"
-msgstr "Screen Rotation"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 msgid "Primary display"
 msgstr "Primary display"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr "Screen mirroring"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+msgid "Screen Rotation"
+msgstr "Screen Rotation"
+
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 #, fuzzy
 msgid "Scaling factor"
 msgstr "Scaling factor:"
 
-#: src/DisplayPlug.vala:121
-#, fuzzy
-msgid "Rotation lock"
-msgstr "Rotation Lock:"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 #, fuzzy
 msgid "Schedule"
 msgstr "Schedule:"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 #, fuzzy
 msgid "Color temperature"
 msgstr "Colour temperature:"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr ""
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr ""
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr ""
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr ""
+
+#: src/DisplayPlug.vala:130
+#, fuzzy
+msgid "Rotation lock"
+msgstr "Rotation Lock:"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -182,9 +182,17 @@ msgstr "Detect Displays"
 msgid "Apply"
 msgstr "Apply"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:84
 msgid "Rotation Lock:"
 msgstr "Rotation Lock:"
+
+#: src/Views/DisplaysView.vala:157
+msgid "Failed to apply display settings"
+msgstr ""
+
+#: src/Views/DisplaysView.vala:158
+msgid "This can be caused by an invalid configuration."
+msgstr ""
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
@@ -253,38 +261,38 @@ msgstr "More Warm"
 msgid "Less Color"
 msgstr "Less Warm"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Use This Display"
 msgstr "Use This Display"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "Resolution:"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 msgid "Refresh Rate"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Configure display"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "Is the primary display"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Set as primary display"
 

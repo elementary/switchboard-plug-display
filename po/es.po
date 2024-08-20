@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 14:14+0000\n"
-"PO-Revision-Date: 2024-06-15 16:16+0000\n"
+"POT-Creation-Date: 2024-08-14 21:01+0000\n"
+"PO-Revision-Date: 2024-08-15 22:16+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/es/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -28,13 +28,13 @@ msgstr "Pantallas"
 msgid "Configure resolution and position of monitors and projectors"
 msgstr "Configure la resolución y la posición de monitores y proyectores"
 
-#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:122 src/DisplayPlug.vala:123
-#: src/DisplayPlug.vala:124 src/Views/NightLightView.vala:8
+#: src/DisplayPlug.vala:56 src/DisplayPlug.vala:121 src/DisplayPlug.vala:122
+#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:8
 msgid "Night Light"
 msgstr "Luz nocturna"
 
-#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:125 src/DisplayPlug.vala:126
-#: src/DisplayPlug.vala:127 src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:62 src/DisplayPlug.vala:124 src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:126 src/DisplayPlug.vala:127
 msgid "Filters"
 msgstr "Filtros"
 
@@ -42,49 +42,49 @@ msgstr "Filtros"
 msgid "Screen Resolution"
 msgstr "Resolución de pantalla"
 
-#: src/DisplayPlug.vala:117 src/Widgets/DisplayWidget.vala:131
-msgid "Screen Rotation"
-msgstr "Giro de pantalla"
-
-#: src/DisplayPlug.vala:118
+#: src/DisplayPlug.vala:117
 msgid "Primary display"
 msgstr "Pantalla principal"
 
-#: src/DisplayPlug.vala:119
+#: src/DisplayPlug.vala:118
 msgid "Screen mirroring"
 msgstr "Duplicar pantalla"
 
-#: src/DisplayPlug.vala:120
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+msgid "Screen Rotation"
+msgstr "Giro de pantalla"
+
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
 msgstr "Factor de escala"
 
-#: src/DisplayPlug.vala:121
-msgid "Rotation lock"
-msgstr "Bloqueo de giro"
-
-#: src/DisplayPlug.vala:123 src/Views/NightLightView.vala:38
+#: src/DisplayPlug.vala:122 src/Views/NightLightView.vala:38
 msgid "Schedule"
 msgstr "Programar"
 
-#: src/DisplayPlug.vala:124
+#: src/DisplayPlug.vala:123
 msgid "Color temperature"
 msgstr "Temperatura del color"
 
-#: src/DisplayPlug.vala:125
+#: src/DisplayPlug.vala:124
 msgid "Color Blindness"
 msgstr "Daltonismo"
 
-#: src/DisplayPlug.vala:126
+#: src/DisplayPlug.vala:125
 msgid "Color Vision Deficiency"
 msgstr "Deficiencia de visión cromática"
 
-#: src/DisplayPlug.vala:127 src/Views/FiltersView.vala:129
+#: src/DisplayPlug.vala:126 src/Views/FiltersView.vala:129
 msgid "Grayscale"
 msgstr "Escala de grises"
 
-#: src/DisplayPlug.vala:128
+#: src/DisplayPlug.vala:127
 msgid "Monochrome"
 msgstr "Monocromático"
+
+#: src/DisplayPlug.vala:130
+msgid "Rotation lock"
+msgstr "Bloqueo de giro"
 
 #: src/Interfaces/MutterDisplayConfig.vala:58
 msgid "Clockwise"
@@ -174,9 +174,17 @@ msgstr "Detectar pantallas"
 msgid "Apply"
 msgstr "Aplicar"
 
-#: src/Views/DisplaysView.vala:145
+#: src/Views/DisplaysView.vala:84
 msgid "Rotation Lock:"
 msgstr "Bloqueo de giro:"
+
+#: src/Views/DisplaysView.vala:157
+msgid "Failed to apply display settings"
+msgstr "No se pudo aplicar la configuración de pantalla"
+
+#: src/Views/DisplaysView.vala:158
+msgid "This can be caused by an invalid configuration."
+msgstr "Esto puede deberse a una configuración inválida."
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
@@ -246,36 +254,36 @@ msgstr "Más color"
 msgid "Less Color"
 msgstr "Menos color"
 
-#: src/Widgets/DisplayWidget.vala:107
+#: src/Widgets/DisplayWidget.vala:126
 msgid "Use This Display"
 msgstr "Utilizar esta pantalla"
 
-#: src/Widgets/DisplayWidget.vala:117
+#: src/Widgets/DisplayWidget.vala:136
 msgid "Resolution"
 msgstr "Resolución"
 
-#: src/Widgets/DisplayWidget.vala:145
+#: src/Widgets/DisplayWidget.vala:164
 msgid "Refresh Rate"
 msgstr "Frecuencia de actualización"
 
-#: src/Widgets/DisplayWidget.vala:217
+#: src/Widgets/DisplayWidget.vala:236
 msgid "Other…"
 msgstr "Otros…"
 
-#: src/Widgets/DisplayWidget.vala:263
+#: src/Widgets/DisplayWidget.vala:296
 msgid "Configure display"
 msgstr "Configurar pantalla"
 
-#: src/Widgets/DisplayWidget.vala:452
+#: src/Widgets/DisplayWidget.vala:512
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:519
+#: src/Widgets/DisplayWidget.vala:579
 msgid "Is the primary display"
 msgstr "Es la pantalla principal"
 
-#: src/Widgets/DisplayWidget.vala:522
+#: src/Widgets/DisplayWidget.vala:582
 msgid "Set as primary display"
 msgstr "Establecer como pantalla principal"
 
