@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2023-06-24 12:07+0000\n"
+"PO-Revision-Date: 2024-08-22 09:16+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/ca/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/display.metainfo.xml.in:11
 msgid "Display Settings"
@@ -39,15 +39,15 @@ msgstr "Actualitzacions menors:"
 
 #: data/display.metainfo.xml.in:37
 msgid "Fix missing settings URI handlers"
-msgstr ""
+msgstr "Correcció dels controladors d'URI de configuració que falten"
 
 #: data/display.metainfo.xml.in:38
 msgid "Dragging displays is now smoother"
-msgstr ""
+msgstr "Arrossegar les pantalles ara és més suau"
 
 #: data/display.metainfo.xml.in:39
 msgid "Show an error dialog if errors occur"
-msgstr ""
+msgstr "Mostra un diàleg d'error si es produeixen errors"
 
 #: data/display.metainfo.xml.in:40 data/display.metainfo.xml.in:54
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:86
