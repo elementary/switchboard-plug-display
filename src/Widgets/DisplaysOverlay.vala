@@ -105,8 +105,8 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
         GLib.Bus.get_proxy.begin<GalaDBus> (
             GLib.BusType.SESSION,
-            "org.pantheon.gala.daemon",
-            "/org/pantheon/gala/daemon",
+            "io.elementary.gala.daemon",
+            "/io/elementary/gala/daemon",
             GLib.DBusProxyFlags.NONE,
             null,
             (obj, res) => {
