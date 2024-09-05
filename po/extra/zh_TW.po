@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-09-02 05:42+0000\n"
+"PO-Revision-Date: 2024-09-05 21:13+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
 "switchboard/display-plug-extra/zh_Hant/>\n"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: data/display.metainfo.xml.in:75
 msgid "Improvements:"
-msgstr ""
+msgstr "改善項目："
 
 #: data/display.metainfo.xml.in:77
 msgid "Move resolutions with a different aspect ratio to a submenu"
