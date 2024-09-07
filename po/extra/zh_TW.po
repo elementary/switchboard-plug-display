@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-09-05 21:13+0000\n"
+"PO-Revision-Date: 2024-09-07 17:04+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
 "switchboard/display-plug-extra/zh_Hant/>\n"
@@ -39,15 +39,15 @@ msgstr "小型更新："
 
 #: data/display.metainfo.xml.in:37
 msgid "Fix missing settings URI handlers"
-msgstr ""
+msgstr "修正缺乏的設定 URI 處理程式"
 
 #: data/display.metainfo.xml.in:38
 msgid "Dragging displays is now smoother"
-msgstr ""
+msgstr "拖曳顯示器的操作現在變得更平滑"
 
 #: data/display.metainfo.xml.in:39
 msgid "Show an error dialog if errors occur"
-msgstr ""
+msgstr "發生錯誤時顯示錯誤對話框"
 
 #: data/display.metainfo.xml.in:40 data/display.metainfo.xml.in:54
 #: data/display.metainfo.xml.in:68 data/display.metainfo.xml.in:86
@@ -57,7 +57,7 @@ msgstr "翻譯更新"
 
 #: data/display.metainfo.xml.in:53
 msgid "Redesign Night Light View"
-msgstr ""
+msgstr "重新設計夜光檢視"
 
 #: data/display.metainfo.xml.in:75
 msgid "Improvements:"
@@ -65,11 +65,11 @@ msgstr "改善項目："
 
 #: data/display.metainfo.xml.in:77
 msgid "Move resolutions with a different aspect ratio to a submenu"
-msgstr ""
+msgstr "將寬高比不同的解析度移到子選單"
 
 #: data/display.metainfo.xml.in:78
 msgid "Improve brightness in the dark style"
-msgstr ""
+msgstr "改善深色模式的亮度"
 
 #: data/display.metainfo.xml.in:80 data/display.metainfo.xml.in:93
 #: data/display.metainfo.xml.in:110
@@ -78,11 +78,11 @@ msgstr "修正："
 
 #: data/display.metainfo.xml.in:82
 msgid "Show display name on all workspaces"
-msgstr ""
+msgstr "在所有工作區上顯示螢幕名稱"
 
 #: data/display.metainfo.xml.in:95
 msgid "Ensure the \"Use this display\" switch works in more circumstances"
-msgstr ""
+msgstr "確保「使用這台顯示器」開關能夠在更多情況下正常運作"
 
 #: data/display.metainfo.xml.in:106
 msgid "New features:"
@@ -90,11 +90,11 @@ msgstr "新功能："
 
 #: data/display.metainfo.xml.in:108
 msgid "Support 3× scaling"
-msgstr ""
+msgstr "支援 3× 縮放"
 
 #: data/display.metainfo.xml.in:112
 msgid "Reliably detect accelerometers"
-msgstr ""
+msgstr "更可靠地偵測加速度儀"
 
 #~ msgid "Improved multi-display layouts with better snapping and aligning"
 #~ msgstr "改善多顯示器配置與更好的貼附和對齊特性"
