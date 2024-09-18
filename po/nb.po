@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2023-07-26 20:07+0000\n"
+"PO-Revision-Date: 2024-09-19 07:21+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/"
 "switchboard/switchboard-plug-display/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -185,11 +185,11 @@ msgstr "Rotasjonslås:"
 
 #: src/Views/DisplaysView.vala:157
 msgid "Failed to apply display settings"
-msgstr ""
+msgstr "Klarte ikke å utføre skjermendringer"
 
 #: src/Views/DisplaysView.vala:158
 msgid "This can be caused by an invalid configuration."
-msgstr ""
+msgstr "Dette kan forårsakes av et ugyldig oppsett."
 
 #: src/Views/FiltersView.vala:10
 #, fuzzy
