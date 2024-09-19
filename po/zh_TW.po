@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-09-05 21:13+0000\n"
+"PO-Revision-Date: 2024-09-19 10:09+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
 "switchboard/switchboard-plug-display/zh_Hant/>\n"
@@ -186,7 +186,7 @@ msgstr "這可能是因為設定是無效的。"
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
-msgstr "色覺異常協助"
+msgstr "色弱協助"
 
 #: src/Views/FiltersView.vala:11
 msgid ""
@@ -200,7 +200,7 @@ msgstr "紅/綠"
 
 #: src/Views/FiltersView.vala:17 src/Views/FiltersView.vala:37
 msgid "Protanopia"
-msgstr ""
+msgstr "紅色盲 (Protanopia)"
 
 #: src/Views/FiltersView.vala:37
 msgid "Red/Green — High Contrast"
@@ -212,7 +212,7 @@ msgstr "綠/紅"
 
 #: src/Views/FiltersView.vala:54 src/Views/FiltersView.vala:74
 msgid "Deuteranopia"
-msgstr ""
+msgstr "綠色盲 (Deuteranopia)"
 
 #: src/Views/FiltersView.vala:74
 msgid "Green/Red — High Contrast"
@@ -224,7 +224,7 @@ msgstr "藍/黃"
 
 #: src/Views/FiltersView.vala:91
 msgid "Tritanopia"
-msgstr ""
+msgstr "藍色盲 (Tritanopia)"
 
 #: src/Views/FiltersView.vala:116
 msgid "Less Assistance"
