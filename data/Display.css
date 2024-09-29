@@ -143,3 +143,13 @@ display-widget.disabled button.flat.image-button:focus {
 display-widget.disabled button.flat.image-button:checked {
     background: alpha(@SLATE_700, 0.5);
 }
+
+.monitor-label {
+    border-radius: 9px;
+    font-weight: 600;
+}
+
+.monitor-label label {
+    margin: 1em;
+    text-shadow: 0 1px 1px alpha(white, 0.1);
+}
