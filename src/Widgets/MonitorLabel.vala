@@ -50,10 +50,23 @@ public class Display.MonitorLabel : Gtk.Window, PantheonWayland.ExtendedBehavior
             warning ("Failed to load CSS: %s", e.message);
         }
 
-        child.realize.connect (() => {
-            connect_to_shell ();
-            make_monitor_label (index);
-        });
+        var display = Gdk.Display.get_default ();
+        if (display is Gdk.X11.Display) {
+            unowned var xdisplay = ((Gdk.X11.Display) display).get_xdisplay ();
+
+            var window = ((Gdk.X11.Surface) get_surface ()).get_xid ();
+
+            var prop = xdisplay.intern_atom ("_MUTTER_HINTS", false);
+
+            var value = "monitor-label=%d".printf (index);
+
+            xdisplay.change_property (window, prop, X.XA_STRING, 8, 0, (uchar[]) value, value.length);
+        } else {
+            child.realize.connect (() => {
+                connect_to_shell ();
+                make_monitor_label (index);
+            });
+        }
 
         present ();
     }
