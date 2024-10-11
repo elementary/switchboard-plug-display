@@ -57,18 +57,15 @@ public class Display.DisplayWidget : Gtk.Box {
     public double window_ratio { get; private set; default = 1.0; }
     public bool connected { get; set; }
 
+    private Gtk.Label label;
+
     private Gtk.Button primary_image;
     private Granite.SwitchModelButton use_switch;
 
     private Gtk.ComboBox resolution_combobox;
     private Gtk.TreeStore resolution_tree_store;
 
-    private Gtk.ComboBox rotation_combobox;
-    private Gtk.ListStore rotation_list_store;
-
-    private Gtk.ComboBox refresh_combobox;
-    private Gtk.ListStore refresh_list_store;
-
+    private Gtk.DropDown refresh_drop_down;
     private Gtk.DropDown scale_drop_down;
 
     private int real_width = 0;
@@ -78,18 +75,6 @@ public class Display.DisplayWidget : Gtk.Box {
         NAME,
         WIDTH,
         HEIGHT,
-        TOTAL
-    }
-
-    private enum RotationColumns {
-        NAME,
-        VALUE,
-        TOTAL
-    }
-
-    private enum RefreshColumns {
-        NAME,
-        VALUE,
         TOTAL
     }
 
@@ -116,7 +101,7 @@ public class Display.DisplayWidget : Gtk.Box {
         primary_image.clicked.connect (() => set_as_primary ());
 
         var virtual_monitor_name = virtual_monitor.get_display_name ();
-        var label = new Gtk.Label (virtual_monitor_name) {
+        label = new Gtk.Label (virtual_monitor_name) {
             halign = CENTER,
             valign = CENTER,
             hexpand = true,
@@ -141,39 +126,28 @@ public class Display.DisplayWidget : Gtk.Box {
         resolution_combobox.pack_start (text_renderer, true);
         resolution_combobox.add_attribute (text_renderer, "text", ResolutionColumns.NAME);
 
-        rotation_list_store = new Gtk.ListStore (RotationColumns.TOTAL, typeof (string), typeof (int));
-        rotation_combobox = new Gtk.ComboBox.with_model (rotation_list_store) {
+        var rotation_drop_down = new Gtk.DropDown (virtual_monitor.available_transforms, null) {
             margin_start = 12,
-            margin_end = 12
+            margin_end = 12,
+            factory = Utils.create_string_list_item_factory ()
         };
+        virtual_monitor.available_transforms.bind_property ("selected", rotation_drop_down, "selected", BIDIRECTIONAL | SYNC_CREATE);
 
         var rotation_label = new Granite.HeaderLabel (_("Screen Rotation")) {
-            mnemonic_widget = rotation_combobox
+            mnemonic_widget = rotation_drop_down
         };
 
-        text_renderer = new Gtk.CellRendererText ();
-        rotation_combobox.pack_start (text_renderer, true);
-        rotation_combobox.add_attribute (text_renderer, "text", RotationColumns.NAME);
-
-        refresh_list_store = new Gtk.ListStore (RefreshColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
-        refresh_combobox = new Gtk.ComboBox.with_model (refresh_list_store) {
+        refresh_drop_down = new Gtk.DropDown (virtual_monitor.available_refresh_rates, null) {
             margin_start = 12,
-            margin_end = 12
+            margin_end = 12,
+            factory = Utils.create_string_list_item_factory ()
         };
+        virtual_monitor.available_refresh_rates.bind_property ("selected", refresh_drop_down, "selected", BIDIRECTIONAL | SYNC_CREATE);
+        virtual_monitor.available_refresh_rates.items_changed.connect (() => refresh_drop_down.sensitive = virtual_monitor.available_refresh_rates.n_items > 1);
 
         var refresh_label = new Granite.HeaderLabel (_("Refresh Rate")) {
-            mnemonic_widget = refresh_combobox
+            mnemonic_widget = refresh_drop_down
         };
-
-        text_renderer = new Gtk.CellRendererText ();
-        refresh_combobox.pack_start (text_renderer, true);
-        refresh_combobox.add_attribute (text_renderer, "text", RefreshColumns.NAME);
-
-        for (int i = 0; i <= DisplayTransform.FLIPPED_ROTATION_270; i++) {
-            Gtk.TreeIter iter;
-            rotation_list_store.append (out iter);
-            rotation_list_store.set (iter, RotationColumns.NAME, ((DisplayTransform) i).to_string (), RotationColumns.VALUE, i);
-        }
 
         // Build resolution menu
         // First, get list of unique resolutions from available modes.
@@ -254,8 +228,6 @@ public class Display.DisplayWidget : Gtk.Box {
 
         resolution_combobox.sensitive = usable_resolutions > 1;
 
-        populate_refresh_rates ();
-
         scale_drop_down = new Gtk.DropDown.from_strings (string_scales) {
             margin_start = 12,
             margin_end = 12
@@ -273,9 +245,9 @@ public class Display.DisplayWidget : Gtk.Box {
         popover_box.append (resolution_label);
         popover_box.append (resolution_combobox);
         popover_box.append (rotation_label);
-        popover_box.append (rotation_combobox);
+        popover_box.append (rotation_drop_down);
         popover_box.append (refresh_label);
-        popover_box.append (refresh_combobox);
+        popover_box.append (refresh_drop_down);
 
         if (!MonitorManager.get_default ().global_scale_required) {
             popover_box.append (scale_label);
@@ -306,14 +278,12 @@ public class Display.DisplayWidget : Gtk.Box {
         set_primary (virtual_monitor.primary);
 
         use_switch.bind_property ("active", resolution_combobox, "sensitive");
-        use_switch.bind_property ("active", rotation_combobox, "sensitive");
-        use_switch.bind_property ("active", refresh_combobox, "sensitive");
+        use_switch.bind_property ("active", rotation_drop_down, "sensitive");
+        use_switch.bind_property ("active", refresh_drop_down, "sensitive");
         use_switch.bind_property ("active", scale_drop_down, "sensitive");
 
         use_switch.notify["active"].connect (() => {
-            if (rotation_combobox.active == -1) rotation_combobox.set_active (0);
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
-            if (refresh_combobox.active == -1) refresh_combobox.set_active (0);
 
             if (use_switch.active) {
                 remove_css_class ("disabled");
@@ -351,85 +321,24 @@ public class Display.DisplayWidget : Gtk.Box {
             }
 
             virtual_monitor.set_current_mode (new_mode);
-            rotation_combobox.set_active (0);
-            populate_refresh_rates ();
             configuration_changed ();
             check_position ();
         });
 
-        rotation_combobox.changed.connect (() => {
+        rotation_drop_down.notify["selected"].connect (() => {
             // Prevent breaking autohide by closing popover
             popover.popdown ();
 
-            Value val;
-            Gtk.TreeIter iter;
-            rotation_combobox.get_active_iter (out iter);
-            rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
-
-            var transform = (DisplayTransform)((int)val);
-            virtual_monitor.transform = transform;
-
-            label.css_classes = {""};
-
-            switch (transform) {
-                case DisplayTransform.NORMAL:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.label = virtual_monitor_name;
-                    break;
-                case DisplayTransform.ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.add_css_class ("rotate-270");
-                    label.label = virtual_monitor_name;
-                    break;
-                case DisplayTransform.ROTATION_180:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.add_css_class ("rotate-180");
-                    label.label = virtual_monitor_name;
-                    break;
-                case DisplayTransform.ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.add_css_class ("rotate-90");
-                    label.label = virtual_monitor_name;
-                    break;
-                case DisplayTransform.FLIPPED:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.label = virtual_monitor_name.reverse (); //mirroring simulation, because we can't really mirror the text
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.add_css_class ("rotate-270");
-                    label.label = virtual_monitor_name.reverse ();
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_180:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.add_css_class ("rotate-180");
-                    label.label = virtual_monitor_name.reverse ();
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.add_css_class ("rotate-90");
-                    label.label = virtual_monitor_name.reverse ();
-                    break;
-            }
+            update_transformed_style ();
 
             configuration_changed ();
-            check_position ();
         });
 
-        refresh_combobox.changed.connect (() => {
+        refresh_drop_down.notify["selected"].connect (() => {
             // Prevent breaking autohide by closing popover
             popover.popdown ();
 
-            Value val;
-            Gtk.TreeIter iter;
-            if (refresh_combobox.get_active_iter (out iter)) {
-                refresh_list_store.get_value (iter, RefreshColumns.VALUE, out val);
-                Display.MonitorMode new_mode = (Display.MonitorMode) val;
-                virtual_monitor.set_current_mode (new_mode);
-                rotation_combobox.set_active (0);
-                configuration_changed ();
-                check_position ();
-            }
+            configuration_changed ();
         });
 
         virtual_monitor.notify["scale"].connect (update_selected_scale);
@@ -450,11 +359,9 @@ public class Display.DisplayWidget : Gtk.Box {
             configuration_changed ();
         });
 
-        rotation_combobox.set_active ((int) virtual_monitor.transform);
-        on_vm_transform_changed ();
-
         virtual_monitor.modes_changed.connect (on_monitor_modes_changed);
-        virtual_monitor.notify["transform"].connect (on_vm_transform_changed);
+
+        update_transformed_style ();
 
         configuration_changed ();
         check_position ();
@@ -466,65 +373,6 @@ public class Display.DisplayWidget : Gtk.Box {
                 scale_drop_down.selected = i;
             }
         }
-    }
-
-    private void populate_refresh_rates () {
-        refresh_list_store.clear ();
-
-        Gtk.TreeIter iter;
-        int added = 0;
-        if (resolution_combobox.get_active_iter (out iter)) {
-            int active_width, active_height;
-            if (resolution_combobox.get_active_iter (out iter)) {
-                resolution_tree_store.get (iter,
-                    ResolutionColumns.WIDTH, out active_width,
-                    ResolutionColumns.HEIGHT, out active_height
-                );
-            } else {
-                return;
-            }
-
-            double[] frequencies = {};
-            bool refresh_set = false;
-            foreach (var mode in virtual_monitor.get_available_modes ()) {
-                if (mode.width != active_width || mode.height != active_height) {
-                    continue;
-                }
-
-                if (mode.frequency in frequencies) {
-                    continue;
-                }
-
-                bool freq_already_added = false;
-                foreach (var freq in frequencies) {
-                    if ((mode.frequency - freq).abs () < 1) {
-                        freq_already_added = true;
-                        break;
-                    }
-                }
-
-                if (freq_already_added) {
-                    continue;
-                }
-
-                frequencies += mode.frequency;
-
-                var freq_name = _("%g Hz").printf (Math.roundf ((float)mode.frequency));
-                refresh_list_store.append (out iter);
-                refresh_list_store.set (iter, ResolutionColumns.NAME, freq_name, RefreshColumns.VALUE, mode);
-                added++;
-                if (mode.is_current) {
-                    refresh_combobox.set_active_iter (iter);
-                    refresh_set = true;
-                }
-            }
-
-            if (!refresh_set) {
-                refresh_combobox.set_active (0);
-            }
-        }
-
-        refresh_combobox.sensitive = added > 1;
     }
 
     private void on_monitor_modes_changed () {
@@ -557,20 +405,51 @@ public class Display.DisplayWidget : Gtk.Box {
         return result;
     }
 
-    private void on_vm_transform_changed () {
-        var transform = virtual_monitor.transform;
-        rotation_list_store.@foreach ((model, path, iter) => {
-            Value val;
-            rotation_list_store.get_value (iter, RotationColumns.VALUE, out val);
+    private void update_transformed_style () {
+        label.css_classes = {""};
 
-            var iter_transform = (DisplayTransform)((int)val);
-            if (iter_transform == transform) {
-                rotation_combobox.set_active_iter (iter);
-                return true;
-            }
+        switch (virtual_monitor.transform) {
+            case DisplayTransform.NORMAL:
+                virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                label.label = virtual_monitor.get_display_name ();
+                break;
+            case DisplayTransform.ROTATION_90:
+                virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                label.add_css_class ("rotate-270");
+                label.label = virtual_monitor.get_display_name ();
+                break;
+            case DisplayTransform.ROTATION_180:
+                virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                label.add_css_class ("rotate-180");
+                label.label = virtual_monitor.get_display_name ();
+                break;
+            case DisplayTransform.ROTATION_270:
+                virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                label.add_css_class ("rotate-90");
+                label.label = virtual_monitor.get_display_name ();
+                break;
+            case DisplayTransform.FLIPPED:
+                virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                label.label = virtual_monitor.get_display_name ().reverse (); //mirroring simulation, because we can't really mirror the text
+                break;
+            case DisplayTransform.FLIPPED_ROTATION_90:
+                virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                label.add_css_class ("rotate-270");
+                label.label = virtual_monitor.get_display_name ().reverse ();
+                break;
+            case DisplayTransform.FLIPPED_ROTATION_180:
+                virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                label.add_css_class ("rotate-180");
+                label.label = virtual_monitor.get_display_name ().reverse ();
+                break;
+            case DisplayTransform.FLIPPED_ROTATION_270:
+                virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                label.add_css_class ("rotate-90");
+                label.label = virtual_monitor.get_display_name ().reverse ();
+                break;
+        }
 
-            return false;
-        });
+        check_position ();
     }
 
     public void set_primary (bool is_primary) {
