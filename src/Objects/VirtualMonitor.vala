@@ -20,12 +20,21 @@
  */
 
 public class Display.VirtualMonitor : GLib.Object {
+    public class Transform : Object, Utils.StringRepresentable {
+        public string string_representation { get; construct; }
+        public DisplayTransform transform { get; construct; }
+
+        public Transform (DisplayTransform transform) {
+            Object (transform: transform, string_representation: transform.to_string ());
+        }
+    }
+
     public int x { get; set; }
     public int y { get; set; }
     public int current_x { get; set; }
     public int current_y { get; set; }
     public double scale { get; set; }
-    public DisplayTransform transform { get; set; }
+    public Gtk.SingleSelection available_transforms { get; construct; }
     public bool primary { get; set; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
@@ -55,6 +64,15 @@ public class Display.VirtualMonitor : GLib.Object {
 
     public bool is_active { get; set; default = true; }
 
+    public DisplayTransform transform {
+        get {
+            return (DisplayTransform) available_transforms.selected;
+        }
+        set {
+            available_transforms.selected = value;
+        }
+    }
+
     /*
      * Get the first monitor of the list, handy in non-mirror context.
      */
@@ -68,8 +86,19 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
+    private ListStore available_transforms_store;
+
     construct {
         monitors = new Gee.LinkedList<Display.Monitor> ();
+
+        available_transforms_store = new ListStore (typeof (Transform));
+        available_transforms = new Gtk.SingleSelection (available_transforms_store) {
+            autoselect = true
+        };
+
+        for (int i = 0; i <= DisplayTransform.FLIPPED_ROTATION_270; i++) {
+            available_transforms_store.append (new Transform ((DisplayTransform) i));
+        }
     }
 
     public unowned string get_display_name () {

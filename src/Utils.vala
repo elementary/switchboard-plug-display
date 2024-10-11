@@ -65,4 +65,28 @@ namespace Display.Utils {
 
         return min_scale;
     }
+
+    public interface StringRepresentable : Object {
+        public abstract string string_representation { get; construct; }
+    }
+
+    /**
+     * Sets up a ListItemFactory that represents its items by a single start aligned label.
+     * The items have to implement {@link StringRepresentable}.
+     * Useful for {@link Gtk.DropDown}s.
+     */
+    public static Gtk.ListItemFactory create_string_list_item_factory () {
+        var string_list_item_factory = new Gtk.SignalListItemFactory ();
+        string_list_item_factory.setup.connect ((obj) => {
+            var list_item = (Gtk.ListItem) obj;
+            list_item.child = new Gtk.Label (null) { xalign = 0 };
+        });
+        string_list_item_factory.bind.connect ((obj) => {
+            var list_item = (Gtk.ListItem) obj;
+            var item = (StringRepresentable) list_item.item;
+            var scale_label = (Gtk.Label) list_item.child;
+            scale_label.label = item.string_representation;
+        });
+        return string_list_item_factory;
+    }
 }
