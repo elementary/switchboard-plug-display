@@ -191,13 +191,6 @@ public class Display.MonitorManager : GLib.Object {
                 add_virtual_monitor (virtual_monitor);
             }
 
-            virtual_monitor.x = mutter_logical_monitor.x;
-            virtual_monitor.y = mutter_logical_monitor.y;
-            virtual_monitor.current_x = mutter_logical_monitor.x;
-            virtual_monitor.current_y = mutter_logical_monitor.y;
-            virtual_monitor.scale = mutter_logical_monitor.scale;
-            virtual_monitor.transform = mutter_logical_monitor.transform;
-            virtual_monitor.primary = mutter_logical_monitor.primary;
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
                 foreach (var monitor in monitors) {
                     if (compare_monitor_with_mutter_info (monitor, mutter_info)) {
@@ -213,6 +206,14 @@ public class Display.MonitorManager : GLib.Object {
                     }
                 }
             }
+
+            virtual_monitor.x = mutter_logical_monitor.x;
+            virtual_monitor.y = mutter_logical_monitor.y;
+            virtual_monitor.current_x = mutter_logical_monitor.x;
+            virtual_monitor.current_y = mutter_logical_monitor.y;
+            virtual_monitor.scale = mutter_logical_monitor.scale;
+            virtual_monitor.transform = mutter_logical_monitor.transform;
+            virtual_monitor.primary = mutter_logical_monitor.primary;
         }
 
         // Look for any monitors that aren't part of a virtual monitor (hence disabled)
