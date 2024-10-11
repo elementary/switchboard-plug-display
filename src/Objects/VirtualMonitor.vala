@@ -48,11 +48,9 @@ public class Display.VirtualMonitor : GLib.Object {
             return ((Scale) available_scales.selected_item).scale;
         }
         set {
-            warning ("SELECT %f", value);
             update_available_scales ();
             for (int i = 0; i < available_scales.get_n_items (); i++) {
                 if (value == ((Scale) available_scales.get_item (i)).scale) {
-                    warning ("SELECTED %d", i);
                     available_scales.selected = i;
                     return;
                 }
@@ -105,8 +103,6 @@ public class Display.VirtualMonitor : GLib.Object {
 
         available_scales_store = new ListStore (typeof (Scale));
         available_scales = new Gtk.SingleSelection (available_scales_store);
-
-        available_scales.notify["selected"].connect (() => warning ("SELECTED CHANGED %u", available_scales.selected));
     }
 
     public unowned string get_display_name () {
@@ -204,11 +200,7 @@ public class Display.VirtualMonitor : GLib.Object {
             }
         }
 
-        if (!(scale in current_mode.supported_scales)) {
-            scale = current_mode.preferred_scale;
-        }
-
-        update_available_scales ();
+        scale = current_mode.preferred_scale;
     }
 
     public static string generate_id_from_monitors (MutterReadMonitorInfo[] infos) {
