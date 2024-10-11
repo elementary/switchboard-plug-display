@@ -429,18 +429,9 @@ public class Display.DisplayWidget : Gtk.Box {
             }
         });
 
-        scale_drop_down.notify["selected-item"].connect ((drop_down, param_spec) => {
+        scale_drop_down.notify["selected-item"].connect (() => {
             // Prevent breaking autohide by closing popover
             popover.popdown ();
-
-            //  var i = ((Gtk.DropDown) drop_down).selected;
-
-            //  if (i < 0 || i > scales.length) {
-            //      warning ("Invalid scale selected.");
-            //      return;
-            //  }
-
-            //  virtual_monitor.scale = scales[i];
 
             configuration_changed ();
         });
