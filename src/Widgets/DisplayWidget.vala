@@ -65,6 +65,7 @@ public class Display.DisplayWidget : Gtk.Box {
     private Gtk.ComboBox resolution_combobox;
     private Gtk.TreeStore resolution_tree_store;
 
+    private Gtk.DropDown refresh_drop_down;
     private Gtk.DropDown scale_drop_down;
 
     private int real_width = 0;
@@ -136,12 +137,13 @@ public class Display.DisplayWidget : Gtk.Box {
             mnemonic_widget = rotation_drop_down
         };
 
-        var refresh_drop_down = new Gtk.DropDown (virtual_monitor.available_refresh_rates, null) {
+        refresh_drop_down = new Gtk.DropDown (virtual_monitor.available_refresh_rates, null) {
             margin_start = 12,
             margin_end = 12,
             factory = Utils.create_string_list_item_factory ()
         };
         virtual_monitor.available_refresh_rates.bind_property ("selected", refresh_drop_down, "selected", BIDIRECTIONAL | SYNC_CREATE);
+        virtual_monitor.available_refresh_rates.items_changed.connect (() => refresh_drop_down.sensitive = virtual_monitor.available_refresh_rates.n_items > 1);
 
         var refresh_label = new Granite.HeaderLabel (_("Refresh Rate")) {
             mnemonic_widget = refresh_drop_down
