@@ -65,9 +65,6 @@ public class Display.DisplayWidget : Gtk.Box {
     private Gtk.ComboBox resolution_combobox;
     private Gtk.TreeStore resolution_tree_store;
 
-    private Gtk.ComboBox refresh_combobox;
-    private Gtk.ListStore refresh_list_store;
-
     private Gtk.DropDown scale_drop_down;
 
     private int real_width = 0;
@@ -77,12 +74,6 @@ public class Display.DisplayWidget : Gtk.Box {
         NAME,
         WIDTH,
         HEIGHT,
-        TOTAL
-    }
-
-    private enum RefreshColumns {
-        NAME,
-        VALUE,
         TOTAL
     }
 
@@ -145,19 +136,16 @@ public class Display.DisplayWidget : Gtk.Box {
             mnemonic_widget = rotation_drop_down
         };
 
-        refresh_list_store = new Gtk.ListStore (RefreshColumns.TOTAL, typeof (string), typeof (Display.MonitorMode));
-        refresh_combobox = new Gtk.ComboBox.with_model (refresh_list_store) {
+        var refresh_drop_down = new Gtk.DropDown (virtual_monitor.available_refresh_rates, null) {
             margin_start = 12,
-            margin_end = 12
+            margin_end = 12,
+            factory = Utils.create_string_list_item_factory ()
         };
+        virtual_monitor.available_refresh_rates.bind_property ("selected", refresh_drop_down, "selected", BIDIRECTIONAL | SYNC_CREATE);
 
         var refresh_label = new Granite.HeaderLabel (_("Refresh Rate")) {
-            mnemonic_widget = refresh_combobox
+            mnemonic_widget = refresh_drop_down
         };
-
-        text_renderer = new Gtk.CellRendererText ();
-        refresh_combobox.pack_start (text_renderer, true);
-        refresh_combobox.add_attribute (text_renderer, "text", RefreshColumns.NAME);
 
         // Build resolution menu
         // First, get list of unique resolutions from available modes.
@@ -238,8 +226,6 @@ public class Display.DisplayWidget : Gtk.Box {
 
         resolution_combobox.sensitive = usable_resolutions > 1;
 
-        populate_refresh_rates ();
-
         scale_drop_down = new Gtk.DropDown.from_strings (string_scales) {
             margin_start = 12,
             margin_end = 12
@@ -259,7 +245,7 @@ public class Display.DisplayWidget : Gtk.Box {
         popover_box.append (rotation_label);
         popover_box.append (rotation_drop_down);
         popover_box.append (refresh_label);
-        popover_box.append (refresh_combobox);
+        popover_box.append (refresh_drop_down);
 
         if (!MonitorManager.get_default ().global_scale_required) {
             popover_box.append (scale_label);
@@ -291,12 +277,11 @@ public class Display.DisplayWidget : Gtk.Box {
 
         use_switch.bind_property ("active", resolution_combobox, "sensitive");
         use_switch.bind_property ("active", rotation_drop_down, "sensitive");
-        use_switch.bind_property ("active", refresh_combobox, "sensitive");
+        use_switch.bind_property ("active", refresh_drop_down, "sensitive");
         use_switch.bind_property ("active", scale_drop_down, "sensitive");
 
         use_switch.notify["active"].connect (() => {
             if (resolution_combobox.active == -1) resolution_combobox.set_active (0);
-            if (refresh_combobox.active == -1) refresh_combobox.set_active (0);
 
             if (use_switch.active) {
                 remove_css_class ("disabled");
@@ -334,7 +319,6 @@ public class Display.DisplayWidget : Gtk.Box {
             }
 
             virtual_monitor.set_current_mode (new_mode);
-            populate_refresh_rates ();
             configuration_changed ();
             check_position ();
         });
@@ -343,26 +327,16 @@ public class Display.DisplayWidget : Gtk.Box {
             // Prevent breaking autohide by closing popover
             popover.popdown ();
 
-            var transform = (DisplayTransform)(rotation_drop_down.selected);
-
             update_transformed_style ();
 
             configuration_changed ();
         });
 
-        refresh_combobox.changed.connect (() => {
+        refresh_drop_down.notify["selected"].connect (() => {
             // Prevent breaking autohide by closing popover
             popover.popdown ();
 
-            Value val;
-            Gtk.TreeIter iter;
-            if (refresh_combobox.get_active_iter (out iter)) {
-                refresh_list_store.get_value (iter, RefreshColumns.VALUE, out val);
-                Display.MonitorMode new_mode = (Display.MonitorMode) val;
-                virtual_monitor.set_current_mode (new_mode);
-                configuration_changed ();
-                check_position ();
-            }
+            configuration_changed ();
         });
 
         virtual_monitor.notify["scale"].connect (update_selected_scale);
@@ -397,65 +371,6 @@ public class Display.DisplayWidget : Gtk.Box {
                 scale_drop_down.selected = i;
             }
         }
-    }
-
-    private void populate_refresh_rates () {
-        refresh_list_store.clear ();
-
-        Gtk.TreeIter iter;
-        int added = 0;
-        if (resolution_combobox.get_active_iter (out iter)) {
-            int active_width, active_height;
-            if (resolution_combobox.get_active_iter (out iter)) {
-                resolution_tree_store.get (iter,
-                    ResolutionColumns.WIDTH, out active_width,
-                    ResolutionColumns.HEIGHT, out active_height
-                );
-            } else {
-                return;
-            }
-
-            double[] frequencies = {};
-            bool refresh_set = false;
-            foreach (var mode in virtual_monitor.get_available_modes ()) {
-                if (mode.width != active_width || mode.height != active_height) {
-                    continue;
-                }
-
-                if (mode.frequency in frequencies) {
-                    continue;
-                }
-
-                bool freq_already_added = false;
-                foreach (var freq in frequencies) {
-                    if ((mode.frequency - freq).abs () < 1) {
-                        freq_already_added = true;
-                        break;
-                    }
-                }
-
-                if (freq_already_added) {
-                    continue;
-                }
-
-                frequencies += mode.frequency;
-
-                var freq_name = _("%g Hz").printf (Math.roundf ((float)mode.frequency));
-                refresh_list_store.append (out iter);
-                refresh_list_store.set (iter, ResolutionColumns.NAME, freq_name, RefreshColumns.VALUE, mode);
-                added++;
-                if (mode.is_current) {
-                    refresh_combobox.set_active_iter (iter);
-                    refresh_set = true;
-                }
-            }
-
-            if (!refresh_set) {
-                refresh_combobox.set_active (0);
-            }
-        }
-
-        refresh_combobox.sensitive = added > 1;
     }
 
     private void on_monitor_modes_changed () {
