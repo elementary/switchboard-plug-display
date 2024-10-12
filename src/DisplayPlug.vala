@@ -81,30 +81,14 @@ public class Display.Plug : Switchboard.Plug {
             box = new Gtk.Box (VERTICAL, 0);
             box.append (headerbar);
             box.append (stack);
-
-            stack.notify["visible-child"].connect (() => {
-                if (stack.visible_child == displays_view) {
-                    displays_view.displays_overlay.show_windows ();
-                } else {
-                    displays_view.displays_overlay.hide_windows ();
-                }
-            });
         }
 
         return box;
     }
 
-    public override void shown () {
-        if (stack.visible_child == displays_view) {
-            displays_view.displays_overlay.show_windows ();
-        } else {
-            displays_view.displays_overlay.hide_windows ();
-        }
-    }
+    public override void shown () { } //Do nothing
 
-    public override void hidden () {
-        displays_view.displays_overlay.hide_windows ();
-    }
+    public override void hidden () { } //Do nothing
 
     public override void search_callback (string location) {
         stack.visible_child_name = location;

@@ -91,6 +91,9 @@ public class Display.DisplaysOverlay : Gtk.Box {
         rescan_displays ();
 
         overlay.get_child_position.connect (get_child_position);
+
+        map.connect (show_windows);
+        unmap.connect (hide_windows);
     }
 
     static construct {
