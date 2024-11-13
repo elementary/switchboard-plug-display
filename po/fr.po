@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-08-27 08:16+0000\n"
-"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
+"PO-Revision-Date: 2024-11-13 13:53+0000\n"
+"Last-Translator: Stella Ménier <stella.menier@gmx.de>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fr/>\n"
 "Language: fr\n"
@@ -52,7 +52,7 @@ msgstr "Dupliquer l'écran"
 
 #: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
 msgid "Screen Rotation"
-msgstr "Rotation de l'écran"
+msgstr "Rotation de l'écran"
 
 #: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
 msgid "Scaling factor"
@@ -64,7 +64,7 @@ msgstr "Horaire"
 
 #: src/DisplayPlug.vala:123
 msgid "Color temperature"
-msgstr "Température"
+msgstr "Température des couleurs"
 
 #: src/DisplayPlug.vala:124
 msgid "Color Blindness"
