@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 21:01+0000\n"
+"POT-Creation-Date: 2024-11-19 21:42+0000\n"
 "PO-Revision-Date: 2024-09-24 11:24+0000\n"
 "Last-Translator: Sinan Decron <sinanveyasinan@gmail.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/switchboard/"
@@ -50,11 +50,11 @@ msgstr "Birincil ekran"
 msgid "Screen mirroring"
 msgstr "Ekran yansıtma"
 
-#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:133
 msgid "Screen Rotation"
 msgstr "Ekran Döndürme"
 
-#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:261
 msgid "Scaling factor"
 msgstr "Ölçekleme oranı"
 
@@ -118,7 +118,7 @@ msgstr "Tersyüz: Saat yönünün tersine"
 msgid "None"
 msgstr "Yok"
 
-#: src/Objects/VirtualMonitor.vala:77
+#: src/Objects/VirtualMonitor.vala:110
 msgid "Mirrored Display"
 msgstr "Yansıtılmış Ekran"
 
@@ -254,36 +254,36 @@ msgstr "Daha Fazla Renk"
 msgid "Less Color"
 msgstr "Daha az renk"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:109
 msgid "Use This Display"
 msgstr "Bu Ekranı Kullanın"
 
-#: src/Widgets/DisplayWidget.vala:136
+#: src/Widgets/DisplayWidget.vala:119
 msgid "Resolution"
 msgstr "Çözünürlük"
 
-#: src/Widgets/DisplayWidget.vala:164
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate"
 msgstr "Yenileme Hızı"
 
-#: src/Widgets/DisplayWidget.vala:236
+#: src/Widgets/DisplayWidget.vala:219
 msgid "Other…"
 msgstr "Diğer…"
 
-#: src/Widgets/DisplayWidget.vala:296
+#: src/Widgets/DisplayWidget.vala:293
 msgid "Configure display"
 msgstr "Ekranı yapılandır"
 
-#: src/Widgets/DisplayWidget.vala:512
+#: src/Widgets/DisplayWidget.vala:490
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:579
+#: src/Widgets/DisplayWidget.vala:557
 msgid "Is the primary display"
 msgstr "Birincil ekran"
 
-#: src/Widgets/DisplayWidget.vala:582
+#: src/Widgets/DisplayWidget.vala:560
 msgid "Set as primary display"
 msgstr "Birincil ekran olarak ayarla"
 

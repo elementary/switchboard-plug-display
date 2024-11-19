@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 21:01+0000\n"
+"POT-Creation-Date: 2024-11-19 21:42+0000\n"
 "PO-Revision-Date: 2022-08-06 14:22+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/switchboard/"
@@ -50,11 +50,11 @@ msgstr "주 디스플레이"
 msgid "Screen mirroring"
 msgstr "미러 스크린"
 
-#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:133
 msgid "Screen Rotation"
 msgstr "화면 회전"
 
-#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:261
 msgid "Scaling factor"
 msgstr "비율 조정"
 
@@ -118,7 +118,7 @@ msgstr "반시계방향으로 뒤집기"
 msgid "None"
 msgstr "안 함"
 
-#: src/Objects/VirtualMonitor.vala:77
+#: src/Objects/VirtualMonitor.vala:110
 msgid "Mirrored Display"
 msgstr "미러 디스플레이"
 
@@ -257,40 +257,40 @@ msgstr "더 따뜻하게"
 msgid "Less Color"
 msgstr "덜 따뜻하게"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:109
 msgid "Use This Display"
 msgstr "이 디스플레이 사용"
 
-#: src/Widgets/DisplayWidget.vala:136
+#: src/Widgets/DisplayWidget.vala:119
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "해상도:"
 
-#: src/Widgets/DisplayWidget.vala:164
+#: src/Widgets/DisplayWidget.vala:147
 #, fuzzy
 #| msgid "Refresh Rate:"
 msgid "Refresh Rate"
 msgstr "재생률:"
 
-#: src/Widgets/DisplayWidget.vala:236
+#: src/Widgets/DisplayWidget.vala:219
 msgid "Other…"
 msgstr "기타…"
 
-#: src/Widgets/DisplayWidget.vala:296
+#: src/Widgets/DisplayWidget.vala:293
 msgid "Configure display"
 msgstr "디스플레이 설정"
 
-#: src/Widgets/DisplayWidget.vala:512
+#: src/Widgets/DisplayWidget.vala:490
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:579
+#: src/Widgets/DisplayWidget.vala:557
 msgid "Is the primary display"
 msgstr "주 모니터입니다"
 
-#: src/Widgets/DisplayWidget.vala:582
+#: src/Widgets/DisplayWidget.vala:560
 msgid "Set as primary display"
 msgstr "주 디스플레이로 설정"
 

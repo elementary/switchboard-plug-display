@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 21:01+0000\n"
+"POT-Creation-Date: 2024-11-19 21:42+0000\n"
 "PO-Revision-Date: 2020-04-27 12:10+0000\n"
 "Last-Translator: Jernej Virag <jernej@virag.si>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/switchboard/"
@@ -51,11 +51,11 @@ msgstr "Primarni zaslon"
 msgid "Screen mirroring"
 msgstr "Zrcali zaslon"
 
-#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:133
 msgid "Screen Rotation"
 msgstr "Vrtenje"
 
-#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:261
 msgid "Scaling factor"
 msgstr "Faktor povečave"
 
@@ -119,7 +119,7 @@ msgstr "Zrcaljen v smeri proti urinemu kazalcu"
 msgid "None"
 msgstr "Brez"
 
-#: src/Objects/VirtualMonitor.vala:77
+#: src/Objects/VirtualMonitor.vala:110
 msgid "Mirrored Display"
 msgstr "Zrcaljen zaslon"
 
@@ -258,40 +258,40 @@ msgstr "Toplejša"
 msgid "Less Color"
 msgstr "Hladnejša"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:109
 msgid "Use This Display"
 msgstr "Uporabi ta zaslon"
 
-#: src/Widgets/DisplayWidget.vala:136
+#: src/Widgets/DisplayWidget.vala:119
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "Ločljivost:"
 
-#: src/Widgets/DisplayWidget.vala:164
+#: src/Widgets/DisplayWidget.vala:147
 #, fuzzy
 #| msgid "Refresh Rate:"
 msgid "Refresh Rate"
 msgstr "Osveževalna frekvenca:"
 
-#: src/Widgets/DisplayWidget.vala:236
+#: src/Widgets/DisplayWidget.vala:219
 msgid "Other…"
 msgstr ""
 
-#: src/Widgets/DisplayWidget.vala:296
+#: src/Widgets/DisplayWidget.vala:293
 msgid "Configure display"
 msgstr "Nastavi zaslon"
 
-#: src/Widgets/DisplayWidget.vala:512
+#: src/Widgets/DisplayWidget.vala:490
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:579
+#: src/Widgets/DisplayWidget.vala:557
 msgid "Is the primary display"
 msgstr "Primarni zaslon"
 
-#: src/Widgets/DisplayWidget.vala:582
+#: src/Widgets/DisplayWidget.vala:560
 msgid "Set as primary display"
 msgstr "Nastavi kot primarni zaslon"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 21:01+0000\n"
+"POT-Creation-Date: 2024-11-19 21:42+0000\n"
 "PO-Revision-Date: 2024-08-22 09:16+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/switchboard/"
@@ -50,11 +50,11 @@ msgstr "Pantalla primària"
 msgid "Screen mirroring"
 msgstr "Rèplica de pantalla"
 
-#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:133
 msgid "Screen Rotation"
 msgstr "Rotació de la pantalla"
 
-#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:261
 msgid "Scaling factor"
 msgstr "Factor d'escalatge"
 
@@ -118,7 +118,7 @@ msgstr "Gir cap a l'esquerra"
 msgid "None"
 msgstr "Cap"
 
-#: src/Objects/VirtualMonitor.vala:77
+#: src/Objects/VirtualMonitor.vala:110
 msgid "Mirrored Display"
 msgstr "Pantalla replicada"
 
@@ -253,36 +253,36 @@ msgstr "Més color"
 msgid "Less Color"
 msgstr "Menys color"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:109
 msgid "Use This Display"
 msgstr "Utilitza aquesta pantalla"
 
-#: src/Widgets/DisplayWidget.vala:136
+#: src/Widgets/DisplayWidget.vala:119
 msgid "Resolution"
 msgstr "Resolució"
 
-#: src/Widgets/DisplayWidget.vala:164
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate"
 msgstr "Freqüència de mostratge"
 
-#: src/Widgets/DisplayWidget.vala:236
+#: src/Widgets/DisplayWidget.vala:219
 msgid "Other…"
 msgstr "Altres…"
 
-#: src/Widgets/DisplayWidget.vala:296
+#: src/Widgets/DisplayWidget.vala:293
 msgid "Configure display"
 msgstr "Configura la pantalla"
 
-#: src/Widgets/DisplayWidget.vala:512
+#: src/Widgets/DisplayWidget.vala:490
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:579
+#: src/Widgets/DisplayWidget.vala:557
 msgid "Is the primary display"
 msgstr "És la pantalla primària"
 
-#: src/Widgets/DisplayWidget.vala:582
+#: src/Widgets/DisplayWidget.vala:560
 msgid "Set as primary display"
 msgstr "Estableix com a pantalla primària"
 
