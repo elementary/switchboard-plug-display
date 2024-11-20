@@ -39,7 +39,6 @@ public class Display.DisplaysOverlay : Gtk.Box {
     private int default_y_margin = 0;
 
     private unowned Display.MonitorManager monitor_manager;
-    private static GalaDBus gala_dbus = null;
     public int active_displays { get; set; default = 0; }
 
     private List<DisplayWidget> display_widgets;
@@ -70,6 +69,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
     };
 
     private Gtk.GestureDrag drag_gesture;
+    private MonitorLabel[] monitor_labels = {};
 
     construct {
         add_css_class (Granite.STYLE_CLASS_VIEW);
@@ -91,6 +91,9 @@ public class Display.DisplaysOverlay : Gtk.Box {
         rescan_displays ();
 
         overlay.get_child_position.connect (get_child_position);
+
+        map.connect (show_windows);
+        unmap.connect (hide_windows);
     }
 
     static construct {
@@ -102,20 +105,6 @@ public class Display.DisplaysOverlay : Gtk.Box {
             display_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
-
-        GLib.Bus.get_proxy.begin<GalaDBus> (
-            GLib.BusType.SESSION,
-            "org.pantheon.gala.daemon",
-            "/org/pantheon/gala/daemon",
-            GLib.DBusProxyFlags.NONE,
-            null,
-            (obj, res) => {
-            try {
-                gala_dbus = GLib.Bus.get_proxy.end (res);
-            } catch (GLib.Error e) {
-                critical (e.message);
-            }
-        });
     }
 
     private double prev_dx = 0;
@@ -202,38 +191,24 @@ public class Display.DisplaysOverlay : Gtk.Box {
         scanning = false;
     }
 
-    public void show_windows () requires (gala_dbus != null) {
+    public void show_windows () {
+        hide_windows ();
+        monitor_labels = {};
+
         if (monitor_manager.is_mirrored) {
             return;
         }
 
-        MonitorLabelInfo[] label_infos = {};
-
         foreach (unowned var widget in display_widgets) {
             if (widget.virtual_monitor.is_active) {
-                label_infos += MonitorLabelInfo () {
-                    monitor = label_infos.length,
-                    label = widget.virtual_monitor.get_display_name (),
-                    background_color = widget.bg_color,
-                    text_color = widget.text_color,
-                    x = widget.virtual_monitor.current_x,
-                    y = widget.virtual_monitor.current_y
-                };
+                monitor_labels += new MonitorLabel (monitor_labels.length, widget.virtual_monitor.get_display_name (), widget.bg_color, widget.text_color);
             }
-        }
-
-        try {
-            gala_dbus.show_monitor_labels (label_infos);
-        } catch (Error e) {
-            warning ("Couldn't show monitor labels: %s", e.message);
         }
     }
 
-    public void hide_windows () requires (gala_dbus != null) {
-        try {
-            gala_dbus.hide_monitor_labels ();
-        } catch (Error e) {
-            warning ("Couldn't hide monitor labels: %s", e.message);
+    public void hide_windows () {
+        foreach (var monitor_label in monitor_labels) {
+            monitor_label.close ();
         }
     }
 
