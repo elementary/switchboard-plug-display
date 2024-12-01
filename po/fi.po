@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-19 21:42+0000\n"
-"PO-Revision-Date: 2023-07-23 14:07+0000\n"
+"PO-Revision-Date: 2024-12-02 12:16+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2016-12-22 05:40+0000\n"
 
 #: src/DisplayPlug.vala:39 src/DisplayPlug.vala:51
@@ -180,11 +180,11 @@ msgstr "Kiertolukko:"
 
 #: src/Views/DisplaysView.vala:157
 msgid "Failed to apply display settings"
-msgstr ""
+msgstr "Näytön asetusten toteuttaminen epäonnistui"
 
 #: src/Views/DisplaysView.vala:158
 msgid "This can be caused by an invalid configuration."
-msgstr ""
+msgstr "Tämä voi johtua virheellisestä määrityksestä."
 
 #: src/Views/FiltersView.vala:10
 msgid "Color Deficiency Assistance"
@@ -258,16 +258,12 @@ msgid "Use This Display"
 msgstr "Käytä tätä näyttöä"
 
 #: src/Widgets/DisplayWidget.vala:119
-#, fuzzy
-#| msgid "Resolution:"
 msgid "Resolution"
-msgstr "Resoluutio:"
+msgstr "Resoluutio"
 
 #: src/Widgets/DisplayWidget.vala:147
-#, fuzzy
-#| msgid "Refresh Rate:"
 msgid "Refresh Rate"
-msgstr "Päivitystaajuus:"
+msgstr "Päivitystaajuus"
 
 #: src/Widgets/DisplayWidget.vala:219
 msgid "Other…"
