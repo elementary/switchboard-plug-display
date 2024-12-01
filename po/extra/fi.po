@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-19 21:42+0000\n"
-"PO-Revision-Date: 2024-08-07 18:16+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-12-02 12:16+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
 "display-plug-extra/fi/>\n"
 "Language: fi\n"
@@ -92,7 +92,7 @@ msgstr "Uudet ominaisuudet:"
 
 #: data/display.metainfo.xml.in:120
 msgid "Support 3× scaling"
-msgstr ""
+msgstr "Tuki 3×-skaalaukselle"
 
 #: data/display.metainfo.xml.in:124
 msgid "Reliably detect accelerometers"
