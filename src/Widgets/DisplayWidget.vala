@@ -27,23 +27,6 @@ public struct Display.Resolution {
 }
 
 public class Display.DisplayWidget : Gtk.Box {
-    private static double[] scales;
-    private static string[] string_scales;
-
-    static construct {
-        unowned var monitor_manager = MonitorManager.get_default ();
-
-        if (monitor_manager.fractional_scale_enabled) {
-            scales = { 0.75, 1.00, 1.25, 1.50, 1.75, 2.00 };
-        } else {
-            scales = { 1.00, 2.00 };
-        }
-
-        foreach (var scale in scales) {
-            string_scales += "%d %%".printf ((int) (scale * 100));
-        }
-    }
-
     public signal void set_as_primary ();
     public signal void check_position ();
     public signal void configuration_changed ();
@@ -256,10 +239,24 @@ public class Display.DisplayWidget : Gtk.Box {
 
         populate_refresh_rates ();
 
-        scale_drop_down = new Gtk.DropDown.from_strings (string_scales) {
+        var scale_drop_down_factory = new Gtk.SignalListItemFactory ();
+        scale_drop_down_factory.setup.connect ((obj) => {
+            var list_item = (Gtk.ListItem) obj;
+            list_item.child = new Gtk.Label (null) { xalign = 0 };
+        });
+        scale_drop_down_factory.bind.connect ((obj) => {
+            var list_item = (Gtk.ListItem) obj;
+            var item = (VirtualMonitor.Scale) list_item.item;
+            var scale_label = (Gtk.Label) list_item.child;
+            scale_label.label = item.string_representation;
+        });
+
+        scale_drop_down = new Gtk.DropDown (virtual_monitor.available_scales, null) {
             margin_start = 12,
-            margin_end = 12
+            margin_end = 12,
+            factory = scale_drop_down_factory
         };
+        virtual_monitor.available_scales.bind_property ("selected", scale_drop_down, "selected", BIDIRECTIONAL | SYNC_CREATE);
 
         var scale_label = new Granite.HeaderLabel (_("Scaling factor")) {
             mnemonic_widget = scale_drop_down
@@ -432,20 +429,9 @@ public class Display.DisplayWidget : Gtk.Box {
             }
         });
 
-        virtual_monitor.notify["scale"].connect (update_selected_scale);
-        update_selected_scale ();
-        scale_drop_down.notify["selected-item"].connect ((drop_down, param_spec) => {
+        scale_drop_down.notify["selected-item"].connect (() => {
             // Prevent breaking autohide by closing popover
             popover.popdown ();
-
-            var i = ((Gtk.DropDown) drop_down).selected;
-
-            if (i < 0 || i > scales.length) {
-                warning ("Invalid scale selected.");
-                return;
-            }
-
-            virtual_monitor.scale = scales[i];
 
             configuration_changed ();
         });
@@ -458,14 +444,6 @@ public class Display.DisplayWidget : Gtk.Box {
 
         configuration_changed ();
         check_position ();
-    }
-
-    private void update_selected_scale () {
-        for (uint i = 0; i < scales.length; i++) {
-            if (scales[i] == virtual_monitor.scale) {
-                scale_drop_down.selected = i;
-            }
-        }
     }
 
     private void populate_refresh_rates () {

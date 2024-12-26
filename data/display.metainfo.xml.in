@@ -30,6 +30,18 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="8.0.1" date="2024-11-19" urgency="medium">
+      <description>
+        <p>Minor updates:</p>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/switchboard-plug-display/issues/398">Use correct fractional scaling values</issue>
+      </issues>
+    </release>
+
     <release version="8.0.0" date="2024-08-20" urgency="medium">
       <description>
         <p>Minor updates:</p>

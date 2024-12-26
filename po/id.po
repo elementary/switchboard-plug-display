@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 21:01+0000\n"
+"POT-Creation-Date: 2024-11-19 21:42+0000\n"
 "PO-Revision-Date: 2023-05-23 19:07+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
 "io>\n"
@@ -50,11 +50,11 @@ msgstr "Tampilan utama"
 msgid "Screen mirroring"
 msgstr "Pencerminan layar"
 
-#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:133
 msgid "Screen Rotation"
 msgstr "Rotasi Layar"
 
-#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:261
 msgid "Scaling factor"
 msgstr "Faktor penskalaan"
 
@@ -118,7 +118,7 @@ msgstr "Dibalik berlawanan arah jarum jam"
 msgid "None"
 msgstr "Nihil"
 
-#: src/Objects/VirtualMonitor.vala:77
+#: src/Objects/VirtualMonitor.vala:110
 msgid "Mirrored Display"
 msgstr "Tampilan Cermin"
 
@@ -257,42 +257,42 @@ msgstr "Lebih Hangat"
 msgid "Less Color"
 msgstr "Sedikit Hangat"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:109
 #, fuzzy
 #| msgid "Use this display:"
 msgid "Use This Display"
 msgstr "Gunakan tampilan ini:"
 
-#: src/Widgets/DisplayWidget.vala:136
+#: src/Widgets/DisplayWidget.vala:119
 #, fuzzy
 #| msgid "Resolution:"
 msgid "Resolution"
 msgstr "Resolusi:"
 
-#: src/Widgets/DisplayWidget.vala:164
+#: src/Widgets/DisplayWidget.vala:147
 #, fuzzy
 #| msgid "Refresh Rate:"
 msgid "Refresh Rate"
 msgstr "Kecepatan Refresh:"
 
-#: src/Widgets/DisplayWidget.vala:236
+#: src/Widgets/DisplayWidget.vala:219
 msgid "Other…"
 msgstr "Lainnya…"
 
-#: src/Widgets/DisplayWidget.vala:296
+#: src/Widgets/DisplayWidget.vala:293
 msgid "Configure display"
 msgstr "Konfigurasi tampilan"
 
-#: src/Widgets/DisplayWidget.vala:512
+#: src/Widgets/DisplayWidget.vala:490
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:579
+#: src/Widgets/DisplayWidget.vala:557
 msgid "Is the primary display"
 msgstr "Adalah tampilan utama"
 
-#: src/Widgets/DisplayWidget.vala:582
+#: src/Widgets/DisplayWidget.vala:560
 msgid "Set as primary display"
 msgstr "Atur sebagai tampilan utama"
 
