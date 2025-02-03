@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: audience\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 21:01+0000\n"
-"PO-Revision-Date: 2024-08-27 08:16+0000\n"
-"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
+"POT-Creation-Date: 2024-11-19 21:42+0000\n"
+"PO-Revision-Date: 2024-11-13 13:53+0000\n"
+"Last-Translator: Stella Ménier <stella.menier@gmx.de>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/switchboard/"
 "switchboard-plug-display/fr/>\n"
 "Language: fr\n"
@@ -50,11 +50,11 @@ msgstr "Affichage principal"
 msgid "Screen mirroring"
 msgstr "Dupliquer l'écran"
 
-#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:150
+#: src/DisplayPlug.vala:119 src/Widgets/DisplayWidget.vala:133
 msgid "Screen Rotation"
-msgstr "Rotation de l'écran"
+msgstr "Rotation de l'écran"
 
-#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:264
+#: src/DisplayPlug.vala:120 src/Widgets/DisplayWidget.vala:261
 msgid "Scaling factor"
 msgstr "Facteur de grossissement"
 
@@ -64,7 +64,7 @@ msgstr "Horaire"
 
 #: src/DisplayPlug.vala:123
 msgid "Color temperature"
-msgstr "Température"
+msgstr "Température des couleurs"
 
 #: src/DisplayPlug.vala:124
 msgid "Color Blindness"
@@ -118,7 +118,7 @@ msgstr "Inversé, Sens antihoraire"
 msgid "None"
 msgstr "Aucun"
 
-#: src/Objects/VirtualMonitor.vala:77
+#: src/Objects/VirtualMonitor.vala:110
 msgid "Mirrored Display"
 msgstr "Dupliquer l'écran"
 
@@ -254,36 +254,36 @@ msgstr "Plus coloré"
 msgid "Less Color"
 msgstr "Moins coloré"
 
-#: src/Widgets/DisplayWidget.vala:126
+#: src/Widgets/DisplayWidget.vala:109
 msgid "Use This Display"
 msgstr "Utiliser cet écran"
 
-#: src/Widgets/DisplayWidget.vala:136
+#: src/Widgets/DisplayWidget.vala:119
 msgid "Resolution"
 msgstr "Résolution"
 
-#: src/Widgets/DisplayWidget.vala:164
+#: src/Widgets/DisplayWidget.vala:147
 msgid "Refresh Rate"
 msgstr "Taux de rafraîchissement"
 
-#: src/Widgets/DisplayWidget.vala:236
+#: src/Widgets/DisplayWidget.vala:219
 msgid "Other…"
 msgstr "Autre…"
 
-#: src/Widgets/DisplayWidget.vala:296
+#: src/Widgets/DisplayWidget.vala:293
 msgid "Configure display"
 msgstr "Configurer l'affichage"
 
-#: src/Widgets/DisplayWidget.vala:512
+#: src/Widgets/DisplayWidget.vala:490
 #, c-format
 msgid "%g Hz"
 msgstr "%g Hz"
 
-#: src/Widgets/DisplayWidget.vala:579
+#: src/Widgets/DisplayWidget.vala:557
 msgid "Is the primary display"
 msgstr "Est l'écran principal"
 
-#: src/Widgets/DisplayWidget.vala:582
+#: src/Widgets/DisplayWidget.vala:560
 msgid "Set as primary display"
 msgstr "Définir comme affichage principal"
 

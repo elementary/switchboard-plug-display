@@ -1,11 +1,11 @@
 display-widget {
     border-radius: 3px;
     padding: 6px;
-    text-shadow: 0 1px 1px alpha(white, 0.1);
     -gtk-icon-shadow: 0 1px 1px alpha(white, 0.1);
 }
 
 display-widget > grid > label {
+    text-shadow: 0 1px 1px alpha(white, 0.1);
     font-weight: 600;
 }
 

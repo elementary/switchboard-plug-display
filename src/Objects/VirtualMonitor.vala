@@ -20,16 +20,44 @@
  */
 
 public class Display.VirtualMonitor : GLib.Object {
+    public class Scale : GLib.Object {
+        public double scale { get; construct; }
+        public string string_representation { get; construct; }
+
+        public Scale (double scale) {
+            Object (
+                scale: scale,
+                string_representation: "%d %%".printf ((int) Math.round (scale * 100))
+            );
+        }
+    }
+
     public int x { get; set; }
     public int y { get; set; }
     public int current_x { get; set; }
     public int current_y { get; set; }
-    public double scale { get; set; }
+    public Gtk.SingleSelection available_scales { get; construct; }
     public DisplayTransform transform { get; set; }
     public bool primary { get; set; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
 
     public signal void modes_changed ();
+
+    public double scale {
+        get {
+            return ((Scale) available_scales.selected_item).scale;
+        }
+        set {
+            update_available_scales ();
+            for (int i = 0; i < available_scales.get_n_items (); i++) {
+                if (value == ((Scale) available_scales.get_item (i)).scale) {
+                    available_scales.selected = i;
+                    return;
+                }
+            }
+            critical ("Unsupported scale %f for current mode", value);
+        }
+    }
 
     /*
      * Used to distinguish two VirtualMonitors from each other.
@@ -68,8 +96,13 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
+    private ListStore available_scales_store;
+
     construct {
         monitors = new Gee.LinkedList<Display.Monitor> ();
+
+        available_scales_store = new ListStore (typeof (Scale));
+        available_scales = new Gtk.SingleSelection (available_scales_store);
     }
 
     public unowned string get_display_name () {
@@ -114,6 +147,23 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
+    private void update_available_scales () {
+        Scale[] scales = {};
+        foreach (var mode in get_available_modes ()) {
+            if (!mode.is_current) {
+                continue;
+            }
+
+            foreach (var scale in mode.supported_scales) {
+                scales += new Scale (scale);
+            }
+
+            break;
+        }
+
+        available_scales_store.splice (0, available_scales_store.get_n_items (), scales);
+    }
+
     public Display.MonitorMode? get_mode_for_resolution (int width, int height) {
         foreach (var mode in get_available_modes ()) {
             if (mode.width == width && mode.height == height) {
@@ -149,6 +199,8 @@ public class Display.VirtualMonitor : GLib.Object {
                 mode.is_current = mode == current_mode;
             }
         }
+
+        scale = current_mode.preferred_scale;
     }
 
     public static string generate_id_from_monitors (MutterReadMonitorInfo[] infos) {
