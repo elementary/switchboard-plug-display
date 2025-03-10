@@ -1,3 +1,9 @@
+io.elementary.settings.display (8.0.1) noble; urgency=medium
+
+  * Release 8.0.1 (#408)
+
+ -- elementary, Inc. <builds@elementary.io>  Mon, 10 Mar 2025 20:50:20 +0000
+
 io.elementary.settings.display (8.0.0) noble; urgency=medium
 
   * New upstream release
