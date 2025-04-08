@@ -143,3 +143,29 @@ display-widget.disabled button.flat.image-button:focus {
 display-widget.disabled button.flat.image-button:checked {
     background: alpha(@SLATE_700, 0.5);
 }
+
+scale.warmth trough {
+    background-image:
+        linear-gradient(
+            to right,
+            mix(
+                @SILVER_100,
+                @ORANGE_100,
+                0.5
+            ),
+            @ORANGE_500
+        );
+}
+
+scale.warmth:dir(rtl) trough {
+    background-image:
+        linear-gradient(
+            to left,
+            mix(
+                @SILVER_100,
+                @ORANGE_100,
+                0.5
+            ),
+            @ORANGE_500
+        );
+}
