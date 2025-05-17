@@ -186,9 +186,12 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
     public void rescan_displays () {
         scanning = true;
-        foreach (unowned var widget in display_widgets) {
+        for (uint i = 0; display_widgets.nth_data (i) != null; i++) {
+            unowned var widget = display_widgets.nth_data (i);
             display_widgets.remove (widget);
-            widget.destroy ();
+            if (widget != null) {
+                widget.destroy ();
+            }
         }
 
         active_displays = 0;
