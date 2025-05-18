@@ -150,7 +150,7 @@ public class Display.VirtualMonitor : GLib.Object {
     private void update_available_scales () {
         Scale[] scales = {};
         foreach (var mode in get_available_modes ()) {
-            if (!mode.is_current && !mode.is_preferred) {
+            if (!mode.is_current) {
                 continue;
             }
 
