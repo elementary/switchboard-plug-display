@@ -222,7 +222,7 @@ public class Display.MonitorManager : GLib.Object {
             bool found = false;
             foreach (var virtual_monitor in virtual_monitors) {
                 if (monitor in virtual_monitor.monitors) {
-                   found = true;
+                    found = true;
                     break;
                 }
             }
