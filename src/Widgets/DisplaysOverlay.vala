@@ -188,9 +188,9 @@ public class Display.DisplaysOverlay : Gtk.Box {
         scanning = true;
 
         display_widgets.@foreach ((display_widget) => {
-                overlay.remove_overlay (display_widget);
-                display_widget.destroy ();
-                display_widgets.remove (display_widget);
+            overlay.remove_overlay (display_widget);
+            display_widget.destroy ();
+            display_widgets.remove (display_widget);
         });
 
         active_displays = 0;
