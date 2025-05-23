@@ -297,8 +297,8 @@ public class Display.MonitorManager : GLib.Object {
     public void enable_clone_mode () {
         var clone_virtual_monitor = new Display.VirtualMonitor ();
         clone_virtual_monitor.primary = true;
-        clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
         clone_virtual_monitor.monitors.add_all (monitors);
+        clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
         var modes = clone_virtual_monitor.get_available_modes ();
         /*
          * Two choices here:
@@ -364,6 +364,9 @@ public class Display.MonitorManager : GLib.Object {
             var single_virtual_monitor = new Display.VirtualMonitor ();
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
+
+            single_virtual_monitor.monitors.add (monitor);
+
             if (global_scale_required) {
                 single_virtual_monitor.scale = max_scale;
                 if (max_scale in preferred_mode.supported_scales) {
@@ -388,7 +391,6 @@ public class Display.MonitorManager : GLib.Object {
                 single_virtual_monitor.scale = preferred_mode.preferred_scale;
             }
 
-            single_virtual_monitor.monitors.add (monitor);
             new_virtual_monitors.add (single_virtual_monitor);
         }
 
