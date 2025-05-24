@@ -9,7 +9,7 @@
 public class Display.DisplaysView : Gtk.Box {
     public DisplaysOverlay displays_overlay;
 
-    private Gtk.ComboBoxText dpi_combo;
+    private Gtk.DropDown dpi_combo;
     private Gtk.Box rotation_lock_box;
 
     private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
@@ -34,10 +34,16 @@ public class Display.DisplaysView : Gtk.Box {
 
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
-            dpi_combo = new Gtk.ComboBoxText ();
-            dpi_combo.append_text (_("LoDPI") + " (1×)");
-            dpi_combo.append_text (_("HiDPI") + " (2×)");
-            dpi_combo.append_text (_("HiDPI") + " (3×)");
+            var dpi_dropdown_options = new string[3] {
+                _("LoDPI") + " (1×)",
+                _("HiDPI") + " (2×)",
+                _("HiDPI") + " (3×)"
+            };
+
+            dpi_combo = new Gtk.DropDown (new Gtk.StringList (dpi_dropdown_options), null);
+            //dpi_combo.append_text (_("LoDPI") + " (1×)");
+            //dpi_combo.append_text (_("HiDPI") + " (2×)");
+            //dpi_combo.append_text (_("HiDPI") + " (3×)");
 
             var dpi_box = new Gtk.Box (HORIZONTAL, 6) {
                 margin_top = 6,
@@ -130,11 +136,11 @@ public class Display.DisplaysView : Gtk.Box {
                 apply_button.sensitive = false;
             });
 
-            dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
+            dpi_combo.selected = (int)monitor_manager.virtual_monitors[0].scale - 1;
 
-            dpi_combo.changed.connect (() => {
+            dpi_combo.activate.connect (() => {
                 try {
-                    monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+                    monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.selected + 1));
                 } catch (Error e) {
                     show_error_dialog (e.message);
                 }
