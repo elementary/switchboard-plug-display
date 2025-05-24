@@ -232,8 +232,8 @@ public class Display.MonitorManager : GLib.Object {
                 add_virtual_monitor (virtual_monitor);
                 virtual_monitor.is_active = false;
                 virtual_monitor.primary = false;
-                virtual_monitor.scale = virtual_monitors[0].scale;
                 virtual_monitor.monitors.add (monitor);
+                virtual_monitor.scale = virtual_monitors[0].scale;
             }
         }
     }
