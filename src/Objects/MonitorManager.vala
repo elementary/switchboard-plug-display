@@ -83,6 +83,10 @@ public class Display.MonitorManager : GLib.Object {
             critical (e.message);
         }
 
+        // Clear all monitors and virtual monitors before re-adding them if needed
+        monitors.clear ();
+        virtual_monitors.clear ();
+
         //TODO: make use of the "global-scale-required" property to differenciate between X and Wayland
         var supports_mirroring_variant = properties.lookup ("supports-mirroring");
         if (supports_mirroring_variant != null) {
@@ -188,7 +192,6 @@ public class Display.MonitorManager : GLib.Object {
             var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
             if (virtual_monitor == null) {
                 virtual_monitor = new VirtualMonitor ();
-                add_virtual_monitor (virtual_monitor);
             }
 
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
@@ -214,6 +217,7 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.scale = mutter_logical_monitor.scale;
             virtual_monitor.transform = mutter_logical_monitor.transform;
             virtual_monitor.primary = mutter_logical_monitor.primary;
+            add_virtual_monitor (virtual_monitor);
         }
 
         // Look for any monitors that aren't part of a virtual monitor (hence disabled)
@@ -229,11 +233,11 @@ public class Display.MonitorManager : GLib.Object {
 
             if (!found) {
                 var virtual_monitor = new VirtualMonitor ();
-                add_virtual_monitor (virtual_monitor);
                 virtual_monitor.is_active = false;
                 virtual_monitor.primary = false;
                 virtual_monitor.monitors.add (monitor);
                 virtual_monitor.scale = virtual_monitors[0].scale;
+                add_virtual_monitor (virtual_monitor);
             }
         }
     }
