@@ -1,3 +1,9 @@
+io.elementary.settings.display (8.0.2) noble; urgency=medium
+
+  * Update meson.build (#422)
+
+ -- elementary, Inc. <builds@elementary.io>  Tue, 27 May 2025 14:18:29 +0000
+
 io.elementary.settings.display (8.0.1) noble; urgency=medium
 
   * Release 8.0.1 (#408)
