@@ -2,7 +2,7 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  * SPDX-FileCopyrightText: 2025 elementary, Inc. <https://elementary.io>
  *
- * Authored by: Leonardo Lemos <leonardolemos@live.com.com>
+ * Authored by: Leonardo Lemos <leonardolemos@live.com>
  */
 
 public class Display.MonitorLayoutProfile : GLib.Object {

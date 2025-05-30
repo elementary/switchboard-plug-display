@@ -2,7 +2,7 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  * SPDX-FileCopyrightText: 2025 elementary, Inc. <https://elementary.io>
  *
- * Authored by: Leonardo Lemos <leonardolemos@live.com.com>
+ * Authored by: Leonardo Lemos <leonardolemos@live.com>
  */
 
 public class Display.MonitorLayoutManager : GLib.Object {
@@ -128,7 +128,7 @@ public class Display.MonitorLayoutManager : GLib.Object {
             props_builder.add_value (new Variant.dict_entry ("x", new Variant.variant(new Variant.int32 (monitor.x))));
             props_builder.add_value (new Variant.dict_entry ("y", new Variant.variant(new Variant.int32 (monitor.y))));
   
-            dict_builder.add_value (new Variant.dict_entry (key, props_builder));
+            dict_builder.add_value (new Variant.dict_entry (key, props_builder.end ()));
         }
 
         return dict_builder.end ();
