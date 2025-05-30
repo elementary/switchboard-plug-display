@@ -48,6 +48,7 @@ public class Display.MonitorManager : GLib.Object {
 
     private MutterDisplayConfigInterface iface;
     private uint current_serial;
+    private MonitorLayoutManager layout_manager;
 
     private static MonitorManager monitor_manager;
     public static unowned MonitorManager get_default () {
@@ -65,6 +66,7 @@ public class Display.MonitorManager : GLib.Object {
     construct {
         monitors = new Gee.LinkedList<Display.Monitor> ();
         virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
+        layout_manager = new MonitorLayoutManager ();
         try {
             iface = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.Mutter.DisplayConfig", "/org/gnome/Mutter/DisplayConfig");
             iface.monitors_changed.connect (get_monitor_config);
@@ -82,6 +84,8 @@ public class Display.MonitorManager : GLib.Object {
         } catch (Error e) {
             critical (e.message);
         }
+
+        var monitor_number = virtual_monitors.size;
 
         // Clear all monitors and virtual monitors before re-adding them if needed
         monitors.clear ();
@@ -239,6 +243,16 @@ public class Display.MonitorManager : GLib.Object {
                 virtual_monitor.scale = virtual_monitors[0].scale;
                 add_virtual_monitor (virtual_monitor);
             }
+
+            
+        }
+
+        if (monitor_number != virtual_monitors.size) {
+            notify_property ("virtual-monitor-number");
+        }
+
+        if (virtual_monitors.size >= 2) {
+            layout_manager.arrange_monitors (virtual_monitors);
         }
     }
 
@@ -401,6 +415,8 @@ public class Display.MonitorManager : GLib.Object {
         new_virtual_monitors.get (0).primary = true;
         virtual_monitors.clear ();
         virtual_monitors.add_all (new_virtual_monitors);
+
+        layout_manager.arrange_monitors (virtual_monitors);
 
         notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");

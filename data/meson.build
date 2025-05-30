@@ -11,3 +11,9 @@ gresource = gnome.compile_resources(
     'gresource',
     'display.gresource.xml'
 )
+
+install_data(
+    'display.gschema.xml',
+    install_dir: datadir / 'glib-2.0' / 'schemas',
+    rename: 'io.elementary.settings.display.gschema.xml'
+)
