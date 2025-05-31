@@ -10,9 +10,10 @@ public class Display.MonitorLayoutProfile : GLib.Object {
         public string id { get; set; }
         public int x { get; set; }
         public int y { get; set; }
+        public DisplayTransform transform { get; set; }
 
-        public MonitorPosition (string id, int x, int y) {
-            Object (id: id, x: x, y: y);
+        public MonitorPosition (string id, int x, int y, DisplayTransform transform) {
+            Object (id: id, x: x, y: y, transform: transform);
         }
     }
 
@@ -33,8 +34,8 @@ public class Display.MonitorLayoutProfile : GLib.Object {
         _positions = new List<MonitorPosition> ();
     }
 
-    public void add_position (string id, int x, int y) {
-        _positions.append (new MonitorPosition (id, x, y));
+    public void add_position (string id, int x, int y, DisplayTransform transform) {
+        _positions.append (new MonitorPosition (id, x, y, transform));
     }
 
     public MonitorPosition? find_position_by_id (string id) {

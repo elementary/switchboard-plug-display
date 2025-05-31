@@ -9,7 +9,7 @@ public class Display.MonitorLayoutManager : GLib.Object {
     private Settings settings;
 
     private const string PREFERRED_MONITOR_LAYOUTS_KEY = "preferred-display-layouts";
- 
+
     public MonitorLayoutManager () {
         Object ();
     }
@@ -23,25 +23,29 @@ public class Display.MonitorLayoutManager : GLib.Object {
             // If there's only one monitor, no need to arrange
             return;
         }
-        
+
         var layout_key = get_layout_key (virtual_monitors);
         var layout = find_match_layout (layout_key);
         var is_cloned = is_virtual_monitors_cloned (virtual_monitors);
         var has_update = false;
 
-
         if (layout != null) {
             foreach (var virtual_monitor in virtual_monitors) {
-                var monitor_layout = layout.find_position_by_id (virtual_monitor.monitors[0].hash.to_string ());
-                
-                if (monitor_layout != null) {
-                    if ((virtual_monitor.x != monitor_layout.x || virtual_monitor.y != monitor_layout.y) && !is_cloned) {
+                var monitor_position = layout
+                    .find_position_by_id (virtual_monitor.monitors[0].hash.to_string ());
+
+                if (monitor_position != null) {
+                    if ((virtual_monitor.x != monitor_position.x
+                        || virtual_monitor.y != monitor_position.y
+                        || virtual_monitor.transform != monitor_position.transform)
+                        && !is_cloned) {
                         has_update = true;
                         break;
                     }
 
-                    virtual_monitor.x = monitor_layout.x;
-                    virtual_monitor.y = monitor_layout.y;
+                    virtual_monitor.x = monitor_position.x;
+                    virtual_monitor.y = monitor_position.y;
+                    virtual_monitor.transform = monitor_position.transform;
                 }
             }
         } else {
@@ -50,6 +54,7 @@ public class Display.MonitorLayoutManager : GLib.Object {
         }
 
         if (has_update) {
+            // If the layout has been updated, save the new layout
             save_layout (virtual_monitors);
         }
     }
@@ -61,11 +66,10 @@ public class Display.MonitorLayoutManager : GLib.Object {
         var layouts = settings.get_value (PREFERRED_MONITOR_LAYOUTS_KEY);
 
         add_or_update_layout (layouts, key, layout_variant);
-
     }
 
     public MonitorLayoutProfile? find_match_layout (string key) {
-        // Layouts format is 'a{sa{sv}}'
+        // Layouts format are 'a{sa{sa{sv}}}'
         var layouts = settings.get_value (PREFERRED_MONITOR_LAYOUTS_KEY);
 
         if (layouts == null || layouts.n_children () == 0) {
@@ -81,25 +85,32 @@ public class Display.MonitorLayoutManager : GLib.Object {
                 continue;
             }
 
-            var virtual_monitor_layout = new MonitorLayoutProfile (layout_key);
+            var virtual_monitor_position = new MonitorLayoutProfile (layout_key);
 
             // Process the monitors in the layout
             for (var j = 0; j < monitors.n_children (); j++) {
                 var monitor = monitors.get_child_value (j);
                 var monitor_props = monitor.get_child_value (1);
 
-                warning (monitor_props.get_child_value (0).get_type ().dup_string ());
-                warning (monitor_props.get_child_value (0).get_child_value (1).get_child_value (0).get_type ().dup_string ());
-
-
-                virtual_monitor_layout.add_position (
-                    monitor.get_child_value (0).get_string (), // id
-                    monitor_props.get_child_value (0).get_child_value (1).get_child_value (0).get_int32 (), // x position
-                    monitor_props.get_child_value (1).get_child_value (1).get_child_value (0).get_int32 ()  // y position
-                );    
+                virtual_monitor_position.add_position (
+                    monitor.get_child_value (0)
+                        .get_string (), // id
+                    monitor_props.get_child_value (0)
+                        .get_child_value (1)
+                        .get_child_value (0)
+                        .get_int32 (), // x position
+                    monitor_props.get_child_value (1)
+                        .get_child_value (1)
+                        .get_child_value (0)
+                        .get_int32 (), // y position
+                    monitor_props.get_child_value (2)
+                        .get_child_value (1)
+                        .get_child_value (0)
+                        .get_int32 () // transform
+                );
             }
 
-            return virtual_monitor_layout;
+            return virtual_monitor_position;
         }
 
         return null;
@@ -119,23 +130,32 @@ public class Display.MonitorLayoutManager : GLib.Object {
     }
 
     private GLib.Variant build_layout_variant (Gee.LinkedList<VirtualMonitor> virtual_monitors) {
-        var dict_builder = new VariantBuilder(VariantType.DICTIONARY);
+        var dict_builder = new VariantBuilder (VariantType.DICTIONARY);
 
         foreach (var monitor in virtual_monitors) {
-            var props_builder = new VariantBuilder(VariantType.DICTIONARY);
-            var key = monitor.monitors.get(0).hash.to_string();
-        
-            props_builder.add_value (new Variant.dict_entry ("x", new Variant.variant(new Variant.int32 (monitor.x))));
-            props_builder.add_value (new Variant.dict_entry ("y", new Variant.variant(new Variant.int32 (monitor.y))));
-  
-            dict_builder.add_value (new Variant.dict_entry (key, props_builder.end ()));
+            var props_builder = new VariantBuilder (VariantType.DICTIONARY);
+            var key = monitor.monitors.get (0).hash.to_string ();
+
+            var coordinate_x_variant = new Variant.variant (new Variant.int32 (monitor.x));
+            var coordinate_y_variant = new Variant.variant (new Variant.int32 (monitor.y));
+            var transform_variant = new Variant.variant (new Variant.int32 (monitor.transform));
+
+            props_builder.add_value (new Variant.dict_entry ("x", coordinate_x_variant));
+            props_builder.add_value (new Variant.dict_entry ("y", coordinate_y_variant));
+            props_builder.add_value (new Variant.dict_entry ("transform", transform_variant));
+
+            var props_variant = props_builder.end ();
+
+            warning (props_variant.print (true));
+
+            dict_builder.add_value (new Variant.dict_entry (key, props_variant));
         }
 
         return dict_builder.end ();
     }
 
     private void add_or_update_layout (GLib.Variant layouts, string key, GLib.Variant layout_variant) {
-        var layout_builder = new VariantBuilder(VariantType.DICTIONARY);
+        var layout_builder = new VariantBuilder (VariantType.DICTIONARY);
         bool found = false;
 
         for (var i = 0; i < layouts.n_children (); i++) {
@@ -157,7 +177,7 @@ public class Display.MonitorLayoutManager : GLib.Object {
             layout_builder.add_value (new Variant.dict_entry (key, layout_variant));
         }
 
-        settings.set_value(PREFERRED_MONITOR_LAYOUTS_KEY, layout_builder.end ());
+        settings.set_value (PREFERRED_MONITOR_LAYOUTS_KEY, layout_builder.end ());
     }
 
     private bool is_virtual_monitors_cloned (Gee.LinkedList<VirtualMonitor> virtual_monitors) {
