@@ -221,7 +221,7 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.scale = mutter_logical_monitor.scale;
             virtual_monitor.transform = mutter_logical_monitor.transform;
             virtual_monitor.primary = mutter_logical_monitor.primary;
-            add_virtual_monitor (virtual_monitor);
+            virtual_monitors.add (virtual_monitor);
         }
 
         // Look for any monitors that aren't part of a virtual monitor (hence disabled)
@@ -241,19 +241,15 @@ public class Display.MonitorManager : GLib.Object {
                 virtual_monitor.primary = false;
                 virtual_monitor.monitors.add (monitor);
                 virtual_monitor.scale = virtual_monitors[0].scale;
-                add_virtual_monitor (virtual_monitor);
+                virtual_monitors.add (virtual_monitor);
             }
-
-            
         }
 
         if (monitor_number != virtual_monitors.size) {
             notify_property ("virtual-monitor-number");
         }
 
-        if (virtual_monitors.size >= 2) {
-            layout_manager.arrange_monitors (virtual_monitors);
-        }
+        layout_manager.arrange_monitors (virtual_monitors);
     }
 
     public void set_monitor_config () throws Error {
@@ -420,11 +416,6 @@ public class Display.MonitorManager : GLib.Object {
 
         notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");
-    }
-
-    private void add_virtual_monitor (Display.VirtualMonitor virtual_monitor) {
-        virtual_monitors.add (virtual_monitor);
-        notify_property ("virtual-monitor-number");
     }
 
     private VirtualMonitor? get_virtual_monitor_by_id (string id) {
