@@ -199,6 +199,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
             add_output (virtual_monitor);
         }
 
+        show_windows ();
         change_active_displays_sensitivity ();
         calculate_ratio ();
         scanning = false;
@@ -351,10 +352,6 @@ public class Display.DisplaysOverlay : Gtk.Box {
             check_configuration_change ();
             calculate_ratio ();
         });
-
-        if (!monitor_manager.is_mirrored && virtual_monitor.is_active) {
-            show_windows ();
-        }
     }
 
     private void set_as_primary (Display.VirtualMonitor new_primary) {
