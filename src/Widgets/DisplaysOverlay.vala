@@ -87,7 +87,7 @@ public class Display.DisplaysOverlay : Gtk.Box {
         add_controller (drag_gesture);
 
         monitor_manager = Display.MonitorManager.get_default ();
-        monitor_manager.notify["virtual-monitor-number"].connect (() => rescan_displays ());
+        monitor_manager.monitors_changed.connect (() => rescan_displays ());
         rescan_displays ();
 
         overlay.get_child_position.connect (get_child_position);

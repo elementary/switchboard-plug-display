@@ -46,6 +46,8 @@ public class Display.MonitorManager : GLib.Object {
         }
     }
 
+    public signal void monitors_changed ();
+
     private MutterDisplayConfigInterface iface;
     private uint current_serial;
     private MonitorLayoutManager layout_manager;
@@ -68,8 +70,14 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
         layout_manager = new MonitorLayoutManager ();
         try {
-            iface = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.Mutter.DisplayConfig", "/org/gnome/Mutter/DisplayConfig");
-            iface.monitors_changed.connect (get_monitor_config);
+            iface = Bus.get_proxy_sync (
+                BusType.SESSION,
+                "org.gnome.Mutter.DisplayConfig",
+                "/org/gnome/Mutter/DisplayConfig");
+            iface.monitors_changed.connect (() => {
+                get_monitor_config ();
+                monitors_changed ();
+            });
         } catch (Error e) {
             critical (e.message);
         }
@@ -80,7 +88,10 @@ public class Display.MonitorManager : GLib.Object {
         MutterReadLogicalMonitor[] mutter_logical_monitors;
         GLib.HashTable<string, GLib.Variant> properties;
         try {
-            iface.get_current_state (out current_serial, out mutter_monitors, out mutter_logical_monitors, out properties);
+            iface.get_current_state (out current_serial,
+                out mutter_monitors,
+                out mutter_logical_monitors,
+                out properties);
         } catch (Error e) {
             critical (e.message);
         }
@@ -243,10 +254,6 @@ public class Display.MonitorManager : GLib.Object {
                 virtual_monitor.scale = virtual_monitors[0].scale;
                 virtual_monitors.add (virtual_monitor);
             }
-        }
-
-        if (monitor_number != virtual_monitors.size) {
-            notify_property ("virtual-monitor-number");
         }
 
         layout_manager.arrange_monitors (virtual_monitors);
