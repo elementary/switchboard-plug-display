@@ -96,8 +96,6 @@ public class Display.MonitorManager : GLib.Object {
             critical (e.message);
         }
 
-        var monitor_number = virtual_monitors.size;
-
         // Clear all monitors and virtual monitors before re-adding them if needed
         monitors.clear ();
         virtual_monitors.clear ();
