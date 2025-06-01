@@ -46,8 +46,11 @@ public class Display.MonitorManager : GLib.Object {
         }
     }
 
+    public signal void monitors_changed ();
+
     private MutterDisplayConfigInterface iface;
     private uint current_serial;
+    private MonitorLayoutManager layout_manager;
 
     private static MonitorManager monitor_manager;
     public static unowned MonitorManager get_default () {
@@ -65,9 +68,16 @@ public class Display.MonitorManager : GLib.Object {
     construct {
         monitors = new Gee.LinkedList<Display.Monitor> ();
         virtual_monitors = new Gee.LinkedList<Display.VirtualMonitor> ();
+        layout_manager = new MonitorLayoutManager ();
         try {
-            iface = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.Mutter.DisplayConfig", "/org/gnome/Mutter/DisplayConfig");
-            iface.monitors_changed.connect (get_monitor_config);
+            iface = Bus.get_proxy_sync (
+                BusType.SESSION,
+                "org.gnome.Mutter.DisplayConfig",
+                "/org/gnome/Mutter/DisplayConfig");
+            iface.monitors_changed.connect (() => {
+                get_monitor_config ();
+                monitors_changed ();
+            });
         } catch (Error e) {
             critical (e.message);
         }
@@ -78,7 +88,10 @@ public class Display.MonitorManager : GLib.Object {
         MutterReadLogicalMonitor[] mutter_logical_monitors;
         GLib.HashTable<string, GLib.Variant> properties;
         try {
-            iface.get_current_state (out current_serial, out mutter_monitors, out mutter_logical_monitors, out properties);
+            iface.get_current_state (out current_serial,
+                out mutter_monitors,
+                out mutter_logical_monitors,
+                out properties);
         } catch (Error e) {
             critical (e.message);
         }
@@ -217,7 +230,7 @@ public class Display.MonitorManager : GLib.Object {
             virtual_monitor.scale = mutter_logical_monitor.scale;
             virtual_monitor.transform = mutter_logical_monitor.transform;
             virtual_monitor.primary = mutter_logical_monitor.primary;
-            add_virtual_monitor (virtual_monitor);
+            virtual_monitors.add (virtual_monitor);
         }
 
         // Look for any monitors that aren't part of a virtual monitor (hence disabled)
@@ -237,9 +250,11 @@ public class Display.MonitorManager : GLib.Object {
                 virtual_monitor.primary = false;
                 virtual_monitor.monitors.add (monitor);
                 virtual_monitor.scale = virtual_monitors[0].scale;
-                add_virtual_monitor (virtual_monitor);
+                virtual_monitors.add (virtual_monitor);
             }
         }
+
+        layout_manager.arrange_monitors (virtual_monitors);
     }
 
     public void set_monitor_config () throws Error {
@@ -402,13 +417,10 @@ public class Display.MonitorManager : GLib.Object {
         virtual_monitors.clear ();
         virtual_monitors.add_all (new_virtual_monitors);
 
+        layout_manager.arrange_monitors (virtual_monitors);
+
         notify_property ("virtual-monitor-number");
         notify_property ("is-mirrored");
-    }
-
-    private void add_virtual_monitor (Display.VirtualMonitor virtual_monitor) {
-        virtual_monitors.add (virtual_monitor);
-        notify_property ("virtual-monitor-number");
     }
 
     private VirtualMonitor? get_virtual_monitor_by_id (string id) {

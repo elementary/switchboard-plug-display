@@ -1,0 +1,15 @@
+<schemalist>
+  <schema id="io.elementary.settings.display" path="/io/elementary/settings/display/">
+
+    <key name="preferred-display-layouts" type="a{sa{sa{sv}}}">
+      <default>{}</default>
+      <summary>Preferred display layouts</summary>
+      <description>
+        Stores user-defined display layout profiles. 
+        Each profile contains a unique identifier and a list of monitors, with their respective position (x, y) and other properties such as transformation (e.g., rotation). 
+        This allows the system to restore or suggest preferred monitor arrangements and settings when displays are connected or configurations change.
+      </description>
+    </key>
+
+  </schema>
+</schemalist>
