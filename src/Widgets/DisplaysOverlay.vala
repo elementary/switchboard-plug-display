@@ -186,10 +186,12 @@ public class Display.DisplaysOverlay : Gtk.Box {
 
     public void rescan_displays () {
         scanning = true;
-        foreach (unowned var widget in display_widgets) {
-            display_widgets.remove (widget);
-            widget.destroy ();
-        }
+
+        display_widgets.@foreach ((display_widget) => {
+            overlay.remove_overlay (display_widget);
+            display_widget.destroy ();
+            display_widgets.remove (display_widget);
+        });
 
         active_displays = 0;
         foreach (var virtual_monitor in monitor_manager.virtual_monitors) {

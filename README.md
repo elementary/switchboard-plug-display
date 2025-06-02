@@ -1,6 +1,6 @@
 # Display Settings
 [![Packaging status](https://repology.org/badge/tiny-repos/switchboard-plug-display.svg)](https://repology.org/metapackage/switchboard-plug-display)
-[![Translation status](https://l10n.elementary.io/widgets/switchboard/-/switchboard-plug-display/svg-badge.svg)](https://l10n.elementary.io/engage/switchboard/?utm_source=widget)
+[![Translation status](https://l10n.elementaryos.org/widget/settings/display/svg-badge.svg)](https://l10n.elementaryos.org/engage/settings/)
 
 Extension for [System Settings](https://github.com/elementary/switchboard) to manage multiple monitor setups.
 

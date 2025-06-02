@@ -1,11 +1,11 @@
 display-widget {
     border-radius: 3px;
     padding: 6px;
-    text-shadow: 0 1px 1px alpha(white, 0.1);
     -gtk-icon-shadow: 0 1px 1px alpha(white, 0.1);
 }
 
 display-widget > grid > label {
+    text-shadow: 0 1px 1px alpha(white, 0.1);
     font-weight: 600;
 }
 
@@ -142,4 +142,30 @@ display-widget.disabled button.flat.image-button:focus {
 
 display-widget.disabled button.flat.image-button:checked {
     background: alpha(@SLATE_700, 0.5);
+}
+
+scale.warmth trough {
+    background-image:
+        linear-gradient(
+            to right,
+            mix(
+                @SILVER_100,
+                @ORANGE_100,
+                0.5
+            ),
+            @ORANGE_500
+        );
+}
+
+scale.warmth:dir(rtl) trough {
+    background-image:
+        linear-gradient(
+            to left,
+            mix(
+                @SILVER_100,
+                @ORANGE_100,
+                0.5
+            ),
+            @ORANGE_500
+        );
 }

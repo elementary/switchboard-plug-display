@@ -13,13 +13,13 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/elementary/switchboard-plug-display/8.0.0/data/screenshot.png</image>
+      <image>https://raw.githubusercontent.com/elementary/settings-display/8.0.0/data/screenshot.png</image>
     </screenshot>
   </screenshots>
 
-  <url type="bugtracker">https://github.com/elementary/switchboard-plug-display/issues</url>
+  <url type="bugtracker">https://github.com/elementary/settings-display/issues</url>
   <url type="donation">https://elementary.io/get-involved#funding</url>
-  <url type="help">https://github.com/elementary/switchboard-plug-display/discussions</url>
+  <url type="help">https://github.com/elementary/settings-display/discussions</url>
   <url type="homepage">https://elementary.io</url>
   <url type="translate">https://l10n.elementary.io/engage/switchboard/</url>
 
@@ -30,6 +30,31 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="8.0.2" date="2025-05-27" urgency="medium">
+      <description>
+        <p>Minor updates:</p>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/settings-display/issues/406">Crash after pressing the Detect Display button</issue>
+        <issue url="https://github.com/elementary/settings-display/issues/411">Opening display settings results in segfault</issue>
+        <issue url="https://github.com/elementary/settings-display/issues/419">Display Settings crashes when hotplugging a new monitor in a single monitor layout</issue>
+      </issues>
+    </release>
+    <release version="8.0.1" date="2025-03-10" urgency="medium">
+      <description>
+        <p>Minor updates:</p>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/settings-display/issues/398">Use correct fractional scaling values</issue>
+      </issues>
+    </release>
+
     <release version="8.0.0" date="2024-08-20" urgency="medium">
       <description>
         <p>Minor updates:</p>
@@ -41,8 +66,8 @@
         </ul>
       </description>
       <issues>
-        <issue url="https://github.com/elementary/switchboard-plug-display/issues/117">Add fractional scaling support</issue>
-        <issue url="https://github.com/elementary/switchboard-plug-display/issues/352">Display name tags positioned incorrectly under Wayland</issue>
+        <issue url="https://github.com/elementary/settings-display/issues/117">Add fractional scaling support</issue>
+        <issue url="https://github.com/elementary/settings-display/issues/352">Display name tags positioned incorrectly under Wayland</issue>
       </issues>
     </release>
 
@@ -55,9 +80,9 @@
         </ul>
       </description>
       <issues>
-        <issue url="https://github.com/elementary/switchboard-plug-display/issues/291">Provide presets for color-blind people</issue>
-        <issue url="https://github.com/elementary/switchboard-plug-display/issues/338">Resolution reported incorrectly</issue>
-        <issue url="https://github.com/elementary/switchboard-plug-display/issues/346">Warmer night light (optional)</issue>
+        <issue url="https://github.com/elementary/settings-display/issues/291">Provide presets for color-blind people</issue>
+        <issue url="https://github.com/elementary/settings-display/issues/338">Resolution reported incorrectly</issue>
+        <issue url="https://github.com/elementary/settings-display/issues/346">Warmer night light (optional)</issue>
       </issues>
     </release>
 

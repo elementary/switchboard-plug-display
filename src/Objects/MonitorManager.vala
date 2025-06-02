@@ -83,6 +83,10 @@ public class Display.MonitorManager : GLib.Object {
             critical (e.message);
         }
 
+        // Clear all monitors and virtual monitors before re-adding them if needed
+        monitors.clear ();
+        virtual_monitors.clear ();
+
         //TODO: make use of the "global-scale-required" property to differenciate between X and Wayland
         var supports_mirroring_variant = properties.lookup ("supports-mirroring");
         if (supports_mirroring_variant != null) {
@@ -188,16 +192,8 @@ public class Display.MonitorManager : GLib.Object {
             var virtual_monitor = get_virtual_monitor_by_id (monitors_id);
             if (virtual_monitor == null) {
                 virtual_monitor = new VirtualMonitor ();
-                add_virtual_monitor (virtual_monitor);
             }
 
-            virtual_monitor.x = mutter_logical_monitor.x;
-            virtual_monitor.y = mutter_logical_monitor.y;
-            virtual_monitor.current_x = mutter_logical_monitor.x;
-            virtual_monitor.current_y = mutter_logical_monitor.y;
-            virtual_monitor.scale = mutter_logical_monitor.scale;
-            virtual_monitor.transform = mutter_logical_monitor.transform;
-            virtual_monitor.primary = mutter_logical_monitor.primary;
             foreach (var mutter_info in mutter_logical_monitor.monitors) {
                 foreach (var monitor in monitors) {
                     if (compare_monitor_with_mutter_info (monitor, mutter_info)) {
@@ -213,6 +209,15 @@ public class Display.MonitorManager : GLib.Object {
                     }
                 }
             }
+
+            virtual_monitor.x = mutter_logical_monitor.x;
+            virtual_monitor.y = mutter_logical_monitor.y;
+            virtual_monitor.current_x = mutter_logical_monitor.x;
+            virtual_monitor.current_y = mutter_logical_monitor.y;
+            virtual_monitor.scale = mutter_logical_monitor.scale;
+            virtual_monitor.transform = mutter_logical_monitor.transform;
+            virtual_monitor.primary = mutter_logical_monitor.primary;
+            add_virtual_monitor (virtual_monitor);
         }
 
         // Look for any monitors that aren't part of a virtual monitor (hence disabled)
@@ -228,11 +233,11 @@ public class Display.MonitorManager : GLib.Object {
 
             if (!found) {
                 var virtual_monitor = new VirtualMonitor ();
-                add_virtual_monitor (virtual_monitor);
                 virtual_monitor.is_active = false;
                 virtual_monitor.primary = false;
-                virtual_monitor.scale = virtual_monitors[0].scale;
                 virtual_monitor.monitors.add (monitor);
+                virtual_monitor.scale = virtual_monitors[0].scale;
+                add_virtual_monitor (virtual_monitor);
             }
         }
     }
@@ -296,8 +301,8 @@ public class Display.MonitorManager : GLib.Object {
     public void enable_clone_mode () {
         var clone_virtual_monitor = new Display.VirtualMonitor ();
         clone_virtual_monitor.primary = true;
-        clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
         clone_virtual_monitor.monitors.add_all (monitors);
+        clone_virtual_monitor.scale = Utils.get_min_compatible_scale (monitors);
         var modes = clone_virtual_monitor.get_available_modes ();
         /*
          * Two choices here:
@@ -363,6 +368,9 @@ public class Display.MonitorManager : GLib.Object {
             var single_virtual_monitor = new Display.VirtualMonitor ();
             var preferred_mode = monitor.preferred_mode;
             var current_mode = monitor.current_mode;
+
+            single_virtual_monitor.monitors.add (monitor);
+
             if (global_scale_required) {
                 single_virtual_monitor.scale = max_scale;
                 if (max_scale in preferred_mode.supported_scales) {
@@ -387,7 +395,6 @@ public class Display.MonitorManager : GLib.Object {
                 single_virtual_monitor.scale = preferred_mode.preferred_scale;
             }
 
-            single_virtual_monitor.monitors.add (monitor);
             new_virtual_monitors.add (single_virtual_monitor);
         }
 
