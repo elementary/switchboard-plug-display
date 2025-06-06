@@ -40,6 +40,11 @@ public class Display.VirtualMonitor : GLib.Object {
     public DisplayTransform transform { get; set; }
     public bool primary { get; set; }
     public Gee.LinkedList<Display.Monitor> monitors { get; construct; }
+    public Display.MonitorMode current_mode {
+        owned get {
+            return monitors[0].current_mode;
+        }
+    }
 
     public signal void modes_changed ();
 
@@ -147,6 +152,23 @@ public class Display.VirtualMonitor : GLib.Object {
         }
     }
 
+    public double[] get_frequencies_from_current_mode () {
+        double[] frequencies = {};
+        int current_width, current_height;
+
+        get_current_mode_size (out current_width, out current_height);
+
+        foreach (var mode in get_available_modes ()) {
+            if (mode.width == current_width && mode.height == current_height) {
+                frequencies += mode.frequency;
+            }
+        }
+
+        frequencies = Utils.sort_and_deduplicate_double_array (frequencies);
+
+        return frequencies;
+    }
+
     private void update_available_scales () {
         Scale[] scales = {};
         foreach (var mode in get_available_modes ()) {
@@ -164,14 +186,16 @@ public class Display.VirtualMonitor : GLib.Object {
         available_scales_store.splice (0, available_scales_store.get_n_items (), scales);
     }
 
-    public Display.MonitorMode? get_mode_for_resolution (int width, int height) {
+    public Gee.LinkedList<Display.MonitorMode> get_modes_for_resolution (int width, int height) {
+        var mode_list = new Gee.LinkedList<Display.MonitorMode> ();
+
         foreach (var mode in get_available_modes ()) {
             if (mode.width == width && mode.height == height) {
-                return mode;
+                mode_list.add (mode);
             }
         }
 
-        return null;
+        return mode_list;
     }
 
     public void set_current_mode (Display.MonitorMode current_mode) {
