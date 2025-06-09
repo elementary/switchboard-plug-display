@@ -9,7 +9,7 @@
 public class Display.DisplaysView : Gtk.Box {
     public DisplaysOverlay displays_overlay;
 
-    private Gtk.ComboBoxText dpi_combo;
+    private Gtk.DropDown dpi_dropdown;
     private Gtk.Box rotation_lock_box;
 
     private const string TOUCHSCREEN_SETTINGS_PATH = "org.gnome.settings-daemon.peripherals.touchscreen";
@@ -34,10 +34,11 @@ public class Display.DisplaysView : Gtk.Box {
 
             var dpi_label = new Gtk.Label (_("Scaling factor:"));
 
-            dpi_combo = new Gtk.ComboBoxText ();
-            dpi_combo.append_text (_("LoDPI") + " (1×)");
-            dpi_combo.append_text (_("HiDPI") + " (2×)");
-            dpi_combo.append_text (_("HiDPI") + " (3×)");
+            dpi_dropdown = new Gtk.DropDown.from_strings ({
+                _("LoDPI") + " (1×)",
+                _("HiDPI") + " (2×)",
+                _("HiDPI") + " (3×)"
+            });
 
             var dpi_box = new Gtk.Box (HORIZONTAL, 6) {
                 margin_top = 6,
@@ -45,8 +46,9 @@ public class Display.DisplaysView : Gtk.Box {
                 margin_bottom = 6,
                 margin_start = 6
             };
+
             dpi_box.append (dpi_label);
-            dpi_box.append (dpi_combo);
+            dpi_box.append (dpi_dropdown);
 
             var detect_button = new Gtk.Button.with_label (_("Detect Displays"));
 
@@ -100,7 +102,8 @@ public class Display.DisplaysView : Gtk.Box {
                     var touchscreen_settings = new GLib.Settings (TOUCHSCREEN_SETTINGS_PATH);
                     touchscreen_settings.bind ("orientation-lock", rotation_lock_switch, "active", DEFAULT);
                 } else {
-                    info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\" is not installed on your system.");
+                    info ("Schema \"org.gnome.settings-daemon.peripherals.touchscreen\"
+                     is not installed on your system.");
                 }
             }
 
@@ -130,11 +133,12 @@ public class Display.DisplaysView : Gtk.Box {
                 apply_button.sensitive = false;
             });
 
-            dpi_combo.active = (int)monitor_manager.virtual_monitors[0].scale - 1;
+            dpi_dropdown.selected = (int)monitor_manager.virtual_monitors[0].scale - 1;
 
-            dpi_combo.changed.connect (() => {
+            dpi_dropdown.notify["selected-item"].connect (() => {
                 try {
-                    monitor_manager.set_scale_on_all_monitors ((double)(dpi_combo.active + 1));
+                    monitor_manager.set_scale_on_all_monitors ((double)(dpi_dropdown.selected + 1));
+                    warning ("Setting scale to %f", (double)(dpi_dropdown.selected + 1));
                 } catch (Error e) {
                     show_error_dialog (e.message);
                 }

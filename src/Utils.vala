@@ -20,7 +20,8 @@
  */
 
 namespace Display.Utils {
-    public static Gee.LinkedList<Display.MonitorMode> get_common_monitor_modes (Gee.LinkedList<Display.Monitor> monitors) {
+    public static Gee.LinkedList<Display.MonitorMode> get_common_monitor_modes (
+        Gee.LinkedList<Display.Monitor> monitors) {
         var common_modes = new Gee.LinkedList<Display.MonitorMode> ();
         double min_scale = get_min_compatible_scale (monitors);
         bool first_monitor = true;
