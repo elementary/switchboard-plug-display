@@ -1,3 +1,10 @@
+/*
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ * SPDX-FileCopyrightText: 2025 elementary, Inc. <https://elementary.io>
+ *
+ * Authored by: Leonardo Lemos <leonardolemos@live.com>
+ */
+
 public class Display.RefreshRateDropDown : Granite.Bin {
     public class RefreshRateOption : Object {
         public string label { get; set; }
@@ -70,18 +77,7 @@ public class Display.RefreshRateDropDown : Granite.Bin {
     public void update_refresh_rates (int width, int height) {
         refresh_rates.remove_all ();
 
-        var modes = virtual_monitor.get_modes_for_resolution (width, height);
-
-        foreach (var mode in modes) {
-            var freq_name = _("%g Hz").printf (Math.roundf ((float)mode.frequency));
-
-            var option = new RefreshRateOption () {
-                label = freq_name,
-                mode = mode
-            };
-
-            refresh_rates.append (option);
-        }
+        populate_refresh_rates ();
 
         drop_down.set_selected (0);
 
@@ -102,16 +98,50 @@ public class Display.RefreshRateDropDown : Granite.Bin {
     }
 
     private void populate_refresh_rates () {
-        var frequencies = virtual_monitor.get_frequencies_from_current_mode ();
+        var current_mode = virtual_monitor.current_mode;
+        var modes = virtual_monitor.get_modes_for_resolution (current_mode.width, current_mode.height);
 
-        foreach (var frequency in frequencies) {
-            var freq_name = _("%g Hz").printf (Math.roundf ((float)frequency));
+        var used_ints = new Gee.HashSet<int> (); // Nullable for Gee
+        var options = new Gee.ArrayList<RefreshRateOption> ();
 
-            var option = new RefreshRateOption () {
-                label = freq_name,
-                mode = virtual_monitor.current_mode
-            };
+        // 1. Add only exact integer frequencies
+        foreach (var mode in modes) {
+            if (Math.fmod (mode.frequency, 1.0) == 0.0) {
+                int freq_int = (int) mode.frequency;
+                if (!used_ints.contains (freq_int)) {
+                    var option = new RefreshRateOption () {
+                        label = _("%g Hz").printf (mode.frequency),
+                        mode = mode
+                    };
+                    options.add (option);
+                    used_ints.add (freq_int);
+                }
+            }
+        }
 
+        // 2. Add non-integer frequencies whose rounded value hasn't been used yet
+        foreach (var mode in modes) {
+            if (Math.fmod (mode.frequency, 1.0) != 0.0) {
+                int rounded = (int) Math.roundf ((float)mode.frequency);
+                if (!used_ints.contains (rounded)) {
+                    var option = new RefreshRateOption () {
+                        label = _("%g Hz").printf (Math.roundf ((float)mode.frequency)),
+                        mode = mode
+                    };
+                    options.add (option);
+                    used_ints.add (rounded);
+                }
+            }
+        }
+
+        // Sort options by the actual frequency value
+        options.sort ((a, b) => {
+            if (a.mode.frequency < b.mode.frequency) return -1;
+            if (a.mode.frequency > b.mode.frequency) return 1;
+            return 0;
+        });
+
+        foreach (var option in options) {
             refresh_rates.append (option);
         }
     }
