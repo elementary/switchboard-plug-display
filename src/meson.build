@@ -18,6 +18,7 @@ plug_files = files(
     'Widgets/ResolutionDropDown.vala',
     'Widgets/RotationDropDown.vala',
     'Widgets/RefreshRateDropDown.vala',
+    'Widgets/ScaleDropDown.vala',
 )
 
 switchboard_dep = dependency('switchboard-3')
