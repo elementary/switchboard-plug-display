@@ -1,3 +1,10 @@
+/*
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ * SPDX-FileCopyrightText: 2025 elementary, Inc. <https://elementary.io>
+ *
+ * Authored by: Leonardo Lemos <leonardolemos@live.com>
+ */
+
 public class Display.ResolutionDropDown : Granite.Bin {
     public class ResolutionOption : Object {
         public string label { get; set; }
@@ -16,7 +23,7 @@ public class Display.ResolutionDropDown : Granite.Bin {
         }
     }
 
-    public signal void resolution_changed (ResolutionOption resolution);
+    public signal void resolution_selected (ResolutionOption resolution);
 
     private Gtk.DropDown drop_down;
     private ListStore resolutions;
@@ -56,10 +63,10 @@ public class Display.ResolutionDropDown : Granite.Bin {
             drop_down.set_selected (0);
         }
 
-        drop_down.notify["selected"].connect (() => {
+        drop_down.notify["selected-item"].connect (() => {
             var selected_resolution = get_selected_resolution ();
             if (selected_resolution != null) {
-                resolution_changed (selected_resolution);
+                resolution_selected (selected_resolution);
             }
         });
 
