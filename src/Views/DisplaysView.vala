@@ -134,7 +134,7 @@ public class Display.DisplaysView : Gtk.Box {
 
             dpi_dropdown.selected = (int)monitor_manager.virtual_monitors[0].scale - 1;
 
-            dpi_dropdown.notify["selected"].connect (() => {
+            dpi_dropdown.notify["selected-item"].connect (() => {
                 try {
                     monitor_manager.set_scale_on_all_monitors ((double)(dpi_dropdown.selected + 1));
                     warning ("Setting scale to %f", (double)(dpi_dropdown.selected + 1));

@@ -1,21 +1,7 @@
-/*-
- * Copyright 2014–2024 elementary, Inc.
- *           2014–2018 Corentin Noël <corentin@elementary.io>
- *
- * This software is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this software; if not, write to the
- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
- * Boston, MA 02110-1301, USA.
+/*
+ * SPDX-License-Identifier: LGPL-2.0-or-later
+ * SPDX-FileCopyrightText: 2014-2025 elementary, Inc. (https://elementary.io)
+                           2014-2018 Corentin Noël <corentin@elementary.io>
  */
 
 public class Display.DisplayWidget : Gtk.Box {
@@ -38,8 +24,7 @@ public class Display.DisplayWidget : Gtk.Box {
     private Display.ResolutionDropDown resolution_drop_down;
     private Display.RotationDropDown rotation_drop_down;
     private Display.RefreshRateDropDown refresh_rate_drop_down;
-
-    private Gtk.DropDown scale_drop_down;
+    private Display.ScaleDropDown scale_drop_down;
 
     private int real_width = 0;
     private int real_height = 0;
@@ -89,29 +74,7 @@ public class Display.DisplayWidget : Gtk.Box {
             mnemonic_widget = resolution_drop_down
         };
 
-        var scale_drop_down_factory = new Gtk.SignalListItemFactory ();
-        scale_drop_down_factory.setup.connect ((obj) => {
-            var list_item = (Gtk.ListItem) obj;
-            list_item.child = new Gtk.Label (null) { xalign = 0 };
-        });
-        scale_drop_down_factory.bind.connect ((obj) => {
-            var list_item = (Gtk.ListItem) obj;
-            var item = (VirtualMonitor.Scale) list_item.item;
-            var scale_label = (Gtk.Label) list_item.child;
-            scale_label.label = item.string_representation;
-        });
-
-        scale_drop_down = new Gtk.DropDown (virtual_monitor.available_scales, null) {
-            margin_start = 12,
-            margin_end = 12,
-            factory = scale_drop_down_factory
-        };
-        virtual_monitor.available_scales.bind_property (
-            "selected",
-            scale_drop_down,
-            "selected", BIDIRECTIONAL | SYNC_CREATE
-        );
-
+        scale_drop_down = new Display.ScaleDropDown (virtual_monitor);
         var scale_label = new Granite.HeaderLabel (_("Scaling factor")) {
             mnemonic_widget = scale_drop_down
         };
@@ -188,99 +151,11 @@ public class Display.DisplayWidget : Gtk.Box {
             add_css_class ("disabled");
         }
 
-        resolution_drop_down.resolution_changed.connect ((selected_option) => {
-            // Prevent breaking autohide by closing popover
-            popover.popdown ();
+        resolution_drop_down.resolution_selected.connect ((obj) => on_resolution_selected (obj, popover));
+        rotation_drop_down.rotation_selected.connect ((obj) => on_rotation_selected (obj, popover, label));
+        refresh_rate_drop_down.refresh_rate_selected.connect ((obj) => on_refresh_rate_selected (obj, popover));
+        scale_drop_down.scale_selected.connect ((obj) => on_scale_selected (obj, popover));
 
-            set_virtual_monitor_geometry (
-                virtual_monitor.x,
-                virtual_monitor.y,
-                selected_option.width,
-                selected_option.height
-            );
-            var new_mode = virtual_monitor.get_modes_for_resolution (selected_option.width, selected_option.height);
-            if (new_mode == null) {
-                return;
-            }
-
-            virtual_monitor.set_current_mode (new_mode.get (0));
-            rotation_drop_down.set_selected_rotation (0);
-            refresh_rate_drop_down.update_refresh_rates (selected_option.width, selected_option.height);
-            configuration_changed ();
-            check_position ();
-        });
-
-        rotation_drop_down.rotation_selected.connect ((obj) => {
-            // Prevent breaking autohide by closing popover
-            popover.popdown ();
-
-            var transform = (DisplayTransform)obj.value;
-
-            label.css_classes = {""};
-
-            switch (transform) {
-                case DisplayTransform.NORMAL:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.label = virtual_monitor_name;
-                    break;
-                case DisplayTransform.ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.add_css_class ("rotate-270");
-                    label.label = virtual_monitor_name;
-                    break;
-                case DisplayTransform.ROTATION_180:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.add_css_class ("rotate-180");
-                    label.label = virtual_monitor_name;
-                    break;
-                case DisplayTransform.ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.add_css_class ("rotate-90");
-                    label.label = virtual_monitor_name;
-                    break;
-                case DisplayTransform.FLIPPED:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.label = virtual_monitor_name.reverse (); //mirroring simulation, because we can't really mirror the text
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_90:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.add_css_class ("rotate-270");
-                    label.label = virtual_monitor_name.reverse ();
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_180:
-                    virtual_monitor.get_current_mode_size (out real_width, out real_height);
-                    label.add_css_class ("rotate-180");
-                    label.label = virtual_monitor_name.reverse ();
-                    break;
-                case DisplayTransform.FLIPPED_ROTATION_270:
-                    virtual_monitor.get_current_mode_size (out real_height, out real_width);
-                    label.add_css_class ("rotate-90");
-                    label.label = virtual_monitor_name.reverse ();
-                    break;
-            }
-
-            configuration_changed ();
-            check_position ();
-        });
-
-        refresh_rate_drop_down.refresh_rate_selected.connect ((obj) => {
-            // Prevent breaking autohide by closing popover
-            popover.popdown ();
- 
-            virtual_monitor.set_current_mode (obj.mode);
-            rotation_drop_down.set_selected_rotation (0);
-            configuration_changed ();
-            check_position ();
-        });
-
-        scale_drop_down.notify["selected-item"].connect (() => {
-            // Prevent breaking autohide by closing popover
-            popover.popdown ();
-
-            configuration_changed ();
-        });
-
-        rotation_drop_down.set_selected_rotation ((int) virtual_monitor.transform);
         on_vm_transform_changed ();
 
         virtual_monitor.modes_changed.connect (on_monitor_modes_changed);
@@ -347,5 +222,103 @@ public class Display.DisplayWidget : Gtk.Box {
 
     public bool equals (DisplayWidget sibling) {
         return virtual_monitor.id == sibling.virtual_monitor.id;
+    }
+
+    private void on_resolution_selected (Display.ResolutionDropDown.ResolutionOption selected_option, Gtk.Popover popover) {
+        // Prevent breaking autohide by closing popover
+        popover.popdown ();
+
+        set_virtual_monitor_geometry (
+        virtual_monitor.x,
+        virtual_monitor.y,
+        selected_option.width,
+        selected_option.height
+        );
+        
+        var new_mode = virtual_monitor.get_modes_for_resolution (selected_option.width, selected_option.height);
+        if (new_mode == null) {
+            return;
+        }
+
+        virtual_monitor.set_current_mode (new_mode.get (0));
+        rotation_drop_down.set_selected_rotation (0);
+        refresh_rate_drop_down.update_refresh_rates (selected_option.width, selected_option.height);
+        scale_drop_down.update_available_scales (new_mode.get (0));
+        configuration_changed ();
+        check_position ();
+    }
+
+    private void on_rotation_selected (Display.RotationDropDown.RotationOption selected_option, Gtk.Popover popover, Gtk.Label label) {
+        // Prevent breaking autohide by closing popover
+        popover.popdown ();
+
+        var transform = (DisplayTransform) selected_option.value;
+        var virtual_monitor_name = virtual_monitor.get_display_name ();
+
+        // Set transformation on the virtual monitor
+        virtual_monitor.transform = transform;
+
+        label.css_classes = {""};
+
+        switch (transform) {
+            case DisplayTransform.NORMAL:
+                virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                label.label = virtual_monitor_name;
+                break;
+            case DisplayTransform.ROTATION_90:
+                virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                label.add_css_class ("rotate-270");
+                label.label = virtual_monitor_name;
+                break;
+            case DisplayTransform.ROTATION_180:
+                virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                label.add_css_class ("rotate-180");
+                label.label = virtual_monitor_name;
+                break;
+            case DisplayTransform.ROTATION_270:
+                virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                label.add_css_class ("rotate-90");
+                label.label = virtual_monitor_name;
+                break;
+            case DisplayTransform.FLIPPED:
+                virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                label.label = virtual_monitor_name.reverse (); //mirroring simulation, because we can't really mirror the text
+                break;
+            case DisplayTransform.FLIPPED_ROTATION_90:
+                virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                label.add_css_class ("rotate-270");
+                label.label = virtual_monitor_name.reverse ();
+                break;
+            case DisplayTransform.FLIPPED_ROTATION_180:
+                virtual_monitor.get_current_mode_size (out real_width, out real_height);
+                label.add_css_class ("rotate-180");
+                label.label = virtual_monitor_name.reverse ();
+                break;
+            case DisplayTransform.FLIPPED_ROTATION_270:
+                virtual_monitor.get_current_mode_size (out real_height, out real_width);
+                label.add_css_class ("rotate-90");
+                label.label = virtual_monitor_name.reverse ();
+                break;
+        }
+
+        configuration_changed ();
+        check_position ();
+    }
+
+    private void on_refresh_rate_selected (Display.RefreshRateDropDown.RefreshRateOption selected_option, Gtk.Popover popover) {
+        // Prevent breaking autohide by closing popover
+        popover.popdown ();
+ 
+        virtual_monitor.set_current_mode (selected_option.mode);
+        rotation_drop_down.set_selected_rotation (0);
+        configuration_changed ();
+        check_position ();
+    }
+
+    private void on_scale_selected (Display.ScaleDropDown.ScaleOption selected_option, Gtk.Popover popover) {
+        // Prevent breaking autohide by closing popover
+        popover.popdown ();
+
+        configuration_changed ();
     }
 }
