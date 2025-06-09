@@ -50,7 +50,7 @@ public class Display.ResolutionDropDown : Granite.Bin {
             var item_child = item.child as Gtk.Label;
             item_child.label = resolution.label;
         });
- 
+
         drop_down = new Gtk.DropDown (resolutions, null) {
             factory = resolution_factory,
             margin_start = 12,
@@ -119,11 +119,11 @@ public class Display.ResolutionDropDown : Granite.Bin {
         // Ensures resolutions unique and sorted
         var resolution_set = new Gee.TreeSet<Display.MonitorMode> (Display.MonitorMode.resolution_compare_func);
         resolution_set.add_all (virtual_monitor.get_available_modes ());
-        
+
         foreach (var mode in resolution_set) {
             var mode_width = mode.width;
             var mode_height = mode.height;
-            
+
             if (mode.is_preferred) {
                 max_width = int.max (max_width, mode_width);
                 max_height = int.max (max_height, mode_height);

@@ -224,7 +224,8 @@ public class Display.DisplayWidget : Gtk.Box {
         return virtual_monitor.id == sibling.virtual_monitor.id;
     }
 
-    private void on_resolution_selected (Display.ResolutionDropDown.ResolutionOption selected_option, Gtk.Popover popover) {
+    private void on_resolution_selected (Display.ResolutionDropDown.ResolutionOption selected_option,
+        Gtk.Popover popover) {
         // Prevent breaking autohide by closing popover
         popover.popdown ();
 
@@ -234,7 +235,7 @@ public class Display.DisplayWidget : Gtk.Box {
         selected_option.width,
         selected_option.height
         );
-        
+
         var new_mode = virtual_monitor.get_modes_for_resolution (selected_option.width, selected_option.height);
         if (new_mode == null) {
             return;
@@ -248,7 +249,9 @@ public class Display.DisplayWidget : Gtk.Box {
         check_position ();
     }
 
-    private void on_rotation_selected (Display.RotationDropDown.RotationOption selected_option, Gtk.Popover popover, Gtk.Label label) {
+    private void on_rotation_selected (Display.RotationDropDown.RotationOption selected_option,
+        Gtk.Popover popover,
+        Gtk.Label label) {
         // Prevent breaking autohide by closing popover
         popover.popdown ();
 
@@ -305,10 +308,11 @@ public class Display.DisplayWidget : Gtk.Box {
         check_position ();
     }
 
-    private void on_refresh_rate_selected (Display.RefreshRateDropDown.RefreshRateOption selected_option, Gtk.Popover popover) {
+    private void on_refresh_rate_selected (Display.RefreshRateDropDown.RefreshRateOption selected_option,
+        Gtk.Popover popover) {
         // Prevent breaking autohide by closing popover
         popover.popdown ();
- 
+
         virtual_monitor.set_current_mode (selected_option.mode);
         rotation_drop_down.set_selected_rotation (0);
         configuration_changed ();
