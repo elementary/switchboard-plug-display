@@ -101,43 +101,33 @@ public class Display.RefreshRateDropDown : Granite.Bin {
         var current_mode = virtual_monitor.current_mode;
         var modes = virtual_monitor.get_modes_for_resolution (current_mode.width, current_mode.height);
 
-        var used_ints = new Gee.HashSet<int> (); // Nullable for Gee
+        var used_freqs = new Gee.HashSet<int> ();
         var options = new Gee.ArrayList<RefreshRateOption> ();
 
-        // 1. Add only exact integer frequencies
+        // Prefer a frequency that is already rounded (e.g. 60.0)
+        // over a different frequency rounded to the same value
+        // (e.g. 59.76 rounded to 60.0).
         foreach (var mode in modes) {
-            if (Math.fmod (mode.frequency, 1.0) == 0.0) {
-                int freq_int = (int) mode.frequency;
-                if (!used_ints.contains (freq_int)) {
-                    var option = new RefreshRateOption () {
-                        label = _("%g Hz").printf (mode.frequency),
-                        mode = mode
-                    };
-                    options.add (option);
-                    used_ints.add (freq_int);
-                }
+            int freq_int = (int) Math.roundf ((float) mode.frequency);
+            if (!used_freqs.contains (freq_int)) {
+                var freq_display = mode.frequency % 1.0 == 0
+                    ? mode.frequency
+                    : Math.roundf ((float) mode.frequency);
+                var label = _("%g Hz").printf (freq_display);
+                options.add (new RefreshRateOption () {
+                    label = label,
+                    mode = mode
+                });
+                used_freqs.add (freq_int);
             }
         }
 
-        // 2. Add non-integer frequencies whose rounded value hasn't been used yet
-        foreach (var mode in modes) {
-            if (Math.fmod (mode.frequency, 1.0) != 0.0) {
-                int rounded = (int) Math.roundf ((float)mode.frequency);
-                if (!used_ints.contains (rounded)) {
-                    var option = new RefreshRateOption () {
-                        label = _("%g Hz").printf (Math.roundf ((float)mode.frequency)),
-                        mode = mode
-                    };
-                    options.add (option);
-                    used_ints.add (rounded);
-                }
-            }
-        }
-
-        // Sort options by the actual frequency value
         options.sort ((a, b) => {
-            if (a.mode.frequency < b.mode.frequency) return -1;
-            if (a.mode.frequency > b.mode.frequency) return 1;
+            if (a.mode.frequency < b.mode.frequency) {
+                return -1;
+            } else if (a.mode.frequency > b.mode.frequency) {
+                return 1;
+            }
             return 0;
         });
 
